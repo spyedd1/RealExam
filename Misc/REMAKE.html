@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenfield Local Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --forest:#2c4a2e;
+  --forest-mid:#3d6641;
+  --forest-light:#5a8f5e;
+  --sage:#8aab7e;
+  --sage-pale:#e8f0e6;
+  --cream:#f8f5ef;
+  --warm:#faf7f2;
+  --stone:#e2ddd5;
+  --text:#1a2b1b;
+  --text-mid:#4a5e4b;
+  --text-muted:#7a8e7b;
+  --amber:#c97c2a;
+  --red:#c0392b;
+  --white:#ffffff;
+  --border:#d5d0c8;
+  --shadow:0 2px 16px rgba(44,74,46,0.08);
+  --shadow-lg:0 8px 40px rgba(44,74,46,0.14);
+  --r:10px;
+  --r-lg:18px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);line-height:1.6;min-height:100vh}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.2;font-weight:600}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+button{font-family:'Outfit',sans-serif;cursor:pointer}
+input,select,textarea{font-family:'Outfit',sans-serif}
+
+/* LAYOUT */
+.page{display:none;animation:fadeIn 0.3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--forest);
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  box-shadow:0 2px 20px rgba(0,0,0,0.2);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:700;color:var(--white);
+  cursor:pointer;
+}
+.nav-logo svg{color:var(--sage)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  color:rgba(255,255,255,0.8);
+  font-size:0.85rem;font-weight:500;
+  padding:7px 14px;border-radius:6px;
+  transition:all 0.2s;
+  cursor:pointer;
+}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,0.12);color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-icon-btn{
+  background:rgba(255,255,255,0.1);border:none;
+  color:var(--white);width:38px;height:38px;
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s;cursor:pointer;position:relative;
+}
+.nav-icon-btn:hover{background:rgba(255,255,255,0.2)}
+.basket-count{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--amber);color:white;
+  font-size:0.65rem;font-weight:600;
+  width:17px;height:17px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.nav-user-btn{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.1);border:none;
+  color:var(--white);padding:7px 14px;border-radius:8px;
+  font-size:0.83rem;font-weight:500;
+  transition:background 0.2s;cursor:pointer;
+}
+.nav-user-btn:hover{background:rgba(255,255,255,0.2)}
+
+/* SECTION HELPERS */
+.container{max-width:1160px;margin:0 auto;padding:0 5%}
+.section{padding:72px 5%}
+.section-sm{padding:48px 5%}
+.section-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--forest-light);font-weight:600;margin-bottom:10px}
+.section-title{font-size:clamp(1.9rem,3.2vw,2.8rem);color:var(--text);margin-bottom:14px}
+.section-sub{color:var(--text-muted);max-width:520px;font-size:0.97rem;line-height:1.7}
+.divider{height:1px;background:var(--stone);margin:0 5%}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:8px;font-size:0.88rem;font-weight:500;border:none;transition:all 0.22s;cursor:pointer}
+.btn-primary{background:var(--forest);color:white}
+.btn-primary:hover{background:var(--forest-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(44,74,46,0.3)}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--forest)}
+.btn-outline:hover{background:var(--sage-pale)}
+.btn-amber{background:var(--amber);color:white}
+.btn-amber:hover{background:#b36a1f;transform:translateY(-1px)}
+.btn-sm{padding:7px 16px;font-size:0.82rem}
+.btn-block{width:100%;justify-content:center}
+
+/* CARDS */
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:all 0.25s}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.card-body{padding:22px}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{
+  background:var(--sage-pale);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;color:var(--text-muted);font-size:0.8rem;
+}
+.img-placeholder svg{color:var(--sage)}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:50px;font-size:0.75rem;font-weight:500}
+.badge-green{background:var(--sage-pale);color:var(--forest)}
+.badge-amber{background:#fef3e2;color:var(--amber)}
+.badge-stone{background:var(--stone);color:var(--text-mid)}
+
+/* FORM */
+.form-group{margin-bottom:18px}
+.form-label{display:block;font-size:0.85rem;font-weight:500;color:var(--text-mid);margin-bottom:6px}
+.form-control{
+  width:100%;padding:11px 14px;
+  border:1.5px solid var(--border);border-radius:var(--r);
+  font-size:0.9rem;background:var(--white);
+  transition:border-color 0.2s;outline:none;
+  color:var(--text);
+}
+.form-control:focus{border-color:var(--forest-light)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-hint{font-size:0.78rem;color:var(--text-muted);margin-top:5px}
+
+/* ALERT */
+.alert{padding:14px 18px;border-radius:var(--r);font-size:0.88rem;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.alert-info{background:#e8f4f8;color:#1a5276;border:1px solid #aed6f1}
+.alert-success{background:#e9f7ef;color:#1d6a3a;border:1px solid #a9dfbf}
+.alert-warn{background:#fef9e7;color:#7d6608;border:1px solid #f9e79f}
+
+/* ===== HOME PAGE ===== */
+.hero{
+  background:var(--forest);
+  min-height:88vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  position:relative;overflow:hidden;
+}
+.hero-content{
+  padding:80px 6% 80px 8%;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:1;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(138,171,126,0.2);border:1px solid rgba(138,171,126,0.35);
+  color:var(--sage);padding:6px 14px;border-radius:50px;
+  font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  margin-bottom:28px;width:fit-content;
+}
+.hero h1{
+  font-size:clamp(2.6rem,4.5vw,4rem);
+  color:var(--white);line-height:1.1;
+  margin-bottom:20px;
+}
+.hero h1 em{color:var(--sage);font-style:italic}
+.hero-desc{color:rgba(255,255,255,0.72);font-size:1.02rem;max-width:420px;line-height:1.75;margin-bottom:36px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-image{
+  position:relative;
+  background:var(--forest-mid);
+}
+.hero-image .img-placeholder{height:100%;min-height:500px;background:rgba(255,255,255,0.05)}
+.hero-image .img-placeholder svg{color:rgba(255,255,255,0.2);width:64px;height:64px}
+.hero-image .img-placeholder span{color:rgba(255,255,255,0.3);font-size:0.85rem}
+
+.hero-stripe{
+  position:absolute;bottom:0;left:0;right:0;
+  background:var(--cream);height:40px;
+  clip-path:ellipse(55% 100% at 50% 100%);
+}
+
+.features-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--white);border-bottom:1px solid var(--border);
+}
+.feature-item{
+  display:flex;align-items:center;gap:12px;
+  padding:22px 24px;border-right:1px solid var(--border);
+}
+.feature-item:last-child{border-right:none}
+.feature-icon{
+  width:40px;height:40px;background:var(--sage-pale);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.feature-icon svg{color:var(--forest)}
+.feature-text strong{display:block;font-size:0.88rem;font-weight:600;color:var(--text)}
+.feature-text span{font-size:0.78rem;color:var(--text-muted)}
+
+.featured-products{padding:80px 5%}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+
+.product-card .img-placeholder{height:200px}
+.product-card .card-body{padding:18px}
+.product-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;margin-bottom:4px}
+.product-producer{font-size:0.78rem;color:var(--text-muted);margin-bottom:12px}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--forest)}
+.product-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px solid var(--stone)}
+
+.about-strip{
+  background:var(--forest);
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:420px;
+}
+.about-strip-img{background:var(--forest-mid);position:relative}
+.about-strip-img .img-placeholder{height:100%;min-height:420px;background:rgba(255,255,255,0.05)}
+.about-strip-img .img-placeholder svg{color:rgba(255,255,255,0.15);width:56px;height:56px}
+.about-strip-img .img-placeholder span{color:rgba(255,255,255,0.25)}
+.about-strip-content{padding:64px 6%;display:flex;flex-direction:column;justify-content:center}
+.about-strip-content .section-label{color:var(--sage)}
+.about-strip-content h2{color:var(--white);margin-bottom:16px}
+.about-strip-content p{color:rgba(255,255,255,0.72);margin-bottom:28px;line-height:1.75;font-size:0.97rem}
+
+/* ===== PRODUCTS PAGE ===== */
+.products-layout{display:grid;grid-template-columns:260px 1fr;gap:32px;padding:48px 5%}
+.filters-panel{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:24px;height:fit-content;
+  position:sticky;top:80px;
+}
+.filter-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--stone)}
+.filter-group{margin-bottom:22px}
+.filter-group-label{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mid);margin-bottom:10px}
+.filter-option{display:flex;align-items:center;gap:9px;padding:5px 0;cursor:pointer;font-size:0.88rem;color:var(--text-mid)}
+.filter-option input{accent-color:var(--forest);width:15px;height:15px}
+.products-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.products-count{font-size:0.88rem;color:var(--text-muted)}
+.search-bar{
+  display:flex;align-items:center;gap:0;
+  border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--white);
+  max-width:340px;
+}
+.search-bar input{flex:1;padding:10px 14px;border:none;outline:none;font-size:0.88rem;font-family:'Outfit',sans-serif}
+.search-bar button{background:var(--forest);color:white;border:none;padding:10px 14px;cursor:pointer;display:flex;align-items:center}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+/* ===== SPECIFIC PRODUCT ===== */
+.product-detail{padding:48px 5%}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text-muted);margin-bottom:32px}
+.breadcrumb a{color:var(--forest);cursor:pointer}
+.breadcrumb a:hover{text-decoration:underline}
+.product-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.product-detail-images .img-placeholder{height:440px;border-radius:var(--r-lg);border:1px solid var(--border)}
+.product-detail-info{}
+.product-detail-name{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:8px}
+.product-detail-producer{font-size:0.9rem;color:var(--forest-light);font-weight:500;margin-bottom:16px;display:flex;align-items:center;gap:6px;cursor:pointer}
+.product-detail-producer:hover{text-decoration:underline}
+.product-detail-price{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--forest);margin-bottom:8px}
+.product-detail-stock{font-size:0.85rem;margin-bottom:22px}
+.product-detail-desc{color:var(--text-mid);line-height:1.75;margin-bottom:28px;font-size:0.95rem}
+.qty-selector{display:flex;align-items:center;gap:0;border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;width:fit-content;margin-bottom:18px}
+.qty-btn{background:var(--sage-pale);border:none;color:var(--forest);width:40px;height:40px;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s}
+.qty-btn:hover{background:var(--stone)}
+.qty-display{padding:0 20px;font-size:0.95rem;font-weight:500;min-width:50px;text-align:center}
+.product-add-row{display:flex;gap:12px;margin-bottom:28px}
+.product-meta-table{border-top:1px solid var(--stone);padding-top:22px}
+.meta-row{display:flex;padding:9px 0;border-bottom:1px solid var(--stone);font-size:0.88rem}
+.meta-label{width:140px;color:var(--text-muted);flex-shrink:0}
+.meta-value{color:var(--text);font-weight:500}
+
+/* ===== PRODUCERS PAGE ===== */
+.producers-hero{
+  background:var(--sage-pale);
+  padding:64px 5%;
+  border-bottom:1px solid var(--border);
+}
+.producers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:48px 5%}
+.producer-card .img-placeholder{height:220px}
+.producer-card .card-body{padding:22px}
+.producer-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:4px}
+.producer-type{font-size:0.8rem;color:var(--text-muted);margin-bottom:12px}
+.producer-desc{font-size:0.87rem;color:var(--text-mid);line-height:1.65;margin-bottom:16px}
+.producer-stats{display:flex;gap:16px;padding-top:14px;border-top:1px solid var(--stone)}
+.producer-stat{font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:4px}
+.producer-stat svg{color:var(--sage)}
+
+/* ===== SPECIFIC PRODUCER ===== */
+.producer-detail-hero{
+  background:var(--forest);
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:380px;
+}
+.producer-detail-hero .img-placeholder{height:100%;min-height:380px;background:rgba(255,255,255,0.05)}
+.producer-detail-hero .img-placeholder svg{color:rgba(255,255,255,0.15);width:56px;height:56px}
+.producer-detail-hero .img-placeholder span{color:rgba(255,255,255,0.25)}
+.producer-detail-info{padding:56px 6%;display:flex;flex-direction:column;justify-content:center}
+.producer-detail-info .section-label{color:var(--sage)}
+.producer-detail-info h1{color:var(--white);font-size:clamp(1.9rem,3vw,2.8rem);margin-bottom:16px}
+.producer-detail-info p{color:rgba(255,255,255,0.72);line-height:1.75;font-size:0.97rem;margin-bottom:20px}
+.producer-badges{display:flex;flex-wrap:wrap;gap:8px}
+.producer-badge{background:rgba(138,171,126,0.2);border:1px solid rgba(138,171,126,0.3);color:var(--sage);padding:5px 12px;border-radius:50px;font-size:0.78rem;display:flex;align-items:center;gap:5px}
+.producer-products-section{padding:56px 5%}
+
+/* ===== ABOUT PAGE ===== */
+.about-hero{
+  background:var(--sage-pale);padding:80px 5%;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+  border-bottom:1px solid var(--border);
+}
+.about-hero-img .img-placeholder{height:380px;border-radius:var(--r-lg)}
+.about-hero-content .section-label{margin-bottom:10px}
+.about-hero-content h1{font-size:clamp(2rem,3.5vw,3rem);margin-bottom:18px}
+.about-hero-content p{color:var(--text-mid);line-height:1.75;margin-bottom:16px;font-size:0.97rem}
+.values-section{padding:72px 5%}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.value-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:30px}
+.value-icon{width:50px;height:50px;background:var(--sage-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.value-icon svg{color:var(--forest)}
+.value-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:10px}
+.value-card p{font-size:0.87rem;color:var(--text-muted);line-height:1.65}
+.team-section{background:var(--forest);padding:72px 5%}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.team-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r-lg);overflow:hidden}
+.team-card .img-placeholder{height:200px;background:rgba(255,255,255,0.05)}
+.team-card .img-placeholder svg{color:rgba(255,255,255,0.15)}
+.team-card .img-placeholder span{color:rgba(255,255,255,0.2)}
+.team-card-body{padding:18px}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);margin-bottom:4px}
+.team-role{font-size:0.8rem;color:rgba(255,255,255,0.55)}
+
+/* ===== CONTACT PAGE ===== */
+.contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:0;min-height:calc(100vh - 64px)}
+.contact-sidebar{background:var(--forest);padding:64px 6%;display:flex;flex-direction:column;justify-content:flex-start}
+.contact-sidebar h2{color:var(--white);font-size:clamp(1.6rem,2.5vw,2.2rem);margin-bottom:18px}
+.contact-sidebar p{color:rgba(255,255,255,0.72);line-height:1.75;margin-bottom:36px;font-size:0.95rem}
+.contact-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:24px}
+.contact-item-icon{width:40px;height:40px;background:rgba(138,171,126,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-item-icon svg{color:var(--sage)}
+.contact-item-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:3px}
+.contact-item-value{color:var(--white);font-size:0.92rem;font-weight:500}
+.contact-form-area{background:var(--cream);padding:64px 6%;overflow-y:auto}
+.contact-form-area h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin-bottom:24px}
+
+/* ===== LOGIN / REGISTER ===== */
+.auth-layout{
+  min-height:calc(100vh - 64px);
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.auth-side{
+  background:var(--forest);
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:64px 7%;
+  position:relative;overflow:hidden;
+}
+.auth-side::before{
+  content:'';position:absolute;width:400px;height:400px;
+  background:rgba(138,171,126,0.08);border-radius:50%;
+  bottom:-100px;right:-100px;
+}
+.auth-side h2{color:var(--white);font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:16px;position:relative;z-index:1}
+.auth-side p{color:rgba(255,255,255,0.68);line-height:1.75;max-width:340px;font-size:0.95rem;position:relative;z-index:1}
+.auth-side .img-placeholder{width:100%;max-width:340px;height:260px;border-radius:var(--r-lg);margin-top:32px;background:rgba(255,255,255,0.07);position:relative;z-index:1}
+.auth-side .img-placeholder svg{color:rgba(255,255,255,0.15);width:48px;height:48px}
+.auth-side .img-placeholder span{color:rgba(255,255,255,0.25)}
+.auth-form-side{background:var(--warm);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:64px 7%}
+.auth-box{width:100%;max-width:420px}
+.auth-box h3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;margin-bottom:6px}
+.auth-box .auth-subtitle{font-size:0.88rem;color:var(--text-muted);margin-bottom:28px}
+.auth-divider{text-align:center;position:relative;margin:20px 0;font-size:0.82rem;color:var(--text-muted)}
+.auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--stone)}
+.auth-divider::before{left:0}.auth-divider::after{right:0}
+.auth-switch{text-align:center;margin-top:20px;font-size:0.87rem;color:var(--text-muted)}
+.auth-switch a{color:var(--forest);font-weight:500;cursor:pointer}
+.auth-switch a:hover{text-decoration:underline}
+.remember-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;font-size:0.85rem}
+.remember-row label{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--text-mid)}
+.remember-row input{accent-color:var(--forest)}
+.forgot-link{color:var(--forest);cursor:pointer}
+.forgot-link:hover{text-decoration:underline}
+
+/* ===== ACCOUNT PAGE ===== */
+.account-layout{display:grid;grid-template-columns:260px 1fr;gap:32px;padding:48px 5%}
+.account-sidebar{height:fit-content;position:sticky;top:80px}
+.account-sidebar-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.account-avatar{background:var(--forest);padding:28px 24px;display:flex;align-items:center;gap:14px}
+.avatar-circle{width:50px;height:50px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.avatar-circle svg{color:white}
+.avatar-name{color:white;font-weight:600;font-size:0.95rem}
+.avatar-email{color:rgba(255,255,255,0.65);font-size:0.78rem}
+.account-nav-link{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 20px;font-size:0.88rem;color:var(--text-mid);
+  border-bottom:1px solid var(--stone);cursor:pointer;
+  transition:all 0.15s;
+}
+.account-nav-link:last-child{border-bottom:none}
+.account-nav-link:hover,.account-nav-link.active{background:var(--sage-pale);color:var(--forest)}
+.account-nav-link svg{color:var(--text-muted);flex-shrink:0}
+.account-nav-link.active svg{color:var(--forest)}
+.account-content{min-width:0}
+.account-section-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin-bottom:6px}
+.account-section-sub{color:var(--text-muted);font-size:0.87rem;margin-bottom:28px}
+.order-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:16px;overflow:hidden}
+.order-header{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--stone);background:var(--warm)}
+.order-id{font-size:0.88rem;font-weight:600;color:var(--text)}
+.order-date{font-size:0.8rem;color:var(--text-muted)}
+.order-body{padding:16px 22px}
+.order-item-row{display:flex;align-items:center;gap:14px;padding:8px 0;border-bottom:1px solid var(--stone);font-size:0.87rem}
+.order-item-row:last-child{border-bottom:none}
+.order-item-img{width:44px;height:44px;border-radius:8px;background:var(--sage-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.order-item-img svg{color:var(--sage)}
+.order-item-name{flex:1;font-weight:500}
+.order-item-qty{color:var(--text-muted)}
+.order-item-price{font-weight:600;color:var(--forest)}
+.order-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-top:1px solid var(--stone);background:var(--warm)}
+.loyalty-card{background:linear-gradient(135deg,var(--forest) 0%,var(--forest-mid) 100%);border-radius:var(--r-lg);padding:28px;color:white;margin-bottom:24px;position:relative;overflow:hidden}
+.loyalty-card::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.05);right:-50px;top:-50px}
+.loyalty-points{font-size:2.5rem;font-family:'Cormorant Garamond',serif;font-weight:700;margin:12px 0 6px}
+.loyalty-sub{color:rgba(255,255,255,0.65);font-size:0.82rem}
+.loyalty-bar-wrap{margin-top:18px}
+.loyalty-bar-label{display:flex;justify-content:space-between;font-size:0.78rem;color:rgba(255,255,255,0.6);margin-bottom:6px}
+.loyalty-bar{height:8px;background:rgba(255,255,255,0.15);border-radius:50px}
+.loyalty-bar-fill{height:100%;background:var(--sage);border-radius:50px;width:62%}
+
+/* ===== BASKET PAGE ===== */
+.basket-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;padding:48px 5%}
+.basket-items{}
+.basket-page-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;margin-bottom:24px}
+.basket-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);display:grid;grid-template-columns:88px 1fr auto;gap:18px;align-items:center;padding:18px;margin-bottom:14px}
+.basket-item-img{width:88px;height:88px;border-radius:var(--r);background:var(--sage-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.basket-item-img svg{color:var(--sage)}
+.basket-item-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.basket-item-producer{font-size:0.78rem;color:var(--text-muted);margin-bottom:10px}
+.basket-item-controls{display:flex;align-items:center;gap:10px}
+.basket-remove{background:none;border:none;color:var(--text-muted);cursor:pointer;padding:4px;border-radius:6px;transition:color 0.15s;display:flex;align-items:center}
+.basket-remove:hover{color:var(--red)}
+.basket-item-price{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--forest);text-align:right;min-width:70px}
+.order-summary{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;height:fit-content;position:sticky;top:80px}
+.summary-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:20px}
+.summary-row{display:flex;justify-content:space-between;font-size:0.9rem;padding:8px 0;border-bottom:1px solid var(--stone)}
+.summary-row:last-of-type{border-bottom:none;font-weight:600;font-size:1rem;padding-top:12px;color:var(--text)}
+.summary-total{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--forest)}
+.delivery-options{margin:20px 0;padding:16px 0;border-top:1px solid var(--stone);border-bottom:1px solid var(--stone)}
+.delivery-option{display:flex;align-items:flex-start;gap:10px;padding:9px 0;cursor:pointer}
+.delivery-option input{accent-color:var(--forest);margin-top:3px}
+.delivery-option-label{font-size:0.87rem;font-weight:500;color:var(--text)}
+.delivery-option-desc{font-size:0.78rem;color:var(--text-muted)}
+.promo-row{display:flex;gap:8px;margin-bottom:20px}
+.promo-row input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--r);font-size:0.85rem;outline:none;font-family:'Outfit',sans-serif}
+.promo-row input:focus{border-color:var(--forest-light)}
+.promo-row button{background:var(--sage-pale);color:var(--forest);border:none;padding:9px 14px;border-radius:var(--r);font-size:0.82rem;font-weight:500;cursor:pointer}
+.empty-basket{text-align:center;padding:64px 24px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg)}
+.empty-basket svg{color:var(--stone);margin:0 auto 16px}
+.empty-basket h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:8px}
+.empty-basket p{font-size:0.88rem;color:var(--text-muted);margin-bottom:22px}
+
+/* FOOTER */
+footer{
+  background:var(--text);color:rgba(255,255,255,0.65);
+  padding:56px 5% 28px;margin-top:0;
+}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:white;margin-bottom:12px}
+.footer-tagline{font-size:0.85rem;line-height:1.65;max-width:230px;margin-bottom:18px}
+.footer-col h5{color:white;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;font-family:'Outfit',sans-serif}
+.footer-col a{display:block;font-size:0.85rem;margin-bottom:9px;color:rgba(255,255,255,0.55);transition:color 0.2s;cursor:pointer}
+.footer-col a:hover{color:white}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:22px;display:flex;align-items:center;justify-content:space-between;font-size:0.78rem;color:rgba(255,255,255,0.35)}
+
+/* ACCESSIBILITY */
+:focus-visible{outline:2px solid var(--forest-light);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:var(--forest);color:white;
+  padding:12px 20px;border-radius:var(--r);
+  font-size:0.88rem;display:flex;align-items:center;gap:10px;
+  box-shadow:var(--shadow-lg);z-index:999;
+  opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .hero,.auth-layout,.contact-layout,.about-strip,.producer-detail-hero,.about-hero{grid-template-columns:1fr}
+  .hero-image,.auth-side .img-placeholder,.about-strip-img,.producer-detail-hero .img-placeholder{display:none}
+  .features-bar,.grid-4,.grid-3,.products-layout,.account-layout,.basket-layout,.footer-grid,.values-grid,.team-grid,.producers-grid,.products-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  nav .nav-links{display:none}
+}
+
+/* PRODUCER DASHBOARD */
+.pd-nav-link{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 20px;font-size:0.87rem;color:rgba(255,255,255,0.65);
+  cursor:pointer;transition:all 0.15s;border-left:3px solid transparent;
+}
+.pd-nav-link:hover{background:rgba(255,255,255,0.08);color:white}
+.pd-nav-link.active{background:rgba(255,255,255,0.12);color:white;border-left-color:var(--sage)}
+.pd-nav-link svg{flex-shrink:0;color:inherit}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-logo" onclick="navigate('home')" role="link" tabindex="0" aria-label="Greenfield Local Hub home">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12"/><path d="M12 6v6l4 2"/><path d="M2 7l2 2 2-2"/><path d="M2 13l2-2 2 2"/></svg>
+    Greenfield Local Hub
+  </a>
+  <div class="nav-links" role="list">
+    <a role="listitem" onclick="navigate('home')" id="nav-home">Home</a>
+    <a role="listitem" onclick="navigate('producers')" id="nav-producers">Producers</a>
+    <a role="listitem" onclick="navigate('products')" id="nav-products">Products</a>
+    <a role="listitem" onclick="navigate('about')" id="nav-about">About Us</a>
+    <a role="listitem" onclick="navigate('contact')" id="nav-contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-icon-btn" onclick="navigate('basket')" aria-label="View basket">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="basket-count" id="basket-count" aria-label="3 items">3</span>
+    </button>
+    <button class="nav-user-btn" onclick="navigate('login')" aria-label="Sign in" id="nav-login-btn" style="background:rgba(255,255,255,0.1);border:none;color:white;padding:7px 14px;border-radius:8px;font-size:0.83rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background 0.2s;font-family:Outfit,sans-serif">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+      Sign In
+    </button>
+    <button class="nav-user-btn" onclick="navigate('register')" id="nav-register-btn" aria-label="Register" style="background:var(--sage);border:none;color:white;padding:7px 14px;border-radius:8px;font-size:0.83rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background 0.2s;font-family:Outfit,sans-serif">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+      Register
+    </button>
+    <button id="nav-account-btn" onclick="navigate('account')" aria-label="My account" style="display:none;background:rgba(255,255,255,0.1);border:none;color:white;padding:7px 14px;border-radius:8px;font-size:0.83rem;font-weight:500;cursor:pointer;align-items:center;gap:8px;transition:background 0.2s;font-family:Outfit,sans-serif">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span id="nav-account-name">My Account</span>
+    </button>
+    <button id="nav-signout-btn" onclick="signOut()" aria-label="Sign out" style="display:none;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:7px 14px;border-radius:8px;font-size:0.83rem;font-weight:500;cursor:pointer;align-items:center;gap:8px;transition:background 0.2s;font-family:Outfit,sans-serif">
+      Sign Out
+    </button>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toast-msg">Added to basket</span>
+</div>
+
+<!-- ======================== HOME ======================== -->
+<main id="page-home" class="page">
+  <div class="hero" role="banner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Locally Sourced &mdash; Freshly Delivered
+      </div>
+      <h1>The freshest local<br>food, <em>direct from<br>our producers.</em></h1>
+      <p class="hero-desc">Greenfield Local Hub brings together the finest farmers and food producers from our region. Order online, collect in store or choose home delivery.</p>
+      <div class="hero-actions">
+        <button class="btn btn-amber" onclick="navigate('products')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Shop Products
+        </button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.3)" onclick="navigate('producers')">
+          Meet Our Producers
+        </button>
+      </div>
+    </div>
+    <div class="hero-image" aria-hidden="true">
+      <div class="img-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Replace with hero image</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-bar" role="list" aria-label="Key features">
+    <div class="feature-item" role="listitem">
+      <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="feature-text"><strong>Collection Available</strong><span>Order online, collect in store</span></div>
+    </div>
+    <div class="feature-item" role="listitem">
+      <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div class="feature-text"><strong>Home Delivery</strong><span>Fresh to your door</span></div>
+    </div>
+    <div class="feature-item" role="listitem">
+      <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="feature-text"><strong>Full Traceability</strong><span>Know exactly where it's from</span></div>
+    </div>
+    <div class="feature-item" role="listitem">
+      <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div class="feature-text"><strong>Loyalty Rewards</strong><span>Earn points on every order</span></div>
+    </div>
+  </div>
+
+  <section class="featured-products" aria-label="Featured products">
+    <div class="section-label">This Week's Picks</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:14px">
+      <h2 class="section-title" style="margin-bottom:0">Fresh from our producers</h2>
+      <button class="btn btn-outline btn-sm" onclick="navigate('products')">View All Products</button>
+    </div>
+    <div class="grid-4">
+      <!-- Product cards -->
+      <article class="card product-card" aria-label="Product: Heritage Tomatoes">
+        <div class="img-placeholder" style="height:200px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Product image</span>
+        </div>
+        <div class="card-body">
+          <div class="product-meta"><span class="badge badge-green">In Stock</span><span class="badge badge-stone">Vegetables</span></div>
+          <div class="product-name">Heritage Tomatoes</div>
+          <div class="product-producer">Greenway Farm</div>
+          <div class="product-footer">
+            <div class="product-price">&pound;2.40 <span style="font-size:0.78rem;font-family:'Outfit',sans-serif;font-weight:400;color:var(--text-muted)">/ 500g</span></div>
+            <button class="btn btn-primary btn-sm" onclick="addToBasket('Heritage Tomatoes')">Add</button>
+          </div>
+        </div>
+      </article>
+      <article class="card product-card" aria-label="Product: Raw Blossom Honey">
+        <div class="img-placeholder" style="height:200px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Product image</span>
+        </div>
+        <div class="card-body">
+          <div class="product-meta"><span class="badge badge-green">In Stock</span><span class="badge badge-amber">Pantry</span></div>
+          <div class="product-name">Raw Blossom Honey</div>
+          <div class="product-producer">Meadowsweet Apiary</div>
+          <div class="product-footer">
+            <div class="product-price">&pound;5.80 <span style="font-size:0.78rem;font-family:'Outfit',sans-serif;font-weight:400;color:var(--text-muted)">/ 340g</span></div>
+            <button class="btn btn-primary btn-sm" onclick="addToBasket('Raw Blossom Honey')">Add</button>
+          </div>
+        </div>
+      </article>
+      <article class="card product-card" aria-label="Product: Sourdough Loaf">
+        <div class="img-placeholder" style="height:200px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Product image</span>
+        </div>
+        <div class="card-body">
+          <div class="product-meta"><span class="badge badge-green">In Stock</span><span class="badge badge-stone">Bakery</span></div>
+          <div class="product-name">Sourdough Loaf</div>
+          <div class="product-producer">Harrow Bakes</div>
+          <div class="product-footer">
+            <div class="product-price">&pound;4.20</div>
+            <button class="btn btn-primary btn-sm" onclick="addToBasket('Sourdough Loaf')">Add</button>
+          </div>
+        </div>
+      </article>
+      <article class="card product-card" aria-label="Product: Free-Range Eggs">
+        <div class="img-placeholder" style="height:200px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Product image</span>
+        </div>
+        <div class="card-body">
+          <div class="product-meta"><span class="badge badge-amber">Low Stock</span><span class="badge badge-stone">Dairy &amp; Eggs</span></div>
+          <div class="product-name">Free-Range Eggs</div>
+          <div class="product-producer">Redfield Poultry</div>
+          <div class="product-footer">
+            <div class="product-price">&pound;3.10 <span style="font-size:0.78rem;font-family:'Outfit',sans-serif;font-weight:400;color:var(--text-muted)">/ doz.</span></div>
+            <button class="btn btn-primary btn-sm" onclick="addToBasket('Free-Range Eggs')">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="about-strip" role="complementary" aria-label="About Greenfield Local Hub">
+    <div class="about-strip-img" aria-hidden="true">
+      <div class="img-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Replace with farm image</span>
+      </div>
+    </div>
+    <div class="about-strip-content">
+      <div class="section-label">About Us</div>
+      <h2>A cooperative built on community and trust</h2>
+      <p>Greenfield Local Hub is a collective of local farmers and food producers committed to transparent, sustainable food systems. We give our producers a single platform to reach customers, and give customers honest information about where their food comes from.</p>
+      <button class="btn btn-outline" style="color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.3);width:fit-content" onclick="navigate('about')">Learn More About Us</button>
+    </div>
+  </div>
+</main>
+
+<!-- ======================== PRODUCTS ======================== -->
+<main id="page-products" class="page" aria-label="Products">
+  <div style="background:var(--sage-pale);padding:40px 5%;border-bottom:1px solid var(--border)">
+    <div class="section-label">Browse &amp; Order</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3vw,2.6rem);margin-bottom:8px">All Products</h1>
+    <p style="color:var(--text-muted);font-size:0.93rem">Fresh, local produce and artisan goods from our network of producers.</p>
+  </div>
+  <div class="products-layout">
+    <aside class="filters-panel" aria-label="Product filters">
+      <div class="filter-title">Filter Products</div>
+      <div style="margin-bottom:18px">
+        <div class="search-bar" role="search">
+          <input type="search" placeholder="Search products..." aria-label="Search products">
+          <button aria-label="Submit search"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-label">Category</div>
+        <label class="filter-option"><input type="checkbox" checked> Vegetables</label>
+        <label class="filter-option"><input type="checkbox" checked> Fruit</label>
+        <label class="filter-option"><input type="checkbox" checked> Dairy &amp; Eggs</label>
+        <label class="filter-option"><input type="checkbox" checked> Meat &amp; Fish</label>
+        <label class="filter-option"><input type="checkbox" checked> Bakery</label>
+        <label class="filter-option"><input type="checkbox" checked> Pantry</label>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-label">Availability</div>
+        <label class="filter-option"><input type="radio" name="avail" checked> All products</label>
+        <label class="filter-option"><input type="radio" name="avail"> In stock only</label>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-label">Producer</div>
+        <label class="filter-option"><input type="checkbox"> Greenway Farm</label>
+        <label class="filter-option"><input type="checkbox"> Harrow Bakes</label>
+        <label class="filter-option"><input type="checkbox"> Meadowsweet Apiary</label>
+        <label class="filter-option"><input type="checkbox"> Redfield Poultry</label>
+        <label class="filter-option"><input type="checkbox"> Orchard Hill Dairy</label>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-label">Price Range</div>
+        <label class="filter-option"><input type="radio" name="price" checked> Any price</label>
+        <label class="filter-option"><input type="radio" name="price"> Under &pound;3</label>
+        <label class="filter-option"><input type="radio" name="price"> &pound;3 &ndash; &pound;8</label>
+        <label class="filter-option"><input type="radio" name="price"> Over &pound;8</label>
+      </div>
+    </aside>
+    <div>
+      <div class="products-header">
+        <p class="products-count">Showing <strong>12</strong> products</p>
+        <select class="form-control" style="width:auto;padding:8px 12px;font-size:0.85rem" aria-label="Sort products">
+          <option>Sort: Newest</option>
+          <option>Sort: Price low-high</option>
+          <option>Sort: Price high-low</option>
+          <option>Sort: Name A-Z</option>
+        </select>
+      </div>
+      <div class="products-grid">
+        <!-- 6 product cards -->
+        <article class="card product-card" aria-label="Heritage Tomatoes">
+          <div class="img-placeholder" style="height:180px"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div>
+          <div class="card-body">
+            <div class="product-meta"><span class="badge badge-green">In Stock</span><span class="badge badge-stone">Veg</span></div>
+            <div class="product-name">Heritage Tomatoes</div>
+            <div class="product-producer">Greenway Farm</div>
+            <div class="product-footer"><div class="product-price">&pound;2.40 <span style="font-size:0.75rem;font-family:'Outfit',sans-serif;font-weight:400;color:var(--text-muted)">/500g</span></div><button class="btn btn-primary btn-sm" onclick="navigate('product-detail')">View</button></div>
+          </div>
+        </article>
+        <article class="card product-card" aria-label="Raw Blossom Honey">
+          <div class="img-placeholder" style="height:180px"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div>
+          <div class="card-body">
+            <div class="product-meta"><span class="badge badge-green">In Stock</span><span class="badge badge-amber">Pantry</span></div>
+            <div class="product-name">Raw Blossom Honey</div>
+            <div class="product-producer">Meadowsweet Apiary</div>
+            <div class="product-footer"><div class="product-price">&pound;5.80</div><button class="btn btn-primary btn-sm" onclick="addToBasket('Honey')">Add</button></div>
+          </div>
+        </article>
+        <article class="card product-card" aria-label="Sourdough Loaf">
+          <div class="img-placeholder" style="height:180px"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div>
+          <div class="card-body">
+            <div class="product-meta"><span class="badge badge-green">In Stock</span><span class="badge badge-stone">Bakery</span></div>
+            <div class="product-name">Sourdough Loaf</div>
+            <div class="product-producer">Harrow Bakes</div>
+            <div class="product-footer"><div class="product-price">&pound;4.20</div><button class="btn btn-primary btn-sm" onclick="addToBasket('Sourdough')">Add</button></div>
+          </div>
+        </article>
+        <article class="card product-card" aria-label="Free-Range Eggs">
+          <div class="img-placeholder" style="height:180px"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div>
+          <div class="card-body">
+            <div class="product-meta"><span class="badge badge-amber">Low Stock</span><span class="badge badge-stone">Dairy &amp; Eggs</span></div>
+            <div class="product-name">Free-Range Eggs</div>
+            <div class="product-producer">Redfield Poultry</div>
+            <div class="product-footer"><div class="product-price">&pound;3.10</div><button class="btn btn-primary btn-sm" onclick="addToBasket('Eggs')">Add</button></div>
+          </div>
+        </article>
+        <article class="card product-card" aria-label="Mature Cheddar">
+          <div class="img-placeholder" style="height:180px"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div>
+          <div class="card-body">
+            <div class="product-meta"><span class="badge badge-green">In Stock</span><span class="badge badge-stone">Dairy</span></div>
+            <div class="product-name">Mature Cheddar</div>
+            <div class="product-producer">Orchard Hill Dairy</div>
+            <div class="product-footer"><div class="product-price">&pound;6.50 <span style="font-size:0.75rem;font-family:'Outfit',sans-serif;font-weight:400;color:var(--text-muted)">/250g</span></div><button class="btn btn-primary btn-sm" onclick="addToBasket('Cheddar')">Add</button></div>
+          </div>
+        </article>
+        <article class="card product-card" aria-label="New Season Potatoes">
+          <div class="img-placeholder" style="height:180px"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div>
+          <div class="card-body">
+            <div class="product-meta"><span class="badge badge-green">In Stock</span><span class="badge badge-stone">Veg</span></div>
+            <div class="product-name">New Season Potatoes</div>
+            <div class="product-producer">Greenway Farm</div>
+            <div class="product-footer"><div class="product-price">&pound;1.80 <span style="font-size:0.75rem;font-family:'Outfit',sans-serif;font-weight:400;color:var(--text-muted)">/kg</span></div><button class="btn btn-primary btn-sm" onclick="addToBasket('Potatoes')">Add</button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ======================== PRODUCT DETAIL ======================== -->
+<main id="page-product-detail" class="page">
+  <div class="product-detail">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a onclick="navigate('home')">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <a onclick="navigate('products')">Products</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--text)">Heritage Tomatoes</span>
+    </nav>
+    <div class="product-detail-grid">
+      <div class="product-detail-images">
+        <div class="img-placeholder" style="height:440px;border-radius:var(--r-lg);border:1px solid var(--border)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Replace with product image</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px">
+          <div class="img-placeholder" style="height:80px;border-radius:var(--r);border:1px solid var(--border);cursor:pointer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <div class="img-placeholder" style="height:80px;border-radius:var(--r);border:2px solid var(--forest);cursor:pointer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <div class="img-placeholder" style="height:80px;border-radius:var(--r);border:1px solid var(--border);cursor:pointer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <div class="img-placeholder" style="height:80px;border-radius:var(--r);border:1px solid var(--border);cursor:pointer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        </div>
+      </div>
+      <div class="product-detail-info">
+        <div style="display:flex;gap:8px;margin-bottom:16px"><span class="badge badge-green">In Stock</span><span class="badge badge-stone">Vegetables</span></div>
+        <h1 class="product-detail-name">Heritage Tomatoes</h1>
+        <div class="product-detail-producer" onclick="navigate('producer-detail')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Greenway Farm, Gloucestershire
+        </div>
+        <div class="product-detail-price">&pound;2.40 <span style="font-size:1rem;font-weight:400;font-family:'Outfit',sans-serif;color:var(--text-muted)">per 500g</span></div>
+        <div class="product-detail-stock" style="color:var(--forest-light)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px"><polyline points="20 6 9 17 4 12"/></svg>
+          Available for collection and delivery
+        </div>
+        <p class="product-detail-desc">A mixed selection of our finest heritage tomato varieties, grown without pesticides in polytunnels at Greenway Farm. Each pack contains a colourful assortment of cherry, plum and beefsteak types — ideal for salads, roasting or sauce-making.</p>
+        <div class="qty-selector" role="group" aria-label="Quantity selector">
+          <button class="qty-btn" onclick="changeQty(-1)" aria-label="Decrease quantity">&#8722;</button>
+          <div class="qty-display" id="qty-display" aria-live="polite">1</div>
+          <button class="qty-btn" onclick="changeQty(1)" aria-label="Increase quantity">&#43;</button>
+        </div>
+        <div class="product-add-row">
+          <button class="btn btn-primary" style="flex:1" onclick="addToBasket('Heritage Tomatoes')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Add to Basket
+          </button>
+        </div>
+        <div class="product-meta-table" role="table" aria-label="Product details">
+          <div class="meta-row" role="row"><span class="meta-label" role="cell">Producer</span><span class="meta-value" role="cell"><a onclick="navigate('producer-detail')" style="color:var(--forest);cursor:pointer">Greenway Farm</a></span></div>
+          <div class="meta-row" role="row"><span class="meta-label" role="cell">Location</span><span class="meta-value" role="cell">Gloucestershire, UK</span></div>
+          <div class="meta-row" role="row"><span class="meta-label" role="cell">Method</span><span class="meta-value" role="cell">Pesticide-free, polytunnel</span></div>
+          <div class="meta-row" role="row"><span class="meta-label" role="cell">Harvested</span><span class="meta-value" role="cell">Within 48 hours of dispatch</span></div>
+          <div class="meta-row" role="row"><span class="meta-label" role="cell">Allergens</span><span class="meta-value" role="cell">None</span></div>
+          <div class="meta-row" role="row"><span class="meta-label" role="cell">SKU</span><span class="meta-value" role="cell">GLH-VEG-042</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ======================== PRODUCERS ======================== -->
+<main id="page-producers" class="page">
+  <div class="producers-hero">
+    <div class="section-label">Our Network</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3vw,2.8rem);margin-bottom:10px">Meet our producers</h1>
+    <p style="color:var(--text-muted);max-width:560px;font-size:0.95rem;line-height:1.7">Every product on Greenfield Local Hub is traceable to a real person and a real place. Here you can learn about the methods, values and stories behind your food.</p>
+  </div>
+  <div class="producers-grid">
+    <article class="card producer-card" aria-label="Greenway Farm">
+      <div class="img-placeholder" style="height:220px"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Farm image</span></div>
+      <div class="card-body">
+        <div style="display:flex;gap:6px;margin-bottom:10px"><span class="badge badge-green">Vegetables</span><span class="badge badge-stone">Pesticide-free</span></div>
+        <div class="producer-name">Greenway Farm</div>
+        <div class="producer-type">Mixed Vegetable Farm &bull; Gloucestershire</div>
+        <div class="producer-desc">A family-run vegetable farm growing over 30 varieties of seasonal produce using traditional methods and no synthetic pesticides.</div>
+        <div class="producer-stats">
+          <span class="producer-stat"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 14 products</span>
+          <span class="producer-stat"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 8 miles away</span>
+        </div>
+        <div style="margin-top:16px"><button class="btn btn-outline btn-sm btn-block" onclick="navigate('producer-detail')">View Producer</button></div>
+      </div>
+    </article>
+    <article class="card producer-card" aria-label="Meadowsweet Apiary">
+      <div class="img-placeholder" style="height:220px"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Farm image</span></div>
+      <div class="card-body">
+        <div style="display:flex;gap:6px;margin-bottom:10px"><span class="badge badge-amber">Honey &amp; Preserves</span></div>
+        <div class="producer-name">Meadowsweet Apiary</div>
+        <div class="producer-type">Beekeeping &bull; Worcestershire</div>
+        <div class="producer-desc">Award-winning raw honey producers with over 40 hives across wildflower meadows and ancient hedgerows. Sustainable beekeeping since 1998.</div>
+        <div class="producer-stats">
+          <span class="producer-stat"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 6 products</span>
+          <span class="producer-stat"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 12 miles away</span>
+        </div>
+        <div style="margin-top:16px"><button class="btn btn-outline btn-sm btn-block" onclick="navigate('producer-detail')">View Producer</button></div>
+      </div>
+    </article>
+    <article class="card producer-card" aria-label="Harrow Bakes">
+      <div class="img-placeholder" style="height:220px"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Bakery image</span></div>
+      <div class="card-body">
+        <div style="display:flex;gap:6px;margin-bottom:10px"><span class="badge badge-stone">Bakery</span></div>
+        <div class="producer-name">Harrow Bakes</div>
+        <div class="producer-type">Artisan Bakery &bull; Cheltenham</div>
+        <div class="producer-desc">A small-batch bakery using locally milled heritage grain flours to produce sourdoughs, pastries and seasonal baked goods.</div>
+        <div class="producer-stats">
+          <span class="producer-stat"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 9 products</span>
+          <span class="producer-stat"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 3 miles away</span>
+        </div>
+        <div style="margin-top:16px"><button class="btn btn-outline btn-sm btn-block" onclick="navigate('producer-detail')">View Producer</button></div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<!-- ======================== SPECIFIC PRODUCER ======================== -->
+<main id="page-producer-detail" class="page">
+  <nav class="breadcrumb" style="padding:24px 5% 0" aria-label="Breadcrumb">
+    <a onclick="navigate('home')">Home</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    <a onclick="navigate('producers')">Producers</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    <span style="color:var(--text)">Greenway Farm</span>
+  </nav>
+  <div class="producer-detail-hero">
+    <div class="producer-detail-info">
+      <div class="section-label">Our Producer</div>
+      <h1>Greenway Farm</h1>
+      <p>A family-run vegetable farm growing over 30 varieties of seasonal produce using traditional methods and no synthetic pesticides. Third-generation farmers committed to soil health, biodiversity and honest food.</p>
+      <div class="producer-badges">
+        <span class="producer-badge"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Pesticide-free</span>
+        <span class="producer-badge"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Gloucestershire</span>
+        <span class="producer-badge">Member since 2018</span>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>Replace with farm image</span>
+    </div>
+  </div>
+  <div class="producer-products-section">
+    <div class="section-label">Their Products</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px">
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem">Products from Greenway Farm</h2>
+    </div>
+    <div class="grid-4">
+      <article class="card product-card"><div class="img-placeholder" style="height:160px"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div><div class="card-body"><div class="product-name">Heritage Tomatoes</div><div class="product-footer"><div class="product-price">&pound;2.40</div><button class="btn btn-primary btn-sm" onclick="navigate('product-detail')">View</button></div></div></article>
+      <article class="card product-card"><div class="img-placeholder" style="height:160px"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div><div class="card-body"><div class="product-name">New Season Potatoes</div><div class="product-footer"><div class="product-price">&pound;1.80</div><button class="btn btn-primary btn-sm" onclick="addToBasket('Potatoes')">Add</button></div></div></article>
+      <article class="card product-card"><div class="img-placeholder" style="height:160px"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div><div class="card-body"><div class="product-name">Mixed Salad Leaves</div><div class="product-footer"><div class="product-price">&pound;2.00</div><button class="btn btn-primary btn-sm" onclick="addToBasket('Salad')">Add</button></div></div></article>
+      <article class="card product-card"><div class="img-placeholder" style="height:160px"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Product image</span></div><div class="card-body"><div class="product-name">Seasonal Veg Box</div><div class="product-footer"><div class="product-price">&pound;9.50</div><button class="btn btn-primary btn-sm" onclick="addToBasket('Veg Box')">Add</button></div></div></article>
+    </div>
+  </div>
+</main>
+
+<!-- ======================== ABOUT ======================== -->
+<main id="page-about" class="page">
+  <div class="about-hero">
+    <div class="about-hero-content">
+      <div class="section-label">Who We Are</div>
+      <h1>A cooperative built on community and honest food</h1>
+      <p>Founded in 2012, Greenfield Local Hub began as a small collective of five farms looking for a better way to reach local customers. Today we represent over 40 producers across the region, operating a retail outlet, an online shop and a collective marketing platform.</p>
+      <p>We believe passionately that knowing where your food comes from &mdash; and who grew it &mdash; makes it taste better. Our mission is to shorten the distance between farm and fork.</p>
+    </div>
+    <div class="about-hero-img">
+      <div class="img-placeholder" style="height:380px;border-radius:var(--r-lg)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Replace with team / hub image</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="values-section" aria-labelledby="values-heading">
+    <div class="section-label">Our Principles</div>
+    <h2 id="values-heading" class="section-title">What we stand for</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Transparency</h3>
+        <p>Every product carries full traceability information. You can always see which farm it came from, how it was grown, and how far it has travelled.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Community</h3>
+        <p>We are member-owned and community-run. Profits are reinvested in our producers and in the local food economy, not extracted by outside shareholders.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h3>Sustainability</h3>
+        <p>We prioritise producers who use regenerative or low-impact methods, reduce food miles, and minimise packaging waste across the supply chain.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section" aria-labelledby="team-heading">
+    <div class="section-label" style="color:var(--sage)">The People</div>
+    <h2 id="team-heading" class="section-title" style="color:white">The team behind GLH</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="img-placeholder" style="height:200px"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Photo</span></div>
+        <div class="team-card-body"><div class="team-name">Sarah Moorfield</div><div class="team-role">Co-founder &amp; Director</div></div>
+      </div>
+      <div class="team-card">
+        <div class="img-placeholder" style="height:200px"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Photo</span></div>
+        <div class="team-card-body"><div class="team-name">James Hallett</div><div class="team-role">Operations Manager</div></div>
+      </div>
+      <div class="team-card">
+        <div class="img-placeholder" style="height:200px"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Photo</span></div>
+        <div class="team-card-body"><div class="team-name">Priya Kapoor</div><div class="team-role">Producer Relations</div></div>
+      </div>
+      <div class="team-card">
+        <div class="img-placeholder" style="height:200px"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Photo</span></div>
+        <div class="team-card-body"><div class="team-name">Tom Archer</div><div class="team-role">Digital &amp; Technology</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======================== CONTACT ======================== -->
+<main id="page-contact" class="page">
+  <div class="contact-layout">
+    <div class="contact-sidebar">
+      <div class="section-label" style="color:rgba(255,255,255,0.55)">Get In Touch</div>
+      <h2>We'd love to hear from you</h2>
+      <p>Whether you're a customer with a question, a producer interested in joining our network, or a local business exploring wholesale options &mdash; get in touch.</p>
+      <div class="contact-item">
+        <div class="contact-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="contact-item-label">Address</div><div class="contact-item-value">12 Market Street, Greenfield, GL4 2PQ</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.4A16 16 0 0 0 16 16.46l.94-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><div class="contact-item-label">Phone</div><div class="contact-item-value">01452 889 200</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
+        <div><div class="contact-item-label">Email</div><div class="contact-item-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="771f121b1b18371005121219111e121b131b1814161b1f021559141859021c">[email&#160;protected]</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="contact-item-label">Opening Hours</div><div class="contact-item-value">Mon&ndash;Sat: 8am &ndash; 6pm<br>Sunday: 10am &ndash; 4pm</div></div>
+      </div>
+    </div>
+    <div class="contact-form-area">
+      <h3>Send us a message</h3>
+      <div class="alert alert-info">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        We aim to respond to all enquiries within one working day.
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label" for="contact-first">First name</label><input class="form-control" id="contact-first" type="text" placeholder="Jane"></div>
+        <div class="form-group"><label class="form-label" for="contact-last">Last name</label><input class="form-control" id="contact-last" type="text" placeholder="Smith"></div>
+      </div>
+      <div class="form-group"><label class="form-label" for="contact-email">Email address</label><input class="form-control" id="contact-email" type="email" placeholder="jane@example.com"></div>
+      <div class="form-group">
+        <label class="form-label" for="contact-subject">Subject</label>
+        <select class="form-control" id="contact-subject">
+          <option value="">Select a subject...</option>
+          <option>Order enquiry</option>
+          <option>Product question</option>
+          <option>Joining as a producer</option>
+          <option>Wholesale / trade</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label" for="contact-msg">Message</label><textarea class="form-control" id="contact-msg" rows="5" placeholder="How can we help?"></textarea></div>
+      <button class="btn btn-primary" onclick="showToast('Message sent — we will be in touch shortly.')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send Message
+      </button>
+    </div>
+  </div>
+</main>
+
+<!-- ======================== LOGIN ======================== -->
+<main id="page-login" class="page">
+  <div class="auth-layout">
+    <div class="auth-side">
+      <div class="section-label" style="color:rgba(255,255,255,0.5)">Welcome Back</div>
+      <h2>Sign in to your GLH account</h2>
+      <p>Access your order history, manage your details and enjoy exclusive loyalty member offers.</p>
+      <div class="img-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Replace with image</span>
+      </div>
+    </div>
+    <div class="auth-form-side">
+      <div class="auth-box">
+        <h3>Sign In</h3>
+        <p class="auth-subtitle">Enter your details to access your account.</p>
+        <div class="form-group"><label class="form-label" for="login-email">Email address</label><input class="form-control" id="login-email" type="email" placeholder="jane@example.com" autocomplete="email"></div>
+        <div class="form-group"><label class="form-label" for="login-password">Password</label><input class="form-control" id="login-password" type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password"></div>
+        <div class="remember-row">
+          <label><input type="checkbox"> Remember me</label>
+          <span class="forgot-link">Forgot password?</span>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="setLoggedIn('Jane Smith')">Sign In</button>
+        <div class="auth-switch">Don't have an account? <a onclick="navigate('register')">Create one</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ======================== REGISTER ======================== -->
+<main id="page-register" class="page">
+  <div class="auth-layout">
+    <div class="auth-side">
+      <div class="section-label" style="color:rgba(255,255,255,0.5)">Join Us</div>
+      <h2>Create your GLH account</h2>
+      <p>Get access to transparent pricing, order history, and earn loyalty points with every purchase.</p>
+      <div class="img-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Replace with image</span>
+      </div>
+    </div>
+    <div class="auth-form-side">
+      <div class="auth-box">
+        <h3>Create Account</h3>
+        <p class="auth-subtitle">Join Greenfield Local Hub and start ordering today.</p>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label" for="reg-first">First name</label><input class="form-control" id="reg-first" type="text" placeholder="Jane" autocomplete="given-name"></div>
+          <div class="form-group"><label class="form-label" for="reg-last">Last name</label><input class="form-control" id="reg-last" type="text" placeholder="Smith" autocomplete="family-name"></div>
+        </div>
+        <div class="form-group"><label class="form-label" for="reg-email">Email address</label><input class="form-control" id="reg-email" type="email" placeholder="jane@example.com" autocomplete="email"></div>
+        <div class="form-group"><label class="form-label" for="reg-password">Password</label><input class="form-control" id="reg-password" type="password" placeholder="Minimum 8 characters" autocomplete="new-password"></div>
+<div class="form-group" style="display:flex;gap:9px;align-items:flex-start"><input type="checkbox" id="reg-terms" style="margin-top:3px;accent-color:var(--forest)"><label for="reg-terms" style="font-size:0.85rem;color:var(--text-mid);cursor:pointer">I agree to the <a style="color:var(--forest)">Terms &amp; Conditions</a> and <a style="color:var(--forest)">Privacy Policy</a></label></div>
+        <button class="btn btn-primary btn-block" onclick="setLoggedIn('New Member')">Create Account</button>
+        <div class="auth-switch">Already have an account? <a onclick="navigate('login')">Sign in</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ======================== ACCOUNT ======================== -->
+<main id="page-account" class="page">
+  <div class="account-layout">
+    <aside class="account-sidebar" aria-label="Account navigation">
+      <div class="account-sidebar-card">
+        <div class="account-avatar">
+          <div class="avatar-circle"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><div class="avatar-name">Jane Smith</div><div class="avatar-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48e858a81a4819c8589948881ca878b89">[email&#160;protected]</a></div></div>
+        </div>
+        <nav aria-label="Account sections">
+          <div class="account-nav-link active" onclick="showAccountTab('orders',this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Order History</div>
+          <div class="account-nav-link" onclick="showAccountTab('loyalty',this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Loyalty Rewards</div>
+          <div class="account-nav-link" onclick="showAccountTab('details',this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Personal Details</div>
+          <div class="account-nav-link" onclick="showAccountTab('delivery',this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Delivery Addresses</div>
+          <div class="account-nav-link" onclick="signOut()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Sign Out</div>
+        </nav>
+      </div>
+    </aside>
+    <div class="account-content">
+      <!-- ORDERS TAB -->
+      <div id="account-tab-orders">
+        <div class="account-section-title">Order History</div>
+        <div class="account-section-sub">View and track all your past and current orders.</div>
+        <div class="alert alert-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Your next delivery is scheduled for <strong>Friday 14 June</strong>.</div>
+        <div class="order-card">
+          <div class="order-header"><span class="order-id">Order #GLH-2024-0391</span><div style="display:flex;align-items:center;gap:12px"><span class="order-date">8 June 2024</span><span class="badge badge-green">Delivered</span></div></div>
+          <div class="order-body">
+            <div class="order-item-row"><div class="order-item-img"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><span class="order-item-name">Heritage Tomatoes</span><span class="order-item-qty">x 2</span><span class="order-item-price">&pound;4.80</span></div>
+            <div class="order-item-row"><div class="order-item-img"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><span class="order-item-name">Sourdough Loaf</span><span class="order-item-qty">x 1</span><span class="order-item-price">&pound;4.20</span></div>
+            <div class="order-item-row"><div class="order-item-img"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><span class="order-item-name">Free-Range Eggs</span><span class="order-item-qty">x 1</span><span class="order-item-price">&pound;3.10</span></div>
+          </div>
+          <div class="order-footer"><span style="font-size:0.85rem;color:var(--text-muted)">Collection</span><span style="font-weight:600;font-family:'Cormorant Garamond',serif;font-size:1.1rem">Total &pound;12.10</span></div>
+        </div>
+        <div class="order-card">
+          <div class="order-header"><span class="order-id">Order #GLH-2024-0368</span><div style="display:flex;align-items:center;gap:12px"><span class="order-date">1 June 2024</span><span class="badge badge-green">Delivered</span></div></div>
+          <div class="order-body">
+            <div class="order-item-row"><div class="order-item-img"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><span class="order-item-name">Raw Blossom Honey</span><span class="order-item-qty">x 1</span><span class="order-item-price">&pound;5.80</span></div>
+            <div class="order-item-row"><div class="order-item-img"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><span class="order-item-name">Mature Cheddar</span><span class="order-item-qty">x 1</span><span class="order-item-price">&pound;6.50</span></div>
+          </div>
+          <div class="order-footer"><span style="font-size:0.85rem;color:var(--text-muted)">Home Delivery</span><span style="font-weight:600;font-family:'Cormorant Garamond',serif;font-size:1.1rem">Total &pound;14.30</span></div>
+        </div>
+      </div>
+      <!-- LOYALTY TAB -->
+      <div id="account-tab-loyalty" style="display:none">
+        <div class="account-section-title">Loyalty Rewards</div>
+        <div class="account-section-sub">Earn points on every order. Redeem for discounts and special offers.</div>
+        <div class="loyalty-card">
+          <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.55)">Your Points Balance</div>
+          <div class="loyalty-points">620 pts</div>
+          <div class="loyalty-sub">Next reward at 1,000 points &mdash; 380 pts to go</div>
+          <div class="loyalty-bar-wrap">
+            <div class="loyalty-bar-label"><span>0</span><span>1,000</span></div>
+            <div class="loyalty-bar" role="progressbar" aria-valuenow="620" aria-valuemin="0" aria-valuemax="1000" aria-label="620 of 1000 points"><div class="loyalty-bar-fill"></div></div>
+          </div>
+        </div>
+        <div class="grid-3" style="margin-top:0">
+          <div class="card" style="padding:22px"><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:6px">10% Off Voucher</div><div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px">Redeemable at 1,000 pts</div><span class="badge badge-stone">380 pts needed</span></div>
+          <div class="card" style="padding:22px"><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:6px">Free Delivery</div><div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px">One free delivery</div><span class="badge badge-stone">800 pts needed</span></div>
+          <div class="card" style="padding:22px"><div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:6px">Producer Tour</div><div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px">Farm visit for two</div><span class="badge badge-stone">2,500 pts needed</span></div>
+        </div>
+      </div>
+      <!-- DETAILS TAB -->
+      <div id="account-tab-details" style="display:none">
+        <div class="account-section-title">Personal Details</div>
+        <div class="account-section-sub">Update your name, email and password.</div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;max-width:560px">
+          <div class="form-row"><div class="form-group"><label class="form-label">First name</label><input class="form-control" type="text" value="Jane"></div><div class="form-group"><label class="form-label">Last name</label><input class="form-control" type="text" value="Smith"></div></div>
+          <div class="form-group"><label class="form-label">Email address</label><input class="form-control" type="email" value="jane@example.com"></div>
+          <div class="form-group"><label class="form-label">Phone number</label><input class="form-control" type="tel" value="07700 900 123"></div>
+          <button class="btn btn-primary" onclick="showToast('Details updated successfully')">Save Changes</button>
+        </div>
+      </div>
+      <!-- DELIVERY TAB -->
+      <div id="account-tab-delivery" style="display:none">
+        <div class="account-section-title">Delivery Addresses</div>
+        <div class="account-section-sub">Manage your saved delivery addresses.</div>
+        <div style="background:var(--white);border:1.5px solid var(--forest);border-radius:var(--r-lg);padding:22px;max-width:420px;margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--forest)">Default Address</span><span class="badge badge-green">Default</span></div>
+          <div style="font-weight:600;margin-bottom:4px">Jane Smith</div>
+          <div style="font-size:0.88rem;color:var(--text-muted)">14 Elm Close<br>Greenfield<br>GL4 6RR</div>
+          <div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-outline btn-sm">Edit</button></div>
+        </div>
+        <button class="btn btn-primary btn-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add New Address
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ======================== BASKET ======================== -->
+<main id="page-basket" class="page">
+  <div style="background:var(--sage-pale);padding:32px 5%;border-bottom:1px solid var(--border)">
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.5vw,2.2rem)">Your Basket</h1>
+  </div>
+  <div class="basket-layout">
+    <div>
+      <div class="basket-item">
+        <div class="basket-item-img"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div>
+          <div class="basket-item-name">Heritage Tomatoes</div>
+          <div class="basket-item-producer">Greenway Farm &bull; 500g</div>
+          <div class="basket-item-controls">
+            <div class="qty-selector"><button class="qty-btn" aria-label="Decrease">&#8722;</button><div class="qty-display">2</div><button class="qty-btn" aria-label="Increase">&#43;</button></div>
+            <button class="basket-remove" aria-label="Remove item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
+          </div>
+        </div>
+        <div class="basket-item-price">&pound;4.80</div>
+      </div>
+      <div class="basket-item">
+        <div class="basket-item-img"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div>
+          <div class="basket-item-name">Sourdough Loaf</div>
+          <div class="basket-item-producer">Harrow Bakes</div>
+          <div class="basket-item-controls">
+            <div class="qty-selector"><button class="qty-btn" aria-label="Decrease">&#8722;</button><div class="qty-display">1</div><button class="qty-btn" aria-label="Increase">&#43;</button></div>
+            <button class="basket-remove" aria-label="Remove item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
+          </div>
+        </div>
+        <div class="basket-item-price">&pound;4.20</div>
+      </div>
+      <div class="basket-item">
+        <div class="basket-item-img"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div>
+          <div class="basket-item-name">Free-Range Eggs</div>
+          <div class="basket-item-producer">Redfield Poultry &bull; Dozen</div>
+          <div class="basket-item-controls">
+            <div class="qty-selector"><button class="qty-btn" aria-label="Decrease">&#8722;</button><div class="qty-display">1</div><button class="qty-btn" aria-label="Increase">&#43;</button></div>
+            <button class="basket-remove" aria-label="Remove item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
+          </div>
+        </div>
+        <div class="basket-item-price">&pound;3.10</div>
+      </div>
+      <div style="margin-top:16px"><button class="btn btn-outline btn-sm" onclick="navigate('products')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Continue Shopping
+      </button></div>
+    </div>
+    <div>
+      <div class="order-summary">
+        <div class="summary-title">Order Summary</div>
+        <div class="summary-row"><span>Subtotal (3 items)</span><span>&pound;12.10</span></div>
+        <div class="summary-row"><span style="color:var(--forest)">Loyalty discount (5%)</span><span style="color:var(--forest)">&minus;&pound;0.61</span></div>
+        <div class="summary-row"><span>Delivery</span><span id="delivery-cost">Free</span></div>
+        <div class="summary-row"><span>Total</span><span class="summary-total">&pound;11.49</span></div>
+        <div class="delivery-options" role="group" aria-label="Choose delivery method">
+          <div style="font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:10px">Fulfilment</div>
+          <label class="delivery-option"><input type="radio" name="delivery" value="collection" checked><div><div class="delivery-option-label">Collection</div><div class="delivery-option-desc">Collect from 12 Market Street &bull; Free</div></div></label>
+          <label class="delivery-option"><input type="radio" name="delivery" value="delivery"><div><div class="delivery-option-label">Home Delivery</div><div class="delivery-option-desc">Choose delivery day at checkout &bull; &pound;2.50</div></div></label>
+        </div>
+        <div class="promo-row">
+          <input type="text" placeholder="Promo or loyalty code" aria-label="Promo code">
+          <button onclick="showToast('Code applied')">Apply</button>
+        </div>
+        <button class="btn btn-amber btn-block" onclick="showToast('Order placed — thank you!')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Place Order &mdash; &pound;11.49
+        </button>
+        <p style="font-size:0.78rem;color:var(--text-muted);text-align:center;margin-top:12px">Secure checkout. You will receive a confirmation email.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<!-- ======================== PRODUCER DASHBOARD ======================== -->
+<main id="page-producer-dashboard" class="page" aria-label="Producer Dashboard">
+  <!-- Sidebar layout wrapper -->
+  <div style="display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 64px)">
+
+    <!-- Sidebar -->
+    <aside style="background:var(--forest);display:flex;flex-direction:column;padding:0" aria-label="Producer navigation">
+      <div style="padding:24px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.1)">
+        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.45);margin-bottom:6px">Logged in as</div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:36px;height:36px;background:rgba(138,171,126,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <div style="color:white;font-size:0.88rem;font-weight:600">Greenway Farm</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.75rem">Producer Account</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:12px 0;flex:1" role="navigation" aria-label="Dashboard sections">
+        <div class="pd-nav-link active" id="pdnav-overview" onclick="showDashTab('overview',this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </div>
+        <div class="pd-nav-link" id="pdnav-orders" onclick="showDashTab('orders',this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Orders
+          <span style="margin-left:auto;background:var(--amber);color:white;font-size:0.68rem;font-weight:600;padding:2px 7px;border-radius:50px">4</span>
+        </div>
+        <div class="pd-nav-link" id="pdnav-products" onclick="showDashTab('products',this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          My Products
+        </div>
+        <div class="pd-nav-link" id="pdnav-stock" onclick="showDashTab('stock',this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Stock Levels
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:10px 16px"></div>
+        <div class="pd-nav-link" onclick="signOut()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </div>
+      </nav>
+      <div style="padding:16px 20px;border-top:1px solid rgba(255,255,255,0.08)">
+        <div style="font-size:0.75rem;color:rgba(255,255,255,0.35)">Greenfield Local Hub</div>
+        <div style="font-size:0.72rem;color:rgba(255,255,255,0.25)">Producer Portal v1.0</div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div style="background:var(--cream);overflow-y:auto">
+
+      <!-- OVERVIEW TAB -->
+      <div id="pdtab-overview" style="padding:36px 40px">
+        <div style="margin-bottom:28px">
+          <div class="section-label">Producer Portal</div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);margin-bottom:4px">Welcome back, Greenway Farm</h1>
+          <p style="color:var(--text-muted);font-size:0.9rem">Here&rsquo;s an overview of your activity on Greenfield Local Hub.</p>
+        </div>
+
+        <!-- Stat cards -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:32px">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted)">Total Orders</div>
+              <div style="width:36px;height:36px;background:var(--sage-pale);border-radius:9px;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            </div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--forest)">142</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">+12 this week</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted)">Revenue</div>
+              <div style="width:36px;height:36px;background:var(--sage-pale);border-radius:9px;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            </div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--forest)">&pound;1,840</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">This month</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted)">Active Products</div>
+              <div style="width:36px;height:36px;background:var(--sage-pale);border-radius:9px;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+            </div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--forest)">14</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">2 low stock</div>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted)">Pending Orders</div>
+              <div style="width:36px;height:36px;background:#fef3e2;border-radius:9px;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            </div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--amber)">4</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px">Awaiting fulfilment</div>
+          </div>
+        </div>
+
+        <!-- Recent orders + low stock alerts -->
+        <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:24px">
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden">
+            <div style="padding:18px 22px;border-bottom:1px solid var(--stone);display:flex;align-items:center;justify-content:space-between">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600">Recent Orders</div>
+              <button class="btn btn-outline btn-sm" onclick="showDashTab('orders',document.getElementById('pdnav-orders'))">View All</button>
+            </div>
+            <div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:12px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.85rem">
+                <div><div style="font-weight:500">#GLH-2024-0401</div><div style="font-size:0.78rem;color:var(--text-muted)">Heritage Tomatoes &times;3</div></div>
+                <span class="badge badge-amber">Pending</span>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;7.20</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:12px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.85rem">
+                <div><div style="font-weight:500">#GLH-2024-0398</div><div style="font-size:0.78rem;color:var(--text-muted)">Seasonal Veg Box &times;1</div></div>
+                <span class="badge badge-amber">Pending</span>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;9.50</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:12px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.85rem">
+                <div><div style="font-weight:500">#GLH-2024-0391</div><div style="font-size:0.78rem;color:var(--text-muted)">New Season Potatoes &times;2</div></div>
+                <span class="badge badge-green">Fulfilled</span>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;3.60</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:12px 22px;align-items:center;font-size:0.85rem">
+                <div><div style="font-weight:500">#GLH-2024-0386</div><div style="font-size:0.78rem;color:var(--text-muted)">Mixed Salad Leaves &times;4</div></div>
+                <span class="badge badge-green">Fulfilled</span>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;8.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden">
+            <div style="padding:18px 22px;border-bottom:1px solid var(--stone)">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600">Stock Alerts</div>
+            </div>
+            <div style="padding:16px 22px">
+              <div class="alert alert-warn" style="margin-bottom:12px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <div><strong>Heritage Tomatoes</strong> &mdash; only 6 units remaining</div>
+              </div>
+              <div class="alert alert-warn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <div><strong>Mixed Salad Leaves</strong> &mdash; only 3 units remaining</div>
+              </div>
+              <button class="btn btn-outline btn-sm" style="margin-top:14px;width:100%;justify-content:center" onclick="showDashTab('stock',document.getElementById('pdnav-stock'))">Update Stock Levels</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDERS TAB -->
+      <div id="pdtab-orders" style="display:none;padding:36px 40px">
+        <div style="margin-bottom:24px">
+          <div class="section-label">Producer Portal</div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;margin-bottom:4px">Orders</h1>
+          <p style="color:var(--text-muted);font-size:0.9rem">View and manage all orders containing your products.</p>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap">
+          <button class="btn btn-primary btn-sm pd-filter-btn active" onclick="filterOrders('all',this)">All Orders</button>
+          <button class="btn btn-outline btn-sm pd-filter-btn" onclick="filterOrders('pending',this)">Pending (4)</button>
+          <button class="btn btn-outline btn-sm pd-filter-btn" onclick="filterOrders('fulfilled',this)">Fulfilled</button>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden">
+          <div style="display:grid;grid-template-columns:1.4fr 1.4fr 0.8fr 0.8fr 1fr;gap:0;padding:11px 22px;background:var(--warm);border-bottom:1px solid var(--stone);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted)">
+            <div>Order</div><div>Product(s)</div><div>Date</div><div>Total</div><div>Status</div>
+          </div>
+          <div class="pd-order-row" data-status="pending" style="display:grid;grid-template-columns:1.4fr 1.4fr 0.8fr 0.8fr 1fr;gap:0;padding:14px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">#GLH-2024-0401</div>
+            <div style="color:var(--text-mid)">Heritage Tomatoes &times;3</div>
+            <div style="color:var(--text-muted)">14 Jun</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;7.20</div>
+            <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-amber">Pending</span><button class="btn btn-primary btn-sm" onclick="showToast('Order #0401 marked as fulfilled')">Mark Fulfilled</button></div>
+          </div>
+          <div class="pd-order-row" data-status="pending" style="display:grid;grid-template-columns:1.4fr 1.4fr 0.8fr 0.8fr 1fr;gap:0;padding:14px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">#GLH-2024-0398</div>
+            <div style="color:var(--text-mid)">Seasonal Veg Box &times;1</div>
+            <div style="color:var(--text-muted)">13 Jun</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;9.50</div>
+            <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-amber">Pending</span><button class="btn btn-primary btn-sm" onclick="showToast('Order #0398 marked as fulfilled')">Mark Fulfilled</button></div>
+          </div>
+          <div class="pd-order-row" data-status="pending" style="display:grid;grid-template-columns:1.4fr 1.4fr 0.8fr 0.8fr 1fr;gap:0;padding:14px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">#GLH-2024-0395</div>
+            <div style="color:var(--text-mid)">Heritage Tomatoes &times;2, Potatoes &times;1</div>
+            <div style="color:var(--text-muted)">12 Jun</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;6.60</div>
+            <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-amber">Pending</span><button class="btn btn-primary btn-sm" onclick="showToast('Order #0395 marked as fulfilled')">Mark Fulfilled</button></div>
+          </div>
+          <div class="pd-order-row" data-status="pending" style="display:grid;grid-template-columns:1.4fr 1.4fr 0.8fr 0.8fr 1fr;gap:0;padding:14px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">#GLH-2024-0392</div>
+            <div style="color:var(--text-mid)">Mixed Salad Leaves &times;2</div>
+            <div style="color:var(--text-muted)">11 Jun</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;4.00</div>
+            <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-amber">Pending</span><button class="btn btn-primary btn-sm" onclick="showToast('Order #0392 marked as fulfilled')">Mark Fulfilled</button></div>
+          </div>
+          <div class="pd-order-row" data-status="fulfilled" style="display:grid;grid-template-columns:1.4fr 1.4fr 0.8fr 0.8fr 1fr;gap:0;padding:14px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">#GLH-2024-0391</div>
+            <div style="color:var(--text-mid)">New Season Potatoes &times;2</div>
+            <div style="color:var(--text-muted)">10 Jun</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;3.60</div>
+            <div><span class="badge badge-green">Fulfilled</span></div>
+          </div>
+          <div class="pd-order-row" data-status="fulfilled" style="display:grid;grid-template-columns:1.4fr 1.4fr 0.8fr 0.8fr 1fr;gap:0;padding:14px 22px;align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">#GLH-2024-0386</div>
+            <div style="color:var(--text-mid)">Mixed Salad Leaves &times;4</div>
+            <div style="color:var(--text-muted)">8 Jun</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;8.00</div>
+            <div><span class="badge badge-green">Fulfilled</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY PRODUCTS TAB -->
+      <div id="pdtab-products" style="display:none;padding:36px 40px">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:14px">
+          <div>
+            <div class="section-label">Producer Portal</div>
+            <h1 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;margin-bottom:4px">My Products</h1>
+            <p style="color:var(--text-muted);font-size:0.9rem">Update product details, descriptions and pricing.</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Add product form coming soon')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add New Product
+          </button>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden">
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;padding:11px 22px;background:var(--warm);border-bottom:1px solid var(--stone);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted)">
+            <div>Product</div><div>Category</div><div>Price</div><div>Stock</div><div>Actions</div>
+          </div>
+          <!-- product rows -->
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;padding:14px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;background:var(--sage-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+              <div><div style="font-weight:600">Heritage Tomatoes</div><div style="font-size:0.75rem;color:var(--text-muted)">SKU: GLH-VEG-042</div></div>
+            </div>
+            <div><span class="badge badge-stone">Vegetables</span></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;2.40</div>
+            <div><span class="badge badge-amber">6 left</span></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-outline btn-sm" onclick="showToast('Edit form for Heritage Tomatoes opened')">Edit</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;padding:14px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;background:var(--sage-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+              <div><div style="font-weight:600">New Season Potatoes</div><div style="font-size:0.75rem;color:var(--text-muted)">SKU: GLH-VEG-018</div></div>
+            </div>
+            <div><span class="badge badge-stone">Vegetables</span></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;1.80</div>
+            <div><span class="badge badge-green">42 left</span></div>
+            <div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" onclick="showToast('Edit form for Potatoes opened')">Edit</button></div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;padding:14px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;background:var(--sage-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+              <div><div style="font-weight:600">Mixed Salad Leaves</div><div style="font-size:0.75rem;color:var(--text-muted)">SKU: GLH-VEG-031</div></div>
+            </div>
+            <div><span class="badge badge-stone">Vegetables</span></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;2.00</div>
+            <div><span class="badge badge-amber">3 left</span></div>
+            <div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" onclick="showToast('Edit form for Salad Leaves opened')">Edit</button></div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;padding:14px 22px;align-items:center;font-size:0.87rem">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;background:var(--sage-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+              <div><div style="font-weight:600">Seasonal Veg Box</div><div style="font-size:0.75rem;color:var(--text-muted)">SKU: GLH-VEG-055</div></div>
+            </div>
+            <div><span class="badge badge-stone">Bundles</span></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest)">&pound;9.50</div>
+            <div><span class="badge badge-green">18 left</span></div>
+            <div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" onclick="showToast('Edit form for Veg Box opened')">Edit</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STOCK TAB -->
+      <div id="pdtab-stock" style="display:none;padding:36px 40px">
+        <div style="margin-bottom:24px">
+          <div class="section-label">Producer Portal</div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;margin-bottom:4px">Stock Levels</h1>
+          <p style="color:var(--text-muted);font-size:0.9rem">Update available quantities for each of your products.</p>
+        </div>
+        <div class="alert alert-warn" style="margin-bottom:22px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          2 products are running low on stock. Update quantities to keep your listings visible to customers.
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden">
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:11px 22px;background:var(--warm);border-bottom:1px solid var(--stone);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted)">
+            <div>Product</div><div>Current Stock</div><div>Update Qty</div><div>Save</div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:16px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">Heritage Tomatoes <span class="badge badge-amber" style="margin-left:8px;vertical-align:middle">Low</span></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--amber)">6</div>
+            <div><input class="form-control" type="number" value="6" min="0" style="width:90px;padding:8px 10px" aria-label="Stock quantity for Heritage Tomatoes"></div>
+            <div><button class="btn btn-primary btn-sm" onclick="showToast('Stock updated for Heritage Tomatoes')">Save</button></div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:16px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">New Season Potatoes</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--forest)">42</div>
+            <div><input class="form-control" type="number" value="42" min="0" style="width:90px;padding:8px 10px" aria-label="Stock quantity for Potatoes"></div>
+            <div><button class="btn btn-primary btn-sm" onclick="showToast('Stock updated for Potatoes')">Save</button></div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:16px 22px;border-bottom:1px solid var(--stone);align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">Mixed Salad Leaves <span class="badge badge-amber" style="margin-left:8px;vertical-align:middle">Low</span></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--amber)">3</div>
+            <div><input class="form-control" type="number" value="3" min="0" style="width:90px;padding:8px 10px" aria-label="Stock quantity for Salad Leaves"></div>
+            <div><button class="btn btn-primary btn-sm" onclick="showToast('Stock updated for Salad Leaves')">Save</button></div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:16px 22px;align-items:center;font-size:0.87rem">
+            <div style="font-weight:600">Seasonal Veg Box</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--forest)">18</div>
+            <div><input class="form-control" type="number" value="18" min="0" style="width:90px;padding:8px 10px" aria-label="Stock quantity for Veg Box"></div>
+            <div><button class="btn btn-primary btn-sm" onclick="showToast('Stock updated for Seasonal Veg Box')">Save</button></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Greenfield Local Hub</div>
+      <div class="footer-tagline">A cooperative of local farmers and food producers. Connecting communities with honest, traceable food.</div>
+      <div style="font-size:0.8rem">12 Market Street, Greenfield, GL4 2PQ</div>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <a onclick="navigate('products')">All Products</a>
+      <a onclick="navigate('producers')">Our Producers</a>
+      <a onclick="navigate('basket')">Basket</a>
+    </div>
+    <div class="footer-col">
+      <h5>Information</h5>
+      <a onclick="navigate('about')">About Us</a>
+      <a onclick="navigate('contact')">Contact</a>
+      <a>Delivery Information</a>
+      <a>Accessibility</a>
+    </div>
+    <div class="footer-col">
+      <h5>Account</h5>
+      <a onclick="navigate('login')">Sign In</a>
+      <a onclick="navigate('register')">Register</a>
+      <a onclick="navigate('account')">My Orders</a>
+      <a onclick="navigate('producer-dashboard')">Producer Portal</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2024 Greenfield Local Hub. All rights reserved.</span>
+    <span>Privacy Policy &bull; Terms &bull; Accessibility Statement</span>
+  </div>
+</footer>
+
+<script>
+const pages = ['home','products','product-detail','producers','producer-detail','about','contact','login','register','account','basket','producer-dashboard'];
+const navMap = {home:'nav-home',products:'nav-products',producers:'nav-producers',about:'nav-about',contact:'nav-contact'};
+let qty = 1;
+
+function navigate(page) {
+  pages.forEach(p => {
+    const el = document.getElementById('page-'+p);
+    if(el) el.classList.remove('active');
+    const nl = document.getElementById('nav-'+p);
+    if(nl) nl.classList.remove('active');
+  });
+  const target = document.getElementById('page-'+page);
+  if(target){ target.classList.add('active'); window.scrollTo({top:0,behavior:'instant'}); }
+  if(navMap[page]){ const nl = document.getElementById(navMap[page]); if(nl) nl.classList.add('active'); }
+}
+
+function addToBasket(name) {
+  showToast(name + ' added to basket');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function changeQty(d) {
+  qty = Math.max(1, qty + d);
+  document.getElementById('qty-display').textContent = qty;
+}
+
+function showAccountTab(tab, el) {
+  ['orders','loyalty','details','delivery'].forEach(t => {
+    const el2 = document.getElementById('account-tab-'+t);
+    if(el2) el2.style.display = 'none';
+  });
+  document.querySelectorAll('.account-nav-link').forEach(l => l.classList.remove('active'));
+  const show = document.getElementById('account-tab-'+tab);
+  if(show) show.style.display = 'block';
+  if(el) el.classList.add('active');
+}
+
+function showDashTab(tab, el) {
+  ['overview','orders','products','stock'].forEach(t => {
+    const el2 = document.getElementById('pdtab-'+t);
+    if(el2) el2.style.display = 'none';
+  });
+  document.querySelectorAll('.pd-nav-link').forEach(l => l.classList.remove('active'));
+  const show = document.getElementById('pdtab-'+tab);
+  if(show) show.style.display = 'block';
+  if(el) el.classList.add('active');
+}
+
+function filterOrders(status, btn) {
+  document.querySelectorAll('.pd-filter-btn').forEach(b => {
+    b.classList.remove('active','btn-primary');
+    b.classList.add('btn-outline');
+  });
+  btn.classList.add('active','btn-primary');
+  btn.classList.remove('btn-outline');
+  document.querySelectorAll('.pd-order-row').forEach(row => {
+    if(status === 'all' || row.dataset.status === status) {
+      row.style.display = 'grid';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+
+function setLoggedIn(name) {
+  document.getElementById('nav-login-btn').style.display = 'none';
+  document.getElementById('nav-register-btn').style.display = 'none';
+  const acBtn = document.getElementById('nav-account-btn');
+  const soBtn = document.getElementById('nav-signout-btn');
+  acBtn.style.display = 'flex';
+  soBtn.style.display = 'flex';
+  document.getElementById('nav-account-name').textContent = name || 'My Account';
+  navigate('account');
+  showToast('Welcome back, ' + (name || 'there') + '!');
+}
+
+function signOut() {
+  document.getElementById('nav-login-btn').style.display = 'flex';
+  document.getElementById('nav-register-btn').style.display = 'flex';
+  document.getElementById('nav-account-btn').style.display = 'none';
+  document.getElementById('nav-signout-btn').style.display = 'none';
+  navigate('home');
+  showToast('You have been signed out.');
+}
+
+// Init
+navigate('home');
+</script>
+</body>
+</html>
