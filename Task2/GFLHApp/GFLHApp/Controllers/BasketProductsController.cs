@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GFLHApp.Data;
 using GFLHApp.Models;
+using System.Security.Claims;
 
 namespace GFLHApp.Controllers
 {
@@ -59,17 +60,61 @@ namespace GFLHApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BasketProductsId,BasketId,ProductsId,ProductQuantity")] BasketProducts basketProducts)
+        public async Task<IActionResult> Create(int ProductsId)
         {
-            if (ModelState.IsValid)
+            // First find the product selected by the user using the provided ProductsId
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductsId == ProductsId); // Get the product details from the database
+
+            if (product == null) // Check if the product exists
             {
-                _context.Add(basketProducts);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return NotFound(); // Return a 404 Not Found response if the product doesn't exist
             }
-            ViewData["BasketId"] = new SelectList(_context.Basket, "BasketId", "BasketId", basketProducts.BasketId);
-            ViewData["ProductsId"] = new SelectList(_context.Products, "ProductsId", "ProductsId", basketProducts.ProductsId);
-            return View(basketProducts);
+
+            // Find the current logged in user
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+
+            if (userId == null) // Check if the user is logged in
+            {
+                return Unauthorized(); // Return a 401 Unauthorized response if the user is not logged in
+            }
+
+            // Find the user's basket, if no basket then create a new one
+            var basket = await _context.Basket.FirstOrDefaultAsync(x => x.UserId == userId && x.Status); // Get the active basket for the user
+
+            if (basket == null) // If the user doesn't have an active basket, create a new one
+            {
+                basket = new Basket // Create a new basket for the user
+                {
+                    Status = true, // Set the basket status to active
+                    UserId = userId, // Set the user ID for the basket
+                    CreatedAt = DateTime.UtcNow // Set the creation time for the basket
+                };
+
+                _context.Basket.Add(basket); // Add the new basket to the database context
+                await _context.SaveChangesAsync(); // Save the changes to the database
+            }
+
+            // Add the products to the basket
+            var basketProduct = await _context.BasketProducts.FirstOrDefaultAsync(bp => bp.BasketId == basket.BasketId && bp.ProductsId == ProductsId); // Check if the product is already in the basket
+
+            if (basketProduct != null) // If the product is already in the basket, update the quantity
+            {
+                basketProduct.ProductQuantity++; // Increment the product quantity by 1
+            }
+            else // If the product is not in the basket, add it as a new entry
+            {
+                basketProduct = new BasketProducts // Create a new BasketProducts entry
+                {
+                    BasketId = basket.BasketId, // Set the BasketId to the user's basket
+                    ProductsId = ProductsId, // Set the ProductsId to the selected product
+                    ProductQuantity = 1 // Set the initial quantity to 1
+                };
+                _context.BasketProducts.Add(basketProduct); // Add the new BasketProducts entry to the database context
+            }
+
+            await _context.SaveChangesAsync(); // Save the changes to the database
+
+            return RedirectToAction("Index", "Baskets"); // Redirect the user to the basket index page after adding the product
         }
 
         // GET: BasketProducts/Edit/5
