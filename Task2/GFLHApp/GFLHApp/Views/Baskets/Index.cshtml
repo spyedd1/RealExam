@@ -1,47 +1,89 @@
-﻿@model IEnumerable<GFLHApp.Models.Basket>
-
+﻿@model IEnumerable<GFLHApp.Models.BasketProducts>
 @{
     ViewData["Title"] = "Index";
+    var basketId = Model.FirstOrDefault()?.BasketId;
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BasketId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BasketId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BasketId">Delete</a>
-            </td>
-        </tr>
+@if (!Model.Any())
+{
+    <div align="center">
+        <br />
+        <h3>Your basket is empty</h3>
+        <p>You need to add some products to your basket.</p>
+        <br />
+        <a asp-controller="Products" asp-action="Index">&#8592; Continue Shopping</a>
+    </div>
 }
-    </tbody>
-</table>
+else
+{
+    <div style="max-width:800px; margin:auto;">
+        <h2>Your Basket</h2>
+        <hr />
+
+        <table border="1" cellpadding="12" cellspacing="0" width="100%">
+            <thead bgcolor="#333" style="color:white;">
+                <tr>
+                    <th align="left">Product</th>
+                    <th align="left">Price</th>
+                    <th align="left">Qty</th>
+                    <th align="left">Total</th>
+                    <th align="left">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><strong>@item.Products.ItemName</strong></td>
+                        <td>£@item.Products.ItemPrice.ToString("0.00")</td>
+                        <td align="center">@item.ProductQuantity</td>
+                        <td>£@((item.Products.ItemPrice * item.ProductQuantity).ToString("0.00"))</td>
+                        <td>
+                            <a asp-controller="BasketProducts" asp-action="Delete" asp-route-id="@item.BasketProductsId"
+                               style="color:red;">
+                                Remove
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+
+        <table border="1" cellpadding="12" cellspacing="0" width="350">
+            <thead bgcolor="#333" style="color:white;">
+                <tr>
+                    <th colspan="2" align="left">Order Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>£@(((decimal)ViewBag.Subtotal).ToString("0.00"))</td>
+                </tr>
+                <tr>
+                    <td>Loyalty Discount</td>
+                    <td style="color:green;">
+                        - £@(((decimal)ViewBag.Discount).ToString("0.00"))
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr bgcolor="#f0f0f0">
+                    <td><strong>Total</strong></td>
+                    <td><strong>£@(((decimal)ViewBag.Total).ToString("0.00"))</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        @if (ViewBag.Discount > 0)
+        {
+            <br />
+            <p style="color:green;"><strong>Congratulations!</strong> Your loyalty discount has been applied.</p>
+        }
+
+        <br />
+        <a asp-controller="Products" asp-action="Index">Continue Shopping</a>
+    </div>
+}

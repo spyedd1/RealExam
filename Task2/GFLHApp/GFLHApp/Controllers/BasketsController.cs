@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GFLHApp.Data;
 using GFLHApp.Models;
+using System.Security.Claims;
 
 namespace GFLHApp.Controllers
 {
@@ -22,7 +23,64 @@ namespace GFLHApp.Controllers
         // GET: Baskets
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Basket.ToListAsync());
+            // Start by finding the current logged in user
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+
+            if (userId == null) // Check if the user is logged in
+            {
+                return Unauthorized(); // Return a 401 Unauthorized response if the user is not logged in
+            }
+
+            // Check if user has a basket, if they don't then we will create one for them
+            var basket = await _context.Basket.FirstOrDefaultAsync(x => x.UserId == userId && x.Status); // Find the active basket for the user
+
+            if (basket == null) // If the user doesn't have an active basket, create one
+            {
+                basket = new Basket // Create a new basket for the user
+                {
+                    UserId = userId, // Set the UserId to the current user's ID
+                    Status = true, // Set the status to true (active)
+                    CreatedAt = DateTime.UtcNow // Set the creation time to now
+                };
+
+                _context.Basket.Add(basket); // Add the new basket to the database context
+                await _context.SaveChangesAsync(); // Save the changes to the database
+            }
+
+            // Next find the products in the basket, and find the subtotal of the basket
+            var basketProducts = await _context.BasketProducts // Start a query on the BasketProducts table
+                .Where(bp => bp.BasketId == basket.BasketId) // Find all products in the user's basket
+                .Include(bp => bp.Basket) // Include the related basket
+                .Include(bp => bp.Products) // Include the related product details
+                .ToListAsync(); // Execute the query and get the results as a list
+
+            decimal subtotal = 0m; // Initialize the subtotal variable
+
+            foreach (var basketProduct in basketProducts) // Loop through each product in the basket
+            {
+                var productTotal = basketProduct.Products.ItemPrice * basketProduct.ProductQuantity; // Calculate the total price for the current product (price * quantity)
+                subtotal += productTotal; // Add the product total to the subtotal
+            }
+
+            // Loyalty discount calculation
+            var orderCount = await _context.Orders.CountAsync(o => o.UserId == userId); // Get the total number of orders the user has made
+
+            decimal discount = 0m; // Initialize the discount variable
+
+            if (orderCount >= 5) // Check if the user has made 5 or more orders
+            {
+                discount = subtotal * 0.10m; // Apply a 10% discount to the subtotal
+            }
+
+            decimal total = subtotal - discount; // Calculate the final total after applying the discount
+
+            // Finally, send to the viewbag and return the view.
+            ViewBag.Subtotal = subtotal; // Pass the subtotal to the view using ViewBag
+            ViewBag.Discount = discount; // Pass the discount to the view using ViewBag
+            ViewBag.Total = total; // Pass the total to the view using ViewBag
+            ViewBag.OrderCount = orderCount; // Pass the order count to the view using ViewBag
+
+            return View(basketProducts); // Return the view with the list of products in the basket
         }
 
         // GET: Baskets/Details/5
