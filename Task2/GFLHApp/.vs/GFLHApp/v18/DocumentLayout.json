@@ -23,10 +23,6 @@
       "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\basketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260327000527_ImprovedBasket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GFLHApp\\Data\\Migrations\\20260327000527_ImprovedBasket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|d:\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -125,6 +121,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|d:\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\data\\migrations\\20260326041236_addtobasket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\data\\migrations\\20260326041236_addtobasket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|d:\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\data\\migrations\\20260327000527_improvedbasket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\data\\migrations\\20260327000527_improvedbasket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -151,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 30,
               "Title": "20260327000527_ImprovedBasket.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260327000527_ImprovedBasket.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260327000527_ImprovedBasket.cs",
@@ -159,8 +159,7 @@
               "RelativeToolTip": "GFLHApp\\Data\\Migrations\\20260327000527_ImprovedBasket.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T00:05:28.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-27T00:05:28.018Z"
             },
             {
               "$type": "Document",
@@ -172,8 +171,7 @@
               "RelativeToolTip": "GFLHApp\\Views\\Baskets\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-26T23:48:02.612Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-26T23:48:02.612Z"
             },
             {
               "$type": "Document",
@@ -185,8 +183,7 @@
               "RelativeToolTip": "GFLHApp\\Controllers\\BasketsController.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAcwDUAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T17:42:14.017Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-25T17:42:14.017Z"
             },
             {
               "$type": "Document",
@@ -201,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 17,
               "Title": "Orders.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\Orders.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Models\\Orders.cs",
@@ -213,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "OrderProducts.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\OrderProducts.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Models\\OrderProducts.cs",
@@ -225,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 28,
               "Title": "20260326014115_Fixes.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260326014115_Fixes.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260326014115_Fixes.cs",
@@ -237,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 19,
               "Title": "Error.cshtml",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Error.cshtml",
               "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Error.cshtml",
@@ -249,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Models\\ErrorViewModel.cs",
@@ -257,12 +254,11 @@
               "RelativeToolTip": "GFLHApp\\Models\\ErrorViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T20:00:46.229Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T20:00:46.229Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 18,
               "Title": "Basket.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\Basket.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Models\\Basket.cs",
@@ -274,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 22,
               "Title": "20260326012545_TestingApplication.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260326012545_TestingApplication.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260326012545_TestingApplication.cs",
@@ -294,12 +290,11 @@
               "RelativeToolTip": "GFLHApp\\Views\\Products\\Index.cshtml",
               "ViewState": "AgIAACYAAAAAAAAAAAAiwFYAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-26T03:29:10.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-26T03:29:10.609Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "BasketProductsController.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\BasketProductsController.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Controllers\\BasketProductsController.cs",
@@ -307,12 +302,11 @@
               "RelativeToolTip": "GFLHApp\\Controllers\\BasketProductsController.cs",
               "ViewState": "AgIAADUAAAAAAAAAAAAjwEQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T23:14:18.654Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T23:14:18.654Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "BasketProducts.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\BasketProducts.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Models\\BasketProducts.cs",
@@ -320,12 +314,11 @@
               "RelativeToolTip": "GFLHApp\\Models\\BasketProducts.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T20:13:54.016Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T20:13:54.016Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 23,
               "Title": "20260325175618_ModelsAsControllers.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260325175618_ModelsAsControllers.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260325175618_ModelsAsControllers.cs",
@@ -337,7 +330,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 29,
               "Title": "20260326041236_AddToBasket.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260326041236_AddToBasket.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260326041236_AddToBasket.cs",
@@ -349,7 +342,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "20260326033738_Checkpoint1.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260326033738_Checkpoint1.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260326033738_Checkpoint1.cs",
@@ -361,7 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Controllers\\OrdersController.cs",
@@ -373,7 +366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "Products.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\Products.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Models\\Products.cs",
@@ -385,7 +378,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "SeedData.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\SeedData.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\SeedData.cs",
@@ -397,7 +390,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Controllers\\ProductsController.cs",
@@ -409,7 +402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "Producers.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\Producers.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Models\\Producers.cs",
@@ -421,7 +414,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Program.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Program.cs",
@@ -433,7 +426,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 15,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\ApplicationDbContext.cs",
@@ -445,7 +438,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 24,
               "Title": "OrderProductsController.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\OrderProductsController.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Controllers\\OrderProductsController.cs",
@@ -457,7 +450,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 25,
               "Title": "20260326012212_FixingRoles.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260326012212_FixingRoles.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260326012212_FixingRoles.cs",
@@ -469,7 +462,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 20,
               "Title": "ProducersController.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\ProducersController.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Controllers\\ProducersController.cs",
@@ -481,7 +474,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 21,
               "Title": "20260325172844_ModelsAsControllers.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260325172844_ModelsAsControllers.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260325172844_ModelsAsControllers.cs",
@@ -493,7 +486,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 26,
               "Title": "ScaffoldingReadMe.txt",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\ScaffoldingReadMe.txt",
               "RelativeDocumentMoniker": "GFLHApp\\ScaffoldingReadMe.txt",
@@ -505,7 +498,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 27,
               "Title": "20260324225430_InitialCreate.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260324225430_InitialCreate.cs",
               "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260324225430_InitialCreate.cs",
