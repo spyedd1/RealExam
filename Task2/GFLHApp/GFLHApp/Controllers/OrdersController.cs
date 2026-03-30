@@ -44,8 +44,9 @@ namespace GFLHApp.Controllers
         }
 
         // GET: Orders/Create
-        public IActionResult Create()
+        public IActionResult Create(int basketId) // Accept the BasketId as a parameter
         {
+            ViewBag.BasketId = basketId; // Pass the BasketId to the view using ViewBag
             return View();
         }
 

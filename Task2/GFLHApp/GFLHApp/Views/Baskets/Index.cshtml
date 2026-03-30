@@ -84,6 +84,12 @@ else
         }
 
         <br />
+
+        <a asp-controller="Orders" asp-action="Create" asp-route-basketId="@basketId"
+               style="color:white; background-color:#333; padding:10px 20px; text-decoration:none; display:inline-block;">
+         Proceed to Checkout
+        </a>
+        &nbsp;
         <a asp-controller="Products" asp-action="Index">Continue Shopping</a>
     </div>
 }
