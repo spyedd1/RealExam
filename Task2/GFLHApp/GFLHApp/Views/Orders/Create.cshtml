@@ -52,7 +52,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td width="150"><strong>Delivery Type</strong></td>
+                        <td width="150"><strong>Delivery Type <span style="color:red;">*</span></strong></td>
                         <td>
                             <select asp-for="DeliveryMethod">
                                 <option value="">Select Delivery Type</option>
@@ -77,7 +77,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td width="150"><strong>Collection Date</strong></td>
+                        <td width="150"><strong>Collection Date <span style="color:red;">*</span></strong></td>
                         <td>
                             <input asp-for="DateOfCollection" type="date" id="DateOfCollection" />
                             <br />
@@ -91,6 +91,104 @@
         </div>
 
         <br />
+
+        <!-- Billing Address Section -->
+        <table border="1" cellpadding="12" cellspacing="0" width="100%">
+            <thead bgcolor="#333" style="color:white;">
+                <tr>
+                    <th colspan="2" align="left">Billing Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="150"><strong>Address Line 1 <span style="color:red;">*</span></strong></td>
+                    <td>
+                        <input asp-for="BillingLine1" id="BillingLine1" style="width:100%;" />
+                        <br />
+                        <span asp-validation-for="BillingLine1" style="color:red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="150"><strong>Address Line 2</strong></td>
+                    <td>
+                        <input asp-for="BillingLine2" id="BillingLine2" style="width:100%;" /> <!-- Optional field -->
+                    </td>
+                </tr>
+                <tr>
+                    <td width="150"><strong>City <span style="color:red;">*</span></strong></td>
+                    <td>
+                        <input asp-for="BillingCity" id="BillingCity" style="width:100%;" />
+                        <br />
+                        <span asp-validation-for="BillingCity" style="color:red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="150"><strong>Postcode <span style="color:red;">*</span></strong></td>
+                    <td>
+                        <input asp-for="BillingPostcode" id="BillingPostcode" style="width:100%;" />
+                        <br />
+                        <span asp-validation-for="BillingPostcode" style="color:red;"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+
+        <!-- Delivery Address Section -->
+        <div id="deliveryAddressGroup">
+            <table border="1" cellpadding="12" cellspacing="0" width="100%">
+                <thead bgcolor="#333" style="color:white;">
+                    <tr>
+                        <th colspan="2" align="left">Delivery Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <input type="checkbox" id="sameAsBilling" />
+                            <label for="sameAsBilling">Use the same delivery address as billing address</label> <!-- Checkbox to use the billing address as the delivery address -->
+                        </td>
+                    </tr>
+                    <tr id="deliveryLine1Row">
+                        <td width="150"><strong>Address Line 1</strong></td>
+                        <td>
+                            <input asp-for="DeliveryLine1" id="DeliveryLine1" style="width:100%;" />
+                        </td>
+                    </tr>
+                    <tr id="deliveryLine2Row">
+                        <td width="150"><strong>Address Line 2</strong></td>
+                        <td>
+                            <input asp-for="DeliveryLine2" id="DeliveryLine2" style="width:100%;" /> <!-- Optional field -->
+                        </td>
+                    </tr>
+                    <tr id="deliveryCityRow">
+                        <td width="150"><strong>City</strong></td>
+                        <td>
+                            <input asp-for="DeliveryCity" id="DeliveryCity" style="width:100%;" />
+                        </td>
+                    </tr>
+                    <tr id="deliveryPostcodeRow">
+                        <td width="150"><strong>Postcode</strong></td>
+                        <td>
+                            <input asp-for="DeliveryPostcode" id="DeliveryPostcode" style="width:100%;" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Hidden delivery address fields used when same as billing is checked -->
+        <input type="hidden" id="DeliveryLine1Hidden" name="DeliveryLine1" style="display:none;" />
+        <input type="hidden" id="DeliveryLine2Hidden" name="DeliveryLine2" style="display:none;" />
+        <input type="hidden" id="DeliveryCityHidden" name="DeliveryCity" style="display:none;" />
+        <input type="hidden" id="DeliveryPostcodeHidden" name="DeliveryPostcode" style="display:none;" />
+
+        <br />
+
+        <small style="color:grey;">Fields marked with <span style="color:red;">*</span> are required.</small>
+
+        <br /><br />
 
         <button type="submit"
                 style="color:white; background-color:#333; padding:10px 20px; border:none; cursor:pointer;">
@@ -147,6 +245,92 @@
     collectionCheck.addEventListener("change", updateForm);
 
     updateForm();
+
+    // Same as billing address checkbox logic
+    const sameAsBillingCheck = document.getElementById("sameAsBilling");
+
+    const deliveryLine1Row = document.getElementById("deliveryLine1Row");
+    const deliveryLine2Row = document.getElementById("deliveryLine2Row");
+    const deliveryCityRow = document.getElementById("deliveryCityRow");
+    const deliveryPostcodeRow = document.getElementById("deliveryPostcodeRow");
+
+    const deliveryLine1Input = document.getElementById("DeliveryLine1");
+    const deliveryLine2Input = document.getElementById("DeliveryLine2");
+    const deliveryCityInput = document.getElementById("DeliveryCity");
+    const deliveryPostcodeInput = document.getElementById("DeliveryPostcode");
+
+    const deliveryLine1Hidden = document.getElementById("DeliveryLine1Hidden");
+    const deliveryLine2Hidden = document.getElementById("DeliveryLine2Hidden");
+    const deliveryCityHidden = document.getElementById("DeliveryCityHidden");
+    const deliveryPostcodeHidden = document.getElementById("DeliveryPostcodeHidden");
+
+    const billingLine1Input = document.getElementById("BillingLine1");
+    const billingLine2Input = document.getElementById("BillingLine2");
+    const billingCityInput = document.getElementById("BillingCity");
+    const billingPostcodeInput = document.getElementById("BillingPostcode");
+
+    function updateDeliveryAddress() {
+
+        if (sameAsBillingCheck.checked) {
+
+            // Hide the delivery address input rows
+            deliveryLine1Row.style.display = "none";
+            deliveryLine2Row.style.display = "none";
+            deliveryCityRow.style.display = "none";
+            deliveryPostcodeRow.style.display = "none";
+
+            // Disable the visible delivery fields so they dont submit duplicate values
+            deliveryLine1Input.disabled = true;
+            deliveryLine2Input.disabled = true;
+            deliveryCityInput.disabled = true;
+            deliveryPostcodeInput.disabled = true;
+
+            // Copy the billing address values into the hidden fields to submit to the model
+            deliveryLine1Hidden.value = billingLine1Input.value;
+            deliveryLine2Hidden.value = billingLine2Input.value;
+            deliveryCityHidden.value = billingCityInput.value;
+            deliveryPostcodeHidden.value = billingPostcodeInput.value;
+
+        } else {
+
+            // Show the delivery address input rows
+            deliveryLine1Row.style.display = "";
+            deliveryLine2Row.style.display = "";
+            deliveryCityRow.style.display = "";
+            deliveryPostcodeRow.style.display = "";
+
+            // Re-enable the visible delivery fields
+            deliveryLine1Input.disabled = false;
+            deliveryLine2Input.disabled = false;
+            deliveryCityInput.disabled = false;
+            deliveryPostcodeInput.disabled = false;
+
+            // Clear the hidden fields so they dont submit stale values
+            deliveryLine1Hidden.value = "";
+            deliveryLine2Hidden.value = "";
+            deliveryCityHidden.value = "";
+            deliveryPostcodeHidden.value = "";
+
+        }
+    }
+
+    sameAsBillingCheck.addEventListener("change", updateDeliveryAddress);
+
+    // Also update the hidden fields if the user updates billing address after checking the checkbox
+    billingLine1Input.addEventListener("input", function () {
+        if (sameAsBillingCheck.checked) deliveryLine1Hidden.value = this.value; // Copy the billing address value into the hidden field if same as billing is checked
+    });
+    billingLine2Input.addEventListener("input", function () {
+        if (sameAsBillingCheck.checked) deliveryLine2Hidden.value = this.value; // Copy the billing address value into the hidden field if same as billing is checked
+    });
+    billingCityInput.addEventListener("input", function () {
+        if (sameAsBillingCheck.checked) deliveryCityHidden.value = this.value; // Copy the billing address value into the hidden field if same as billing is checked
+    });
+    billingPostcodeInput.addEventListener("input", function () {
+        if (sameAsBillingCheck.checked) deliveryPostcodeHidden.value = this.value; // Copy the billing address value into the hidden field if same as billing is checked
+    });
+
+    updateDeliveryAddress();
 </script>
 
 @section Scripts {
