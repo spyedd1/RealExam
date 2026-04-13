@@ -20,6 +20,8 @@
 
         public string Description { get; set; }
 
+        public string? Allergens { get; set; } // Comma separated allergen list e.g. "Gluten, Nuts, Dairy" - required under Natasha's Law
+
         // Navigation properties
 
         public Producers Producers { get; set; } // A product is associated with one producer

@@ -230,6 +230,41 @@
 
         <br />
 
+        <!-- Allergen Information - Required under Natasha's Law -->
+        <div style="background:#fff3cd; border:1px solid #ffc107; padding:16px; border-radius:4px; margin-bottom:24px;">
+            <h3 style="margin-top:0;">&#9888;&#65039; Allergen Information</h3>
+            <p style="margin-bottom:12px; font-size:14px;">
+                The following allergen information is provided in accordance with Natasha's Law.
+                Please review carefully before placing your order.
+            </p>
+            <table border="1" cellpadding="10" cellspacing="0" width="100%" style="border-collapse:collapse; font-size:14px;">
+                <thead style="background:#e6a817; color:white;">
+                    <tr>
+                        <th align="left">Product</th>
+                        <th align="left">Allergens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.BasketProducts)
+                    {
+                        <tr>
+                            <td>@item.Products.ItemName</td>
+                            <td>
+                                @if (string.IsNullOrWhiteSpace(item.Products.Allergens))
+                                {
+                                    <span style="color:green;">&#10003; No allergens declared</span>
+                                }
+                                else
+                                {
+                                    <span style="color:#856404;">&#9888; @item.Products.Allergens</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
         <!-- Order Summary Box -->
         <div id="orderSummary" style="border:1px solid #ccc; padding:16px; margin-top:10px; background:#f9f9f9;">
             <h3 style="margin-top:0;">&#128722; Order Summary</h3>
@@ -254,6 +289,17 @@
         <small style="color:grey;">Fields marked with <span style="color:red;">*</span> are required.</small>
 
         <br /><br />
+
+        <!-- Terms and Conditions -->
+        <div style="background:#fff8e1; border:1px solid #ffe082; padding:16px; border-radius:4px; margin-bottom:16px;">
+            <input asp-for="TermsAccepted" id="termsAccepted" type="checkbox" />
+            <label asp-for="TermsAccepted">
+                I agree to the <a href="/Home/Terms" target="_blank">Terms and Conditions</a>
+                and confirm I have reviewed the allergen information for all items in my order.
+            </label>
+            <br />
+            <span asp-validation-for="TermsAccepted" style="color:red;"></span>
+        </div>
 
         <button type="submit"
                 style="color:white; background-color:#333; padding:10px 20px; border:none; cursor:pointer;">

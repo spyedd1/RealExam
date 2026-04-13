@@ -54,7 +54,7 @@ namespace GFLHApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProducersId,UserId,ProducerName,ProducerEmail,ProducerInformation")] Producers producers)
+        public async Task<IActionResult> Create([Bind("ProducersId,UserId,ProducerName,ProducerEmail,ProducerInformation,IsVATRegistered,VATNumber")] Producers producers)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace GFLHApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProducersId,UserId,ProducerName,ProducerEmail,ProducerInformation")] Producers producers)
+        public async Task<IActionResult> Edit(int id, [Bind("ProducersId,UserId,ProducerName,ProducerEmail,ProducerInformation,IsVATRegistered,VATNumber")] Producers producers)
         {
             if (id != producers.ProducersId)
             {

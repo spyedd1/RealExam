@@ -12,6 +12,9 @@
 
         public string ProducerInformation { get; set; }
 
+        public string? VATNumber { get; set; } // VAT registration number for the producer, if applicable
+        public bool IsVATRegistered { get; set; } // Whether the producer is VAT registered
+
         // Navigation properties
 
         public ICollection<Products>? Products { get; set; } // A producer can have multiple products

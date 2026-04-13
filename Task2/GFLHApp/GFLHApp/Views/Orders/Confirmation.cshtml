@@ -97,6 +97,12 @@
         </tbody>
     </table>
 
+    <!-- Allergen Reminder -->
+    <div style="background:#fff3cd; border:1px solid #ffc107; padding:12px 16px; border-radius:4px; margin-bottom:24px; font-size:14px;">
+        &#9888;&#65039; <strong>Allergen Notice:</strong> Please refer to the allergen information provided at checkout.
+        If you have any concerns about allergens in your order, please contact us before consuming any products.
+    </div>
+
     <!-- Order Summary -->
     <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:24px; border-collapse:collapse;">
         <thead style="background:#333; color:white;">
@@ -104,6 +110,14 @@
                 <th colspan="2" align="left" style="padding:12px;">&#128722; Order Summary</th>
             </tr>
         </thead>
+        <tr>
+            <td><strong>Invoice Number</strong></td>
+            <td>@Model.InvoiceNumber</td>
+        </tr>
+        <tr>
+            <td><strong>Terms Accepted</strong></td>
+            <td>&#10003; Accepted at time of order</td>
+        </tr>
         <tbody>
             <tr>
                 <td width="200"><strong>Billing Address</strong></td>

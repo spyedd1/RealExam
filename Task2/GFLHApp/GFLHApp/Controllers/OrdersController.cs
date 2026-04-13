@@ -107,6 +107,8 @@ namespace GFLHApp.Controllers
         { "Economy",   0.99m }
     }; // Pass the delivery costs to the view using ViewBag
 
+            ViewBag.BasketProducts = basketProducts; // Pass the basket products to the view for allergen display
+
             return View();
         }
 
@@ -117,7 +119,7 @@ namespace GFLHApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrdersId,Delivery,Collection,DeliveryMethod,DateOfCollection,BillingLine1,BillingLine2,BillingCity,BillingPostcode,DeliveryLine1,DeliveryLine2,DeliveryCity,DeliveryPostcode")] Orders orders, int basketId)
+        public async Task<IActionResult> Create([Bind("OrdersId,Delivery,Collection,DeliveryMethod,DateOfCollection,BillingLine1,BillingLine2,BillingCity,BillingPostcode,DeliveryLine1,DeliveryLine2,DeliveryCity,DeliveryPostcode,TermsAccepted")] Orders orders, int basketId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
 
@@ -126,6 +128,14 @@ namespace GFLHApp.Controllers
                 ViewBag.BasketId = basketId; // Pass the BasketId back to the view
                 return View(orders); // Return the view with the current order data
             }
+
+            // Terms and conditions validation
+            if (!orders.TermsAccepted) // Check if the user has accepted the terms and conditions
+            {
+                ModelState.AddModelError("TermsAccepted", "You must accept the terms and conditions to place an order."); // Add a model error if the terms have not been accepted
+            }
+
+            ModelState.Remove("InvoiceNumber"); // Remove InvoiceNumber from model state validation as it is auto-generated
 
             // Assign values
             orders.UserId = userId; // Set the UserId to the current user's ID
@@ -398,6 +408,10 @@ namespace GFLHApp.Controllers
             // Create the order and save it to the database
             _context.Orders.Add(orders); // Add the order to the database context
             await _context.SaveChangesAsync(); // Save the changes to the database
+
+            // Generate invoice number after saving so we have the OrdersId
+            orders.InvoiceNumber = $"INV-{orders.OrderDate:yyyyMMdd}-{orders.OrdersId:D6}"; // Generate a unique invoice number using the order date and ID
+            await _context.SaveChangesAsync(); // Save the invoice number to the database
 
             foreach (var basketProduct in basketProducts) // Iterate through each product in the basket
             {

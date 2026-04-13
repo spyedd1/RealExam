@@ -85,7 +85,7 @@ namespace GFLHApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductsId,ProducersId,ItemName,ItemPrice,ImagePath,QuantityInStock,Available,Category,Description")] Products products)
+        public async Task<IActionResult> Create([Bind("ProductsId,ProducersId,ItemName,ItemPrice,ImagePath,QuantityInStock,Available,Category,Description,Allergens")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +121,7 @@ namespace GFLHApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductsId,ItemName,ItemPrice,ImagePath,QuantityInStock,Available,Category,Description")] Products products)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductsId,ItemName,ItemPrice,ImagePath,QuantityInStock,Available,Category,Description,Allergens")] Products products)
         {
             if (id != products.ProductsId)
             {

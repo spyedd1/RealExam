@@ -162,7 +162,9 @@ namespace GFLHApp.Data
                     ProducerName = "Green Valley Produce",
                     ProducerEmail = "greenvalley@farmmail.co.uk",
                     ProducerInformation = "Green Valley Produce is a family-owned farm located in the heart of the countryside. We specialize in growing organic fruits and vegetables using sustainable farming practices. Our farm has been in operation for over 50 years, and we take pride in providing fresh, high-quality produce to our customers.",
-                    UserId = producerUser1.Id
+                    UserId = producerUser1.Id,
+                    VATNumber = "GB863574975",
+                    IsVATRegistered = true
                 },
 
                 new Producers
@@ -170,7 +172,9 @@ namespace GFLHApp.Data
                     ProducerName = "Sunny Brook Farm",
                     ProducerEmail = "sunnybrook@ruralmail.co.uk",
                     ProducerInformation = "Sunny Brook Farm is a small-scale farm that focuses on raising free-range poultry and producing farm-fresh eggs. We are committed to animal welfare and sustainable farming methods. Our chickens roam freely in spacious pastures, and we provide them with a nutritious diet to ensure the highest quality eggs for our customers.",
-                    UserId = producerUser2.Id
+                    UserId = producerUser2.Id,
+                    VATNumber = "GB763906214",
+                    IsVATRegistered = true
                 },
 
                 new Producers
@@ -178,7 +182,10 @@ namespace GFLHApp.Data
                     ProducerName = "Oakridge Harvest Hub",
                     ProducerEmail = "oakridge@harvesthub.co.uk",
                     ProducerInformation = "Oakridge Harvest Hub is a cooperative of local farmers who come together to share resources and market their produce. We grow a wide variety of fruits, vegetables, and herbs using organic and regenerative farming techniques. Our mission is to support local agriculture and provide fresh, seasonal produce to our community.",
-                    UserId = producerUser3.Id
+                    UserId = producerUser3.Id,
+                    VATNumber = "GB846385085",
+                    IsVATRegistered = true,
+
                 },
 
                 new Producers
@@ -186,7 +193,8 @@ namespace GFLHApp.Data
                     ProducerName = "Meadow Fresh Organic Farms",
                     ProducerEmail = "meadowfresh@agromail.co.uk",
                     ProducerInformation = "Meadow Fresh Organic Farms is dedicated to producing high-quality organic dairy products",
-                    UserId = producerUser4.Id
+                    UserId = producerUser4.Id,
+                    IsVATRegistered = false
                 },
 
                 new Producers
@@ -194,7 +202,8 @@ namespace GFLHApp.Data
                     ProducerName = "Willowcreek Farm",
                     ProducerEmail = "willowcreek@farmconnect.co.uk",
                     ProducerInformation = "Willowcreek Farm is a family-run farm that specializes in growing heirloom vegetables and artisanal herbs. We are passionate about preserving traditional farming methods and cultivating unique, flavorful produce. Our farm is committed to sustainability and biodiversity, and we strive to create a thriving ecosystem on our land.",
-                    UserId = producerUser5.Id
+                    UserId = producerUser5.Id,
+                    IsVATRegistered = false
                 }
             };
 

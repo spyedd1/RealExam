@@ -144,11 +144,17 @@ namespace GFLHApp.Data.Migrations
                     b.Property<string>("DeliveryPostcode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("InvoiceNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateOnly>("OrderDate")
                         .HasColumnType("date");
 
                     b.Property<decimal>("OrdersTotal")
                         .HasColumnType("decimal(10,2)");
+
+                    b.Property<bool>("TermsAccepted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("TrackingStatus")
                         .IsRequired()
@@ -171,6 +177,9 @@ namespace GFLHApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProducersId"));
 
+                    b.Property<bool>("IsVATRegistered")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ProducerEmail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -187,6 +196,9 @@ namespace GFLHApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("VATNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ProducersId");
 
                     b.ToTable("Producers");
@@ -199,6 +211,9 @@ namespace GFLHApp.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductsId"));
+
+                    b.Property<string>("Allergens")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Available")
                         .HasColumnType("bit");

@@ -33,6 +33,33 @@
                 <span asp-validation-for="ProducerInformation" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="IsVATRegistered"><strong>VAT Registered?</strong></label>
+                <input asp-for="IsVATRegistered" id="isVATRegistered" type="checkbox" />
+            </div>
+            <div id="vatNumberGroup" style="display:none;">
+                <div class="form-group">
+                    <label asp-for="VATNumber"><strong>VAT Number</strong></label>
+                    <input asp-for="VATNumber" class="form-control"
+                           placeholder="e.g. GB123456789"
+                           pattern="^GB[0-9]{9}$"
+                           title="UK VAT numbers must be in the format GB followed by 9 digits" />
+                    <small style="color:grey;">UK VAT number format: GB followed by 9 digits e.g. GB123456789</small>
+                    <span asp-validation-for="VATNumber" style="color:red;"></span>
+                </div>
+            </div>
+
+            <script>
+                const isVATRegistered = document.getElementById("isVATRegistered");
+                const vatNumberGroup = document.getElementById("vatNumberGroup");
+
+                function toggleVATNumber() {
+                    vatNumberGroup.style.display = isVATRegistered.checked ? "block" : "none"; // Show or hide the VAT number field based on the checkbox
+                }
+
+                isVATRegistered.addEventListener("change", toggleVATNumber);
+                toggleVATNumber(); // Run on page load to set initial state
+            </script>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

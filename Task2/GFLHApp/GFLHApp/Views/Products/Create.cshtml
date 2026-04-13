@@ -36,6 +36,17 @@
                 <input asp-for="QuantityInStock" class="form-control" />
                 <span asp-validation-for="QuantityInStock" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Allergens"><strong>Allergens</strong></label>
+                <input asp-for="Allergens" class="form-control"
+                       placeholder="e.g. Gluten, Nuts, Dairy, Milk — leave blank if none" />
+                <small style="color:grey;">
+                    Required under Natasha's Law. List all allergens present or leave blank if none apply.
+                    The 14 major allergens are: Celery, Cereals containing gluten, Crustaceans, Eggs, Fish,
+                    Lupin, Milk, Molluscs, Mustard, Peanuts, Sesame, Soybeans, Sulphur dioxide, Tree nuts.
+                </small>
+                <span asp-validation-for="Allergens" style="color:red;"></span>
+            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Available" /> @Html.DisplayNameFor(model => model.Available)

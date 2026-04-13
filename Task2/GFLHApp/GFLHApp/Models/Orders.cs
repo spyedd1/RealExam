@@ -17,6 +17,9 @@
 
         public string TrackingStatus { get; set; }
 
+        public bool TermsAccepted { get; set; } // Whether the user has accepted the terms and conditions at checkout
+        public string? InvoiceNumber { get; set; } // Auto-generated invoice number for VAT registered producers
+
         public DateOnly? DateOfCollection { get; set; } // This uses a ? as the date of collection is not required to be filled in as they may pick delivery instead of collection
 
         // Billing/Delivery Address Fields
