@@ -7,8 +7,7 @@
 <h1>Checkout</h1>
 <p>How would you like to recieve the order?</p>
 
-
-<form asp-action="Create" method="post">
+<form asp-action="Create" asp-route-basketId="@ViewBag.BasketId" method="post">
 
     <div style="max-width:800px; margin:auto;">
         <h2>🧾 Place Your Order</h2>
@@ -57,7 +56,7 @@
                             <select asp-for="DeliveryMethod">
                                 <option value="">Select Delivery Type</option>
                                 <option value="Next Day">Next Day</option>
-                                <option value="First Class">First Class</option>
+                                <option value="Economy">Economy</option>
                                 <option value="Standard">Standard</option>
                             </select>
                             <br />
@@ -81,8 +80,9 @@
                         <td>
                             <input asp-for="DateOfCollection" type="date" id="DateOfCollection" />
                             <br />
-                            <small>Earliest collection date is 2 days from today.</small>
+                            <small>Collection must be between 2 and 14 days from today.</small>
                             <br />
+                            <span id="collectionDateError" style="color:red; display:none;"></span>
                             <span asp-validation-for="DateOfCollection" style="color:red;"></span>
                         </td>
                     </tr>
@@ -103,7 +103,12 @@
                 <tr>
                     <td width="150"><strong>Address Line 1 <span style="color:red;">*</span></strong></td>
                     <td>
-                        <input asp-for="BillingLine1" id="BillingLine1" style="width:100%;" />
+                        <input asp-for="BillingLine1" id="BillingLine1" style="width:100%;"
+                               maxlength="40"
+                               pattern="^[a-zA-Z0-9 #\-,\.]{1,40}$"
+                               title="Letters, numbers, spaces, and # - , . only" />
+                        <br />
+                        <small style="color:grey;">Max 40 characters. Letters, numbers, spaces, and # - , . only.</small>
                         <br />
                         <span asp-validation-for="BillingLine1" style="color:red;"></span>
                     </td>
@@ -111,13 +116,23 @@
                 <tr>
                     <td width="150"><strong>Address Line 2</strong></td>
                     <td>
-                        <input asp-for="BillingLine2" id="BillingLine2" style="width:100%;" /> <!-- Optional field -->
+                        <input asp-for="BillingLine2" id="BillingLine2" style="width:100%;"
+                               maxlength="40"
+                               pattern="^[a-zA-Z0-9 #\-,\.]{0,40}$"
+                               title="Letters, numbers, spaces, and # - , . only" />
+                        <br />
+                        <small style="color:grey;">Optional. Max 40 characters. Letters, numbers, spaces, and # - , . only.</small>
+                        <br />
+                        <span asp-validation-for="BillingLine2" style="color:red;"></span>
                     </td>
                 </tr>
                 <tr>
                     <td width="150"><strong>City <span style="color:red;">*</span></strong></td>
                     <td>
-                        <input asp-for="BillingCity" id="BillingCity" style="width:100%;" />
+                        <input asp-for="BillingCity" id="BillingCity" style="width:100%;"
+                               maxlength="40"
+                               pattern="^[a-zA-Z0-9 #\-,\.]{1,40}$"
+                               title="Letters, numbers, spaces, and # - , . only" />
                         <br />
                         <span asp-validation-for="BillingCity" style="color:red;"></span>
                     </td>
@@ -125,7 +140,12 @@
                 <tr>
                     <td width="150"><strong>Postcode <span style="color:red;">*</span></strong></td>
                     <td>
-                        <input asp-for="BillingPostcode" id="BillingPostcode" style="width:100%;" />
+                        <input asp-for="BillingPostcode" id="BillingPostcode" style="width:100%;"
+                               maxlength="8"
+                               pattern="^[A-Za-z]{1,2}[0-9][0-9A-Za-z]?\s?[0-9][A-Za-z]{2}$"
+                               title="Enter a valid UK postcode e.g. B1 1BB or SW1A 2AA" />
+                        <br />
+                        <small style="color:grey;">UK postcode format e.g. B1 1BB or SW1A 2AA.</small>
                         <br />
                         <span asp-validation-for="BillingPostcode" style="color:red;"></span>
                     </td>
@@ -147,36 +167,104 @@
                     <tr>
                         <td colspan="2">
                             <input type="checkbox" id="sameAsBilling" />
-                            <label for="sameAsBilling">Use the same delivery address as billing address</label> <!-- Checkbox to use the billing address as the delivery address -->
+                            <label for="sameAsBilling">Use the same delivery address as billing address</label>
                         </td>
                     </tr>
                     <tr id="deliveryLine1Row">
-                        <td width="150"><strong>Address Line 1</strong></td>
+                        <td width="150"><strong>Address Line 1 <span style="color:red;">*</span></strong></td>
                         <td>
-                            <input asp-for="DeliveryLine1" id="DeliveryLine1" style="width:100%;" />
+                            <input asp-for="DeliveryLine1" id="DeliveryLine1" style="width:100%;"
+                                   maxlength="40"
+                                   pattern="^[a-zA-Z0-9 #\-,\.]{1,40}$"
+                                   title="Letters, numbers, spaces, and # - , . only" />
+                            <br />
+                            <small style="color:grey;">Max 40 characters. Letters, numbers, spaces, and # - , . only.</small>
+                            <br />
+                            <span asp-validation-for="DeliveryLine1" style="color:red;"></span>
                         </td>
                     </tr>
                     <tr id="deliveryLine2Row">
                         <td width="150"><strong>Address Line 2</strong></td>
                         <td>
-                            <input asp-for="DeliveryLine2" id="DeliveryLine2" style="width:100%;" /> <!-- Optional field -->
+                            <input asp-for="DeliveryLine2" id="DeliveryLine2" style="width:100%;"
+                                   maxlength="40"
+                                   pattern="^[a-zA-Z0-9 #\-,\.]{0,40}$"
+                                   title="Letters, numbers, spaces, and # - , . only" />
+                            <br />
+                            <small style="color:grey;">Optional. Max 40 characters. Letters, numbers, spaces, and # - , . only.</small>
                         </td>
                     </tr>
                     <tr id="deliveryCityRow">
-                        <td width="150"><strong>City</strong></td>
+                        <td width="150"><strong>City <span style="color:red;">*</span></strong></td>
                         <td>
-                            <input asp-for="DeliveryCity" id="DeliveryCity" style="width:100%;" />
+                            <input asp-for="DeliveryCity" id="DeliveryCity" style="width:100%;"
+                                   maxlength="40"
+                                   pattern="^[a-zA-Z0-9 #\-,\.]{1,40}$"
+                                   title="Letters, numbers, spaces, and # - , . only" />
+                            <br />
+                            <span asp-validation-for="DeliveryCity" style="color:red;"></span>
                         </td>
                     </tr>
                     <tr id="deliveryPostcodeRow">
-                        <td width="150"><strong>Postcode</strong></td>
+                        <td width="150"><strong>Postcode <span style="color:red;">*</span></strong></td>
                         <td>
-                            <input asp-for="DeliveryPostcode" id="DeliveryPostcode" style="width:100%;" />
+                            <input asp-for="DeliveryPostcode" id="DeliveryPostcode" style="width:100%;"
+                                   maxlength="8"
+                                   pattern="^[A-Za-z]{1,2}[0-9][0-9A-Za-z]?\s?[0-9][A-Za-z]{2}$"
+                                   title="Enter a valid UK postcode e.g. B1 1BB or SW1A 2AA" />
+                            <br />
+                            <small style="color:grey;">UK postcode format e.g. B1 1BB or SW1A 2AA.</small>
+                            <br />
+                            <span asp-validation-for="DeliveryPostcode" style="color:red;"></span>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <!-- Hidden delivery address fields used when same as billing is checked -->
+        <input type="hidden" id="DeliveryLine1Hidden" name="DeliveryLine1" />
+        <input type="hidden" id="DeliveryLine2Hidden" name="DeliveryLine2" />
+        <input type="hidden" id="DeliveryCityHidden" name="DeliveryCity" />
+        <input type="hidden" id="DeliveryPostcodeHidden" name="DeliveryPostcode" />
+
+        <br />
+
+        <!-- Order Summary Box -->
+        <div id="orderSummary" style="border:1px solid #ccc; padding:16px; margin-top:10px; background:#f9f9f9;">
+            <h3 style="margin-top:0;">&#128722; Order Summary</h3>
+            <table width="100%" cellpadding="6" cellspacing="0">
+                <tr>
+                    <td><strong>Subtotal</strong></td>
+                    <td align="right">£@ViewBag.Subtotal.ToString("0.00")</td>
+                </tr>
+                <tr id="deliveryCostRow" style="display:none;">
+                    <td><strong id="deliveryCostLabel">Delivery</strong></td>
+                    <td align="right" id="deliveryCostValue">£0.00</td>
+                </tr>
+                <tr style="border-top:1px solid #ccc;">
+                    <td><strong>Total</strong></td>
+                    <td align="right"><strong id="orderTotal">£@ViewBag.Subtotal.ToString("0.00")</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <br />
+
+        <small style="color:grey;">Fields marked with <span style="color:red;">*</span> are required.</small>
+
+        <br /><br />
+
+        <button type="submit"
+                style="color:white; background-color:#333; padding:10px 20px; border:none; cursor:pointer;">
+            &#10003; Place Order
+        </button>
+        &nbsp;
+        <a asp-controller="Baskets" asp-action="Index">&#8592; Back to Basket</a>
+
+    </div>
+
+</form>
 
         <!-- Hidden delivery address fields used when same as billing is checked -->
         <input type="hidden" id="DeliveryLine1Hidden" name="DeliveryLine1" style="display:none;" />
@@ -199,18 +287,50 @@
 
     </div>
 
-</form>
-
 
 <script>
     const dateOfCollectionInput = document.getElementById("DateOfCollection");
 
-    const today = new Date();
-    today.setDate(today.getDate() + 2);
-    const minDate = today.toISOString().split("T")[0];
+    const todayRaw = new Date();
+    todayRaw.setHours(0, 0, 0, 0); // Strip time so comparisons are date only
+
+    const minDateRaw = new Date(todayRaw);
+    minDateRaw.setDate(minDateRaw.getDate() + 2); // Earliest is 2 days from today
+
+    const maxDateRaw = new Date(todayRaw);
+    maxDateRaw.setDate(maxDateRaw.getDate() + 14); // Latest is 14 days from today
+
+    const minDate = minDateRaw.toISOString().split("T")[0];
+    const maxDate = maxDateRaw.toISOString().split("T")[0];
 
     if (dateOfCollectionInput) {
-        dateOfCollectionInput.min = minDate;
+        dateOfCollectionInput.min = minDate; // Set the min date attribute
+        dateOfCollectionInput.max = maxDate; // Set the max date attribute
+
+        dateOfCollectionInput.addEventListener("change", function () {
+            const collectionDateError = document.getElementById("collectionDateError");
+            const selectedDate = new Date(this.value);
+            selectedDate.setHours(0, 0, 0, 0); // Strip time so comparisons are date only
+
+            collectionDateError.style.display = "none"; // Hide the error message by default
+            collectionDateError.textContent = ""; // Clear the error message
+
+            if (selectedDate < todayRaw) // Check if the selected date is in the past
+            {
+                collectionDateError.textContent = "Collection date must be in the present or future.";
+                collectionDateError.style.display = "inline";
+            }
+            else if (selectedDate < minDateRaw) // Check if the selected date is less than 2 days from today
+            {
+                collectionDateError.textContent = "Collection must be at least 2 days from today.";
+                collectionDateError.style.display = "inline";
+            }
+            else if (selectedDate > maxDateRaw) // Check if the selected date is more than 14 days from today
+            {
+                collectionDateError.textContent = "Collection date must be within the next 14 days from today.";
+                collectionDateError.style.display = "inline";
+            }
+        });
     }
 
     const deliveryCheck = document.getElementById("deliveryCheck");
@@ -268,6 +388,50 @@
     const billingLine2Input = document.getElementById("BillingLine2");
     const billingCityInput = document.getElementById("BillingCity");
     const billingPostcodeInput = document.getElementById("BillingPostcode");
+
+        // Delivery cost lookup - must match your controller switch
+    const deliveryCosts = {
+        "Next Day": 5.99,
+        "Economy": 0.99,
+        "Standard": 2.99
+    };
+
+    const subtotal = @ViewBag.Subtotal;
+    const deliveryMethodSelect = document.querySelector("select[name='DeliveryMethod']");
+    const deliveryCostRow = document.getElementById("deliveryCostRow");
+    const deliveryCostLabel = document.getElementById("deliveryCostLabel");
+    const deliveryCostValue = document.getElementById("deliveryCostValue");
+    const orderTotal = document.getElementById("orderTotal");
+
+    const hasFreeDelivery = @Json.Serialize(ViewBag.HasFreeDelivery);
+
+    function updateOrderSummary() {
+        const isDelivery = deliveryCheck.checked;
+        const selectedMethod = deliveryMethodSelect.value;
+
+        if (isDelivery && selectedMethod && deliveryCosts[selectedMethod] !== undefined) {
+            if (hasFreeDelivery) {
+                deliveryCostRow.style.display = "";
+                deliveryCostLabel.textContent = selectedMethod + " Delivery";
+                deliveryCostValue.innerHTML = "<span style='color:green;'>FREE</span>";
+                orderTotal.textContent = "£" + subtotal.toFixed(2);
+            } else {
+                const cost = deliveryCosts[selectedMethod];
+                deliveryCostRow.style.display = "";
+                deliveryCostLabel.textContent = selectedMethod + " Delivery";
+                deliveryCostValue.textContent = "£" + cost.toFixed(2);
+                orderTotal.textContent = "£" + (subtotal + cost).toFixed(2);
+            }
+        } else {
+            deliveryCostRow.style.display = "none";
+            orderTotal.textContent = "£" + subtotal.toFixed(2);
+        }
+    }
+
+
+    deliveryMethodSelect.addEventListener("change", updateOrderSummary);
+    deliveryCheck.addEventListener("change", updateOrderSummary);
+    collectionCheck.addEventListener("change", updateOrderSummary);
 
     function updateDeliveryAddress() {
 

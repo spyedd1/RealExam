@@ -67,11 +67,50 @@ namespace GFLHApp.Controllers
         }
 
         // GET: Orders/Create
-        public IActionResult Create(int basketId) // Accept the BasketId as a parameter
+        public async Task<IActionResult> Create(int basketId)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+
+            if (userId == null) // Check if the user is authenticated
+            {
+                return Unauthorized();
+            }
+
+            var basketProducts = await _context.BasketProducts
+                .Where(x => x.BasketId == basketId)
+                .Include(x => x.Products)
+                .ToListAsync(); // Retrieve the products in the basket
+
+            decimal subtotal = 0m; // Initialize the subtotal variable
+            foreach (var item in basketProducts)
+            {
+                subtotal += item.Products.ItemPrice * item.ProductQuantity; // Calculate the subtotal
+            }
+
+            var orderCount = await _context.Orders.CountAsync(x => x.UserId == userId); // Count the number of orders placed by the current user
+
+            // Loyalty discount calculation
+            decimal discount = 0m; // Initialize the discount variable
+            if (orderCount >= 5) // Check if the user has placed 5 or more orders
+            {
+                discount = subtotal * 0.10m; // Apply a 10% discount if the user has placed 5 or more orders
+            }
+            decimal discountedSubtotal = subtotal - discount; // Calculate the discounted subtotal
+
             ViewBag.BasketId = basketId; // Pass the BasketId to the view using ViewBag
+            ViewBag.Subtotal = discountedSubtotal; // Pass the discounted subtotal to the view using ViewBag
+            ViewBag.HasFreeDelivery = orderCount % 3 == 2; // Pass whether the user has free delivery to the view using ViewBag
+            ViewBag.DeliveryCosts = new Dictionary<string, decimal>
+    {
+        { "Next Day",  5.99m },
+        { "Standard",  2.99m },
+        { "Economy",   0.99m }
+    }; // Pass the delivery costs to the view using ViewBag
+
             return View();
         }
+
+
 
         // POST: Orders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -130,38 +169,151 @@ namespace GFLHApp.Controllers
             // Discount Calculator
             var orderCouut = await _context.Orders.CountAsync(x => x.UserId == userId); // Count the number of orders placed by the current user
 
+            // Delivery cost
+            decimal deliveryCost = 0m; // Initialize the delivery cost variable
+            if (orders.Delivery) // Check if delivery is selected
+            {
+                if (orderCouut % 3 == 2) // Check if the user is eligible for free delivery
+                {
+                    deliveryCost = 0m; // Free delivery every 3rd order
+                }
+                else
+                {
+                    deliveryCost = orders.DeliveryMethod switch // Calculate the delivery cost based on the selected delivery method
+                    {
+                        "Next Day" => 5.99m,
+                        "Standard" => 2.99m,
+                        "Economy" => 0.99m,
+                        _ => 0m
+                    };
+                }
+            }
+
             // Discount logic based on the number of orders placed by the user
             decimal discount = 0m; // Initialize the discount variable
-
-            if (orderCouut >= 5)
+            if (orderCouut >= 5) // Check if the user has placed 5 or more orders
             {
                 discount = subtotal * 0.10m; // Apply a 10% discount if the user has placed 5 or more orders
             }
 
-            orders.OrdersTotal = subtotal - discount; // Set the order subtotal after applying the discount
+            orders.OrdersTotal = (subtotal - discount) + deliveryCost; // Set the order total after applying the discount and delivery cost
+
+            ViewBag.BasketId = basketId; // Pass the BasketId back to the view
+            ViewBag.Subtotal = subtotal; // Pass the subtotal back to the view
+            ViewBag.HasFreeDelivery = orderCouut % 3 == 2; // Pass whether the user has free delivery back to the view
+            ViewBag.DeliveryCosts = new Dictionary<string, decimal>
+            {
+                { "Next Day",  5.99m },
+                { "Standard",  2.99m },
+                { "Economy",   0.99m }
+            }; // Pass the delivery costs back to the view
 
             // Removing model states
             ModelState.Remove("OrdersTotal"); // Remove OrdersTotal from model state validation
             ModelState.Remove("BillingLine2"); // Remove BillingLine2 from model state validation as it is optional
-            ModelState.Remove("DeliveryLine1"); // Remove DeliveryLine1 from model state validation as it is optional
             ModelState.Remove("DeliveryLine2"); // Remove DeliveryLine2 from model state validation as it is optional
-            ModelState.Remove("DeliveryCity"); // Remove DeliveryCity from model state validation as it is optional
-            ModelState.Remove("DeliveryPostcode"); // Remove DeliveryPostcode from model state validation as it is optional
+
+            // Regex patterns
+            var addressRegex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9 #\-,\.]{1,40}$"); // Allow letters, numbers, spaces, and specific punctuation
+            var postcodeRegex = new System.Text.RegularExpressions.Regex(@"^[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}$", System.Text.RegularExpressions.RegexOptions.IgnoreCase); // British postcode format
 
             // Billing address validation
             if (string.IsNullOrWhiteSpace(orders.BillingLine1)) // Check if the BillingLine1 is not provided
             {
                 ModelState.AddModelError("BillingLine1", "Please enter the first line of your billing address."); // Add a model error if the BillingLine1 is not provided
             }
+            else if (orders.BillingLine1.Length > 40) // Check if the BillingLine1 exceeds 40 characters
+            {
+                ModelState.AddModelError("BillingLine1", "Address line 1 must not exceed 40 characters."); // Add a model error if the BillingLine1 exceeds 40 characters
+            }
+            else if (!addressRegex.IsMatch(orders.BillingLine1)) // Check if the BillingLine1 contains invalid characters
+            {
+                ModelState.AddModelError("BillingLine1", "Address line 1 can only contain letters, numbers, spaces, and the following: # - , ."); // Add a model error if the BillingLine1 contains invalid characters
+            }
+
+            if (!string.IsNullOrWhiteSpace(orders.BillingLine2)) // Only validate BillingLine2 if it is provided as it is optional
+            {
+                if (orders.BillingLine2.Length > 40) // Check if the BillingLine2 exceeds 40 characters
+                {
+                    ModelState.AddModelError("BillingLine2", "Address line 2 must not exceed 40 characters."); // Add a model error if the BillingLine2 exceeds 40 characters
+                }
+                else if (!addressRegex.IsMatch(orders.BillingLine2)) // Check if the BillingLine2 contains invalid characters
+                {
+                    ModelState.AddModelError("BillingLine2", "Address line 2 can only contain letters, numbers, spaces, and the following: # - , ."); // Add a model error if the BillingLine2 contains invalid characters
+                }
+            }
 
             if (string.IsNullOrWhiteSpace(orders.BillingCity)) // Check if the BillingCity is not provided
             {
                 ModelState.AddModelError("BillingCity", "Please enter your billing city."); // Add a model error if the BillingCity is not provided
             }
+            else if (orders.BillingCity.Length > 40) // Check if the BillingCity exceeds 40 characters
+            {
+                ModelState.AddModelError("BillingCity", "City must not exceed 40 characters."); // Add a model error if the BillingCity exceeds 40 characters
+            }
+            else if (!addressRegex.IsMatch(orders.BillingCity)) // Check if the BillingCity contains invalid characters
+            {
+                ModelState.AddModelError("BillingCity", "City can only contain letters, numbers, spaces, and the following: # - , ."); // Add a model error if the BillingCity contains invalid characters
+            }
 
             if (string.IsNullOrWhiteSpace(orders.BillingPostcode)) // Check if the BillingPostcode is not provided
             {
                 ModelState.AddModelError("BillingPostcode", "Please enter your billing postcode."); // Add a model error if the BillingPostcode is not provided
+            }
+            else if (!postcodeRegex.IsMatch(orders.BillingPostcode.Trim())) // Check if the BillingPostcode is a valid British postcode
+            {
+                ModelState.AddModelError("BillingPostcode", "Please enter a valid UK postcode (e.g. B1 1BB or SW1A 2AA)."); // Add a model error if the BillingPostcode is not a valid British postcode
+            }
+
+            // Delivery address validation
+            if (orders.Delivery) // Check if delivery is selected
+            {
+                if (string.IsNullOrWhiteSpace(orders.DeliveryLine1)) // Check if the DeliveryLine1 is not provided
+                {
+                    ModelState.AddModelError("DeliveryLine1", "Please enter the first line of your delivery address."); // Add a model error if the DeliveryLine1 is not provided
+                }
+                else if (orders.DeliveryLine1.Length > 40) // Check if the DeliveryLine1 exceeds 40 characters
+                {
+                    ModelState.AddModelError("DeliveryLine1", "Address line 1 must not exceed 40 characters."); // Add a model error if the DeliveryLine1 exceeds 40 characters
+                }
+                else if (!addressRegex.IsMatch(orders.DeliveryLine1)) // Check if the DeliveryLine1 contains invalid characters
+                {
+                    ModelState.AddModelError("DeliveryLine1", "Address line 1 can only contain letters, numbers, spaces, and the following: # - , ."); // Add a model error if the DeliveryLine1 contains invalid characters
+                }
+
+                if (!string.IsNullOrWhiteSpace(orders.DeliveryLine2)) // Only validate DeliveryLine2 if it is provided as it is optional
+                {
+                    if (orders.DeliveryLine2.Length > 40) // Check if the DeliveryLine2 exceeds 40 characters
+                    {
+                        ModelState.AddModelError("DeliveryLine2", "Address line 2 must not exceed 40 characters."); // Add a model error if the DeliveryLine2 exceeds 40 characters
+                    }
+                    else if (!addressRegex.IsMatch(orders.DeliveryLine2)) // Check if the DeliveryLine2 contains invalid characters
+                    {
+                        ModelState.AddModelError("DeliveryLine2", "Address line 2 can only contain letters, numbers, spaces, and the following: # - , ."); // Add a model error if the DeliveryLine2 contains invalid characters
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(orders.DeliveryCity)) // Check if the DeliveryCity is not provided
+                {
+                    ModelState.AddModelError("DeliveryCity", "Please enter your delivery city."); // Add a model error if the DeliveryCity is not provided
+                }
+                else if (orders.DeliveryCity.Length > 40) // Check if the DeliveryCity exceeds 40 characters
+                {
+                    ModelState.AddModelError("DeliveryCity", "City must not exceed 40 characters."); // Add a model error if the DeliveryCity exceeds 40 characters
+                }
+                else if (!addressRegex.IsMatch(orders.DeliveryCity)) // Check if the DeliveryCity contains invalid characters
+                {
+                    ModelState.AddModelError("DeliveryCity", "City can only contain letters, numbers, spaces, and the following: # - , ."); // Add a model error if the DeliveryCity contains invalid characters
+                }
+
+                if (string.IsNullOrWhiteSpace(orders.DeliveryPostcode)) // Check if the DeliveryPostcode is not provided
+                {
+                    ModelState.AddModelError("DeliveryPostcode", "Please enter your delivery postcode."); // Add a model error if the DeliveryPostcode is not provided
+                }
+                else if (!postcodeRegex.IsMatch(orders.DeliveryPostcode.Trim())) // Check if the DeliveryPostcode is a valid British postcode
+                {
+                    ModelState.AddModelError("DeliveryPostcode", "Please enter a valid UK postcode (e.g. B1 1BB or SW1A 2AA)."); // Add a model error if the DeliveryPostcode is not a valid British postcode
+                }
             }
 
             // Delivery or Collection validation logic
@@ -180,11 +332,21 @@ namespace GFLHApp.Controllers
                 }
                 else
                 {
-                    var earliestCollectionDate = DateOnly.FromDateTime(DateTime.Today.AddDays(2)); // Set the earliest collection date to 2 days from today
+                    var today = DateOnly.FromDateTime(DateTime.Today); // Get today's date
+                    var earliestCollectionDate = today.AddDays(2); // Set the earliest collection date to 2 days from today
+                    var latestCollectionDate = today.AddDays(14); // Set the latest collection date to 14 days from today
 
-                    if (orders.DateOfCollection.Value < earliestCollectionDate) // Check if the DateOfCollection is less than 2 days from today
+                    if (orders.DateOfCollection.Value < today) // Check if the date is in the past
                     {
-                        ModelState.AddModelError("CollectionDate", "Collection must be at least 2 days from today."); // Add a model error if the DateOfCollection is less than 2 days from today
+                        ModelState.AddModelError("DateOfCollection", "Collection date must be in the present or future."); // Add a model error if the date is in the past
+                    }
+                    else if (orders.DateOfCollection.Value < earliestCollectionDate) // Check if the DateOfCollection is less than 2 days from today
+                    {
+                        ModelState.AddModelError("DateOfCollection", "Collection must be at least 2 days from today."); // Add a model error if the DateOfCollection is less than 2 days from today
+                    }
+                    else if (orders.DateOfCollection.Value > latestCollectionDate) // Check if the DateOfCollection is more than 14 days from today
+                    {
+                        ModelState.AddModelError("DateOfCollection", "Collection date must be within the next 14 days from today."); // Add a model error if the DateOfCollection is more than 14 days from today
                     }
                 }
             }
@@ -196,6 +358,22 @@ namespace GFLHApp.Controllers
                 if (string.IsNullOrWhiteSpace(orders.DeliveryMethod)) // Check if the DeliveryMethod is not provided
                 {
                     ModelState.AddModelError("DeliveryMethod", "Please select a delivery method."); // Add a model error if the DeliveryMethod is not provided
+                }
+
+                // Only validate delivery address fields if same as billing checkbox was not used
+                if (string.IsNullOrWhiteSpace(orders.DeliveryLine1)) // Check if the DeliveryLine1 is not provided
+                {
+                    ModelState.AddModelError("DeliveryLine1", "Please enter the first line of your delivery address."); // Add a model error if the DeliveryLine1 is not provided
+                }
+
+                if (string.IsNullOrWhiteSpace(orders.DeliveryCity)) // Check if the DeliveryCity is not provided
+                {
+                    ModelState.AddModelError("DeliveryCity", "Please enter your delivery city."); // Add a model error if the DeliveryCity is not provided
+                }
+
+                if (string.IsNullOrWhiteSpace(orders.DeliveryPostcode)) // Check if the DeliveryPostcode is not provided
+                {
+                    ModelState.AddModelError("DeliveryPostcode", "Please enter your delivery postcode."); // Add a model error if the DeliveryPostcode is not provided
                 }
             }
 
@@ -239,7 +417,7 @@ namespace GFLHApp.Controllers
             basket.Status = false; // Set the status of the basket to false to indicate that it is closed
             await _context.SaveChangesAsync(); // Save the changes to the database
 
-            return RedirectToAction("Index", "Home"); // Redirect the user to the home page after successfully creating the order
+            return RedirectToAction("Confirmation", "Orders", new { id = orders.OrdersId }); // Redirect to the confirmation page with the order ID 
         }
         
 
@@ -258,6 +436,8 @@ namespace GFLHApp.Controllers
             }
             return View(orders);
         }
+
+
 
         // POST: Orders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -331,5 +511,30 @@ namespace GFLHApp.Controllers
         {
             return _context.Orders.Any(e => e.OrdersId == id);
         }
+
+
+        // GET: Orders/Confirmation
+        public async Task<IActionResult> Confirmation(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+
+            if (userId == null) // Check if the user is authenticated
+            {
+                return Unauthorized();
+            }
+
+            var order = await _context.Orders
+                .Include(o => o.OrderProducts)
+                .ThenInclude(op => op.Products)
+                .FirstOrDefaultAsync(o => o.OrdersId == id && o.UserId == userId); // Retrieve the order with its products, ensuring it belongs to the current user
+
+            if (order == null) // Check if the order exists and belongs to the current user
+            {
+                return NotFound();
+            }
+
+            return View(order); // Return the confirmation view with the order data
+        }
+
     }
 }

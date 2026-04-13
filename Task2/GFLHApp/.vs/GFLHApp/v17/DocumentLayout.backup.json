@@ -1,7 +1,52 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\715142\\source\\repos\\GFLHApp\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\views\\orders\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\orders\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\views\\orders\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\orders\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\controllers\\basketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\basketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\models\\orderproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\orderproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\controllers\\basketproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\basketproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\views\\baskets\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\baskets\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\controllers\\orderproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\orderproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|c:\\users\\digi-t-y2-10\\documents\\github\\realexam\\task2\\gflhapp\\gflhapp\\models\\basket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\basket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +54,154 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeToolTip": "GFLHApp\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-13T14:36:21.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Confirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Views\\Orders\\Confirmation.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Orders\\Confirmation.cshtml",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Views\\Orders\\Confirmation.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Orders\\Confirmation.cshtml",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAAAIwAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-13T14:33:50.627Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Views\\Orders\\Create.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Orders\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Views\\Orders\\Create.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Orders\\Create.cshtml",
+              "ViewState": "AgIAAAcBAAAAAAAAAAAkwB8BAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-13T11:48:17.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Views\\Baskets\\Index.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Baskets\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Views\\Baskets\\Index.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Baskets\\Index.cshtml",
+              "ViewState": "AgIAACUAAAAAAAAAAAAgwFEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-13T11:37:14.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OrderProducts.cs",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\OrderProducts.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\OrderProducts.cs",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\OrderProducts.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\OrderProducts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T11:36:57.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BasketsController.cs",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\BasketsController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\BasketsController.cs",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\BasketsController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\BasketsController.cs",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAgwNcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T11:18:34.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BasketProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\BasketProductsController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\BasketProductsController.cs",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\BasketProductsController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\BasketProductsController.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAqwFMAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T11:28:26.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Basket.cs",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\Basket.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\Basket.cs",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\Basket.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\Basket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T11:28:20.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Orders.cs",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\Orders.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\Orders.cs",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Models\\Orders.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\Orders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T11:24:06.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAOkBAAAAAAAAAAAgwA4CAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T11:18:37.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\OrderProductsController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\OrderProductsController.cs",
+              "ToolTip": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\GFLHApp\\GFLHApp\\Controllers\\OrderProductsController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\OrderProductsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T11:18:35.708Z",
+              "EditorCaption": ""
             }
           ]
         }

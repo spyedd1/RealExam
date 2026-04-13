@@ -13,16 +13,17 @@ namespace GFLHApp.Controllers
 {
     public class BasketProductsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context; 
 
-        public BasketProductsController(ApplicationDbContext context)
+        public BasketProductsController(ApplicationDbContext context)  
         {
-            _context = context;
+            _context = context; 
         }
 
         // GET: BasketProducts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() // This action method retrieves a list of all basket products from the database, including their associated basket and product details, and returns the view to display them
         {
+            // Query the BasketProducts table and include the related Basket and Products details in the results, then convert the results to a list asynchronously and pass it to the view for display
             var applicationDbContext = _context.BasketProducts.Include(b => b.Basket).Include(b => b.Products);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -30,6 +31,8 @@ namespace GFLHApp.Controllers
         // GET: BasketProducts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
+            // Check if the provided id is null, if it is then return a 404 Not Found response since we cannot find a basket product without an ID
             if (id == null)
             {
                 return NotFound();
@@ -41,10 +44,10 @@ namespace GFLHApp.Controllers
                 .FirstOrDefaultAsync(m => m.BasketProductsId == id);
             if (basketProducts == null)
             {
-                return NotFound();
+                return NotFound(); // Return a 404 Not Found response if the specified basket product does not exist in the database
             }
 
-            return View(basketProducts);
+            return View(basketProducts); // Return the details view for the specific basket product if it exists, otherwise return a 404 Not Found response
         }
 
         // GET: BasketProducts/Create

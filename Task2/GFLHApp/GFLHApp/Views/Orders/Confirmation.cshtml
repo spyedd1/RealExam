@@ -1,0 +1,141 @@
+﻿@model GFLHApp.Models.Orders
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div style="max-width:800px; margin:40px auto; font-family:sans-serif;">
+
+    <!-- Success Banner -->
+    <div style="background:#4CAF50; color:white; padding:24px 32px; border-radius:6px; text-align:center; margin-bottom:32px;">
+        <div style="font-size:48px; margin-bottom:8px;">&#10003;</div>
+        <h1 style="margin:0 0 8px 0; font-size:28px;">Thank You For Your Order!</h1>
+        <p style="margin:0; font-size:16px; opacity:0.9;">Your order has been confirmed and is being processed.</p>
+    </div>
+
+    <!-- Order Reference -->
+    <div style="background:#f9f9f9; border:1px solid #ddd; padding:16px 24px; border-radius:6px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <strong style="font-size:16px;">Order Reference</strong>
+            <div style="font-size:22px; font-weight:bold; color:#333;">#@Model.OrdersId.ToString("D6")</div>
+        </div>
+        <div style="text-align:right;">
+            <strong>Order Date</strong>
+            <div>@Model.OrderDate.ToString("dd MMMM yyyy")</div>
+        </div>
+    </div>
+
+    <!-- Order Status -->
+    <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:24px; border-collapse:collapse;">
+        <thead style="background:#333; color:white;">
+            <tr>
+                <th colspan="2" align="left" style="padding:12px;">&#128230; Order Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="200"><strong>Status</strong></td>
+                <td>
+                    <span style="background:#fff3cd; color:#856404; padding:4px 12px; border-radius:20px; font-size:14px; font-weight:bold;">
+                        &#9679; @Model.TrackingStatus
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Fulfilment Method</strong></td>
+                <td>
+                    @if (Model.Delivery)
+                    {
+                        <span>&#128666; Delivery — @Model.DeliveryMethod</span>
+                    }
+                    else
+                    {
+                        <span>&#127981; Collection on @Model.DateOfCollection?.ToString("dd MMMM yyyy")</span>
+                    }
+                </td>
+            </tr>
+            @if (Model.Delivery)
+            {
+                <tr>
+                    <td><strong>Delivering To</strong></td>
+                    <td>
+                        @Model.DeliveryLine1<br />
+                        @if (!string.IsNullOrWhiteSpace(Model.DeliveryLine2))
+                        {
+                            @Model.DeliveryLine2
+
+                            <br />
+                        }
+                        @Model.DeliveryCity<br />
+                        @Model.DeliveryPostcode.ToUpper()
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Items Ordered -->
+    <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:24px; border-collapse:collapse;">
+        <thead style="background:#333; color:white;">
+            <tr>
+                <th align="left" style="padding:12px;">&#127807; Items Ordered</th>
+                <th align="center" style="padding:12px;">Qty</th>
+                <th align="right" style="padding:12px;">Unit Price</th>
+                <th align="right" style="padding:12px;">Line Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderProducts)
+            {
+                <tr>
+                    <td>@item.Products.ItemName</td>
+                    <td align="center">@item.ProductQuantity</td>
+                    <td align="right">£@item.Products.ItemPrice.ToString("0.00")</td>
+                    <td align="right">£@((item.Products.ItemPrice * item.ProductQuantity).ToString("0.00"))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Order Summary -->
+    <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:24px; border-collapse:collapse;">
+        <thead style="background:#333; color:white;">
+            <tr>
+                <th colspan="2" align="left" style="padding:12px;">&#128722; Order Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="200"><strong>Billing Address</strong></td>
+                <td>
+                    @Model.BillingLine1<br />
+                    @if (!string.IsNullOrWhiteSpace(Model.BillingLine2))
+                    {
+                        @Model.BillingLine2
+
+                        <br />
+                    }
+                    @Model.BillingCity<br />
+                    @Model.BillingPostcode.ToUpper()
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Order Total</strong></td>
+                <td><strong style="font-size:18px;">£@Model.OrdersTotal.ToString("0.00")</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Actions -->
+    <div style="display:flex; gap:12px; margin-top:8px;">
+        <a asp-controller="Orders" asp-action="Index"
+           style="background:#333; color:white; padding:10px 20px; text-decoration:none; border-radius:4px;">
+            &#128203; View My Orders
+        </a>
+        <a asp-controller="Home" asp-action="Index"
+           style="background:#f0f0f0; color:#333; padding:10px 20px; text-decoration:none; border-radius:4px;">
+            &#8592; Continue Shopping
+        </a>
+    </div>
+
+</div>
