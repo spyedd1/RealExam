@@ -24,7 +24,29 @@ namespace GFLHApp.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Orders.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
+
+            if (userId == null)
+            {
+                return Unauthorized(); // Return a 401 Unauthorized if the user is not authenticated
+            }
+
+            if(User.IsInRole("Admin")) // Check if the user is in the Admin role
+            {
+                var allOrders = await _context.Orders.Include(x => x.OrderProducts).ThenInclude(x => x.Products).ToListAsync(); // Retrieve all orders, including the related order products and products data for admin users
+                return View(allOrders); // Return the view with all orders for admin users
+            }
+            else if(User.IsInRole("Producer")) // Check if the user is in the Producer role
+            {
+                var producerProducts = await _context.Products.Where(x => x.Producers.UserId == userId).Select(x => x.ProductsId).ToListAsync(); // Retrieve the product IDs associated with the producer, find all the products that belong to the producer, and select their product IDs first
+                var producerOrders = await _context.OrderProducts.Where(x => producerProducts.Contains(x.ProductsId)).Include(x => x.Orders).Include(x => x.Products).ToListAsync(); // Retrieve the order products that are associated with the producer's products, including the related orders and products data for producer users
+                return View(producerOrders); // Return the view with the producer's orders for producer users
+            }
+            else
+            {
+                var userOrders = await _context.Orders.Where(x => x.UserId == userId).Include(x => x.OrderProducts).ThenInclude(x => x.Products).ToListAsync(); // Retrieve the orders for the current user, including the related order products and products data
+                return View(userOrders); // Return the view with the user's orders
+            }
         }
 
         // GET: Orders/Details/5
@@ -35,8 +57,7 @@ namespace GFLHApp.Controllers
                 return NotFound();
             }
 
-            var orders = await _context.Orders
-                .FirstOrDefaultAsync(m => m.OrdersId == id);
+            var orders = await _context.OrderProducts.Where(x => x.OrdersId == id).Include(x => x.Orders).Include(x => x.Products).ToListAsync(); // Retrieve the order products associated with the specified order ID, including the related orders and products data
             if (orders == null)
             {
                 return NotFound();

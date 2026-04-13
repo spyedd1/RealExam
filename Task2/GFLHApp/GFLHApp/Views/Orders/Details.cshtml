@@ -1,114 +1,126 @@
-﻿@model GFLHApp.Models.Orders
-
+﻿@model IEnumerable<GFLHApp.Models.OrderProducts>
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Order Details";
+    var firstItem = Model.FirstOrDefault();
 }
 
-<h1>Details</h1>
+<h1>Order Details</h1>
 
-<div>
-    <h4>Orders</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OrderDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeliveryMethod)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeliveryMethod)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Delivery)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Delivery)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Collection)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Collection)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrdersTotal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OrdersTotal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrackingStatus)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrackingStatus)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfCollection)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateOfCollection)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BillingLine1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BillingLine1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BillingLine2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BillingLine2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BillingCity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BillingCity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BillingPostcode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BillingPostcode)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeliveryLine1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeliveryLine1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeliveryLine2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeliveryLine2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeliveryCity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeliveryCity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeliveryPostcode)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeliveryPostcode)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.OrdersId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (firstItem != null)
+{
+    <div style="max-width:800px; margin:auto;">
+
+        <h2>Order Information</h2>
+        <hr />
+
+        <table border="1" cellpadding="12" cellspacing="0" width="350">
+            <thead bgcolor="#333" style="color:white;">
+                <tr>
+                    <th align="left">Field</th>
+                    <th align="left">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Order ID</strong></td>
+                    <td>@firstItem.Orders.OrdersId</td>
+                </tr>
+                <tr>
+                    <td><strong>Order Date</strong></td>
+                    <td>@firstItem.Orders.OrderDate</td>
+                </tr>
+                <tr>
+                    <td><strong>Status</strong></td>
+                    <td>@firstItem.Orders.TrackingStatus</td>
+                </tr>
+                <tr>
+                    <td><strong>Subtotal</strong></td>
+                    <td>£@firstItem.Orders.OrdersTotal.ToString("0.00")</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+
+        @if (firstItem.Orders.Delivery)
+        {
+            <h2>Delivery</h2>
+            <hr />
+
+            <table border="1" cellpadding="12" cellspacing="0" width="350">
+                <thead bgcolor="#333" style="color:white;">
+                    <tr>
+                        <th align="left">Field</th>
+                        <th align="left">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Order Method</strong></td>
+                        <td>Delivery</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Delivery Type</strong></td>
+                        <td>@firstItem.Orders.DeliveryMethod</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br />
+        }
+
+        @if (firstItem.Orders.Collection)
+        {
+            <h2>Collection</h2>
+            <hr />
+
+            <table border="1" cellpadding="12" cellspacing="0" width="350">
+                <thead bgcolor="#333" style="color:white;">
+                    <tr>
+                        <th align="left">Field</th>
+                        <th align="left">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Order Method</strong></td>
+                        <td>Collection</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Collection Date</strong></td>
+                        <td>@firstItem.Orders.DateOfCollection?.ToString("d")</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+
+        <br />
+
+        <h2>Ordered Items</h2>
+        <hr />
+
+        <table border="1" cellpadding="12" cellspacing="0" width="100%">
+            <thead bgcolor="#333" style="color:white;">
+                <tr>
+                    <th align="left">Product</th>
+                    <th align="left">Quantity</th>
+                    <th align="left">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Products.ItemName</td>
+                        <td>@item.ProductQuantity</td>
+                        <td>£@item.Products.ItemPrice.ToString("0.00")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>No order details found.</p>
+}

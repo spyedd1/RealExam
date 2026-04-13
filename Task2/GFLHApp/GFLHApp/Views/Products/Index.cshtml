@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<GFLHApp.Models.Products>
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,85 +8,60 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuantityInStock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Available)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Producers)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.ItemName)</th>
+            <th>@Html.DisplayNameFor(model => model.ItemPrice)</th>
+            <th>@Html.DisplayNameFor(model => model.ImagePath)</th>
+            <th>@Html.DisplayNameFor(model => model.QuantityInStock)</th>
+            <th>@Html.DisplayNameFor(model => model.Available)</th>
+            <th>@Html.DisplayNameFor(model => model.Category)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.Producers.ProducersId)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagePath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuantityInStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Producers.ProducersId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductsId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductsId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductsId">Delete</a>
-                        <form asp-controller="BasketProducts" asp-action="Create" method="post">
-                            <input type="hidden" name="ProductsId" value="@item.ProductsId" />
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ItemName)</td>
+                <td>@Html.DisplayFor(modelItem => item.ItemPrice)</td>
+                <td>@Html.DisplayFor(modelItem => item.ImagePath)</td>
+                <td>@Html.DisplayFor(modelItem => item.QuantityInStock)</td>
+                <td>@Html.DisplayFor(modelItem => item.Available)</td>
+                <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.Producers.ProducersId)</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ProductsId">Details</a>
 
-                            @if (item.QuantityInStock > 0)
-                            {
-                                <button type="submit" class="btn btn-primary w-100">
-                                    Add to Basket
-                                </button>
-                            }
-                            else
-                            {
-                                <button type="button" class="btn btn-secondary w-100" disabled>
-                                    Out of Stock
-                                </button>
-                            }
-                        </form>
-            </td>
-        </tr>
-}
+                    @if (User.IsInRole("Producer"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ProductsId">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.ProductsId">Delete</a>
+                    }
+
+                    <form asp-controller="BasketProducts" asp-action="Create" method="post">
+                        <input type="hidden" name="ProductsId" value="@item.ProductsId" />
+
+                        @if (item.QuantityInStock > 0)
+                        {
+                            <button type="submit" class="btn btn-primary w-100">
+                                Add to Basket
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-secondary w-100" disabled>
+                                Out of Stock
+                            </button>
+                        }
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

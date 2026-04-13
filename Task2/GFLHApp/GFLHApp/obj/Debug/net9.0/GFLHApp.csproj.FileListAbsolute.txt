@@ -334,9 +334,7 @@ D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\a
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\nezrqnk58p-{0}-muycvpuwrr-muycvpuwrr.gz
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\v0zgfp0y55-{0}-87fc7y1x7t-87fc7y1x7t.gz
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\yfc7ypekbg-{0}-mlv21k5csn-mlv21k5csn.gz
-D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\n05m2sibi2-{0}-b9sayid5wm-b9sayid5wm.gz
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\qsxoi19dd2-{0}-61n19gt1b8-61n19gt1b8.gz
-D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\qpptzqqktb-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\aodarmjtjw-{0}-t1cqhe9u97-t1cqhe9u97.gz
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\34m2f879qj-{0}-c2jlpeoesf-c2jlpeoesf.gz
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\sypsx00u20-{0}-sejl45xvog-sejl45xvog.gz
@@ -442,3 +440,7 @@ D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\bin\Debug\net9.0\runtimes\win
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\bin\Debug\net9.0\runtimes\win-arm64\native\e_sqlite3.dll
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\0cw8w1tc8t-{0}-a3psj8ylgl-a3psj8ylgl.gz
+D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\z2uxjlng9j-{0}-zcqerdtkvp-zcqerdtkvp.gz
+D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\n05m2sibi2-{0}-rtvgm4q684-rtvgm4q684.gz
+D:\Documents\GitHub\RealExam\Task2\GFLHApp\GFLHApp\obj\Debug\net9.0\compressed\qpptzqqktb-{0}-xtxxf3hu2r-xtxxf3hu2r.gz

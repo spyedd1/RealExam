@@ -1,0 +1,125 @@
+﻿@model IEnumerable<GFLHApp.Models.Products>
+@{
+    ViewData["Title"] = "Producer Dashboard";
+}
+
+<div style="max-width:800px; margin:auto;">
+
+    <h1>Producer Dashboard</h1>
+    <hr />
+
+    <h2>Overview</h2>
+
+    <table border="1" cellpadding="12" cellspacing="0" width="350">
+        <thead bgcolor="#333" style="color:white;">
+            <tr>
+                <th align="left">Metric</th>
+                <th align="left">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Total Products</strong></td>
+                <td>@ViewBag.TotalProducts</td>
+            </tr>
+            <tr>
+                <td><strong>Low Stock Products</strong></td>
+                <td>@ViewBag.LowStockCount</td>
+            </tr>
+            <tr>
+                <td><strong>Total Stock Units</strong></td>
+                <td>@ViewBag.TotalStock</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+
+    <h2>Products</h2>
+    <hr />
+
+    @if (!Model.Any())
+    {
+        <p>You do not have any products yet.</p>
+    }
+    else
+    {
+        <table border="1" cellpadding="12" cellspacing="0" width="100%">
+            <thead bgcolor="#333" style="color:white;">
+                <tr>
+                    <th align="left">Product</th>
+                    <th align="left">Price</th>
+                    <th align="left">Stock</th>
+                    <th align="left">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Take(5))
+                {
+                    <tr>
+                        <td><strong>@item.ItemName</strong></td>
+                        <td>£@item.ItemPrice.ToString("0.00")</td>
+                        <td>@item.QuantityInStock</td>
+                        <td>
+                            <a asp-controller="Products" asp-action="Edit" asp-route-id="@item.ProductsId">Edit</a>
+                            &nbsp;|&nbsp;
+                            <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.ProductsId"
+                               style="color:red;">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+
+        <a asp-controller="Products" asp-action="Index"
+               style="color:white; background-color:#333; padding:10px 20px; text-decoration:none; display:inline-block;">
+            View All Products &#8594;
+        </a>
+    }
+
+    <br /><br />
+
+    <h2>Recent Orders</h2>
+    <hr />
+
+    @if (ViewBag.RecentOrders == null || ((List<GFLHApp.Models.Orders>)ViewBag.RecentOrders).Count == 0)
+    {
+        <p>No recent orders found.</p>
+    }
+    else
+    {
+        <table border="1" cellpadding="12" cellspacing="0" width="100%">
+            <thead bgcolor="#333" style="color:white;">
+                <tr>
+                    <th align="left">Order ID</th>
+                    <th align="left">Order Date</th>
+                    <th align="left">Status</th>
+                    <th align="left">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in ((List<GFLHApp.Models.Orders>)ViewBag.RecentOrders).Take(5))
+                {
+                    <tr>
+                        <td>@order.OrdersId</td>
+                        <td>@order.OrderDate</td>
+                        <td>@order.TrackingStatus</td>
+                        <td>£@order.OrdersTotal.ToString("0.00")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+
+        <a asp-controller="Orders" asp-action="Index"
+               style="color:white; background-color:#333; padding:10px 20px; text-decoration:none; display:inline-block;">
+            View All Orders &#8594;
+        </a>
+    }
+
+    <br /><br />
+
+</div>
