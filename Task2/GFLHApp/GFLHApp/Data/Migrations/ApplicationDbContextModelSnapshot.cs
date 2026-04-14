@@ -85,6 +85,9 @@ namespace GFLHApp.Data.Migrations
                     b.Property<int>("OrdersId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProducerOrdersId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductQuantity")
                         .HasColumnType("int");
 
@@ -94,6 +97,8 @@ namespace GFLHApp.Data.Migrations
                     b.HasKey("OrderProductsId");
 
                     b.HasIndex("OrdersId");
+
+                    b.HasIndex("ProducerOrdersId");
 
                     b.HasIndex("ProductsId");
 
@@ -169,6 +174,42 @@ namespace GFLHApp.Data.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("GFLHApp.Models.ProducerOrders", b =>
+                {
+                    b.Property<int>("ProducerOrdersId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProducerOrdersId"));
+
+                    b.Property<int>("OrdersId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProducerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("ProducerSubtotal")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<int?>("ProducersId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TrackingStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProducerOrdersId");
+
+                    b.HasIndex("OrdersId");
+
+                    b.HasIndex("ProducerId");
+
+                    b.HasIndex("ProducersId");
+
+                    b.ToTable("ProducerOrders");
+                });
+
             modelBuilder.Entity("GFLHApp.Models.Producers", b =>
                 {
                     b.Property<int>("ProducersId")
@@ -194,12 +235,15 @@ namespace GFLHApp.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("VATNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProducersId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Producers");
                 });
@@ -478,6 +522,10 @@ namespace GFLHApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GFLHApp.Models.ProducerOrders", "ProducerOrders")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("ProducerOrdersId");
+
                     b.HasOne("GFLHApp.Models.Products", "Products")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductsId")
@@ -486,7 +534,33 @@ namespace GFLHApp.Data.Migrations
 
                     b.Navigation("Orders");
 
+                    b.Navigation("ProducerOrders");
+
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("GFLHApp.Models.ProducerOrders", b =>
+                {
+                    b.HasOne("GFLHApp.Models.Orders", "Orders")
+                        .WithMany()
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GFLHApp.Models.Producers", "Producers")
+                        .WithMany()
+                        .HasForeignKey("ProducerId")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GFLHApp.Models.Producers", null)
+                        .WithMany("ProducerOrders")
+                        .HasForeignKey("ProducersId");
+
+                    b.Navigation("Orders");
+
+                    b.Navigation("Producers");
                 });
 
             modelBuilder.Entity("GFLHApp.Models.Products", b =>
@@ -561,8 +635,15 @@ namespace GFLHApp.Data.Migrations
                     b.Navigation("OrderProducts");
                 });
 
+            modelBuilder.Entity("GFLHApp.Models.ProducerOrders", b =>
+                {
+                    b.Navigation("OrderProducts");
+                });
+
             modelBuilder.Entity("GFLHApp.Models.Producers", b =>
                 {
+                    b.Navigation("ProducerOrders");
+
                     b.Navigation("Products");
                 });
 

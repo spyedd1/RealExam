@@ -243,7 +243,8 @@ namespace GFLHApp.Data
                         Description = "Our crisp and juicy apples are handpicked at the peak of ripeness to ensure maximum flavor and freshness. Grown with care on our farm, these apples are perfect for snacking, baking, or adding to salads. Each bite offers a deliciously sweet and slightly tart flavor that will delight your taste buds.",
                         Category = "Fruit",
                         ProducersId = GreenValleyProducer.ProducersId, 
-                        ImagePath = "/images/apple.jpg"
+                        ImagePath = "/images/apple.jpg",
+                        Available = true
                     },
 
                     new Products
@@ -254,7 +255,8 @@ namespace GFLHApp.Data
                         Description = "Our fresh and crisp broccoli is perfect for roasting, steaming, or adding to stir-fries. Grown with care on our farm, this broccoli is packed with nutrients and has a deliciously mild flavor that pairs well with a variety of dishes.",
                         Category = "Vegetable",
                         ProducersId = GreenValleyProducer.ProducersId,
-                        ImagePath = "/images/broccoli.jpg"
+                        ImagePath = "/images/broccoli.jpg",
+                        Available = true
                     },
 
                     new Products
@@ -265,7 +267,9 @@ namespace GFLHApp.Data
                         Description = "Our sweet and crunchy carrots are perfect for snacking or adding to salads. Grown with care on our farm, these carrots are harvested at the peak of freshness to ensure maximum flavor and quality.",
                         Category = "Vegetable",
                         ProducersId = GreenValleyProducer.ProducersId,
-                        ImagePath = "/images/carrot.jpg"
+                        ImagePath = "/images/carrot.jpg",
+                        Available = false
+
                     },
 
                     new Products
@@ -276,7 +280,8 @@ namespace GFLHApp.Data
                         Description = "Our fresh and tender cauliflower is perfect for roasting, steaming, or adding to soups and stews. Grown with care on our farm, this cauliflower is harvested at the peak of freshness to ensure maximum flavor and quality.",
                         Category = "Vegetable",
                         ProducersId = GreenValleyProducer.ProducersId,
-                        ImagePath = "/images/cauliflower.jpg"
+                        ImagePath = "/images/cauliflower.jpg",
+                        Available = true
                     },
 
                     new Products
@@ -287,7 +292,9 @@ namespace GFLHApp.Data
                         Description = "Our farm-fresh potatoes are harvested at the peak of freshness to ensure maximum flavor and quality. Grown with care on our farm, these potatoes are perfect for roasting, mashing, or frying. They have a deliciously earthy flavor and a fluffy texture that will elevate any dish.",
                         Category = "Vegetable",
                         ProducersId = GreenValleyProducer.ProducersId,
-                        ImagePath = "/images/potatoes.jpg"
+                        ImagePath = "/images/potatoes.jpg",
+                        Available = true
+
                     },
                     // Seed products for Sunny Brook Farm
                     new Products
@@ -298,7 +305,9 @@ namespace GFLHApp.Data
                         Description = "Our farm-fresh free-range eggs are produced by happy, healthy chickens that roam freely in spacious pastures. These eggs are rich in flavor and packed with nutrients, making them a delicious and wholesome choice for your meals. Whether you're baking, frying, or scrambling, our free-range eggs will add a fresh and wholesome touch to your dishes.",
                         Category = "Dairy",
                         ProducersId = SunnyBrookFarm.ProducersId,
-                        ImagePath = "/images/egg.jpg"
+                        ImagePath = "/images/egg.jpg",
+                        Available = false
+
                      },
 
                     new Products
@@ -309,7 +318,8 @@ namespace GFLHApp.Data
                         Description = "Our farm-fresh chicken breast is sourced from free-range chickens that are raised on a diet of natural feed and have access to the outdoors. The result is tender, juicy chicken with a deliciously fresh taste. Our commitment to sustainable farming practices means that you can enjoy our chicken breast with confidence, knowing that it is not only good for you but also good for the environment.",
                         Category = "Meat",
                         ProducersId = SunnyBrookFarm.ProducersId,
-                        ImagePath = "/images/chickenbreast.jpg"
+                        ImagePath = "/images/chickenbreast.jpg",
+                        Available = false
                      },
 
                     new Products
@@ -320,7 +330,8 @@ namespace GFLHApp.Data
                         Description = "Our farm-fresh cheese is crafted with care using milk from our grass-fed cows. It has a rich, creamy texture and a deliciously tangy flavor that pairs perfectly with crackers, bread, or fresh fruit. Our cheese is made using traditional methods and is free from artificial additives, ensuring a wholesome and natural taste in every bite.",
                         Category = "Dairy",
                         ProducersId = SunnyBrookFarm.ProducersId,
-                        ImagePath = "/images/cheese.jpg"
+                        ImagePath = "/images/cheese.jpg",
+                        Available = true
                      },
 
                     new Products
@@ -331,7 +342,8 @@ namespace GFLHApp.Data
                         Description = "Our farm-fresh yogurt is made from the freshest milk produced by our happy, grass-fed cows. It is creamy, rich, and packed with probiotics that promote a healthy gut. Our yogurt is available in a variety of delicious flavors, all made with natural ingredients and no artificial additives. Whether you enjoy it on its own, with fruit, or as a base for smoothies and desserts, our farm-fresh yogurt is a wholesome and tasty choice for your daily diet.",
                         Category = "Dairy",
                         ProducersId = SunnyBrookFarm.ProducersId,
-                        ImagePath = "/images/egg.jpg"
+                        ImagePath = "/images/egg.jpg",
+                        Available = true
                      },
 
                     new Products
@@ -342,7 +354,9 @@ namespace GFLHApp.Data
                         Description = "Our farm-fresh milk is sourced from our happy, grass-fed cows that graze on lush pastures. It is creamy, rich, and packed with nutrients, making it a delicious and wholesome choice for your daily diet. Our commitment to sustainable farming practices ensures that our milk is not only good for you but also good for the environment.",
                         Category = "Dairy",
                         ProducersId = SunnyBrookFarm.ProducersId,
-                        ImagePath = "/images/milk.jpg"
+                        ImagePath = "/images/milk.jpg",
+                        Available = true
+
                      },
 
                     // Seed products for Oakridge Harvest Hub
@@ -355,7 +369,9 @@ namespace GFLHApp.Data
                         Description = "Our sweet and juicy strawberries are handpicked at the peak of ripeness to ensure maximum flavor and freshness. Grown with care on our farm, these strawberries are perfect for snacking, adding to desserts, or blending into smoothies. Each bite bursts with a deliciously sweet and slightly tart flavor that will delight your taste buds.",
                         Category = "Fruit",
                         ProducersId = OakridgeHarvestHub.ProducersId,
-                        ImagePath = "/images/strawberry.jpg"
+                        ImagePath = "/images/strawberry.jpg",
+                        Available = true
+
                      },
 
                     new Products
@@ -366,7 +382,9 @@ namespace GFLHApp.Data
                         Description = "Our crisp and juicy apples are handpicked at the peak of ripeness to ensure maximum flavor and freshness. Grown with care on our farm, these apples are perfect for snacking, baking, or adding to salads. Each bite offers a deliciously sweet and slightly tart flavor that will delight your taste buds.",
                         Category = "Fruit",
                         ProducersId = OakridgeHarvestHub.ProducersId,
-                        ImagePath = "/images/apple.jpg"
+                        ImagePath = "/images/apple.jpg",
+                        Available = true
+
                      },
 
                     new Products
@@ -377,7 +395,9 @@ namespace GFLHApp.Data
                         Description = "Our juicy and sweet pears are handpicked at the peak of ripeness to ensure maximum flavor and freshness. Grown with care on our farm, these pears are perfect for snacking or adding to salads. Each bite offers a deliciously sweet and slightly tart flavor that will delight your taste buds.",
                         Category = "Fruit",
                         ProducersId = OakridgeHarvestHub.ProducersId,
-                        ImagePath = "/images/pear.jpg"
+                        ImagePath = "/images/pear.jpg",
+                        Available = true
+
                      },
 
                     new Products
@@ -388,7 +408,9 @@ namespace GFLHApp.Data
                         Description = "Our sweet and juicy raspberries are handpicked at the peak of ripeness to ensure maximum flavor and freshness. Grown with care on our farm, these raspberries are perfect for snacking, adding to desserts, or blending into smoothies. Each bite bursts with a deliciously sweet and slightly tart flavor that will delight your taste buds.",
                         Category = "Fruit",
                         ProducersId = OakridgeHarvestHub.ProducersId,
-                        ImagePath = "/images/raspberry.jpg"
+                        ImagePath = "/images/raspberry.jpg",
+                        Available = true
+
                      },
 
                     new Products
@@ -399,7 +421,8 @@ namespace GFLHApp.Data
                         Description = "Our fresh and crisp broccoli is perfect for roasting, steaming, or adding to stir-fries. Grown with care on our farm, this broccoli is packed with nutrients and has a deliciously mild flavor that pairs well with a variety of dishes.",
                         Category = "Vegetable",
                         ProducersId = OakridgeHarvestHub.ProducersId,
-                        ImagePath = "/images/broccoli.jpg"
+                        ImagePath = "/images/broccoli.jpg",
+                        Available = false
                      },
 
                     // Seed products for Meadow Fresh Organic Farms
@@ -412,7 +435,8 @@ namespace GFLHApp.Data
                         Description = "Our organic milk is sourced from cows that are raised on lush, green pastures and fed a natural diet free from synthetic hormones and antibiotics. The result is a creamy, rich milk with a deliciously fresh taste that you can feel good about. Our commitment to sustainable farming practices ensures that our milk is not only good for you but also good for the environment.",
                         Category = "Dairy",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
-                        ImagePath = "/images/milk.jpg"
+                        ImagePath = "/images/milk.jpg",
+                        Available = true
                      },
 
                     new Products
@@ -423,7 +447,8 @@ namespace GFLHApp.Data
                         Description = "Our organic cheese is crafted with care using milk from our grass-fed cows. It has a rich, creamy texture and a deliciously tangy flavor that pairs perfectly with crackers, bread, or fresh fruit. Our cheese is made using traditional methods and is free from artificial additives, ensuring a wholesome and natural taste in every bite.",
                         Category = "Dairy",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
-                        ImagePath = "/images/cheese.jpg"
+                        ImagePath = "/images/cheese.jpg",
+                        Available = true
                      },
 
                     new Products
@@ -434,7 +459,8 @@ namespace GFLHApp.Data
                         Description = "Our organic yogurt is made from the freshest milk produced by our happy, grass-fed cows. It is creamy, rich, and packed with probiotics that promote a healthy gut. Our yogurt is available in a variety of delicious flavors, all made with natural ingredients and no artificial additives. Whether you enjoy it on its own, with fruit, or as a base for smoothies and desserts, our organic yogurt is a wholesome and tasty choice for your daily diet.",
                         Category = "Dairy",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
-                        ImagePath = "/images/yogurt.jpg"
+                        ImagePath = "/images/yogurt.jpg",
+                        Available = true
                      },
 
                     new Products
@@ -445,7 +471,8 @@ namespace GFLHApp.Data
                         Description = "Our organic eggs are produced by free-range chickens that are raised on a diet of organic feed and have access to the outdoors. These eggs are rich in flavor and packed with nutrients, making them a healthy and delicious choice for your meals. Whether you're baking, frying, or scrambling, our organic eggs will add a fresh and wholesome touch to your dishes.",
                         Category = "Dairy",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
-                        ImagePath = "/images/egg.jpg"
+                        ImagePath = "/images/egg.jpg",
+                        Available = true
                      },
 
                     new Products
@@ -456,7 +483,8 @@ namespace GFLHApp.Data
                         Description = "Our organic mince meat is made from high-quality, grass-fed beef that is raised without the use of antibiotics or hormones. It is carefully ground to ensure a consistent texture and is perfect for making delicious meals like burgers, meatballs, and spaghetti bolognese. Our commitment to sustainable farming practices means that you can enjoy our mince meat with confidence, knowing that it is not only good for you but also good for the environment.",
                         Category = "Meat",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
-                        ImagePath = "/images/mincemeat.jpg"
+                        ImagePath = "/images/mincemeat.jpg",
+                        Available = true
                      },
 
                     // Seed products for Willowcreek Farm
@@ -469,7 +497,9 @@ namespace GFLHApp.Data
                         Description = "A sweet and crunchy carrot, perfect for snacking or adding to salads. Grown with care on our farm, these carrots are harvested at the peak of freshness to ensure maximum flavor and quality.",
                         Category = "Vegetable",
                         ProducersId = WillowcreekFarm.ProducersId,
-                        ImagePath = "/images/carrot.jpg"
+                        ImagePath = "/images/carrot.jpg",
+                        Available = true
+
                      },
 
                     new Products
@@ -480,7 +510,9 @@ namespace GFLHApp.Data
                         Description = "A fresh and tender cauliflower, perfect for roasting, steaming, or adding to soups and stews. Grown with care on our farm, this cauliflower is harvested at the peak of freshness to ensure maximum flavor and quality.",
                         Category =  "Vegetable",
                         ProducersId = WillowcreekFarm.ProducersId,
-                        ImagePath = "/images/cauliflower.jpg"
+                        ImagePath = "/images/cauliflower.jpg",
+                        Available = true
+
                      },
 
                     new Products
@@ -491,7 +523,9 @@ namespace GFLHApp.Data
                         Description = "A versatile and hearty potato, perfect for roasting, mashing, or frying. Grown with care on our farm, these potatoes are harvested at the peak of freshness to ensure maximum flavor and quality.",
                         Category = "Vegetable",
                         ProducersId = WillowcreekFarm.ProducersId,
-                        ImagePath = "/images/poatoes.jpg"
+                        ImagePath = "/images/poatoes.jpg",
+                        Available = true
+
                      },
 
                     new Products
@@ -502,7 +536,9 @@ namespace GFLHApp.Data
                         Description = "A fresh and crisp broccoli, perfect for roasting, steaming, or adding to stir-fries. Grown with care on our farm, this broccoli is packed with nutrients and has a deliciously mild flavor that pairs well with a variety of dishes.",
                         Category = "Vegetable",
                         ProducersId = WillowcreekFarm.ProducersId,
-                        ImagePath = "/images/broccoli.jpg"
+                        ImagePath = "/images/broccoli.jpg",
+                        Available = true
+
                      },
 
                     new Products
@@ -513,7 +549,8 @@ namespace GFLHApp.Data
                         Description = "A juicy and sweet pear, perfect for snacking or adding to salads. Grown with care on our farm, these pears are harvested at the peak of ripeness to ensure maximum flavor and freshness.",
                         Category = "Fruit",
                         ProducersId = WillowcreekFarm.ProducersId,
-                        ImagePath = "/images/pear.jpg"
+                        ImagePath = "/images/pear.jpg",
+                        Available = false
                      },
 
 

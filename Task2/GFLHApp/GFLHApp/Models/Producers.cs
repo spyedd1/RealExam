@@ -18,5 +18,7 @@
         // Navigation properties
 
         public ICollection<Products>? Products { get; set; } // A producer can have multiple products
+
+        public ICollection<ProducerOrders> ProducerOrders { get; set; } 
     }
 }

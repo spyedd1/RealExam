@@ -1,0 +1,73 @@
+﻿@model GFLHApp.Models.ProducerOrders
+@{
+    ViewData["Title"] = "Cancel Order";
+}
+
+<div style="max-width:800px; margin:auto;">
+    <h1>Cancel Order #@Model.Orders.OrdersId</h1>
+    <p style="color:grey;">Placed on @Model.Orders.OrderDate</p>
+    <hr />
+
+    <h2>Cancel Entire Order Slice</h2>
+    <p>This will cancel all of your products in this order and restock them.</p>
+
+    <form asp-action="CancelProducerOrder" asp-route-id="@Model.ProducerOrdersId" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="cancelAll" value="true" />
+        <button type="submit"
+                style="background-color:red; color:white; padding:10px 20px; border:none; cursor:pointer;"
+                onclick="return confirm('Are you sure you want to cancel your entire order slice?')">
+            Cancel Entire Order &#10007;
+        </button>
+    </form>
+
+    <br /><hr />
+    <h2>Cancel Individual Items</h2>
+    <p>Select specific items to remove from this order.</p>
+
+    <table border="1" cellpadding="12" cellspacing="0" width="100%">
+        <thead bgcolor="#333" style="color:white;">
+            <tr>
+                <th align="left">Product</th>
+                <th align="left">Quantity</th>
+                <th align="left">Price Each</th>
+                <th align="left">Line Total</th>
+                <th align="left">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderProducts.Where(op => op.ProducerOrdersId == Model.ProducerOrdersId))
+            {
+                <tr>
+                    <td><strong>@item.Products.ItemName</strong></td>
+                    <td>@item.ProductQuantity</td>
+                    <td>£@item.Products.ItemPrice.ToString("0.00")</td>
+                    <td>£@((item.Products.ItemPrice * item.ProductQuantity).ToString("0.00"))</td>
+                    <td>
+                        <form asp-action="CancelOrderItem" asp-route-id="@item.OrderProductsId" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit"
+                                    style="background-color:#c0392b; color:white; padding:6px 14px; border:none; cursor:pointer;"
+                                    onclick="return confirm('Remove @item.Products.ItemName from this order?')">
+                                Remove
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" align="right"><strong>Your Subtotal</strong></td>
+                <td><strong>£@Model.ProducerSubtotal.ToString("0.00")</strong></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <br />
+    <a asp-controller="ProducerDashboard" asp-action="Index"
+       style="color:white; background-color:#333; padding:10px 20px; text-decoration:none; display:inline-block;">
+        &#8592; Back to Dashboard
+    </a>
+</div>

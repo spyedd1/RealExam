@@ -36,11 +36,16 @@ namespace GFLHApp.Controllers
                 var allOrders = await _context.Orders.Include(x => x.OrderProducts).ThenInclude(x => x.Products).ToListAsync(); // Retrieve all orders, including the related order products and products data for admin users
                 return View(allOrders); // Return the view with all orders for admin users
             }
-            else if(User.IsInRole("Producer")) // Check if the user is in the Producer role
+            else if (User.IsInRole("Producer"))
             {
-                var producerProducts = await _context.Products.Where(x => x.Producers.UserId == userId).Select(x => x.ProductsId).ToListAsync(); // Retrieve the product IDs associated with the producer, find all the products that belong to the producer, and select their product IDs first
-                var producerOrders = await _context.OrderProducts.Where(x => producerProducts.Contains(x.ProductsId)).Include(x => x.Orders).Include(x => x.Products).ToListAsync(); // Retrieve the order products that are associated with the producer's products, including the related orders and products data for producer users
-                return View(producerOrders); // Return the view with the producer's orders for producer users
+                var producerOrders = await _context.ProducerOrders
+                    .Where(x => x.ProducerId == userId)
+                    .Include(x => x.Orders)
+                    .Include(x => x.OrderProducts)
+                        .ThenInclude(x => x.Products)
+                    .ToListAsync();
+
+                return View("ProducerIndex", producerOrders); // separate view for producers
             }
             else
             {
@@ -414,21 +419,45 @@ namespace GFLHApp.Controllers
             _context.Orders.Add(orders); // Add the order to the database context
             await _context.SaveChangesAsync(); // Save the changes to the database
 
-            // Create order products and generate invoice numbers per VAT registered producer
-            foreach (var basketProduct in basketProducts)
+            // Group basket products by producer to create producer order slices
+            var groupedByProducer = basketProducts.GroupBy(x => x.Products.Producers.UserId); ; // ← changed from .UserId
+
+            foreach (var producerGroup in groupedByProducer)
             {
-                var orderProduct = new OrderProducts
+                decimal producerSubtotal = 0m;
+                foreach (var item in producerGroup)
                 {
-                    OrdersId = orders.OrdersId, // Set the OrdersId to the ID of the created order
-                    ProductsId = basketProduct.ProductsId, // Set the ProductsId to the ID of the product in the basket
-                    ProductQuantity = basketProduct.ProductQuantity, // Set the Quantity to the quantity of the product in the basket
-                    InvoiceNumber = (basketProduct.Products.Producers != null && basketProduct.Products.Producers.IsVATRegistered)
-                        ? $"INV-{orders.OrderDate:yyyyMMdd}-{orders.OrdersId:D6}-{basketProduct.Products.Producers.ProducersId}"
-                        : null // Only generate an invoice number if the producer is VAT registered
+                    producerSubtotal += item.Products.ItemPrice * item.ProductQuantity;
+                }
+
+                var producerOrder = new ProducerOrders
+                {
+                    OrdersId = orders.OrdersId,
+                    ProducerId = producerGroup.Key,        // ← now correctly an int ProducersId
+                    ProducerSubtotal = producerSubtotal,
+                    TrackingStatus = "Pending"
                 };
 
-                _context.OrderProducts.Add(orderProduct); // Add the OrderProducts object to the database context
-                basketProduct.Products.QuantityInStock -= basketProduct.ProductQuantity; // Reduce the quantity in stock for the product
+                _context.ProducerOrders.Add(producerOrder); // Add the ProducerOrders object to the database context
+                await _context.SaveChangesAsync(); // Save to get the ProducerOrdersId generated
+
+                // Create order products linked to this producer order slice
+                foreach (var basketProduct in producerGroup) // Iterate through each product in the producer group
+                {
+                    var orderProduct = new OrderProducts // Create a new OrderProducts object to represent the product in the order
+                    {
+                        OrdersId = orders.OrdersId, // Set the OrdersId to the ID of the created order
+                        ProducerOrdersId = producerOrder.ProducerOrdersId, // Link to this producer's slice
+                        ProductsId = basketProduct.ProductsId, // Set the ProductsId to the ID of the product in the basket
+                        ProductQuantity = basketProduct.ProductQuantity, // Set the Quantity to the quantity of the product in the basket
+                        InvoiceNumber = (basketProduct.Products.Producers != null && basketProduct.Products.Producers.IsVATRegistered)
+                            ? $"INV-{orders.OrderDate:yyyyMMdd}-{orders.OrdersId:D6}-{basketProduct.Products.Producers.ProducersId}"
+                            : null // Only generate an invoice number if the producer is VAT registered
+                    };
+
+                    _context.OrderProducts.Add(orderProduct); // Add the OrderProducts object to the database context
+                    basketProduct.Products.QuantityInStock -= basketProduct.ProductQuantity; // Reduce the quantity in stock for the product
+                }
             }
 
             // Close the basket by setting its status to false
@@ -555,6 +584,8 @@ namespace GFLHApp.Controllers
 
             return View(order); // Return the confirmation view with the order data
         }
+
+
 
     }
 }

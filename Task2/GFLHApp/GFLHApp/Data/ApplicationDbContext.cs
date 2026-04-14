@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using GFLHApp.Models;
 using System.Linq;
+using System.Reflection.Emit;
 
 namespace GFLHApp.Data
 {
@@ -30,6 +31,18 @@ namespace GFLHApp.Data
             {
                 property.SetColumnType("decimal(10,2)");
             }
+
+            // Ensure UserId is unique so it can be used as a principal key
+            builder.Entity<Producers>()
+                .HasIndex(p => p.UserId)
+                .IsUnique();
+
+            builder.Entity<ProducerOrders>()
+                .HasOne(po => po.Producers)
+                .WithMany()
+                .HasForeignKey(po => po.ProducerId)
+                .HasPrincipalKey(p => p.UserId);
         }
+        public DbSet<GFLHApp.Models.ProducerOrders> ProducerOrders { get; set; } = default!;
     }
 }

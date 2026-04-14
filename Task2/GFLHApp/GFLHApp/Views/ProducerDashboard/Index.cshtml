@@ -2,14 +2,10 @@
 @{
     ViewData["Title"] = "Producer Dashboard";
 }
-
 <div style="max-width:800px; margin:auto;">
-
     <h1>Producer Dashboard</h1>
     <hr />
-
     <h2>Overview</h2>
-
     <table border="1" cellpadding="12" cellspacing="0" width="350">
         <thead bgcolor="#333" style="color:white;">
             <tr>
@@ -34,7 +30,6 @@
     </table>
 
     <br />
-
     <h2>Products</h2>
     <hr />
 
@@ -70,21 +65,18 @@
                 }
             </tbody>
         </table>
-
         <br />
-
         <a asp-controller="Products" asp-action="Index"
-               style="color:white; background-color:#333; padding:10px 20px; text-decoration:none; display:inline-block;">
+           style="color:white; background-color:#333; padding:10px 20px; text-decoration:none; display:inline-block;">
             View All Products &#8594;
         </a>
     }
 
     <br /><br />
-
     <h2>Recent Orders</h2>
     <hr />
 
-    @if (ViewBag.RecentOrders == null || ((List<GFLHApp.Models.Orders>)ViewBag.RecentOrders).Count == 0)
+    @if (ViewBag.ProducerOrders == null || ((List<GFLHApp.Models.ProducerOrders>)ViewBag.ProducerOrders).Count == 0)
     {
         <p>No recent orders found.</p>
     }
@@ -95,31 +87,67 @@
                 <tr>
                     <th align="left">Order ID</th>
                     <th align="left">Order Date</th>
+                    <th align="left">Your Products</th>
+                    <th align="left">Your Subtotal</th>
                     <th align="left">Status</th>
-                    <th align="left">Total</th>
+                    <th align="left">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var order in ((List<GFLHApp.Models.Orders>)ViewBag.RecentOrders).Take(5))
+                @foreach (var producerOrder in ((List<GFLHApp.Models.ProducerOrders>)ViewBag.ProducerOrders).Take(5))
                 {
                     <tr>
-                        <td>@order.OrdersId</td>
-                        <td>@order.OrderDate</td>
-                        <td>@order.TrackingStatus</td>
-                        <td>£@order.OrdersTotal.ToString("0.00")</td>
+                        <td>#@producerOrder.Orders.OrdersId</td>
+                        <td>@producerOrder.Orders.OrderDate</td>
+                        <td>
+                            @foreach (var orderProduct in producerOrder.OrderProducts.Where(op => op.ProducerOrdersId == producerOrder.ProducerOrdersId))
+                            {
+                                <div>
+                                    @orderProduct.Products.ItemName
+                                    <span style="color:grey;">x @orderProduct.ProductQuantity</span>
+                                </div>
+                            }
+                        </td>
+                        <td>£@producerOrder.ProducerSubtotal.ToString("0.00")</td>
+                        <td>
+                            @if (producerOrder.TrackingStatus == "Cancelled")
+                            {
+                                <span style="color:red;"><strong>Cancelled</strong></span>
+                            }
+                            else if (producerOrder.TrackingStatus == "Pending")
+                            {
+                                <span style="color:orange;"><strong>Pending</strong></span>
+                            }
+                            else
+                            {
+                                <span>@producerOrder.TrackingStatus</span>
+                            }
+                        </td>
+                        <td>
+                            @if (producerOrder.TrackingStatus != "Cancelled")
+                            {
+                                <a asp-controller="ProducerDashboard"
+                                   asp-action="CancelProducerOrder"
+                                   asp-route-id="@producerOrder.ProducerOrdersId"
+                                   style="color:red;">
+                                    Cancel
+                                </a>
+                            }
+                            else
+                            {
+                                <span style="color:grey;">Cancelled</span>
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
-
         <br />
-
-        <a asp-controller="Orders" asp-action="Index"
-               style="color:white; background-color:#333; padding:10px 20px; text-decoration:none; display:inline-block;">
+        <a asp-controller="ProducerDashboard" asp-action="AllOrders"
+           style="color:white; background-color:#333; padding:10px 20px; text-decoration:none; display:inline-block;">
             View All Orders &#8594;
         </a>
     }
 
     <br /><br />
-
 </div>

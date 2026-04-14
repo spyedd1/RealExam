@@ -73,6 +73,13 @@ namespace GFLHApp.Controllers
                 return NotFound(); // Return a 404 Not Found response if the product doesn't exist
             }
 
+            // Check product availability, if it isn't available then give error message
+            if (!product.Available) // Check if the product is available
+            {
+                TempData["Error"] = "This product is currently unavailable and cannot be added to your basket.";
+                return RedirectToAction("Index", "Products"); // Redirect back to the products page
+            }
+
             // Find the current logged in user
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
 

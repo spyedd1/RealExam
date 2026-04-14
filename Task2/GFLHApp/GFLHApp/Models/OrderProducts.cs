@@ -8,9 +8,14 @@
         public int ProductQuantity { get; set; }
         public string? InvoiceNumber { get; set; } // Auto-generated invoice number for VAT registered producers
 
+        public int? ProducerOrdersId { get; set; } // FK to the producer order slice, nullable for existing records
+
+
 
         // Navigation properties
         public Products Products { get; set; } // An order product is associated with one product
         public Orders Orders { get; set; } // An order product is associated with one order
+        public ProducerOrders ProducerOrders { get; set; } // Navigation property to the producer order slice
+
     }
 }

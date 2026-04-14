@@ -3,12 +3,33 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+@if (TempData["Error"] != null)
+{
+    <div id="errorToast" style="
+        position:fixed; top:20px; right:20px; z-index:9999;
+        background-color:#dc3545; color:white;
+        padding:16px 24px; border-radius:8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        font-size:15px; max-width:380px;">
+        ⚠️ @TempData["Error"]
+    </div>
 
+    <script>
+        setTimeout(function () {
+            var toast = document.getElementById('errorToast');
+            if (toast) {
+                toast.style.transition = 'opacity 0.5s';
+                toast.style.opacity = '0';
+                setTimeout(function () { toast.remove(); }, 500);
+            }
+        }, 4000);
+    </script>
+}
+
+<h1>Index</h1>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
 <table class="table">
     <thead>
         <tr>
@@ -37,17 +58,20 @@
                 <td>@Html.DisplayFor(modelItem => item.Producers.ProducersId)</td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.ProductsId">Details</a>
-
                     @if (User.IsInRole("Producer"))
                     {
                         <a asp-action="Edit" asp-route-id="@item.ProductsId">Edit</a>
                         <a asp-action="Delete" asp-route-id="@item.ProductsId">Delete</a>
                     }
-
                     <form asp-controller="BasketProducts" asp-action="Create" method="post">
                         <input type="hidden" name="ProductsId" value="@item.ProductsId" />
-
-                        @if (item.QuantityInStock > 0)
+                        @if (!item.Available)
+                        {
+                            <button type="button" class="btn btn-secondary w-100" disabled>
+                                Unavailable
+                            </button>
+                        }
+                        else if (item.QuantityInStock > 0)
                         {
                             <button type="submit" class="btn btn-primary w-100">
                                 Add to Basket
