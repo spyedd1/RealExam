@@ -79,6 +79,9 @@ namespace GFLHApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderProductsId"));
 
+                    b.Property<string>("InvoiceNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("OrdersId")
                         .HasColumnType("int");
 
@@ -142,9 +145,6 @@ namespace GFLHApp.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DeliveryPostcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InvoiceNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateOnly>("OrderDate")

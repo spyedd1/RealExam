@@ -63,7 +63,6 @@
                         @if (!string.IsNullOrWhiteSpace(Model.DeliveryLine2))
                         {
                             @Model.DeliveryLine2
-
                             <br />
                         }
                         @Model.DeliveryCity<br />
@@ -74,28 +73,81 @@
         </tbody>
     </table>
 
-    <!-- Items Ordered -->
-    <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:24px; border-collapse:collapse;">
-        <thead style="background:#333; color:white;">
-            <tr>
-                <th align="left" style="padding:12px;">&#127807; Items Ordered</th>
-                <th align="center" style="padding:12px;">Qty</th>
-                <th align="right" style="padding:12px;">Unit Price</th>
-                <th align="right" style="padding:12px;">Line Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.OrderProducts)
-            {
+    <!-- Items Ordered - Grouped by Producer -->
+    @foreach (var producerGroup in Model.OrderProducts
+    .Where(op => op.Products != null && op.Products.Producers != null)
+    .GroupBy(op => op.Products.Producers))
+    {
+        var groupInvoiceNumber = producerGroup
+        .FirstOrDefault(x => !string.IsNullOrWhiteSpace(x.InvoiceNumber))?.InvoiceNumber; // Get the invoice number for this producer — all products from the same VAT registered producer share the same invoice number
+
+
+        <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:8px; border-collapse:collapse;">
+            <thead style="background:#333; color:white;">
                 <tr>
-                    <td>@item.Products.ItemName</td>
-                    <td align="center">@item.ProductQuantity</td>
-                    <td align="right">£@item.Products.ItemPrice.ToString("0.00")</td>
-                    <td align="right">£@((item.Products.ItemPrice * item.ProductQuantity).ToString("0.00"))</td>
+                    <th colspan="4" align="left" style="padding:12px;">
+                        &#127807; @producerGroup.Key.ProducerName
+                        @if (producerGroup.Key.IsVATRegistered)
+                        {
+                            <span style="font-size:12px; font-weight:normal;">
+                                &nbsp;— VAT Reg No: @producerGroup.Key.VATNumber
+                            </span>
+                        }
+                    </th>
                 </tr>
+                <tr style="background:#555; color:white;">
+                    <th align="left" style="padding:10px;">Product</th>
+                    <th align="center" style="padding:10px;">Qty</th>
+                    <th align="right" style="padding:10px;">Unit Price (inc. VAT)</th>
+                    <th align="right" style="padding:10px;">Line Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in producerGroup)
+                {
+                    <tr>
+                        <td>@item.Products.ItemName</td>
+                        <td align="center">@item.ProductQuantity</td>
+                        <td align="right">£@item.Products.ItemPrice.ToString("0.00")</td>
+                        <td align="right">£@((item.Products.ItemPrice * item.ProductQuantity).ToString("0.00"))</td>
+                    </tr>
+                }
+            </tbody>
+            @if (producerGroup.Key.IsVATRegistered)
+            {
+                var producerSubtotal = producerGroup.Sum(op => op.Products.ItemPrice * op.ProductQuantity);
+                var vatAmount = producerSubtotal / 6; // Work backwards from inc-VAT price — VAT portion of a 20% inc-VAT price is price / 6
+                var exVAT = producerSubtotal - vatAmount; // Ex-VAT is the inc-VAT price minus the VAT portion
+                <tfoot style="background:#f9f9f9;">
+                    <tr>
+                        <td colspan="3" align="right"><strong>Ex. VAT</strong></td>
+                        <td align="right">£@exVAT.ToString("0.00")</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="right"><strong>VAT (20%)</strong></td>
+                        <td align="right">£@vatAmount.ToString("0.00")</td>
+                    </tr>
+                    <tr style="background:#e8f5e9;">
+                        <td colspan="3" align="right"><strong>Producer Total (inc. VAT)</strong></td>
+                        <td align="right"><strong>£@producerSubtotal.ToString("0.00")</strong></td>
+                    </tr>
+                </tfoot>
             }
-        </tbody>
-    </table>
+        </table>
+
+        <!-- Invoice number shown per VAT registered producer -->
+        @if (!string.IsNullOrWhiteSpace(groupInvoiceNumber))
+        {
+            <div style="background:#e8f5e9; border:1px solid #a5d6a7; padding:10px 16px; border-radius:4px; margin-bottom:24px; font-size:13px;">
+                &#128203; <strong>VAT Invoice:</strong> Invoice number for @producerGroup.Key.ProducerName is
+                <strong>@groupInvoiceNumber</strong> — please retain this for your records.
+            </div>
+        }
+        else
+        {
+            <div style="margin-bottom:24px;"></div>
+        }
+    }
 
     <!-- Allergen Reminder -->
     <div style="background:#fff3cd; border:1px solid #ffc107; padding:12px 16px; border-radius:4px; margin-bottom:24px; font-size:14px;">
@@ -110,14 +162,6 @@
                 <th colspan="2" align="left" style="padding:12px;">&#128722; Order Summary</th>
             </tr>
         </thead>
-        <tr>
-            <td><strong>Invoice Number</strong></td>
-            <td>@Model.InvoiceNumber</td>
-        </tr>
-        <tr>
-            <td><strong>Terms Accepted</strong></td>
-            <td>&#10003; Accepted at time of order</td>
-        </tr>
         <tbody>
             <tr>
                 <td width="200"><strong>Billing Address</strong></td>
@@ -126,12 +170,15 @@
                     @if (!string.IsNullOrWhiteSpace(Model.BillingLine2))
                     {
                         @Model.BillingLine2
-
                         <br />
                     }
                     @Model.BillingCity<br />
                     @Model.BillingPostcode.ToUpper()
                 </td>
+            </tr>
+            <tr>
+                <td><strong>Terms Accepted</strong></td>
+                <td>&#10003; Accepted at time of order</td>
             </tr>
             <tr>
                 <td><strong>Order Total</strong></td>

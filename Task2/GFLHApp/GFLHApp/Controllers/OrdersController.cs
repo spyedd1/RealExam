@@ -77,9 +77,10 @@ namespace GFLHApp.Controllers
             }
 
             var basketProducts = await _context.BasketProducts
-                .Where(x => x.BasketId == basketId)
-                .Include(x => x.Products)
-                .ToListAsync(); // Retrieve the products in the basket
+                            .Where(x => x.BasketId == basketId)
+                            .Include(x => x.Products)
+                            .ThenInclude(x => x.Producers) // Include producers so we can check VAT registration
+                            .ToListAsync(); // Retrieve the products in the basket
 
             decimal subtotal = 0m; // Initialize the subtotal variable
             foreach (var item in basketProducts)
@@ -100,14 +101,13 @@ namespace GFLHApp.Controllers
             ViewBag.BasketId = basketId; // Pass the BasketId to the view using ViewBag
             ViewBag.Subtotal = discountedSubtotal; // Pass the discounted subtotal to the view using ViewBag
             ViewBag.HasFreeDelivery = orderCount % 3 == 2; // Pass whether the user has free delivery to the view using ViewBag
+            ViewBag.BasketProducts = basketProducts; // Pass the basket products to the view for allergen display
             ViewBag.DeliveryCosts = new Dictionary<string, decimal>
     {
         { "Next Day",  5.99m },
         { "Standard",  2.99m },
         { "Economy",   0.99m }
     }; // Pass the delivery costs to the view using ViewBag
-
-            ViewBag.BasketProducts = basketProducts; // Pass the basket products to the view for allergen display
 
             return View();
         }
@@ -128,6 +128,8 @@ namespace GFLHApp.Controllers
                 ViewBag.BasketId = basketId; // Pass the BasketId back to the view
                 return View(orders); // Return the view with the current order data
             }
+
+
 
             // Terms and conditions validation
             if (!orders.TermsAccepted) // Check if the user has accepted the terms and conditions
@@ -159,12 +161,13 @@ namespace GFLHApp.Controllers
             }
 
             // Get basket products
-            var basketProducts = await _context.BasketProducts.Where(x => x.BasketId == basketId).Include(x => x.Products).ToListAsync(); // Retrieve the products in the basket
+            var basketProducts = await _context.BasketProducts.Where(x => x.BasketId == basketId).Include(x => x.Products).ThenInclude(x => x.Producers).ToListAsync(); // Retrieve the products in the basket
 
             if (!basketProducts.Any())
             {
                 ModelState.AddModelError("", "Your basket is currently empty.");
                 ViewBag.BasketId = basketId; // Pass the BasketId back to the view
+                ViewBag.BasketProducts = basketProducts; // Pass basket products back to the view for allergen display
                 return View(orders); // Return the view with the current order data
             }
 
@@ -391,6 +394,7 @@ namespace GFLHApp.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.BasketId = basketId; // Pass the BasketId back to the view
+                ViewBag.BasketProducts = basketProducts; // Pass basket products back to the view for allergen display
                 return View(orders); // Return the view with the current order data and validation errors
             }
 
@@ -401,6 +405,7 @@ namespace GFLHApp.Controllers
                 {
                     ModelState.AddModelError("", $"The stock is too low for {basketProduct.Products.ItemName}"); // Add a model error if the stock is too low for the product
                     ViewBag.BasketId = basketId; // Pass the BasketId back to the view
+                    ViewBag.BasketProducts = basketProducts; // Pass basket products back to the view for allergen display
                     return View(orders); // Return the view with the current order data and validation errors
                 }
             }
@@ -409,31 +414,30 @@ namespace GFLHApp.Controllers
             _context.Orders.Add(orders); // Add the order to the database context
             await _context.SaveChangesAsync(); // Save the changes to the database
 
-            // Generate invoice number after saving so we have the OrdersId
-            orders.InvoiceNumber = $"INV-{orders.OrderDate:yyyyMMdd}-{orders.OrdersId:D6}"; // Generate a unique invoice number using the order date and ID
-            await _context.SaveChangesAsync(); // Save the invoice number to the database
-
-            foreach (var basketProduct in basketProducts) // Iterate through each product in the basket
+            // Create order products and generate invoice numbers per VAT registered producer
+            foreach (var basketProduct in basketProducts)
             {
-                var orderProduct = new OrderProducts // Create a new OrderProducts object to represent the product in the order
+                var orderProduct = new OrderProducts
                 {
                     OrdersId = orders.OrdersId, // Set the OrdersId to the ID of the created order
                     ProductsId = basketProduct.ProductsId, // Set the ProductsId to the ID of the product in the basket
-                    ProductQuantity = basketProduct.ProductQuantity // Set the Quantity to the quantity of the product in the basket
+                    ProductQuantity = basketProduct.ProductQuantity, // Set the Quantity to the quantity of the product in the basket
+                    InvoiceNumber = (basketProduct.Products.Producers != null && basketProduct.Products.Producers.IsVATRegistered)
+                        ? $"INV-{orders.OrderDate:yyyyMMdd}-{orders.OrdersId:D6}-{basketProduct.Products.Producers.ProducersId}"
+                        : null // Only generate an invoice number if the producer is VAT registered
                 };
 
                 _context.OrderProducts.Add(orderProduct); // Add the OrderProducts object to the database context
-
-                basketProduct.Products.QuantityInStock -= basketProduct.ProductQuantity; // Reduce the quantity in stock for the product by the quantity in the basket
+                basketProduct.Products.QuantityInStock -= basketProduct.ProductQuantity; // Reduce the quantity in stock for the product
             }
 
             // Close the basket by setting its status to false
             basket.Status = false; // Set the status of the basket to false to indicate that it is closed
             await _context.SaveChangesAsync(); // Save the changes to the database
 
-            return RedirectToAction("Confirmation", "Orders", new { id = orders.OrdersId }); // Redirect to the confirmation page with the order ID 
+            return RedirectToAction("Confirmation", "Orders", new { id = orders.OrdersId }); // Redirect to the confirmation page with the order ID
         }
-        
+
 
         // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -485,6 +489,7 @@ namespace GFLHApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(orders);
         }
 
@@ -540,6 +545,7 @@ namespace GFLHApp.Controllers
             var order = await _context.Orders
                 .Include(o => o.OrderProducts)
                 .ThenInclude(op => op.Products)
+                .ThenInclude(p => p.Producers) // Include producers so we can check VAT registration on the confirmation page
                 .FirstOrDefaultAsync(o => o.OrdersId == id && o.UserId == userId); // Retrieve the order with its products, ensuring it belongs to the current user
 
             if (order == null) // Check if the order exists and belongs to the current user
