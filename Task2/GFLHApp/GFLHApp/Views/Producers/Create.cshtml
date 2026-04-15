@@ -1,75 +1,184 @@
 ﻿@model GFLHApp.Models.Producers
-
 @{
     ViewData["Title"] = "Create";
 }
-
 <h1>Create</h1>
-
 <h4>Producers</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" id="producerForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="ProducerName" class="control-label"></label>
-                <input asp-for="ProducerName" class="form-control" />
-                <span asp-validation-for="ProducerName" class="text-danger"></span>
+                <input asp-for="ProducerName" class="form-control" id="producerName"
+                       placeholder="Enter producer name (3-100 characters)" />
+                <span id="nameError" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ProducerEmail" class="control-label"></label>
-                <input asp-for="ProducerEmail" class="form-control" />
-                <span asp-validation-for="ProducerEmail" class="text-danger"></span>
+                <input asp-for="ProducerEmail" class="form-control" id="producerEmail"
+                       placeholder="Enter a valid email address" />
+                <span id="emailError" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ProducerInformation" class="control-label"></label>
-                <input asp-for="ProducerInformation" class="form-control" />
-                <span asp-validation-for="ProducerInformation" class="text-danger"></span>
+                <textarea asp-for="ProducerInformation" class="form-control" id="producerInfo"
+                          placeholder="Enter producer information (10-500 characters)" rows="4"></textarea>
+                <span id="infoError" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="IsVATRegistered"><strong>VAT Registered?</strong></label>
                 <input asp-for="IsVATRegistered" id="isVATRegistered" type="checkbox" />
             </div>
+
             <div id="vatNumberGroup" style="display:none;">
                 <div class="form-group">
                     <label asp-for="VATNumber"><strong>VAT Number</strong></label>
-                    <input asp-for="VATNumber" class="form-control"
-                           placeholder="e.g. GB123456789"
-                           pattern="^GB[0-9]{9}$"
-                           title="UK VAT numbers must be in the format GB followed by 9 digits" />
+                    <input asp-for="VATNumber" class="form-control" id="vatNumber"
+                           placeholder="e.g. GB123456789" />
                     <small style="color:grey;">UK VAT number format: GB followed by 9 digits e.g. GB123456789</small>
-                    <span asp-validation-for="VATNumber" style="color:red;"></span>
+                    <span id="vatError" class="text-danger"></span>
                 </div>
             </div>
 
-            <script>
-                const isVATRegistered = document.getElementById("isVATRegistered");
-                const vatNumberGroup = document.getElementById("vatNumberGroup");
+            <hr />
+            <h5>Account Login Details</h5>
+            <p class="text-muted" style="font-size:13px;">
+                These credentials will be used by the producer to log in to the system.
+            </p>
 
-                function toggleVATNumber() {
-                    vatNumberGroup.style.display = isVATRegistered.checked ? "block" : "none"; // Show or hide the VAT number field based on the checkbox
-                }
-
-                isVATRegistered.addEventListener("change", toggleVATNumber);
-                toggleVATNumber(); // Run on page load to set initial state
-            </script>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label><strong>Password <span style="color:red;">*</span></strong></label>
+                <input type="password" name="AccountPassword" class="form-control"
+                       id="accountPassword" placeholder="Minimum 8 characters" />
+                <small style="color:grey;">
+                    Must be at least 8 characters and include an uppercase letter,
+                    a lowercase letter, a number, and a special character.
+                </small>
+                <span id="passwordError" class="text-danger"></span>
+                <span class="text-danger">@Html.ValidationMessage("AccountPassword")</span>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Confirm Password <span style="color:red;">*</span></strong></label>
+                <input type="password" id="confirmPassword" class="form-control"
+                       placeholder="Re-enter password" />
+                <span id="confirmPasswordError" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" id="submitBtn" />
             </div>
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+           
+        const isVATRegistered = document.getElementById("isVATRegistered");
+        const vatNumberGroup = document.getElementById("vatNumberGroup");
+
+        function toggleVATNumber() {
+            vatNumberGroup.style.display = isVATRegistered.checked ? "block" : "none";
+            document.getElementById("vatNumber").value = "";
+            document.getElementById("vatError").textContent = "";
+        }
+        isVATRegistered.addEventListener("change", toggleVATNumber);
+        toggleVATNumber();
+
+        document.getElementById("producerName").addEventListener("blur", validateName);
+        document.getElementById("producerEmail").addEventListener("blur", validateEmail);
+        document.getElementById("producerInfo").addEventListener("blur", validateInfo);
+        document.getElementById("vatNumber").addEventListener("blur", validateVAT);
+        document.getElementById("accountPassword").addEventListener("blur", validatePassword);
+        document.getElementById("confirmPassword").addEventListener("blur", validateConfirmPassword);
+
+        function validateName() {
+            const val = document.getElementById("producerName").value.trim();
+            const err = document.getElementById("nameError");
+            if (val === "") { err.textContent = "Producer name is required."; return false; }
+            if (val.length < 3) { err.textContent = "Producer name must be at least 3 characters."; return false; }
+            if (val.length > 100) { err.textContent = "Producer name must not exceed 100 characters."; return false; }
+            err.textContent = ""; return true;
+        }
+
+        function validateEmail() {
+            const val = document.getElementById("producerEmail").value.trim();
+            const err = document.getElementById("emailError");
+            const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+            if (val === "") { err.textContent = "Email address is required."; return false; }
+            if (!emailRegex.test(val)) { err.textContent = "Please enter a valid email address."; return false; }
+            if (val.length > 150) { err.textContent = "Email address must not exceed 150 characters."; return false; }
+            err.textContent = ""; return true;
+        }
+
+        function validateInfo() {
+            const val = document.getElementById("producerInfo").value.trim();
+            const err = document.getElementById("infoError");
+            if (val === "") { err.textContent = "Producer information is required."; return false; }
+            if (val.length < 10) { err.textContent = "Producer information must be at least 10 characters."; return false; }
+            if (val.length > 500) { err.textContent = "Producer information must not exceed 500 characters."; return false; }
+            err.textContent = ""; return true;
+        }
+
+        function validateVAT() {
+            if (!isVATRegistered.checked) return true;
+            const val = document.getElementById("vatNumber").value.trim();
+            const err = document.getElementById("vatError");
+            const vatRegex = /^GB[0-9]{9}$/;
+            if (val === "") { err.textContent = "VAT number is required if VAT registered."; return false; }
+            if (!vatRegex.test(val)) { err.textContent = "VAT number must start with GB followed by exactly 9 digits."; return false; }
+            err.textContent = ""; return true;
+        }
+
+        function validatePassword() {
+            const val = document.getElementById("accountPassword").value;
+            const err = document.getElementById("passwordError");
+            // Matches ASP.NET Identity default password policy
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
+            if (val === "") { err.textContent = "Password is required."; return false; }
+            if (!passwordRegex.test(val)) {
+                err.textContent = "Password must be at least 8 characters and include uppercase, lowercase, a number, and a special character.";
+                return false;
+            }
+            err.textContent = ""; return true;
+        }
+
+        function validateConfirmPassword() {
+            const pass = document.getElementById("accountPassword").value;
+            const confirm = document.getElementById("confirmPassword").value;
+            const err = document.getElementById("confirmPasswordError");
+            if (confirm === "") { err.textContent = "Please confirm the password."; return false; }
+            if (pass !== confirm) { err.textContent = "Passwords do not match."; return false; }
+            err.textContent = ""; return true;
+        }
+
+        document.getElementById("producerForm").addEventListener("submit", function (e) {
+            const nameOk     = validateName();
+            const emailOk    = validateEmail();
+            const infoOk     = validateInfo();
+            const vatOk      = validateVAT();
+            const passwordOk = validatePassword();
+            const confirmOk  = validateConfirmPassword();
+            if (!nameOk || !emailOk || !infoOk || !vatOk || !passwordOk || !confirmOk) {
+                e.preventDefault();
+            }
+        });
+    </script>
+    
 }
