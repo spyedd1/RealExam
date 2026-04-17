@@ -12,114 +12,78 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeliveryMethod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Delivery)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Collection)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrdersTotal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrackingStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfCollection)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BillingLine1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BillingLine2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BillingCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BillingPostcode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeliveryLine1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeliveryLine2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeliveryCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeliveryPostcode)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+            <th>@Html.DisplayNameFor(model => model.DeliveryMethod)</th>
+            <th>@Html.DisplayNameFor(model => model.Delivery)</th>
+            <th>@Html.DisplayNameFor(model => model.Collection)</th>
+            <th>@Html.DisplayNameFor(model => model.OrdersTotal)</th>
+            <th>@Html.DisplayNameFor(model => model.TrackingStatus)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfCollection)</th>
+            <th>@Html.DisplayNameFor(model => model.BillingLine1)</th>
+            <th>@Html.DisplayNameFor(model => model.BillingLine2)</th>
+            <th>@Html.DisplayNameFor(model => model.BillingCity)</th>
+            <th>@Html.DisplayNameFor(model => model.BillingPostcode)</th>
+            <th>@Html.DisplayNameFor(model => model.DeliveryLine1)</th>
+            <th>@Html.DisplayNameFor(model => model.DeliveryLine2)</th>
+            <th>@Html.DisplayNameFor(model => model.DeliveryCity)</th>
+            <th>@Html.DisplayNameFor(model => model.DeliveryPostcode)</th>
+            <th>Delivery</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryMethod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Delivery)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Collection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrdersTotal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrackingStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfCollection)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BillingLine1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BillingLine2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BillingCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BillingPostcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryLine1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryLine2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryPostcode)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OrdersId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrdersId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrdersId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.DeliveryMethod)</td>
+                <td>@Html.DisplayFor(modelItem => item.Delivery)</td>
+                <td>@Html.DisplayFor(modelItem => item.Collection)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrdersTotal)</td>
+                <td>@Html.DisplayFor(modelItem => item.TrackingStatus)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfCollection)</td>
+                <td>@Html.DisplayFor(modelItem => item.BillingLine1)</td>
+                <td>@Html.DisplayFor(modelItem => item.BillingLine2)</td>
+                <td>@Html.DisplayFor(modelItem => item.BillingCity)</td>
+                <td>@Html.DisplayFor(modelItem => item.BillingPostcode)</td>
+                <td>@Html.DisplayFor(modelItem => item.DeliveryLine1)</td>
+                <td>@Html.DisplayFor(modelItem => item.DeliveryLine2)</td>
+                <td>@Html.DisplayFor(modelItem => item.DeliveryCity)</td>
+                <td>@Html.DisplayFor(modelItem => item.DeliveryPostcode)</td>
+
+                @* Delivery confirmation column — only shown for delivery orders *@
+                <td>
+                    @if (!item.Delivery)
+                    {
+                        <span class="text-muted">N/A</span>
+                    }
+                    else if (item.DeliveryConfirmed)
+                    {
+                        <span class="badge bg-success">Delivered</span>
+                    }
+                    else if ((DateTime.Now - item.OrderDate.ToDateTime(TimeOnly.MinValue)).TotalDays >= 7)
+                    {
+                        <span class="badge bg-success">Delivered</span>
+                    }
+                    else
+                    {
+                        <form asp-controller="Orders" asp-action="ConfirmDelivery"
+                              asp-route-id="@item.OrdersId" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-outline-success">
+                                Confirm Delivery
+                            </button>
+                        </form>
+                    }
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.OrdersId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.OrdersId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.OrdersId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

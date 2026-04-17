@@ -6,8 +6,8 @@
         public int OrdersId { get; set; }          // links back to the parent order
         public string ProducerId { get; set; }     // the producer's UserId
         public decimal ProducerSubtotal { get; set; }  // their slice of the total
-        public string TrackingStatus { get; set; } // independent status per producer
 
+        public string TrackingStatus { get; set; } = "Pending"; // "Pending", "Accepted", "Cancelled"
 
         // Navigation links
         public Orders Orders { get; set; } // Navigation property to the order, linked by OrdersId

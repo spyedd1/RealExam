@@ -21,13 +21,62 @@ namespace GFLHApp.Controllers
             _context = context;
         }
 
-        // GET: Orders
-        public async Task<IActionResult> Index()
+        private async Task SyncDeliveryStatuses(List<Orders> orders)
         {
+            foreach (var order in orders.Where(o => o.Delivery))
+            {
+                double days = (DateTime.Now - order.OrderDate.ToDateTime(TimeOnly.MinValue)).TotalDays;
+                int preparingDays = order.DeliveryMethod switch
+                {
+                    "Next Day" => 1,
+                    "Standard" => 3,
+                    "Economy" => 7,
+                    _ => 999
+                };
+
+                string newStatus;
+                if (order.DeliveryConfirmed || days >= preparingDays + 3)
+                    newStatus = "Delivered";
+                else if (days >= preparingDays)
+                    newStatus = "Awaiting Confirmation";
+                else
+                    newStatus = "Preparing Delivery";
+
+                if (order.TrackingStatus != newStatus)
+                    order.TrackingStatus = newStatus;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        // POST: Orders/ConfirmDelivery/5 - This action method allows a user to confirm the delivery of an order. It checks if the order belongs to the current user, updates the delivery confirmation status, and saves the changes to the database.
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmDelivery(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var order = await _context.Orders
+                .FirstOrDefaultAsync(x => x.OrdersId == id && x.UserId == userId);
+
+            if (order == null) return NotFound();
+
+            order.DeliveryConfirmed = true;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index"); // or wherever your order history pag e is
+        }
+
+        // GET: Orders
+        public async Task<IActionResult> Index(List<Orders>orders)
+        {
+
+            await SyncDeliveryStatuses(orders); 
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
 
             if (userId == null)
-            {
+            {                                                                                                            
                 return Unauthorized(); // Return a 401 Unauthorized if the user is not authenticated
             }
 

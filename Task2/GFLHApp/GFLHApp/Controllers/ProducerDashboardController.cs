@@ -16,6 +16,7 @@ namespace GFLHApp.Controllers
             _context = context;
         }
 
+        // GET: ProducerDashboard - This action method retrieves the current producer's products and orders, calculates some summary statistics, and passes all this data to the view for display on the producer dashboard.
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
@@ -42,6 +43,35 @@ namespace GFLHApp.Controllers
 
             return View(products);
         }
+
+
+        // This method recalculates the overall order status based on the statuses of all producer slices for a given order. It checks if all slices are cancelled, all accepted, or a mix of both to determine the final order status.
+        private async Task RecalculateOrderStatus(int ordersId)
+        {
+            var allSlices = await _context.ProducerOrders
+                .Where(x => x.OrdersId == ordersId)
+                .ToListAsync();
+
+            var order = await _context.Orders.FindAsync(ordersId);
+            if (order == null) return;
+
+            bool allCancelled = allSlices.All(x => x.TrackingStatus == "Cancelled");
+            bool allAccepted = allSlices.All(x => x.TrackingStatus == "Accepted");
+            bool anyCancelled = allSlices.Any(x => x.TrackingStatus == "Cancelled");
+            bool anyAccepted = allSlices.Any(x => x.TrackingStatus == "Accepted");
+
+            if (allCancelled)
+                order.OrderStatus = "Cancelled";
+            else if (allAccepted)
+                order.OrderStatus = "Accepted";
+            else if (anyCancelled && anyAccepted)
+                order.OrderStatus = "Partially Complete";
+            else
+                order.OrderStatus = "Pending";
+
+            await _context.SaveChangesAsync();
+        }
+
         // GET: ProducerDashboard/CancelProducerOrder/5
         public async Task<IActionResult> CancelProducerOrder(int? id)
         {
@@ -87,29 +117,53 @@ namespace GFLHApp.Controllers
                 .FirstOrDefaultAsync();
 
             if (orderProduct == null || orderProduct.ProducerOrders.ProducerId != userId)
-            {
                 return NotFound();
-            }
 
-            // Restock the item
+            // Restock
             orderProduct.Products.QuantityInStock += orderProduct.ProductQuantity;
 
-            // Deduct from producer subtotal and order total
+            // Deduct totals
             var lineTotal = orderProduct.Products.ItemPrice * orderProduct.ProductQuantity;
             orderProduct.ProducerOrders.ProducerSubtotal -= lineTotal;
             orderProduct.ProducerOrders.Orders.OrdersTotal -= lineTotal;
 
-            // If no items remain, cancel the whole producer slice
+            // Check remaining items in this producer slice
             var remainingItems = await _context.OrderProducts
-                .CountAsync(x => x.ProducerOrdersId == orderProduct.ProducerOrdersId && x.OrderProductsId != id);
+                .CountAsync(x => x.ProducerOrdersId == orderProduct.ProducerOrdersId
+                              && x.OrderProductsId != id);
 
             if (remainingItems == 0)
-            {
                 orderProduct.ProducerOrders.TrackingStatus = "Cancelled";
-            }
 
+            int ordersId = orderProduct.ProducerOrders.OrdersId;
             _context.OrderProducts.Remove(orderProduct);
             await _context.SaveChangesAsync();
+
+            await RecalculateOrderStatus(ordersId);
+
+            return RedirectToAction("Index");
+        }
+
+        // POST: ProducerDashboard/AcceptProducerOrder/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AcceptProducerOrder(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var producerOrder = await _context.ProducerOrders
+                .Include(x => x.Orders)
+                .FirstOrDefaultAsync(x => x.ProducerOrdersId == id && x.ProducerId == userId);
+
+            if (producerOrder == null)
+                return NotFound();
+
+            if (producerOrder.TrackingStatus == "Pending")
+            {
+                producerOrder.TrackingStatus = "Accepted";
+                await _context.SaveChangesAsync();
+                await RecalculateOrderStatus(producerOrder.OrdersId);
+            }
 
             return RedirectToAction("Index");
         }

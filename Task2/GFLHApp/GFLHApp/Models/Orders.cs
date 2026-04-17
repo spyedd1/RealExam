@@ -21,6 +21,9 @@
 
         public DateOnly? DateOfCollection { get; set; } // This uses a ? as the date of collection is not required to be filled in as they may pick delivery instead of collection
 
+        public string OrderStatus { get; set; } = "Pending"; // Derived from producer slices
+        public bool DeliveryConfirmed { get; set; } = false;  // Customer confirms delivery
+
         // Billing/Delivery Address Fields
 
         public string BillingLine1 { get; set; }
