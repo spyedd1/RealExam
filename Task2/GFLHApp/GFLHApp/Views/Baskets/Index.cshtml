@@ -30,7 +30,7 @@ else
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+				@foreach (var item in Model) // Model is already filtered to current basket's products in controller, so no need for extra check here
                 {
                     <tr>
                         <td><strong>@item.Products.ItemName</strong></td>
@@ -38,12 +38,12 @@ else
                         <td align="center">@item.ProductQuantity</td>
                         <td>£@((item.Products.ItemPrice * item.ProductQuantity).ToString("0.00"))</td>
                         <td>
-                            @if (string.IsNullOrWhiteSpace(item.Products.Allergens))
-                            {
+							@if (string.IsNullOrWhiteSpace(item.Products.Allergens)) // If no allergens declared, show green checkmark and "None declared"
+							{
                                 <span style="color:green;">&#10003; None declared</span>
                             }
-                            else
-                            {
+							else // If allergens are declared, show warning symbol and allergen list in amber
+							{
                                 <span style="color:#856404;">&#9888; @item.Products.Allergens</span>
                             }
                         </td>

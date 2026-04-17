@@ -245,16 +245,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in ViewBag.BasketProducts)
+					@foreach (var item in ViewBag.BasketProducts) // List of products in the basket with their allergen info
                     {
                         <tr>
                             <td>@item.Products.ItemName</td>
                             <td>
-                                @if (string.IsNullOrWhiteSpace(item.Products.Allergens))
+								@if (string.IsNullOrWhiteSpace(item.Products.Allergens)) // If no allergens are declared, show a green checkmark and "No allergens declared"
                                 {
                                     <span style="color:green;">&#10003; No allergens declared</span>
                                 }
-                                else
+								else // If allergens are declared, show a warning symbol and the allergen information in yellow
                                 {
                                     <span style="color:#856404;">&#9888; @item.Products.Allergens</span>
                                 }

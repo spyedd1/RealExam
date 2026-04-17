@@ -44,23 +44,23 @@
             <tr>
                 <td><strong>Fulfilment Method</strong></td>
                 <td>
-                    @if (Model.Delivery)
+					@if (Model.Delivery) // Show delivery method if delivery, otherwise show collection date if collection
                     {
                         <span>&#128666; Delivery — @Model.DeliveryMethod</span>
                     }
-                    else
+					else // If not delivery, must be collection — show collection date if available
                     {
                         <span>&#127981; Collection on @Model.DateOfCollection?.ToString("dd MMMM yyyy")</span>
                     }
                 </td>
             </tr>
-            @if (Model.Delivery)
-            {
+			@if (Model.Delivery) // Only show delivery address if this is a delivery order
+			{
                 <tr>
                     <td><strong>Delivering To</strong></td>
                     <td>
                         @Model.DeliveryLine1<br />
-                        @if (!string.IsNullOrWhiteSpace(Model.DeliveryLine2))
+						@if (!string.IsNullOrWhiteSpace(Model.DeliveryLine2)) // Only show second address line if it has content
                         {
                             @Model.DeliveryLine2
                             <br />
@@ -74,8 +74,8 @@
     </table>
 
     <!-- Items Ordered - Grouped by Producer -->
-    @foreach (var producerGroup in Model.OrderProducts
-    .Where(op => op.Products != null && op.Products.Producers != null)
+	@foreach (var producerGroup in Model.OrderProducts // Group products by producer, but only if they have a producer associated (defensive check to avoid null reference errors)
+			.Where(op => op.Products != null && op.Products.Producers != null)
     .GroupBy(op => op.Products.Producers))
     {
         var groupInvoiceNumber = producerGroup
@@ -87,7 +87,7 @@
                 <tr>
                     <th colspan="4" align="left" style="padding:12px;">
                         &#127807; @producerGroup.Key.ProducerName
-                        @if (producerGroup.Key.IsVATRegistered)
+						@if (producerGroup.Key.IsVATRegistered) // Only show VAT number if producer is VAT registered
                         {
                             <span style="font-size:12px; font-weight:normal;">
                                 &nbsp;— VAT Reg No: @producerGroup.Key.VATNumber
@@ -103,7 +103,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in producerGroup)
+				@foreach (var item in producerGroup) // List all products from this producer group
                 {
                     <tr>
                         <td>@item.Products.ItemName</td>
@@ -136,14 +136,14 @@
         </table>
 
         <!-- Invoice number shown per VAT registered producer -->
-        @if (!string.IsNullOrWhiteSpace(groupInvoiceNumber))
+		@if (!string.IsNullOrWhiteSpace(groupInvoiceNumber)) // Only show invoice information if there is an invoice number for this producer group (should always be the case for VAT registered producers, but this is a defensive check to avoid showing incorrect info if something goes wrong with invoice generation)
         {
             <div style="background:#e8f5e9; border:1px solid #a5d6a7; padding:10px 16px; border-radius:4px; margin-bottom:24px; font-size:13px;">
                 &#128203; <strong>VAT Invoice:</strong> Invoice number for @producerGroup.Key.ProducerName is
                 <strong>@groupInvoiceNumber</strong> — please retain this for your records.
             </div>
         }
-        else
+		else // If there is no invoice number, add some spacing after the order summary table before the next producer group or allergen reminder section
         {
             <div style="margin-bottom:24px;"></div>
         }
@@ -167,7 +167,7 @@
                 <td width="200"><strong>Billing Address</strong></td>
                 <td>
                     @Model.BillingLine1<br />
-                    @if (!string.IsNullOrWhiteSpace(Model.BillingLine2))
+					@if (!string.IsNullOrWhiteSpace(Model.BillingLine2)) // Only show second address line if it has content
                     {
                         @Model.BillingLine2
                         <br />

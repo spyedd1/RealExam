@@ -71,7 +71,6 @@ namespace GFLHApp.Controllers
         public async Task<IActionResult> Index(List<Orders>orders)
         {
 
-            await SyncDeliveryStatuses(orders); 
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
 
@@ -87,14 +86,14 @@ namespace GFLHApp.Controllers
             }
             else if (User.IsInRole("Producer"))
             {
-                var producerOrders = await _context.ProducerOrders
+                var producerOrders = await _context.ProducerOrders // Retrieve the producer orders for the current producer, including the related orders, order products, and products data
                     .Where(x => x.ProducerId == userId)
                     .Include(x => x.Orders)
                     .Include(x => x.OrderProducts)
                         .ThenInclude(x => x.Products)
                     .ToListAsync();
 
-                return View("ProducerIndex", producerOrders); // separate view for producers
+                return View(producerOrders.Select(op => op.Orders).Distinct().ToList()); // separate view for producers
             }
             else
             {
@@ -471,12 +470,12 @@ namespace GFLHApp.Controllers
             // Group basket products by producer to create producer order slices
             var groupedByProducer = basketProducts.GroupBy(x => x.Products.Producers.UserId); ; // ← changed from .UserId
 
-            foreach (var producerGroup in groupedByProducer)
+            foreach (var producerGroup in groupedByProducer) // Iterate through each producer group to create a producer order slice for each producer involved in the order
             {
-                decimal producerSubtotal = 0m;
-                foreach (var item in producerGroup)
+                decimal producerSubtotal = 0m; // Initialize the producer subtotal variable for this producer's slice of the order
+                foreach (var item in producerGroup) // Iterate through each product in the producer group to calculate the subtotal for this producer's slice of the order
                 {
-                    producerSubtotal += item.Products.ItemPrice * item.ProductQuantity;
+                    producerSubtotal += item.Products.ItemPrice * item.ProductQuantity; // Calculate the subtotal for this producer's slice of the order by summing the total price for each product in the producer group
                 }
 
                 var producerOrder = new ProducerOrders
@@ -611,6 +610,8 @@ namespace GFLHApp.Controllers
 
 
         // GET: Orders/Confirmation
+
+        // This action method retrieves the details of a specific order for the confirmation page. It checks if the order belongs to the current user, includes related data such as products and producers, and returns the order data to the confirmation view.
         public async Task<IActionResult> Confirmation(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID

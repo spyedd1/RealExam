@@ -40,13 +40,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\GFLHApp.z1wnuqieje.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ByhIP4YlRehraH2jdtBIuEd1WnE\u002BHfaKQBQITpZQqPA="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1125"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022ByhIP4YlRehraH2jdtBIuEd1WnE\u002BHfaKQBQITpZQqPA=\u0022"},{"Name":"Last-Modified","Value":"Mon, 13 Apr 2026 11:19:02 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1125"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022ByhIP4YlRehraH2jdtBIuEd1WnE\u002BHfaKQBQITpZQqPA=\u0022"},{"Name":"Last-Modified","Value":"Fri, 17 Apr 2026 08:14:18 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/GFLHApp/GFLHApp.z1wnuqieje.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\GFLHApp.z1wnuqieje.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"z1wnuqieje"},{"Name":"integrity","Value":"sha256-ByhIP4YlRehraH2jdtBIuEd1WnE\u002BHfaKQBQITpZQqPA="},{"Name":"label","Value":"_content/GFLHApp/GFLHApp.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1125"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022ByhIP4YlRehraH2jdtBIuEd1WnE\u002BHfaKQBQITpZQqPA=\u0022"},{"Name":"Last-Modified","Value":"Mon, 13 Apr 2026 11:19:02 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1125"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022ByhIP4YlRehraH2jdtBIuEd1WnE\u002BHfaKQBQITpZQqPA=\u0022"},{"Name":"Last-Modified","Value":"Fri, 17 Apr 2026 08:14:18 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/GFLHApp/images/apple.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\apple.jpg'))</AssetFile>

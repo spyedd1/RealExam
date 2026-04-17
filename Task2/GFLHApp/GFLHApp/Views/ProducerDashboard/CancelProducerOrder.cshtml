@@ -36,8 +36,8 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.OrderProducts.Where(op => op.ProducerOrdersId == Model.ProducerOrdersId))
-            {
+			@foreach (var item in Model.OrderProducts.Where(op => op.ProducerOrdersId == Model.ProducerOrdersId)) // Only show items from this order slice
+			{
                 <tr>
                     <td><strong>@item.Products.ItemName</strong></td>
                     <td>@item.ProductQuantity</td>

@@ -76,11 +76,11 @@
     <h2>Recent Orders</h2>
     <hr />
 
-    @if (ViewBag.ProducerOrders == null || ((List<GFLHApp.Models.ProducerOrders>)ViewBag.ProducerOrders).Count == 0)
+	@if (ViewBag.ProducerOrders == null || ((List<GFLHApp.Models.ProducerOrders>)ViewBag.ProducerOrders).Count == 0) // Check if there are any orders for this producer
     {
         <p>No recent orders found.</p>
     }
-    else
+	else // If there are orders, show the 5 most recent ones with their details and actions
     {
         <table border="1" cellpadding="12" cellspacing="0" width="100%">
             <thead bgcolor="#333" style="color:white;">
@@ -90,52 +90,78 @@
                     <th align="left">Your Products</th>
                     <th align="left">Your Subtotal</th>
                     <th align="left">Status</th>
-                    <th align="left">Action</th>
+                    <th align="left">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var producerOrder in ((List<GFLHApp.Models.ProducerOrders>)ViewBag.ProducerOrders).Take(5))
-                {
+				@foreach (var producerOrder in ((List<GFLHApp.Models.ProducerOrders>)ViewBag.ProducerOrders).Take(5)) // Show only the 5 most recent orders
+                { 
                     <tr>
-                        <td>#@producerOrder.Orders.OrdersId</td>
+                        <td>#@producerOrder.Orders.OrdersId</td> 
                         <td>@producerOrder.Orders.OrderDate</td>
                         <td>
-                            @foreach (var orderProduct in producerOrder.OrderProducts.Where(op => op.ProducerOrdersId == producerOrder.ProducerOrdersId))
-                            {
-                                <div>
-                                    @orderProduct.Products.ItemName
-                                    <span style="color:grey;">x @orderProduct.ProductQuantity</span>
-                                </div>
+							@foreach (var orderProduct in producerOrder.OrderProducts) // List all products in this order slice
+							{
+                                <div>@orderProduct.Products.ItemName x @orderProduct.ProductQuantity</div>
                             }
                         </td>
-                        <td>£@producerOrder.ProducerSubtotal.ToString("0.00")</td>
+						<td>£@producerOrder.ProducerSubtotal.ToString("0.00")</td> 
                         <td>
-                            @if (producerOrder.TrackingStatus == "Cancelled")
-                            {
+							@if (producerOrder.TrackingStatus == "Cancelled") // Highlight cancelled orders in red, accepted in green, pending in orange
+							{
                                 <span style="color:red;"><strong>Cancelled</strong></span>
                             }
-                            else if (producerOrder.TrackingStatus == "Pending")
-                            {
+							else if (producerOrder.TrackingStatus == "Accepted") // Highlight accepted orders in green
+							{
+                                <span style="color:green;"><strong>Accepted</strong></span>
+                            }
+							else if (producerOrder.TrackingStatus == "Pending") // Highlight pending orders in orange
+							{
                                 <span style="color:orange;"><strong>Pending</strong></span>
                             }
-                            else
-                            {
+							else // For any other status, just show it without special styling
+							{
                                 <span>@producerOrder.TrackingStatus</span>
                             }
                         </td>
                         <td>
-                            @if (producerOrder.TrackingStatus != "Cancelled")
-                            {
-                                <a asp-controller="ProducerDashboard"
-                                   asp-action="CancelProducerOrder"
-                                   asp-route-id="@producerOrder.ProducerOrdersId"
-                                   style="color:red;">
-                                    Cancel
-                                </a>
+							@if (producerOrder.TrackingStatus == "Pending")  // Only show Accept/Cancel options for pending orders
+							{  
+                               <!-- Accept button — POST form so it goes through the AcceptProducerOrder action -->  
+                               <form asp-controller="ProducerDashboard"  
+                                     asp-action="AcceptProducerOrder"  
+                                     asp-route-id="@producerOrder.ProducerOrdersId"  
+                                     method="post"  
+                                     style="display:inline;"  
+                                     onsubmit="return confirm('Accept this order slice?')">  
+                                   @Html.AntiForgeryToken()  
+                                   <button type="submit"  
+                                           style="background-color:green; color:white; padding:6px 14px; border:none; cursor:pointer;">  
+                                       Accept &#10003;  
+                                   </button>  
+                               </form>  
+                               <span>&nbsp;|&nbsp;</span>  
+                               <!-- Cancel link — goes to CancelProducerOrder GET confirmation page -->  
+                               <a asp-controller="ProducerDashboard"  
+                                  asp-action="CancelProducerOrder"  
+                                  asp-route-id="@producerOrder.ProducerOrdersId"  
+                                  style="color:red;">  
+                                   Cancel &#10007;  
+                               </a>  
                             }
-                            else
-                            {
-                                <span style="color:grey;">Cancelled</span>
+							else if (producerOrder.TrackingStatus == "Accepted")   // If already accepted, only show the option to cancel (which goes to the GET confirmation page)
+							{  
+                               <!-- Once accepted only allow cancellation via the detail page -->  
+                               <a asp-controller="ProducerDashboard"  
+                                  asp-action="CancelProducerOrder"  
+                                  asp-route-id="@producerOrder.ProducerOrdersId"  
+                                  style="color:red;">  
+                                   Cancel &#10007;  
+                               </a>  
+                            }
+							else  // For cancelled or any other status, just show that no actions are available
+							{  
+                               <span style="color:grey;">No actions available</span>  
                             }
                         </td>
                     </tr>

@@ -56,28 +56,34 @@ namespace GFLHApp.Controllers
 
 
         // POST: Producers/Create
+
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
+
+        
         public async Task<IActionResult> Create(
             [Bind("ProducersId,ProducerName,ProducerEmail,ProducerInformation,IsVATRegistered,VATNumber")]
             Producers producers,
-            string AccountPassword)
+            string AccountPassword) // Bind the form fields to the Producers model and also accept an additional parameter for the account password, which is not part of the Producers model but is needed to create the associated Identity user account. 
         {
+            
+            
 
-            ModelState.Remove("UserId");
-            ModelState.Remove("ProducerOrders");
+            ModelState.Remove("UserId"); // Remove validation for UserId since it will be set programmatically after creating the Identity user account. This prevents model validation from failing due to the UserId being null at this point.
+            ModelState.Remove("ProducerOrders"); // Remove validation for ProducerOrders since it's a navigation property and not part of the form input. This prevents model validation from failing due to ProducerOrders being null at this point.
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) // If the model state is invalid, log the validation errors to the debug output and return the view with the current producers object to display validation messages to the user.
             {
-                foreach (var kvp in ModelState)
-                    foreach (var err in kvp.Value.Errors)
-                        System.Diagnostics.Debug.WriteLine($"{kvp.Key}: {err.ErrorMessage}");
-                return View(producers);
+                foreach (var kvp in ModelState) // Iterate through the model state dictionary to find any validation errors and log them for debugging purposes. This can help identify why the model state is invalid when testing the form submission.
+                    foreach (var err in kvp.Value.Errors) // For each entry in the model state, check if there are any errors and log the error messages along with the corresponding field name (key) to the debug output.
+                        System.Diagnostics.Debug.WriteLine($"{kvp.Key}: {err.ErrorMessage}"); // Log the field name (key) and the associated error message to the debug output. This can help developers understand which fields are causing validation issues when the form is submitted with invalid data.
+                return View(producers); // Return the view with the current producers object to display validation messages to the user. This allows the user to correct any errors in the form and resubmit it.
             }
 
             // --- Uniqueness checks ----
 
-            bool emailInUse = await _context.Producers
+            bool emailInUse = await _context.Producers // 
                 .AnyAsync(p => p.ProducerEmail.ToLower() == producers.ProducerEmail.ToLower());
             if (emailInUse)
                 ModelState.AddModelError("ProducerEmail", "This email address is already registered to a producer.");

@@ -306,7 +306,8 @@ namespace GFLHApp.Data
                         Category = "Dairy",
                         ProducersId = SunnyBrookFarm.ProducersId,
                         ImagePath = "/images/egg.jpg",
-                        Available = false
+                        Available = false,
+                        Allergens = "Eggs"
 
                      },
 
@@ -331,7 +332,8 @@ namespace GFLHApp.Data
                         Category = "Dairy",
                         ProducersId = SunnyBrookFarm.ProducersId,
                         ImagePath = "/images/cheese.jpg",
-                        Available = true
+                        Available = true,
+                        Allergens = "Dairy"
                      },
 
                     new Products
@@ -343,7 +345,8 @@ namespace GFLHApp.Data
                         Category = "Dairy",
                         ProducersId = SunnyBrookFarm.ProducersId,
                         ImagePath = "/images/egg.jpg",
-                        Available = true
+                        Available = true,
+                        Allergens = "Dairy"
                      },
 
                     new Products
@@ -355,7 +358,8 @@ namespace GFLHApp.Data
                         Category = "Dairy",
                         ProducersId = SunnyBrookFarm.ProducersId,
                         ImagePath = "/images/milk.jpg",
-                        Available = true
+                        Available = true,
+                        Allergens = "Dairy"
 
                      },
 
@@ -436,7 +440,8 @@ namespace GFLHApp.Data
                         Category = "Dairy",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
                         ImagePath = "/images/milk.jpg",
-                        Available = true
+                        Available = true,
+                        Allergens = "Dairy"
                      },
 
                     new Products
@@ -448,7 +453,8 @@ namespace GFLHApp.Data
                         Category = "Dairy",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
                         ImagePath = "/images/cheese.jpg",
-                        Available = true
+                        Available = true,
+                        Allergens = "Dairy"
                      },
 
                     new Products
@@ -460,7 +466,8 @@ namespace GFLHApp.Data
                         Category = "Dairy",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
                         ImagePath = "/images/yogurt.jpg",
-                        Available = true
+                        Available = true,
+                        Allergens = "Dairy"
                      },
 
                     new Products
@@ -472,7 +479,8 @@ namespace GFLHApp.Data
                         Category = "Dairy",
                         ProducersId = MeadowFreshOrganicFarms.ProducersId,
                         ImagePath = "/images/egg.jpg",
-                        Available = true
+                        Available = true,
+                        Allergens = "Eggs"
                      },
 
                     new Products
