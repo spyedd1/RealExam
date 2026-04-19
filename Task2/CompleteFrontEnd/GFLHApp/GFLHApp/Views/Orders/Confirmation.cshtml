@@ -1,0 +1,202 @@
+﻿@model GFLHApp.Models.Orders
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div style="max-width:800px; margin:40px auto; font-family:sans-serif;">
+
+    <!-- Success Banner -->
+    <div style="background:#4CAF50; color:white; padding:24px 32px; border-radius:6px; text-align:center; margin-bottom:32px;">
+        <div style="font-size:48px; margin-bottom:8px;">&#10003;</div>
+        <h1 style="margin:0 0 8px 0; font-size:28px;">Thank You For Your Order!</h1>
+        <p style="margin:0; font-size:16px; opacity:0.9;">Your order has been confirmed and is being processed.</p>
+    </div>
+
+    <!-- Order Reference -->
+    <div style="background:#f9f9f9; border:1px solid #ddd; padding:16px 24px; border-radius:6px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+            <strong style="font-size:16px;">Order Reference</strong>
+            <div style="font-size:22px; font-weight:bold; color:#333;">#@Model.OrdersId.ToString("D6")</div>
+        </div>
+        <div style="text-align:right;">
+            <strong>Order Date</strong>
+            <div>@Model.OrderDate.ToString("dd MMMM yyyy")</div>
+        </div>
+    </div>
+
+    <!-- Order Status -->
+    <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:24px; border-collapse:collapse;">
+        <thead style="background:#333; color:white;">
+            <tr>
+                <th colspan="2" align="left" style="padding:12px;">&#128230; Order Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="200"><strong>Status</strong></td>
+                <td>
+                    <span style="background:#fff3cd; color:#856404; padding:4px 12px; border-radius:20px; font-size:14px; font-weight:bold;">
+                        &#9679; @Model.TrackingStatus
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Fulfilment Method</strong></td>
+                <td>
+					@if (Model.Delivery) // Show delivery method if delivery, otherwise show collection date if collection
+                    {
+                        <span>&#128666; Delivery — @Model.DeliveryMethod</span>
+                    }
+					else // If not delivery, must be collection — show collection date if available
+                    {
+                        <span>&#127981; Collection on @Model.DateOfCollection?.ToString("dd MMMM yyyy")</span>
+                    }
+                </td>
+            </tr>
+			@if (Model.Delivery) // Only show delivery address if this is a delivery order
+			{
+                <tr>
+                    <td><strong>Delivering To</strong></td>
+                    <td>
+                        @Model.DeliveryLine1<br />
+						@if (!string.IsNullOrWhiteSpace(Model.DeliveryLine2)) // Only show second address line if it has content
+                        {
+                            @Model.DeliveryLine2
+                            <br />
+                        }
+                        @Model.DeliveryCity<br />
+                        @Model.DeliveryPostcode.ToUpper()
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Items Ordered - Grouped by Producer -->
+	@foreach (var producerGroup in Model.OrderProducts // Group products by producer, but only if they have a producer associated (defensive check to avoid null reference errors)
+			.Where(op => op.Products != null && op.Products.Producers != null)
+    .GroupBy(op => op.Products.Producers))
+    {
+        var groupInvoiceNumber = producerGroup
+        .FirstOrDefault(x => !string.IsNullOrWhiteSpace(x.InvoiceNumber))?.InvoiceNumber; // Get the invoice number for this producer — all products from the same VAT registered producer share the same invoice number
+
+
+        <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:8px; border-collapse:collapse;">
+            <thead style="background:#333; color:white;">
+                <tr>
+                    <th colspan="4" align="left" style="padding:12px;">
+                        &#127807; @producerGroup.Key.ProducerName
+						@if (producerGroup.Key.IsVATRegistered) // Only show VAT number if producer is VAT registered
+                        {
+                            <span style="font-size:12px; font-weight:normal;">
+                                &nbsp;— VAT Reg No: @producerGroup.Key.VATNumber
+                            </span>
+                        }
+                    </th>
+                </tr>
+                <tr style="background:#555; color:white;">
+                    <th align="left" style="padding:10px;">Product</th>
+                    <th align="center" style="padding:10px;">Qty</th>
+                    <th align="right" style="padding:10px;">Unit Price (inc. VAT)</th>
+                    <th align="right" style="padding:10px;">Line Total</th>
+                </tr>
+            </thead>
+            <tbody>
+				@foreach (var item in producerGroup) // List all products from this producer group
+                {
+                    <tr>
+                        <td>@item.Products.ItemName</td>
+                        <td align="center">@item.ProductQuantity</td>
+                        <td align="right">£@item.Products.ItemPrice.ToString("0.00")</td>
+                        <td align="right">£@((item.Products.ItemPrice * item.ProductQuantity).ToString("0.00"))</td>
+                    </tr>
+                }
+            </tbody>
+            @if (producerGroup.Key.IsVATRegistered)
+            {
+                var producerSubtotal = producerGroup.Sum(op => op.Products.ItemPrice * op.ProductQuantity);
+                var vatAmount = producerSubtotal / 6; // Work backwards from inc-VAT price — VAT portion of a 20% inc-VAT price is price / 6
+                var exVAT = producerSubtotal - vatAmount; // Ex-VAT is the inc-VAT price minus the VAT portion
+                <tfoot style="background:#f9f9f9;">
+                    <tr>
+                        <td colspan="3" align="right"><strong>Ex. VAT</strong></td>
+                        <td align="right">£@exVAT.ToString("0.00")</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="right"><strong>VAT (20%)</strong></td>
+                        <td align="right">£@vatAmount.ToString("0.00")</td>
+                    </tr>
+                    <tr style="background:#e8f5e9;">
+                        <td colspan="3" align="right"><strong>Producer Total (inc. VAT)</strong></td>
+                        <td align="right"><strong>£@producerSubtotal.ToString("0.00")</strong></td>
+                    </tr>
+                </tfoot>
+            }
+        </table>
+
+        <!-- Invoice number shown per VAT registered producer -->
+		@if (!string.IsNullOrWhiteSpace(groupInvoiceNumber)) // Only show invoice information if there is an invoice number for this producer group (should always be the case for VAT registered producers, but this is a defensive check to avoid showing incorrect info if something goes wrong with invoice generation)
+        {
+            <div style="background:#e8f5e9; border:1px solid #a5d6a7; padding:10px 16px; border-radius:4px; margin-bottom:24px; font-size:13px;">
+                &#128203; <strong>VAT Invoice:</strong> Invoice number for @producerGroup.Key.ProducerName is
+                <strong>@groupInvoiceNumber</strong> — please retain this for your records.
+            </div>
+        }
+		else // If there is no invoice number, add some spacing after the order summary table before the next producer group or allergen reminder section
+        {
+            <div style="margin-bottom:24px;"></div>
+        }
+    }
+
+    <!-- Allergen Reminder -->
+    <div style="background:#fff3cd; border:1px solid #ffc107; padding:12px 16px; border-radius:4px; margin-bottom:24px; font-size:14px;">
+        &#9888;&#65039; <strong>Allergen Notice:</strong> Please refer to the allergen information provided at checkout.
+        If you have any concerns about allergens in your order, please contact us before consuming any products.
+    </div>
+
+    <!-- Order Summary -->
+    <table border="1" cellpadding="12" cellspacing="0" width="100%" style="margin-bottom:24px; border-collapse:collapse;">
+        <thead style="background:#333; color:white;">
+            <tr>
+                <th colspan="2" align="left" style="padding:12px;">&#128722; Order Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="200"><strong>Billing Address</strong></td>
+                <td>
+                    @Model.BillingLine1<br />
+					@if (!string.IsNullOrWhiteSpace(Model.BillingLine2)) // Only show second address line if it has content
+                    {
+                        @Model.BillingLine2
+                        <br />
+                    }
+                    @Model.BillingCity<br />
+                    @Model.BillingPostcode.ToUpper()
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Terms Accepted</strong></td>
+                <td>&#10003; Accepted at time of order</td>
+            </tr>
+            <tr>
+                <td><strong>Order Total</strong></td>
+                <td><strong style="font-size:18px;">£@Model.OrdersTotal.ToString("0.00")</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Actions -->
+    <div style="display:flex; gap:12px; margin-top:8px;">
+        <a asp-controller="Orders" asp-action="Index"
+           style="background:#333; color:white; padding:10px 20px; text-decoration:none; border-radius:4px;">
+            &#128203; View My Orders
+        </a>
+        <a asp-controller="Home" asp-action="Index"
+           style="background:#f0f0f0; color:#333; padding:10px 20px; text-decoration:none; border-radius:4px;">
+            &#8592; Continue Shopping
+        </a>
+    </div>
+
+</div>

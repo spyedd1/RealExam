@@ -1,0 +1,579 @@
+@model GFLHApp.Models.Producers
+@{
+    ViewData["Title"] = "Edit — " + Model.ProducerName;
+    ViewData["FullWidth"] = true;
+    var initial = string.IsNullOrWhiteSpace(Model.ProducerName) ? "?" : Model.ProducerName[0].ToString().ToUpper();
+}
+
+<style>
+/* ── Page shell ────────────────────────────────────────── */
+.pw-admin-page {
+    min-height: 100vh;
+    background: var(--cream);
+}
+
+.pw-admin-header {
+    background: linear-gradient(160deg, var(--cream) 0%, #f0ebe0 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 0 28px;
+}
+
+.pw-admin-header__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.pw-admin-breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    list-style: none; margin: 0 0 16px; padding: 0;
+    font-size: 13px; font-weight: 500; flex-wrap: wrap;
+}
+.pw-admin-breadcrumb li { display: flex; align-items: center; gap: 6px; }
+.pw-admin-breadcrumb li + li::before { content: '/'; color: var(--text-muted); opacity: .5; }
+.pw-admin-breadcrumb a { color: var(--text-muted); transition: color .15s; text-decoration: none; }
+.pw-admin-breadcrumb a:hover { color: var(--green); }
+.pw-admin-breadcrumb [aria-current] { color: var(--text); font-weight: 600; }
+
+.pw-admin-header__title {
+    display: flex; align-items: center; gap: 14px;
+}
+.pw-admin-header__icon {
+    width: 44px; height: 44px;
+    background: var(--green-100);
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green);
+    flex-shrink: 0;
+}
+.pw-admin-header__title h1 {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 700;
+    color: var(--text);
+    margin: 0; line-height: 1.2;
+}
+.pw-admin-header__title p {
+    font-size: 13px; color: var(--text-muted);
+    margin: 2px 0 0;
+}
+
+/* ── Body: 2-column grid ─────────────────────────────── */
+.pw-admin-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 36px;
+    align-items: start;
+}
+
+@@media (max-width: 860px) {
+    .pw-admin-body { grid-template-columns: 1fr; }
+    .pw-admin-preview-col { display: none; }
+}
+
+/* ── Left: sticky producer preview card ─────────────── */
+.pw-admin-preview-col {
+    position: sticky;
+    top: 96px;
+}
+
+.pw-admin-producer-card {
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    transition: transform .35s ease, box-shadow .35s ease;
+    cursor: default;
+}
+
+.pw-admin-producer-card__hero {
+    background: linear-gradient(135deg, var(--green-700) 0%, var(--green) 50%, #22c55e 100%);
+    padding: 32px 24px;
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; overflow: hidden;
+    text-align: center;
+}
+.pw-admin-producer-card__hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(245,158,11,.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+.pw-admin-producer-card__avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green), #4ade80);
+    border: 3px solid rgba(255,255,255,.25);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 900;
+    color: #fff;
+    margin-bottom: 14px;
+    position: relative; z-index: 1;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+}
+.pw-admin-producer-card__avatar:hover {
+    transform: scale(1.12) rotate(-3deg);
+    box-shadow: 0 10px 28px rgba(22,163,74,.45);
+}
+.pw-admin-producer-card__name {
+    font-family: var(--font-display);
+    font-size: 17px; font-weight: 700;
+    color: #fff;
+    margin: 0 0 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 220px;
+    position: relative; z-index: 1;
+}
+.pw-admin-producer-card__email {
+    font-size: 12px; color: rgba(255,255,255,.6);
+    display: flex; align-items: center; gap: 5px;
+    position: relative; z-index: 1;
+    margin-bottom: 14px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 220px;
+}
+.pw-admin-producer-card__vat {
+    display: none;
+    background: rgba(245,158,11,.18);
+    border: 1px solid rgba(245,158,11,.4);
+    color: #FDE68A;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .05em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: var(--r-full);
+    position: relative; z-index: 1;
+    align-items: center; gap: 5px;
+}
+.pw-admin-producer-card__vat.is-visible { display: inline-flex; }
+
+.pw-admin-producer-card__meta {
+    padding: 16px 18px;
+    border-top: 1px solid var(--border);
+    background: var(--cream);
+    display: flex; flex-direction: column; gap: 10px;
+}
+.pw-admin-producer-card__row {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12px;
+}
+.pw-admin-producer-card__row-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    background: var(--green-100);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green);
+    margin-top: 1px;
+}
+.pw-admin-producer-card__row-label {
+    font-weight: 600; color: var(--text-muted);
+    font-size: 10px; text-transform: uppercase; letter-spacing: .07em;
+    display: block; margin-bottom: 1px;
+}
+.pw-admin-producer-card__row-value {
+    color: var(--text); font-size: 13px; font-weight: 500;
+    overflow: hidden; text-overflow: ellipsis;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+
+/* ── Right: form card ─────────────────────────────────── */
+.pw-form-card {
+    background: var(--cream);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.pw-form-section {
+    padding: 24px 28px;
+    background: var(--cream);
+}
+.pw-form-section + .pw-form-section {
+    border-top: 1px solid var(--border);
+}
+.pw-form-section__label {
+    font-size: 10px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin: 0 0 18px;
+}
+
+.pw-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@@media (max-width: 520px) {
+    .pw-form-row { grid-template-columns: 1fr; }
+    .pw-form-section { padding: 18px 16px; }
+}
+
+/* ── Field ────────────────────────────────────────────── */
+.pw-field {
+    display: flex; flex-direction: column; gap: 5px;
+}
+.pw-field label {
+    font-size: 13px; font-weight: 600; color: var(--text);
+}
+.pw-field__req { color: var(--orange); margin-left: 2px; }
+.pw-field__hint {
+    font-size: 12px; color: var(--text-muted);
+    line-height: 1.5; margin-top: 3px;
+}
+.pw-field__error { font-size: 12px; color: #DC2626; margin-top: 2px; }
+
+/* ── Inputs ───────────────────────────────────────────── */
+.pw-input, .pw-textarea {
+    width: 100%; height: 42px;
+    padding: 0 13px;
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 500;
+    color: var(--text);
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-sm);
+    transition: border-color .15s, box-shadow .15s;
+    outline: none;
+    appearance: none; -webkit-appearance: none;
+}
+.pw-input:hover, .pw-textarea:hover { border-color: #c4c0bb; }
+.pw-input:focus, .pw-textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-100);
+}
+.pw-input.input-validation-error,
+.pw-textarea.input-validation-error {
+    border-color: #DC2626;
+    box-shadow: 0 0 0 3px #fee2e2;
+}
+.pw-textarea {
+    height: auto; min-height: 120px;
+    padding: 11px 13px;
+    resize: vertical; line-height: 1.65;
+}
+
+/* ── Toggle ───────────────────────────────────────────── */
+.pw-toggle-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 0;
+}
+.pw-toggle-row__info { flex: 1; }
+.pw-toggle-row__info strong {
+    font-size: 14px; font-weight: 600; color: var(--text); display: block;
+}
+.pw-toggle-row__info span { font-size: 12px; color: var(--text-muted); }
+.pw-toggle {
+    position: relative; display: inline-block;
+    width: 46px; height: 25px; flex-shrink: 0;
+}
+.pw-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+.pw-toggle__track {
+    position: absolute; inset: 0;
+    background: var(--border);
+    border-radius: 999px; cursor: pointer;
+    transition: background .2s;
+}
+.pw-toggle__track::after {
+    content: '';
+    position: absolute; left: 3px; top: 3px;
+    width: 19px; height: 19px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,.15);
+    transition: transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+.pw-toggle input:checked + .pw-toggle__track { background: var(--green); }
+.pw-toggle input:checked + .pw-toggle__track::after { transform: translateX(21px); }
+.pw-toggle input:focus-visible + .pw-toggle__track {
+    outline: 3px solid var(--green-200); outline-offset: 2px;
+}
+
+/* VAT number field — revealed by JS when toggle is on */
+.pw-vat-field {
+    margin-top: 16px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .3s ease, opacity .25s ease, margin .3s ease;
+}
+.pw-vat-field.is-open {
+    max-height: 120px;
+    opacity: 1;
+}
+
+/* ── Actions bar ──────────────────────────────────────── */
+.pw-form-actions {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px;
+    background: #f0ebe0;
+    border-top: 1px solid var(--border);
+    gap: 12px;
+}
+.pw-btn-save {
+    height: 42px; padding: 0 24px;
+    background: var(--green); color: #fff;
+    border: none; border-radius: var(--r-sm);
+    font-family: var(--font-body); font-size: 14px; font-weight: 700;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 7px;
+    transition: background .15s, box-shadow .15s, transform .1s;
+    box-shadow: 0 2px 8px rgba(22,163,74,.22);
+}
+.pw-btn-save:hover { background: var(--green-700); box-shadow: 0 4px 14px rgba(22,163,74,.3); transform: translateY(-1px); }
+.pw-btn-save:active { transform: translateY(0); }
+.pw-btn-back {
+    height: 42px; padding: 0 16px;
+    background: transparent; color: var(--text-muted);
+    border: 1.5px solid var(--border); border-radius: var(--r-sm);
+    font-family: var(--font-body); font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 7px;
+    text-decoration: none;
+    transition: border-color .15s, color .15s;
+}
+.pw-btn-back:hover { border-color: var(--text-muted); color: var(--text); }
+
+/* ── Validation summary ───────────────────────────────── */
+.pw-form-errors {
+    margin: 20px 28px 0;
+    padding: 12px 16px;
+    background: #fef2f2;
+    border: 1.5px solid #fecaca;
+    border-radius: var(--r-sm);
+    font-size: 13px; color: #DC2626;
+}
+.pw-form-errors ul { margin: 5px 0 0 16px; padding: 0; }
+</style>
+
+<div class="pw-admin-page">
+
+    <div class="pw-admin-header">
+        <div class="pw-admin-header__inner">
+            <nav aria-label="Breadcrumb">
+                <ol class="pw-admin-breadcrumb">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Producers" asp-action="Index">Growers</a></li>
+                    <li><a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducersId">@Model.ProducerName</a></li>
+                    <li><span aria-current="page">Edit</span></li>
+                </ol>
+            </nav>
+            <div class="pw-admin-header__title">
+                <div class="pw-admin-header__icon" aria-hidden="true">
+                    <i data-lucide="user-pen" style="width:20px;height:20px;stroke-width:2"></i>
+                </div>
+                <div>
+                    <h1>Edit producer</h1>
+                    <p>@Model.ProducerName</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pw-admin-body">
+
+        <!-- ── Left: sticky producer preview ─────────── -->
+        <div class="pw-admin-preview-col" aria-hidden="true">
+            <div class="pw-admin-producer-card" id="previewCard">
+                <div class="pw-admin-producer-card__hero">
+                    <div class="pw-admin-producer-card__avatar" id="previewAvatar">@initial</div>
+                    <p class="pw-admin-producer-card__name" id="previewName">@Model.ProducerName</p>
+                    <p class="pw-admin-producer-card__email" id="previewEmail">
+                        <i data-lucide="mail" style="width:12px;height:12px;"></i>
+                        <span id="previewEmailText">@Model.ProducerEmail</span>
+                    </p>
+                    <span class="pw-admin-producer-card__vat @(Model.IsVATRegistered ? "is-visible" : "")" id="previewVat">
+                        <i data-lucide="receipt" style="width:11px;height:11px;"></i>
+                        VAT Registered
+                    </span>
+                </div>
+                <div class="pw-admin-producer-card__meta">
+                    <div class="pw-admin-producer-card__row">
+                        <div class="pw-admin-producer-card__row-icon">
+                            <i data-lucide="info" style="width:14px;height:14px;stroke-width:2"></i>
+                        </div>
+                        <div>
+                            <span class="pw-admin-producer-card__row-label">About</span>
+                            <span class="pw-admin-producer-card__row-value" id="previewInfo">
+                                @(string.IsNullOrWhiteSpace(Model.ProducerInformation) ? "No bio yet." : Model.ProducerInformation)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Right: form ────────────────────────────── -->
+        <form asp-action="Edit" method="post" id="editProducerForm" novalidate>
+            <input type="hidden" asp-for="ProducersId" />
+            <input type="hidden" asp-for="UserId" />
+
+            <div class="pw-form-card">
+
+                <div asp-validation-summary="ModelOnly" class="pw-form-errors" hidden></div>
+
+                <!-- Identity -->
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Identity</p>
+                    <div class="pw-field">
+                        <label asp-for="ProducerName">Producer / business name <span class="pw-field__req" aria-hidden="true">*</span></label>
+                        <input asp-for="ProducerName" class="pw-input" id="liveNameInput"
+                               placeholder="e.g. Green Valley Farm" autocomplete="organization" />
+                        <span asp-validation-for="ProducerName" class="pw-field__error"></span>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Contact</p>
+                    <div class="pw-field">
+                        <label asp-for="ProducerEmail">Email address <span class="pw-field__req" aria-hidden="true">*</span></label>
+                        <input asp-for="ProducerEmail" class="pw-input" id="liveEmailInput"
+                               type="email" placeholder="hello@example.com" autocomplete="email" />
+                        <span asp-validation-for="ProducerEmail" class="pw-field__error"></span>
+                        <span class="pw-field__hint">Used for order notifications and grower communications.</span>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">About</p>
+                    <div class="pw-field">
+                        <label asp-for="ProducerInformation">Bio / description</label>
+                        <textarea asp-for="ProducerInformation" class="pw-textarea" id="liveInfoInput"
+                                  placeholder="Tell customers about your farm, growing practices, certifications…"
+                                  rows="5"></textarea>
+                        <span asp-validation-for="ProducerInformation" class="pw-field__error"></span>
+                        <span class="pw-field__hint">Shown on the public producer page. Supports line breaks.</span>
+                    </div>
+                </div>
+
+                <!-- VAT / Business details -->
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Business &amp; Tax</p>
+
+                    <div class="pw-toggle-row">
+                        <div class="pw-toggle-row__info">
+                            <strong>VAT registered</strong>
+                            <span>Enables VAT display on receipts and producer profile.</span>
+                        </div>
+                        <label class="pw-toggle" aria-label="Toggle VAT registration">
+                            <input asp-for="IsVATRegistered" type="checkbox" role="switch" id="vatToggle" />
+                            <span class="pw-toggle__track" aria-hidden="true"></span>
+                        </label>
+                    </div>
+
+                    <div class="pw-vat-field @(Model.IsVATRegistered ? "is-open" : "")" id="vatNumberField">
+                        <div class="pw-field">
+                            <label asp-for="VATNumber">VAT number</label>
+                            <input asp-for="VATNumber" class="pw-input"
+                                   placeholder="e.g. GB123456789"
+                                   autocomplete="off"
+                                   style="font-family:'JetBrains Mono','Courier New',monospace;letter-spacing:.05em;" />
+                            <span asp-validation-for="VATNumber" class="pw-field__error"></span>
+                            <span class="pw-field__hint">Format: GB followed by 9 digits.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="pw-form-actions">
+                    <a asp-action="Details" asp-route-id="@Model.ProducersId" class="pw-btn-back">
+                        <i data-lucide="arrow-left" style="width:15px;height:15px;" aria-hidden="true"></i>
+                        Back
+                    </a>
+                    <button type="submit" class="pw-btn-save">
+                        <i data-lucide="check" style="width:15px;height:15px;" aria-hidden="true"></i>
+                        Save changes
+                    </button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    (function () {
+        'use strict';
+
+        if (window.lucide) lucide.createIcons();
+
+        /* ── Live preview ──────────────────────────────────────────── */
+        var nameInput   = document.getElementById('liveNameInput');
+        var emailInput  = document.getElementById('liveEmailInput');
+        var infoInput   = document.getElementById('liveInfoInput');
+        var previewName   = document.getElementById('previewName');
+        var previewAvatar = document.getElementById('previewAvatar');
+        var previewEmailText = document.getElementById('previewEmailText');
+        var previewInfo  = document.getElementById('previewInfo');
+
+        if (nameInput) {
+            nameInput.addEventListener('input', function () {
+                var v = nameInput.value.trim() || 'Producer name';
+                if (previewName) previewName.textContent = v;
+                if (previewAvatar) previewAvatar.textContent = v.charAt(0).toUpperCase() || '?';
+            });
+        }
+        if (emailInput && previewEmailText) {
+            emailInput.addEventListener('input', function () {
+                previewEmailText.textContent = emailInput.value.trim() || '—';
+            });
+        }
+        if (infoInput && previewInfo) {
+            infoInput.addEventListener('input', function () {
+                previewInfo.textContent = infoInput.value.trim() || 'No bio yet.';
+            });
+        }
+
+        /* ── VAT toggle reveals VAT number field ───────────────────── */
+        var vatToggle      = document.getElementById('vatToggle');
+        var vatNumberField = document.getElementById('vatNumberField');
+        var previewVat     = document.getElementById('previewVat');
+
+        function syncVat() {
+            var on = vatToggle && vatToggle.checked;
+            if (vatNumberField) vatNumberField.classList.toggle('is-open', on);
+            if (previewVat)     previewVat.classList.toggle('is-visible', on);
+        }
+        if (vatToggle) {
+            vatToggle.addEventListener('change', syncVat);
+            syncVat();
+        }
+
+        /* ── 3-D tilt on preview card ──────────────────────────────── */
+        var card = document.getElementById('previewCard');
+        if (card) {
+            var ticking = false, lastE = {};
+            card.addEventListener('mousemove', function (e) {
+                lastE = e;
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    var r = card.getBoundingClientRect();
+                    var x = ((lastE.clientX - r.left) / r.width  - 0.5) * 2;
+                    var y = ((lastE.clientY - r.top)  / r.height - 0.5) * 2;
+                    card.style.transform = 'perspective(800px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 8) + 'deg) scale(1.02)';
+                    card.style.boxShadow = '0 16px 48px rgba(0,0,0,.14)';
+                    ticking = false;
+                });
+            }, { passive: true });
+            card.addEventListener('mouseleave', function () {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+        }
+
+        /* ── Show validation summary if it has errors ──────────────── */
+        var summary = document.querySelector('[data-valmsg-summary]');
+        if (summary && summary.querySelectorAll('li').length > 0) {
+            summary.removeAttribute('hidden');
+        }
+
+    }());
+    </script>
+}

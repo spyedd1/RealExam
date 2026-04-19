@@ -1,0 +1,49 @@
+﻿@model GFLHApp.Models.ProducerOrders
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ProducerOrders</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProducerOrdersId" />
+            <div class="form-group">
+                <label asp-for="OrdersId" class="control-label"></label>
+                <select asp-for="OrdersId" class="form-control" asp-items="ViewBag.OrdersId"></select>
+                <span asp-validation-for="OrdersId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProducerId" class="control-label"></label>
+                <input asp-for="ProducerId" class="form-control" />
+                <span asp-validation-for="ProducerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProducerSubtotal" class="control-label"></label>
+                <input asp-for="ProducerSubtotal" class="form-control" />
+                <span asp-validation-for="ProducerSubtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrackingStatus" class="control-label"></label>
+                <input asp-for="TrackingStatus" class="form-control" />
+                <span asp-validation-for="TrackingStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

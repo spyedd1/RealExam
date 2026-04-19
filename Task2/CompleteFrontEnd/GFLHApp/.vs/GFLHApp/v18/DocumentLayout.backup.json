@@ -1,0 +1,801 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\gfgf\\GFLHApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\orders\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\orders\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\products\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\products\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\producers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\producers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\producers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\producers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\areas\\identity\\pages\\account\\loginwithrecoverycode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\areas\\identity\\pages\\account\\loginwithrecoverycode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\areas\\identity\\pages\\account\\loginwith2fa.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\areas\\identity\\pages\\account\\loginwith2fa.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\areas\\identity\\pages\\account\\lockout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\areas\\identity\\pages\\account\\lockout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\areas\\identity\\pages\\account\\confirmemail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\areas\\identity\\pages\\account\\confirmemail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\controllers\\producerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\producerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\products\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\products\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\controllers\\producerorderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\producerorderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\admindashboard\\producers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\admindashboard\\producers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\admindashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\admindashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\admindashboard\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\admindashboard\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\admindashboard\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\admindashboard\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\controllers\\admindashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\admindashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\controllers\\basketproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\basketproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\producerdashboard\\cancelproducerorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\producerdashboard\\cancelproducerorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\controllers\\basketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\basketscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\controllers\\producerdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\controllers\\producerdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\models\\producerorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\producerorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\models\\orderproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\orderproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\baskets\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\baskets\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\producers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\producers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\producerdashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\producerdashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\orders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\orders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\models\\basketproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\basketproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\models\\basket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\models\\basket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\baskets\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\baskets\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\views\\basketproducts\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\views\\basketproducts\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\data\\migrations\\20260411202046_dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\data\\migrations\\20260411202046_dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\data\\migrations\\20260414140007_pc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\data\\migrations\\20260414140007_pc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\data\\migrations\\20260415122629_modelchanges2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\data\\migrations\\20260415122629_modelchanges2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|e:\\gfgf\\gflhapp\\gflhapp\\data\\migrations\\20260418182408_admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{544975E7-D2B9-47CA-A87B-51E2E095FB97}|GFLHApp\\GFLHApp.csproj|solutionrelative:gflhapp\\data\\migrations\\20260418182408_admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Orders.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\Orders.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\Orders.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\Orders.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\Orders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-01T01:42:09.019Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\OrdersController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAwwE4AAABkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T17:35:49.776Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "GFLHApp\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T14:30:36.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Lockout.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+              "RelativeToolTip": "GFLHApp\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T14:30:11.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "GFLHApp\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T14:30:10.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ConfirmEmail.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+              "RelativeToolTip": "GFLHApp\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T14:30:02.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Producers\\Details.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Producers\\Details.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Producers\\Details.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Producers\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T12:23:17.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Producers\\Edit.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Producers\\Edit.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Producers\\Edit.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Producers\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkBAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T10:45:43.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\AdminDashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\AdminDashboard\\Index.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\AdminDashboard\\Index.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\AdminDashboard\\Index.cshtml",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAYwNsAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T18:23:52.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAkwJgAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-10T09:01:26.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "site.css",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "GFLHApp\\wwwroot\\css\\site.css",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "GFLHApp\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAMEGAAAAAAAAAAAcwNsIAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-11T00:17:02.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Producers\\Create.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Producers\\Create.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Producers\\Create.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Producers\\Create.cshtml",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAALYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T13:59:10.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ProducerOrdersController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\ProducerOrdersController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\ProducerOrdersController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\ProducerOrdersController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\ProducerOrdersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T13:58:39.408Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Orders\\Create.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Orders\\Create.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Orders\\Create.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Orders\\Create.cshtml",
+              "ViewState": "AgIAAFcEAAAAAAAAAAAuwI8EAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-01T18:22:31.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginWith2fa.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml",
+              "RelativeToolTip": "GFLHApp\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T14:30:48.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Products\\Create.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Products\\Create.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Products\\Create.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Products\\Create.cshtml",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAYwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T13:58:48.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginWithRecoveryCode.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
+              "RelativeToolTip": "GFLHApp\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T14:30:52.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Logout.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "RelativeToolTip": "GFLHApp\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-19T14:30:55.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\SeedData.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Data\\SeedData.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\SeedData.cs",
+              "RelativeToolTip": "GFLHApp\\Data\\SeedData.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAgwNcBAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-01T18:57:53.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\ProductsController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T20:40:35.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AdminDashboardController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\AdminDashboardController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\AdminDashboardController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\AdminDashboardController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\AdminDashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T18:23:13.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Orders\\Index.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Orders\\Index.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Orders\\Index.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Orders\\Index.cshtml",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAYwFgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-15T12:30:10.937Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProducersController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\ProducersController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\ProducersController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\ProducersController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\ProducersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T14:02:30.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Products\\Edit.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Products\\Edit.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Products\\Edit.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Products\\Edit.cshtml",
+              "ViewState": "AgIAAG8CAAAAAAAAAAAowJACAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T20:50:11.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Producers.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\AdminDashboard\\Producers.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\AdminDashboard\\Producers.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\AdminDashboard\\Producers.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\AdminDashboard\\Producers.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowFMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T18:37:22.235Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "20260418182408_Admin.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260418182408_Admin.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260418182408_Admin.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260418182408_Admin.cs",
+              "RelativeToolTip": "GFLHApp\\Data\\Migrations\\20260418182408_Admin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T18:24:09.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Products.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\AdminDashboard\\Products.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\AdminDashboard\\Products.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\AdminDashboard\\Products.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\AdminDashboard\\Products.cshtml",
+              "ViewState": "AgIAAMYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T18:37:28.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Users.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\AdminDashboard\\Users.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\AdminDashboard\\Users.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\AdminDashboard\\Users.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\AdminDashboard\\Users.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-18T18:37:46.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Products\\Index.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Products\\Index.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Products\\Index.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Products\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-10T08:46:25.536Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAAIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-10T10:24:40.22Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "BasketProductsController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\BasketProductsController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\BasketProductsController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\BasketProductsController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\BasketProductsController.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAcwOEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T12:22:41.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\BasketProducts\\Create.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\BasketProducts\\Create.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\BasketProducts\\Create.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\BasketProducts\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T17:37:21.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "BasketsController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\BasketsController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\BasketsController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\BasketsController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\BasketsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T14:05:58.722Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "site.js",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "GFLHApp\\wwwroot\\js\\site.js",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "GFLHApp\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAIoDAAAAAAAAAAAIwKQDAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-04-11T00:18:54.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Basket.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\Basket.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\Basket.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\Basket.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\Basket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T19:57:54.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Orders\\Details.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Orders\\Details.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Orders\\Details.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Orders\\Details.cshtml",
+              "ViewState": "AgIAAEMAAAAAAAAAAADwv20AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T19:50:08.245Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "OrderProducts.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\OrderProducts.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\OrderProducts.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\OrderProducts.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\OrderProducts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T19:59:11.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CancelProducerOrder.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\ProducerDashboard\\CancelProducerOrder.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\ProducerDashboard\\CancelProducerOrder.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\ProducerDashboard\\CancelProducerOrder.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\ProducerDashboard\\CancelProducerOrder.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T13:58:42.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Baskets\\Create.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Baskets\\Create.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Baskets\\Create.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Baskets\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T17:37:32.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Baskets\\Index.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\Baskets\\Index.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\Baskets\\Index.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\Baskets\\Index.cshtml",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAwF4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T19:50:58.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "20260415122629_ModelChanges2.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260415122629_ModelChanges2.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260415122629_ModelChanges2.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260415122629_ModelChanges2.cs",
+              "RelativeToolTip": "GFLHApp\\Data\\Migrations\\20260415122629_ModelChanges2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T12:26:29.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ProducerDashboardController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\ProducerDashboardController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Controllers\\ProducerDashboardController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Controllers\\ProducerDashboardController.cs",
+              "RelativeToolTip": "GFLHApp\\Controllers\\ProducerDashboardController.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAmwKgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T20:33:39.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ProducerOrders.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\ProducerOrders.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\ProducerOrders.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\ProducerOrders.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\ProducerOrders.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T14:06:00.534Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Products.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\Products.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\Products.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\Products.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\Products.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T19:57:57.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\ProducerDashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "GFLHApp\\Views\\ProducerDashboard\\Index.cshtml",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Views\\ProducerDashboard\\Index.cshtml",
+              "RelativeToolTip": "GFLHApp\\Views\\ProducerDashboard\\Index.cshtml",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAmwHcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-11T20:17:36.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "20260414140007_pc.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260414140007_pc.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260414140007_pc.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260414140007_pc.cs",
+              "RelativeToolTip": "GFLHApp\\Data\\Migrations\\20260414140007_pc.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T14:00:08.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "20260411202046_DashboardController.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260411202046_DashboardController.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Data\\Migrations\\20260411202046_DashboardController.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Data\\Migrations\\20260411202046_DashboardController.cs",
+              "RelativeToolTip": "GFLHApp\\Data\\Migrations\\20260411202046_DashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T20:20:46.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "BasketProducts.cs",
+              "DocumentMoniker": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\BasketProducts.cs",
+              "RelativeDocumentMoniker": "GFLHApp\\Models\\BasketProducts.cs",
+              "ToolTip": "E:\\gfgf\\GFLHApp\\GFLHApp\\Models\\BasketProducts.cs",
+              "RelativeToolTip": "GFLHApp\\Models\\BasketProducts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-01T02:12:54.909Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

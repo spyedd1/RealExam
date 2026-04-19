@@ -1,0 +1,841 @@
+@model GFLHApp.Models.Producers
+
+@{
+    ViewData["Title"] = Model.ProducerName;
+    ViewData["FullWidth"] = true;
+
+    var products      = Model.Products?.ToList() ?? new List<GFLHApp.Models.Products>();
+    var productCount  = products.Count;
+    var availCount    = products.Count(p => p.Available && p.QuantityInStock > 0);
+    var initial       = string.IsNullOrWhiteSpace(Model.ProducerName) ? "?" : Model.ProducerName[0].ToString().ToUpper();
+
+    /* Category → lucide icon mapping for product fallback */
+    string CategoryIcon(string cat) => (cat ?? "").ToLower() switch {
+        var c when c.Contains("veg")    => "carrot",
+        var c when c.Contains("fruit")  => "cherry",
+        var c when c.Contains("dairy")  => "milk",
+        var c when c.Contains("meat")   => "beef",
+        var c when c.Contains("bread")  => "wheat",
+        var c when c.Contains("drink")  => "cup-soda",
+        _                               => "package"
+    };
+
+    /* Gradient per product index for no-image cards */
+    var prodGradients = new[] {
+        "linear-gradient(135deg,#dcfce7,#86efac)",
+        "linear-gradient(135deg,#bbf7d0,#4ade80)",
+        "linear-gradient(135deg,#a7f3d0,#34d399)",
+        "linear-gradient(135deg,#d9f99d,#86efac)",
+        "linear-gradient(135deg,#6ee7b7,#10b981)",
+        "linear-gradient(135deg,#ecfdf5,#6ee7b7)"
+    };
+}
+
+<style>
+/* ══ Producer Details Page ═══════════════════════════════════════════ */
+
+/* ── Hero — light, inviting, navbar-friendly ──────────── */
+.pd-hero {
+    position: relative;
+    background: #f0fdf4;
+    padding: 8rem 1.5rem 5rem;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Blobs — vivid but light */
+.pd-hero__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .55;
+    pointer-events: none;
+}
+.pd-hero__blob--a { width: 500px; height: 500px; background: #86efac; top: -180px; left: -120px; animation: blob-drift-1 16s ease-in-out infinite alternate; }
+.pd-hero__blob--b { width: 420px; height: 420px; background: #bbf7d0; top: -120px; right: -100px; animation: blob-drift-2 12s ease-in-out infinite alternate; }
+.pd-hero__blob--c { width: 320px; height: 320px; background: #d9f99d; bottom: -80px; left: 30%;  animation: blob-drift-3 18s ease-in-out infinite alternate; }
+
+@@keyframes blob-drift-1 { to { transform: translate(40px,30px) scale(1.08); } }
+@@keyframes blob-drift-2 { to { transform: translate(-30px,20px) scale(.93); } }
+@@keyframes blob-drift-3 { to { transform: translate(20px,-35px) scale(1.06); } }
+
+/* Floating parallax icons */
+.pd-hero__float {
+    position: absolute;
+    pointer-events: none;
+    will-change: transform;
+}
+.pd-hero__float--1 { top: 18%; left: 7%; }
+.pd-hero__float--2 { top: 22%; right: 8%; }
+.pd-hero__float--3 { bottom: 25%; left: 6%; }
+.pd-hero__float--4 { bottom: 20%; right: 9%; }
+.pd-hero__float svg { width: 44px; height: 44px; stroke: #15803d; opacity: .35; }
+
+/* Breadcrumb */
+.pd-hero__breadcrumb {
+    position: relative; z-index: 3;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: .8rem; font-weight: 600;
+    color: #15803d;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    background: rgba(255,255,255,.6);
+    border: 1px solid #bbf7d0;
+    padding: 6px 16px;
+    border-radius: var(--r-full);
+    backdrop-filter: blur(6px);
+    transition: background .2s, color .2s;
+}
+.pd-hero__breadcrumb:hover { background: #dcfce7; color: #065f46; }
+.pd-hero__breadcrumb i { width: 13px; height: 13px; }
+
+/* Avatar */
+.pd-hero__avatar {
+    position: relative; z-index: 3;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #16A34A, #4ade80);
+    border: 4px solid #fff;
+    box-shadow: 0 8px 28px rgba(22,163,74,.3), 0 2px 8px rgba(0,0,0,.08);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: var(--font-display);
+    font-size: 2.6rem; font-weight: 900;
+    color: #fff;
+    animation: sticker-pop .5s cubic-bezier(.34,1.56,.64,1) both;
+    cursor: default;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
+}
+.pd-hero__avatar:hover {
+    transform: scale(1.12) rotate(-4deg);
+    box-shadow: 0 12px 36px rgba(22,163,74,.4);
+}
+
+/* Name */
+.pd-hero__name {
+    position: relative; z-index: 3;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    color: #052e16;
+    line-height: 1.1;
+    margin: 0 0 1rem;
+    letter-spacing: -.02em;
+}
+
+/* Badges row */
+.pd-hero__badges {
+    position: relative; z-index: 3;
+    display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+.pd-hero__pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 16px;
+    border-radius: var(--r-full);
+    font-size: .78rem; font-weight: 600;
+    background: rgba(255,255,255,.75);
+    border: 1.5px solid #bbf7d0;
+    color: #15803d;
+    backdrop-filter: blur(6px);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.pd-hero__pill:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+.pd-hero__pill--green  { background: #dcfce7; border-color: #4ade80; color: #14532d; }
+.pd-hero__pill--yellow { background: #fef9c3; border-color: #fde68a; color: #713f12; }
+
+/* Email chip */
+.pd-hero__email {
+    position: relative; z-index: 3;
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: .85rem; color: #15803d;
+    text-decoration: none;
+    background: rgba(255,255,255,.6);
+    border: 1px solid #bbf7d0;
+    padding: 6px 14px;
+    border-radius: var(--r-full);
+    backdrop-filter: blur(4px);
+    transition: background .2s, color .2s;
+}
+.pd-hero__email:hover { background: #dcfce7; color: #065f46; }
+
+/* Wave bottom */
+.pd-hero__wave { position: absolute; bottom: 0; left: 0; right: 0; line-height: 0; z-index: 2; }
+.pd-hero__wave svg { display: block; }
+
+/* Ripple on fact cards */
+.pd-fact-card { overflow: hidden; cursor: default; transition: transform .25s ease, box-shadow .25s ease; }
+.pd-fact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.pd-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(22,163,74,.18);
+    transform: scale(0);
+    animation: ripple-out .55s ease-out forwards;
+    pointer-events: none;
+}
+@@keyframes ripple-out { to { transform: scale(4); opacity: 0; } }
+
+/* ── Content layout ───────────────────────────────────────────────── */
+.pd-body {
+    background: #f0fdf4;
+    padding: 3.5rem 1.5rem 0;
+}
+.pd-body__grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1.75rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+@@media (max-width: 860px) {
+    .pd-body__grid { grid-template-columns: 1fr; }
+}
+
+/* ── About card ───────────────────────────────────────────────────── */
+.pd-about {
+    background: #fff;
+    border-radius: var(--r-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1.5px solid #d1fae5;
+}
+.pd-about__eyebrow {
+    display: flex; align-items: center; gap: 7px;
+    font-size: .75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: #15803d;
+    background: #dcfce7;
+    padding: 4px 14px; border-radius: var(--r-full);
+    width: fit-content;
+    margin-bottom: 1rem;
+}
+.pd-about__text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #374151;
+    margin: 0;
+    white-space: pre-line;
+}
+.pd-about__empty {
+    font-size: .95rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ── Quick-facts sidebar ──────────────────────────────────────────── */
+.pd-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.pd-fact-card {
+    background: #fff;
+    border-radius: var(--r-xl);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1.5px solid #d1fae5;
+    display: flex; align-items: center; gap: 1rem;
+}
+.pd-fact-card__icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+}
+.pd-fact-card__icon--green  { background: #dcfce7; }
+.pd-fact-card__icon--lime   { background: #d9f99d; }
+.pd-fact-card__icon--teal   { background: #a7f3d0; }
+.pd-fact-card__icon--mint   { background: #bbf7d0; }
+.pd-fact-card__body { min-width: 0; }
+.pd-fact-card__label {
+    font-size: .72rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .07em;
+    color: var(--text-muted);
+    margin: 0 0 2px;
+}
+.pd-fact-card__value {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    word-break: break-all;
+}
+.pd-fact-card__value a { color: #16A34A; text-decoration: none; }
+.pd-fact-card__value a:hover { text-decoration: underline; }
+
+/* ── Stats strip ─────────────────────────────────────────────────── */
+.pd-stats-strip {
+    max-width: 1000px;
+    margin: 1.75rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.pd-stat-tile {
+    background: #fff;
+    border-radius: var(--r-xl);
+    padding: 1.5rem;
+    text-align: center;
+    border: 1.5px solid #d1fae5;
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+.pd-stat-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.pd-stat-tile__value {
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 900;
+    color: #16A34A;
+    line-height: 1;
+    margin: 0 0 .3rem;
+}
+.pd-stat-tile__label {
+    font-size: .78rem; font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .06em;
+}
+@@media (max-width: 600px) {
+    .pd-stats-strip { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Produce section ─────────────────────────────────────────────── */
+.pd-produce {
+    background: #f0fdf4;
+    padding: 4rem 1.5rem 5rem;
+}
+
+/* Product card (adapted from pw-card--product) */
+.pd-product-card {
+    background: #fff;
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1.5px solid #d1fae5;
+    display: flex; flex-direction: column;
+    transition: transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease;
+    position: relative;
+}
+.pd-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+.pd-product-card__img-wrap {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.pd-product-card__img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+    display: block;
+}
+.pd-product-card:hover .pd-product-card__img { transform: scale(1.07); }
+
+/* No-image icon placeholder */
+.pd-product-card__no-img {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+}
+.pd-product-card__no-img i { width: 48px; height: 48px; stroke: rgba(255,255,255,.85); stroke-width: 1.5; }
+
+.pd-product-card__badge {
+    position: absolute; top: 10px; left: 10px;
+}
+.pd-product-card__body {
+    padding: 1.1rem;
+    display: flex; flex-direction: column; gap: .4rem;
+    flex: 1;
+}
+.pd-product-card__category {
+    font-size: .7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: #15803d;
+}
+.pd-product-card__name {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 700;
+    color: var(--text); margin: 0;
+    line-height: 1.2;
+}
+.pd-product-card__desc {
+    font-size: .82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+}
+.pd-product-card__footer {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: .5rem;
+    margin-top: auto;
+    padding-top: .75rem;
+    border-top: 1px solid #d1fae5;
+}
+.pd-product-card__price {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 800;
+    color: #16A34A;
+}
+.pd-product-card__stock {
+    font-size: .72rem; color: var(--text-muted);
+}
+
+/* ── Admin action bar ─────────────────────────────────────────────── */
+.pd-admin-bar {
+    background: #fff;
+    border-radius: var(--r-xl);
+    padding: 1rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1.5px solid #d1fae5;
+    display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 1.75rem auto 0;
+}
+.pd-admin-bar__label {
+    font-size: .8rem; color: var(--text-muted);
+    display: flex; align-items: center; gap: 5px;
+    margin-right: auto;
+}
+</style>
+
+<div id="scrollProgress" class="pw-scroll-progress" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<section class="pd-hero" aria-label="Producer profile hero">
+    <div class="pd-hero__blob pd-hero__blob--a" aria-hidden="true"></div>
+    <div class="pd-hero__blob pd-hero__blob--b" aria-hidden="true"></div>
+    <div class="pd-hero__blob pd-hero__blob--c" aria-hidden="true"></div>
+
+    <span class="pd-hero__float pd-hero__float--1" aria-hidden="true"><i data-lucide="sprout"></i></span>
+    <span class="pd-hero__float pd-hero__float--2" aria-hidden="true"><i data-lucide="leaf"></i></span>
+    <span class="pd-hero__float pd-hero__float--3" aria-hidden="true"><i data-lucide="wheat"></i></span>
+    <span class="pd-hero__float pd-hero__float--4" aria-hidden="true"><i data-lucide="flower-2"></i></span>
+
+    <div style="position:relative;z-index:3;">
+        <a class="pd-hero__breadcrumb" asp-action="Index">
+            <i data-lucide="arrow-left"></i>
+            Back to all growers
+        </a>
+
+        <div class="pd-hero__avatar" aria-hidden="true">@initial</div>
+
+        <h1 class="pd-hero__name">@Model.ProducerName</h1>
+
+        <div class="pd-hero__badges">
+            <span class="pd-hero__pill pd-hero__pill--green">
+                <i data-lucide="check-circle" style="width:13px;height:13px;"></i>
+                Verified Partner
+            </span>
+            @if (Model.IsVATRegistered)
+            {
+                <span class="pd-hero__pill pd-hero__pill--yellow">
+                    <i data-lucide="receipt" style="width:13px;height:13px;"></i>
+                    VAT Registered
+                </span>
+            }
+            <span class="pd-hero__pill">
+                <i data-lucide="package" style="width:13px;height:13px;"></i>
+                @productCount product@(productCount != 1 ? "s" : "")
+            </span>
+        </div>
+
+        <a class="pd-hero__email" href="mailto:@Model.ProducerEmail">
+            <i data-lucide="mail" style="width:15px;height:15px;"></i>
+            @Model.ProducerEmail
+        </a>
+    </div>
+
+    <div class="pd-hero__wave" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none">
+            <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#f0fdf4"/>
+        </svg>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     BODY  (about + quick facts)
+════════════════════════════════════════════════════════ -->
+<div class="pd-body">
+    <div class="pd-body__grid">
+
+        <!-- About -->
+        <div class="pd-about reveal reveal--left">
+            <p class="pd-about__eyebrow">
+                <i data-lucide="user" style="width:12px;height:12px;"></i>
+                About this grower
+            </p>
+            @if (!string.IsNullOrWhiteSpace(Model.ProducerInformation))
+            {
+                <p class="pd-about__text">@Model.ProducerInformation</p>
+            }
+            else
+            {
+                <p class="pd-about__empty">This grower hasn't added a bio yet — but their produce speaks for itself.</p>
+            }
+        </div>
+
+        <!-- Quick facts sidebar -->
+        <div class="pd-facts reveal reveal--right">
+
+            <div class="pd-fact-card">
+                <div class="pd-fact-card__icon pd-fact-card__icon--green">
+                    <i data-lucide="mail" style="width:20px;height:20px;stroke:#15803d;"></i>
+                </div>
+                <div class="pd-fact-card__body">
+                    <p class="pd-fact-card__label">Email</p>
+                    <p class="pd-fact-card__value">
+                        <a href="mailto:@Model.ProducerEmail">@Model.ProducerEmail</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="pd-fact-card">
+                <div class="pd-fact-card__icon pd-fact-card__icon--lime">
+                    <i data-lucide="warehouse" style="width:20px;height:20px;stroke:#365314;"></i>
+                </div>
+                <div class="pd-fact-card__body">
+                    <p class="pd-fact-card__label">Products Listed</p>
+                    <p class="pd-fact-card__value">@productCount item@(productCount != 1 ? "s" : "")</p>
+                </div>
+            </div>
+
+            <div class="pd-fact-card">
+                <div class="pd-fact-card__icon pd-fact-card__icon--teal">
+                    <i data-lucide="shopping-bag" style="width:20px;height:20px;stroke:#065f46;"></i>
+                </div>
+                <div class="pd-fact-card__body">
+                    <p class="pd-fact-card__label">Available Now</p>
+                    <p class="pd-fact-card__value">@availCount in stock</p>
+                </div>
+            </div>
+
+            @if (Model.IsVATRegistered && !string.IsNullOrWhiteSpace(Model.VATNumber))
+            {
+                <div class="pd-fact-card">
+                    <div class="pd-fact-card__icon pd-fact-card__icon--mint">
+                        <i data-lucide="receipt" style="width:20px;height:20px;stroke:#065f46;"></i>
+                    </div>
+                    <div class="pd-fact-card__body">
+                        <p class="pd-fact-card__label">VAT Number</p>
+                        <p class="pd-fact-card__value">@Model.VATNumber</p>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="pd-stats-strip">
+        <div class="pd-stat-tile reveal reveal--pop" data-delay="0">
+            <p class="pd-stat-tile__value" data-target="@productCount" data-suffix="">@productCount</p>
+            <p class="pd-stat-tile__label">Products Listed</p>
+        </div>
+        <div class="pd-stat-tile reveal reveal--pop" data-delay="100">
+            <p class="pd-stat-tile__value" data-target="@availCount" data-suffix="">@availCount</p>
+            <p class="pd-stat-tile__label">In Stock</p>
+        </div>
+        <div class="pd-stat-tile reveal reveal--pop" data-delay="200">
+            <p class="pd-stat-tile__value" data-target="@(Model.IsVATRegistered ? 1 : 0)" data-suffix="">
+                @(Model.IsVATRegistered ? "Yes" : "No")
+            </p>
+            <p class="pd-stat-tile__label">VAT Registered</p>
+        </div>
+    </div>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="pd-admin-bar reveal">
+            <p class="pd-admin-bar__label">
+                <i data-lucide="shield" style="width:13px;height:13px;stroke:#15803d;"></i>
+                Admin controls
+            </p>
+            <a class="pw-btn pw-btn--sm pw-btn--outline"
+               asp-action="Edit" asp-route-id="@Model.ProducersId">
+                <i data-lucide="pencil" class="pw-icon-sm"></i>
+                Edit Producer
+            </a>
+            <a class="pw-btn pw-btn--sm pw-btn--ghost"
+               asp-action="Delete" asp-route-id="@Model.ProducersId"
+               style="color:#DC2626;">
+                <i data-lucide="trash-2" class="pw-icon-sm"></i>
+                Delete
+            </a>
+        </div>
+    }
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PRODUCE FROM THIS PRODUCER
+════════════════════════════════════════════════════════ -->
+<section class="pd-produce" aria-labelledby="produce-heading">
+    <div class="pw-container">
+
+        <div class="pw-section__header reveal reveal--blur">
+            <span class="pw-section__eyebrow" style="color:#15803d;">
+                <i data-lucide="sprout" class="pw-icon-sm"></i>
+                Straight from the source
+            </span>
+            <h2 class="pw-section__title" id="produce-heading">
+                Produce from<br>
+                <em class="pw-text--green">@Model.ProducerName</em>
+            </h2>
+            @if (productCount > 0)
+            {
+                <p class="pw-section__subtitle">
+                    @productCount product@(productCount != 1 ? "s" : "") listed · @availCount available now
+                </p>
+            }
+        </div>
+
+        @if (products.Any())
+        {
+            <div class="pw-grid pw-grid--3">
+                @{ int pi = 0; }
+                @foreach (var p in products)
+                {
+                    var grad    = prodGradients[pi % prodGradients.Length];
+                    var icon    = CategoryIcon(p.Category);
+                    var delay   = (pi % 3) * 120;
+                    var inStock = p.Available && p.QuantityInStock > 0;
+                    pi++;
+
+                    <article class="pd-product-card reveal reveal--pop" data-delay="@delay">
+
+                        <div class="pd-product-card__img-wrap">
+                            @if (!string.IsNullOrWhiteSpace(p.ImagePath))
+                            {
+                                <img class="pd-product-card__img"
+                                     src="@p.ImagePath"
+                                     alt="@p.ItemName"
+                                     loading="lazy">
+                            }
+                            else
+                            {
+                                <div class="pd-product-card__no-img" style="background:@grad;">
+                                    <i data-lucide="@icon"></i>
+                                </div>
+                            }
+
+                            <div class="pd-product-card__badge">
+                                @if (!inStock)
+                                {
+                                    <span class="pw-badge pw-badge--orange">Out of Stock</span>
+                                }
+                                else if (p.QuantityInStock <= 5)
+                                {
+                                    <span class="pw-badge pw-badge--orange">
+                                        <i data-lucide="zap" class="pw-icon-sm"></i>
+                                        Low Stock
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="pw-badge pw-badge--green">In Stock</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="pd-product-card__body">
+                            <p class="pd-product-card__category">@p.Category</p>
+                            <h3 class="pd-product-card__name">@p.ItemName</h3>
+                            <p class="pd-product-card__desc">@p.Description</p>
+
+                            <div class="pd-product-card__footer">
+                                <div>
+                                    <span class="pd-product-card__price">£@p.ItemPrice.ToString("0.00")</span>
+                                    <span class="pd-product-card__stock"> · @p.QuantityInStock left</span>
+                                </div>
+                                <a class="pw-btn pw-btn--sm pw-btn--primary"
+                                   asp-area="" asp-controller="Products" asp-action="Details"
+                                   asp-route-id="@p.ProductsId"
+                                   aria-label="View @p.ItemName">
+                                    View →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                }
+            </div>
+
+            <div class="pw-section__cta reveal" data-delay="200">
+                <a class="pw-btn pw-btn--outline pw-btn--lg"
+                   asp-area="" asp-controller="Products" asp-action="Index"
+                   asp-route-producerId="@Model.ProducersId">
+                    See all @productCount product@(productCount != 1 ? "s" : "") from @Model.ProducerName →
+                </a>
+            </div>
+        }
+        else
+        {
+            <!-- Empty state -->
+            <div class="pw-empty-state reveal" style="background:#fff;border-color:#d1fae5;">
+                <div class="pw-empty-state__icon" style="background:#dcfce7;">
+                    <i data-lucide="package" style="width:28px;height:28px;stroke:#15803d;"></i>
+                </div>
+                <h3 class="pw-empty-state__title">No produce listed yet</h3>
+                <p class="pw-empty-state__sub">
+                    @Model.ProducerName hasn't added any products yet. Check back soon — good things take time to grow.
+                </p>
+                <a class="pw-btn pw-btn--outline pw-btn--lg" asp-action="Index">
+                    Browse other growers →
+                </a>
+            </div>
+        }
+
+    </div>
+</section>
+
+@section Scripts {
+<script>
+(function () {
+    var colors = ['#16A34A','#4ade80','#86efac','#d9f99d','#6ee7b7','#a7f3d0','#bbf7d0','#34d399','#10b981'];
+
+    /* ── Particle helpers ─────────────────────────────── */
+    function spawnParticle(cx, cy) {
+        var el    = document.createElement('div');
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        var size  = 7 + Math.random() * 11;
+        var angle = Math.random() * Math.PI * 2;
+        var speed = 80 + Math.random() * 160;
+        var dx    = Math.cos(angle) * speed;
+        var dy    = Math.sin(angle) * speed - 55;
+        var dur   = 600 + Math.random() * 450;
+        el.style.cssText =
+            'position:fixed;left:'+(cx-size/2)+'px;top:'+(cy-size/2)+'px;'+
+            'width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+color+';'+
+            'pointer-events:none;z-index:9999;';
+        document.body.appendChild(el);
+        el.animate(
+            [{ transform:'translate(0,0) scale(1)', opacity:1 },
+             { transform:'translate('+dx+'px,'+dy+'px) scale(0.05)', opacity:0 }],
+            { duration:dur, easing:'ease-out', fill:'forwards' }
+        ).onfinish = function(){ el.remove(); };
+    }
+    function burst(cx, cy, n) {
+        for (var i = 0; i < n; i++) {
+            (function(i){ setTimeout(function(){
+                spawnParticle(cx+(Math.random()-.5)*70, cy+(Math.random()-.5)*70);
+            }, i*18); })(i);
+        }
+    }
+
+    /* ── Mouse parallax on hero floating icons ────────── */
+    var floats = document.querySelectorAll('.pd-hero__float');
+    var depths = [14, 20, 9, 17];
+    document.addEventListener('mousemove', function(e) {
+        var cx = window.innerWidth  / 2;
+        var cy = window.innerHeight / 2;
+        var dx = (e.clientX - cx) / cx;
+        var dy = (e.clientY - cy) / cy;
+        floats.forEach(function(el, i) {
+            var d = depths[i] || 12;
+            el.style.transform = 'translate(' + (dx*d) + 'px,' + (dy*d) + 'px)';
+        });
+    });
+
+    /* ── Avatar burst on click ────────────────────────── */
+    var avatar = document.querySelector('.pd-hero__avatar');
+    if (avatar) {
+        avatar.addEventListener('click', function() {
+            var r = avatar.getBoundingClientRect();
+            burst(r.left + r.width/2, r.top + r.height/2, 28);
+        });
+    }
+
+    /* ── Particle burst on product card hover ─────────── */
+    var lastBurst = 0;
+    document.querySelectorAll('.pd-product-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+            var now = Date.now();
+            if (now - lastBurst < 300) return;
+            lastBurst = now;
+            var r = card.getBoundingClientRect();
+            burst(r.left + r.width/2, r.top + 30, 14);
+        });
+    });
+
+    /* ── 3-D tilt on product cards ────────────────────── */
+    document.querySelectorAll('.pd-product-card').forEach(function(card) {
+        card.style.transition = 'transform .25s ease, box-shadow .25s ease';
+        card.addEventListener('mousemove', function(e) {
+            var r  = card.getBoundingClientRect();
+            var x  = (e.clientX - r.left) / r.width  - 0.5;
+            var y  = (e.clientY - r.top)  / r.height - 0.5;
+            card.style.transform =
+                'translateY(-6px) rotateY('+(x*10)+'deg) rotateX('+(-y*7)+'deg)';
+        });
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = '';
+        });
+    });
+
+    /* ── Ripple on fact cards ─────────────────────────── */
+    document.querySelectorAll('.pd-fact-card').forEach(function(card) {
+        card.style.position = 'relative';
+        card.addEventListener('click', function(e) {
+            var r    = card.getBoundingClientRect();
+            var size = Math.max(r.width, r.height) * 1.4;
+            var el   = document.createElement('span');
+            el.className = 'pd-ripple';
+            el.style.cssText =
+                'width:'+size+'px;height:'+size+'px;'+
+                'left:'+(e.clientX-r.left-size/2)+'px;'+
+                'top:' +(e.clientY-r.top -size/2)+'px;';
+            card.appendChild(el);
+            setTimeout(function(){ el.remove(); }, 600);
+        });
+    });
+
+    /* ── Ripple on stat tiles ─────────────────────────── */
+    document.querySelectorAll('.pd-stat-tile').forEach(function(tile) {
+        tile.style.position = 'relative'; tile.style.overflow = 'hidden';
+        tile.addEventListener('click', function(e) {
+            var r  = tile.getBoundingClientRect();
+            var sz = Math.max(r.width, r.height) * 1.4;
+            var el = document.createElement('span');
+            el.className = 'pd-ripple';
+            el.style.cssText =
+                'width:'+sz+'px;height:'+sz+'px;'+
+                'left:'+(e.clientX-r.left-sz/2)+'px;'+
+                'top:' +(e.clientY-r.top -sz/2)+'px;';
+            tile.appendChild(el);
+            setTimeout(function(){ el.remove(); }, 600);
+        });
+    });
+
+    /* ── Animated stat counters ───────────────────────── */
+    var statEls = document.querySelectorAll('.pd-stat-tile__value[data-target]');
+    var counted = false;
+    function runCounters() {
+        if (counted) return; counted = true;
+        statEls.forEach(function(el) {
+            var target = parseInt(el.dataset.target, 10);
+            if (isNaN(target) || target === 0) return;
+            var startTime = null, dur = 900;
+            (function step(ts) {
+                if (!startTime) startTime = ts;
+                var p    = Math.min((ts - startTime) / dur, 1);
+                var ease = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(ease * target);
+                if (p < 1) requestAnimationFrame(step);
+                else el.textContent = target;
+            })(performance.now());
+        });
+    }
+    new IntersectionObserver(function(entries) {
+        entries.forEach(function(e){ if (e.isIntersecting) runCounters(); });
+    }, { threshold: 0.3 }).observe(
+        document.querySelector('.pd-stats-strip') || document.body
+    );
+})();
+</script>
+}
