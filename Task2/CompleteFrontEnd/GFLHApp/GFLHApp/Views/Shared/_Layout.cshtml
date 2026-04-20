@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GFLHApp.styles.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
     <style>
         .pw-basket-badge {
             background: var(--orange, #F97316);
@@ -127,24 +128,25 @@
     <script src="https://unpkg.com/scrollreveal@4/dist/scrollreveal.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false) 
     <script>
-    (function () {
-        window.updateBasketBadge = function (count) {
-            var badge = document.getElementById('navBasketCount');
-            if (!badge) return;
-            badge.textContent = count > 99 ? '99+' : count;
-            badge.hidden = count < 1;
-            badge.classList.remove('pw-basket-badge--pop');
-            void badge.offsetWidth; // force reflow to re-trigger transition
-            badge.classList.add('pw-basket-badge--pop');
-            setTimeout(function () { badge.classList.remove('pw-basket-badge--pop'); }, 380);
-        };
-        fetch('/BasketProducts/GetCount')
-            .then(function (r) { return r.json(); })
-            .then(function (d) { if (d.count > 0) window.updateBasketBadge(d.count); })
-            .catch(function () {});
-    }());
+        (function () {
+            window.updateBasketBadge = function (count) {
+                var badge = document.getElementById('navBasketCount');
+                if (!badge) return;
+                badge.textContent = count > 99 ? '99+' : count;
+                badge.hidden = count < 1;
+                badge.classList.remove('pw-basket-badge--pop');
+                void badge.offsetWidth;
+                badge.classList.add('pw-basket-badge--pop');
+                setTimeout(function () { badge.classList.remove('pw-basket-badge--pop'); }, 380);
+            };
+            fetch('/BasketProducts/GetCount')
+                .then(function (r) { return r.json(); })
+                .then(function (d) { window.updateBasketBadge(d.count); })
+                .catch(function () {});
+        })();
     </script>
+
 </body>
 </html>

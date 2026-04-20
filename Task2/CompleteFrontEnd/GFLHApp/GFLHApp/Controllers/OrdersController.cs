@@ -9,6 +9,7 @@ using GFLHApp.Data;
 using GFLHApp.Models;
 using System.Security.Claims;
 using Microsoft.Extensions.Configuration.UserSecrets;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GFLHApp.Controllers
 {
@@ -67,6 +68,7 @@ namespace GFLHApp.Controllers
             return RedirectToAction("Index"); // or wherever your order history pag e is
         }
 
+        [Authorize(Roles = "Standard,Developer,Admin")]
         // GET: Orders
         public async Task<IActionResult> Index(List<Orders>orders)
         {
@@ -102,23 +104,26 @@ namespace GFLHApp.Controllers
             }
         }
 
-        // GET: Orders/Details/5
+        [Authorize(Roles = "Standard,Developer,Admin")]
+        // GET: Orders/Details/5  
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID  
+
+            var order = await _context.Orders // Start a query on the Orders table
+                .Include(o => o.OrderProducts) // Include the related OrderProducts
+                .ThenInclude(op => op.Products) // Then include the related Products for each OrderProduct
+                .FirstOrDefaultAsync(o => o.OrdersId == id && o.UserId == userId); // Find the order with the specified ID that belongs to the current user
+
+            if (order == null) // Check if the order was found and belongs to the user
             {
-                return NotFound();
+                return Unauthorized(); // Return a 401 Unauthorized if the order is not found or does not belong to the user
             }
 
-            var orders = await _context.OrderProducts.Where(x => x.OrdersId == id).Include(x => x.Orders).Include(x => x.Products).ToListAsync(); // Retrieve the order products associated with the specified order ID, including the related orders and products data
-            if (orders == null)
-            {
-                return NotFound();
-            }
-
-            return View(orders);
+            return View(order); // Return the order object to the view  
         }
 
+        [Authorize(Roles = "Standard,Developer")]
         // GET: Orders/Create
         public async Task<IActionResult> Create(int basketId)
         {
@@ -166,7 +171,7 @@ namespace GFLHApp.Controllers
         }
 
 
-
+        [Authorize(Roles = "Standard,Developer")]
         // POST: Orders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

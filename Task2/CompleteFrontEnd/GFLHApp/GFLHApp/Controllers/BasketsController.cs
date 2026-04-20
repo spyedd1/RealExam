@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using GFLHApp.Data;
 using GFLHApp.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GFLHApp.Controllers
 {
+    [Authorize(Roles = "Standard,Developer")]
     public class BasketsController : Controller
     {
         private readonly ApplicationDbContext _context;

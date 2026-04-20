@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GFLHApp.Data;
 using GFLHApp.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GFLHApp.Controllers
 {
@@ -127,8 +128,10 @@ namespace GFLHApp.Controllers
             return RedirectToAction("Index", "Baskets"); // Redirect the user to the basket index page after adding the product
         }
 
+
         // GET: BasketProducts/GetCount — returns current basket item total as JSON for the live badge
         [HttpGet]
+
         public async Task<IActionResult> GetCount()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -193,6 +196,7 @@ namespace GFLHApp.Controllers
             return Json(new { success = true, basketCount, itemName = product.ItemName, quantity = Quantity });
         }
 
+  
         // GET: BasketProducts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

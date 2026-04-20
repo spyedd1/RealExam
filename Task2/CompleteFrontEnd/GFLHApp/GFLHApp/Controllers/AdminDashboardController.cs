@@ -7,57 +7,57 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GFLHApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class AdminDashboardController : Controller
+    [Authorize(Roles = "Admin,Developer")]
+    public class AdminDashboardController : Controller 
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _context; // Database context for accessing data
+        private readonly UserManager<IdentityUser> _userManager; // User manager for handling user-related operations
+        private readonly RoleManager<IdentityRole> _roleManager; // Role manager for handling role-related operations
 
-        public AdminDashboardController(
-            ApplicationDbContext context,
-            UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+        public AdminDashboardController( // Constructor to initialize the controller with necessary services
+            ApplicationDbContext context, // Database context injected through dependency injection
+            UserManager<IdentityUser> userManager, // User manager injected through dependency injection 
+            RoleManager<IdentityRole> roleManager) // Role manager injected through dependency injection 
         {
-            _context = context;
-            _userManager = userManager;
-            _roleManager = roleManager;
+            _context = context; // Assign the injected database context to the private field
+            _userManager = userManager; // Assign the injected user manager to the private field
+            _roleManager = roleManager; // Assign the injected role manager to the private field
         }
 
         // ── Overview ─────────────────────────────────────────────────────
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() // Action method for the overview page of the admin dashboard, which gathers various statistics and data to display on the dashboard
         {
-            var now = DateTime.UtcNow;
+            var now = DateTime.UtcNow; // Get the current date and time in UTC to use for filtering data based on time periods
 
-            var orders    = await _context.Orders.ToListAsync();
-            var products  = await _context.Products.ToListAsync();
-            var producers = await _context.Producers.ToListAsync();
+            var orders    = await _context.Orders.ToListAsync(); // Retrieve all orders from the database asynchronously and store them in a list
+            var products  = await _context.Products.ToListAsync(); // Retrieve all products from the database asynchronously and store them in a list
+            var producers = await _context.Producers.ToListAsync(); // Retrieve all producers from the database asynchronously and store them in a list
 
-            ViewBag.TotalUsers     = _userManager.Users.Count();
-            ViewBag.TotalOrders    = orders.Count;
-            ViewBag.TotalProducts  = products.Count;
-            ViewBag.TotalProducers = producers.Count;
-            ViewBag.TotalRevenue   = orders.Sum(o => o.OrdersTotal);
-            ViewBag.PendingOrders  = orders.Count(o => o.OrderStatus == "Pending");
-            ViewBag.LowStock       = products.Count(p => p.QuantityInStock <= 5 && p.Available);
-            ViewBag.MonthRevenue   = orders
-                .Where(o => o.OrderDate.Month == now.Month && o.OrderDate.Year == now.Year)
-                .Sum(o => o.OrdersTotal);
+            ViewBag.TotalUsers     = _userManager.Users.Count(); // Count the total number of users using the user manager and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.TotalOrders    = orders.Count; // Count the total number of orders from the retrieved list and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.TotalProducts  = products.Count; // Count the total number of products from the retrieved list and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.TotalProducers = producers.Count; // Count the total number of producers from the retrieved list and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.TotalRevenue   = orders.Sum(o => o.OrdersTotal); // Calculate the total revenue by summing the OrdersTotal property of all orders and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.PendingOrders  = orders.Count(o => o.OrderStatus == "Pending"); // Count the number of orders with a status of "Pending" and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.LowStock       = products.Count(p => p.QuantityInStock <= 5 && p.Available); // Count the number of products that are low in stock (quantity less than or equal to 5 and available) and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.MonthRevenue   = orders // Calculate the revenue for the current month by filtering orders based on the order date and summing their total
+                .Where(o => o.OrderDate.Month == now.Month && o.OrderDate.Year == now.Year) // Filter orders to include only those that were placed in the current month and year
+                .Sum(o => o.OrdersTotal); // Sum the OrdersTotal property of the filtered orders to get the total revenue for the current month and store it in the ViewBag to be displayed on the dashboard
 
-            ViewBag.RecentOrders = await _context.Orders
-                .Include(o => o.OrderProducts).ThenInclude(op => op.Products)
-                .OrderByDescending(o => o.OrderDate)
-                .Take(6)
-                .ToListAsync();
+            ViewBag.RecentOrders = await _context.Orders // Retrieve the 6 most recent orders from the database, including their related order products and product details, and store them in the ViewBag to be displayed on the dashboard
+                .Include(o => o.OrderProducts).ThenInclude(op => op.Products) // Include the related OrderProducts and their associated Products to have access to product details when displaying recent orders 
+                .OrderByDescending(o => o.OrderDate) // Order the orders by their order date in descending order to get the most recent orders first
+                .Take(6) // Take only the top 6 orders from the ordered list to limit the number of recent orders displayed on the dashboard
+                .ToListAsync(); // Execute the query asynchronously and convert the result to a list to be stored in the ViewBag for display on the dashboard
 
-            var topProductIds = await _context.OrderProducts
-                .GroupBy(op => op.ProductsId)
-                .Select(g => new { ProductsId = g.Key, TotalOrdered = g.Sum(op => op.ProductQuantity) })
-                .OrderByDescending(x => x.TotalOrdered)
-                .Take(5)
-                .ToListAsync();
-            var pIds   = topProductIds.Select(x => x.ProductsId).ToList();
-            var pNames = await _context.Products.Where(p => pIds.Contains(p.ProductsId))
+            var topProductIds = await _context.OrderProducts // Calculate the top 5 best-selling products by grouping order products by their product ID, summing the quantity ordered for each product, and selecting the top 5 based on total quantity ordered
+                .GroupBy(op => op.ProductsId) // Group the order products by their associated product ID to aggregate the quantity ordered for each product
+                .Select(g => new { ProductsId = g.Key, TotalOrdered = g.Sum(op => op.ProductQuantity) }) // Select a new anonymous object for each group that contains the product ID and the total quantity ordered for that product by summing the ProductQuantity property of the order products in each group
+                .OrderByDescending(x => x.TotalOrdered) // Order the resulting list of products by the total quantity ordered in descending order to get the best-selling products at the top of the list
+                .Take(5) // Take only the top 5 products from the ordered list to limit the number of best-selling products displayed on the dashboard
+                .ToListAsync(); // Execute the query asynchronously and convert the result to a list to be stored in the variable for further processing to get the product names for display on the dashboard
+            var pIds   = topProductIds.Select(x => x.ProductsId).ToList(); // Extract the product IDs from the list of top products to use for retrieving the product names from the database
+            var pNames = await _context.Products.Where(p => pIds.Contains(p.ProductsId)) // 
                              .ToDictionaryAsync(p => p.ProductsId, p => p.ItemName);
             ViewBag.TopProducts = topProductIds
                 .Where(x => pNames.ContainsKey(x.ProductsId))
@@ -87,8 +87,8 @@ namespace GFLHApp.Controllers
         // ── Orders ───────────────────────────────────────────────────────
         public async Task<IActionResult> Orders(string search = "", string orderStatus = "", string trackingStatus = "", string sort = "newest")
         {
-            var query = _context.Orders
-                .Include(o => o.OrderProducts).ThenInclude(op => op.Products)
+            var query = _context.Orders 
+                .Include(o => o.OrderProducts).ThenInclude(op => op.Products) 
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search))

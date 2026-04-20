@@ -85,100 +85,100 @@
 
 @section Scripts {
     @{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial"); // Includes jQuery and unobtrusive validation scripts
+        await Html.RenderPartialAsync("_ValidationScriptsPartial"); // Includes jQuery and unobtrusive validation scripts
     }
 
     <script>
 
-		const isVATRegistered = document.getElementById("isVATRegistered"); // Checkbox to indicate if producer is VAT registered
-		const vatNumberGroup = document.getElementById("vatNumberGroup"); // Container div for the VAT number input field and error message
+        const isVATRegistered = document.getElementById("isVATRegistered"); // Checkbox to indicate if producer is VAT registered
+        const vatNumberGroup = document.getElementById("vatNumberGroup"); // Container div for the VAT number input field and error message
 
-		function toggleVATNumber() { // Show or hide the VAT number field based on whether the producer is VAT registered
-			vatNumberGroup.style.display = isVATRegistered.checked ? "block" : "none"; // Toggle visibility of the VAT number input group
-			document.getElementById("vatNumber").value = ""; // Clear the VAT number field when hiding it to prevent stale data
-			document.getElementById("vatError").textContent = ""; // Clear any existing VAT number validation error when toggling the field to avoid confusion if the producer changes their mind about VAT registration
+        function toggleVATNumber() { // Show or hide the VAT number field based on whether the producer is VAT registered
+            vatNumberGroup.style.display = isVATRegistered.checked ? "block" : "none"; // Toggle visibility of the VAT number input group
+            document.getElementById("vatNumber").value = ""; // Clear the VAT number field when hiding it to prevent stale data
+            document.getElementById("vatError").textContent = ""; // Clear any existing VAT number validation error when toggling the field to avoid confusion if the producer changes their mind about VAT registration
         }
-		isVATRegistered.addEventListener("change", toggleVATNumber); // Listen for changes to the VAT registration checkbox and call the toggle function to show/hide the VAT number field accordingly
-		toggleVATNumber(); // Initialize the VAT number field visibility on page load based on the default state of the VAT registration checkbox
+        isVATRegistered.addEventListener("change", toggleVATNumber); // Listen for changes to the VAT registration checkbox and call the toggle function to show/hide the VAT number field accordingly
+        toggleVATNumber(); // Initialize the VAT number field visibility on page load based on the default state of the VAT registration checkbox
 
-		document.getElementById("producerName").addEventListener("blur", validateName); // Validate producer name when the input field loses focus
-		document.getElementById("producerEmail").addEventListener("blur", validateEmail); // Validate producer email when the input field loses focus
-		document.getElementById("producerInfo").addEventListener("blur", validateInfo); // Validate producer information when the textarea loses focus
-		document.getElementById("vatNumber").addEventListener("blur", validateVAT); // Validate VAT number when the input field loses focus (only relevant if VAT registered)
-		document.getElementById("accountPassword").addEventListener("blur", validatePassword); // Validate account password when the input field loses focus
-		document.getElementById("confirmPassword").addEventListener("blur", validateConfirmPassword); // Validate confirm password when the input field loses focus
+        document.getElementById("producerName").addEventListener("blur", validateName); // Validate producer name when the input field loses focus
+        document.getElementById("producerEmail").addEventListener("blur", validateEmail); // Validate producer email when the input field loses focus
+        document.getElementById("producerInfo").addEventListener("blur", validateInfo); // Validate producer information when the textarea loses focus
+        document.getElementById("vatNumber").addEventListener("blur", validateVAT); // Validate VAT number when the input field loses focus (only relevant if VAT registered)
+        document.getElementById("accountPassword").addEventListener("blur", validatePassword); // Validate account password when the input field loses focus
+        document.getElementById("confirmPassword").addEventListener("blur", validateConfirmPassword); // Validate confirm password when the input field loses focus
 
-		function validateName() { // Validate the producer name field according to specified rules and display error messages if validation fails
-			const val = document.getElementById("producerName").value.trim(); // Get the value of the producer name input field and trim whitespace
-			const err = document.getElementById("nameError"); // Get the element where validation error messages for the producer name will be displayed
-			if (val === "") { err.textContent = "Producer name is required."; return false; } // Check if the producer name is empty and display an error message if it is
+        function validateName() { // Validate the producer name field according to specified rules and display error messages if validation fails
+            const val = document.getElementById("producerName").value.trim(); // Get the value of the producer name input field and trim whitespace
+            const err = document.getElementById("nameError"); // Get the element where validation error messages for the producer name will be displayed
+            if (val === "") { err.textContent = "Producer name is required."; return false; } // Check if the producer name is empty and display an error message if it is
             if (val.length < 3) { err.textContent = "Producer name must be at least 3 characters."; return false; } // Check if the producer name is too short and display an error message if it is
-			if (val.length > 100) { err.textContent = "Producer name must not exceed 100 characters."; return false; } // Check if the producer name is too long and display an error message if it is
-			err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
+            if (val.length > 100) { err.textContent = "Producer name must not exceed 100 characters."; return false; } // Check if the producer name is too long and display an error message if it is
+            err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
         }
 
-		function validateEmail() { // Validate the producer email field according to specified rules and display error messages if validation fails
-			const val = document.getElementById("producerEmail").value.trim(); // Get the value of the producer email input field and trim whitespace
-			const err = document.getElementById("emailError"); // Get the element where validation error messages for the producer email will be displayed
+        function validateEmail() { // Validate the producer email field according to specified rules and display error messages if validation fails
+            const val = document.getElementById("producerEmail").value.trim(); // Get the value of the producer email input field and trim whitespace
+            const err = document.getElementById("emailError"); // Get the element where validation error messages for the producer email will be displayed
             const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/; // Regular expression to validate basic email format (must contain exactly one at symbol and at least one dot after the at)
-		if (val === "") { err.textContent = "Email address is required."; return false; } // Check if the email address is empty and display an error message if it is
-		if (!emailRegex.test(val)) { err.textContent = "Please enter a valid email address."; return false; } // Check if the email address does not match the basic email format and display an error message if it is invalid
-		if (val.length > 150) { err.textContent = "Email address must not exceed 150 characters."; return false; } //   Check if the email address is too long and display an error message if it is
-		err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
+        if (val === "") { err.textContent = "Email address is required."; return false; } // Check if the email address is empty and display an error message if it is
+        if (!emailRegex.test(val)) { err.textContent = "Please enter a valid email address."; return false; } // Check if the email address does not match the basic email format and display an error message if it is invalid
+        if (val.length > 150) { err.textContent = "Email address must not exceed 150 characters."; return false; } //   Check if the email address is too long and display an error message if it is
+        err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
         }
 
-	    function validateInfo() { // Validate the producer information field according to specified rules and display error messages if validation fails
-			const val = document.getElementById("producerInfo").value.trim(); // Get the value of the producer information textarea and trim whitespace
-			const err = document.getElementById("infoError"); // Get the element where validation error messages for the producer information will be displayed
-			if (val === "") { err.textContent = "Producer information is required."; return false; } //     Check if the producer information is empty and display an error message if it is
-			if (val.length < 10) { err.textContent = "Producer information must be at least 10 characters."; return false; } // Check if the producer information is too short and display an error message if it is
-			if (val.length > 500) { err.textContent = "Producer information must not exceed 500 characters."; return false; } // Check if the producer information is too long and display an error message if it is
-			err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
+        function validateInfo() { // Validate the producer information field according to specified rules and display error messages if validation fails
+            const val = document.getElementById("producerInfo").value.trim(); // Get the value of the producer information textarea and trim whitespace
+            const err = document.getElementById("infoError"); // Get the element where validation error messages for the producer information will be displayed
+            if (val === "") { err.textContent = "Producer information is required."; return false; } //     Check if the producer information is empty and display an error message if it is
+            if (val.length < 10) { err.textContent = "Producer information must be at least 10 characters."; return false; } // Check if the producer information is too short and display an error message if it is
+            if (val.length > 500) { err.textContent = "Producer information must not exceed 500 characters."; return false; } // Check if the producer information is too long and display an error message if it is
+            err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
         }
 
-		function validateVAT() { // Validate the VAT number field according to specified rules and display error messages if validation fails, but only if the producer is marked as VAT registered
-			if (!isVATRegistered.checked) return true;// If the producer is not VAT registered, skip validation for the VAT number field and return true to indicate it is valid (since it is not required in this case)
-			const val = document.getElementById("vatNumber").value.trim(); //   Get the value of the VAT number input field and trim whitespace
-			const err = document.getElementById("vatError"); // Get the element where validation error messages for the VAT number will be displayed
+        function validateVAT() { // Validate the VAT number field according to specified rules and display error messages if validation fails, but only if the producer is marked as VAT registered
+            if (!isVATRegistered.checked) return true;// If the producer is not VAT registered, skip validation for the VAT number field and return true to indicate it is valid (since it is not required in this case)
+            const val = document.getElementById("vatNumber").value.trim(); //   Get the value of the VAT number input field and trim whitespace
+            const err = document.getElementById("vatError"); // Get the element where validation error messages for the VAT number will be displayed
             const vatRegex = /^GB[0-9]{9}$/; // Regular expression to validate UK VAT number format (must start with "GB" followed by exactly 9 digits)
-			if (val === "") { err.textContent = "VAT number is required if VAT registered."; return false; } // Check if the VAT number is empty when the producer is marked as VAT registered and display an error message if it is
-			if (!vatRegex.test(val)) { err.textContent = "VAT number must start with GB followed by exactly 9 digits."; return false; } // Check if the VAT number does not match the UK VAT number format and display an error message if it is invalid
-			err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
+            if (val === "") { err.textContent = "VAT number is required if VAT registered."; return false; } // Check if the VAT number is empty when the producer is marked as VAT registered and display an error message if it is
+            if (!vatRegex.test(val)) { err.textContent = "VAT number must start with GB followed by exactly 9 digits."; return false; } // Check if the VAT number does not match the UK VAT number format and display an error message if it is invalid
+            err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
         }
 
-	    function validatePassword() { // Validate the account password field according to specified rules and display error messages if validation fails
-			const val = document.getElementById("accountPassword").value; // Get the value of the account password input field (do not trim whitespace for passwords, as leading/trailing spaces may be intentional)
-			const err = document.getElementById("passwordError"); // Get the element where validation error messages for the account password will be displayed
+        function validatePassword() { // Validate the account password field according to specified rules and display error messages if validation fails
+            const val = document.getElementById("accountPassword").value; // Get the value of the account password input field (do not trim whitespace for passwords, as leading/trailing spaces may be intentional)
+            const err = document.getElementById("passwordError"); // Get the element where validation error messages for the account password will be displayed
             // Matches ASP.NET Identity default password policy
-			const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/; // Regular expression to validate password complexity (must be at least 8 characters and include at least one lowercase letter, one uppercase letter, one digit, and one special character)
-			if (val === "") { err.textContent = "Password is required."; return false; } // Check if the password is empty and display an error message if it is
-			if (!passwordRegex.test(val)) { // Check if the password does not match the complexity requirements and display an error message if it is invalid
-				err.textContent = "Password must be at least 8 characters and include uppercase, lowercase, a number, and a special character."; // Display a specific error message if the password does not meet complexity requirements
-				return false; // Return false to indicate the password field is invalid
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/; // Regular expression to validate password complexity (must be at least 8 characters and include at least one lowercase letter, one uppercase letter, one digit, and one special character)
+            if (val === "") { err.textContent = "Password is required."; return false; } // Check if the password is empty and display an error message if it is
+            if (!passwordRegex.test(val)) { // Check if the password does not match the complexity requirements and display an error message if it is invalid
+                err.textContent = "Password must be at least 8 characters and include uppercase, lowercase, a number, and a special character."; // Display a specific error message if the password does not meet complexity requirements
+                return false; // Return false to indicate the password field is invalid
             }
-			err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
+            err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
         }
 
-	    function validateConfirmPassword() { // Validate the confirm password field by checking if it matches the account password field and display error messages if validation fails
-			const pass = document.getElementById("accountPassword").value; // Get the value of the account password input field to compare against the confirm password field
-			const confirm = document.getElementById("confirmPassword").value; // Get the value of the confirm password input field
-			const err = document.getElementById("confirmPasswordError"); // Get the element where validation error messages for the confirm password will be displayed
-			if (confirm === "") { err.textContent = "Please confirm the password."; return false; } // Check if the confirm password field is empty and display an error message if it is
-			if (pass !== confirm) { err.textContent = "Passwords do not match."; return false; } // Check if the confirm password does not match the account password and display an error message if they do not match
+        function validateConfirmPassword() { // Validate the confirm password field by checking if it matches the account password field and display error messages if validation fails
+            const pass = document.getElementById("accountPassword").value; // Get the value of the account password input field to compare against the confirm password field
+            const confirm = document.getElementById("confirmPassword").value; // Get the value of the confirm password input field
+            const err = document.getElementById("confirmPasswordError"); // Get the element where validation error messages for the confirm password will be displayed
+            if (confirm === "") { err.textContent = "Please confirm the password."; return false; } // Check if the confirm password field is empty and display an error message if it is
+            if (pass !== confirm) { err.textContent = "Passwords do not match."; return false; } // Check if the confirm password does not match the account password and display an error message if they do not match
             err.textContent = ""; return true;
         }
 
-		document.getElementById("producerForm").addEventListener("submit", function (e) { // Add an event listener to the form submission to perform validation checks before allowing the form to be submitted to the server
-			const nameOk     = validateName(); // Call the validateName function and store the result to determine if the producer name field is valid
-			const emailOk    = validateEmail(); // Call the validateEmail function and store the result to determine if the producer email field is valid
-			const infoOk     = validateInfo(); // Call the validateInfo function and store the result to determine if the producer information field is valid
-			const vatOk      = validateVAT(); // Call the validateVAT function and store the result to determine if the VAT number field is valid (this will return true if the producer is not VAT registered, effectively skipping validation in that case)
-			const passwordOk = validatePassword(); // Call the validatePassword function and store the result to determine if the account password field is valid
-			const confirmOk  = validateConfirmPassword(); // Call the validateConfirmPassword function and store the result to determine if the confirm password field is valid and matches the account password field
-			if (!nameOk || !emailOk || !infoOk || !vatOk || !passwordOk || !confirmOk) { // Check if any of the validation checks failed (i.e. any of the variables is false)
-				e.preventDefault(); // If any validation check failed, prevent the default form submission behavior to stop the form from being submitted to the server
+        document.getElementById("producerForm").addEventListener("submit", function (e) { // Add an event listener to the form submission to perform validation checks before allowing the form to be submitted to the server
+            const nameOk     = validateName(); // Call the validateName function and store the result to determine if the producer name field is valid
+            const emailOk    = validateEmail(); // Call the validateEmail function and store the result to determine if the producer email field is valid
+            const infoOk     = validateInfo(); // Call the validateInfo function and store the result to determine if the producer information field is valid
+            const vatOk      = validateVAT(); // Call the validateVAT function and store the result to determine if the VAT number field is valid (this will return true if the producer is not VAT registered, effectively skipping validation in that case)
+            const passwordOk = validatePassword(); // Call the validatePassword function and store the result to determine if the account password field is valid
+            const confirmOk  = validateConfirmPassword(); // Call the validateConfirmPassword function and store the result to determine if the confirm password field is valid and matches the account password field
+            if (!nameOk || !emailOk || !infoOk || !vatOk || !passwordOk || !confirmOk) { // Check if any of the validation checks failed (i.e. any of the variables is false)
+                e.preventDefault(); // If any validation check failed, prevent the default form submission behavior to stop the form from being submitted to the server
             }
         });
     </script>
-    
+
 }

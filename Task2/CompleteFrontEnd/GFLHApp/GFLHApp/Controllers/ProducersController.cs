@@ -47,6 +47,7 @@ namespace GFLHApp.Controllers
             return View(producers);
         }
 
+        [Authorize(Roles = "Developer,Admin")]
         // GET: Producers/Create
         public IActionResult Create()
         {
@@ -54,10 +55,8 @@ namespace GFLHApp.Controllers
         }
 
 
-
+        [Authorize(Roles = "Developer,Admin")]
         // POST: Producers/Create
-
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -140,6 +139,8 @@ namespace GFLHApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        [Authorize(Roles = "Developer,Admin")]
         // GET: Producers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -151,6 +152,7 @@ namespace GFLHApp.Controllers
             return View(producers);
         }
 
+        [Authorize(Roles = "Developer,Admin")]
         // POST: Producers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -198,6 +200,7 @@ namespace GFLHApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Developer,Admin")]
         // GET: Producers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -211,6 +214,7 @@ namespace GFLHApp.Controllers
             return View(producers);
         }
 
+        [Authorize(Roles = "Developer,Admin")]
         // POST: Producers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
