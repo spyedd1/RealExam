@@ -70,18 +70,18 @@ namespace GFLHApp.Controllers
 
         [Authorize(Roles = "Standard,Developer,Admin")]
         // GET: Orders
-        public async Task<IActionResult> Index(List<Orders>orders)
+        public async Task<IActionResult> Index(List<Orders> orders)
         {
 
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
 
             if (userId == null)
-            {                                                                                                            
+            {
                 return Unauthorized(); // Return a 401 Unauthorized if the user is not authenticated
             }
 
-            if(User.IsInRole("Admin")) // Check if the user is in the Admin role
+            if (User.IsInRole("Admin")) // Check if the user is in the Admin role
             {
                 var allOrders = await _context.Orders.Include(x => x.OrderProducts).ThenInclude(x => x.Products).ToListAsync(); // Retrieve all orders, including the related order products and products data for admin users
                 return View(allOrders); // Return the view with all orders for admin users
@@ -148,17 +148,28 @@ namespace GFLHApp.Controllers
 
             var orderCount = await _context.Orders.CountAsync(x => x.UserId == userId); // Count the number of orders placed by the current user
 
+            // Health bundle discount: 10% off if basket contains broccoli, carrot, AND apple
+            var productNames = basketProducts.Select(x => x.Products.ItemName.ToLower()).ToList();
+            bool hasHealthBundle = productNames.Contains("broccoli") &&
+                                   productNames.Contains("carrot") &&
+                                   productNames.Contains("apple");
+
             // Loyalty discount calculation
             decimal discount = 0m; // Initialize the discount variable
-            if (orderCount >= 5) // Check if the user has placed 5 or more orders
+            if (orderCount % 5 == 4) // Check if this is the user's 5th, 10th, 15th... order
             {
-                discount = subtotal * 0.10m; // Apply a 10% discount if the user has placed 5 or more orders
+                discount = subtotal * 0.15m; // Apply a 15% loyalty discount every 5th order
+            }
+            else if (hasHealthBundle) // Check if the basket contains the health bundle (broccoli, carrot, apple)
+            {
+                discount = subtotal * 0.10m; // Apply a 10% health bundle discount
             }
             decimal discountedSubtotal = subtotal - discount; // Calculate the discounted subtotal
 
             ViewBag.BasketId = basketId; // Pass the BasketId to the view using ViewBag
             ViewBag.Subtotal = discountedSubtotal; // Pass the discounted subtotal to the view using ViewBag
             ViewBag.HasFreeDelivery = orderCount % 3 == 2; // Pass whether the user has free delivery to the view using ViewBag
+            ViewBag.HasHealthBundle = hasHealthBundle; // Pass whether the health bundle discount applies to the view
             ViewBag.BasketProducts = basketProducts; // Pass the basket products to the view for allergen display
             ViewBag.DeliveryCosts = new Dictionary<string, decimal>
     {
@@ -240,6 +251,12 @@ namespace GFLHApp.Controllers
             // Discount Calculator
             var orderCouut = await _context.Orders.CountAsync(x => x.UserId == userId); // Count the number of orders placed by the current user
 
+            // Health bundle discount: 10% off if basket contains broccoli, carrot, AND apple
+            var basketProductNames = basketProducts.Select(x => x.Products.ItemName.ToLower()).ToList();
+            bool hasHealthBundle = basketProductNames.Contains("broccoli") &&
+                                   basketProductNames.Contains("carrot") &&
+                                   basketProductNames.Contains("apple");
+
             // Delivery cost
             decimal deliveryCost = 0m; // Initialize the delivery cost variable
             if (orders.Delivery) // Check if delivery is selected
@@ -260,11 +277,15 @@ namespace GFLHApp.Controllers
                 }
             }
 
-            // Discount logic based on the number of orders placed by the user
+            // Discount logic: loyalty (5+ orders) OR health bundle (broccoli + carrot + apple), whichever applies
             decimal discount = 0m; // Initialize the discount variable
-            if (orderCouut >= 5) // Check if the user has placed 5 or more orders
+            if (orderCouut % 5 == 4) // Check if this is the user's 5th, 10th, 15th... order
             {
-                discount = subtotal * 0.10m; // Apply a 10% discount if the user has placed 5 or more orders
+                discount = subtotal * 0.15m; // Apply a 15% loyalty discount every 5th order
+            }
+            else if (hasHealthBundle) // Check if the basket contains the health bundle (broccoli, carrot, apple)
+            {
+                discount = subtotal * 0.10m; // Apply a 10% health bundle discount
             }
 
             orders.OrdersTotal = (subtotal - discount) + deliveryCost; // Set the order total after applying the discount and delivery cost
@@ -272,6 +293,7 @@ namespace GFLHApp.Controllers
             ViewBag.BasketId = basketId; // Pass the BasketId back to the view
             ViewBag.Subtotal = subtotal; // Pass the subtotal back to the view
             ViewBag.HasFreeDelivery = orderCouut % 3 == 2; // Pass whether the user has free delivery back to the view
+            ViewBag.HasHealthBundle = hasHealthBundle; // Pass whether the health bundle discount applies to the view
             ViewBag.DeliveryCosts = new Dictionary<string, decimal>
             {
                 { "Next Day",  5.99m },

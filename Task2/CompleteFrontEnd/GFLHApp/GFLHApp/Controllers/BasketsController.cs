@@ -67,11 +67,21 @@ namespace GFLHApp.Controllers
             // Loyalty discount calculation
             var orderCount = await _context.Orders.CountAsync(o => o.UserId == userId); // Get the total number of orders the user has made
 
+            // Health bundle discount: 10% off if basket contains broccoli, carrot, AND apple
+            var productNames = basketProducts.Select(x => x.Products.ItemName.ToLower()).ToList();
+            bool hasHealthBundle = productNames.Contains("broccoli") &&
+                                   productNames.Contains("carrot") &&
+                                   productNames.Contains("apple");
+
             decimal discount = 0m; // Initialize the discount variable
 
-            if (orderCount >= 5) // Check if the user has made 5 or more orders
+            if (orderCount % 5 == 4) // Check if this is the user's 5th, 10th, 15th... order
             {
-                discount = subtotal * 0.10m; // Apply a 10% discount to the subtotal
+                discount = subtotal * 0.15m; // Apply a 15% loyalty discount every 5th order
+            }
+            else if (hasHealthBundle) // Check if the basket contains the health bundle (broccoli, carrot, apple)
+            {
+                discount = subtotal * 0.10m; // Apply a 10% health bundle discount
             }
 
             decimal total = subtotal - discount; // Calculate the final total after applying the discount
@@ -81,6 +91,7 @@ namespace GFLHApp.Controllers
             ViewBag.Discount = discount; // Pass the discount to the view using ViewBag
             ViewBag.Total = total; // Pass the total to the view using ViewBag
             ViewBag.OrderCount = orderCount; // Pass the order count to the view using ViewBag
+            ViewBag.HasHealthBundle = hasHealthBundle; // Pass whether the health bundle discount applies to the view
 
             return View(basketProducts); // Return the view with the list of products in the basket
         }

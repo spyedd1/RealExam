@@ -1,5 +1,8 @@
+﻿using GFLHApp.Data;
 using GFLHApp.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace GFLHApp.Controllers
@@ -14,11 +17,6 @@ namespace GFLHApp.Controllers
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

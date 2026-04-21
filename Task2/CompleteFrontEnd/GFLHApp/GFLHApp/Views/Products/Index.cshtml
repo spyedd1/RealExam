@@ -20,509 +20,567 @@
 }
 
 <style>
-/* ── Shop Hero ──────────────────────────────────────────── */
-.pw-shop-hero {
-    background: linear-gradient(140deg, var(--cream-3) 0%, #E9FAF0 55%, var(--green-100) 100%);
-    padding: 130px 32px 80px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42vh;
-}
+    /* ── Shop Hero ──────────────────────────────────────────── */
+    .pw-shop-hero {
+        background: linear-gradient(140deg, var(--cream-3) 0%, #E9FAF0 55%, var(--green-100) 100%);
+        padding: 130px 32px 80px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42vh;
+    }
 
-.pw-shop-hero__content {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    max-width: 680px;
-}
+    .pw-shop-hero__content {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        max-width: 680px;
+    }
 
-.pw-shop-hero__badge { margin-bottom: 20px; }
+    .pw-shop-hero__badge {
+        margin-bottom: 20px;
+    }
 
-.pw-shop-hero__title {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 6vw, 68px);
-    font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: -.03em;
-    margin: 0 0 16px;
-    color: var(--text);
-}
+    .pw-shop-hero__title {
+        font-family: var(--font-display);
+        font-size: clamp(40px, 6vw, 68px);
+        font-weight: 700;
+        line-height: 1.08;
+        letter-spacing: -.03em;
+        margin: 0 0 16px;
+        color: var(--text);
+    }
 
-.pw-shop-hero__title em {
-    color: var(--green);
-    font-style: normal;
-}
+        .pw-shop-hero__title em {
+            color: var(--green);
+            font-style: normal;
+        }
 
-.pw-shop-hero__sub {
-    font-size: clamp(15px, 1.6vw, 18px);
-    color: var(--text-muted);
-    margin: 0;
-    line-height: 1.6;
-}
+    .pw-shop-hero__sub {
+        font-size: clamp(15px, 1.6vw, 18px);
+        color: var(--text-muted);
+        margin: 0;
+        line-height: 1.6;
+    }
 
-/* ── Admin Ribbon ───────────────────────────────────────── */
-.pw-admin-ribbon {
-    background: var(--text);
-    padding: 10px 0;
-}
+    /* ── Admin Ribbon ───────────────────────────────────────── */
+    .pw-admin-ribbon {
+        background: var(--text);
+        padding: 10px 0;
+    }
 
-.pw-admin-ribbon__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-}
+    .pw-admin-ribbon__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
 
-.pw-admin-ribbon__label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--cream-2);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
+    .pw-admin-ribbon__label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--cream-2);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
 
-/* ── Filter Bar ─────────────────────────────────────────── */
-.pw-filters-bar {
-    background: rgba(255,251,235,.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 2px solid var(--border);
-    padding: 14px 0;
-    position: sticky;
-    top: 72px;
-    z-index: 200;
-    box-shadow: 0 2px 12px rgba(0,0,0,.06);
-}
+    /* ── Filter Bar ─────────────────────────────────────────── */
+    .pw-filters-bar {
+        background: rgba(255,251,235,.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 2px solid var(--border);
+        padding: 14px 0;
+        position: sticky;
+        top: 72px;
+        z-index: 200;
+        box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
 
-.pw-filters-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
+    .pw-filters-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
 
-.pw-filter-search {
-    position: relative;
-    min-width: 200px;
-    max-width: 240px;
-    flex-shrink: 0;
-}
+    .pw-filter-search {
+        position: relative;
+        min-width: 200px;
+        max-width: 240px;
+        flex-shrink: 0;
+    }
 
-.pw-filter-search__icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    pointer-events: none;
-    width: 15px;
-    height: 15px;
-}
+    .pw-filter-search__icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        pointer-events: none;
+        width: 15px;
+        height: 15px;
+    }
 
-.pw-filter-input {
-    width: 100%;
-    padding: 9px 14px 9px 38px;
-    border: 2px solid var(--border);
-    border-radius: var(--r-full);
-    font-family: var(--font-body);
-    font-size: 14px;
-    background: var(--white);
-    color: var(--text);
-    transition: border-color .15s;
-    outline: none;
-}
+    .pw-filter-input {
+        width: 100%;
+        padding: 9px 14px 9px 38px;
+        border: 2px solid var(--border);
+        border-radius: var(--r-full);
+        font-family: var(--font-body);
+        font-size: 14px;
+        background: var(--white);
+        color: var(--text);
+        transition: border-color .15s;
+        outline: none;
+    }
 
-.pw-filter-input:focus { border-color: var(--green); }
+        .pw-filter-input:focus {
+            border-color: var(--green);
+        }
 
-.pw-filter-select {
-    padding: 9px 34px 9px 14px;
-    border: 2px solid var(--border);
-    border-radius: var(--r-full);
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 500;
-    background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
-    -webkit-appearance: none;
-    appearance: none;
-    color: var(--text);
-    cursor: pointer;
-    transition: border-color .15s;
-    outline: none;
-}
+    .pw-filter-select {
+        padding: 9px 34px 9px 14px;
+        border: 2px solid var(--border);
+        border-radius: var(--r-full);
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 500;
+        background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+        -webkit-appearance: none;
+        appearance: none;
+        color: var(--text);
+        cursor: pointer;
+        transition: border-color .15s;
+        outline: none;
+    }
 
-.pw-filter-select:focus { border-color: var(--green); }
+        .pw-filter-select:focus {
+            border-color: var(--green);
+        }
 
-.pw-filter-pills {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-}
+    .pw-filter-pills {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+    }
 
-.pw-filter-pill {
-    padding: 7px 14px;
-    border-radius: var(--r-full);
-    font-size: 13px;
-    font-weight: 600;
-    border: 2px solid var(--border);
-    background: var(--white);
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all .15s;
-    white-space: nowrap;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
+    .pw-filter-pill {
+        padding: 7px 14px;
+        border-radius: var(--r-full);
+        font-size: 13px;
+        font-weight: 600;
+        border: 2px solid var(--border);
+        background: var(--white);
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all .15s;
+        white-space: nowrap;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
 
-.pw-filter-pill:hover {
-    border-color: var(--green-200);
-    color: var(--text);
-    background: var(--green-100);
-}
+        .pw-filter-pill:hover {
+            border-color: var(--green-200);
+            color: var(--text);
+            background: var(--green-100);
+        }
 
-.pw-filter-pill.is-active {
-    background: var(--green);
-    border-color: var(--green);
-    color: var(--white);
-}
+        .pw-filter-pill.is-active {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
 
-.pw-filter-pill:focus-visible {
-    outline: 2px solid var(--green);
-    outline-offset: 2px;
-}
+        .pw-filter-pill:focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 2px;
+        }
 
-.pw-filter-sep {
-    width: 1px;
-    height: 24px;
-    background: var(--border);
-    flex-shrink: 0;
-}
+    .pw-filter-sep {
+        width: 1px;
+        height: 24px;
+        background: var(--border);
+        flex-shrink: 0;
+    }
 
-.pw-filter-count {
-    font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 500;
-    white-space: nowrap;
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
+    .pw-filter-count {
+        font-size: 13px;
+        color: var(--text-muted);
+        font-weight: 500;
+        white-space: nowrap;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
 
-.pw-filter-count strong {
-    font-weight: 700;
-    color: var(--text);
-}
+        .pw-filter-count strong {
+            font-weight: 700;
+            color: var(--text);
+        }
 
-.pw-filter-clear {
-    display: none;
-    align-items: center;
-    gap: 4px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
-    background: none;
-    border: 1.5px solid var(--border);
-    cursor: pointer;
-    padding: 5px 12px;
-    border-radius: var(--r-full);
-    transition: all .15s;
-    font-family: var(--font-body);
-}
+    .pw-filter-clear {
+        display: none;
+        align-items: center;
+        gap: 4px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-muted);
+        background: none;
+        border: 1.5px solid var(--border);
+        cursor: pointer;
+        padding: 5px 12px;
+        border-radius: var(--r-full);
+        transition: all .15s;
+        font-family: var(--font-body);
+    }
 
-.pw-filter-clear.is-visible { display: inline-flex; }
+        .pw-filter-clear.is-visible {
+            display: inline-flex;
+        }
 
-.pw-filter-clear:hover {
-    background: var(--cream-2);
-    color: var(--text);
-    border-color: var(--text-muted);
-}
+        .pw-filter-clear:hover {
+            background: var(--cream-2);
+            color: var(--text);
+            border-color: var(--text-muted);
+        }
 
-/* ── Product Grid ───────────────────────────────────────── */
-.pw-shop-grid {
-    padding: 56px 0 96px;
-    background: var(--cream);
-    min-height: 400px;
-}
+    /* ── Product Grid ───────────────────────────────────────── */
+    .pw-shop-grid {
+        padding: 56px 0 96px;
+        background: var(--cream);
+        min-height: 400px;
+    }
 
-/* Stock badge (top-left) */
-.pw-card__stock {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    z-index: 1;
-}
+    /* Stock badge (top-left) */
+    .pw-card__stock {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 1;
+    }
 
-/* Image placeholder */
-.pw-card__img-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--green-100) 0%, var(--cream-2) 100%);
-}
+    /* Image placeholder */
+    .pw-card__img-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--green-100) 0%, var(--cream-2) 100%);
+    }
 
-/* Category pill on card */
-.pw-card__cat {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 9px;
-    border-radius: var(--r-full);
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    background: var(--green-100);
-    color: var(--green-800);
-    margin-bottom: 8px;
-}
+    /* Category pill on card */
+    .pw-card__cat {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 9px;
+        border-radius: var(--r-full);
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        background: var(--green-100);
+        color: var(--green-800);
+        margin-bottom: 8px;
+    }
 
-/* Unavailable/out-of-stock card dimming */
-.pw-card--out {
-    opacity: .72;
-}
+    /* Unavailable/out-of-stock card dimming */
+    .pw-card--out {
+        opacity: .72;
+    }
 
-.pw-card--out .pw-card__photo {
-    filter: grayscale(35%);
-}
+        .pw-card--out .pw-card__photo {
+            filter: grayscale(35%);
+        }
 
-/* Allergen chips */
-.pw-card__allergens {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-bottom: 14px;
-}
+    /* Allergen chips */
+    .pw-card__allergens {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: 14px;
+    }
 
-.pw-allergen-tag {
-    display: inline-flex;
-    align-items: center;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 7px;
-    background: var(--yellow-100);
-    color: #92400E;
-    border-radius: var(--r-full);
-    letter-spacing: .02em;
-    text-transform: uppercase;
-}
+    .pw-allergen-tag {
+        display: inline-flex;
+        align-items: center;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 7px;
+        background: var(--yellow-100);
+        color: #92400E;
+        border-radius: var(--r-full);
+        letter-spacing: .02em;
+        text-transform: uppercase;
+    }
 
-/* Admin links row */
-.pw-card__admin {
-    display: flex;
-    gap: 6px;
-    padding-top: 10px;
-    border-top: 1.5px solid var(--border);
-    margin-top: 4px;
-}
+    /* Admin links row */
+    .pw-card__admin {
+        display: flex;
+        gap: 6px;
+        padding-top: 10px;
+        border-top: 1.5px solid var(--border);
+        margin-top: 4px;
+    }
 
-.pw-card__admin a {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: var(--r-full);
-    border: 1.5px solid var(--border);
-    color: var(--text-muted);
-    transition: all .15s;
-}
+        .pw-card__admin a {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--r-full);
+            border: 1.5px solid var(--border);
+            color: var(--text-muted);
+            transition: all .15s;
+        }
 
-.pw-card__admin a:hover {
-    border-color: var(--green);
-    color: var(--green);
-    background: var(--green-100);
-}
+            .pw-card__admin a:hover {
+                border-color: var(--green);
+                color: var(--green);
+                background: var(--green-100);
+            }
 
-.pw-card__admin a.danger:hover {
-    border-color: #DC2626;
-    color: #DC2626;
-    background: #FEF2F2;
-}
+            .pw-card__admin a.danger:hover {
+                border-color: #DC2626;
+                color: #DC2626;
+                background: #FEF2F2;
+            }
 
-/* Empty state */
-.pw-empty-state {
-    display: none;
-    text-align: center;
-    padding: 80px 32px;
-    grid-column: 1 / -1;
-}
+    /* Empty state */
+    .pw-empty-state {
+        display: none;
+        text-align: center;
+        padding: 80px 32px;
+        grid-column: 1 / -1;
+    }
 
-.pw-empty-state.is-visible { display: block; }
+        .pw-empty-state.is-visible {
+            display: block;
+        }
 
-.pw-empty-icon {
-    color: var(--text-light);
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-}
+    .pw-empty-icon {
+        color: var(--text-light);
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
 
-.pw-empty-title {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0 0 8px;
-    color: var(--text);
-}
+    .pw-empty-title {
+        font-family: var(--font-display);
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0 0 8px;
+        color: var(--text);
+    }
 
-.pw-empty-sub {
-    color: var(--text-muted);
-    margin: 0 0 24px;
-    font-size: 15px;
-}
+    .pw-empty-sub {
+        color: var(--text-muted);
+        margin: 0 0 24px;
+        font-size: 15px;
+    }
 
-/* ── Quantity control ───────────────────────────────────── */
-.pw-add-group {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
+    /* ── Quantity control ───────────────────────────────────── */
+    .pw-add-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
 
-.pw-qty-control {
-    display: flex;
-    align-items: center;
-    border: 2px solid var(--border);
-    border-radius: var(--r-full);
-    background: var(--white);
-    overflow: hidden;
-}
+    .pw-qty-control {
+        display: flex;
+        align-items: center;
+        border: 2px solid var(--border);
+        border-radius: var(--r-full);
+        background: var(--white);
+        overflow: hidden;
+    }
 
-.pw-qty-btn {
-    width: 26px;
-    height: 28px;
-    background: none;
-    border: none;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text-muted);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background .12s, color .12s;
-    padding: 0;
-    line-height: 1;
-    font-family: var(--font-body);
-    flex-shrink: 0;
-}
+    .pw-qty-btn {
+        width: 26px;
+        height: 28px;
+        background: none;
+        border: none;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-muted);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background .12s, color .12s;
+        padding: 0;
+        line-height: 1;
+        font-family: var(--font-body);
+        flex-shrink: 0;
+    }
 
-.pw-qty-btn:hover {
-    background: var(--green-100);
-    color: var(--green);
-}
+        .pw-qty-btn:hover {
+            background: var(--green-100);
+            color: var(--green);
+        }
 
-.pw-qty-btn:focus-visible {
-    outline: 2px solid var(--green);
-    outline-offset: -2px;
-}
+        .pw-qty-btn:focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: -2px;
+        }
 
-.pw-qty-display {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    min-width: 22px;
-    text-align: center;
-    user-select: none;
-    padding: 0 2px;
-}
+    .pw-qty-display {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+        min-width: 22px;
+        text-align: center;
+        user-select: none;
+        padding: 0 2px;
+    }
 
-/* ── Loading spinner ────────────────────────────────────── */
-.pw-spinner {
-    display: inline-block;
-    width: 13px;
-    height: 13px;
-    border: 2px solid rgba(255,255,255,.4);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: pw-spin .6s linear infinite;
-    vertical-align: middle;
-}
+    /* ── Loading spinner ────────────────────────────────────── */
+    .pw-spinner {
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        border: 2px solid rgba(255,255,255,.4);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: pw-spin .6s linear infinite;
+        vertical-align: middle;
+    }
 
-@@keyframes pw-spin {
-    to { transform: rotate(360deg); }
-}
+    @@keyframes pw-spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
 
-/* ── Add-to-basket toast ────────────────────────────────── */
-.pw-add-toast {
-    position: fixed;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%) translateY(14px);
-    background: var(--text);
-    color: var(--cream);
-    padding: 10px 22px;
-    border-radius: var(--r-full);
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 9998;
-    opacity: 0;
-    transition: opacity .22s, transform .22s;
-    white-space: nowrap;
-    box-shadow: var(--shadow-lg);
-    pointer-events: none;
-}
+    /* ── Add-to-basket toast ────────────────────────────────── */
+    .pw-add-toast {
+        position: fixed;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%) translateY(14px);
+        background: var(--text);
+        color: var(--cream);
+        padding: 10px 22px;
+        border-radius: var(--r-full);
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 9998;
+        opacity: 0;
+        transition: opacity .22s, transform .22s;
+        white-space: nowrap;
+        box-shadow: var(--shadow-lg);
+        pointer-events: none;
+    }
 
-.pw-add-toast.is-visible {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
+        .pw-add-toast.is-visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
 
-/* Error toast */
-.pw-toast {
-    position: fixed;
-    top: 96px;
-    right: 24px;
-    z-index: 9999;
-    padding: 14px 20px;
-    border-radius: var(--r-md);
-    box-shadow: var(--shadow-lg);
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    max-width: 380px;
-    animation: toastIn .3s ease;
-}
+    /* Error toast */
+    .pw-toast {
+        position: fixed;
+        top: 96px;
+        right: 24px;
+        z-index: 9999;
+        padding: 14px 20px;
+        border-radius: var(--r-md);
+        box-shadow: var(--shadow-lg);
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 380px;
+        animation: toastIn .3s ease;
+    }
 
-.pw-toast--error { background: #DC2626; color: white; }
+    .pw-toast--error {
+        background: #DC2626;
+        color: white;
+    }
 
-@@keyframes toastIn {
-    from { opacity: 0; transform: translateX(20px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
+    @@keyframes toastIn {
+        from {
+            opacity: 0;
+            transform: translateX(20px);
+        }
 
-/* ── Responsive ─────────────────────────────────────────── */
-@@media (max-width: 900px) {
-    .pw-filters-inner { gap: 8px; }
-    .pw-filter-search { min-width: 160px; }
-    .pw-filter-count  { margin-left: 0; }
-}
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
 
-@@media (max-width: 640px) {
-    .pw-shop-hero { padding: 120px 20px 60px; min-height: 35vh; }
-    .pw-filters-bar { top: 60px; }
-    .pw-filters-inner { flex-direction: column; align-items: stretch; }
-    .pw-filter-search { max-width: 100%; min-width: unset; }
-    .pw-filter-select { width: 100%; }
-    .pw-filter-pills  { justify-content: center; flex-wrap: wrap; }
-    .pw-filter-count  { text-align: center; justify-content: center; }
-    .pw-filter-sep    { display: none; }
-}
+    /* ── Responsive ─────────────────────────────────────────── */
+    @@media (max-width: 900px) {
+        .pw-filters-inner {
+            gap: 8px;
+        }
+
+        .pw-filter-search {
+            min-width: 160px;
+        }
+
+        .pw-filter-count {
+            margin-left: 0;
+        }
+    }
+
+    @@media (max-width: 640px) {
+        .pw-shop-hero {
+            padding: 120px 20px 60px;
+            min-height: 35vh;
+        }
+
+        .pw-filters-bar {
+            top: 60px;
+        }
+
+        .pw-filters-inner {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .pw-filter-search {
+            max-width: 100%;
+            min-width: unset;
+        }
+
+        .pw-filter-select {
+            width: 100%;
+        }
+
+        .pw-filter-pills {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pw-filter-count {
+            text-align: center;
+            justify-content: center;
+        }
+
+        .pw-filter-sep {
+            display: none;
+        }
+    }
 </style>
 
 @* ── Error Toast ────────────────────────────────────── *@
@@ -536,11 +594,11 @@
 
 @* ── Mini Hero ──────────────────────────────────────── *@
 <section class="pw-shop-hero" aria-label="Shop header">
-    <span class="pw-hero__float pw-hero__float--1" aria-hidden="true"><i data-lucide="carrot"   class="pw-icon-float"></i></span>
-    <span class="pw-hero__float pw-hero__float--2" aria-hidden="true"><i data-lucide="leaf"     class="pw-icon-float"></i></span>
-    <span class="pw-hero__float pw-hero__float--3" aria-hidden="true"><i data-lucide="cherry"   class="pw-icon-float"></i></span>
-    <span class="pw-hero__float pw-hero__float--4" aria-hidden="true"><i data-lucide="sprout"   class="pw-icon-float"></i></span>
-    <span class="pw-hero__float pw-hero__float--5" aria-hidden="true"><i data-lucide="wheat"    class="pw-icon-float"></i></span>
+    <span class="pw-hero__float pw-hero__float--1" aria-hidden="true"><i data-lucide="carrot" class="pw-icon-float"></i></span>
+    <span class="pw-hero__float pw-hero__float--2" aria-hidden="true"><i data-lucide="leaf" class="pw-icon-float"></i></span>
+    <span class="pw-hero__float pw-hero__float--3" aria-hidden="true"><i data-lucide="cherry" class="pw-icon-float"></i></span>
+    <span class="pw-hero__float pw-hero__float--4" aria-hidden="true"><i data-lucide="sprout" class="pw-icon-float"></i></span>
+    <span class="pw-hero__float pw-hero__float--5" aria-hidden="true"><i data-lucide="wheat" class="pw-icon-float"></i></span>
     <span class="pw-hero__float pw-hero__float--6" aria-hidden="true"><i data-lucide="flower-2" class="pw-icon-float"></i></span>
 
     <div class="pw-shop-hero__content">
@@ -640,12 +698,12 @@
         <div class="pw-filter-sep" aria-hidden="true"></div>
 
         <div class="pw-filter-pills" role="group" aria-label="Filter by availability">
-            <button type="button" class="pw-filter-pill is-active" data-avail="all"        aria-pressed="true">All</button>
-            <button type="button" class="pw-filter-pill"           data-avail="instock"    aria-pressed="false">
+            <button type="button" class="pw-filter-pill is-active" data-avail="all" aria-pressed="true">All</button>
+            <button type="button" class="pw-filter-pill" data-avail="instock" aria-pressed="false">
                 <i data-lucide="circle-check" style="width:12px;height:12px;" aria-hidden="true"></i>
                 In Stock
             </button>
-            <button type="button" class="pw-filter-pill"           data-avail="outofstock" aria-pressed="false">
+            <button type="button" class="pw-filter-pill" data-avail="outofstock" aria-pressed="false">
                 <i data-lucide="circle-x" style="width:12px;height:12px;" aria-hidden="true"></i>
                 Out of Stock
             </button>
@@ -682,11 +740,11 @@
 
             @foreach (var item in productList)
             {
-                var isAvailable  = item.Available;
-                var inStock      = item.Available && item.QuantityInStock > 0;
-                var isLowStock   = inStock && item.QuantityInStock <= 5;
+                var isAvailable = item.Available;
+                var inStock = item.Available && item.QuantityInStock > 0;
+                var isLowStock = inStock && item.QuantityInStock <= 5;
                 var producerName = item.Producers?.ProducerName ?? "Local Farm";
-                var cardMod      = (!isAvailable || item.QuantityInStock == 0) ? "pw-card--out" : "";
+                var cardMod = (!isAvailable || item.QuantityInStock == 0) ? "pw-card--out" : "";
 
                 <article class="pw-card pw-card--product reveal reveal--pop @cardMod"
                          data-product-card
@@ -788,7 +846,7 @@
                                     </div>
                                     <form class="pw-add-form" asp-controller="BasketProducts" asp-action="AddAjax" method="post" style="margin:0;">
                                         <input type="hidden" name="ProductsId" value="@item.ProductsId" />
-                                        <input type="hidden" name="Quantity"   class="pw-qty-value" value="1" />
+                                        <input type="hidden" name="Quantity" class="pw-qty-value" value="1" />
                                         <button type="submit" class="pw-btn pw-btn--sm pw-btn--primary pw-add-btn"
                                                 aria-label="Add @item.ItemName to basket">
                                             <i data-lucide="plus" style="width:13px;height:13px;" aria-hidden="true"></i>
@@ -812,9 +870,9 @@
                             <div class="pw-card__admin">
                                 <a asp-action="Details" asp-route-id="@item.ProductsId"
                                    aria-label="View details for @item.ItemName">Details</a>
-                                <a asp-action="Edit"    asp-route-id="@item.ProductsId"
+                                <a asp-action="Edit" asp-route-id="@item.ProductsId"
                                    aria-label="Edit @item.ItemName">Edit</a>
-                                <a asp-action="Delete"  asp-route-id="@item.ProductsId"
+                                <a asp-action="Delete" asp-route-id="@item.ProductsId"
                                    class="danger" aria-label="Delete @item.ItemName">Delete</a>
                             </div>
                         }
@@ -850,261 +908,290 @@
 </section>
 
 @section Scripts {
-<script>
-(function () {
-    'use strict';
+    <script>
+        (function () {
+            'use strict';
 
-    /* ── Quantity +/− controls ──────────────────────────── */
-    document.querySelectorAll('.pw-qty-control').forEach(function (ctrl) {
-        var dec     = ctrl.querySelector('.pw-qty-dec');
-        var inc     = ctrl.querySelector('.pw-qty-inc');
-        var display = ctrl.querySelector('.pw-qty-display');
-        var group   = ctrl.closest('.pw-add-group');
-        var hidden  = group ? group.querySelector('.pw-qty-value') : null;
-
-        function getQty() { return parseInt(display.textContent) || 1; }
-        function setQty(n) {
-            n = Math.max(1, Math.min(99, n));
-            display.textContent = n;
-            if (hidden) hidden.value = n;
-        }
-        if (dec) dec.addEventListener('click', function () { setQty(getQty() - 1); });
-        if (inc) inc.addEventListener('click', function () { setQty(getQty() + 1); });
-    });
-
-    /* ── Particle burst ─────────────────────────────────── */
-    function burstParticles(el) {
-        var colors = ['#16A34A','#F59E0B','#F97316','#EC4899','#8B5CF6','#4ADE80','#FEF08A','#FB923C'];
-        var r  = el.getBoundingClientRect();
-        var cx = r.left + r.width  / 2;
-        var cy = r.top  + r.height / 2;
-        for (var i = 0; i < 14; i++) {
-            (function (i) {
+            /* ── ScrollReveal cleanup for product cards ─────────── *
+             * SR sets inline opacity/transform/visibility when it processes elements.
+             * Once the reveal animation has finished those inline styles must be cleared
+             * so that filter show/hide (display:none toggle) works cleanly and cards
+             * are never stuck invisible or misaligned after being un-hidden.
+             * We wait slightly longer than SR's own duration (600 ms) to be safe.      */
+            (function () {
+                var cards = document.querySelectorAll('[data-product-card]');
+                if (!cards.length) return;
                 setTimeout(function () {
-                    var p     = document.createElement('div');
-                    var size  = 5 + Math.random() * 9;
-                    var angle = Math.random() * Math.PI * 2;
-                    var speed = 50 + Math.random() * 110;
-                    var dx    = Math.cos(angle) * speed;
-                    var dy    = Math.sin(angle) * speed - 55;
-                    p.style.cssText =
-                        'position:fixed;border-radius:50%;pointer-events:none;z-index:9999;' +
-                        'left:'   + (cx - size / 2) + 'px;' +
-                        'top:'    + (cy - size / 2) + 'px;' +
-                        'width:'  + size + 'px;height:' + size + 'px;' +
-                        'background:' + colors[Math.floor(Math.random() * colors.length)] + ';';
-                    document.body.appendChild(p);
-                    p.animate(
-                        [{ transform: 'translate(0,0) scale(1)', opacity: 1 },
-                         { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(0)', opacity: 0 }],
-                        { duration: 550 + Math.random() * 300, easing: 'ease-out', fill: 'forwards' }
-                    ).onfinish = function () { p.remove(); };
-                }, i * 25);
-            }(i));
-        }
-    }
+                    cards.forEach(function (card) {
+                        card.style.opacity    = '';
+                        card.style.transform  = '';
+                        card.style.visibility = '';
+                    });
+                }, 900); // 600 ms SR duration + 300 ms buffer
+            }());
 
-    /* ── Add-to-basket toast ────────────────────────────── */
-    function escHtml(s) {
-        return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    }
-    function showAddToast(msg) {
-        var t = document.createElement('div');
-        t.className = 'pw-add-toast';
-        t.setAttribute('role', 'status');
-        t.setAttribute('aria-live', 'polite');
-        t.innerHTML = '🛒 ' + msg;
-        document.body.appendChild(t);
-        requestAnimationFrame(function () {
-            requestAnimationFrame(function () { t.classList.add('is-visible'); });
-        });
-        setTimeout(function () {
-            t.classList.remove('is-visible');
-            setTimeout(function () { t.remove(); }, 350);
-        }, 2800);
-    }
+            /* ── Quantity +/− controls ──────────────────────────── */
+            document.querySelectorAll('.pw-qty-control').forEach(function (ctrl) {
+                var dec     = ctrl.querySelector('.pw-qty-dec');
+                var inc     = ctrl.querySelector('.pw-qty-inc');
+                var display = ctrl.querySelector('.pw-qty-display');
+                var group   = ctrl.closest('.pw-add-group');
+                var hidden  = group ? group.querySelector('.pw-qty-value') : null;
 
-    /* ── AJAX add to basket ─────────────────────────────── */
-    document.querySelectorAll('.pw-add-form').forEach(function (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            var btn      = form.querySelector('.pw-add-btn');
-            var qtyInput = form.querySelector('.pw-qty-value');
-            var qty      = parseInt(qtyInput ? qtyInput.value : '1') || 1;
-            var tokenEl  = form.querySelector('[name="__RequestVerificationToken"]');
-            var token    = tokenEl ? tokenEl.value : '';
-            var origHTML = btn.innerHTML;
-
-            btn.disabled  = true;
-            btn.innerHTML = '<span class="pw-spinner"></span>';
-
-            fetch(form.action, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'RequestVerificationToken': token
-                },
-                body: new URLSearchParams({
-                    ProductsId: form.querySelector('[name="ProductsId"]').value,
-                    Quantity:   qty,
-                    __RequestVerificationToken: token
-                })
-            })
-            .then(function (r) { return r.json(); })
-            .then(function (data) {
-                if (data.success) {
-                    btn.innerHTML = '✓';
-                    btn.style.background = 'var(--green-700)';
-
-                    if (window.updateBasketBadge) window.updateBasketBadge(data.basketCount);
-                    burstParticles(btn);
-                    showAddToast(
-                        (qty > 1 ? '<strong>' + qty + '×</strong> ' : '') +
-                        escHtml(data.itemName) + ' added to basket!'
-                    );
-
-                    setTimeout(function () {
-                        btn.disabled         = false;
-                        btn.innerHTML        = origHTML;
-                        btn.style.background = '';
-                    }, 1800);
-                } else {
-                    btn.disabled         = false;
-                    btn.innerHTML        = origHTML;
-                    btn.style.background = '#DC2626';
-                    showAddToast(escHtml(data.message || 'Could not add to basket.'));
-                    setTimeout(function () { btn.style.background = ''; }, 1800);
+                function getQty() { return parseInt(display.textContent) || 1; }
+                function setQty(n) {
+                    n = Math.max(1, Math.min(99, n));
+                    display.textContent = n;
+                    if (hidden) hidden.value = n;
                 }
-            })
-            .catch(function () {
-                btn.disabled  = false;
-                btn.innerHTML = origHTML;
-                showAddToast('Something went wrong — please try again.');
+                if (dec) dec.addEventListener('click', function () { setQty(getQty() - 1); });
+                if (inc) inc.addEventListener('click', function () { setQty(getQty() + 1); });
             });
-        });
-    });
 
-    /* ── Filter / sort ──────────────────────────────────── */
-    var searchInput    = document.getElementById('filterSearch');
-    var categorySelect = document.getElementById('filterCategory');
-    var producerSelect = document.getElementById('filterProducer');
-    var sortSelect     = document.getElementById('filterSort');
-    var countEl        = document.getElementById('productCount');
-    var clearBtn       = document.getElementById('filterClear');
-    var emptyState     = document.getElementById('emptyState');
-    var grid           = document.getElementById('productsGrid');
-    var pills          = document.querySelectorAll('[data-avail]');
-    var activeAvail    = 'all';
+            /* ── Particle burst ─────────────────────────────────── */
+            function burstParticles(el) {
+                var colors = ['#16A34A','#F59E0B','#F97316','#EC4899','#8B5CF6','#4ADE80','#FEF08A','#FB923C'];
+                var r  = el.getBoundingClientRect();
+                var cx = r.left + r.width  / 2;
+                var cy = r.top  + r.height / 2;
+                for (var i = 0; i < 14; i++) {
+                    (function (i) {
+                        setTimeout(function () {
+                            var p     = document.createElement('div');
+                            var size  = 5 + Math.random() * 9;
+                            var angle = Math.random() * Math.PI * 2;
+                            var speed = 50 + Math.random() * 110;
+                            var dx    = Math.cos(angle) * speed;
+                            var dy    = Math.sin(angle) * speed - 55;
+                            p.style.cssText =
+                                'position:fixed;border-radius:50%;pointer-events:none;z-index:9999;' +
+                                'left:'   + (cx - size / 2) + 'px;' +
+                                'top:'    + (cy - size / 2) + 'px;' +
+                                'width:'  + size + 'px;height:' + size + 'px;' +
+                                'background:' + colors[Math.floor(Math.random() * colors.length)] + ';';
+                            document.body.appendChild(p);
+                            p.animate(
+                                [{ transform: 'translate(0,0) scale(1)', opacity: 1 },
+                                 { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(0)', opacity: 0 }],
+                                { duration: 550 + Math.random() * 300, easing: 'ease-out', fill: 'forwards' }
+                            ).onfinish = function () { p.remove(); };
+                        }, i * 25);
+                    }(i));
+                }
+            }
 
-    function getCards() {
-        return Array.from(grid.querySelectorAll('[data-product-card]'));
-    }
+            /* ── Add-to-basket toast ────────────────────────────── */
+            function escHtml(s) {
+                return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            }
+            function showAddToast(msg) {
+                var t = document.createElement('div');
+                t.className = 'pw-add-toast';
+                t.setAttribute('role', 'status');
+                t.setAttribute('aria-live', 'polite');
+                t.innerHTML = '🛒 ' + msg;
+                document.body.appendChild(t);
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () { t.classList.add('is-visible'); });
+                });
+                setTimeout(function () {
+                    t.classList.remove('is-visible');
+                    setTimeout(function () { t.remove(); }, 350);
+                }, 2800);
+            }
 
-    function applyFilters() {
-        var search   = searchInput.value.toLowerCase().trim();
-        var category = categorySelect.value;
-        var producer = producerSelect.value;
-        var sort     = sortSelect.value;
-        var cards    = getCards();
+            /* ── AJAX add to basket ─────────────────────────────── */
+            document.querySelectorAll('.pw-add-form').forEach(function (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
 
-        // Sort: reorder DOM nodes before filtering
-        if (sort !== 'default') {
-            cards.sort(function (a, b) {
-                if (sort === 'price-asc')  return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
-                if (sort === 'price-desc') return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
-                if (sort === 'name-asc')   return a.dataset.name.localeCompare(b.dataset.name);
-                if (sort === 'name-desc')  return b.dataset.name.localeCompare(a.dataset.name);
-                return 0;
+                    var btn      = form.querySelector('.pw-add-btn');
+                    var qtyInput = form.querySelector('.pw-qty-value');
+                    var qty      = parseInt(qtyInput ? qtyInput.value : '1') || 1;
+                    var tokenEl  = form.querySelector('[name="__RequestVerificationToken"]');
+                    var token    = tokenEl ? tokenEl.value : '';
+                    var origHTML = btn.innerHTML;
+
+                    btn.disabled  = true;
+                    btn.innerHTML = '<span class="pw-spinner"></span>';
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'RequestVerificationToken': token
+                        },
+                        body: new URLSearchParams({
+                            ProductsId: form.querySelector('[name="ProductsId"]').value,
+                            Quantity:   qty,
+                            __RequestVerificationToken: token
+                        })
+                    })
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) {
+                        if (data.success) {
+                            btn.innerHTML = '✓';
+                            btn.style.background = 'var(--green-700)';
+
+                            if (window.updateBasketBadge) window.updateBasketBadge(data.basketCount);
+                            burstParticles(btn);
+                            showAddToast(
+                                (qty > 1 ? '<strong>' + qty + '×</strong> ' : '') +
+                                escHtml(data.itemName) + ' added to basket!'
+                            );
+
+                            setTimeout(function () {
+                                btn.disabled         = false;
+                                btn.innerHTML        = origHTML;
+                                btn.style.background = '';
+                            }, 1800);
+                        } else {
+                            btn.disabled         = false;
+                            btn.innerHTML        = origHTML;
+                            btn.style.background = '#DC2626';
+                            showAddToast(escHtml(data.message || 'Could not add to basket.'));
+                            setTimeout(function () { btn.style.background = ''; }, 1800);
+                        }
+                    })
+                    .catch(function () {
+                        btn.disabled  = false;
+                        btn.innerHTML = origHTML;
+                        showAddToast('Something went wrong — please try again.');
+                    });
+                });
             });
-            cards.forEach(function (c) { grid.insertBefore(c, emptyState); });
-        }
 
-        // Show/hide by filter criteria
-        var visible = 0;
-        cards.forEach(function (card) {
-            var show = true;
-            if (search   && !card.dataset.name.includes(search))      show = false;
-            if (category && card.dataset.category !== category)        show = false;
-            if (producer && card.dataset.producer !== producer)        show = false;
-            if (activeAvail === 'instock'    && card.dataset.instock !== 'true') show = false;
-            if (activeAvail === 'outofstock' && card.dataset.instock === 'true') show = false;
+            /* ── Filter / sort ──────────────────────────────────── */
+            var searchInput    = document.getElementById('filterSearch');
+            var categorySelect = document.getElementById('filterCategory');
+            var producerSelect = document.getElementById('filterProducer');
+            var sortSelect     = document.getElementById('filterSort');
+            var countEl        = document.getElementById('productCount');
+            var clearBtn       = document.getElementById('filterClear');
+            var emptyState     = document.getElementById('emptyState');
+            var grid           = document.getElementById('productsGrid');
+            var pills          = document.querySelectorAll('[data-avail]');
+            var activeAvail    = 'all';
 
-            card.style.display = show ? '' : 'none';
-            if (show) visible++;
-        });
+            function getCards() {
+                return Array.from(grid.querySelectorAll('[data-product-card]'));
+            }
 
-        // Update count label
-        if (countEl) countEl.textContent = visible;
+            function applyFilters() {
+                var search   = searchInput.value.toLowerCase().trim();
+                var category = categorySelect.value;
+                var producer = producerSelect.value;
+                var sort     = sortSelect.value;
+                var cards    = getCards();
 
-        // Toggle empty state
-        if (emptyState) emptyState.classList.toggle('is-visible', visible === 0);
+                // Sort: reorder DOM nodes before filtering
+                if (sort !== 'default') {
+                    cards.sort(function (a, b) {
+                        if (sort === 'price-asc')  return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+                        if (sort === 'price-desc') return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+                        if (sort === 'name-asc')   return a.dataset.name.localeCompare(b.dataset.name);
+                        if (sort === 'name-desc')  return b.dataset.name.localeCompare(a.dataset.name);
+                        return 0;
+                    });
+                    cards.forEach(function (c) { grid.insertBefore(c, emptyState); });
+                }
 
-        // Toggle clear button
-        var hasFilters = search || category || producer || activeAvail !== 'all' || sort !== 'default';
-        if (clearBtn) clearBtn.classList.toggle('is-visible', !!hasFilters);
-    }
+                // Show/hide by filter criteria
+                var visible = 0;
+                cards.forEach(function (card) {
+                    var show = true;
+                    if (search   && !card.dataset.name.includes(search))      show = false;
+                    if (category && card.dataset.category !== category)        show = false;
+                    if (producer && card.dataset.producer !== producer)        show = false;
+                    if (activeAvail === 'instock'    && card.dataset.instock !== 'true') show = false;
+                    if (activeAvail === 'outofstock' && card.dataset.instock === 'true') show = false;
 
-    // Wire up inputs
-    if (searchInput)    searchInput.addEventListener('input', applyFilters);
-    if (categorySelect) categorySelect.addEventListener('change', applyFilters);
-    if (producerSelect) producerSelect.addEventListener('change', applyFilters);
-    if (sortSelect)     sortSelect.addEventListener('change', applyFilters);
+                    if (show) {
+                        card.style.display = '';
+                        // ScrollReveal injects inline opacity/transform/visibility on elements it
+                        // has already processed. When a card re-appears after being filtered out
+                        // SR won't re-trigger, so we must clear those inline styles ourselves so
+                        // the card is fully visible and takes up its proper space in the grid.
+                        card.style.opacity    = '';
+                        card.style.transform  = '';
+                        card.style.visibility = '';
+                        visible++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
 
-    // Availability pills
-    pills.forEach(function (pill) {
-        pill.addEventListener('click', function () {
-            pills.forEach(function (p) {
-                p.classList.remove('is-active');
-                p.setAttribute('aria-pressed', 'false');
+                // Update count label
+                if (countEl) countEl.textContent = visible;
+
+                // Toggle empty state
+                if (emptyState) emptyState.classList.toggle('is-visible', visible === 0);
+
+                // Toggle clear button
+                var hasFilters = search || category || producer || activeAvail !== 'all' || sort !== 'default';
+                if (clearBtn) clearBtn.classList.toggle('is-visible', !!hasFilters);
+            }
+
+            // Wire up inputs
+            if (searchInput)    searchInput.addEventListener('input', applyFilters);
+            if (categorySelect) categorySelect.addEventListener('change', applyFilters);
+            if (producerSelect) producerSelect.addEventListener('change', applyFilters);
+            if (sortSelect)     sortSelect.addEventListener('change', applyFilters);
+
+            // Availability pills
+            pills.forEach(function (pill) {
+                pill.addEventListener('click', function () {
+                    pills.forEach(function (p) {
+                        p.classList.remove('is-active');
+                        p.setAttribute('aria-pressed', 'false');
+                    });
+                    this.classList.add('is-active');
+                    this.setAttribute('aria-pressed', 'true');
+                    activeAvail = this.dataset.avail;
+                    applyFilters();
+                });
             });
-            this.classList.add('is-active');
-            this.setAttribute('aria-pressed', 'true');
-            activeAvail = this.dataset.avail;
-            applyFilters();
-        });
-    });
 
-    // Clear — defined first so addEventListener can reference it,
-    // and exposed globally so the empty-state button's onclick can call it
-    function clearAllFilters() {
-        searchInput.value    = '';
-        categorySelect.value = '';
-        producerSelect.value = '';
-        sortSelect.value     = 'default';
-        activeAvail          = 'all';
-        pills.forEach(function (p) {
-            var isAll = p.dataset.avail === 'all';
-            p.classList.toggle('is-active', isAll);
-            p.setAttribute('aria-pressed', isAll ? 'true' : 'false');
-        });
-        applyFilters();
-    }
-    window.clearAllFilters = clearAllFilters;
+            // Clear — defined first so addEventListener can reference it,
+            // and exposed globally so the empty-state button's onclick can call it
+            function clearAllFilters() {
+                searchInput.value    = '';
+                categorySelect.value = '';
+                producerSelect.value = '';
+                sortSelect.value     = 'default';
+                activeAvail          = 'all';
+                pills.forEach(function (p) {
+                    var isAll = p.dataset.avail === 'all';
+                    p.classList.toggle('is-active', isAll);
+                    p.setAttribute('aria-pressed', isAll ? 'true' : 'false');
+                });
+                applyFilters();
+            }
+            window.clearAllFilters = clearAllFilters;
 
-    if (clearBtn) clearBtn.addEventListener('click', clearAllFilters);
+            if (clearBtn) clearBtn.addEventListener('click', clearAllFilters);
 
-    // Sticky filter bar — track live nav height so it always sits flush below the nav
-    (function () {
-        var nav       = document.getElementById('mainNav');
-        var filterBar = document.querySelector('.pw-filters-bar');
-        if (!nav || !filterBar) return;
-        function syncTop() { filterBar.style.top = nav.offsetHeight + 'px'; }
-        syncTop();
-        window.addEventListener('scroll', syncTop, { passive: true });
-        window.addEventListener('resize', syncTop, { passive: true });
-    }());
+            // Sticky filter bar — track live nav height so it always sits flush below the nav
+            (function () {
+                var nav       = document.getElementById('mainNav');
+                var filterBar = document.querySelector('.pw-filters-bar');
+                if (!nav || !filterBar) return;
+                function syncTop() { filterBar.style.top = nav.offsetHeight + 'px'; }
+                syncTop();
+                window.addEventListener('scroll', syncTop, { passive: true });
+                window.addEventListener('resize', syncTop, { passive: true });
+            }());
 
-    // Auto-dismiss error toast
-    var toast = document.getElementById('errorToast');
-    if (toast) {
-        setTimeout(function () {
-            toast.style.transition = 'opacity .5s';
-            toast.style.opacity    = '0';
-            setTimeout(function () { toast.remove(); }, 500);
-        }, 4000);
-    }
+            // Auto-dismiss error toast
+            var toast = document.getElementById('errorToast');
+            if (toast) {
+                setTimeout(function () {
+                    toast.style.transition = 'opacity .5s';
+                    toast.style.opacity    = '0';
+                    setTimeout(function () { toast.remove(); }, 500);
+                }, 4000);
+            }
 
-}());
-</script>
+        }());
+    </script>
 }

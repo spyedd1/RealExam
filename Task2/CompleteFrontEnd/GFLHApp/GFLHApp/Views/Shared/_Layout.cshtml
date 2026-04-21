@@ -104,7 +104,10 @@
                 <h4>Growers</h4>
                 <ul role="list">
                     <li><a asp-area="" asp-controller="Producers" asp-action="Index">Meet the Farmers</a></li>
-                    <li><a asp-area="" asp-controller="ProducerDashboard" asp-action="Index">Producer Dashboard</a></li>
+                    @if (User.IsInRole("Producer") || User.IsInRole("Developer"))
+                    {
+                        <li><a asp-area="" asp-controller="ProducerDashboard" asp-action="Index">Producer Dashboard</a></li>
+                    }
                 </ul>
             </div>
             <div class="pw-footer__links">

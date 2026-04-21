@@ -9,6 +9,7 @@
     var discount    = (decimal)(ViewBag.Discount  ?? 0m);
     var total       = (decimal)(ViewBag.Total      ?? 0m);
     var hasDiscount = discount > 0;
+    var hasHealthBundle = (bool)(ViewBag.HasHealthBundle ?? false);
     var anyAllergens = Model.Any(i => !string.IsNullOrWhiteSpace(i.Products?.Allergens));
 
     string CatIcon(string cat) => (cat ?? "").ToLower() switch {
@@ -697,45 +698,55 @@ else
                         <span class="bk-summary__row-value">£@subtotal.ToString("0.00")</span>
                     </div>
 
-                    @if (hasDiscount)
-                    {
-                        <div class="bk-summary__discount" aria-label="Loyalty discount applied">
-                            <div class="bk-summary__discount-left">
-                                <i data-lucide="star" style="width:15px;height:15px;stroke-width:2.5;color:var(--green)"></i>
-                                <span>
-                                    <span class="bk-summary__discount-badge">Loyalty reward</span><br/>
-                                    <span style="font-size:11px;font-weight:500;color:var(--green-700);">Saved on this order</span>
+                        @if (hasDiscount)
+                        {
+                            <div class="bk-summary__discount" aria-label="Discount applied">
+                                <div class="bk-summary__discount-left">
+                                    <i data-lucide="@(hasHealthBundle ? "salad" : "star")"
+                                       style="width:15px;height:15px;stroke-width:2.5;color:var(--green)"></i>
+                                    <span>
+                                        <span class="bk-summary__discount-badge">
+                                            @(hasHealthBundle ? "Health bundle" : "Loyalty reward")
+                                        </span><br />
+                                        <span style="font-size:11px;font-weight:500;color:var(--green-700);">
+                                            @(hasHealthBundle ? "Broccoli, carrot & apple 🥦🥕🍎" : "Saved on this order")
+                                        </span>
+                                    </span>
+                                </div>
+                                <span class="bk-summary__discount-value">−£@discount.ToString("0.00")</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="bk-summary__row">
+                                <span class="bk-summary__row-label" style="display:flex;align-items:center;gap:5px;">
+                                    <i data-lucide="star" style="width:13px;height:13px;stroke-width:2;color:var(--text-light)"></i>
+                                    Loyalty discount
+                                </span>
+                                <span class="bk-summary__row-value" style="color:var(--text-light);font-weight:500;">—</span>
+                            </div>
+                            <div class="bk-summary__row" style="border-bottom:none;padding-top:4px;">
+                                <span class="bk-summary__row-label" style="display:flex;align-items:center;gap:5px;font-size:12px;">
+                                    <i data-lucide="salad" style="width:13px;height:13px;stroke-width:2;color:var(--text-light)"></i>
+                                    Add broccoli, carrot &amp; apple for 10% off
                                 </span>
                             </div>
-                            <span class="bk-summary__discount-value">−£@discount.ToString("0.00")</span>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="bk-summary__row">
-                            <span class="bk-summary__row-label" style="display:flex;align-items:center;gap:5px;">
-                                <i data-lucide="star" style="width:13px;height:13px;stroke-width:2;color:var(--text-light)"></i>
-                                Loyalty discount
-                            </span>
-                            <span class="bk-summary__row-value" style="color:var(--text-light);font-weight:500;">—</span>
-                        </div>
-                    }
+                        }
 
-                    <div class="bk-summary__total" aria-label="Order total">
-                        <span class="bk-summary__total-label">Total</span>
-                        <div style="text-align:right;">
-                            <span class="bk-summary__total-value">£@total.ToString("0.00")</span>
-                            <span class="bk-summary__total-vat">inc. any applicable VAT</span>
-                        </div>
-                    </div>
-
-                    @if (hasDiscount)
-                    {
-                        <p style="font-size:12px;color:var(--green-700);font-weight:600;text-align:center;margin:6px 0 0;display:flex;align-items:center;justify-content:center;gap:5px;">
-                            <i data-lucide="party-popper" style="width:13px;height:13px;stroke-width:2.5"></i>
-                            You saved £@discount.ToString("0.00") with your loyalty reward!
-                        </p>
-                    }
+                        @if (hasDiscount)
+                        {
+                            <p style="font-size:12px;color:var(--green-700);font-weight:600;text-align:center;margin:6px 0 0;display:flex;align-items:center;justify-content:center;gap:5px;">
+                                <i data-lucide="party-popper" style="width:13px;height:13px;stroke-width:2.5"></i>
+                                @if (hasHealthBundle)
+                                {
+                                    <span>You saved £@discount.ToString("0.00") with the health bundle!</span>
+                                }
+                                else
+                                {
+                                    <span>You saved £@discount.ToString("0.00") with your loyalty reward!</span>
+                                }
+                            </p>
+                        }
 
                     <a asp-controller="Orders" asp-action="Create"
                        asp-route-basketId="@basketId"

@@ -1,7 +1,12 @@
+@model IEnumerable<GFLHApp.Models.Producers>
+
 @{
     ViewData["Title"] = "Grown Different";
     ViewData["FullWidth"] = true;
 }
+
+<!-- Existing content remains unchanged -->
+<!-- Example usage of the Producers model -->
 
 <!-- Scroll progress bar (position:fixed, no layout impact) -->
 <div id="scrollProgress" class="pw-scroll-progress" aria-hidden="true"></div>
@@ -91,7 +96,7 @@
                 <span>Spring Produce</span>
                 <span>Fresh</span>
             </div>
-            <div class="pw-box-sticker pw-box-sticker--2">Order now →</div>
+            <div class="pw-box-sticker pw-box-sticker--2">Unmissable Deals</div>
         </div>
     </div>
 
@@ -163,14 +168,14 @@
                     <img src="~/images/home/homecarrots.jpg" alt="" class="pw-card__photo" loading="lazy">
                 </div>
                 <div class="pw-card__body">
-                    <p class="pw-card__farm">Greenfield Farm · Devon</p>
+                    <p class="pw-card__farm">Willowcreek Farm</p>
                     <h3 class="pw-card__name">Heritage Carrots</h3>
                     <p class="pw-card__desc">Purple, yellow, orange. Not your average sad bagged carrots from a sad supermarket shelf.</p>
                     <div class="pw-card__footer">
                         <span class="pw-card__price">£2.50</span>
                         <a class="pw-btn pw-btn--sm pw-btn--primary"
                            asp-area="" asp-controller="Products" asp-action="Index"
-                           aria-label="Add Heritage Carrots to basket">Add +</a>
+                           aria-label="Add Heritage Carrots to basket">Goto Shop</a>
                     </div>
                 </div>
             </article>
@@ -184,14 +189,14 @@
                     <img src="~/images/home/homestrawberries.jpg" alt="" class="pw-card__photo" loading="lazy">
                 </div>
                 <div class="pw-card__body">
-                    <p class="pw-card__farm">Sunrise Acres · Kent</p>
+                    <p class="pw-card__farm">Sunnybrook Farm</p>
                     <h3 class="pw-card__name">Strawberries</h3>
                     <p class="pw-card__desc">Ugly. Delicious. The strawberries that would start a movement if tomatoes could start movements.</p>
                     <div class="pw-card__footer">
                         <span class="pw-card__price">£3.80</span>
                         <a class="pw-btn pw-btn--sm pw-btn--primary"
                            asp-area="" asp-controller="Products" asp-action="Index"
-                           aria-label="Add Heirloom Tomatoes to basket">Add +</a>
+                           aria-label="Add Heirloom Tomatoes to basket">Goto shop</a>
                     </div>
                 </div>
             </article>
@@ -205,14 +210,14 @@
                     <img src="~/images/home/homeveg.jpg" alt="" class="pw-card__photo" loading="lazy">
                 </div>
                 <div class="pw-card__body">
-                    <p class="pw-card__farm">The Walled Garden · Somerset</p>
+                    <p class="pw-card__farm">Oakridge Harvest Hub</p>
                     <h3 class="pw-card__name">Spring Greens Mix</h3>
                     <p class="pw-card__desc">Spinach, kale, chard. Tastes like a forest in a really, really good way.</p>
                     <div class="pw-card__footer">
                         <span class="pw-card__price">£2.20</span>
                         <a class="pw-btn pw-btn--sm pw-btn--primary"
                            asp-area="" asp-controller="Products" asp-action="Index"
-                           aria-label="Add Spring Greens Mix to basket">Add +</a>
+                           aria-label="Add Spring Greens Mix to basket">Goto shop</a>
                     </div>
                 </div>
             </article>
@@ -251,7 +256,7 @@
                              class="pw-spotlight__photo">
                     </div>
                     <div class="pw-spotlight__sticker pw-spotlight__sticker--br">
-                        From £12 →
+                        Don't miss this bargain!
                     </div>
                 </div>
             </div>
@@ -259,14 +264,14 @@
             <div class="pw-spotlight__text-col reveal reveal--right" data-delay="120">
                 <span class="pw-section__eyebrow">
                     <i data-lucide="package" class="pw-icon-sm"></i>
-                    This week's deal
+                    Our special deal
                 </span>
                 <h2 class="pw-section__title" id="spotlight-heading">
-                    The Spring Deal.<br>
-                    <em class="pw-text--green">It's a vibe.</em>
+                    The Health Bundle.<br>
+                    <em class="pw-text--green">It's a healthy vibe.</em>
                 </h2>
                 <p class="pw-spotlight__desc">
-                   Have carrots, tomatoes and various other greens in your basket
+                   Have a carrot, apple and broccoli in your basket
                     for 10% off on your orders subtotal.
                 </p>
                 <ul class="pw-spotlight__list">
@@ -276,7 +281,7 @@
                 </ul>
                 <a class="pw-btn pw-btn--primary pw-btn--lg"
                    asp-area="" asp-controller="Products" asp-action="Index">
-                    Get This Deal →
+                    Grab This Deal →
                 </a>
             </div>
 
@@ -369,15 +374,8 @@
                     <img src="~/images/home/olderLady.jpg" alt="" class="pw-grower__photo" loading="lazy">
                 </div>
                 <div class="pw-card__body">
-                    <p class="pw-card__location">
-                        <i data-lucide="map-pin" class="pw-icon-sm pw-icon-muted"></i>
-                        Devon, UK
-                    </p>
-                    <h3 class="pw-card__name">Greenfield Farm</h3>
+                    <h3 class="pw-card__name">Willowcreek Farm</h3>
                     <p class="pw-card__desc">"We've been growing root vegetables for three generations. Every single carrot is pulled by hand." — Martha, Head Grower</p>
-                    <a class="pw-link" asp-area="" asp-controller="Producers" asp-action="Index">
-                        See their produce →
-                    </a>
                 </div>
             </article>
 
@@ -386,15 +384,8 @@
                     <img src="~/images/home/manwalking.jpg" alt="" class="pw-grower__photo" loading="lazy">
                 </div>
                 <div class="pw-card__body">
-                    <p class="pw-card__location">
-                        <i data-lucide="map-pin" class="pw-icon-sm pw-icon-muted"></i>
-                        Kent, UK
-                    </p>
-                    <h3 class="pw-card__name">Sunrise Acres</h3>
+                    <h3 class="pw-card__name">Sunnybrook Farm</h3>
                     <p class="pw-card__desc">"The tomatoes people call ugly are the ones with the most flavour. Full stop. No argument." — Tom, Founder</p>
-                    <a class="pw-link" asp-area="" asp-controller="Producers" asp-action="Index">
-                        See their produce →
-                    </a>
                 </div>
             </article>
 

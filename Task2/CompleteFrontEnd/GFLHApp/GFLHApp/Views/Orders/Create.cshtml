@@ -878,7 +878,7 @@
     ════════════════════════════════════════════════════════════════ */
     var DELIVERY_COSTS   = { 'Next Day': 5.99, 'Standard': 2.99, 'Economy': 0.99 };
     var HAS_FREE_DELIVERY = @Json.Serialize(ViewBag.HasFreeDelivery);
-    var SUBTOTAL          = @Json.Serialize((double)subtotal);
+    var SUBTOTAL = @Json.Serialize((double)Math.Round(subtotal, 2));
 
     /* ════════════════════════════════════════════════════════════════
        ELEMENT REFERENCES  — gathered once, never re-queried
