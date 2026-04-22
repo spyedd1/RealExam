@@ -1,0 +1,610 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Orders
+@{
+    ViewData["Title"] = "Checkout"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+    var basketProducts = ViewBag.BasketProducts as IEnumerable<GFLHApp.Models.BasketProducts> ?? Enumerable.Empty<GFLHApp.Models.BasketProducts>(); // Reads view data supplied by the controller.
+    var subtotal       = (decimal)(ViewBag.Subtotal ?? 0m); // Reads view data supplied by the controller.
+    var hasFreeDelivery = (bool)(ViewBag.HasFreeDelivery ?? false); // Reads view data supplied by the controller.
+    var subtotalForScript = subtotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture); // Formats the subtotal for client-side JavaScript.
+    var hasFreeDeliveryForScript = hasFreeDelivery.ToString().ToLowerInvariant(); // Formats the free-delivery flag for client-side JavaScript.
+ // ----- Conditional Rendering -----
+    var anyAllergens   = basketProducts.Any(i => !string.IsNullOrWhiteSpace(i.Products?.Allergens)); // Renders part of the orders page markup.
+}
+
+
+
+ @* ----- Styling Section ----- *@
+<div class="co-page"> @* Starts a layout container for this section. *@
+
+    <!-- ══ STEPS ══════════════════════════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+    <div class="co-steps" aria-label="Checkout steps"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+        <div class="co-steps__inner"> @* Starts a layout container for this section. *@
+            <div class="co-step co-step--done"> @* Starts a layout container for this section. *@
+                <span class="co-step__num" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;stroke-width:3"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                <span>Your basket</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="co-step co-step--active" aria-current="step"> @* Starts a layout container for this section. *@
+                <span class="co-step__num" aria-hidden="true">2</span> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                <span>Review order</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="co-step"> @* Starts a layout container for this section. *@
+                <span class="co-step__num" aria-hidden="true">3</span> @* Renders inline text or badge content. *@
+                <span>Confirmed</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- ══ HEADER ══════════════════════════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+    <div class="co-header"> @* Starts a layout container for this section. *@
+        <div class="co-header__inner"> @* Starts a layout container for this section. *@
+            <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                <p class="co-header__eyebrow"> @* Renders paragraph text for the user. *@
+                    <i data-lucide="lock" style="width:12px;height:12px;stroke-width:2.5"></i> @* Renders part of the orders page markup. *@
+                    Secure checkout @* Renders part of the orders page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h1 class="co-header__title">Complete your <em>order</em></h1> @* Renders a heading for this page section. *@
+ @* ----- Styling Section ----- *@
+                <p class="co-header__sub">Fill in your details below — it only takes a minute.</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+            <a asp-controller="Baskets" asp-action="Index" class="pw-btn pw-btn--ghost pw-btn--sm"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                <i data-lucide="arrow-left" style="width:14px;height:14px;stroke-width:2.5"></i> @* Renders part of the orders page markup. *@
+ @* ----- Basket Display ----- *@
+                Back to basket @* Renders part of the orders page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- ══ BODY ════════════════════════════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Page Model Setup ----- *@
+    <form asp-action="Create" asp-route-basketId="@ViewBag.BasketId" method="post" id="checkoutForm" novalidate
+          data-subtotal="@subtotalForScript" data-has-free-delivery="@hasFreeDeliveryForScript"> @* Starts the form that submits this page's user input. *@
+
+        <input type="hidden" name="basketId" value="@ViewBag.BasketId" /> @* Renders a user input field. *@
+
+ @* ----- Order Display ----- *@
+        <!-- Hidden delivery address fields (same-as-billing path) --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <input type="hidden" id="DeliveryLine1Hidden"    name="DeliveryLine1" /> @* Renders a user input field. *@
+        <input type="hidden" id="DeliveryLine2Hidden"    name="DeliveryLine2" /> @* Renders a user input field. *@
+        <input type="hidden" id="DeliveryCityHidden"     name="DeliveryCity" /> @* Renders a user input field. *@
+        <input type="hidden" id="DeliveryPostcodeHidden" name="DeliveryPostcode" /> @* Renders a user input field. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="co-body"> @* Starts a layout container for this section. *@
+
+            <!-- ── Left: form sections ──────────────────── --> @* Keeps an existing comment in the Razor file. *@
+            <div class="co-form-col"> @* Starts a layout container for this section. *@
+
+ @* ----- Status Messages ----- *@
+                <div asp-validation-summary="ModelOnly" class="co-errors" role="alert"></div> @* Shows page-level validation messages. *@
+
+                <!-- ① Fulfilment method --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="co-section"> @* Starts a layout container for this section. *@
+                    <div class="co-section__head"> @* Starts a layout container for this section. *@
+                        <div class="co-section__head-icon"><i data-lucide="package" style="width:16px;height:16px;stroke-width:2"></i></div> @* Starts a layout container for this section. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                            <p class="co-section__title">How would you like to receive your order?</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                            <p class="co-section__sub">Choose one option below</p> @* Renders paragraph text for the user. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <div class="co-section__body"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                        <div class="co-option-cards"> @* Starts a layout container for this section. *@
+                            <!-- Delivery card — radio so only one can be chosen --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                            <label class="co-option-card" id="deliveryCard" for="fulfilmentDelivery"> @* Renders text identifying a form field. *@
+                                <input type="radio" name="FulfilmentMethod" id="fulfilmentDelivery" value="Delivery" @* Renders a user input field. *@
+                                       style="position:absolute;opacity:0;width:0;height:0;" /> @* Renders part of the orders page markup. *@
+ @* ----- Form Actions ----- *@
+                                <!-- Hidden model binders updated by JS on submit --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+                                <div class="co-option-card__icon"> @* Starts a layout container for this section. *@
+                                    <i data-lucide="truck" style="width:20px;height:20px;stroke-width:2"></i> @* Renders part of the orders page markup. *@
+                                </div> @* Closes the matching HTML element. *@
+                                <div class="co-option-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                    <span class="co-option-card__label">Delivery</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                                    <span class="co-option-card__hint">Delivered straight to your door</span> @* Renders inline text or badge content. *@
+                                </div> @* Closes the matching HTML element. *@
+                                <div class="co-option-card__check"><div class="co-option-card__check-dot"></div></div> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            </label> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <!-- Collection card --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                            <label class="co-option-card" id="collectionCard" for="fulfilmentCollection"> @* Renders text identifying a form field. *@
+                                <input type="radio" name="FulfilmentMethod" id="fulfilmentCollection" value="Collection" @* Renders a user input field. *@
+                                       style="position:absolute;opacity:0;width:0;height:0;" /> @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                                <div class="co-option-card__icon"> @* Starts a layout container for this section. *@
+                                    <i data-lucide="store" style="width:20px;height:20px;stroke-width:2"></i> @* Renders part of the orders page markup. *@
+                                </div> @* Closes the matching HTML element. *@
+                                <div class="co-option-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                    <span class="co-option-card__label">Collection</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                                    <span class="co-option-card__hint">Pick up from the farm or collection point</span> @* Renders inline text or badge content. *@
+                                </div> @* Closes the matching HTML element. *@
+                                <div class="co-option-card__check"><div class="co-option-card__check-dot"></div></div> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            </label> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <!-- Hidden checkbox fields the model expects — kept in sync by JS --> @* Keeps an existing comment in the Razor file. *@
+                        <input type="hidden" id="DeliveryHidden"    name="Delivery"    value="false" /> @* Renders a user input field. *@
+                        <input type="hidden" id="CollectionHidden"  name="Collection"  value="false" /> @* Renders a user input field. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Order Display ----- *@
+                <!-- ② Delivery options (shown when Delivery selected) --> @* Keeps an existing comment in the Razor file. *@
+                <div class="co-slide" id="deliveryTypeGroup"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                    <div class="co-section"> @* Starts a layout container for this section. *@
+                        <div class="co-section__head"> @* Starts a layout container for this section. *@
+                            <div class="co-section__head-icon"><i data-lucide="truck" style="width:16px;height:16px;stroke-width:2"></i></div> @* Starts a layout container for this section. *@
+                            <div> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                                <p class="co-section__title">Delivery options</p> @* Renders paragraph text for the user. *@
+                                <p class="co-section__sub">Select your preferred delivery speed</p> @* Renders paragraph text for the user. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                        <div class="co-section__body"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                            <!-- Native radio inputs styled as cards — reliable cross-browser --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                            <div class="co-delivery-methods" role="group" aria-label="Delivery method"> @* Starts a layout container for this section. *@
+
+                                <label class="co-dm-card" id="dmCard_NextDay"> @* Renders text identifying a form field. *@
+                                    <input type="radio" name="DeliveryMethod" id="dm_NextDay" value="Next Day" style="position:absolute;opacity:0;width:0;height:0;" /> @* Renders a user input field. *@
+ @* ----- Card Layout ----- *@
+                                    <div class="co-dm-card__tick"><i data-lucide="check" style="width:11px;height:11px;stroke-width:3"></i></div> @* Starts a layout container for this section. *@
+                                    <div class="co-dm-card__icon"><i data-lucide="zap" style="width:18px;height:18px;stroke-width:2.5"></i></div> @* Starts a layout container for this section. *@
+                                    <div class="co-dm-card__info"> @* Starts a layout container for this section. *@
+                                        <div class="co-dm-card__name">Next Day</div> @* Starts a layout container for this section. *@
+                                        <div class="co-dm-card__desc">Delivered the next working day</div> @* Starts a layout container for this section. *@
+                                    </div> @* Closes the matching HTML element. *@
+                                    <div class="co-dm-card__price @(hasFreeDelivery ? "co-dm-card__price--free" : "")">@(hasFreeDelivery ? "FREE" : "£5.99")</div> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                </label> @* Closes the matching HTML element. *@
+
+                                <label class="co-dm-card" id="dmCard_Standard"> @* Renders text identifying a form field. *@
+                                    <input type="radio" name="DeliveryMethod" id="dm_Standard" value="Standard" style="position:absolute;opacity:0;width:0;height:0;" /> @* Renders a user input field. *@
+ @* ----- Card Layout ----- *@
+                                    <div class="co-dm-card__tick"><i data-lucide="check" style="width:11px;height:11px;stroke-width:3"></i></div> @* Starts a layout container for this section. *@
+                                    <div class="co-dm-card__icon"><i data-lucide="truck" style="width:18px;height:18px;stroke-width:2"></i></div> @* Starts a layout container for this section. *@
+                                    <div class="co-dm-card__info"> @* Starts a layout container for this section. *@
+                                        <div class="co-dm-card__name">Standard</div> @* Starts a layout container for this section. *@
+                                        <div class="co-dm-card__desc">Delivered in 3–5 working days</div> @* Starts a layout container for this section. *@
+                                    </div> @* Closes the matching HTML element. *@
+                                    <div class="co-dm-card__price @(hasFreeDelivery ? "co-dm-card__price--free" : "")">@(hasFreeDelivery ? "FREE" : "£2.99")</div> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                </label> @* Closes the matching HTML element. *@
+
+                                <label class="co-dm-card" id="dmCard_Economy"> @* Renders text identifying a form field. *@
+                                    <input type="radio" name="DeliveryMethod" id="dm_Economy" value="Economy" style="position:absolute;opacity:0;width:0;height:0;" /> @* Renders a user input field. *@
+ @* ----- Card Layout ----- *@
+                                    <div class="co-dm-card__tick"><i data-lucide="check" style="width:11px;height:11px;stroke-width:3"></i></div> @* Starts a layout container for this section. *@
+                                    <div class="co-dm-card__icon"><i data-lucide="leaf" style="width:18px;height:18px;stroke-width:2"></i></div> @* Starts a layout container for this section. *@
+                                    <div class="co-dm-card__info"> @* Starts a layout container for this section. *@
+                                        <div class="co-dm-card__name">Economy</div> @* Starts a layout container for this section. *@
+                                        <div class="co-dm-card__desc">Delivered in 5–10 working days</div> @* Starts a layout container for this section. *@
+                                    </div> @* Closes the matching HTML element. *@
+                                    <div class="co-dm-card__price @(hasFreeDelivery ? "co-dm-card__price--free" : "")">@(hasFreeDelivery ? "FREE" : "£0.99")</div> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                </label> @* Closes the matching HTML element. *@
+
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="DeliveryMethod" class="co-field__error" style="margin-top:8px;display:block;"></span> @* Shows validation feedback for this model field. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Order Display ----- *@
+                <!-- ③ Collection date (shown when Collection selected) --> @* Keeps an existing comment in the Razor file. *@
+                <div class="co-slide" id="collectionDateGroup"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                    <div class="co-section"> @* Starts a layout container for this section. *@
+                        <div class="co-section__head"> @* Starts a layout container for this section. *@
+                            <div class="co-section__head-icon"><i data-lucide="calendar" style="width:16px;height:16px;stroke-width:2"></i></div> @* Starts a layout container for this section. *@
+                            <div> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                                <p class="co-section__title">Collection details</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                                <p class="co-section__sub">Choose when you'd like to collect</p> @* Renders paragraph text for the user. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="co-section__body"> @* Starts a layout container for this section. *@
+                            <div class="co-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <label for="DateOfCollection"> @* Renders text identifying a form field. *@
+ @* ----- Order Display ----- *@
+                                    Collection date <span class="co-field__req" aria-hidden="true">*</span> @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+                                </label> @* Closes the matching HTML element. *@
+                                <input asp-for="DateOfCollection" type="date" id="DateOfCollection" class="co-date-input" /> @* Binds this input to the matching model property. *@
+ @* ----- Styling Section ----- *@
+                                <p class="co-date-hint"> @* Renders paragraph text for the user. *@
+                                    <i data-lucide="info" style="width:13px;height:13px;stroke-width:2;color:var(--green)"></i> @* Renders part of the orders page markup. *@
+                                    Must be between 2 and 14 days from today. @* Renders part of the orders page markup. *@
+                                </p> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                                <span id="collectionDateError" class="co-field__error" style="display:none;" role="alert"></span> @* Renders inline text or badge content. *@
+                                <span asp-validation-for="DateOfCollection" class="co-field__error"></span> @* Shows validation feedback for this model field. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <!-- ④ Billing address --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="co-section"> @* Starts a layout container for this section. *@
+                    <div class="co-section__head"> @* Starts a layout container for this section. *@
+                        <div class="co-section__head-icon"><i data-lucide="receipt" style="width:16px;height:16px;stroke-width:2"></i></div> @* Starts a layout container for this section. *@
+                        <div> @* Starts a layout container for this section. *@
+                            <p class="co-section__title">Billing address</p> @* Renders paragraph text for the user. *@
+ @* ----- Producer Display ----- *@
+                            <p class="co-section__sub">Where we'll send your invoice</p> @* Renders paragraph text for the user. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                    <div class="co-section__body"> @* Starts a layout container for this section. *@
+                        <div class="co-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="BillingLine1">Address line 1 <span class="co-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                            <input asp-for="BillingLine1" id="BillingLine1" class="co-input" @* Binds this input to the matching model property. *@
+                                   maxlength="40" placeholder="e.g. 12 Green Lane" @* Renders part of the orders page markup. *@
+                                   pattern="^[a-zA-Z0-9 #\-,\.]{1,40}$" @* Renders part of the orders page markup. *@
+                                   title="Letters, numbers, spaces and # - , . only" /> @* Renders part of the orders page markup. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="BillingLine1" class="co-field__error"></span> @* Shows validation feedback for this model field. *@
+ @* ----- Styling Section ----- *@
+                            <span class="co-field__hint">Max 40 characters. Letters, numbers, spaces and # - , . only.</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="co-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="BillingLine2">Address line 2</label> @* Renders a label tied to the model field. *@
+                            <input asp-for="BillingLine2" id="BillingLine2" class="co-input" @* Binds this input to the matching model property. *@
+                                   maxlength="40" placeholder="Flat, suite, building (optional)" @* Renders part of the orders page markup. *@
+                                   pattern="^[a-zA-Z0-9 #\-,\.]{0,40}$" /> @* Renders part of the orders page markup. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="BillingLine2" class="co-field__error"></span> @* Shows validation feedback for this model field. *@
+                        </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                        <div class="co-addr-grid"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                            <div class="co-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <label asp-for="BillingCity">City <span class="co-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                                <input asp-for="BillingCity" id="BillingCity" class="co-input" @* Binds this input to the matching model property. *@
+                                       maxlength="40" placeholder="e.g. Birmingham" @* Renders part of the orders page markup. *@
+                                       pattern="^[a-zA-Z0-9 #\-,\.]{1,40}$" /> @* Renders part of the orders page markup. *@
+ @* ----- Status Messages ----- *@
+                                <span asp-validation-for="BillingCity" class="co-field__error"></span> @* Shows validation feedback for this model field. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                            <div class="co-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <label asp-for="BillingPostcode">Postcode <span class="co-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                                <input asp-for="BillingPostcode" id="BillingPostcode" class="co-input" @* Binds this input to the matching model property. *@
+                                       maxlength="8" placeholder="e.g. B1 1BB" @* Renders part of the orders page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                                       pattern="^[A-Za-z]{1,2}[0-9][0-9A-Za-z]?\s?[0-9][A-Za-z]{2}$" @* Renders part of the orders page markup. *@
+                                       title="Valid UK postcode e.g. B1 1BB or SW1A 2AA" @* Renders part of the orders page markup. *@
+                                       style="text-transform:uppercase;" /> @* Renders part of the orders page markup. *@
+ @* ----- Status Messages ----- *@
+                                <span asp-validation-for="BillingPostcode" class="co-field__error"></span> @* Shows validation feedback for this model field. *@
+ @* ----- Styling Section ----- *@
+                                <span class="co-field__hint">UK format e.g. B1 1BB or SW1A 2AA.</span> @* Renders inline text or badge content. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Order Display ----- *@
+                <!-- ⑤ Delivery address --> @* Keeps an existing comment in the Razor file. *@
+                <div class="co-section" id="deliveryAddressGroup"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                    <div class="co-section__head"> @* Starts a layout container for this section. *@
+                        <div class="co-section__head-icon"><i data-lucide="map-pin" style="width:16px;height:16px;stroke-width:2"></i></div> @* Starts a layout container for this section. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                            <p class="co-section__title">Delivery address</p> @* Renders paragraph text for the user. *@
+ @* ----- Conditional Rendering ----- *@
+                            <p class="co-section__sub">Where should we deliver your order?</p> @* Renders paragraph text for the user. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                    <div class="co-section__body"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                        <div class="co-same-row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <input type="checkbox" id="sameAsBilling" /> @* Renders a user input field. *@
+                            <label for="sameAsBilling"> @* Renders text identifying a form field. *@
+                                <i data-lucide="copy" style="width:14px;height:14px;stroke-width:2.5;vertical-align:middle;margin-right:4px;color:var(--green)"></i> @* Renders part of the orders page markup. *@
+                                Same as billing address @* Renders part of the orders page markup. *@
+                            </label> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Order Display ----- *@
+                        <div id="deliveryFieldsWrap"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                            <div class="co-field" id="deliveryLine1Row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <label asp-for="DeliveryLine1">Address line 1 <span class="co-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                                <input asp-for="DeliveryLine1" id="DeliveryLine1" class="co-input" @* Binds this input to the matching model property. *@
+                                       maxlength="40" placeholder="e.g. 12 Green Lane" @* Renders part of the orders page markup. *@
+                                       pattern="^[a-zA-Z0-9 #\-,\.]{1,40}$" /> @* Renders part of the orders page markup. *@
+ @* ----- Status Messages ----- *@
+                                <span asp-validation-for="DeliveryLine1" class="co-field__error"></span> @* Shows validation feedback for this model field. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <div class="co-field" id="deliveryLine2Row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <label asp-for="DeliveryLine2">Address line 2</label> @* Renders a label tied to the model field. *@
+                                <input asp-for="DeliveryLine2" id="DeliveryLine2" class="co-input" @* Binds this input to the matching model property. *@
+                                       maxlength="40" placeholder="Flat, suite, building (optional)" @* Renders part of the orders page markup. *@
+                                       pattern="^[a-zA-Z0-9 #\-,\.]{0,40}$" /> @* Renders part of the orders page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <div class="co-addr-grid"> @* Starts a layout container for this section. *@
+                                <div class="co-field" id="deliveryCityRow"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                    <label asp-for="DeliveryCity">City <span class="co-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                                    <input asp-for="DeliveryCity" id="DeliveryCity" class="co-input" @* Binds this input to the matching model property. *@
+                                           maxlength="40" placeholder="e.g. Birmingham" @* Renders part of the orders page markup. *@
+                                           pattern="^[a-zA-Z0-9 #\-,\.]{1,40}$" /> @* Renders part of the orders page markup. *@
+ @* ----- Status Messages ----- *@
+                                    <span asp-validation-for="DeliveryCity" class="co-field__error"></span> @* Shows validation feedback for this model field. *@
+                                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                                <div class="co-field" id="deliveryPostcodeRow"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                    <label asp-for="DeliveryPostcode">Postcode <span class="co-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                                    <input asp-for="DeliveryPostcode" id="DeliveryPostcode" class="co-input" @* Binds this input to the matching model property. *@
+                                           maxlength="8" placeholder="e.g. B1 1BB" @* Renders part of the orders page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                                           pattern="^[A-Za-z]{1,2}[0-9][0-9A-Za-z]?\s?[0-9][A-Za-z]{2}$" @* Renders part of the orders page markup. *@
+                                           style="text-transform:uppercase;" /> @* Renders part of the orders page markup. *@
+ @* ----- Status Messages ----- *@
+                                    <span asp-validation-for="DeliveryPostcode" class="co-field__error"></span> @* Shows validation feedback for this model field. *@
+                                </div> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <!-- ⑥ Allergen review --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="co-section"> @* Starts a layout container for this section. *@
+                    <div class="co-section__head co-allergen-head"> @* Starts a layout container for this section. *@
+                        <div class="co-section__head-icon" style="background:#FFEDD5;color:#F97316;"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                            <i data-lucide="triangle-alert" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the orders page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                            <p class="co-section__title">Allergen information</p> @* Renders paragraph text for the user. *@
+ @* ----- Order Display ----- *@
+                            <p class="co-section__sub">Provided under Natasha's Law — please review before placing your order</p> @* Renders paragraph text for the user. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                    <div class="co-section__body" style="padding:0;"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <table class="co-allergen-table" role="table" aria-label="Allergen information per product"> @* Starts a table for structured row data. *@
+ @* ----- Table Layout ----- *@
+                            <thead> @* Starts the table header section. *@
+                                <tr> @* Starts one table row. *@
+                                    <th>Product</th> @* Renders a table header cell. *@
+                                    <th>Allergens</th> @* Renders a table header cell. *@
+                                </tr> @* Closes the matching HTML element. *@
+                            </thead> @* Closes the matching HTML element. *@
+                            <tbody> @* Starts the table body section. *@
+ @* ----- Loop Rendering ----- *@
+                                @foreach (var item in basketProducts) @* Loops through the collection and renders each item. *@
+                                {
+ @* ----- Conditional Rendering ----- *@
+                                    var allergens = string.IsNullOrWhiteSpace(item.Products?.Allergens) @* Renders part of the orders page markup. *@
+                                        ? null @* Renders part of the orders page markup. *@
+ @* ----- Product Display ----- *@
+                                        : item.Products.Allergens.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries); @* Renders part of the orders page markup. *@
+ @* ----- Table Layout ----- *@
+                                    <tr> @* Starts one table row. *@
+                                        <td style="font-weight:600;color:var(--text);">@item.Products?.ItemName</td> @* Renders a table data cell. *@
+                                        <td> @* Renders a table data cell. *@
+ @* ----- Conditional Rendering ----- *@
+                                            @if (allergens != null && allergens.Length > 0) @* Conditionally renders this block when the check passes. *@
+                                            {
+ @* ----- Loop Rendering ----- *@
+                                                @foreach (var a in allergens) @* Loops through the collection and renders each item. *@
+                                                {
+ @* ----- Styling Section ----- *@
+                                                    <span class="co-allergen-chip"> @* Renders inline text or badge content. *@
+ @* ----- Status Messages ----- *@
+                                                        <i data-lucide="alert-triangle" style="width:9px;height:9px;stroke-width:2.5"></i> @* Renders part of the orders page markup. *@
+                                                        @a @* Outputs Razor data or executes Razor logic. *@
+                                                    </span> @* Closes the matching HTML element. *@
+                                                }
+                                            }
+ @* ----- Conditional Rendering ----- *@
+                                            else @* Renders the fallback branch for the previous condition. *@
+                                            {
+ @* ----- Styling Section ----- *@
+                                                <span class="co-allergen-safe"> @* Renders inline text or badge content. *@
+                                                    <i data-lucide="check-circle-2" style="width:13px;height:13px;stroke-width:2.5"></i> @* Renders part of the orders page markup. *@
+ @* ----- Product Display ----- *@
+                                                    No allergens declared @* Renders part of the orders page markup. *@
+                                                </span> @* Closes the matching HTML element. *@
+                                            }
+                                        </td> @* Closes the matching HTML element. *@
+                                    </tr> @* Closes the matching HTML element. *@
+                                }
+                            </tbody> @* Closes the matching HTML element. *@
+                        </table> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <!-- ⑦ Terms --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="co-section"> @* Starts a layout container for this section. *@
+                    <div class="co-section__head"> @* Starts a layout container for this section. *@
+                        <div class="co-section__head-icon"><i data-lucide="file-check" style="width:16px;height:16px;stroke-width:2"></i></div> @* Starts a layout container for this section. *@
+                        <div> @* Starts a layout container for this section. *@
+                            <p class="co-section__title">Terms &amp; conditions</p> @* Renders paragraph text for the user. *@
+ @* ----- Order Display ----- *@
+                            <p class="co-section__sub">Required before placing your order</p> @* Renders paragraph text for the user. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                    <div class="co-section__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <label class="co-terms-row" for="termsAccepted"> @* Renders text identifying a form field. *@
+                            <input asp-for="TermsAccepted" id="termsAccepted" type="checkbox" /> @* Binds this input to the matching model property. *@
+                            <label for="termsAccepted"> @* Renders text identifying a form field. *@
+                                I agree to the <a href="/Home/Terms" target="_blank" rel="noopener">Terms and Conditions</a> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                                and confirm I have reviewed the allergen information for all items in my order. @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+                            </label> @* Closes the matching HTML element. *@
+                        </label> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="TermsAccepted" class="co-terms-error" role="alert"></span> @* Shows validation feedback for this model field. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <p style="font-size:12px;color:var(--text-muted);margin:0 0 8px;"> @* Renders paragraph text for the user. *@
+                    Fields marked <span style="color:var(--orange);font-weight:700;">*</span> are required. @* Renders part of the orders page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+            </div><!-- /co-form-col --> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <!-- ── Right: sticky summary ──────────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+            <aside class="co-summary-col" aria-label="Order summary"> @* Renders a navigation link or action link. *@
+ @* ----- Card Layout ----- *@
+                <div class="co-summary"> @* Starts a layout container for this section. *@
+                    <div class="co-summary__head"> @* Starts a layout container for this section. *@
+                        <p class="co-summary__head-title">Order summary</p> @* Renders paragraph text for the user. *@
+                        <p class="co-summary__head-sub">@basketProducts.Count() item@(basketProducts.Count() != 1 ? "s" : "") from local farms</p> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <div class="co-summary__body"> @* Starts a layout container for this section. *@
+
+                        <!-- Mini item list --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                        <div class="co-mini-items" aria-label="Items in your order"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                            @foreach (var item in basketProducts) @* Loops through the collection and renders each item. *@
+                            {
+ @* ----- Styling Section ----- *@
+                                <div class="co-mini-item"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                                    <span class="co-mini-item__name">@item.Products?.ItemName</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                                    <span class="co-mini-item__qty">×@item.ProductQuantity</span> @* Renders inline text or badge content. *@
+                                    <span class="co-mini-item__price">£@((item.Products!.ItemPrice * item.ProductQuantity).ToString("0.00"))</span> @* Renders inline text or badge content. *@
+                                </div> @* Closes the matching HTML element. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+
+                        <div style="height:8px;"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+                        <div class="co-summary__row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="co-summary__row-label">Subtotal</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="co-summary__row-value">£@subtotal.ToString("0.00")</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+
+                        <div class="co-summary__row" id="deliveryCostRow" style="display:none;"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="co-summary__row-label"> @* Renders inline text or badge content. *@
+                                <i data-lucide="truck" style="width:13px;height:13px;stroke-width:2"></i> @* Renders part of the orders page markup. *@
+                                <span id="deliveryCostLabel">Delivery</span> @* Renders inline text or badge content. *@
+                            </span> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <span class="co-summary__row-value" id="deliveryCostValue">£0.00</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+
+                        <div class="co-summary__total"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="co-summary__total-label">Total</span> @* Renders inline text or badge content. *@
+                            <div style="text-align:right;"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                                <span class="co-summary__total-value" id="orderTotal">£@subtotal.ToString("0.00")</span> @* Renders inline text or badge content. *@
+                                <span class="co-summary__total-vat">inc. any applicable VAT</span> @* Renders inline text or badge content. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Actions ----- *@
+                        <button type="submit" class="co-place-btn" id="placeOrderBtn"> @* Renders a button for the user action. *@
+                            <i data-lucide="check-circle-2" style="width:18px;height:18px;stroke-width:2.5"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                            Place order @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                            <i data-lucide="arrow-right" style="width:18px;height:18px;stroke-width:2.5;margin-left:2px"></i> @* Renders part of the orders page markup. *@
+                        </button> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+                        <div class="co-trust" aria-label="Trust signals"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                            <div class="co-trust__item"> @* Starts a layout container for this section. *@
+                                <i data-lucide="shield-check"></i> Secure, encrypted checkout @* Renders part of the orders page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                            <div class="co-trust__item"> @* Starts a layout container for this section. *@
+                                <i data-lucide="sprout"></i> Direct from verified local farms @* Renders part of the orders page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                            <div class="co-trust__item"> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                                <i data-lucide="clock"></i> Orders processed same day @* Renders part of the orders page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Navigation ----- *@
+                        <a asp-controller="Baskets" asp-action="Index" class="co-back"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                            <i data-lucide="arrow-left" style="width:14px;height:14px;stroke-width:2.5"></i> @* Renders part of the orders page markup. *@
+ @* ----- Basket Display ----- *@
+                            Back to basket @* Renders part of the orders page markup. *@
+                        </a> @* Closes the matching HTML element. *@
+
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </aside> @* Closes the matching HTML element. *@
+
+        </div><!-- /co-body --> @* Closes the matching HTML element. *@
+
+    </form> @* Closes the form after its fields and actions. *@
+
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Form Actions ----- *@
+    <script src="~/js/pages/orders/OrderCreate.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");} // Starts a Razor code block for page setup.
+
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/orders/OrderCreate.css" asp-append-version="true" /> @* Renders one list item. *@
+}

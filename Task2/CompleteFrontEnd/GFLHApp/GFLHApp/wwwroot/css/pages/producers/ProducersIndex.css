@@ -473,6 +473,32 @@
         gap: .5rem;
     }
 
+    .pw-card--producer .pw-card__has-photo {
+        background: #14532d;
+    }
+
+        .pw-card--producer .pw-card__has-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08) 45%, rgba(0,0,0,.38));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+    .pw-card--producer .pw-card__grower-photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .35s ease;
+    }
+
+    .pw-card--producer:hover .pw-card__grower-photo {
+        transform: scale(1.05);
+    }
+
     /* Sticker sits at the TOP of the coloured panel, inside the card */
     .pw-card--producer .pw-card__sticker {
         position: absolute;
@@ -513,6 +539,7 @@
         justify-content: center;
         color: var(--green);
         box-shadow: 0 1px 6px rgba(0,0,0,.14);
+        z-index: 2;
     }
 
     /* Badges stacked above number */
@@ -526,6 +553,7 @@
         align-items: center;
         gap: 4px;
         padding: 0 6px;
+        z-index: 2;
     }
 
         .pw-card--producer .pw-card__img-badge .pw-badge {
@@ -1098,4 +1126,73 @@
     .gw-cta__bubble {
         padding: 2rem 1.25rem 1.75rem;
     }
+}
+
+/* ══ DARK MODE ═══════════════════════════════════════════════════════ */
+
+/* Intro section — hardcoded #FFFBEB */
+body.dark-mode .gw-intro {
+    background: #0f172a;
+}
+
+/* Blobs — dim so they don't glow through the dark bg */
+body.dark-mode .gw-blob {
+    opacity: .12;
+}
+
+/* Floating stickers */
+body.dark-mode .gw-sticker--1 { background: rgba(217,249,157,.12); color: #bef264; }
+body.dark-mode .gw-sticker--2 { background: rgba(187,247,208,.12); color: #86efac; }
+body.dark-mode .gw-sticker--3 { background: rgba(167,243,208,.12); color: #6ee7b7; }
+body.dark-mode .gw-sticker--4 { background: rgba(110,231,183,.12); color: #34d399; }
+body.dark-mode .gw-sticker--5 { background: rgba(220,252,231,.12); color: #86efac; }
+
+/* Polaroid cards */
+body.dark-mode .gw-polaroid {
+    background: #1e293b;
+    box-shadow: 0 6px 20px rgba(0,0,0,.55), 0 1px 4px rgba(0,0,0,.35);
+}
+body.dark-mode .gw-polaroid__caption { color: #94a3b8; }
+
+/* Tag pills */
+body.dark-mode .gw-tag--a { background: rgba(220,252,231,.1);  color: #86efac; }
+body.dark-mode .gw-tag--b { background: rgba(187,247,208,.1);  color: #6ee7b7; }
+body.dark-mode .gw-tag--c { background: rgba(167,243,208,.1);  color: #5eead4; }
+body.dark-mode .gw-tag--d { background: rgba(110,231,183,.12); color: #34d399; }
+body.dark-mode .gw-tag--e { background: rgba(217,249,157,.1);  color: #bef264; }
+body.dark-mode .gw-tag--f { background: rgba(134,239,172,.1);  color: #86efac; }
+body.dark-mode .gw-tag--g { background: rgba(236,253,245,.07); color: #6ee7b7; }
+body.dark-mode .gw-tag--h { background: rgba(74,222,128,.12);  color: #4ade80; }
+
+/* Intro wave SVG */
+body.dark-mode .gw-intro__wave path {
+    fill: #0f172a;
+}
+
+/* Card info text — hardcoded #374151 */
+body.dark-mode .pw-card--producer .pw-card__info {
+    color: #94a3b8;
+}
+
+/* Growers section below intro — hardcoded #f0fdf4 */
+body.dark-mode .gw-why,
+body.dark-mode .gw-cta__bubble,
+body.dark-mode [class*="gw-why"] {
+    background: #1e293b;
+    border-color: #334155;
+    color: var(--text);
+}
+
+/* CTA outer container — hardcoded #FFFBEB */
+body.dark-mode .gw-cta {
+    background: #0f172a;
+}
+body.dark-mode .gw-cta__blob-a,
+body.dark-mode .gw-cta__blob-b {
+    opacity: .1;
+}
+
+/* Wave between intro and growers grid */
+body.dark-mode .gw-intro__wave svg path {
+    fill: #0f172a;
 }

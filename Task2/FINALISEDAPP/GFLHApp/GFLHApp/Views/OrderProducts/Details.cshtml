@@ -1,0 +1,53 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.OrderProducts
+
+@{
+    ViewData["Title"] = "Details"; // Sets the browser and page title for this view.
+}
+
+ @* ----- Page Header ----- *@
+<h1>Details</h1> @* Renders a heading for this page section. *@
+
+<div> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+    <h4>OrderProducts</h4> @* Renders a heading for this page section. *@
+    <hr /> @* Renders part of the details page markup. *@
+ @* ----- Card Layout ----- *@
+    <dl class="row"> @* Renders part of the details page markup. *@
+        <dt class = "col-sm-2"> @* Renders part of the details page markup. *@
+ @* ----- Loop Rendering ----- *@
+            @Html.DisplayNameFor(model => model.ProductQuantity) @* Uses an HTML helper to render dynamic output. *@
+        </dt> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <dd class = "col-sm-10"> @* Renders part of the details page markup. *@
+ @* ----- Loop Rendering ----- *@
+            @Html.DisplayFor(model => model.ProductQuantity) @* Uses an HTML helper to render dynamic output. *@
+        </dd> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <dt class = "col-sm-2"> @* Renders part of the details page markup. *@
+ @* ----- Loop Rendering ----- *@
+            @Html.DisplayNameFor(model => model.Products) @* Uses an HTML helper to render dynamic output. *@
+        </dt> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <dd class = "col-sm-10"> @* Renders part of the details page markup. *@
+ @* ----- Loop Rendering ----- *@
+            @Html.DisplayFor(model => model.Products.ProductsId) @* Uses an HTML helper to render dynamic output. *@
+        </dd> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <dt class = "col-sm-2"> @* Renders part of the details page markup. *@
+ @* ----- Loop Rendering ----- *@
+            @Html.DisplayNameFor(model => model.Orders) @* Uses an HTML helper to render dynamic output. *@
+        </dt> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <dd class = "col-sm-10"> @* Renders part of the details page markup. *@
+ @* ----- Loop Rendering ----- *@
+            @Html.DisplayFor(model => model.Orders.OrdersId) @* Uses an HTML helper to render dynamic output. *@
+        </dd> @* Closes the matching HTML element. *@
+    </dl> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+<div> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+    <a asp-action="Edit" asp-route-id="@Model?.OrderProductsId">Edit</a> | @* Builds a link or form target using MVC routing. *@
+    <a asp-action="Index">Back to List</a> @* Builds a link or form target using MVC routing. *@
+</div> @* Closes the matching HTML element. *@

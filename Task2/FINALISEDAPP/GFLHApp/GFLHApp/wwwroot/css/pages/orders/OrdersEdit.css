@@ -1,0 +1,691 @@
+/* ----- Navigation ----- */
+.oe-header { /* Starts styles for the .oe-header selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(160deg, var(--cream) 0%, #f0ebe0 100%); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    padding: 88px 0 30px; /* Sets spacing inside the element. */
+}
+
+/* ----- Navigation ----- */
+.oe-header__inner, /* Continues a selector or value list on the next line. */
+.oe-shell { /* Starts styles for the .oe-shell selector. */
+    /* ----- Tables ----- */
+    max-width: 1120px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 0 24px; /* Sets spacing inside the element. */
+}
+
+/* ----- Navigation ----- */
+.oe-breadcrumb { /* Starts styles for the .oe-breadcrumb selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+    list-style: none; /* Sets the list-style style for this rule. */
+    margin: 0 0 16px; /* Sets spacing outside the element. */
+    padding: 0; /* Sets spacing inside the element. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 500; /* Sets the text weight. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.oe-breadcrumb li { /* Starts styles for the .oe-breadcrumb li selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Navigation ----- */
+.oe-breadcrumb li + li::before { /* Starts styles for the .oe-breadcrumb li + li::before selector. */
+    content: "/"; /* Sets the content style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Animation ----- */
+    opacity: .5; /* Controls element transparency. */
+}
+
+/* ----- Navigation ----- */
+.oe-breadcrumb a { /* Starts styles for the .oe-breadcrumb a selector. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    /* ----- Grid layout ----- */
+    transition: color .15s; /* Animates property changes smoothly. */
+}
+
+/* ----- Navigation ----- */
+.oe-breadcrumb a:hover { /* Starts styles for the .oe-breadcrumb a:hover selector. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+}
+
+/* ----- Navigation ----- */
+.oe-breadcrumb [aria-current] { /* Starts styles for the .oe-breadcrumb [aria-current] selector. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    font-weight: 600; /* Sets the text weight. */
+}
+
+/* ----- Navigation ----- */
+.oe-header__title { /* Starts styles for the .oe-header__title selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 14px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Navigation ----- */
+.oe-header__icon { /* Starts styles for the .oe-header__icon selector. */
+    /* ----- Tables ----- */
+    width: 46px; /* Sets the element width. */
+    height: 46px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.oe-header__title h1 { /* Starts styles for the .oe-header__title h1 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 26px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    margin: 0; /* Sets spacing outside the element. */
+    line-height: 1.2; /* Sets vertical text rhythm. */
+    letter-spacing: 0; /* Sets the letter-spacing style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.oe-header__title p { /* Starts styles for the .oe-header__title p selector. */
+    font-size: 14px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin: 3px 0 0; /* Sets spacing outside the element. */
+}
+
+.oe-page { /* Starts styles for the .oe-page selector. */
+    min-height: 100vh; /* Sets the minimum element height. */
+    background: var(--cream); /* Sets the element background treatment. */
+    padding: 40px 0 88px; /* Sets spacing inside the element. */
+}
+
+.oe-shell { /* Starts styles for the .oe-shell selector. */
+    /* ----- Grid layout ----- */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 310px minmax(0, 1fr); /* Defines the grid column layout. */
+    gap: 32px; /* Sets spacing between flex or grid children. */
+    align-items: start; /* Aligns child items on the cross axis. */
+}
+
+.oe-aside { /* Starts styles for the .oe-aside selector. */
+    position: sticky; /* Controls how the element is positioned on the page. */
+    top: 96px; /* Sets the top style for this rule. */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: 18px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card, /* Continues a selector or value list on the next line. */
+.oe-care-note, /* Continues a selector or value list on the next line. */
+.oe-form-card { /* Starts styles for the .oe-form-card selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card { /* Starts styles for the .oe-summary-card selector. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card__top { /* Starts styles for the .oe-summary-card__top selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 14px; /* Sets spacing between flex or grid children. */
+    padding: 24px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-900), var(--green-700)); /* Sets the element background treatment. */
+    color: var(--white); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card__icon { /* Starts styles for the .oe-summary-card__icon selector. */
+    /* ----- Tables ----- */
+    width: 46px; /* Sets the element width. */
+    height: 46px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    background: rgba(255,255,255,.14); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card__top span { /* Starts styles for the .oe-summary-card__top span selector. */
+    display: block; /* Controls how the element participates in layout. */
+    font-size: 11px; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    /* ----- Grid layout ----- */
+    color: rgba(255,255,255,.62); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card__top strong { /* Starts styles for the .oe-summary-card__top strong selector. */
+    display: block; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 26px; /* Sets the text size. */
+    line-height: 1; /* Sets vertical text rhythm. */
+    margin-top: 5px; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card__list { /* Starts styles for the .oe-summary-card__list selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    padding: 6px 22px; /* Sets spacing inside the element. */
+}
+
+.oe-summary-card__list div { /* Starts styles for the .oe-summary-card__list div selector. */
+    padding: 15px 0; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-bottom: 1.5px solid var(--border); /* Sets the border-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card__list div:last-child { /* Starts styles for the .oe-summary-card__list div:last-child selector. */
+    border-bottom: 0; /* Sets the border-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card__list dt { /* Starts styles for the .oe-summary-card__list dt selector. */
+    font-size: 11px; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin-bottom: 4px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-summary-card__list dd { /* Starts styles for the .oe-summary-card__list dd selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    line-height: 1.45; /* Sets vertical text rhythm. */
+}
+
+.oe-care-note { /* Starts styles for the .oe-care-note selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    padding: 18px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border-color: var(--green-200); /* Sets the border-color style for this rule. */
+    color: var(--green-900); /* Sets the text color. */
+}
+
+.oe-care-note svg { /* Starts styles for the .oe-care-note svg selector. */
+    /* ----- Tables ----- */
+    width: 22px; /* Sets the element width. */
+    height: 22px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    margin-top: 2px; /* Sets the margin-top style for this rule. */
+}
+
+.oe-care-note p { /* Starts styles for the .oe-care-note p selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    font-size: 13.5px; /* Sets the text size. */
+    line-height: 1.6; /* Sets vertical text rhythm. */
+    font-weight: 600; /* Sets the text weight. */
+}
+
+/* ----- Card layout ----- */
+.oe-form-card { /* Starts styles for the .oe-form-card selector. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Base layout ----- */
+.oe-form-section { /* Starts styles for the .oe-form-section selector. */
+    padding: 28px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+}
+
+/* ----- Base layout ----- */
+.oe-form-section + .oe-form-section { /* Starts styles for the .oe-form-section + .oe-form-section selector. */
+    /* ----- Theme variables ----- */
+    border-top: 1.5px solid var(--border); /* Sets the border-top style for this rule. */
+}
+
+/* ----- Base layout ----- */
+.oe-form-section__heading { /* Starts styles for the .oe-form-section__heading selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: 13px; /* Sets spacing between flex or grid children. */
+    align-items: flex-start; /* Aligns child items on the cross axis. */
+    margin-bottom: 22px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Base layout ----- */
+.oe-form-section__icon { /* Starts styles for the .oe-form-section__icon selector. */
+    /* ----- Tables ----- */
+    width: 42px; /* Sets the element width. */
+    height: 42px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    background: var(--green-100); /* Sets the element background treatment. */
+    color: var(--green-700); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.oe-form-section__icon--warm { /* Starts styles for the .oe-form-section__icon--warm selector. */
+    background: var(--orange-100); /* Sets the element background treatment. */
+    color: var(--orange); /* Sets the text color. */
+}
+
+/* ----- Grid layout ----- */
+.oe-eyebrow { /* Starts styles for the .oe-eyebrow selector. */
+    display: block; /* Controls how the element participates in layout. */
+    font-size: 11px; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin-bottom: 3px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Base layout ----- */
+.oe-form-section h2 { /* Starts styles for the .oe-form-section h2 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 22px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    margin: 0; /* Sets spacing outside the element. */
+    color: var(--text); /* Sets the text color. */
+    line-height: 1.2; /* Sets vertical text rhythm. */
+    letter-spacing: 0; /* Sets the letter-spacing style for this rule. */
+}
+
+/* ----- Grid layout ----- */
+.oe-form-grid, /* Continues a selector or value list on the next line. */
+.oe-address-grid { /* Starts styles for the .oe-address-grid selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Defines the grid column layout. */
+    gap: 16px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Forms ----- */
+.oe-field, /* Continues a selector or value list on the next line. */
+.oe-address-box { /* Starts styles for the .oe-address-box selector. */
+    /* ----- Tables ----- */
+    min-width: 0; /* Sets the min-width style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.oe-field--wide { /* Starts styles for the .oe-field--wide selector. */
+    /* ----- Grid layout ----- */
+    grid-column: 1 / -1; /* Sets the grid-column style for this rule. */
+}
+
+/* ----- Forms ----- */
+.oe-field { /* Starts styles for the .oe-field selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Forms ----- */
+.oe-field label, /* Continues a selector or value list on the next line. */
+.oe-address-box legend { /* Starts styles for the .oe-address-box legend selector. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+}
+
+/* ----- Forms ----- */
+.oe-input, /* Continues a selector or value list on the next line. */
+.oe-select { /* Starts styles for the .oe-select selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    height: 44px; /* Sets the element height. */
+    padding: 0 14px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 500; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    background: #fffefa; /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s, background .15s; /* Animates property changes smoothly. */
+    outline: none; /* Sets the outline style for this rule. */
+}
+
+/* ----- Forms ----- */
+.oe-select { /* Starts styles for the .oe-select selector. */
+    appearance: none; /* Sets the appearance style for this rule. */
+    /* ----- Tables ----- */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); /* Sets the background-image style for this rule. */
+    background-repeat: no-repeat; /* Sets the background-repeat style for this rule. */
+    background-position: right 12px center; /* Sets the background-position style for this rule. */
+    padding-right: 38px; /* Sets the padding-right style for this rule. */
+}
+
+/* ----- Forms ----- */
+.oe-input:hover, /* Continues a selector or value list on the next line. */
+.oe-select:hover { /* Starts styles for the .oe-select:hover selector. */
+    /* ----- Grid layout ----- */
+    border-color: #c4c0bb; /* Sets the border-color style for this rule. */
+}
+
+/* ----- Forms ----- */
+.oe-input:focus, /* Continues a selector or value list on the next line. */
+.oe-select:focus { /* Starts styles for the .oe-select:focus selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px var(--green-100); /* Adds depth with a shadow. */
+    background: var(--white); /* Sets the element background treatment. */
+}
+
+/* ----- Forms ----- */
+.oe-input.input-validation-error, /* Continues a selector or value list on the next line. */
+.oe-select.input-validation-error { /* Starts styles for the .oe-select.input-validation-error selector. */
+    /* ----- Grid layout ----- */
+    border-color: #DC2626; /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px #FEE2E2; /* Adds depth with a shadow. */
+}
+
+/* ----- Forms ----- */
+.oe-field__error { /* Starts styles for the .oe-field__error selector. */
+    font-size: 12px; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    color: #DC2626; /* Sets the text color. */
+    font-weight: 600; /* Sets the text weight. */
+}
+
+.oe-choice-grid { /* Starts styles for the .oe-choice-grid selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Defines the grid column layout. */
+    gap: 14px; /* Sets spacing between flex or grid children. */
+    margin-bottom: 18px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-choice-card { /* Starts styles for the .oe-choice-card selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: flex-start; /* Aligns child items on the cross axis. */
+    gap: 13px; /* Sets spacing between flex or grid children. */
+    padding: 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    background: #fffefa; /* Sets the element background treatment. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s, background .15s; /* Animates property changes smoothly. */
+}
+
+/* ----- Card layout ----- */
+.oe-choice-card:has(input:checked) { /* Starts styles for the .oe-choice-card:has(input:checked) selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border-color: var(--green-200); /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px rgba(22,163,74,.08); /* Adds depth with a shadow. */
+}
+
+/* ----- Card layout ----- */
+.oe-choice-card input { /* Starts styles for the .oe-choice-card input selector. */
+    /* ----- Tables ----- */
+    width: 18px; /* Sets the element width. */
+    height: 18px; /* Sets the element height. */
+    margin-top: 3px; /* Sets the margin-top style for this rule. */
+    /* ----- Theme variables ----- */
+    accent-color: var(--green); /* Sets the accent-color style for this rule. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-choice-card__icon { /* Starts styles for the .oe-choice-card__icon selector. */
+    /* ----- Tables ----- */
+    width: 36px; /* Sets the element width. */
+    height: 36px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    background: var(--cream-2); /* Sets the element background treatment. */
+    color: var(--green-700); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-choice-card strong, /* Continues a selector or value list on the next line. */
+.oe-choice-card small { /* Starts styles for the .oe-choice-card small selector. */
+    display: block; /* Controls how the element participates in layout. */
+}
+
+.oe-choice-card strong { /* Starts styles for the .oe-choice-card strong selector. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    font-size: 14px; /* Sets the text size. */
+    margin-bottom: 2px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oe-choice-card small { /* Starts styles for the .oe-choice-card small selector. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    font-size: 12px; /* Sets the text size. */
+    line-height: 1.45; /* Sets vertical text rhythm. */
+}
+
+.oe-conditional { /* Starts styles for the .oe-conditional selector. */
+    /* ----- Forms ----- */
+    transition: opacity .2s ease, transform .2s ease; /* Animates property changes smoothly. */
+}
+
+.oe-conditional.is-muted { /* Starts styles for the .oe-conditional.is-muted selector. */
+    /* ----- Animation ----- */
+    opacity: .44; /* Controls element transparency. */
+}
+
+.oe-address-box { /* Starts styles for the .oe-address-box selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    padding: 18px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+
+.oe-address-box legend { /* Starts styles for the .oe-address-box legend selector. */
+    float: none; /* Sets the float style for this rule. */
+    /* ----- Tables ----- */
+    width: auto; /* Sets the element width. */
+    padding: 0 8px; /* Sets spacing inside the element. */
+    margin: 0 0 14px -8px; /* Sets spacing outside the element. */
+}
+
+/* ----- Buttons ----- */
+.oe-actions { /* Starts styles for the .oe-actions selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    padding: 20px 28px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+    border-top: 1.5px solid var(--border); /* Sets the border-top style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.oe-btn { /* Starts styles for the .oe-btn selector. */
+    height: 44px; /* Sets the element height. */
+    padding: 0 22px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    border: 1.5px solid transparent; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    transition: transform .12s, box-shadow .15s, background .15s, color .15s, border-color .15s; /* Animates property changes smoothly. */
+}
+
+/* ----- Buttons ----- */
+.oe-btn svg { /* Starts styles for the .oe-btn svg selector. */
+    /* ----- Tables ----- */
+    width: 17px; /* Sets the element width. */
+    height: 17px; /* Sets the element height. */
+}
+
+/* ----- Theme variables ----- */
+.oe-btn--primary { /* Starts styles for the .oe-btn--primary selector. */
+    background: var(--green); /* Sets the element background treatment. */
+    color: var(--white); /* Sets the text color. */
+    box-shadow: 0 4px 14px rgba(22,163,74,.24); /* Adds depth with a shadow. */
+}
+
+.oe-btn--primary:hover { /* Starts styles for the .oe-btn--primary:hover selector. */
+    background: var(--green-700); /* Sets the element background treatment. */
+    color: var(--white); /* Sets the text color. */
+    /* ----- Forms ----- */
+    transform: translateY(-1px); /* Moves, scales, or rotates the element. */
+    box-shadow: 0 8px 22px rgba(22,163,74,.30); /* Adds depth with a shadow. */
+}
+
+/* ----- Theme variables ----- */
+.oe-btn--ghost { /* Starts styles for the .oe-btn--ghost selector. */
+    /* ----- Tables ----- */
+    background: transparent; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    border-color: var(--border); /* Sets the border-color style for this rule. */
+}
+
+.oe-btn--ghost:hover { /* Starts styles for the .oe-btn--ghost:hover selector. */
+    color: var(--text); /* Sets the text color. */
+    border-color: var(--text-muted); /* Sets the border-color style for this rule. */
+}
+
+/* ----- Forms ----- */
+.oe-form-errors { /* Starts styles for the .oe-form-errors selector. */
+    margin: 20px 28px 0; /* Sets spacing outside the element. */
+    padding: 12px 16px; /* Sets spacing inside the element. */
+    background: #FEF2F2; /* Sets the element background treatment. */
+    border: 1.5px solid #FECACA; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    font-size: 13px; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    color: #DC2626; /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.oe-form-errors.validation-summary-valid { /* Starts styles for the .oe-form-errors.validation-summary-valid selector. */
+    display: none; /* Controls how the element participates in layout. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 920px) { /* Starts responsive rules for this viewport range. */
+    .oe-shell { /* Starts styles for the .oe-shell selector. */
+        /* ----- Grid layout ----- */
+        grid-template-columns: 1fr; /* Defines the grid column layout. */
+    }
+
+    .oe-aside { /* Starts styles for the .oe-aside selector. */
+        /* ----- Card layout ----- */
+        position: static; /* Controls how the element is positioned on the page. */
+    }
+}
+
+/* ----- Tables ----- */
+@media (max-width: 680px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Navigation ----- */
+    .oe-header { /* Starts styles for the .oe-header selector. */
+        padding-top: 82px; /* Sets the padding-top style for this rule. */
+    }
+
+    .oe-page { /* Starts styles for the .oe-page selector. */
+        padding-top: 24px; /* Sets the padding-top style for this rule. */
+    }
+
+    /* ----- Grid layout ----- */
+    .oe-form-grid, /* Continues a selector or value list on the next line. */
+    .oe-address-grid, /* Continues a selector or value list on the next line. */
+    .oe-choice-grid { /* Starts styles for the .oe-choice-grid selector. */
+        grid-template-columns: 1fr; /* Defines the grid column layout. */
+    }
+
+    /* ----- Base layout ----- */
+    .oe-form-section, /* Continues a selector or value list on the next line. */
+    /* ----- Buttons ----- */
+    .oe-actions { /* Starts styles for the .oe-actions selector. */
+        padding: 22px 18px; /* Sets spacing inside the element. */
+    }
+
+    .oe-actions { /* Starts styles for the .oe-actions selector. */
+        /* ----- Grid layout ----- */
+        flex-direction: column-reverse; /* Sets the flex-direction style for this rule. */
+        /* ----- Tables ----- */
+        align-items: stretch; /* Aligns child items on the cross axis. */
+    }
+
+    /* ----- Buttons ----- */
+    .oe-btn { /* Starts styles for the .oe-btn selector. */
+        /* ----- Tables ----- */
+        width: 100%; /* Sets the element width. */
+    }
+}

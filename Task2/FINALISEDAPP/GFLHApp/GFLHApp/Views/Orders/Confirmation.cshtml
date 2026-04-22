@@ -1,0 +1,387 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Orders
+
+@{
+    ViewData["Title"] = "Order Confirmation"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+
+ // ----- Loop Rendering -----
+    var orderProducts = Model.OrderProducts ?? new List<GFLHApp.Models.OrderProducts>(); // Displays or uses data from the orders model.
+ // ----- Conditional Rendering -----
+    var productCount = orderProducts.Sum(op => op.ProductQuantity); // Renders part of the orders page markup.
+ // ----- Order Display -----
+    var producerGroups = orderProducts // Renders part of the orders page markup.
+ // ----- Product Display -----
+        .Where(op => op.Products != null && op.Products.Producers != null) // Renders part of the orders page markup.
+        .GroupBy(op => op.Products.Producers) // Renders part of the orders page markup.
+        .ToList(); // Renders part of the orders page markup.
+
+ // ----- Form Fields -----
+    var fulfilmentLabel = Model.Delivery ? "Delivery" : "Collection"; // Displays or uses data from the orders model.
+ // ----- Loop Rendering -----
+    var fulfilmentDetail = Model.Delivery // Displays or uses data from the orders model.
+        ? (string.IsNullOrWhiteSpace(Model.DeliveryMethod) ? "Delivery details being prepared" : Model.DeliveryMethod) // Displays or uses data from the orders model.
+        : (Model.DateOfCollection.HasValue ? Model.DateOfCollection.Value.ToString("dd MMMM yyyy") : "Collection date to be confirmed"); // Displays or uses data from the orders model.
+}
+
+ @* ----- Form Fields ----- *@
+<section class="oc-hero" aria-labelledby="order-confirmation-title"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+    <div class="oc-hero__field" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+    <span class="oc-hero__float oc-hero__float--1"><i data-lucide="sprout"></i></span> @* Renders inline text or badge content. *@
+    <span class="oc-hero__float oc-hero__float--2"><i data-lucide="wheat"></i></span> @* Renders inline text or badge content. *@
+    <span class="oc-hero__float oc-hero__float--3"><i data-lucide="leaf"></i></span> @* Renders inline text or badge content. *@
+
+    <div class="oc-hero__inner"> @* Starts a layout container for this section. *@
+        <div class="oc-confirm-mark reveal"> @* Starts a layout container for this section. *@
+            <i data-lucide="check" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Order Display ----- *@
+        <span class="pw-badge pw-badge--green reveal" data-delay="80">Order confirmed</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+        <h1 id="order-confirmation-title" class="oc-hero__title reveal" data-delay="120"> @* Renders a heading for this page section. *@
+            Thank you for choosing Greenfield. @* Renders part of the orders page markup. *@
+        </h1> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+        <p class="oc-hero__sub reveal" data-delay="180"> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+            Your order is safely with us. We have passed the details to the growers and will keep @* Renders part of the orders page markup. *@
+            things moving with the same care that went into the produce. @* Renders part of the orders page markup. *@
+        </p> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="oc-hero__wave" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none"> @* Renders part of the orders page markup. *@
+            <path d="M0,35 C260,72 480,6 720,34 C980,65 1180,10 1440,35 L1440,70 L0,70 Z" fill="#FFFBEB" /> @* Renders paragraph text for the user. *@
+        </svg> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+<main class="oc-page" aria-label="Order confirmation details"> @* Starts the main page content area. *@
+ @* ----- Styling Section ----- *@
+    <div class="oc-shell"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+        <section class="oc-summary-strip reveal" aria-label="Order at a glance"> @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+            <div class="oc-summary-item"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <span class="oc-summary-item__label">Order reference</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                <strong class="oc-summary-item__value">#@Model.OrdersId.ToString("D6")</strong> @* Displays or uses data from the orders model. *@
+            </div> @* Closes the matching HTML element. *@
+            <div class="oc-summary-item"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <span class="oc-summary-item__label">Order date</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                <strong class="oc-summary-item__value">@Model.OrderDate.ToString("dd MMMM yyyy")</strong> @* Displays or uses data from the orders model. *@
+            </div> @* Closes the matching HTML element. *@
+            <div class="oc-summary-item"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <span class="oc-summary-item__label">Items</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                <strong class="oc-summary-item__value">@productCount item@(productCount == 1 ? "" : "s")</strong> @* Renders part of the orders page markup. *@
+            </div> @* Closes the matching HTML element. *@
+            <div class="oc-summary-item oc-summary-item--total"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <span class="oc-summary-item__label">Total paid</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                <strong class="oc-summary-item__value">&pound;@Model.OrdersTotal.ToString("0.00")</strong> @* Displays or uses data from the orders model. *@
+            </div> @* Closes the matching HTML element. *@
+        </section> @* Closes the matching HTML element. *@
+
+        <div class="oc-grid"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <section class="oc-panel oc-panel--main reveal reveal--left" aria-labelledby="next-heading"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+                <div class="oc-panel__header"> @* Starts a layout container for this section. *@
+                    <span class="oc-panel__icon"><i data-lucide="route" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+                    <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                        <span class="oc-panel__eyebrow">What happens next</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+                        <h2 id="next-heading" class="oc-panel__title">We are getting your order ready</h2> @* Renders a heading for this page section. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                <div class="oc-status-card"> @* Starts a layout container for this section. *@
+                    <div class="oc-status-card__top"> @* Starts a layout container for this section. *@
+                        <span class="oc-status-pill"> @* Renders inline text or badge content. *@
+                            <span class="oc-status-pill__dot" aria-hidden="true"></span> @* Renders inline text or badge content. *@
+ @* ----- Page Model Setup ----- *@
+                            @Model.TrackingStatus @* Displays or uses data from the orders model. *@
+                        </span> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                        <span class="oc-muted">Current status</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <p> @* Renders paragraph text for the user. *@
+                        Your order has been received and is being prepared by the growers listed below. @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                        Keep your order reference handy if you need to contact us. @* Renders part of the orders page markup. *@
+                    </p> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+                <ol class="oc-timeline" aria-label="Order progress"> @* Starts a list of related items. *@
+ @* ----- Styling Section ----- *@
+                    <li class="oc-timeline__item is-complete"> @* Renders one list item. *@
+                        <span class="oc-timeline__marker"><i data-lucide="check" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                            <strong>Order placed</strong> @* Renders part of the orders page markup. *@
+                            <span>We have recorded your order and payment details.</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </li> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                    <li class="oc-timeline__item is-active"> @* Renders one list item. *@
+                        <span class="oc-timeline__marker"><i data-lucide="package-check" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                            <strong>Growers preparing</strong> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                            <span>Each producer is preparing their part of your order.</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </li> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                    <li class="oc-timeline__item"> @* Renders one list item. *@
+                        <span class="oc-timeline__marker"><i data-lucide="hand-heart" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <strong>@fulfilmentLabel arranged</strong> @* Renders part of the orders page markup. *@
+                            <span>@fulfilmentDetail</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </li> @* Closes the matching HTML element. *@
+                </ol> @* Closes the matching HTML element. *@
+            </section> @* Closes the matching HTML element. *@
+
+            <aside class="oc-panel oc-panel--side reveal reveal--right" aria-labelledby="fulfilment-heading"> @* Renders a navigation link or action link. *@
+ @* ----- Styling Section ----- *@
+                <div class="oc-panel__header"> @* Starts a layout container for this section. *@
+                    <span class="oc-panel__icon oc-panel__icon--warm"> @* Renders inline text or badge content. *@
+                        <i data-lucide="map-pin" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+                    </span> @* Closes the matching HTML element. *@
+                    <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                        <span class="oc-panel__eyebrow">Your details</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+                        <h2 id="fulfilment-heading" class="oc-panel__title">@fulfilmentLabel</h2> @* Renders a heading for this page section. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <dl class="oc-detail-list"> @* Renders part of the orders page markup. *@
+                    <div> @* Starts a layout container for this section. *@
+                        <dt>Method</dt> @* Renders part of the orders page markup. *@
+                        <dd>@fulfilmentDetail</dd> @* Renders part of the orders page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+ @* ----- Loop Rendering ----- *@
+                    @if (Model.Delivery) @* Conditionally renders this block when the check passes. *@
+                    {
+                        <div> @* Starts a layout container for this section. *@
+                            <dt>Delivering to</dt> @* Renders part of the orders page markup. *@
+                            <dd> @* Renders part of the orders page markup. *@
+ @* ----- Page Model Setup ----- *@
+                                @Model.DeliveryLine1<br /> @* Displays or uses data from the orders model. *@
+ @* ----- Loop Rendering ----- *@
+                                @if (!string.IsNullOrWhiteSpace(Model.DeliveryLine2)) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Page Model Setup ----- *@
+                                    @Model.DeliveryLine2 @* Displays or uses data from the orders model. *@
+
+                                    <br /> @* Renders part of the orders page markup. *@
+                                }
+                                @Model.DeliveryCity<br /> @* Displays or uses data from the orders model. *@
+                                @Model.DeliveryPostcode?.ToUpper() @* Displays or uses data from the orders model. *@
+                            </dd> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    }
+                    <div> @* Starts a layout container for this section. *@
+                        <dt>Billing address</dt> @* Renders part of the orders page markup. *@
+                        <dd> @* Renders part of the orders page markup. *@
+                            @Model.BillingLine1<br /> @* Displays or uses data from the orders model. *@
+ @* ----- Loop Rendering ----- *@
+                            @if (!string.IsNullOrWhiteSpace(Model.BillingLine2)) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Page Model Setup ----- *@
+                                @Model.BillingLine2 @* Displays or uses data from the orders model. *@
+
+                                <br /> @* Renders part of the orders page markup. *@
+                            }
+                            @Model.BillingCity<br /> @* Displays or uses data from the orders model. *@
+                            @Model.BillingPostcode.ToUpper() @* Displays or uses data from the orders model. *@
+                        </dd> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </dl> @* Closes the matching HTML element. *@
+            </aside> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+        <section class="oc-panel reveal" aria-labelledby="items-heading"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+            <div class="oc-panel__header oc-panel__header--split"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                <div class="oc-panel__title-row"> @* Starts a layout container for this section. *@
+ @* ----- Basket Display ----- *@
+                    <span class="oc-panel__icon"><i data-lucide="shopping-basket" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+                    <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                        <span class="oc-panel__eyebrow">Order contents</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+                        <h2 id="items-heading" class="oc-panel__title">Prepared by local growers</h2> @* Renders a heading for this page section. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <span class="oc-small-chip">@producerGroups.Count grower@(producerGroups.Count == 1 ? "" : "s")</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <div class="oc-grower-stack"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                @foreach (var producerGroup in producerGroups) @* Loops through the collection and renders each item. *@
+                {
+ @* ----- Producer Display ----- *@
+                    var groupInvoiceNumber = producerGroup @* Renders part of the orders page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                        .FirstOrDefault(x => !string.IsNullOrWhiteSpace(x.InvoiceNumber))?.InvoiceNumber; @* Renders part of the orders page markup. *@
+ @* ----- Basket Display ----- *@
+                    var producerSubtotal = producerGroup.Sum(op => op.Products.ItemPrice * op.ProductQuantity); @* Renders part of the orders page markup. *@
+ @* ----- Producer Display ----- *@
+                    var isVatRegistered = producerGroup.Key.IsVATRegistered; @* Renders part of the orders page markup. *@
+ @* ----- Basket Display ----- *@
+                    var vatAmount = producerSubtotal / 6; @* Renders part of the orders page markup. *@
+                    var exVAT = producerSubtotal - vatAmount; @* Renders part of the orders page markup. *@
+
+ @* ----- Card Layout ----- *@
+                    <article class="oc-grower-card"> @* Renders a navigation link or action link. *@
+                        <div class="oc-grower-card__head"> @* Starts a layout container for this section. *@
+                            <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                                <h3>@producerGroup.Key.ProducerName</h3> @* Renders a heading for this page section. *@
+ @* ----- Conditional Rendering ----- *@
+                                @if (isVatRegistered && !string.IsNullOrWhiteSpace(producerGroup.Key.VATNumber)) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Producer Display ----- *@
+                                    <p>VAT Reg No: @producerGroup.Key.VATNumber</p> @* Renders paragraph text for the user. *@
+                                }
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <span class="oc-grower-card__total">&pound;@producerSubtotal.ToString("0.00")</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+                        <div class="oc-items" role="table" aria-label="Items from @producerGroup.Key.ProducerName"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                            <div class="oc-items__row oc-items__row--head" role="row"> @* Starts a layout container for this section. *@
+ @* ----- Product Display ----- *@
+                                <span role="columnheader">Product</span> @* Renders inline text or badge content. *@
+                                <span role="columnheader">Qty</span> @* Renders inline text or badge content. *@
+                                <span role="columnheader">Unit price</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                                <span role="columnheader">Line total</span> @* Renders inline text or badge content. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Loop Rendering ----- *@
+                            @foreach (var item in producerGroup) @* Loops through the collection and renders each item. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <div class="oc-items__row" role="row"> @* Starts a layout container for this section. *@
+ @* ----- Product Display ----- *@
+                                    <span role="cell">@item.Products.ItemName</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                                    <span role="cell">@item.ProductQuantity</span> @* Renders inline text or badge content. *@
+ @* ----- Product Display ----- *@
+                                    <span role="cell">&pound;@item.Products.ItemPrice.ToString("0.00")</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                                    <span role="cell">&pound;@((item.Products.ItemPrice * item.ProductQuantity).ToString("0.00"))</span> @* Renders inline text or badge content. *@
+                                </div> @* Closes the matching HTML element. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+                        @if (isVatRegistered) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Producer Display ----- *@
+                            <dl class="oc-vat-breakdown"> @* Renders part of the orders page markup. *@
+                                <div> @* Starts a layout container for this section. *@
+                                    <dt>Ex. VAT</dt> @* Renders part of the orders page markup. *@
+                                    <dd>&pound;@exVAT.ToString("0.00")</dd> @* Renders part of the orders page markup. *@
+                                </div> @* Closes the matching HTML element. *@
+                                <div> @* Starts a layout container for this section. *@
+                                    <dt>VAT (20%)</dt> @* Renders part of the orders page markup. *@
+                                    <dd>&pound;@vatAmount.ToString("0.00")</dd> @* Renders part of the orders page markup. *@
+                                </div> @* Closes the matching HTML element. *@
+ @* ----- Basket Display ----- *@
+                                <div class="oc-vat-breakdown__total"> @* Starts a layout container for this section. *@
+                                    <dt>Producer total inc. VAT</dt> @* Renders part of the orders page markup. *@
+                                    <dd>&pound;@producerSubtotal.ToString("0.00")</dd> @* Renders part of the orders page markup. *@
+                                </div> @* Closes the matching HTML element. *@
+                            </dl> @* Closes the matching HTML element. *@
+                        }
+
+ @* ----- Conditional Rendering ----- *@
+                        @if (!string.IsNullOrWhiteSpace(groupInvoiceNumber)) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Producer Display ----- *@
+                            <p class="oc-note oc-note--invoice"> @* Renders paragraph text for the user. *@
+                                <i data-lucide="receipt-text" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+                                VAT invoice number for @producerGroup.Key.ProducerName is <strong>@groupInvoiceNumber</strong>. @* Renders part of the orders page markup. *@
+                            </p> @* Closes the matching HTML element. *@
+                        }
+                    </article> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        </section> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+        <section class="oc-care-grid reveal" aria-label="Helpful reminders"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+            <div class="oc-note"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                <i data-lucide="badge-alert" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+                <div> @* Starts a layout container for this section. *@
+                    <strong>Allergen notice</strong> @* Renders part of the orders page markup. *@
+ @* ----- Product Display ----- *@
+                    <p>Please refer to the allergen information provided at checkout. Contact us before consuming any products if you have any concerns.</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="oc-note oc-note--quiet"> @* Starts a layout container for this section. *@
+                <i data-lucide="shield-check" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+                <div> @* Starts a layout container for this section. *@
+                    <strong>Terms accepted</strong> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                    <p>Your terms were accepted at the time of order.</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </section> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="oc-actions reveal"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+            <a class="pw-btn pw-btn--primary pw-btn--lg" asp-controller="Orders" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="clipboard-list" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                View My Orders @* Renders part of the orders page markup. *@
+            </a> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+            <a class="pw-btn pw-btn--ghost pw-btn--lg" asp-controller="Products" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                <i data-lucide="arrow-left" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+                Continue Shopping @* Renders part of the orders page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</main> @* Closes the matching HTML element. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Order Display ----- *@
+    <link rel="stylesheet" href="~/css/pages/orders/OrdersConfirmation.css" asp-append-version="true" /> @* Renders one list item. *@
+}
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Order Display ----- *@
+    <script src="~/js/pages/orders/OrdersConfirmation.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+}

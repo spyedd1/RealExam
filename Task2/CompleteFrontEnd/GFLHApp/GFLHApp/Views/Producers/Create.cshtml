@@ -1,184 +1,202 @@
 ﻿@model GFLHApp.Models.Producers
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Producer";
+    ViewData["FullWidth"] = true;
 }
-<h1>Create</h1>
-<h4>Producers</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" id="producerForm">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="ProducerName" class="control-label"></label>
-                <input asp-for="ProducerName" class="form-control" id="producerName"
-                       placeholder="Enter producer name (3-100 characters)" />
-                <span id="nameError" class="text-danger"></span>
+<div class="pw-admin-page">
+    <div class="pw-admin-header">
+        <div class="pw-admin-header__inner">
+            <nav aria-label="Breadcrumb">
+                <ol class="pw-admin-breadcrumb">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Producers" asp-action="Index">Growers</a></li>
+                    <li><span aria-current="page">Create</span></li>
+                </ol>
+            </nav>
+            <div class="pw-admin-header__title">
+                <div class="pw-admin-header__icon" aria-hidden="true">
+                    <i data-lucide="user-plus" style="width:20px;height:20px;stroke-width:2"></i>
+                </div>
+                <div>
+                    <h1>Create producer</h1>
+                    <p>Add a new grower account, profile, and image.</p>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label asp-for="ProducerEmail" class="control-label"></label>
-                <input asp-for="ProducerEmail" class="form-control" id="producerEmail"
-                       placeholder="Enter a valid email address" />
-                <span id="emailError" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="ProducerInformation" class="control-label"></label>
-                <textarea asp-for="ProducerInformation" class="form-control" id="producerInfo"
-                          placeholder="Enter producer information (10-500 characters)" rows="4"></textarea>
-                <span id="infoError" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="IsVATRegistered"><strong>VAT Registered?</strong></label>
-                <input asp-for="IsVATRegistered" id="isVATRegistered" type="checkbox" />
-            </div>
-
-            <div id="vatNumberGroup" style="display:none;">
-                <div class="form-group">
-                    <label asp-for="VATNumber"><strong>VAT Number</strong></label>
-                    <input asp-for="VATNumber" class="form-control" id="vatNumber"
-                           placeholder="e.g. GB123456789" />
-                    <small style="color:grey;">UK VAT number format: GB followed by 9 digits e.g. GB123456789</small>
-                    <span id="vatError" class="text-danger"></span>
+    <div class="pw-admin-body">
+        <div class="pw-admin-img-col" aria-hidden="true">
+            <div class="pw-admin-img-card" id="adminImgCard">
+                <div class="pw-admin-img-placeholder" id="adminImgEl">
+                    <i data-lucide="sprout" style="width:72px;height:72px;opacity:.45;"></i>
+                </div>
+                <div class="pw-admin-img-meta">
+                    <p class="pw-admin-img-meta__name" id="adminImgName">New producer</p>
+                    <p class="pw-admin-img-meta__path" id="adminImgPath">no image selected</p>
                 </div>
             </div>
 
-            <hr />
-            <h5>Account Login Details</h5>
-            <p class="text-muted" style="font-size:13px;">
-                These credentials will be used by the producer to log in to the system.
-            </p>
-
-            <div class="form-group">
-                <label><strong>Password <span style="color:red;">*</span></strong></label>
-                <input type="password" name="AccountPassword" class="form-control"
-                       id="accountPassword" placeholder="Minimum 8 characters" />
-                <small style="color:grey;">
-                    Must be at least 8 characters and include an uppercase letter,
-                    a lowercase letter, a number, and a special character.
-                </small>
-                <span id="passwordError" class="text-danger"></span>
-                <span class="text-danger">@Html.ValidationMessage("AccountPassword")</span>
+            <div class="pw-admin-producer-card" id="previewCard" style="margin-top:18px;">
+                <div class="pw-admin-producer-card__hero">
+                    <div class="pw-admin-producer-card__avatar" id="previewAvatar">?</div>
+                    <p class="pw-admin-producer-card__name" id="previewName">Producer name</p>
+                    <p class="pw-admin-producer-card__email" id="previewEmail">
+                        <i data-lucide="mail" style="width:12px;height:12px;"></i>
+                        <span id="previewEmailText">-</span>
+                    </p>
+                    <span class="pw-admin-producer-card__vat" id="previewVat">
+                        <i data-lucide="receipt" style="width:11px;height:11px;"></i>
+                        VAT Registered
+                    </span>
+                </div>
+                <div class="pw-admin-producer-card__meta">
+                    <div class="pw-admin-producer-card__row">
+                        <div class="pw-admin-producer-card__row-icon">
+                            <i data-lucide="info" style="width:14px;height:14px;stroke-width:2"></i>
+                        </div>
+                        <div>
+                            <span class="pw-admin-producer-card__row-label">About</span>
+                            <span class="pw-admin-producer-card__row-value" id="previewInfo">No bio yet.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label><strong>Confirm Password <span style="color:red;">*</span></strong></label>
-                <input type="password" id="confirmPassword" class="form-control"
-                       placeholder="Re-enter password" />
-                <span id="confirmPasswordError" class="text-danger"></span>
-            </div>
+        <form asp-action="Create" method="post" enctype="multipart/form-data" id="producerForm" novalidate>
+            <div class="pw-form-card">
+                <div asp-validation-summary="ModelOnly" class="pw-form-errors" hidden></div>
 
-            <div class="form-group mt-3">
-                <input type="submit" value="Create" class="btn btn-primary" id="submitBtn" />
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Identity</p>
+                    <div class="pw-field">
+                        <label asp-for="ProducerName">Producer / business name <span class="pw-field__req" aria-hidden="true">*</span></label>
+                        <input asp-for="ProducerName" class="pw-input" id="producerName"
+                               placeholder="e.g. Green Valley Farm" autocomplete="organization" />
+                        <span asp-validation-for="ProducerName" class="pw-field__error"></span>
+                        <span id="nameError" class="pw-field__error"></span>
+                    </div>
+                </div>
+
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Contact</p>
+                    <div class="pw-field">
+                        <label asp-for="ProducerEmail">Email address <span class="pw-field__req" aria-hidden="true">*</span></label>
+                        <input asp-for="ProducerEmail" class="pw-input" id="producerEmail"
+                               type="email" placeholder="hello@example.com" autocomplete="email" />
+                        <span asp-validation-for="ProducerEmail" class="pw-field__error"></span>
+                        <span id="emailError" class="pw-field__error"></span>
+                        <span class="pw-field__hint">Used for login, order notifications, and grower communications.</span>
+                    </div>
+                </div>
+
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">About</p>
+                    <div class="pw-field">
+                        <label asp-for="ProducerInformation">Bio / description <span class="pw-field__req" aria-hidden="true">*</span></label>
+                        <textarea asp-for="ProducerInformation" class="pw-textarea" id="producerInfo"
+                                  placeholder="Tell customers about your farm, growing practices, certifications..."
+                                  rows="5"></textarea>
+                        <span asp-validation-for="ProducerInformation" class="pw-field__error"></span>
+                        <span id="infoError" class="pw-field__error"></span>
+                        <span class="pw-field__hint">Shown on the public producer page. Use 10 to 500 characters.</span>
+                    </div>
+                </div>
+
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Image</p>
+                    <div class="pw-form-row">
+                        <div class="pw-field">
+                            <label for="imageUpload">Upload producer image</label>
+                            <input type="file" id="imageUpload" name="imageUpload" class="pw-file" accept=".jpg,.jpeg,.png,.webp" />
+                            <span class="pw-field__hint">Upload a JPG, PNG, or WebP image up to 5 MB. Files save to /images/producers.</span>
+                            <span id="imageError" class="pw-field__error"></span>
+                            <span class="pw-field__error">@Html.ValidationMessage("imageUpload")</span>
+                        </div>
+
+                        <div class="pw-field">
+                            <label asp-for="ImagePath">Or choose an existing producer image</label>
+                            <select asp-for="ImagePath" class="pw-select" id="liveImagePathInput" asp-items="ViewBag.ExistingImages">
+                                <option value="">No existing image selected</option>
+                            </select>
+                            <span asp-validation-for="ImagePath" class="pw-field__error"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Business &amp; Tax</p>
+                    <div class="pw-toggle-row">
+                        <div class="pw-toggle-row__info">
+                            <strong>VAT registered</strong>
+                            <span>Enables VAT display on receipts and producer profile.</span>
+                        </div>
+                        <label class="pw-toggle" aria-label="Toggle VAT registration">
+                            <input asp-for="IsVATRegistered" type="checkbox" role="switch" id="isVATRegistered" />
+                            <span class="pw-toggle__track" aria-hidden="true"></span>
+                        </label>
+                    </div>
+
+                    <div class="pw-vat-field" id="vatNumberGroup">
+                        <div class="pw-field">
+                            <label asp-for="VATNumber">VAT number</label>
+                            <input asp-for="VATNumber" class="pw-input" id="vatNumber"
+                                   placeholder="e.g. GB123456789"
+                                   autocomplete="off"
+                                   style="font-family:'JetBrains Mono','Courier New',monospace;letter-spacing:.05em;" />
+                            <span asp-validation-for="VATNumber" class="pw-field__error"></span>
+                            <span id="vatError" class="pw-field__error"></span>
+                            <span class="pw-field__hint">Format: GB followed by 9 digits.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Account login</p>
+                    <div class="pw-form-row">
+                        <div class="pw-field">
+                            <label for="accountPassword">Password <span class="pw-field__req" aria-hidden="true">*</span></label>
+                            <input type="password" name="AccountPassword" class="pw-input"
+                                   id="accountPassword" placeholder="Minimum 8 characters" autocomplete="new-password" />
+                            <span class="pw-field__hint">Must include uppercase, lowercase, a number, and a special character.</span>
+                            <span id="passwordError" class="pw-field__error"></span>
+                            <span class="pw-field__error">@Html.ValidationMessage("AccountPassword")</span>
+                        </div>
+
+                        <div class="pw-field">
+                            <label for="confirmPassword">Confirm password <span class="pw-field__req" aria-hidden="true">*</span></label>
+                            <input type="password" id="confirmPassword" class="pw-input"
+                                   placeholder="Re-enter password" autocomplete="new-password" />
+                            <span id="confirmPasswordError" class="pw-field__error"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pw-form-actions">
+                    <a asp-action="Index" class="pw-btn-back">
+                        <i data-lucide="arrow-left" style="width:15px;height:15px;" aria-hidden="true"></i>
+                        Back
+                    </a>
+                    <button type="submit" class="pw-btn-save" id="submitBtn">
+                        <i data-lucide="check" style="width:15px;height:15px;" aria-hidden="true"></i>
+                        Create producer
+                    </button>
+                </div>
             </div>
         </form>
     </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/producers/ProducersEdit.css" />
+    <link rel="stylesheet" href="~/css/pages/producers/ProducersCreate.css" />
+}
 
 @section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial"); // Includes jQuery and unobtrusive validation scripts
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
-    <script>
-
-        const isVATRegistered = document.getElementById("isVATRegistered"); // Checkbox to indicate if producer is VAT registered
-        const vatNumberGroup = document.getElementById("vatNumberGroup"); // Container div for the VAT number input field and error message
-
-        function toggleVATNumber() { // Show or hide the VAT number field based on whether the producer is VAT registered
-            vatNumberGroup.style.display = isVATRegistered.checked ? "block" : "none"; // Toggle visibility of the VAT number input group
-            document.getElementById("vatNumber").value = ""; // Clear the VAT number field when hiding it to prevent stale data
-            document.getElementById("vatError").textContent = ""; // Clear any existing VAT number validation error when toggling the field to avoid confusion if the producer changes their mind about VAT registration
-        }
-        isVATRegistered.addEventListener("change", toggleVATNumber); // Listen for changes to the VAT registration checkbox and call the toggle function to show/hide the VAT number field accordingly
-        toggleVATNumber(); // Initialize the VAT number field visibility on page load based on the default state of the VAT registration checkbox
-
-        document.getElementById("producerName").addEventListener("blur", validateName); // Validate producer name when the input field loses focus
-        document.getElementById("producerEmail").addEventListener("blur", validateEmail); // Validate producer email when the input field loses focus
-        document.getElementById("producerInfo").addEventListener("blur", validateInfo); // Validate producer information when the textarea loses focus
-        document.getElementById("vatNumber").addEventListener("blur", validateVAT); // Validate VAT number when the input field loses focus (only relevant if VAT registered)
-        document.getElementById("accountPassword").addEventListener("blur", validatePassword); // Validate account password when the input field loses focus
-        document.getElementById("confirmPassword").addEventListener("blur", validateConfirmPassword); // Validate confirm password when the input field loses focus
-
-        function validateName() { // Validate the producer name field according to specified rules and display error messages if validation fails
-            const val = document.getElementById("producerName").value.trim(); // Get the value of the producer name input field and trim whitespace
-            const err = document.getElementById("nameError"); // Get the element where validation error messages for the producer name will be displayed
-            if (val === "") { err.textContent = "Producer name is required."; return false; } // Check if the producer name is empty and display an error message if it is
-            if (val.length < 3) { err.textContent = "Producer name must be at least 3 characters."; return false; } // Check if the producer name is too short and display an error message if it is
-            if (val.length > 100) { err.textContent = "Producer name must not exceed 100 characters."; return false; } // Check if the producer name is too long and display an error message if it is
-            err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
-        }
-
-        function validateEmail() { // Validate the producer email field according to specified rules and display error messages if validation fails
-            const val = document.getElementById("producerEmail").value.trim(); // Get the value of the producer email input field and trim whitespace
-            const err = document.getElementById("emailError"); // Get the element where validation error messages for the producer email will be displayed
-            const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/; // Regular expression to validate basic email format (must contain exactly one at symbol and at least one dot after the at)
-        if (val === "") { err.textContent = "Email address is required."; return false; } // Check if the email address is empty and display an error message if it is
-        if (!emailRegex.test(val)) { err.textContent = "Please enter a valid email address."; return false; } // Check if the email address does not match the basic email format and display an error message if it is invalid
-        if (val.length > 150) { err.textContent = "Email address must not exceed 150 characters."; return false; } //   Check if the email address is too long and display an error message if it is
-        err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
-        }
-
-        function validateInfo() { // Validate the producer information field according to specified rules and display error messages if validation fails
-            const val = document.getElementById("producerInfo").value.trim(); // Get the value of the producer information textarea and trim whitespace
-            const err = document.getElementById("infoError"); // Get the element where validation error messages for the producer information will be displayed
-            if (val === "") { err.textContent = "Producer information is required."; return false; } //     Check if the producer information is empty and display an error message if it is
-            if (val.length < 10) { err.textContent = "Producer information must be at least 10 characters."; return false; } // Check if the producer information is too short and display an error message if it is
-            if (val.length > 500) { err.textContent = "Producer information must not exceed 500 characters."; return false; } // Check if the producer information is too long and display an error message if it is
-            err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
-        }
-
-        function validateVAT() { // Validate the VAT number field according to specified rules and display error messages if validation fails, but only if the producer is marked as VAT registered
-            if (!isVATRegistered.checked) return true;// If the producer is not VAT registered, skip validation for the VAT number field and return true to indicate it is valid (since it is not required in this case)
-            const val = document.getElementById("vatNumber").value.trim(); //   Get the value of the VAT number input field and trim whitespace
-            const err = document.getElementById("vatError"); // Get the element where validation error messages for the VAT number will be displayed
-            const vatRegex = /^GB[0-9]{9}$/; // Regular expression to validate UK VAT number format (must start with "GB" followed by exactly 9 digits)
-            if (val === "") { err.textContent = "VAT number is required if VAT registered."; return false; } // Check if the VAT number is empty when the producer is marked as VAT registered and display an error message if it is
-            if (!vatRegex.test(val)) { err.textContent = "VAT number must start with GB followed by exactly 9 digits."; return false; } // Check if the VAT number does not match the UK VAT number format and display an error message if it is invalid
-            err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
-        }
-
-        function validatePassword() { // Validate the account password field according to specified rules and display error messages if validation fails
-            const val = document.getElementById("accountPassword").value; // Get the value of the account password input field (do not trim whitespace for passwords, as leading/trailing spaces may be intentional)
-            const err = document.getElementById("passwordError"); // Get the element where validation error messages for the account password will be displayed
-            // Matches ASP.NET Identity default password policy
-            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/; // Regular expression to validate password complexity (must be at least 8 characters and include at least one lowercase letter, one uppercase letter, one digit, and one special character)
-            if (val === "") { err.textContent = "Password is required."; return false; } // Check if the password is empty and display an error message if it is
-            if (!passwordRegex.test(val)) { // Check if the password does not match the complexity requirements and display an error message if it is invalid
-                err.textContent = "Password must be at least 8 characters and include uppercase, lowercase, a number, and a special character."; // Display a specific error message if the password does not meet complexity requirements
-                return false; // Return false to indicate the password field is invalid
-            }
-            err.textContent = ""; return true; // If all validation checks pass, clear any existing error message and return true to indicate the field is valid
-        }
-
-        function validateConfirmPassword() { // Validate the confirm password field by checking if it matches the account password field and display error messages if validation fails
-            const pass = document.getElementById("accountPassword").value; // Get the value of the account password input field to compare against the confirm password field
-            const confirm = document.getElementById("confirmPassword").value; // Get the value of the confirm password input field
-            const err = document.getElementById("confirmPasswordError"); // Get the element where validation error messages for the confirm password will be displayed
-            if (confirm === "") { err.textContent = "Please confirm the password."; return false; } // Check if the confirm password field is empty and display an error message if it is
-            if (pass !== confirm) { err.textContent = "Passwords do not match."; return false; } // Check if the confirm password does not match the account password and display an error message if they do not match
-            err.textContent = ""; return true;
-        }
-
-        document.getElementById("producerForm").addEventListener("submit", function (e) { // Add an event listener to the form submission to perform validation checks before allowing the form to be submitted to the server
-            const nameOk     = validateName(); // Call the validateName function and store the result to determine if the producer name field is valid
-            const emailOk    = validateEmail(); // Call the validateEmail function and store the result to determine if the producer email field is valid
-            const infoOk     = validateInfo(); // Call the validateInfo function and store the result to determine if the producer information field is valid
-            const vatOk      = validateVAT(); // Call the validateVAT function and store the result to determine if the VAT number field is valid (this will return true if the producer is not VAT registered, effectively skipping validation in that case)
-            const passwordOk = validatePassword(); // Call the validatePassword function and store the result to determine if the account password field is valid
-            const confirmOk  = validateConfirmPassword(); // Call the validateConfirmPassword function and store the result to determine if the confirm password field is valid and matches the account password field
-            if (!nameOk || !emailOk || !infoOk || !vatOk || !passwordOk || !confirmOk) { // Check if any of the validation checks failed (i.e. any of the variables is false)
-                e.preventDefault(); // If any validation check failed, prevent the default form submission behavior to stop the form from being submitted to the server
-            }
-        });
-    </script>
-
+    <script src="~/js/pages/producers/ProducersCreate.js"></script>
 }

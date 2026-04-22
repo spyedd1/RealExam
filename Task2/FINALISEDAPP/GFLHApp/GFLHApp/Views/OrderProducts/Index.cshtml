@@ -1,0 +1,77 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model IEnumerable<GFLHApp.Models.OrderProducts>
+
+@{
+    ViewData["Title"] = "Index"; // Sets the browser and page title for this view.
+}
+
+ @* ----- Page Header ----- *@
+<h1>Index</h1> @* Renders a heading for this page section. *@
+
+<p> @* Renders paragraph text for the user. *@
+ @* ----- Navigation ----- *@
+    <a asp-action="Create">Create New</a> @* Builds a link or form target using MVC routing. *@
+</p> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+<table class="table"> @* Starts a table for structured row data. *@
+    <thead> @* Starts the table header section. *@
+        <tr> @* Starts one table row. *@
+            <th> @* Renders a table header cell. *@
+ @* ----- Loop Rendering ----- *@
+                @Html.DisplayNameFor(model => model.ProductQuantity) @* Uses an HTML helper to render dynamic output. *@
+            </th> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+            <th> @* Renders a table header cell. *@
+ @* ----- Loop Rendering ----- *@
+                @Html.DisplayNameFor(model => model.Products) @* Uses an HTML helper to render dynamic output. *@
+            </th> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+            <th> @* Renders a table header cell. *@
+ @* ----- Loop Rendering ----- *@
+                @Html.DisplayNameFor(model => model.Orders) @* Uses an HTML helper to render dynamic output. *@
+            </th> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+            <th> @* Renders a table header cell. *@
+ @* ----- Loop Rendering ----- *@
+                @Html.DisplayNameFor(model => model.InvoiceNumber) @* Uses an HTML helper to render dynamic output. *@
+            </th> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+            <th></th> @* Renders a table header cell. *@
+        </tr> @* Closes the matching HTML element. *@
+    </thead> @* Closes the matching HTML element. *@
+    <tbody> @* Starts the table body section. *@
+ @* ----- Loop Rendering ----- *@
+@foreach (var item in Model) { @* Loops through the collection and renders each item. *@
+ @* ----- Table Layout ----- *@
+        <tr> @* Starts one table row. *@
+            <td> @* Renders a table data cell. *@
+ @* ----- Basket Display ----- *@
+                @Html.DisplayFor(modelItem => item.ProductQuantity) @* Uses an HTML helper to render dynamic output. *@
+            </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+            <td> @* Renders a table data cell. *@
+ @* ----- Product Display ----- *@
+                @Html.DisplayFor(modelItem => item.Products.ProductsId) @* Uses an HTML helper to render dynamic output. *@
+            </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+            <td> @* Renders a table data cell. *@
+ @* ----- Order Display ----- *@
+                @Html.DisplayFor(modelItem => item.Orders.OrdersId) @* Uses an HTML helper to render dynamic output. *@
+            </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                <td> @* Renders a table data cell. *@
+ @* ----- Producer Display ----- *@
+                    @Html.DisplayFor(modelItem => item.InvoiceNumber) @* Uses an HTML helper to render dynamic output. *@
+                </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+            <td> @* Renders a table data cell. *@
+ @* ----- Navigation ----- *@
+                <a asp-action="Edit" asp-route-id="@item.OrderProductsId">Edit</a> | @* Builds a link or form target using MVC routing. *@
+                <a asp-action="Details" asp-route-id="@item.OrderProductsId">Details</a> | @* Builds a link or form target using MVC routing. *@
+                <a asp-action="Delete" asp-route-id="@item.OrderProductsId">Delete</a> @* Builds a link or form target using MVC routing. *@
+            </td> @* Closes the matching HTML element. *@
+        </tr> @* Closes the matching HTML element. *@
+}
+    </tbody> @* Closes the matching HTML element. *@
+</table> @* Closes the matching HTML element. *@

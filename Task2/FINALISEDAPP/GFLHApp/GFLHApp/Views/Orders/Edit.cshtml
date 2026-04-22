@@ -1,0 +1,164 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Orders
+
+@{
+    ViewData["Title"] = "Edit"; // Sets the browser and page title for this view.
+}
+
+ @* ----- Page Header ----- *@
+<h1>Edit</h1> @* Renders a heading for this page section. *@
+
+ @* ----- Order Display ----- *@
+<h4>Orders</h4> @* Renders a heading for this page section. *@
+<hr /> @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+<div class="row"> @* Starts a layout container for this section. *@
+    <div class="col-md-4"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+        <form asp-action="Edit"> @* Starts the form that submits this page's user input. *@
+ @* ----- Status Messages ----- *@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div> @* Shows page-level validation messages. *@
+ @* ----- Form Fields ----- *@
+            <input type="hidden" asp-for="OrdersId" /> @* Binds this input to the matching model property. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="UserId" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="UserId" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="UserId" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="OrderDate" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="OrderDate" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="OrderDate" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="DeliveryMethod" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="DeliveryMethod" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="DeliveryMethod" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+            <div class="form-group form-check"> @* Starts a layout container for this section. *@
+                <label class="form-check-label"> @* Renders text identifying a form field. *@
+                    <input class="form-check-input" asp-for="Delivery" /> @Html.DisplayNameFor(model => model.Delivery) @* Binds this input to the matching model property. *@
+                </label> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+            <div class="form-group form-check"> @* Starts a layout container for this section. *@
+                <label class="form-check-label"> @* Renders text identifying a form field. *@
+                    <input class="form-check-input" asp-for="Collection" /> @Html.DisplayNameFor(model => model.Collection) @* Binds this input to the matching model property. *@
+                </label> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="OrdersTotal" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="OrdersTotal" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="OrdersTotal" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="TrackingStatus" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="TrackingStatus" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="TrackingStatus" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="DateOfCollection" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="DateOfCollection" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="DateOfCollection" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="BillingLine1" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="BillingLine1" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="BillingLine1" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="BillingLine2" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="BillingLine2" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="BillingLine2" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="BillingCity" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="BillingCity" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="BillingCity" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="BillingPostcode" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="BillingPostcode" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="BillingPostcode" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="DeliveryLine1" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="DeliveryLine1" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="DeliveryLine1" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="DeliveryLine2" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="DeliveryLine2" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="DeliveryLine2" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="DeliveryCity" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="DeliveryCity" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="DeliveryCity" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="DeliveryPostcode" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="DeliveryPostcode" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="DeliveryPostcode" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <input type="submit" value="Save" class="btn btn-primary" /> @* Renders a user input field. *@
+            </div> @* Closes the matching HTML element. *@
+        </form> @* Closes the form after its fields and actions. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+<div> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+    <a asp-action="Index">Back to List</a> @* Builds a link or form target using MVC routing. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} // Starts a Razor code block for page setup.
+}

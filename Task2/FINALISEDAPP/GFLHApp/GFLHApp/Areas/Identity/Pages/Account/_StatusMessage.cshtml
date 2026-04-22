@@ -1,0 +1,22 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model string
+
+ @* ----- Conditional Rendering ----- *@
+@if (!string.IsNullOrEmpty(Model)) @* Conditionally renders this block when the check passes. *@
+{
+ @* ----- Loop Rendering ----- *@
+    var isError = Model.StartsWith("Error"); @* Displays or uses data from the identity model. *@
+ @* ----- Status Messages ----- *@
+    var alertClass = isError ? "pw-manage-alert--danger" : "pw-manage-alert--success"; @* Renders part of the identity page markup. *@
+    var icon = isError ? "alert-circle" : "check-circle-2"; @* Renders part of the identity page markup. *@
+
+    <div class="pw-manage-alert @alertClass" role="alert"> @* Starts a layout container for this section. *@
+        <i data-lucide="@icon" style="width:18px;height:18px;stroke-width:2;flex-shrink:0;margin-top:1px"></i> @* Renders part of the identity page markup. *@
+        <span>@Model</span> @* Renders inline text or badge content. *@
+        <button type="button" class="pw-manage-alert__dismiss" aria-label="Dismiss" @* Renders a button for the user action. *@
+                onclick="this.closest('.pw-manage-alert').remove()"> @* Renders part of the identity page markup. *@
+            <i data-lucide="x" style="width:16px;height:16px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+        </button> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+}

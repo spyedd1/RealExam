@@ -1,0 +1,41 @@
+ @* ----- Imports and Services ----- *@
+ @* Imports a namespace for this Razor file. *@
+@using Microsoft.AspNetCore.Identity
+ @* Injects a service for use in this Razor view. *@
+@inject SignInManager<IdentityUser> SignInManager
+ @* Injects a service for use in this Razor view. *@
+@inject UserManager<IdentityUser> UserManager
+
+ @* ----- Navigation ----- *@
+<ul class="navbar-nav"> @* Starts a list of related items. *@
+ @* ----- Authorization Display ----- *@
+@if (SignInManager.IsSignedIn(User)) @* Conditionally renders this block when the check passes. *@
+{
+ @* ----- Styling Section ----- *@
+    <li class="nav-item"> @* Renders one list item. *@
+ @* ----- Authorization Display ----- *@
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a> @* Builds a link or form target using MVC routing. *@
+    </li> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <li class="nav-item"> @* Renders one list item. *@
+ @* ----- Authorization Display ----- *@
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"> @* Starts the form that submits this page's user input. *@
+            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button> @* Renders a button for the user action. *@
+        </form> @* Closes the form after its fields and actions. *@
+    </li> @* Closes the matching HTML element. *@
+}
+ @* ----- Conditional Rendering ----- *@
+else @* Renders the fallback branch for the previous condition. *@
+{
+ @* ----- Styling Section ----- *@
+    <li class="nav-item"> @* Renders one list item. *@
+ @* ----- Authorization Display ----- *@
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a> @* Builds a link or form target using MVC routing. *@
+    </li> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <li class="nav-item"> @* Renders one list item. *@
+ @* ----- Authorization Display ----- *@
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a> @* Builds a link or form target using MVC routing. *@
+    </li> @* Closes the matching HTML element. *@
+}
+</ul> @* Closes the matching HTML element. *@

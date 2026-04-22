@@ -602,3 +602,147 @@
     gap: 5px;
     margin-right: auto;
 }
+
+/* ══ DARK MODE ═══════════════════════════════════════════════════════ */
+
+body.dark-mode .pd-hero {
+    background: #0f172a;
+}
+
+/* Blobs — dim heavily against dark bg */
+body.dark-mode .pd-hero__blob--a,
+body.dark-mode .pd-hero__blob--b,
+body.dark-mode .pd-hero__blob--c {
+    opacity: .1;
+}
+
+/* Floating icons */
+body.dark-mode .pd-hero__float svg {
+    stroke: #86efac;
+}
+
+/* Hero name — hardcoded dark green */
+body.dark-mode .pd-hero__name {
+    color: #f1f5f9;
+}
+
+/* Breadcrumb */
+body.dark-mode .pd-hero__breadcrumb {
+    background: rgba(30, 41, 59, .85);
+    border-color: #334155;
+    color: #86efac;
+}
+body.dark-mode .pd-hero__breadcrumb:hover {
+    background: rgba(22, 163, 74, .15);
+    color: #6ee7b7;
+}
+
+/* Avatar border */
+body.dark-mode .pd-hero__avatar {
+    border-color: #334155;
+}
+
+/* Pills */
+body.dark-mode .pd-hero__pill {
+    background: rgba(30, 41, 59, .85);
+    border-color: #334155;
+    color: #86efac;
+}
+body.dark-mode .pd-hero__pill--green {
+    background: rgba(22, 163, 74, .15);
+    border-color: rgba(74, 222, 128, .3);
+    color: #86efac;
+}
+body.dark-mode .pd-hero__pill--yellow {
+    background: rgba(245, 158, 11, .12);
+    border-color: rgba(253, 230, 138, .25);
+    color: #fbbf24;
+}
+
+/* Email chip */
+body.dark-mode .pd-hero__email {
+    background: rgba(30, 41, 59, .85);
+    border-color: #334155;
+    color: #86efac;
+}
+body.dark-mode .pd-hero__email:hover {
+    background: rgba(22, 163, 74, .15);
+    color: #6ee7b7;
+}
+
+/* Wave SVG fill */
+body.dark-mode .pd-hero__wave path {
+    fill: #0f172a;
+}
+
+/* Body background — hardcoded #f0fdf4 */
+body.dark-mode .pd-body {
+    background: #0f172a;
+}
+
+/* About card */
+body.dark-mode .pd-about {
+    background: #1e293b;
+    border-color: #334155;
+}
+body.dark-mode .pd-about__eyebrow {
+    background: rgba(22, 163, 74, .15);
+    color: #86efac;
+}
+body.dark-mode .pd-about__text {
+    color: #94a3b8;
+}
+
+/* Fact cards */
+body.dark-mode .pd-fact-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+body.dark-mode .pd-fact-card__icon--green { background: rgba(22, 163, 74, .15); }
+body.dark-mode .pd-fact-card__icon--lime  { background: rgba(163, 230, 53, .12); }
+body.dark-mode .pd-fact-card__icon--teal  { background: rgba(20, 184, 166, .12); }
+body.dark-mode .pd-fact-card__icon--mint  { background: rgba(52, 211, 153, .12); }
+body.dark-mode .pd-fact-card__value a     { color: #6ee7b7; }
+
+/* Stats strip */
+body.dark-mode .pd-stat-tile {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+/* Produce section */
+body.dark-mode .pd-produce {
+    background: #0f172a;
+}
+
+/* Product cards */
+body.dark-mode .pd-product-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+body.dark-mode .pd-product-card__footer {
+    border-color: #334155;
+}
+body.dark-mode .pd-product-card__category {
+    color: #6ee7b7;
+}
+
+/* Admin bar */
+body.dark-mode .pd-admin-bar {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+/* Produce section eyebrow inline style override */
+body.dark-mode [style*="color:#15803d"] {
+    color: #86efac !important;
+}
+
+/* Empty state inline styles */
+body.dark-mode [style*="background:#fff"][style*="border-color:#d1fae5"] {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+body.dark-mode [style*="background:#dcfce7"] {
+    background: rgba(22, 163, 74, .14) !important;
+}

@@ -1,0 +1,466 @@
+/* ----- Admin dashboard styling ----- */
+.pw-admin-page { /* Starts styles for the .pw-admin-page selector. */
+    min-height: 100vh; /* Sets the minimum element height. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-header { /* Starts styles for the .pw-admin-header selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(160deg, var(--cream) 0%, #f0ebe0 100%); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    padding: 80px 0 28px; /* Sets spacing inside the element. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-header__inner { /* Starts styles for the .pw-admin-header__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 0 24px; /* Sets spacing inside the element. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb { /* Starts styles for the .pw-admin-breadcrumb selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 6px; /* Controls how the element participates in layout. */
+    list-style: none; margin: 0 0 16px; padding: 0; /* Sets the list-style style for this rule. */
+    font-size: 13px; font-weight: 500; flex-wrap: wrap; /* Sets the text size. */
+}
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb li { display: flex; align-items: center; gap: 6px; } /* Styles part of the ProductEdit page or component. */
+/* ----- Theme variables ----- */
+.pw-admin-breadcrumb li + li::before { content: '/'; color: var(--text-muted); opacity: .5; } /* Styles part of the ProductEdit page or component. */
+.pw-admin-breadcrumb a { color: var(--text-muted); transition: color .15s; text-decoration: none; } /* Styles part of the ProductEdit page or component. */
+.pw-admin-breadcrumb a:hover { color: var(--green); } /* Styles part of the ProductEdit page or component. */
+.pw-admin-breadcrumb [aria-current] { color: var(--text); font-weight: 600; } /* Styles part of the ProductEdit page or component. */
+
+/* ----- Navigation ----- */
+.pw-admin-header__title { /* Starts styles for the .pw-admin-header__title selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 14px; /* Controls how the element participates in layout. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__icon { /* Starts styles for the .pw-admin-header__icon selector. */
+    /* ----- Tables ----- */
+    width: 44px; height: 44px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__title h1 { /* Starts styles for the .pw-admin-header__title h1 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 24px; font-weight: 700; /* Sets the text size. */
+    color: var(--text); /* Sets the text color. */
+    margin: 0; line-height: 1.2; /* Sets spacing outside the element. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__title p { /* Starts styles for the .pw-admin-header__title p selector. */
+    /* ----- Theme variables ----- */
+    font-size: 13px; color: var(--text-muted); /* Sets the text size. */
+    margin: 2px 0 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Base layout ----- */
+.pw-admin-body { /* Starts styles for the .pw-admin-body selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 40px 24px 80px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 320px 1fr; /* Defines the grid column layout. */
+    gap: 36px; /* Sets spacing between flex or grid children. */
+    align-items: start; /* Aligns child items on the cross axis. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 860px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Base layout ----- */
+    .pw-admin-body { grid-template-columns: 1fr; } /* Styles part of the ProductEdit page or component. */
+    /* ----- Grid layout ----- */
+    .pw-admin-img-col { display: none; } /* Styles part of the ProductEdit page or component. */
+}
+
+.pw-admin-img-col { /* Starts styles for the .pw-admin-img-col selector. */
+    position: sticky; /* Controls how the element is positioned on the page. */
+    top: 96px; /* Sets the top style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-admin-img-card { /* Starts styles for the .pw-admin-img-card selector. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border: 1px solid var(--border); /* Sets the border around the element. */
+    box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transform-style: preserve-3d; /* Sets the transform-style style for this rule. */
+    transition: transform .35s ease, box-shadow .35s ease; /* Animates property changes smoothly. */
+    cursor: default; /* Sets the cursor style for this rule. */
+    will-change: transform; /* Sets the will-change style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-admin-img-card img { /* Starts styles for the .pw-admin-img-card img selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    aspect-ratio: 1 / 1; /* Sets the aspect-ratio style for this rule. */
+    object-fit: cover; /* Sets the object-fit style for this rule. */
+    display: block; /* Controls how the element participates in layout. */
+}
+
+/* ----- Admin dashboard styling ----- */
+.pw-admin-img-placeholder { /* Starts styles for the .pw-admin-img-placeholder selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    aspect-ratio: 1 / 1; /* Sets the aspect-ratio style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-100) 0%, var(--cream-2) 100%); /* Sets the element background treatment. */
+    color: var(--green); /* Sets the text color. */
+}
+
+/* ----- Admin dashboard styling ----- */
+.pw-admin-img-meta { /* Starts styles for the .pw-admin-img-meta selector. */
+    padding: 14px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+/* ----- Admin dashboard styling ----- */
+.pw-admin-img-meta__name { /* Starts styles for the .pw-admin-img-meta__name selector. */
+    /* ----- Theme variables ----- */
+    font-size: 14px; font-weight: 700; color: var(--text); /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    margin: 0 0 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; /* Sets spacing outside the element. */
+}
+/* ----- Tables ----- */
+.pw-admin-img-meta__path { /* Starts styles for the .pw-admin-img-meta__path selector. */
+    /* ----- Theme variables ----- */
+    font-size: 11px; color: var(--text-light); /* Sets the text size. */
+    font-family: monospace; /* Sets the font family. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; /* Sets the white-space style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-form-card { /* Starts styles for the .pw-form-card selector. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    border: 1px solid var(--border); /* Sets the border around the element. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Base layout ----- */
+.pw-form-section { /* Starts styles for the .pw-form-section selector. */
+    padding: 24px 28px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+/* ----- Base layout ----- */
+.pw-form-section + .pw-form-section { /* Starts styles for the .pw-form-section + .pw-form-section selector. */
+    /* ----- Theme variables ----- */
+    border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+}
+/* ----- Base layout ----- */
+.pw-form-section__label { /* Starts styles for the .pw-form-section__label selector. */
+    font-size: 10px; font-weight: 700; letter-spacing: .1em; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    text-transform: uppercase; color: var(--text-muted); /* Sets the text-transform style for this rule. */
+    margin: 0 0 18px; /* Sets spacing outside the element. */
+}
+
+/* ----- Grid layout ----- */
+.pw-form-row { /* Starts styles for the .pw-form-row selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 1fr 1fr; /* Defines the grid column layout. */
+    gap: 16px; /* Sets spacing between flex or grid children. */
+}
+/* ----- Tables ----- */
+@media (max-width: 520px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Grid layout ----- */
+    .pw-form-row { grid-template-columns: 1fr; } /* Styles part of the ProductEdit page or component. */
+    /* ----- Base layout ----- */
+    .pw-form-section { padding: 18px 16px; } /* Styles part of the ProductEdit page or component. */
+}
+
+/* ----- Forms ----- */
+.pw-field { /* Starts styles for the .pw-field selector. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-direction: column; gap: 5px; /* Controls how the element participates in layout. */
+}
+/* ----- Forms ----- */
+.pw-field label { /* Starts styles for the .pw-field label selector. */
+    /* ----- Theme variables ----- */
+    font-size: 13px; font-weight: 600; color: var(--text); /* Sets the text size. */
+}
+.pw-field__req { color: var(--orange); margin-left: 2px; } /* Styles part of the ProductEdit page or component. */
+/* ----- Forms ----- */
+.pw-field__hint { /* Starts styles for the .pw-field__hint selector. */
+    /* ----- Theme variables ----- */
+    font-size: 12px; color: var(--text-muted); /* Sets the text size. */
+    line-height: 1.5; margin-top: 3px; /* Sets vertical text rhythm. */
+}
+/* ----- Grid layout ----- */
+.pw-field__error { font-size: 12px; color: #DC2626; margin-top: 2px; } /* Styles part of the ProductEdit page or component. */
+
+/* ----- Forms ----- */
+.pw-input, .pw-select, .pw-textarea, .pw-file { /* Starts styles for the .pw-input, .pw-select, .pw-textarea, .pw-file selector. */
+    /* ----- Tables ----- */
+    width: 100%; height: 42px; /* Sets the element width. */
+    padding: 0 13px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 14px; font-weight: 500; /* Sets the text size. */
+    color: var(--text); /* Sets the text color. */
+    background: #fff; /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s; /* Animates property changes smoothly. */
+    outline: none; /* Sets the outline style for this rule. */
+    appearance: none; -webkit-appearance: none; /* Sets the appearance style for this rule. */
+}
+.pw-input:hover, .pw-select:hover, .pw-textarea:hover, .pw-file:hover { border-color: #c4c0bb; } /* Styles part of the ProductEdit page or component. */
+/* ----- Forms ----- */
+.pw-input:focus, .pw-select:focus, .pw-textarea:focus, .pw-file:focus { /* Starts styles for the .pw-input:focus, .pw-select:focus, .pw-textarea:focus, .pw-file:focus selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px var(--green-100); /* Adds depth with a shadow. */
+}
+/* ----- Forms ----- */
+.pw-input.input-validation-error, /* Continues a selector or value list on the next line. */
+.pw-select.input-validation-error, /* Continues a selector or value list on the next line. */
+.pw-textarea.input-validation-error, /* Continues a selector or value list on the next line. */
+.pw-file.input-validation-error { /* Starts styles for the .pw-file.input-validation-error selector. */
+    /* ----- Grid layout ----- */
+    border-color: #DC2626; /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px #fee2e2; /* Adds depth with a shadow. */
+}
+.pw-file { /* Starts styles for the .pw-file selector. */
+    height: auto; /* Sets the element height. */
+    min-height: 42px; /* Sets the minimum element height. */
+    padding: 10px 13px; /* Sets spacing inside the element. */
+}
+/* ----- Forms ----- */
+.pw-select { /* Starts styles for the .pw-select selector. */
+    /* ----- Tables ----- */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); /* Sets the background-image style for this rule. */
+    background-repeat: no-repeat; /* Sets the background-repeat style for this rule. */
+    background-position: right 12px center; /* Sets the background-position style for this rule. */
+    /* ----- Grid layout ----- */
+    background-color: #fff; /* Sets the element background color. */
+    padding-right: 36px; /* Sets the padding-right style for this rule. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+}
+/* ----- Forms ----- */
+.pw-textarea { /* Starts styles for the .pw-textarea selector. */
+    height: auto; min-height: 96px; /* Sets the element height. */
+    padding: 11px 13px; /* Sets spacing inside the element. */
+    resize: vertical; line-height: 1.6; /* Sets the resize style for this rule. */
+}
+
+.pw-stepper { /* Starts styles for the .pw-stepper selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; height: 42px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s; /* Animates property changes smoothly. */
+}
+/* ----- Tables ----- */
+.pw-stepper:focus-within { /* Starts styles for the .pw-stepper:focus-within selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px var(--green-100); /* Adds depth with a shadow. */
+}
+/* ----- Buttons ----- */
+.pw-stepper__btn { /* Starts styles for the .pw-stepper__btn selector. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; width: 38px; height: 100%; /* Sets the flex-shrink style for this rule. */
+    /* ----- Tables ----- */
+    border: none; background: transparent; /* Sets the border around the element. */
+    font-size: 18px; font-weight: 600; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    transition: background .12s, color .12s; /* Animates property changes smoothly. */
+    /* ----- Forms ----- */
+    user-select: none; -webkit-user-select: none; /* Sets the user-select style for this rule. */
+}
+/* ----- Theme variables ----- */
+.pw-stepper__btn:hover { background: var(--green-100); color: var(--green); } /* Styles part of the ProductEdit page or component. */
+.pw-stepper__btn:active { background: var(--green-200); } /* Styles part of the ProductEdit page or component. */
+/* ----- Forms ----- */
+.pw-stepper__input { /* Starts styles for the .pw-stepper__input selector. */
+    /* ----- Grid layout ----- */
+    flex: 1; height: 100%; /* Sets the flex style for this rule. */
+    /* ----- Tables ----- */
+    border: none; background: transparent; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 15px; font-weight: 700; /* Sets the text size. */
+    color: var(--text); /* Sets the text color. */
+    text-align: center; outline: none; /* Sets the text-align style for this rule. */
+    /* ----- Tables ----- */
+    min-width: 0; padding: 0 4px; /* Sets the min-width style for this rule. */
+    /* ----- Forms ----- */
+    -moz-appearance: textfield; /* Sets the -moz-appearance style for this rule. */
+}
+.pw-stepper__input::-webkit-outer-spin-button, /* Continues a selector or value list on the next line. */
+.pw-stepper__input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } /* Styles part of the ProductEdit page or component. */
+
+/* ----- Grid layout ----- */
+.pw-toggle-row { /* Starts styles for the .pw-toggle-row selector. */
+    display: flex; align-items: center; gap: 14px; /* Controls how the element participates in layout. */
+    padding: 10px 0; /* Sets spacing inside the element. */
+}
+.pw-toggle-row__info { flex: 1; } /* Styles part of the ProductEdit page or component. */
+.pw-toggle-row__info strong { /* Starts styles for the .pw-toggle-row__info strong selector. */
+    /* ----- Theme variables ----- */
+    font-size: 14px; font-weight: 600; color: var(--text); display: block; /* Sets the text size. */
+}
+.pw-toggle-row__info span { font-size: 12px; color: var(--text-muted); } /* Styles part of the ProductEdit page or component. */
+.pw-toggle { /* Starts styles for the .pw-toggle selector. */
+    position: relative; display: inline-block; /* Controls how the element is positioned on the page. */
+    /* ----- Grid layout ----- */
+    width: 46px; height: 25px; flex-shrink: 0; /* Sets the element width. */
+}
+/* ----- Forms ----- */
+.pw-toggle input { opacity: 0; width: 0; height: 0; position: absolute; } /* Styles part of the ProductEdit page or component. */
+/* ----- Tables ----- */
+.pw-toggle__track { /* Starts styles for the .pw-toggle__track selector. */
+    position: absolute; inset: 0; /* Controls how the element is positioned on the page. */
+    /* ----- Theme variables ----- */
+    background: var(--border); /* Sets the element background treatment. */
+    border-radius: 999px; cursor: pointer; /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    transition: background .2s; /* Animates property changes smoothly. */
+}
+.pw-toggle__track::after { /* Starts styles for the .pw-toggle__track::after selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; left: 3px; top: 3px; /* Controls how the element is positioned on the page. */
+    width: 19px; height: 19px; /* Sets the element width. */
+    border-radius: 50%; /* Rounds the element corners. */
+    background: #fff; /* Sets the element background treatment. */
+    box-shadow: 0 1px 4px rgba(0,0,0,.15); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transition: transform .2s cubic-bezier(.34,1.56,.64,1); /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.pw-toggle input:checked + .pw-toggle__track { background: var(--green); } /* Styles part of the ProductEdit page or component. */
+/* ----- Forms ----- */
+.pw-toggle input:checked + .pw-toggle__track::after { transform: translateX(21px); } /* Styles part of the ProductEdit page or component. */
+.pw-toggle input:focus-visible + .pw-toggle__track { /* Starts styles for the .pw-toggle input:focus-visible + .pw-toggle__track selector. */
+    /* ----- Theme variables ----- */
+    outline: 3px solid var(--green-200); outline-offset: 2px; /* Sets the outline style for this rule. */
+}
+
+/* ----- Product styling ----- */
+.pw-allergen-chips { /* Starts styles for the .pw-allergen-chips selector. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; /* Controls how the element participates in layout. */
+}
+/* ----- Product styling ----- */
+.pw-allergen-chip { /* Starts styles for the .pw-allergen-chip selector. */
+    padding: 4px 10px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    font-size: 12px; font-weight: 600; /* Sets the text size. */
+    color: var(--text-muted); /* Sets the text color. */
+    background: var(--cream); /* Sets the element background treatment. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    transition: border-color .12s, color .12s, background .12s; /* Animates property changes smoothly. */
+    /* ----- Forms ----- */
+    user-select: none; -webkit-user-select: none; /* Sets the user-select style for this rule. */
+}
+/* ----- Theme variables ----- */
+.pw-allergen-chip:hover { border-color: var(--orange); color: var(--orange); } /* Styles part of the ProductEdit page or component. */
+/* ----- Product styling ----- */
+.pw-allergen-chip.is-active { /* Starts styles for the .pw-allergen-chip.is-active selector. */
+    /* ----- Theme variables ----- */
+    background: var(--orange-100); border-color: var(--orange); color: var(--orange); /* Sets the element background treatment. */
+}
+
+/* ----- Forms ----- */
+.pw-form-actions { /* Starts styles for the .pw-form-actions selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    padding: 18px 28px; /* Sets spacing inside the element. */
+    background: #f0ebe0; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+}
+/* ----- Buttons ----- */
+.pw-btn-save { /* Starts styles for the .pw-btn-save selector. */
+    height: 42px; padding: 0 24px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: var(--green); color: #fff; /* Sets the element background treatment. */
+    border: none; border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-family: var(--font-body); font-size: 14px; font-weight: 700; /* Sets the font family. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 7px; /* Controls how the element participates in layout. */
+    /* ----- Forms ----- */
+    transition: background .15s, box-shadow .15s, transform .1s; /* Animates property changes smoothly. */
+    box-shadow: 0 2px 8px rgba(22,163,74,.22); /* Adds depth with a shadow. */
+}
+/* ----- Theme variables ----- */
+.pw-btn-save:hover { background: var(--green-700); box-shadow: 0 4px 14px rgba(22,163,74,.3); transform: translateY(-1px); } /* Styles part of the ProductEdit page or component. */
+/* ----- Forms ----- */
+.pw-btn-save:active { transform: translateY(0); } /* Styles part of the ProductEdit page or component. */
+/* ----- Buttons ----- */
+.pw-btn-back { /* Starts styles for the .pw-btn-back selector. */
+    height: 42px; padding: 0 16px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: transparent; color: var(--text-muted); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; /* Sets the font family. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 7px; /* Controls how the element participates in layout. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    transition: border-color .15s, color .15s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.pw-btn-back:hover { border-color: var(--text-muted); color: var(--text); } /* Styles part of the ProductEdit page or component. */
+
+/* ----- Forms ----- */
+.pw-form-errors { /* Starts styles for the .pw-form-errors selector. */
+    margin: 20px 28px 0; /* Sets spacing outside the element. */
+    padding: 12px 16px; /* Sets spacing inside the element. */
+    background: #fef2f2; /* Sets the element background treatment. */
+    border: 1.5px solid #fecaca; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    font-size: 13px; color: #DC2626; /* Sets the text size. */
+}
+/* ----- Forms ----- */
+.pw-form-errors ul { margin: 5px 0 0 16px; padding: 0; } /* Styles part of the ProductEdit page or component. */

@@ -1,0 +1,485 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model IEnumerable<GFLHApp.Models.Products>
+@{
+    ViewData["Title"] = "Shop the Harvest"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+
+ // ----- Loop Rendering -----
+    var productList = Model.ToList(); // Displays or uses data from the products model.
+ // ----- Product Display -----
+    var categories = productList // Renders part of the products page markup.
+ // ----- Search and Filters -----
+        .Select(p => p.Category) // Renders part of the products page markup.
+        .Where(c => !string.IsNullOrWhiteSpace(c)) // Renders part of the products page markup.
+        .Distinct() // Renders part of the products page markup.
+ // ----- Order Display -----
+        .OrderBy(c => c) // Renders part of the products page markup.
+        .ToList(); // Renders part of the products page markup.
+ // ----- Product Display -----
+    var producers = productList // Renders part of the products page markup.
+ // ----- Producer Display -----
+        .Where(p => p.Producers != null && !string.IsNullOrWhiteSpace(p.Producers.ProducerName)) // Renders part of the products page markup.
+        .Select(p => p.Producers.ProducerName) // Renders part of the products page markup.
+        .Distinct() // Renders part of the products page markup.
+ // ----- Order Display -----
+        .OrderBy(n => n) // Renders part of the products page markup.
+        .ToList(); // Renders part of the products page markup.
+ // ----- Conditional Rendering -----
+    var availableCount = productList.Count(p => p.Available && p.QuantityInStock > 0); // Renders part of the products page markup.
+}
+
+
+
+ @* ── Error Toast ────────────────────────────────────── *@
+ @* ----- Status Messages ----- *@
+@if (TempData["Error"] != null) @* Conditionally renders this block when the check passes. *@
+{
+    <div id="errorToast" class="pw-toast pw-toast--error" role="alert" aria-live="assertive"> @* Starts a layout container for this section. *@
+        <i data-lucide="alert-triangle" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+        @TempData["Error"] @* Reads a one-request message supplied by the controller. *@
+    </div> @* Closes the matching HTML element. *@
+}
+
+ @* ── Mini Hero ──────────────────────────────────────── *@
+ @* ----- Form Fields ----- *@
+<section class="pw-shop-hero" aria-label="Shop header"> @* Renders part of the products page markup. *@
+ @* ----- Styling Section ----- *@
+    <span class="pw-hero__float pw-hero__float--1" aria-hidden="true"><i data-lucide="carrot" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--2" aria-hidden="true"><i data-lucide="leaf" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--3" aria-hidden="true"><i data-lucide="cherry" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--4" aria-hidden="true"><i data-lucide="sprout" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--5" aria-hidden="true"><i data-lucide="wheat" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--6" aria-hidden="true"><i data-lucide="flower-2" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+
+    <div class="pw-shop-hero__content"> @* Starts a layout container for this section. *@
+        <div class="pw-shop-hero__badge"> @* Starts a layout container for this section. *@
+            <span class="pw-badge pw-badge--pop"> @* Renders inline text or badge content. *@
+                <i data-lucide="sparkles" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                @availableCount products available now @* Outputs Razor data or executes Razor logic. *@
+            </span> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+        <h1 class="pw-shop-hero__title"> @* Renders a heading for this page section. *@
+            Shop the <em>Harvest</em> @* Renders part of the products page markup. *@
+        </h1> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+        <p class="pw-shop-hero__sub"> @* Renders paragraph text for the user. *@
+ @* ----- Search and Filters ----- *@
+            Real produce from real farms. Filter by category, producer or availability @* Renders part of the products page markup. *@
+            and find exactly what you're looking for. @* Renders part of the products page markup. *@
+        </p> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pw-hero__wave" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none"> @* Renders part of the products page markup. *@
+            <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#16A34A" /> @* Renders paragraph text for the user. *@
+        </svg> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+ @* ── Ticker ─────────────────────────────────────────── *@
+<div class="pw-ticker" aria-hidden="true"> @* Starts a layout container for this section. *@
+    <div class="pw-ticker__track"> @* Starts a layout container for this section. *@
+        <span>Farm Fresh</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Seasonal Picks</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Small Batch</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+        <span>Local Growers</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+        <span>Zero Plastic</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Natasha's Law Compliant</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+        <span>Next-Day Delivery</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+        <span>Grown with Love</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+        <span>Farm Fresh</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Seasonal Picks</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Small Batch</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+        <span>Local Growers</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+        <span>Zero Plastic</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Natasha's Law Compliant</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+        <span>Next-Day Delivery</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+        <span>Grown with Love</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ── Producer Admin Ribbon ───────────────────────────── *@
+ @* ----- Authorization Display ----- *@
+@if (User.IsInRole("Producer")) @* Conditionally renders this block when the check passes. *@
+{
+ @* ----- Form Fields ----- *@
+    <div class="pw-admin-ribbon" role="region" aria-label="Producer management"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+        <div class="pw-admin-ribbon__inner"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <span class="pw-admin-ribbon__label"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="shield-check" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+ @* ----- Card Layout ----- *@
+                Producer Dashboard — manage your products below @* Renders part of the products page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+            <a class="pw-btn pw-btn--sm pw-btn--primary" asp-action="Create"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="plus" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+ @* ----- Product Display ----- *@
+                Add Product @* Renders part of the products page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+}
+
+ @* ── Filter Bar ──────────────────────────────────────── *@
+ @* ----- Form Fields ----- *@
+<div class="pw-filters-bar" role="search" aria-label="Filter and sort products"> @* Starts a layout container for this section. *@
+ @* ----- Search and Filters ----- *@
+    <div class="pw-filters-inner"> @* Starts a layout container for this section. *@
+
+        <div class="pw-filter-search"> @* Starts a layout container for this section. *@
+            <i data-lucide="search" class="pw-filter-search__icon" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+ @* ----- Form Fields ----- *@
+            <input type="search" @* Renders a user input field. *@
+ @* ----- Search and Filters ----- *@
+                   id="filterSearch" @* Renders part of the products page markup. *@
+                   class="pw-filter-input" @* Renders part of the products page markup. *@
+                   placeholder="Search products…" @* Renders part of the products page markup. *@
+ @* ----- Form Fields ----- *@
+                   aria-label="Search products by name" @* Renders part of the products page markup. *@
+                   autocomplete="off" /> @* Renders part of the products page markup. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Search and Filters ----- *@
+        <div class="pw-filter-sep" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Form Fields ----- *@
+        <select id="filterCategory" class="pw-filter-select" aria-label="Filter by category"> @* Renders a dropdown selection field. *@
+            <option value="">All Categories</option> @* Renders one dropdown option. *@
+ @* ----- Loop Rendering ----- *@
+            @foreach (var cat in categories) @* Loops through the collection and renders each item. *@
+            {
+                <option value="@cat.ToLower()">@cat</option> @* Renders one dropdown option. *@
+            }
+        </select> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+        <select id="filterProducer" class="pw-filter-select" aria-label="Filter by producer"> @* Renders a dropdown selection field. *@
+ @* ----- Producer Display ----- *@
+            <option value="">All Producers</option> @* Renders one dropdown option. *@
+ @* ----- Loop Rendering ----- *@
+            @foreach (var prod in producers) @* Loops through the collection and renders each item. *@
+            {
+                <option value="@prod.ToLower()">@prod</option> @* Renders one dropdown option. *@
+            }
+        </select> @* Closes the matching HTML element. *@
+
+ @* ----- Search and Filters ----- *@
+        <div class="pw-filter-sep" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Form Fields ----- *@
+        <div class="pw-filter-pills" role="group" aria-label="Filter by availability"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+            <button type="button" class="pw-filter-pill is-active" data-avail="all" aria-pressed="true">All</button> @* Renders a button for the user action. *@
+            <button type="button" class="pw-filter-pill" data-avail="instock" aria-pressed="false"> @* Renders a button for the user action. *@
+                <i data-lucide="circle-check" style="width:12px;height:12px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                In Stock @* Renders part of the products page markup. *@
+            </button> @* Closes the matching HTML element. *@
+            <button type="button" class="pw-filter-pill" data-avail="outofstock" aria-pressed="false"> @* Renders a button for the user action. *@
+                <i data-lucide="circle-x" style="width:12px;height:12px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                Out of Stock @* Renders part of the products page markup. *@
+            </button> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Search and Filters ----- *@
+        <div class="pw-filter-sep" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Form Fields ----- *@
+        <select id="filterSort" class="pw-filter-select" aria-label="Sort products"> @* Renders a dropdown selection field. *@
+ @* ----- Search and Filters ----- *@
+            <option value="default">Sort: Default</option> @* Renders one dropdown option. *@
+            <option value="price-asc">Price: Low → High</option> @* Renders one dropdown option. *@
+            <option value="price-desc">Price: High → Low</option> @* Renders one dropdown option. *@
+            <option value="name-asc">Name: A → Z</option> @* Renders one dropdown option. *@
+            <option value="name-desc">Name: Z → A</option> @* Renders one dropdown option. *@
+        </select> @* Closes the matching HTML element. *@
+
+        <div class="pw-filter-count" aria-live="polite" aria-atomic="true"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+            <strong id="productCount">@productList.Count</strong> @* Renders part of the products page markup. *@
+ @* ----- Product Display ----- *@
+            <span>products</span> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+        <button type="button" id="filterClear" class="pw-filter-clear" aria-label="Clear all filters"> @* Renders a button for the user action. *@
+            <i data-lucide="x" style="width:12px;height:12px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+            Clear @* Renders part of the products page markup. *@
+        </button> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ── Product Grid ─────────────────────────────────────── *@
+<section class="pw-shop-grid" aria-label="Products listing"> @* Renders part of the products page markup. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+        <div class="pw-grid pw-grid--3" id="productsGrid"> @* Starts a layout container for this section. *@
+
+ @* ----- Loop Rendering ----- *@
+            @foreach (var item in productList) @* Loops through the collection and renders each item. *@
+            {
+ @* ----- Product Display ----- *@
+                var isAvailable = item.Available; @* Renders part of the products page markup. *@
+ @* ----- Basket Display ----- *@
+                var inStock = item.Available && item.QuantityInStock > 0; @* Renders part of the products page markup. *@
+                var isLowStock = inStock && item.QuantityInStock <= 5; @* Renders part of the products page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                var producerName = item.Producers?.ProducerName ?? "Local Farm"; @* Renders part of the products page markup. *@
+ @* ----- Card Layout ----- *@
+                var cardMod = (!isAvailable || item.QuantityInStock == 0) ? "pw-card--out" : ""; @* Renders part of the products page markup. *@
+
+                <article class="pw-card pw-card--product reveal reveal--pop @cardMod" @* Renders a navigation link or action link. *@
+                         data-product-card @* Renders part of the products page markup. *@
+ @* ----- Product Display ----- *@
+                         data-name="@item.ItemName.ToLower()" @* Renders part of the products page markup. *@
+ @* ----- Search and Filters ----- *@
+                         data-category="@(item.Category?.ToLower() ?? string.Empty)" @* Renders part of the products page markup. *@
+ @* ----- Producer Display ----- *@
+                         data-producer="@producerName.ToLower()" @* Renders part of the products page markup. *@
+ @* ----- Product Display ----- *@
+                         data-price="@item.ItemPrice" @* Renders part of the products page markup. *@
+                         data-instock="@inStock.ToString().ToLower()" @* Renders part of the products page markup. *@
+                         data-available="@isAvailable.ToString().ToLower()"> @* Renders part of the products page markup. *@
+
+ @* ----- Card Layout ----- *@
+                    <!-- Stock status badge (top-left) --> @* Keeps an existing comment in the Razor file. *@
+                    <div class="pw-card__stock" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                        @if (!isAvailable) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Product Display ----- *@
+                            <span class="pw-badge" style="background:#F5F5F4;color:var(--text-muted);">Unavailable</span> @* Renders inline text or badge content. *@
+                        }
+ @* ----- Conditional Rendering ----- *@
+                        else if (item.QuantityInStock == 0) @* Renders the fallback branch for the previous condition. *@
+                        {
+ @* ----- Styling Section ----- *@
+                            <span class="pw-badge" style="background:#FEE2E2;color:#991B1B;">Out of Stock</span> @* Renders inline text or badge content. *@
+                        }
+ @* ----- Conditional Rendering ----- *@
+                        else if (isLowStock) @* Renders the fallback branch for the previous condition. *@
+                        {
+ @* ----- Styling Section ----- *@
+                            <span class="pw-badge pw-badge--orange"> @* Renders inline text or badge content. *@
+                                <i data-lucide="zap" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+ @* ----- Basket Display ----- *@
+                                Only @item.QuantityInStock left @* Renders part of the products page markup. *@
+                            </span> @* Closes the matching HTML element. *@
+                        }
+ @* ----- Conditional Rendering ----- *@
+                        else @* Renders the fallback branch for the previous condition. *@
+                        {
+ @* ----- Styling Section ----- *@
+                            <span class="pw-badge pw-badge--green"> @* Renders inline text or badge content. *@
+                                <i data-lucide="circle-check" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                                In Stock @* Renders part of the products page markup. *@
+                            </span> @* Closes the matching HTML element. *@
+                        }
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Product Display ----- *@
+                    <!-- Product image / placeholder --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+                    <div class="pw-card__img-wrap" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                        @if (!string.IsNullOrEmpty(item.ImagePath)) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Card Layout ----- *@
+                            <img src="@item.ImagePath" alt="" class="pw-card__photo" loading="lazy" /> @* Renders an image for the page content. *@
+                        }
+ @* ----- Conditional Rendering ----- *@
+                        else @* Renders the fallback branch for the previous condition. *@
+                        {
+ @* ----- Card Layout ----- *@
+                            <div class="pw-card__img-placeholder"> @* Starts a layout container for this section. *@
+                                <i data-lucide="sprout" style="width:52px;height:52px;color:var(--green);opacity:.35;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                        }
+                    </div> @* Closes the matching HTML element. *@
+
+                    <!-- Card body --> @* Keeps an existing comment in the Razor file. *@
+                    <div class="pw-card__body"> @* Starts a layout container for this section. *@
+
+                        <p class="pw-card__farm"> @* Renders paragraph text for the user. *@
+                            <i data-lucide="map-pin" style="width:10px;height:10px;vertical-align:middle;margin-right:2px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+ @* ----- Producer Display ----- *@
+                            @producerName @* Outputs Razor data or executes Razor logic. *@
+                        </p> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+                        <span class="pw-card__cat" aria-label="Category: @item.Category"> @* Renders inline text or badge content. *@
+ @* ----- Search and Filters ----- *@
+                            @item.Category @* Outputs Razor data or executes Razor logic. *@
+                        </span> @* Closes the matching HTML element. *@
+
+ @* ----- Page Header ----- *@
+                        <h3 class="pw-card__name">@item.ItemName</h3> @* Renders a heading for this page section. *@
+
+ @* ----- Card Layout ----- *@
+                        <p class="pw-card__desc" @* Renders paragraph text for the user. *@
+                           style="-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;"> @* Renders part of the products page markup. *@
+                            @item.Description @* Outputs Razor data or executes Razor logic. *@
+                        </p> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+                        @if (!string.IsNullOrWhiteSpace(item.Allergens)) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Form Fields ----- *@
+                            <div class="pw-card__allergens" aria-label="Allergens present"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                                @foreach (var allergen in item.Allergens.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)) @* Loops through the collection and renders each item. *@
+                                {
+ @* ----- Styling Section ----- *@
+                                    <span class="pw-allergen-tag">@allergen.Trim()</span> @* Renders inline text or badge content. *@
+                                }
+                            </div> @* Closes the matching HTML element. *@
+                        }
+
+ @* ----- Card Layout ----- *@
+                        <div class="pw-card__footer"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-card__price" aria-label="Price: £@item.ItemPrice.ToString("F2")"> @* Renders inline text or badge content. *@
+ @* ----- Product Display ----- *@
+                                £@item.ItemPrice.ToString("F2") @* Renders part of the products page markup. *@
+                            </span> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (!isAvailable) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Form Actions ----- *@
+                                <button type="button" class="pw-btn pw-btn--sm" @* Renders a button for the user action. *@
+                                        style="background:var(--cream-2);color:var(--text-muted);cursor:not-allowed;" @* Renders part of the products page markup. *@
+                                        disabled aria-disabled="true"> @* Renders part of the products page markup. *@
+ @* ----- Product Display ----- *@
+                                    Unavailable @* Renders part of the products page markup. *@
+                                </button> @* Closes the matching HTML element. *@
+                            }
+ @* ----- Conditional Rendering ----- *@
+                            else if (inStock) @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Styling Section ----- *@
+                                <div class="pw-add-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                    <div class="pw-qty-control" role="group" aria-label="Quantity"> @* Starts a layout container for this section. *@
+                                        <button type="button" class="pw-qty-btn pw-qty-dec" aria-label="Decrease quantity">−</button> @* Renders a button for the user action. *@
+ @* ----- Styling Section ----- *@
+                                        <span class="pw-qty-display" aria-live="polite" aria-atomic="true">1</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                                        <button type="button" class="pw-qty-btn pw-qty-inc" aria-label="Increase quantity">+</button> @* Renders a button for the user action. *@
+                                    </div> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                                    <form class="pw-add-form" asp-controller="BasketProducts" asp-action="AddAjax" method="post" style="margin:0;"> @* Starts the form that submits this page's user input. *@
+ @* ----- Form Fields ----- *@
+                                        <input type="hidden" name="ProductsId" value="@item.ProductsId" /> @* Renders a user input field. *@
+                                        <input type="hidden" name="Quantity" class="pw-qty-value" value="1" /> @* Renders a user input field. *@
+ @* ----- Form Actions ----- *@
+                                        <button type="submit" class="pw-btn pw-btn--sm pw-btn--primary pw-add-btn" @* Renders a button for the user action. *@
+ @* ----- Form Fields ----- *@
+                                                aria-label="Add @item.ItemName to basket"> @* Renders part of the products page markup. *@
+                                            <i data-lucide="plus" style="width:13px;height:13px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                                            Add @* Renders part of the products page markup. *@
+                                        </button> @* Closes the matching HTML element. *@
+                                    </form> @* Closes the form after its fields and actions. *@
+                                </div> @* Closes the matching HTML element. *@
+                            }
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Form Actions ----- *@
+                                <button type="button" class="pw-btn pw-btn--sm" @* Renders a button for the user action. *@
+                                        style="background:var(--cream-2);color:var(--text-muted);cursor:not-allowed;" @* Renders part of the products page markup. *@
+                                        disabled aria-disabled="true"> @* Renders part of the products page markup. *@
+                                    Out of Stock @* Renders part of the products page markup. *@
+                                </button> @* Closes the matching HTML element. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Authorization Display ----- *@
+                        @if (User.IsInRole("Producer")) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Card Layout ----- *@
+                            <div class="pw-card__admin"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                                <a asp-action="Details" asp-route-id="@item.ProductsId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Fields ----- *@
+                                   aria-label="View details for @item.ItemName">Details</a> @* Renders part of the products page markup. *@
+ @* ----- Navigation ----- *@
+                                <a asp-action="Edit" asp-route-id="@item.ProductsId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Fields ----- *@
+                                   aria-label="Edit @item.ItemName">Edit</a> @* Renders part of the products page markup. *@
+ @* ----- Navigation ----- *@
+                                <a asp-action="Delete" asp-route-id="@item.ProductsId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Fields ----- *@
+                                   class="danger" aria-label="Delete @item.ItemName">Delete</a> @* Renders part of the products page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                        }
+ @* ----- Conditional Rendering ----- *@
+                        else @* Renders the fallback branch for the previous condition. *@
+                        {
+                            <div style="margin-top:8px;"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                                <a class="pw-link" asp-action="Details" asp-route-id="@item.ProductsId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Fields ----- *@
+                                   style="font-size:13px;" aria-label="View details for @item.ItemName"> @* Renders part of the products page markup. *@
+                                    View details → @* Renders part of the products page markup. *@
+                                </a> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+                        }
+
+                    </div> @* Closes the matching HTML element. *@
+                </article> @* Closes the matching HTML element. *@
+            }
+
+ @* ----- Search and Filters ----- *@
+            <!-- Empty state (shown when filters return 0 results) --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+            <div id="emptyState" class="pw-empty-state" role="status" aria-live="polite" style="grid-column:1/-1;"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-empty-icon"> @* Starts a layout container for this section. *@
+ @* ----- Search and Filters ----- *@
+                    <i data-lucide="search-x" style="width:64px;height:64px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h3 class="pw-empty-title">No products found</h3> @* Renders a heading for this page section. *@
+ @* ----- Search and Filters ----- *@
+                <p class="pw-empty-sub">Try adjusting your filters or clearing your search.</p> @* Renders paragraph text for the user. *@
+ @* ----- Form Actions ----- *@
+                <button type="button" class="pw-btn pw-btn--outline pw-btn--md" onclick="clearAllFilters()"> @* Renders a button for the user action. *@
+                    <i data-lucide="refresh-ccw" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+ @* ----- Search and Filters ----- *@
+                    Reset Filters @* Renders part of the products page markup. *@
+                </button> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Product Display ----- *@
+    <script src="~/js/pages/products/ProductIndex.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/products/ProductIndex.css" asp-append-version="true" /> @* Renders one list item. *@
+}

@@ -1,0 +1,397 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Products
+@{
+    ViewData["Title"] = "Delete — " + Model.ItemName; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+
+ // ----- Search and Filters -----
+    string CategoryIcon(string cat) => (cat ?? "").ToLower() switch { // Renders part of the products page markup.
+        var c when c.Contains("veg")   => "carrot", // Renders part of the products page markup.
+        var c when c.Contains("fruit") => "cherry", // Renders part of the products page markup.
+        var c when c.Contains("dairy") => "milk", // Renders part of the products page markup.
+        var c when c.Contains("meat")  => "beef", // Renders part of the products page markup.
+        var c when c.Contains("bread") || c.Contains("bak") => "wheat", // Renders part of the products page markup.
+        var c when c.Contains("drink") => "cup-soda", // Renders part of the products page markup.
+        var c when c.Contains("egg")   => "egg", // Renders part of the products page markup.
+        var c when c.Contains("herb")  => "flower-2", // Renders part of the products page markup.
+        var c when c.Contains("honey") => "droplets", // Renders part of the products page markup.
+        _                              => "package" // Renders part of the products page markup.
+    };
+
+ // ----- Loop Rendering -----
+    var hasImage   = !string.IsNullOrWhiteSpace(Model.ImagePath); // Displays or uses data from the products model.
+    var inStock    = Model.Available && Model.QuantityInStock > 0; // Displays or uses data from the products model.
+    var allergens  = string.IsNullOrWhiteSpace(Model.Allergens) // Displays or uses data from the products model.
+ // ----- Conditional Rendering -----
+                        ? null // Renders part of the products page markup.
+ // ----- Loop Rendering -----
+                        : Model.Allergens.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries); // Displays or uses data from the products model.
+}
+
+
+
+ @* ----- Styling Section ----- *@
+<div class="pw-del-page"> @* Starts a layout container for this section. *@
+
+    <!-- ── Header ──────────────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+    <div class="pw-del-header"> @* Starts a layout container for this section. *@
+        <div class="pw-del-header__inner"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+            <nav aria-label="Breadcrumb"> @* Starts the navigation area. *@
+                <ol class="pw-del-breadcrumb"> @* Starts a list of related items. *@
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li> @* Builds a link or form target using MVC routing. *@
+                    <li><a asp-controller="Products" asp-action="Index">Shop</a></li> @* Builds a link or form target using MVC routing. *@
+                    <li><a asp-controller="Products" asp-action="Details" asp-route-id="@Model.ProductsId">@Model.ItemName</a></li> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                    <li><span aria-current="page">Delete</span></li> @* Renders one list item. *@
+                </ol> @* Closes the matching HTML element. *@
+            </nav> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-del-header__title"> @* Starts a layout container for this section. *@
+                <div class="pw-del-header__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <i data-lucide="trash-2" style="width:20px;height:20px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h1>Delete product</h1> @* Renders a heading for this page section. *@
+                    <p>This action is permanent and cannot be undone</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pw-del-body"> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+        <!-- ── Product summary card ────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <section aria-label="Product details"> @* Renders part of the products page markup. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-del-summary"> @* Starts a layout container for this section. *@
+                <div class="pw-del-summary__hero"> @* Starts a layout container for this section. *@
+                    <div class="pw-del-summary__img" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                        @if (hasImage) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Loop Rendering ----- *@
+                            <img src="@Model.ImagePath" alt="@Model.ItemName" /> @* Renders an image for the page content. *@
+                        }
+ @* ----- Conditional Rendering ----- *@
+                        else @* Renders the fallback branch for the previous condition. *@
+                        {
+ @* ----- Search and Filters ----- *@
+                            <i data-lucide="@CategoryIcon(Model.Category)" style="width:28px;height:28px;stroke-width:1.75;color:rgba(255,255,255,.9)"></i> @* Displays or uses data from the products model. *@
+                        }
+                    </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                    <div class="pw-del-summary__info"> @* Starts a layout container for this section. *@
+                        <p class="pw-del-summary__name">@Model.ItemName</p> @* Renders paragraph text for the user. *@
+                        <p class="pw-del-summary__meta"> @* Renders paragraph text for the user. *@
+                            <i data-lucide="tag" style="width:13px;height:13px;"></i> @* Renders part of the products page markup. *@
+ @* ----- Page Model Setup ----- *@
+                            @Model.Category &nbsp;·&nbsp; £@Model.ItemPrice.ToString("0.00") @* Displays or uses data from the products model. *@
+                        </p> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                        <div class="pw-del-summary__pills"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (inStock) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-summary__pill"> @* Renders inline text or badge content. *@
+                                    <i data-lucide="check-circle" style="width:11px;height:11px;"></i> @* Renders part of the products page markup. *@
+ @* ----- Loop Rendering ----- *@
+                                    In stock (@Model.QuantityInStock left) @* Displays or uses data from the products model. *@
+                                </span> @* Closes the matching HTML element. *@
+                            }
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-summary__pill pw-del-summary__pill--red"> @* Renders inline text or badge content. *@
+                                    <i data-lucide="x-circle" style="width:11px;height:11px;"></i> @* Renders part of the products page markup. *@
+ @* ----- Loop Rendering ----- *@
+                                    @(Model.QuantityInStock == 0 ? "Out of stock" : "Unlisted") @* Displays or uses data from the products model. *@
+                                </span> @* Closes the matching HTML element. *@
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.Allergens)) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-summary__pill"> @* Renders inline text or badge content. *@
+ @* ----- Status Messages ----- *@
+                                    <i data-lucide="alert-triangle" style="width:11px;height:11px;"></i> @* Renders part of the products page markup. *@
+ @* ----- Product Display ----- *@
+                                    Contains allergens @* Renders part of the products page markup. *@
+                                </span> @* Closes the matching HTML element. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                <div class="pw-del-summary__body"> @* Starts a layout container for this section. *@
+
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--green"> @* Starts a layout container for this section. *@
+                            <i data-lucide="package" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">Product name</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-del-row__value">@Model.ItemName</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--green"> @* Starts a layout container for this section. *@
+                            <i data-lucide="tag" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">Category</span> @* Renders inline text or badge content. *@
+ @* ----- Search and Filters ----- *@
+                            <span class="pw-del-row__value">@Model.Category</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--yellow"> @* Starts a layout container for this section. *@
+                            <i data-lucide="pound-sterling" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">Price</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-del-row__value">£@Model.ItemPrice.ToString("0.00") per unit</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon @(inStock ? "pw-del-row__icon--green" : "pw-del-row__icon--red")"> @* Starts a layout container for this section. *@
+                            <i data-lucide="warehouse" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">Stock &amp; availability</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-del-row__value"> @* Renders inline text or badge content. *@
+ @* ----- Page Model Setup ----- *@
+                                @Model.QuantityInStock unit@(Model.QuantityInStock != 1 ? "s" : "") in stock @* Displays or uses data from the products model. *@
+                                &nbsp;·&nbsp; @* Renders part of the products page markup. *@
+ @* ----- Loop Rendering ----- *@
+                                @(Model.Available ? "Listed for sale" : "Not listed") @* Displays or uses data from the products model. *@
+                            </span> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--muted"> @* Starts a layout container for this section. *@
+                            <i data-lucide="align-left" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">Description</span> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                            @if (!string.IsNullOrWhiteSpace(Model.Description)) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-row__value">@Model.Description</span> @* Renders inline text or badge content. *@
+                            }
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-row__value pw-del-row__value--muted">No description provided.</span> @* Renders inline text or badge content. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+                    @if (allergens != null && allergens.Length > 0) @* Conditionally renders this block when the check passes. *@
+                    {
+ @* ----- Card Layout ----- *@
+                        <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                            <div class="pw-del-row__icon pw-del-row__icon--orange"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                                <i data-lucide="alert-triangle" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <span class="pw-del-row__label">Allergens</span> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                                <div class="pw-del-allergen-list"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                                    @foreach (var a in allergens) @* Loops through the collection and renders each item. *@
+                                    {
+ @* ----- Styling Section ----- *@
+                                        <span class="pw-del-allergen-chip">@a</span> @* Renders inline text or badge content. *@
+                                    }
+                                </div> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    }
+
+ @* ----- Loop Rendering ----- *@
+                    @if (!string.IsNullOrWhiteSpace(Model.ImagePath)) @* Conditionally renders this block when the check passes. *@
+                    {
+ @* ----- Card Layout ----- *@
+                        <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                            <div class="pw-del-row__icon pw-del-row__icon--muted"> @* Starts a layout container for this section. *@
+                                <i data-lucide="image" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                            <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <span class="pw-del-row__label">Image path</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-row__value" style="font-family:'JetBrains Mono','Courier New',monospace;font-size:12px;color:var(--text-muted);">@Model.ImagePath</span> @* Renders inline text or badge content. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    }
+
+ @* ----- Loop Rendering ----- *@
+                    @if (Model.Producers != null) @* Conditionally renders this block when the check passes. *@
+                    {
+ @* ----- Card Layout ----- *@
+                        <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                            <div class="pw-del-row__icon pw-del-row__icon--green"> @* Starts a layout container for this section. *@
+                                <i data-lucide="user" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                            <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <span class="pw-del-row__label">Producer</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-row__value"> @* Renders inline text or badge content. *@
+ @* ----- Navigation ----- *@
+                                    <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducersId">@Model.Producers.ProducerName</a> @* Builds a link or form target using MVC routing. *@
+                                </span> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    }
+
+ @* ----- Card Layout ----- *@
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--purple"> @* Starts a layout container for this section. *@
+                            <i data-lucide="hash" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">System ID</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-del-row__value" style="font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;">#@Model.ProductsId</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </section> @* Closes the matching HTML element. *@
+
+        <!-- ── Impact warning ─────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Status Messages ----- *@
+        <div class="pw-del-impact" role="alert"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-del-impact__header"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                <i data-lucide="triangle-alert" style="width:18px;height:18px;color:#9A3412;stroke-width:2;flex-shrink:0"></i> @* Renders part of the products page markup. *@
+ @* ----- Page Header ----- *@
+                <h2>What will be permanently deleted</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-del-impact__body"> @* Starts a layout container for this section. *@
+                <div class="pw-del-impact__item"> @* Starts a layout container for this section. *@
+                    <span class="pw-del-impact__item-dot"></span> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                    The <strong>@Model.ItemName</strong> product listing and all its details @* Displays or uses data from the products model. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-del-impact__item"> @* Starts a layout container for this section. *@
+                    <span class="pw-del-impact__item-dot"></span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                    All basket entries referencing this product @* Renders part of the products page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-del-impact__item"> @* Starts a layout container for this section. *@
+                    <span class="pw-del-impact__item-dot"></span> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                    All order line items and fulfilment records for this product @* Renders part of the products page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Loop Rendering ----- *@
+                @if (!string.IsNullOrWhiteSpace(Model.ImagePath)) @* Conditionally renders this block when the check passes. *@
+                {
+ @* ----- Styling Section ----- *@
+                    <div class="pw-del-impact__item"> @* Starts a layout container for this section. *@
+                        <span class="pw-del-impact__item-dot"></span> @* Renders inline text or badge content. *@
+                        The associated image record (file on disk is not removed automatically) @* Renders part of the products page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- ── Danger confirm form ─────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+        <div class="pw-del-confirm"> @* Starts a layout container for this section. *@
+            <div class="pw-del-confirm__header"> @* Starts a layout container for this section. *@
+                <div class="pw-del-confirm__icon-box" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                    <i data-lucide="shield-alert" style="width:20px;height:20px;stroke-width:2"></i> @* Renders part of the products page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2>Confirm deletion</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p>Check the box below to enable the delete button</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-del-confirm__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label class="pw-del-checkbox-row" for="confirmDelete"> @* Renders text identifying a form field. *@
+                    <input type="checkbox" id="confirmDelete" aria-describedby="confirmDeleteDesc" /> @* Renders a user input field. *@
+ @* ----- Form Actions ----- *@
+                    <span class="pw-del-checkbox-row__text" id="confirmDeleteDesc"> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                        I understand that deleting <strong>@Model.ItemName</strong> is permanent. @* Displays or uses data from the products model. *@
+ @* ----- Basket Display ----- *@
+                        This will remove the product listing, all basket entries, and all associated order records — and cannot be recovered. @* Renders part of the products page markup. *@
+                    </span> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+                </label> @* Closes the matching HTML element. *@
+
+ @* ----- Navigation ----- *@
+                <form asp-action="Delete" method="post"> @* Starts the form that submits this page's user input. *@
+ @* ----- Form Fields ----- *@
+                    <input type="hidden" asp-for="ProductsId" /> @* Binds this input to the matching model property. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-del-actions"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                        <a asp-action="Details" asp-route-id="@Model.ProductsId" class="pw-btn-cancel"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                            <i data-lucide="arrow-left" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+ @* ----- Form Actions ----- *@
+                            Cancel @* Renders part of the products page markup. *@
+                        </a> @* Closes the matching HTML element. *@
+                        <button type="submit" class="pw-btn-delete" id="deleteBtn" disabled aria-disabled="true"> @* Renders a button for the user action. *@
+                            <i data-lucide="trash-2" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                            Delete permanently @* Renders part of the products page markup. *@
+                        </button> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </form> @* Closes the form after its fields and actions. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Form Actions ----- *@
+    <script src="~/js/pages/products/ProductDelete.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/products/ProductDelete.css" asp-append-version="true" /> @* Renders one list item. *@
+}

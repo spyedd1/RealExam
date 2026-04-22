@@ -47,15 +47,70 @@
                     <ul class="pw-nav__links" role="list">
                         <li><a asp-area="" asp-controller="Products" asp-action="Index">Shop</a></li>
                         <li><a asp-area="" asp-controller="Producers" asp-action="Index">Growers</a></li>
-                        <li><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></li>
+                        @if (User.IsInRole("Standard") || User.IsInRole("Admin") || User.IsInRole("Developer"))
+                        {
+                            <li><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></li>
+                        }
+                        @if (User.IsInRole("Admin") || User.IsInRole("Developer"))
+                        {
+                            <li><a asp-area="" asp-controller="AdminDashboard" asp-action="Index">Admin Dashboard</a></li>
+                        }
+                        @if (User.IsInRole("Producer") || User.IsInRole("Developer"))
+                        {
+                            <li><a asp-area="" asp-controller="ProducerDashboard" asp-action="Index">Producer Dashboard</a></li>
+                        }
                     </ul>
                     <div class="pw-nav__actions">
+                        <div class="pw-accessibility" id="accessibilityMenu">
+                            <button class="pw-accessibility__toggle" type="button"
+                                    id="accessibilityToggle"
+                                    aria-label="Accessibility options"
+                                    aria-expanded="false"
+                                    aria-controls="accessibilityDropdown">
+                                <span class="pw-accessibility__hamburger" aria-hidden="true">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                                <span>Accessibility</span>
+                            </button>
+                            <div class="pw-accessibility__dropdown" id="accessibilityDropdown" role="menu" aria-labelledby="accessibilityToggle" hidden>
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="dark-mode" role="menuitem">
+                                    <i data-lucide="moon" class="pw-accessibility__icon" aria-hidden="true"></i>
+                                    <span data-accessibility-label="dark-mode">Dark mode</span>
+                                </button>
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="increase-font" role="menuitem">
+                                    <i data-lucide="zoom-in" class="pw-accessibility__icon" aria-hidden="true"></i>
+                                    <span>Increase text</span>
+                                </button>
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="decrease-font" role="menuitem">
+                                    <i data-lucide="zoom-out" class="pw-accessibility__icon" aria-hidden="true"></i>
+                                    <span>Decrease text</span>
+                                </button>
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="reset-font" role="menuitem">
+                                    <i data-lucide="rotate-ccw" class="pw-accessibility__icon" aria-hidden="true"></i>
+                                    <span>Reset text size</span>
+                                </button>
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="high-contrast" role="menuitem">
+                                    <i data-lucide="contrast" class="pw-accessibility__icon" aria-hidden="true"></i>
+                                    <span data-accessibility-label="high-contrast">High contrast</span>
+                                </button>
+                                <div class="pw-accessibility__divider" role="separator"></div>
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="speak" role="menuitem">
+                                    <i data-lucide="volume-2" class="pw-accessibility__icon" aria-hidden="true"></i>
+                                    <span data-accessibility-label="speak">Read page aloud</span>
+                                </button>
+                            </div>
+                        </div>
                         <partial name="_LoginPartial" />
-                        <a class="pw-nav__basket" asp-area="" asp-controller="Baskets" asp-action="Index" aria-label="View basket">
-                            <i data-lucide="shopping-basket" class="pw-icon-nav-basket" aria-hidden="true"></i>
-                            <span>Basket</span>
-                            <span class="pw-basket-badge" id="navBasketCount" aria-label="items in basket" hidden>0</span>
-                        </a>
+                        @if (User.IsInRole("Standard") || User.IsInRole("Developer"))
+                        {
+                            <a class="pw-nav__basket" asp-area="" asp-controller="Baskets" asp-action="Index" aria-label="View basket">
+                                <i data-lucide="shopping-basket" class="pw-icon-nav-basket" aria-hidden="true"></i>
+                                <span>Basket</span>
+                                <span class="pw-basket-badge" id="navBasketCount" aria-label="items in basket" hidden>0</span>
+                            </a>
+                        }
                     </div>
                 </div>
 
@@ -130,6 +185,7 @@
     </script>
     <script src="https://unpkg.com/scrollreveal@4/dist/scrollreveal.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/accessibility.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false) 
     <script>

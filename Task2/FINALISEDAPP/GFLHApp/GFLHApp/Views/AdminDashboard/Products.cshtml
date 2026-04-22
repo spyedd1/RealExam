@@ -1,0 +1,208 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model IEnumerable<GFLHApp.Models.Products>
+ @* ----- Imports and Services ----- *@
+ @* Imports a namespace for this Razor file. *@
+@using System.Linq
+@{
+ // ----- Page Model Setup -----
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Chooses the layout used to render this page.
+    ViewData["Title"] = "Products"; // Sets the browser and page title for this view.
+    ViewData["AdminSection"] = "products"; // Reads view data supplied by the controller.
+    string search   = ViewBag.Search       ?? ""; // Reads view data supplied by the controller.
+    string category = ViewBag.Category     ?? ""; // Reads view data supplied by the controller.
+    string avail    = ViewBag.Availability ?? ""; // Reads view data supplied by the controller.
+    string sort     = ViewBag.Sort         ?? "name"; // Reads view data supplied by the controller.
+    var    cats     = (ViewBag.Categories  as IEnumerable<string>) ?? Enumerable.Empty<string>(); // Reads view data supplied by the controller.
+}
+
+
+
+ @* ----- Search and Filters ----- *@
+<div class="adm-filters"> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+    <form method="get" action="/AdminDashboard/Products" style="display:contents;"> @* Starts the form that submits this page's user input. *@
+ @* ----- Search and Filters ----- *@
+        <div class="adm-filter-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <label>Search</label> @* Renders text identifying a form field. *@
+            <input name="search" class="adm-filter-input" value="@search" placeholder="Name, category, producer…" style="width:220px;" /> @* Renders a user input field. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Search and Filters ----- *@
+        <div class="adm-filter-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <label>Category</label> @* Renders text identifying a form field. *@
+            <select name="category" class="adm-filter-select"> @* Renders a dropdown selection field. *@
+                <option value="">All categories</option> @* Renders one dropdown option. *@
+ @* ----- Search and Filters ----- *@
+                @foreach (var c in cats) { <option value="@c" selected="@(category==c)">@c</option> } @* Loops through the collection and renders each item. *@
+            </select> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+        <div class="adm-filter-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <label>Availability</label> @* Renders text identifying a form field. *@
+            <select name="availability" class="adm-filter-select"> @* Renders a dropdown selection field. *@
+                <option value="">All</option> @* Renders one dropdown option. *@
+ @* ----- Product Display ----- *@
+                <option value="available"   selected="@(avail=="available")">Available</option> @* Renders one dropdown option. *@
+                <option value="unavailable" selected="@(avail=="unavailable")">Hidden</option> @* Renders one dropdown option. *@
+                <option value="lowstock"    selected="@(avail=="lowstock")">Low stock</option> @* Renders one dropdown option. *@
+            </select> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Search and Filters ----- *@
+        <div class="adm-filter-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <label>Sort</label> @* Renders text identifying a form field. *@
+            <select name="sort" class="adm-filter-select"> @* Renders a dropdown selection field. *@
+ @* ----- Search and Filters ----- *@
+                <option value="name"       selected="@(sort=="name")">Name A–Z</option> @* Renders one dropdown option. *@
+                <option value="price_asc"  selected="@(sort=="price_asc")">Price ↑</option> @* Renders one dropdown option. *@
+                <option value="price_desc" selected="@(sort=="price_desc")">Price ↓</option> @* Renders one dropdown option. *@
+                <option value="stock_asc"  selected="@(sort=="stock_asc")">Stock ↑</option> @* Renders one dropdown option. *@
+                <option value="stock_desc" selected="@(sort=="stock_desc")">Stock ↓</option> @* Renders one dropdown option. *@
+            </select> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+        <button type="submit" class="adm-btn-filter"><i data-lucide="search" style="width:13px;height:13px;" aria-hidden="true"></i>Filter</button> @* Renders a button for the user action. *@
+ @* ----- Search and Filters ----- *@
+        @if (!string.IsNullOrEmpty(search) || !string.IsNullOrEmpty(category) || !string.IsNullOrEmpty(avail)) @* Conditionally renders this block when the check passes. *@
+        {
+ @* ----- Form Actions ----- *@
+            <a href="/AdminDashboard/Products" class="adm-btn-clear"><i data-lucide="x" style="width:13px;height:13px;" aria-hidden="true"></i>Clear</a> @* Renders a navigation link or action link. *@
+        }
+    </form> @* Closes the form after its fields and actions. *@
+    <a href="/Products/Create" class="adm-btn-add"><i data-lucide="plus" style="width:13px;height:13px;" aria-hidden="true"></i>Add product</a> @* Renders a navigation link or action link. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+<div class="adm-card"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+    <div class="adm-results-info">@Model.Count() product@(Model.Count() == 1 ? "" : "s") found</div> @* Starts a layout container for this section. *@
+
+    @if (Model.Any()) @* Conditionally renders this block when the check passes. *@
+    {
+        <div style="overflow-x:auto;"> @* Starts a layout container for this section. *@
+ @* ----- Table Layout ----- *@
+            <table class="adm-table"> @* Starts a table for structured row data. *@
+                <thead> @* Starts the table header section. *@
+                    <tr> @* Starts one table row. *@
+                        <th style="width:40px;"></th> @* Renders a table header cell. *@
+                        <th>Product</th> @* Renders a table header cell. *@
+                        <th>Producer</th> @* Renders a table header cell. *@
+ @* ----- Search and Filters ----- *@
+                        <th>Category</th> @* Renders a table header cell. *@
+ @* ----- Table Layout ----- *@
+                        <th>Price</th> @* Renders a table header cell. *@
+                        <th>Stock</th> @* Renders a table header cell. *@
+                        <th>Listed</th> @* Renders a table header cell. *@
+                        <th>Actions</th> @* Renders a table header cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                </thead> @* Closes the matching HTML element. *@
+                <tbody> @* Starts the table body section. *@
+ @* ----- Loop Rendering ----- *@
+                @foreach (var p in Model) @* Loops through the collection and renders each item. *@
+                {
+ @* ----- Basket Display ----- *@
+                    bool low = p.QuantityInStock <= 5 && p.Available; @* Renders part of the admin dashboard page markup. *@
+ @* ----- Table Layout ----- *@
+                    <tr> @* Starts one table row. *@
+                        <td style="padding:8px 8px 8px 14px;"> @* Renders a table data cell. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (!string.IsNullOrEmpty(p.ImagePath)) @* Conditionally renders this block when the check passes. *@
+ @* ----- Product Display ----- *@
+                            { <img src="@p.ImagePath" alt="@p.ItemName" class="adm-prod-thumb" /> } @* Renders part of the admin dashboard page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+ @* ----- Styling Section ----- *@
+                            { <div class="adm-prod-placeholder"><i data-lucide="sprout" style="width:14px;height:14px;" aria-hidden="true"></i></div> } @* Renders part of the admin dashboard page markup. *@
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td> @* Renders a table data cell. *@
+ @* ----- Product Display ----- *@
+                            <div style="font-weight:700;">@p.ItemName</div> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (!string.IsNullOrEmpty(p.Description)) @* Conditionally renders this block when the check passes. *@
+                            { <div style="font-size:11px;color:var(--text-muted);max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">@p.Description</div> } @* Renders part of the admin dashboard page markup. *@
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td style="color:var(--text-muted);">@(p.Producers?.ProducerName ?? "—")</td> @* Renders a table data cell. *@
+                        <td> @* Renders a table data cell. *@
+ @* ----- Search and Filters ----- *@
+                            <span class="adm-badge adm-badge--ok" style="background:var(--cream);color:var(--text-muted);border:1px solid var(--border);">@p.Category</span> @* Renders inline text or badge content. *@
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td style="font-weight:700;">£@p.ItemPrice.ToString("0.00")</td> @* Renders a table data cell. *@
+                        <td> @* Renders a table data cell. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (low) @* Conditionally renders this block when the check passes. *@
+ @* ----- Basket Display ----- *@
+                            { <span class="adm-badge adm-badge--low">@p.QuantityInStock low</span> } @* Renders part of the admin dashboard page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+ @* ----- Basket Display ----- *@
+                            { <span style="font-weight:600;">@p.QuantityInStock</span> } @* Renders part of the admin dashboard page markup. *@
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td> @* Renders a table data cell. *@
+ @* ----- Form Fields ----- *@
+                            <label class="adm-avail-toggle" title="Toggle availability"> @* Renders text identifying a form field. *@
+                                <input type="checkbox" @(p.Available ? "checked" : "") @* Renders a user input field. *@
+ @* ----- Styling Section ----- *@
+                                       class="adm-toggle-input" @* Renders part of the admin dashboard page markup. *@
+ @* ----- Product Display ----- *@
+                                       data-product-id="@p.ProductsId" @* Renders part of the admin dashboard page markup. *@
+ @* ----- Form Fields ----- *@
+                                       aria-label="Toggle @p.ItemName" /> @* Renders part of the admin dashboard page markup. *@
+ @* ----- Styling Section ----- *@
+                                <span class="adm-avail-toggle__track" aria-hidden="true"></span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                            </label> @* Closes the matching HTML element. *@
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td> @* Renders a table data cell. *@
+                            <div style="display:flex;gap:5px;"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+                                <a href="/Products/Details/@p.ProductsId" class="adm-tbl-btn">View</a> @* Renders a navigation link or action link. *@
+                                <a href="/Products/Edit/@p.ProductsId" class="adm-tbl-btn"><i data-lucide="pencil" style="width:11px;height:11px;" aria-hidden="true"></i></a> @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                                <form asp-action="DeleteProduct" method="post" style="display:inline;" @* Starts the form that submits this page's user input. *@
+ @* ----- Form Actions ----- *@
+                                      onsubmit="return confirm('Delete @p.ItemName? This cannot be undone.');"> @* Renders part of the admin dashboard page markup. *@
+                                    @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+ @* ----- Form Fields ----- *@
+                                    <input type="hidden" name="id" value="@p.ProductsId" /> @* Renders a user input field. *@
+ @* ----- Form Actions ----- *@
+                                    <button type="submit" class="adm-tbl-btn adm-tbl-btn--danger"> @* Renders a button for the user action. *@
+                                        <i data-lucide="trash-2" style="width:11px;height:11px;" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+                                    </button> @* Closes the matching HTML element. *@
+                                </form> @* Closes the form after its fields and actions. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </td> @* Closes the matching HTML element. *@
+                    </tr> @* Closes the matching HTML element. *@
+                }
+                </tbody> @* Closes the matching HTML element. *@
+            </table> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    }
+ @* ----- Conditional Rendering ----- *@
+    else @* Renders the fallback branch for the previous condition. *@
+    {
+        <div style="padding:48px;text-align:center;color:var(--text-muted);"> @* Starts a layout container for this section. *@
+            <i data-lucide="package-open" style="width:40px;height:40px;display:block;margin:0 auto 10px;opacity:.3;" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+ @* ----- Search and Filters ----- *@
+            <p style="font-size:14px;margin:0;">No products match your filters.</p> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+    }
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Card Layout ----- *@
+    <script src="~/js/pages/admindashboard/AdminDashboardProducts.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+    @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/admindashboard/AdminDashboardProducts.css" asp-append-version="true" /> @* Renders one list item. *@
+}

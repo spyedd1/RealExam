@@ -1,0 +1,72 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model DeletePersonalDataModel
+@{
+    ViewData["Title"] = "Delete Account"; // Sets the browser and page title for this view.
+    ViewData["ActivePage"] = ManageNavPages.PersonalData; // Reads view data supplied by the controller.
+}
+
+ @* ----- Card Layout ----- *@
+<span class="pw-manage-content__eyebrow">Privacy · Danger Zone</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+<h2 class="pw-manage-content__title">Delete Your Account</h2> @* Renders a heading for this page section. *@
+ @* ----- Styling Section ----- *@
+<p class="pw-manage-content__sub">This will permanently remove all your personal data. This action cannot be undone.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Status Messages ----- *@
+<div class="pw-manage-alert pw-manage-alert--danger" role="alert"> @* Starts a layout container for this section. *@
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+    <div><strong>Deleting your account is permanent.</strong> Your profile, orders, and all associated data will be gone forever. Consider downloading your data first.</div> @* Starts a layout container for this section. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+<div class="pw-danger-zone" style="max-width:480px;"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+    <h3 class="pw-danger-zone__title"> @* Renders a heading for this page section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg> @* Renders part of the identity page markup. *@
+        Confirm deletion @* Renders part of the identity page markup. *@
+    </h3> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+    <p class="pw-danger-zone__desc">Once deleted, your Greenfield account and all data are gone permanently with no recovery option.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Form Setup ----- *@
+    <form id="delete-user" method="post" class="pw-manage-form"> @* Starts the form that submits this page's user input. *@
+ @* ----- Status Messages ----- *@
+        <div asp-validation-summary="ModelOnly" class="pw-manage-alert pw-manage-alert--danger" role="alert"></div> @* Shows page-level validation messages. *@
+ @* ----- Loop Rendering ----- *@
+        @if (Model.RequirePassword) @* Conditionally renders this block when the check passes. *@
+        {
+ @* ----- Styling Section ----- *@
+            <div class="form-floating mb-4"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Your current password" /> @* Binds this input to the matching model property. *@
+                <label asp-for="Input.Password">Confirm with your password</label> @* Renders a label tied to the model field. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="Input.Password" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+        }
+ @* ----- Form Actions ----- *@
+        <button class="pw-btn pw-btn--danger pw-btn--md" type="submit" style="width:100%;"> @* Renders a button for the user action. *@
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg> @* Renders part of the identity page markup. *@
+            Delete my account permanently @* Renders part of the identity page markup. *@
+        </button> @* Closes the matching HTML element. *@
+    </form> @* Closes the form after its fields and actions. *@
+</div> @* Closes the matching HTML element. *@
+
+<div style="margin-top:20px;"> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+    <a asp-page="./PersonalData" class="pw-btn pw-btn--ghost pw-btn--sm"> @* Builds a link or form target using MVC routing. *@
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg> @* Renders part of the identity page markup. *@
+ @* ----- Form Actions ----- *@
+        Cancel @* Renders part of the identity page markup. *@
+    </a> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <partial name="_ValidationScriptsPartial" /> @* Renders a shared partial view here. *@
+}

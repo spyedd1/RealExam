@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace GFLHApp.Controllers
 {
-    [Authorize(Roles = "Producer")] // This attribute ensures that only users with the "Producer" role can access the actions in this controller.
+    [Authorize(Roles = "Producer,Developer")] // This attribute ensures that only users with the "Producer" role can access the actions in this controller.
     public class ProducerDashboardController : Controller
     {
         private readonly ApplicationDbContext _context; // load the application database context to interact with the database and perform CRUD operations on producers, products, orders, etc.
@@ -37,18 +37,18 @@ namespace GFLHApp.Controllers
 
             var now = DateTime.UtcNow;
 
-            ViewBag.ProducerName       = producer.ProducerName;
-            ViewBag.TotalProducts      = products.Count;
-            ViewBag.LowStockCount      = products.Count(p => p.QuantityInStock <= 5 && p.Available);
-            ViewBag.TotalStock         = products.Sum(p => p.QuantityInStock);
-            ViewBag.PendingCount       = producerOrders.Count(o => o.TrackingStatus == "Pending");
-            ViewBag.TotalRevenue       = producerOrders.Where(o => o.TrackingStatus == "Accepted").Sum(o => o.ProducerSubtotal);
-            ViewBag.ThisMonthRevenue   = producerOrders
+            ViewBag.ProducerName = producer.ProducerName;
+            ViewBag.TotalProducts = products.Count;
+            ViewBag.LowStockCount = products.Count(p => p.QuantityInStock <= 5 && p.Available);
+            ViewBag.TotalStock = products.Sum(p => p.QuantityInStock);
+            ViewBag.PendingCount = producerOrders.Count(o => o.TrackingStatus == "Pending");
+            ViewBag.TotalRevenue = producerOrders.Where(o => o.TrackingStatus == "Accepted").Sum(o => o.ProducerSubtotal);
+            ViewBag.ThisMonthRevenue = producerOrders
                 .Where(o => o.TrackingStatus == "Accepted"
                          && o.Orders.OrderDate.Month == now.Month
-                         && o.Orders.OrderDate.Year  == now.Year)
+                         && o.Orders.OrderDate.Year == now.Year)
                 .Sum(o => o.ProducerSubtotal);
-            ViewBag.ProducerOrders     = producerOrders;
+            ViewBag.ProducerOrders = producerOrders;
 
             return View(products);
         }
@@ -229,7 +229,7 @@ namespace GFLHApp.Controllers
         [ValidateAntiForgeryToken]
 
         // This action method handles the acceptance of a producer order slice. It checks if the producer order slice belongs to the current producer and is in a "Pending" state, updates its tracking status to "Accepted", saves the changes, recalculates the overall order status, and then redirects back to the dashboard.
-        public async Task<IActionResult> AcceptProducerOrder(int id) 
+        public async Task<IActionResult> AcceptProducerOrder(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
 

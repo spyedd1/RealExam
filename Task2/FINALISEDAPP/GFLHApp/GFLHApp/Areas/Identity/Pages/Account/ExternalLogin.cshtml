@@ -1,0 +1,49 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model ExternalLoginModel
+@{
+    ViewData["Title"] = "Register"; // Sets the browser and page title for this view.
+}
+
+<h1>@ViewData["Title"]</h1> @* Sets the browser and page title for this view. *@
+ @* ----- Page Header ----- *@
+<h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2> @* Renders a heading for this page section. *@
+<hr /> @* Renders part of the identity page markup. *@
+
+ @* ----- Styling Section ----- *@
+<p id="external-login-description" class="text-info"> @* Renders paragraph text for the user. *@
+ @* ----- Loop Rendering ----- *@
+    You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>. @* Displays or uses data from the identity model. *@
+ @* ----- Identity Account ----- *@
+    Please enter an email address for this site below and click the Register button to finish @* Renders part of the identity page markup. *@
+    logging in. @* Renders part of the identity page markup. *@
+</p> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+<div class="row"> @* Starts a layout container for this section. *@
+    <div class="col-md-4"> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post"> @* Starts the form that submits this page's user input. *@
+ @* ----- Status Messages ----- *@
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div> @* Shows page-level validation messages. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-floating mb-3"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <input asp-for="Input.Email" class="form-control" autocomplete="email" placeholder="Please enter your email."/> @* Binds this input to the matching model property. *@
+                <label asp-for="Input.Email" class="form-label"></label> @* Renders a label tied to the model field. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="Input.Email" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button> @* Renders a button for the user action. *@
+        </form> @* Closes the form after its fields and actions. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <partial name="_ValidationScriptsPartial" /> @* Renders a shared partial view here. *@
+}

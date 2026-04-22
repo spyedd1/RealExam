@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GFLHApp.Controllers
 {
     [Authorize(Roles = "Admin,Developer")]
-    public class AdminDashboardController : Controller 
+    public class AdminDashboardController : Controller
     {
         private readonly ApplicationDbContext _context; // Database context for accessing data
         private readonly UserManager<IdentityUser> _userManager; // User manager for handling user-related operations
@@ -29,18 +29,18 @@ namespace GFLHApp.Controllers
         {
             var now = DateTime.UtcNow; // Get the current date and time in UTC to use for filtering data based on time periods
 
-            var orders    = await _context.Orders.ToListAsync(); // Retrieve all orders from the database asynchronously and store them in a list
-            var products  = await _context.Products.ToListAsync(); // Retrieve all products from the database asynchronously and store them in a list
+            var orders = await _context.Orders.ToListAsync(); // Retrieve all orders from the database asynchronously and store them in a list
+            var products = await _context.Products.ToListAsync(); // Retrieve all products from the database asynchronously and store them in a list
             var producers = await _context.Producers.ToListAsync(); // Retrieve all producers from the database asynchronously and store them in a list
 
-            ViewBag.TotalUsers     = _userManager.Users.Count(); // Count the total number of users using the user manager and store it in the ViewBag to be displayed on the dashboard
-            ViewBag.TotalOrders    = orders.Count; // Count the total number of orders from the retrieved list and store it in the ViewBag to be displayed on the dashboard
-            ViewBag.TotalProducts  = products.Count; // Count the total number of products from the retrieved list and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.TotalUsers = _userManager.Users.Count(); // Count the total number of users using the user manager and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.TotalOrders = orders.Count; // Count the total number of orders from the retrieved list and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.TotalProducts = products.Count; // Count the total number of products from the retrieved list and store it in the ViewBag to be displayed on the dashboard
             ViewBag.TotalProducers = producers.Count; // Count the total number of producers from the retrieved list and store it in the ViewBag to be displayed on the dashboard
-            ViewBag.TotalRevenue   = orders.Sum(o => o.OrdersTotal); // Calculate the total revenue by summing the OrdersTotal property of all orders and store it in the ViewBag to be displayed on the dashboard
-            ViewBag.PendingOrders  = orders.Count(o => o.OrderStatus == "Pending"); // Count the number of orders with a status of "Pending" and store it in the ViewBag to be displayed on the dashboard
-            ViewBag.LowStock       = products.Count(p => p.QuantityInStock <= 5 && p.Available); // Count the number of products that are low in stock (quantity less than or equal to 5 and available) and store it in the ViewBag to be displayed on the dashboard
-            ViewBag.MonthRevenue   = orders // Calculate the revenue for the current month by filtering orders based on the order date and summing their total
+            ViewBag.TotalRevenue = orders.Sum(o => o.OrdersTotal); // Calculate the total revenue by summing the OrdersTotal property of all orders and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.PendingOrders = orders.Count(o => o.OrderStatus == "Pending"); // Count the number of orders with a status of "Pending" and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.LowStock = products.Count(p => p.QuantityInStock <= 5 && p.Available); // Count the number of products that are low in stock (quantity less than or equal to 5 and available) and store it in the ViewBag to be displayed on the dashboard
+            ViewBag.MonthRevenue = orders // Calculate the revenue for the current month by filtering orders based on the order date and summing their total
                 .Where(o => o.OrderDate.Month == now.Month && o.OrderDate.Year == now.Year) // Filter orders to include only those that were placed in the current month and year
                 .Sum(o => o.OrdersTotal); // Sum the OrdersTotal property of the filtered orders to get the total revenue for the current month and store it in the ViewBag to be displayed on the dashboard
 
@@ -56,7 +56,7 @@ namespace GFLHApp.Controllers
                 .OrderByDescending(x => x.TotalOrdered) // Order the resulting list of products by the total quantity ordered in descending order to get the best-selling products at the top of the list
                 .Take(5) // Take only the top 5 products from the ordered list to limit the number of best-selling products displayed on the dashboard
                 .ToListAsync(); // Execute the query asynchronously and convert the result to a list to be stored in the variable for further processing to get the product names for display on the dashboard
-            var pIds   = topProductIds.Select(x => x.ProductsId).ToList(); // Extract the product IDs from the list of top products to use for retrieving the product names from the database
+            var pIds = topProductIds.Select(x => x.ProductsId).ToList(); // Extract the product IDs from the list of top products to use for retrieving the product names from the database
             var pNames = await _context.Products.Where(p => pIds.Contains(p.ProductsId)) // 
                              .ToDictionaryAsync(p => p.ProductsId, p => p.ItemName);
             ViewBag.TopProducts = topProductIds
@@ -69,9 +69,10 @@ namespace GFLHApp.Controllers
                 .Where(o => o.OrderDate >= sixMonthsAgo)
                 .GroupBy(o => new { o.OrderDate.Year, o.OrderDate.Month })
                 .Select(g => new {
-                    Label   = new DateTime(g.Key.Year, g.Key.Month, 1).ToString("MMM yy"),
+                    Label = new DateTime(g.Key.Year, g.Key.Month, 1).ToString("MMM yy"),
                     Revenue = g.Sum(o => o.OrdersTotal),
-                    g.Key.Year, g.Key.Month
+                    g.Key.Year,
+                    g.Key.Month
                 })
                 .OrderBy(x => x.Year).ThenBy(x => x.Month)
                 .ToList();
@@ -87,8 +88,8 @@ namespace GFLHApp.Controllers
         // ── Orders ───────────────────────────────────────────────────────
         public async Task<IActionResult> Orders(string search = "", string orderStatus = "", string trackingStatus = "", string sort = "newest")
         {
-            var query = _context.Orders 
-                .Include(o => o.OrderProducts).ThenInclude(op => op.Products) 
+            var query = _context.Orders
+                .Include(o => o.OrderProducts).ThenInclude(op => op.Products)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search))
@@ -109,18 +110,18 @@ namespace GFLHApp.Controllers
 
             query = sort switch
             {
-                "oldest"     => query.OrderBy(o => o.OrderDate),
-                "total_asc"  => query.OrderBy(o => o.OrdersTotal),
+                "oldest" => query.OrderBy(o => o.OrderDate),
+                "total_asc" => query.OrderBy(o => o.OrdersTotal),
                 "total_desc" => query.OrderByDescending(o => o.OrdersTotal),
-                _            => query.OrderByDescending(o => o.OrderDate)
+                _ => query.OrderByDescending(o => o.OrderDate)
             };
 
             var orders = await query.ToListAsync();
 
-            ViewBag.Search         = search;
-            ViewBag.OrderStatus    = orderStatus;
+            ViewBag.Search = search;
+            ViewBag.OrderStatus = orderStatus;
             ViewBag.TrackingStatus = trackingStatus;
-            ViewBag.Sort           = sort;
+            ViewBag.Sort = sort;
 
             return View(orders);
         }
@@ -151,29 +152,29 @@ namespace GFLHApp.Controllers
 
             query = availability switch
             {
-                "available"   => query.Where(p => p.Available),
+                "available" => query.Where(p => p.Available),
                 "unavailable" => query.Where(p => !p.Available),
-                "lowstock"    => query.Where(p => p.QuantityInStock <= 5 && p.Available),
-                _             => query
+                "lowstock" => query.Where(p => p.QuantityInStock <= 5 && p.Available),
+                _ => query
             };
 
             query = sort switch
             {
-                "price_asc"  => query.OrderBy(p => p.ItemPrice),
+                "price_asc" => query.OrderBy(p => p.ItemPrice),
                 "price_desc" => query.OrderByDescending(p => p.ItemPrice),
-                "stock_asc"  => query.OrderBy(p => p.QuantityInStock),
+                "stock_asc" => query.OrderBy(p => p.QuantityInStock),
                 "stock_desc" => query.OrderByDescending(p => p.QuantityInStock),
-                _            => query.OrderBy(p => p.ItemName)
+                _ => query.OrderBy(p => p.ItemName)
             };
 
-            var products   = await query.ToListAsync();
+            var products = await query.ToListAsync();
             var categories = await _context.Products.Select(p => p.Category).Distinct().OrderBy(c => c).ToListAsync();
 
-            ViewBag.Search       = search;
-            ViewBag.Category     = category;
+            ViewBag.Search = search;
+            ViewBag.Category = category;
             ViewBag.Availability = availability;
-            ViewBag.Sort         = sort;
-            ViewBag.Categories   = categories;
+            ViewBag.Sort = sort;
+            ViewBag.Categories = categories;
 
             return View(products);
         }
@@ -240,8 +241,8 @@ namespace GFLHApp.Controllers
                 rows.Add(new AdminUserRow(user, roles, orderCount));
             }
 
-            ViewBag.Search   = search;
-            ViewBag.Role     = role;
+            ViewBag.Search = search;
+            ViewBag.Role = role;
             ViewBag.AllRoles = _roleManager.Roles.Select(r => r.Name).OrderBy(n => n).ToList();
 
             return View(rows);
@@ -272,12 +273,12 @@ namespace GFLHApp.Controllers
         // ── Settings ─────────────────────────────────────────────────────
         public async Task<IActionResult> Settings()
         {
-            ViewBag.UserCount     = _userManager.Users.Count();
-            ViewBag.OrderCount    = await _context.Orders.CountAsync();
-            ViewBag.ProductCount  = await _context.Products.CountAsync();
+            ViewBag.UserCount = _userManager.Users.Count();
+            ViewBag.OrderCount = await _context.Orders.CountAsync();
+            ViewBag.ProductCount = await _context.Products.CountAsync();
             ViewBag.ProducerCount = await _context.Producers.CountAsync();
-            ViewBag.TotalRevenue  = await _context.Orders.SumAsync(o => (decimal?)o.OrdersTotal) ?? 0m;
-            ViewBag.AllRoles      = _roleManager.Roles.Select(r => r.Name).OrderBy(n => n).ToList();
+            ViewBag.TotalRevenue = await _context.Orders.SumAsync(o => (decimal?)o.OrdersTotal) ?? 0m;
+            ViewBag.AllRoles = _roleManager.Roles.Select(r => r.Name).OrderBy(n => n).ToList();
             ViewBag.ActiveBaskets = await _context.Basket.CountAsync(b => b.Status);
             return View();
         }

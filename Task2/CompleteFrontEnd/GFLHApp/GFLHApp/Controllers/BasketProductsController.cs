@@ -12,13 +12,14 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GFLHApp.Controllers
 {
+    [Authorize(Roles = "Standard,Developer")]
     public class BasketProductsController : Controller
     {
-        private readonly ApplicationDbContext _context; 
+        private readonly ApplicationDbContext _context;
 
-        public BasketProductsController(ApplicationDbContext context)  
+        public BasketProductsController(ApplicationDbContext context)
         {
-            _context = context; 
+            _context = context;
         }
 
         // GET: BasketProducts
@@ -196,7 +197,7 @@ namespace GFLHApp.Controllers
             return Json(new { success = true, basketCount, itemName = product.ItemName, quantity = Quantity });
         }
 
-  
+
         // GET: BasketProducts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -270,6 +271,35 @@ namespace GFLHApp.Controllers
             }
 
             return View(basketProducts);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Standard,Developer")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveFromBasket(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var basketProduct = await _context.BasketProducts
+                .Include(bp => bp.Basket)
+                .FirstOrDefaultAsync(bp => bp.BasketProductsId == id
+                    && bp.Basket != null
+                    && bp.Basket.UserId == userId
+                    && bp.Basket.Status);
+
+            if (basketProduct == null)
+            {
+                return NotFound();
+            }
+
+            _context.BasketProducts.Remove(basketProduct);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Baskets");
         }
 
         // POST: BasketProducts/Delete/5

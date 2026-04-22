@@ -86,7 +86,7 @@
         <!-- Decorative photo strip -->
         <div class="gw-polaroid" data-burst>
             <!-- Polaroid 1; data-burst triggers particle effect on hover -->
-            <img class="gw-polaroid__img" src="~/images/home/1.jpg" alt="" loading="eager"> <!-- Farm field photo -->
+            <img class="gw-polaroid__img" src="~/images/producers/meadowFreshOrganicFarm.jpg" alt="" loading="eager"> <!-- Farm field photo -->
             <span class="gw-polaroid__caption">The fields ☀️</span> <!-- Caption -->
         </div>
         <div class="gw-polaroid" data-burst>
@@ -96,8 +96,8 @@
         </div>
         <div class="gw-polaroid" data-burst>
             <!-- Polaroid 3 -->
-            <img class="gw-polaroid__img" src="~/images/home/3.jpg" alt="" loading="eager"> <!-- Harvest photo -->
-            <span class="gw-polaroid__caption">Harvest time 🌾</span> <!-- Caption -->
+            <img class="gw-polaroid__img" src="~/images/producers/greenValleyProduce.jpg" alt="" loading="eager"> <!-- Harvest photo -->
+            <span class="gw-polaroid__caption">Fruit Frenzy</span> <!-- Caption -->
         </div>
         <div class="gw-polaroid" data-burst>
             <!-- Polaroid 4 -->
@@ -106,13 +106,13 @@
         </div>
         <div class="gw-polaroid" data-burst>
             <!-- Polaroid 5 -->
-            <img class="gw-polaroid__img" src="~/images/home/5.jpg" alt="" loading="eager"> <!-- Soil photo -->
-            <span class="gw-polaroid__caption">Good soil 🌱</span> <!-- Caption -->
+            <img class="gw-polaroid__img" src="~/images/producers/oakridgeHarvestHub.jpg" alt="" loading="eager"> <!-- Soil photo -->
+            <span class="gw-polaroid__caption">Platonic Planter        🌱</span> <!-- Caption -->
         </div>
         <div class="gw-polaroid" data-burst>
             <!-- Polaroid 6 -->
-            <img class="gw-polaroid__img" src="~/images/home/sideview.jpg" alt="" loading="eager"> <!-- Barn photo -->
-            <span class="gw-polaroid__caption">The barn 🍓</span> <!-- Caption -->
+            <img class="gw-polaroid__img" src="~/images/home/homestrawberries.jpg" alt="" loading="eager"> <!-- Barn photo -->
+            <span class="gw-polaroid__caption">Strawberries! 🍓</span> <!-- Caption -->
         </div>
     </div>
 
@@ -195,7 +195,7 @@
                     var revealDir = idx % 2 == 0 ? "reveal--left" : "reveal--right"; // Alternate reveal direction per card
                     var floatIcon = floatIcons[idx % floatIcons.Length];   // Cycle sticker icon by index
                     var paletteCls = "pw-card__no-photo--" + (idx % 6);     // Cycle colour palette class (0–5)
-                    var initial = string.IsNullOrWhiteSpace(item.ProducerName) ? "?" : item.ProducerName.Substring(0, 1).ToUpper(); // First letter for avatar
+                    var hasImage = !string.IsNullOrWhiteSpace(item.ImagePath); // Whether the producer has an image to show
                     idx++; // Increment index for next card
 
                     <article class="pw-card pw-card--grower pw-card--producer reveal @revealDir"
@@ -203,17 +203,27 @@
                              data-producer-id="@item.ProducersId">
                         <!-- Producer card article -->
                         <!-- Coloured icon panel (no image on Producer model — show farm icon) -->
-                        <div class="pw-card__grower-img pw-card__burst-target pw-card__no-photo @paletteCls">
+                        <div class="pw-card__grower-img pw-card__burst-target @(hasImage ? "pw-card__has-photo" : $"pw-card__no-photo {paletteCls}")">
                             <!-- Coloured image panel; burst-target triggers particle effect -->
+                            @if (hasImage)
+                            {
+                                <img class="pw-card__grower-photo"
+                                     src="@item.ImagePath"
+                                     alt="@item.ProducerName"
+                                     loading="lazy" />
+                            }
+                            else
+                            {
+                                <div class="pw-card__farm-icon">
+                                    <!-- Large centred farm icon -->
+                                    <i data-lucide="warehouse" style="width:40px;height:40px;stroke:rgba(255,255,255,.92);stroke-width:1.5;"></i> <!-- Warehouse icon -->
+                                </div>
+                            }
                             <!-- sticker sits inside the panel at top -->
                             <div class="pw-card__sticker">
                                 <!-- Small sticker badge -->
                                 <i data-lucide="@floatIcon" style="width:10px;height:10px;"></i> <!-- Cycled icon -->
                                 Local Farm
-                            </div>
-                            <div class="pw-card__farm-icon">
-                                <!-- Large centred farm icon -->
-                                <i data-lucide="warehouse" style="width:40px;height:40px;stroke:rgba(255,255,255,.92);stroke-width:1.5;"></i> <!-- Warehouse icon -->
                             </div>
                             <div class="pw-card__img-badge">
                                 <!-- Badge row at bottom of panel -->

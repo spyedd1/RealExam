@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GFLHApp.Data;
 using GFLHApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GFLHApp.Controllers
 {
+    [Authorize(Roles = "Admin,Developer")]
     public class ProducerOrdersController : Controller
     {
         private readonly ApplicationDbContext _context;

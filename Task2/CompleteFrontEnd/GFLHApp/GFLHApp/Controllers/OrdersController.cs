@@ -32,7 +32,6 @@ namespace GFLHApp.Controllers
                     "Next Day" => 1,
                     "Standard" => 3,
                     "Economy" => 7,
-                    _ => 999
                 };
 
                 string newStatus;
@@ -53,6 +52,7 @@ namespace GFLHApp.Controllers
         // POST: Orders/ConfirmDelivery/5 - This action method allows a user to confirm the delivery of an order. It checks if the order belongs to the current user, updates the delivery confirmation status, and saves the changes to the database.
 
         [HttpPost]
+        [Authorize(Roles = "Standard,Developer")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ConfirmDelivery(int id)
         {
@@ -104,7 +104,7 @@ namespace GFLHApp.Controllers
             }
         }
 
-        [Authorize(Roles = "Standard,Developer,Admin")]
+        [Authorize(Roles = "Standard,Developer")]
         // GET: Orders/Details/5  
         public async Task<IActionResult> Details(int? id)
         {
@@ -544,6 +544,7 @@ namespace GFLHApp.Controllers
 
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "Developer")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -565,6 +566,7 @@ namespace GFLHApp.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Developer")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("OrdersId,UserId,OrderDate,DeliveryMethod,Delivery,Collection,OrdersTotal,TrackingStatus,DateOfCollection,BillingLine1,BillingLine2,BillingCity,BillingPostcode,DeliveryLine1,DeliveryLine2,DeliveryCity,DeliveryPostcode")] Orders orders)
         {
@@ -598,6 +600,7 @@ namespace GFLHApp.Controllers
         }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "Developer")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -617,6 +620,7 @@ namespace GFLHApp.Controllers
 
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Developer")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -639,6 +643,7 @@ namespace GFLHApp.Controllers
         // GET: Orders/Confirmation
 
         // This action method retrieves the details of a specific order for the confirmation page. It checks if the order belongs to the current user, includes related data such as products and producers, and returns the order data to the confirmation view.
+        [Authorize(Roles = "Standard,Developer")]
         public async Task<IActionResult> Confirmation(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID

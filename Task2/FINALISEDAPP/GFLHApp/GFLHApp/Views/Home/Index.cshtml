@@ -1,0 +1,599 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model IEnumerable<GFLHApp.Models.Producers>
+
+@{
+    ViewData["Title"] = "Grown Different"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+<!-- Existing content remains unchanged --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+<!-- Example usage of the Producers model --> @* Keeps an existing comment in the Razor file. *@
+
+<!-- Scroll progress bar (position:fixed, no layout impact) --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+<div id="scrollProgress" class="pw-scroll-progress" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     HERO  (entrance animations via CSS — no reveal class needed) @* Renders part of the home page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the home page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="pw-hero" aria-label="Hero"> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+    <span class="pw-hero__float pw-hero__float--1" aria-hidden="true"><i data-lucide="carrot" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--2" aria-hidden="true"><i data-lucide="leaf" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--3" aria-hidden="true"><i data-lucide="cherry" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--4" aria-hidden="true"><i data-lucide="sprout" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--5" aria-hidden="true"><i data-lucide="wheat" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--6" aria-hidden="true"><i data-lucide="flower-2" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+
+    <div class="pw-hero__content"> @* Starts a layout container for this section. *@
+        <div class="pw-hero__badge"> @* Starts a layout container for this section. *@
+            <span class="pw-badge pw-badge--pop"> @* Renders inline text or badge content. *@
+                <i data-lucide="sparkles" class="pw-icon-sm"></i> @* Renders part of the home page markup. *@
+                Spring Harvest Just Dropped @* Renders part of the home page markup. *@
+            </span> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Page Header ----- *@
+        <h1 class="pw-hero__headline"> @* Renders a heading for this page section. *@
+ @* ----- Styling Section ----- *@
+            <span class="pw-hero__line-1">The freshest</span> @* Renders inline text or badge content. *@
+            <span class="pw-hero__line-2">produce</span> @* Renders inline text or badge content. *@
+            <span class="pw-hero__line-3">on the planet.™</span> @* Renders inline text or badge content. *@
+        </h1> @* Closes the matching HTML element. *@
+
+        <p class="pw-hero__sub"> @* Renders paragraph text for the user. *@
+            Real farms. Real farmers. Impossibly good produce @* Renders part of the home page markup. *@
+            delivered straight to your door before you even knew you needed it. @* Renders part of the home page markup. *@
+        </p> @* Closes the matching HTML element. *@
+
+        <div class="pw-hero__ctas"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--primary pw-btn--lg" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                   asp-area="" asp-controller="Products" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+                Shop the Harvest @* Renders part of the home page markup. *@
+            </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--ghost pw-btn--lg" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                   asp-area="" asp-controller="Producers" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Producer Display ----- *@
+                Meet Our Producers → @* Renders part of the home page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+        <div class="pw-hero__trust" aria-label="Key facts"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+            <span class="pw-hero__trust-item"> @* Renders inline text or badge content. *@
+                <i data-lucide="globe" class="pw-icon-sm pw-icon-green"></i> @* Renders part of the home page markup. *@
+                Local UK Farms @* Renders part of the home page markup. *@
+            </span> @* Closes the matching HTML element. *@
+            <span class="pw-hero__trust-dot" aria-hidden="true">·</span> @* Renders inline text or badge content. *@
+            <span class="pw-hero__trust-item"> @* Renders inline text or badge content. *@
+                <i data-lucide="package" class="pw-icon-sm pw-icon-green"></i> @* Renders part of the home page markup. *@
+ @* ----- Order Display ----- *@
+                Next-day delivery @* Renders part of the home page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <span class="pw-hero__trust-dot" aria-hidden="true">·</span> @* Renders inline text or badge content. *@
+            <span class="pw-hero__trust-item"> @* Renders inline text or badge content. *@
+                <i data-lucide="recycle" class="pw-icon-sm pw-icon-green"></i> @* Renders part of the home page markup. *@
+                Zero plastic @* Renders part of the home page markup. *@
+            </span> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <div class="pw-hero__visual" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <div class="pw-hero__box-art"> @* Starts a layout container for this section. *@
+            <div class="pw-box-sticker pw-box-sticker--1"> @* Starts a layout container for this section. *@
+                Seasonal <i data-lucide="star" class="pw-icon-sticker-star"></i> @* Renders part of the home page markup. *@
+            </div> @* Closes the matching HTML element. *@
+            <div class="pw-box-inner"> @* Starts a layout container for this section. *@
+                <div class="pw-box-produce"> @* Starts a layout container for this section. *@
+                    <i data-lucide="carrot" class="pw-icon-produce pw-icon-orange"></i> @* Renders part of the home page markup. *@
+                    <i data-lucide="cherry" class="pw-icon-produce pw-icon-red"></i> @* Renders part of the home page markup. *@
+                    <i data-lucide="sprout" class="pw-icon-produce pw-icon-green"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-box-produce"> @* Starts a layout container for this section. *@
+                    <i data-lucide="wheat" class="pw-icon-produce pw-icon-yellow"></i> @* Renders part of the home page markup. *@
+                    <i data-lucide="leaf" class="pw-icon-produce pw-icon-green"></i> @* Renders part of the home page markup. *@
+                    <i data-lucide="flower-2" class="pw-icon-produce pw-icon-purple"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-box-produce"> @* Starts a layout container for this section. *@
+                    <i data-lucide="sprout" class="pw-icon-produce pw-icon-green"></i> @* Renders part of the home page markup. *@
+                    <i data-lucide="leaf" class="pw-icon-produce pw-icon-orange"></i> @* Renders part of the home page markup. *@
+                    <i data-lucide="carrot" class="pw-icon-produce pw-icon-yellow"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+            <div class="pw-box-label"> @* Starts a layout container for this section. *@
+                <span>Spring Produce</span> @* Renders inline text or badge content. *@
+                <span>Fresh</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-box-sticker pw-box-sticker--2">Unmissable Deals</div> @* Starts a layout container for this section. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- Scroll down cue — bounces after hero loads --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+    <a class="pw-hero__scroll-cue" href="#whats-fresh" aria-label="Scroll to fresh produce"> @* Renders a navigation link or action link. *@
+ @* ----- Styling Section ----- *@
+        <i data-lucide="chevron-down" class="pw-icon-scroll-cue"></i> @* Renders part of the home page markup. *@
+    </a> @* Closes the matching HTML element. *@
+
+    <div class="pw-hero__wave" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"> @* Renders part of the home page markup. *@
+            <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#16A34A" /> @* Renders paragraph text for the user. *@
+        </svg> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     TICKER @* Renders part of the home page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the home page markup. *@
+<div class="pw-ticker" aria-hidden="true"> @* Starts a layout container for this section. *@
+    <div class="pw-ticker__track"> @* Starts a layout container for this section. *@
+        <span>Farm Fresh</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Seasonal Picks</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Small Batch</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+        <span>Local Growers</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+        <span>Zero Plastic</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+        <span>Next-Day Delivery</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+        <span>Grown with Love</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+        <span>Ugly Veg Welcome</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Farm Fresh</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Seasonal Picks</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+        <span>Small Batch</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+        <span>Local Growers</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+        <span>Zero Plastic</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+        <span>Next-Day Delivery</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+        <span>Grown with Love</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+        <span>Ugly Veg Welcome</span><i data-lucide="star" class="pw-ticker__dot"></i> @* Renders inline text or badge content. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     WHAT'S FRESH @* Renders part of the home page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the home page markup. *@
+ @* ----- Form Fields ----- *@
+<section id="whats-fresh" class="pw-section pw-section--cream" aria-labelledby="fresh-heading"> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+
+        <!-- blur-clear: section title sharpens in as it enters --> @* Keeps an existing comment in the Razor file. *@
+        <div class="pw-section__header reveal reveal--blur"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <span class="pw-section__eyebrow"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="sprout" class="pw-icon-sm"></i> @* Renders part of the home page markup. *@
+                Right now @* Renders part of the home page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h2 class="pw-section__title" id="fresh-heading"> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                What's growing<br> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+                <em class="pw-text--green">this season</em> @* Renders part of the home page markup. *@
+            </h2> @* Closes the matching HTML element. *@
+            <p class="pw-section__subtitle"> @* Renders paragraph text for the user. *@
+                Picked at peak ripeness. No sorry-it's-out-of-season nonsense. @* Renders part of the home page markup. *@
+            </p> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <!-- Cards spring-pop in staggered --> @* Keeps an existing comment in the Razor file. *@
+        <div class="pw-grid pw-grid--3"> @* Starts a layout container for this section. *@
+
+            <article class="pw-card pw-card--product reveal reveal--pop" data-delay="0"> @* Renders a navigation link or action link. *@
+                <div class="pw-card__badge pw-badge pw-badge--green">In Season</div> @* Starts a layout container for this section. *@
+                <div class="pw-card__img-wrap" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <img src="~/images/home/homecarrots.jpg" alt="" class="pw-card__photo" loading="lazy"> @* Renders an image for the page content. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-card__body"> @* Starts a layout container for this section. *@
+                    <p class="pw-card__farm">Willowcreek Farm</p> @* Renders paragraph text for the user. *@
+ @* ----- Page Header ----- *@
+                    <h3 class="pw-card__name">Heritage Carrots</h3> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pw-card__desc">Purple, yellow, orange. Not your average sad bagged carrots from a sad supermarket shelf.</p> @* Renders paragraph text for the user. *@
+                    <div class="pw-card__footer"> @* Starts a layout container for this section. *@
+                        <span class="pw-card__price">£2.50</span> @* Renders inline text or badge content. *@
+ @* ----- Form Actions ----- *@
+                        <a class="pw-btn pw-btn--sm pw-btn--primary" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                           asp-area="" asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Fields ----- *@
+                           aria-label="Add Heritage Carrots to basket">Goto Shop</a> @* Renders part of the home page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </article> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <article class="pw-card pw-card--product pw-card--featured reveal reveal--pop" data-delay="150"> @* Renders a navigation link or action link. *@
+                <div class="pw-card__badge pw-badge pw-badge--orange"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="zap" class="pw-icon-sm"></i> @* Renders part of the home page markup. *@
+                    Low Stock @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <div class="pw-card__img-wrap" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <img src="~/images/home/homestrawberries.jpg" alt="" class="pw-card__photo" loading="lazy"> @* Renders an image for the page content. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-card__body"> @* Starts a layout container for this section. *@
+                    <p class="pw-card__farm">Sunnybrook Farm</p> @* Renders paragraph text for the user. *@
+ @* ----- Page Header ----- *@
+                    <h3 class="pw-card__name">Strawberries</h3> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pw-card__desc">Ugly. Delicious. The strawberries that would start a movement if tomatoes could start movements.</p> @* Renders paragraph text for the user. *@
+                    <div class="pw-card__footer"> @* Starts a layout container for this section. *@
+                        <span class="pw-card__price">£3.80</span> @* Renders inline text or badge content. *@
+ @* ----- Form Actions ----- *@
+                        <a class="pw-btn pw-btn--sm pw-btn--primary" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                           asp-area="" asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Fields ----- *@
+                           aria-label="Add Heirloom Tomatoes to basket">Goto shop</a> @* Renders part of the home page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </article> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <article class="pw-card pw-card--product reveal reveal--pop" data-delay="300"> @* Renders a navigation link or action link. *@
+                <div class="pw-card__badge pw-badge pw-badge--purple"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="sparkles" class="pw-icon-sm"></i> @* Renders part of the home page markup. *@
+                    New Drop @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <div class="pw-card__img-wrap" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <img src="~/images/home/homeveg.jpg" alt="" class="pw-card__photo" loading="lazy"> @* Renders an image for the page content. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-card__body"> @* Starts a layout container for this section. *@
+                    <p class="pw-card__farm">Oakridge Harvest Hub</p> @* Renders paragraph text for the user. *@
+ @* ----- Page Header ----- *@
+                    <h3 class="pw-card__name">Spring Greens Mix</h3> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pw-card__desc">Spinach, kale, chard. Tastes like a forest in a really, really good way.</p> @* Renders paragraph text for the user. *@
+                    <div class="pw-card__footer"> @* Starts a layout container for this section. *@
+                        <span class="pw-card__price">£2.20</span> @* Renders inline text or badge content. *@
+ @* ----- Form Actions ----- *@
+                        <a class="pw-btn pw-btn--sm pw-btn--primary" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                           asp-area="" asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Fields ----- *@
+                           aria-label="Add Spring Greens Mix to basket">Goto shop</a> @* Renders part of the home page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </article> @* Closes the matching HTML element. *@
+
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="pw-section__cta reveal" data-delay="200"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--outline pw-btn--lg" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                   asp-area="" asp-controller="Products" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                See everything growing → @* Renders part of the home page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     BOX SPOTLIGHT  (flashy animated feature) @* Renders part of the home page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the home page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="pw-spotlight" aria-labelledby="spotlight-heading"> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+    <span class="pw-spotlight__deco pw-spotlight__deco--1" aria-hidden="true"><i data-lucide="star" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-spotlight__deco pw-spotlight__deco--2" aria-hidden="true"><i data-lucide="sprout" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+        <div class="pw-spotlight__inner"> @* Starts a layout container for this section. *@
+
+            <div class="pw-spotlight__img-col reveal reveal--left"> @* Starts a layout container for this section. *@
+                <div class="pw-spotlight__img-frame"> @* Starts a layout container for this section. *@
+                    <div class="pw-spotlight__sticker pw-spotlight__sticker--tl"> @* Starts a layout container for this section. *@
+                        <i data-lucide="sparkles" class="pw-icon-sm"></i> Just Packed @* Renders part of the home page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <div class="pw-spotlight__img-inner"> @* Starts a layout container for this section. *@
+                        <img src="~/images/home/produceBox.jpg" @* Renders an image for the page content. *@
+                             alt="A beautiful seasonal produce box overflowing with fresh veg" @* Renders part of the home page markup. *@
+                             class="pw-spotlight__photo"> @* Renders part of the home page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <div class="pw-spotlight__sticker pw-spotlight__sticker--br"> @* Starts a layout container for this section. *@
+                        Don't miss this bargain! @* Renders part of the home page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <div class="pw-spotlight__text-col reveal reveal--right" data-delay="120"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                <span class="pw-section__eyebrow"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="package" class="pw-icon-sm"></i> @* Renders part of the home page markup. *@
+                    Our special deal @* Renders part of the home page markup. *@
+                </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h2 class="pw-section__title" id="spotlight-heading"> @* Renders a heading for this page section. *@
+                    The Health Bundle.<br> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+                    <em class="pw-text--green">It's a healthy vibe.</em> @* Renders part of the home page markup. *@
+                </h2> @* Closes the matching HTML element. *@
+                <p class="pw-spotlight__desc"> @* Renders paragraph text for the user. *@
+ @* ----- Basket Display ----- *@
+                   Have a carrot, apple and broccoli in your basket @* Renders part of the home page markup. *@
+                    for 10% off on your orders subtotal. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                <ul class="pw-spotlight__list"> @* Starts a list of related items. *@
+                    <li><i data-lucide="check-circle" class="pw-icon-sm pw-icon-green"></i> Seasonal items</li> @* Renders one list item. *@
+                    <li><i data-lucide="check-circle" class="pw-icon-sm pw-icon-green"></i> Sourced from various local farms</li> @* Renders one list item. *@
+                    <li><i data-lucide="check-circle" class="pw-icon-sm pw-icon-green"></i> Zero plastic, 100% recyclable</li> @* Renders one list item. *@
+                </ul> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                <a class="pw-btn pw-btn--primary pw-btn--lg" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                   asp-area="" asp-controller="Products" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+                    Grab This Deal → @* Renders part of the home page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     HOW IT WORKS  (animated gradient background) @* Renders part of the home page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the home page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="pw-section pw-section--green" aria-labelledby="how-heading"> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+
+        <div class="pw-section__header pw-section__header--light reveal reveal--blur"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <span class="pw-section__eyebrow pw-eyebrow--light"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="package" class="pw-icon-sm"></i> @* Renders part of the home page markup. *@
+                The process @* Renders part of the home page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h2 class="pw-section__title" id="how-heading"> @* Renders a heading for this page section. *@
+                Getting your produce is<br>embarrassingly easy. @* Renders part of the home page markup. *@
+            </h2> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- Steps spring-pop in sequence --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+        <div class="pw-steps"> @* Starts a layout container for this section. *@
+            <div class="pw-step reveal reveal--pop" data-delay="0"> @* Starts a layout container for this section. *@
+                <span class="pw-step__number" aria-hidden="true">01</span> @* Renders inline text or badge content. *@
+                <span class="pw-step__icon" aria-hidden="true"> @* Renders inline text or badge content. *@
+                    <i data-lucide="shopping-cart" class="pw-icon-step"></i> @* Renders part of the home page markup. *@
+                </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h3 class="pw-step__title">Pick your produce</h3> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                <p class="pw-step__desc">Browse what's in season. Add what looks good. Trust your gut — and your gut will thank you.</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+            <div class="pw-step__arrow reveal" data-delay="100" aria-hidden="true">→</div> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-step reveal reveal--pop" data-delay="200"> @* Starts a layout container for this section. *@
+                <span class="pw-step__number" aria-hidden="true">02</span> @* Renders inline text or badge content. *@
+                <span class="pw-step__icon" aria-hidden="true"> @* Renders inline text or badge content. *@
+                    <i data-lucide="user-round" class="pw-icon-step"></i> @* Renders part of the home page markup. *@
+                </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h3 class="pw-step__title">Farmers get to work</h3> @* Renders a heading for this page section. *@
+ @* ----- Order Display ----- *@
+                <p class="pw-step__desc">Your order goes straight to the farm. Harvested fresh. Packed by real humans who genuinely care.</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-step__arrow reveal" data-delay="300" aria-hidden="true">→</div> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-step reveal reveal--pop" data-delay="400"> @* Starts a layout container for this section. *@
+                <span class="pw-step__number" aria-hidden="true">03</span> @* Renders inline text or badge content. *@
+                <span class="pw-step__icon" aria-hidden="true"> @* Renders inline text or badge content. *@
+                    <i data-lucide="truck" class="pw-icon-step"></i> @* Renders part of the home page markup. *@
+                </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h3 class="pw-step__title">It arrives at your door</h3> @* Renders a heading for this page section. *@
+ @* ----- Styling Section ----- *@
+                <p class="pw-step__desc">Next day. In a package that doesn't look embarrassing in your hallway. You're very welcome.</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+
+    <div class="pw-section__wave-bottom" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"> @* Renders part of the home page markup. *@
+            <path d="M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z" fill="#FFFBEB" /> @* Renders paragraph text for the user. *@
+        </svg> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+     MEET THE GROWERS @* Renders part of the home page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the home page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="pw-section pw-section--cream" aria-labelledby="growers-heading"> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+
+        <div class="pw-section__header reveal reveal--blur"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <span class="pw-section__eyebrow"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="users" class="pw-icon-sm"></i> @* Renders part of the home page markup. *@
+                The people @* Renders part of the home page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h2 class="pw-section__title" id="growers-heading"> @* Renders a heading for this page section. *@
+                Not a supermarket.<br> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+                <em class="pw-text--green">Not even close.</em> @* Renders part of the home page markup. *@
+            </h2> @* Closes the matching HTML element. *@
+            <p class="pw-section__subtitle"> @* Renders paragraph text for the user. *@
+ @* ----- Product Display ----- *@
+                Every product is traceable to a real farm with real humans behind it. @* Renders part of the home page markup. *@
+            </p> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <!-- Grower cards slide in from opposite sides --> @* Keeps an existing comment in the Razor file. *@
+        <div class="pw-grid pw-grid--2"> @* Starts a layout container for this section. *@
+
+            <article class="pw-card pw-card--grower reveal reveal--left"> @* Renders a navigation link or action link. *@
+                <div class="pw-card__grower-img" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <img src="~/images/home/olderLady.jpg" alt="" class="pw-grower__photo" loading="lazy"> @* Renders an image for the page content. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h3 class="pw-card__name">Willowcreek Farm</h3> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pw-card__desc">"We've been growing root vegetables for three generations. Every single carrot is pulled by hand." — Martha, Head Grower</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </article> @* Closes the matching HTML element. *@
+
+            <article class="pw-card pw-card--grower pw-card--grower-alt reveal reveal--right" data-delay="100"> @* Renders a navigation link or action link. *@
+                <div class="pw-card__grower-img" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <img src="~/images/home/manwalking.jpg" alt="" class="pw-grower__photo" loading="lazy"> @* Renders an image for the page content. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h3 class="pw-card__name">Sunnybrook Farm</h3> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pw-card__desc">"The tomatoes people call ugly are the ones with the most flavour. Full stop. No argument." — Tom, Founder</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </article> @* Closes the matching HTML element. *@
+
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="pw-section__cta reveal" data-delay="200"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--outline pw-btn--lg" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                   asp-area="" asp-controller="Producers" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                Meet all our growers → @* Renders part of the home page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     STATS / TRUST BAR @* Renders part of the home page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the home page markup. *@
+ @* ----- Form Fields ----- *@
+<div class="pw-trust-bar" role="region" aria-label="Key statistics"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-trust-bar__inner"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+        <div class="pw-stat reveal" data-delay="0"> @* Starts a layout container for this section. *@
+            <span class="pw-stat__value" data-target="42" data-suffix="+">42+</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+            <span class="pw-stat__label">Local Farms</span> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <div class="pw-stat__divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+        <div class="pw-stat reveal" data-delay="100"> @* Starts a layout container for this section. *@
+            <span class="pw-stat__value" data-target="3800" data-suffix="+">3,800+</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+            <span class="pw-stat__label">Happy Customers</span> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <div class="pw-stat__divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+        <div class="pw-stat reveal" data-delay="200"> @* Starts a layout container for this section. *@
+            <span class="pw-stat__value" data-target="100" data-suffix="%">100%</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+            <span class="pw-stat__label">Seasonal Produce</span> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <div class="pw-stat__divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+        <div class="pw-stat reveal" data-delay="300"> @* Starts a layout container for this section. *@
+            <span class="pw-stat__value" data-target="0" data-suffix="">0</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+            <span class="pw-stat__label">Pieces of Plastic</span> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     BIG CTA  (animated drifting blobs) @* Renders part of the home page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the home page markup. *@
+<section class="pw-section pw-section--cta" aria-labelledby="cta-heading"> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-cta-blob pw-cta-blob--1" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+    <div class="pw-cta-blob pw-cta-blob--2" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+    <div class="pw-cta-blob pw-cta-blob--3" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+    <div class="pw-container--narrow"> @* Starts a layout container for this section. *@
+        <span class="pw-cta-section__eyebrow reveal"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+            <i data-lucide="party-popper" class="pw-icon-sm"></i> @* Renders part of the home page markup. *@
+            Don't wait @* Renders part of the home page markup. *@
+        </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+        <h2 class="pw-cta-section__title reveal reveal--blur" id="cta-heading" data-delay="100"> @* Renders a heading for this page section. *@
+            Your first taste should<br>be unforgettable. @* Renders part of the home page markup. *@
+        </h2> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+        <p class="pw-cta-section__sub reveal" data-delay="200"> @* Renders paragraph text for the user. *@
+            Join thousands of people who've ditched the supermarket and haven't looked back once. @* Renders part of the home page markup. *@
+        </p> @* Closes the matching HTML element. *@
+        <div class="pw-cta-section__actions reveal reveal--pop" data-delay="320"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--primary pw-btn--xl" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                   asp-area="" asp-controller="Products" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+                Start Shopping @* Renders part of the home page markup. *@
+            </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--ghost-dark pw-btn--xl" @* Renders a navigation link or action link. *@
+ @* ----- Authorization Display ----- *@
+                   asp-area="Identity" asp-page="/Account/Register"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                Create Account @* Renders part of the home page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+        <p class="pw-cta-section__small reveal" data-delay="440"> @* Renders paragraph text for the user. *@
+            No subscription. No commitment. Just great food. @* Renders part of the home page markup. *@
+        </p> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <script src="~/js/pages/home/HomeIndex.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+}

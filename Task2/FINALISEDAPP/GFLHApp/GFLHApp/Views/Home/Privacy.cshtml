@@ -1,0 +1,674 @@
+@{
+ // ----- Page Model Setup -----
+    ViewData["Title"] = "Privacy & Terms"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+
+
+<!-- ═══════════════════════ HERO ═══════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+<section class="prv-hero" aria-label="Privacy &amp; Terms header"> @* Renders part of the home page markup. *@
+ @* ----- Styling Section ----- *@
+    <span class="prv-hero__float prv-hero__float--1" aria-hidden="true">🔒</span> @* Renders inline text or badge content. *@
+    <span class="prv-hero__float prv-hero__float--2" aria-hidden="true">🌿</span> @* Renders inline text or badge content. *@
+    <span class="prv-hero__float prv-hero__float--3" aria-hidden="true">📜</span> @* Renders inline text or badge content. *@
+    <span class="prv-hero__float prv-hero__float--4" aria-hidden="true">🛡️</span> @* Renders inline text or badge content. *@
+
+    <div class="prv-hero__inner"> @* Starts a layout container for this section. *@
+        <div class="prv-hero__badge"> @* Starts a layout container for this section. *@
+            <i data-lucide="shield-check" style="width:13px;height:13px;"></i> @* Renders part of the home page markup. *@
+            Your Privacy Matters @* Renders part of the home page markup. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+        <h1 class="prv-hero__title"> @* Renders a heading for this page section. *@
+            Honest about <em>your data.</em><br>Simple as that. @* Renders part of the home page markup. *@
+        </h1> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+        <p class="prv-hero__sub"> @* Renders paragraph text for the user. *@
+            We only collect what we need, we never sell your data, and we give you full control. @* Renders part of the home page markup. *@
+            Below is everything you need to know — written like a human, not a lawyer. @* Renders part of the home page markup. *@
+        </p> @* Closes the matching HTML element. *@
+        <div class="prv-hero__chips"> @* Starts a layout container for this section. *@
+            <span class="prv-chip"><i data-lucide="lock" style="width:13px;height:13px;"></i> GDPR Compliant</span> @* Renders inline text or badge content. *@
+            <span class="prv-chip"><i data-lucide="ban" style="width:13px;height:13px;"></i> Never Sold</span> @* Renders inline text or badge content. *@
+            <span class="prv-chip"><i data-lucide="shield" style="width:13px;height:13px;"></i> Encrypted</span> @* Renders inline text or badge content. *@
+            <span class="prv-chip"><i data-lucide="eye-off" style="width:13px;height:13px;"></i> No Ad Tracking</span> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <div class="prv-hero__wave" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none"> @* Renders part of the home page markup. *@
+            <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="var(--cream)" /> @* Renders paragraph text for the user. *@
+        </svg> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════ LAYOUT ═══════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+<div class="prv-layout" id="main-content"> @* Starts a layout container for this section. *@
+
+    <!-- ── TOC ── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Navigation ----- *@
+    <nav class="prv-toc" aria-label="Table of contents"> @* Starts the navigation area. *@
+ @* ----- Form Fields ----- *@
+        <p class="prv-toc__label"> @* Renders paragraph text for the user. *@
+            <i data-lucide="list" style="width:12px;height:12px;"></i> @* Renders part of the home page markup. *@
+            On this page @* Renders part of the home page markup. *@
+        </p> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+        <ol class="prv-toc__list" id="prv-toc-list"> @* Starts a list of related items. *@
+            <li><a href="#our-promise"   class="prv-toc__link"><span class="prv-toc__dot"></span>Our Promise</a></li> @* Renders one list item. *@
+            <li><a href="#data-collect"  class="prv-toc__link"><span class="prv-toc__dot"></span>Data We Collect</a></li> @* Renders one list item. *@
+            <li><a href="#how-we-use"    class="prv-toc__link"><span class="prv-toc__dot"></span>How We Use It</a></li> @* Renders one list item. *@
+            <li><a href="#cookies"       class="prv-toc__link"><span class="prv-toc__dot"></span>Cookies</a></li> @* Renders one list item. *@
+            <li><a href="#your-rights"   class="prv-toc__link"><span class="prv-toc__dot"></span>Your Rights</a></li> @* Renders one list item. *@
+            <li><a href="#third-parties" class="prv-toc__link"><span class="prv-toc__dot"></span>Third Parties</a></li> @* Renders one list item. *@
+            <li><a href="#retention"     class="prv-toc__link"><span class="prv-toc__dot"></span>Data Retention</a></li> @* Renders one list item. *@
+            <li><a href="#terms-of-use"  class="prv-toc__link"><span class="prv-toc__dot"></span>Terms of Use</a></li> @* Renders one list item. *@
+            <li><a href="#returns"       class="prv-toc__link"><span class="prv-toc__dot"></span>Returns &amp; Refunds</a></li> @* Renders one list item. *@
+            <li><a href="#contact"       class="prv-toc__link"><span class="prv-toc__dot"></span>Contact Us</a></li> @* Renders one list item. *@
+        </ol> @* Closes the matching HTML element. *@
+    </nav> @* Closes the matching HTML element. *@
+
+    <!-- ── Main Content ── --> @* Keeps an existing comment in the Razor file. *@
+    <main class="prv-content"> @* Starts the main page content area. *@
+
+ @* ----- Form Actions ----- *@
+        <!-- Last updated --> @* Keeps an existing comment in the Razor file. *@
+        <div class="prv-updated-banner reveal"> @* Starts a layout container for this section. *@
+            <i data-lucide="calendar-check" style="width:18px;height:18px;color:var(--green);flex-shrink:0;"></i> @* Renders part of the home page markup. *@
+            <span>Last updated: <strong>22 April 2026</strong> &nbsp;·&nbsp; Effective immediately &nbsp;·&nbsp; Version 3.1</span> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+
+
+        <!-- ── 1. Our Promise ── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+        <article class="prv-section reveal" id="our-promise"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--green"> @* Starts a layout container for this section. *@
+                    <i data-lucide="heart-handshake" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Our Promise to You</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">The short version of everything below</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-callout prv-callout--green"> @* Starts a layout container for this section. *@
+                <i data-lucide="shield-check" class="prv-callout__icon" style="width:20px;height:20px;flex-shrink:0;"></i> @* Renders part of the home page markup. *@
+                <p class="prv-callout__text"> @* Renders paragraph text for the user. *@
+                    We run Greenfield Local Hub — a farm-to-door marketplace built on trust. Your data is used @* Renders part of the home page markup. *@
+                    only to deliver your produce and improve your experience. Full stop. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+                <p> @* Renders paragraph text for the user. *@
+                    <strong>Greenfield Local Hub (GFLH)</strong> is committed to protecting your personal information and being @* Renders part of the home page markup. *@
+                    transparent about what we collect and why. This Privacy Policy and our Terms of Use together govern your @* Renders part of the home page markup. *@
+                    use of our website and services. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+                <p> @* Renders paragraph text for the user. *@
+                    We are the data controller for the personal information we hold about you. If you have any questions, @* Renders part of the home page markup. *@
+                    our Data Protection contact can be reached at <a href="mailto:privacy@greenfieldlocalhub.co.uk">privacy@greenfieldlocalhub.co.uk</a>. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 2. Data We Collect ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="data-collect"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--yellow"> @* Starts a layout container for this section. *@
+                    <i data-lucide="database" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Data We Collect</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">Only what we genuinely need</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+                <p>We collect information in three ways: directly from you, automatically when you use our site, and occasionally from trusted third parties.</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <ul class="prv-list"> @* Starts a list of related items. *@
+                <li> @* Renders one list item. *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                    <span><strong>Account data</strong> — your name, email address, and encrypted password when you register.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                    <span><strong>Order data</strong> — your delivery address and order history, including the products you've ordered and their quantities.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                    <span><strong>Usage data</strong> — pages visited, time on site, and browser type, collected anonymously via our analytics tools.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Identity Account ----- *@
+                    <span><strong>Communications</strong> — any messages you send us via our contact form or email, to help us respond to you.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+            </ul> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-callout prv-callout--yellow"> @* Starts a layout container for this section. *@
+                <i data-lucide="info" class="prv-callout__icon" style="width:20px;height:20px;flex-shrink:0;"></i> @* Renders part of the home page markup. *@
+                <p class="prv-callout__text"> @* Renders paragraph text for the user. *@
+                    We never collect sensitive data such as ethnicity, health information, or financial details beyond what's needed to process a payment securely. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 3. How We Use It ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="how-we-use"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--orange"> @* Starts a layout container for this section. *@
+                    <i data-lucide="settings-2" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">How We Use Your Data</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">Lawful basis for each purpose</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+                <p>Your data is only ever used for the following purposes, each backed by a legal basis under UK GDPR:</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <ul class="prv-list"> @* Starts a list of related items. *@
+                <li> @* Renders one list item. *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                    <span><strong>Fulfil your orders</strong> — recording and managing the produce you've ordered through the platform. <em style="color:var(--text-light);font-size:0.85em;">(Contractual necessity)</em></span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                    <span><strong>Manage your account</strong> — keeping your profile, role, order history, and basket working correctly. <em style="color:var(--text-light);font-size:0.85em;">(Contractual necessity)</em></span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Form Actions ----- *@
+                    <span><strong>Google sign-in</strong> — if you choose to sign in with Google, we receive your name and email from Google to create or link your account. <em style="color:var(--text-light);font-size:0.85em;">(Consent)</em></span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+                    <span><strong>Improve our platform</strong> — understanding how the site is used so we can improve it. <em style="color:var(--text-light);font-size:0.85em;">(Legitimate interest)</em></span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+            </ul> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 4. Cookies ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="cookies"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--yellow"> @* Starts a layout container for this section. *@
+                    <i data-lucide="cookie" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Cookies</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">Small files, big transparency</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+                <p> @* Renders paragraph text for the user. *@
+                    Cookies are tiny text files placed on your device. We use a minimal set — only what's needed to keep @* Renders part of the home page markup. *@
+                    the site working and to understand how people use it. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+            <table class="prv-cookie-table" aria-label="Cookies used on this site"> @* Starts a table for structured row data. *@
+ @* ----- Table Layout ----- *@
+                <thead> @* Starts the table header section. *@
+                    <tr> @* Starts one table row. *@
+                        <th scope="col">Cookie</th> @* Renders a table header cell. *@
+                        <th scope="col">Purpose</th> @* Renders a table header cell. *@
+                        <th scope="col">Type</th> @* Renders a table header cell. *@
+                        <th scope="col">Duration</th> @* Renders a table header cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                </thead> @* Closes the matching HTML element. *@
+                <tbody> @* Starts the table body section. *@
+                    <tr> @* Starts one table row. *@
+                        <td>.AspNetCore.Session</td> @* Renders a table data cell. *@
+                        <td>Keeps your basket and login session active</td> @* Renders a table data cell. *@
+                        <td>Essential</td> @* Renders a table data cell. *@
+                        <td>Session</td> @* Renders a table data cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                    <tr> @* Starts one table row. *@
+                        <td>.AspNetCore.Identity</td> @* Renders a table data cell. *@
+                        <td>Authenticates your account across pages</td> @* Renders a table data cell. *@
+                        <td>Essential</td> @* Renders a table data cell. *@
+                        <td>14 days</td> @* Renders a table data cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                    <tr> @* Starts one table row. *@
+                        <td>gflh-dark-mode</td> @* Renders a table data cell. *@
+                        <td>Remembers your dark / light mode preference</td> @* Renders a table data cell. *@
+                        <td>Functional</td> @* Renders a table data cell. *@
+                        <td>1 year</td> @* Renders a table data cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                    <tr> @* Starts one table row. *@
+                        <td>gflh-font-size</td> @* Renders a table data cell. *@
+                        <td>Remembers your preferred text size</td> @* Renders a table data cell. *@
+                        <td>Functional</td> @* Renders a table data cell. *@
+                        <td>1 year</td> @* Renders a table data cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                    <tr> @* Starts one table row. *@
+                        <td>gflh-high-contrast</td> @* Renders a table data cell. *@
+                        <td>Remembers your high-contrast preference</td> @* Renders a table data cell. *@
+                        <td>Functional</td> @* Renders a table data cell. *@
+                        <td>1 year</td> @* Renders a table data cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                    <tr> @* Starts one table row. *@
+                        <td>__Host-</td> @* Renders a table data cell. *@
+                        <td>Anti-forgery token to protect forms from cross-site request forgery</td> @* Renders a table data cell. *@
+                        <td>Essential</td> @* Renders a table data cell. *@
+                        <td>Session</td> @* Renders a table data cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                </tbody> @* Closes the matching HTML element. *@
+            </table> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-callout prv-callout--orange" style="margin-top:20px;"> @* Starts a layout container for this section. *@
+                <i data-lucide="settings" class="prv-callout__icon" style="width:20px;height:20px;flex-shrink:0;"></i> @* Renders part of the home page markup. *@
+                <p class="prv-callout__text"> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    You can disable non-essential cookies at any time through your browser settings. Removing essential cookies @* Renders part of the home page markup. *@
+                    may affect your ability to shop and log in. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 5. Your Rights ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="your-rights"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--pink"> @* Starts a layout container for this section. *@
+                    <i data-lucide="user-check" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Your Rights (GDPR)</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">You're in control — here's how</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+                <p>Under UK GDPR you have a set of powerful rights over your personal data. We take these seriously and aim to respond to all requests within <strong>30 days</strong>.</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <div class="prv-rights"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                <div class="prv-right-card reveal reveal--pop" data-delay="0"> @* Starts a layout container for this section. *@
+                    <div class="prv-right-card__icon"><i data-lucide="eye" style="width:16px;height:16px;"></i></div> @* Starts a layout container for this section. *@
+                    <div> @* Starts a layout container for this section. *@
+                        <p class="prv-right-card__title">Right to Access</p> @* Renders paragraph text for the user. *@
+                        <p class="prv-right-card__desc">Request a copy of all personal data we hold about you, free of charge.</p> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="prv-right-card reveal reveal--pop" data-delay="60"> @* Starts a layout container for this section. *@
+                    <div class="prv-right-card__icon"><i data-lucide="pencil" style="width:16px;height:16px;"></i></div> @* Starts a layout container for this section. *@
+                    <div> @* Starts a layout container for this section. *@
+                        <p class="prv-right-card__title">Right to Rectification</p> @* Renders paragraph text for the user. *@
+                        <p class="prv-right-card__desc">Ask us to correct any inaccurate or incomplete information.</p> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="prv-right-card reveal reveal--pop" data-delay="120"> @* Starts a layout container for this section. *@
+                    <div class="prv-right-card__icon"><i data-lucide="trash-2" style="width:16px;height:16px;"></i></div> @* Starts a layout container for this section. *@
+                    <div> @* Starts a layout container for this section. *@
+                        <p class="prv-right-card__title">Right to Erasure</p> @* Renders paragraph text for the user. *@
+                        <p class="prv-right-card__desc">Request deletion of your data where there is no overriding legal reason to keep it.</p> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="prv-right-card reveal reveal--pop" data-delay="180"> @* Starts a layout container for this section. *@
+                    <div class="prv-right-card__icon"><i data-lucide="pause-circle" style="width:16px;height:16px;"></i></div> @* Starts a layout container for this section. *@
+                    <div> @* Starts a layout container for this section. *@
+                        <p class="prv-right-card__title">Right to Restriction</p> @* Renders paragraph text for the user. *@
+                        <p class="prv-right-card__desc">Ask us to pause processing your data while a dispute is resolved.</p> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="prv-right-card reveal reveal--pop" data-delay="240"> @* Starts a layout container for this section. *@
+                    <div class="prv-right-card__icon"><i data-lucide="download" style="width:16px;height:16px;"></i></div> @* Starts a layout container for this section. *@
+                    <div> @* Starts a layout container for this section. *@
+                        <p class="prv-right-card__title">Right to Portability</p> @* Renders paragraph text for the user. *@
+                        <p class="prv-right-card__desc">Receive your data in a machine-readable format to move to another service.</p> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="prv-right-card reveal reveal--pop" data-delay="300"> @* Starts a layout container for this section. *@
+                    <div class="prv-right-card__icon"><i data-lucide="x-circle" style="width:16px;height:16px;"></i></div> @* Starts a layout container for this section. *@
+                    <div> @* Starts a layout container for this section. *@
+                        <p class="prv-right-card__title">Right to Object</p> @* Renders paragraph text for the user. *@
+                        <p class="prv-right-card__desc">Object to us processing your data for marketing or legitimate interest purposes.</p> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-prose" style="margin-top:24px;"> @* Starts a layout container for this section. *@
+ @* ----- Identity Account ----- *@
+                <p>To exercise any of these rights, email <a href="mailto:privacy@greenfieldlocalhub.co.uk">privacy@greenfieldlocalhub.co.uk</a>. You also have the right to lodge a complaint with the <strong>Information Commissioner's Office (ICO)</strong> at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 6. Third Parties ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="third-parties"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--yellow"> @* Starts a layout container for this section. *@
+                    <i data-lucide="share-2" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Third Parties</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">Who we share data with — and why</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+                <p>We never sell your data. We share it only with carefully chosen partners who help us run our service, each bound by strict data-processing agreements:</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <ul class="prv-list"> @* Starts a list of related items. *@
+                <li> @* Renders one list item. *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Form Actions ----- *@
+                    <span><strong>Google (OAuth sign-in)</strong> — if you sign in with Google, your name and email address are shared with us by Google solely to create or authenticate your account. Google's own privacy policy governs how they handle your data on their side.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                    <span><strong>Our Producers</strong> — your name and the details of your order are visible to the producer fulfilling it, so they know what to pack. Nothing else is shared.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+            </ul> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-callout prv-callout--green"> @* Starts a layout container for this section. *@
+                <i data-lucide="ban" class="prv-callout__icon" style="width:20px;height:20px;flex-shrink:0;"></i> @* Renders part of the home page markup. *@
+                <p class="prv-callout__text"> @* Renders paragraph text for the user. *@
+                    We will never sell, rent, or trade your personal information to any third party for marketing purposes. Ever. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 7. Retention ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="retention"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--cream"> @* Starts a layout container for this section. *@
+                    <i data-lucide="clock" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Data Retention</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">How long we keep things</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <ul class="prv-list"> @* Starts a list of related items. *@
+                <li> @* Renders one list item. *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                    <span><strong>Account data</strong> — retained while your account is active, plus 2 years after closure to resolve any disputes.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                    <span><strong>Order &amp; financial records</strong> — 7 years, as required by UK tax law (HMRC).</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+ @* ----- Styling Section ----- *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+                    <span><strong>Marketing preferences</strong> — until you unsubscribe or withdraw consent.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+                <li> @* Renders one list item. *@
+                    <span class="prv-list__check" aria-hidden="true"><i data-lucide="check" style="width:11px;height:11px;"></i></span> @* Renders inline text or badge content. *@
+                    <span><strong>Anonymous analytics</strong> — aggregated data with no personal identifiers, retained indefinitely for trend analysis.</span> @* Renders inline text or badge content. *@
+                </li> @* Closes the matching HTML element. *@
+            </ul> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 8. Terms of Use ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="terms-of-use"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--green"> @* Starts a layout container for this section. *@
+                    <i data-lucide="file-text" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Terms of Use</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">The rules of the road</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+                <p> @* Renders paragraph text for the user. *@
+                    By using the Greenfield platform, you agree to these terms. If you don't agree, please don't use the service. @* Renders part of the home page markup. *@
+                    We've tried to write them plainly — if anything is unclear, just ask. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+ @* ----- Conditional Rendering ----- *@
+                    <strong>Eligibility.</strong> You must be 18 or over to register for an account. @* Renders part of the home page markup. *@
+                    By creating an account you confirm this. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+                    <strong>Account responsibility.</strong> You are responsible for keeping your login credentials secure. @* Renders part of the home page markup. *@
+                    Don't share your password. If you sign in via Google, your Google account security is your responsibility. @* Renders part of the home page markup. *@
+                    If you suspect unauthorised access, contact us immediately at @* Renders part of the home page markup. *@
+ @* ----- Card Layout ----- *@
+                    <a href="mailto:support@growndifferent.co.uk">support@growndifferent.co.uk</a>. @* Renders a navigation link or action link. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+ @* ----- Search and Filters ----- *@
+                    <strong>Product availability.</strong> All products are subject to seasonal availability. Stock levels shown @* Renders part of the home page markup. *@
+ @* ----- Producer Display ----- *@
+                    on the platform reflect what our producers have listed and may change. We will always aim to keep listings @* Renders part of the home page markup. *@
+                    accurate and up to date. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+                    <strong>Pricing.</strong> All prices are in Great British Pounds (£). We reserve the right to correct @* Renders part of the home page markup. *@
+ @* ----- Order Display ----- *@
+                    pricing errors — if a product is mispriced we will notify you before your order is confirmed. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+                    <strong>Acceptable use.</strong> You must not attempt to gain unauthorised access to our systems, scrape @* Renders part of the home page markup. *@
+ @* ----- Producer Display ----- *@
+                    data, or engage in any activity that could harm other users or our producers. @* Renders part of the home page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                    Violations may result in immediate account suspension. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+                    <strong>Intellectual property.</strong> All content on this site — including text, photography, and the @* Renders part of the home page markup. *@
+                    Greenfield Local Hub brand — is protected by UK copyright law. You may not reproduce or distribute it without written permission. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+                    <strong>Limitation of liability.</strong> We are not liable for losses arising from events outside our reasonable @* Renders part of the home page markup. *@
+ @* ----- Order Display ----- *@
+                    control. Our liability is in any case limited to the value of the order in question. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+                    <strong>Governing law.</strong> These terms are governed by the laws of England and Wales. Any disputes will be @* Renders part of the home page markup. *@
+                    subject to the exclusive jurisdiction of the courts of England and Wales. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 9. Returns & Refunds ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="returns"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--orange"> @* Starts a layout container for this section. *@
+                    <i data-lucide="rotate-ccw" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Returns &amp; Refunds</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">Fresh produce, fair policy</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-callout prv-callout--green"> @* Starts a layout container for this section. *@
+                <i data-lucide="badge-check" class="prv-callout__icon" style="width:20px;height:20px;flex-shrink:0;"></i> @* Renders part of the home page markup. *@
+                <p class="prv-callout__text"> @* Renders paragraph text for the user. *@
+                    If your produce arrives in poor condition — wilted, damaged, or not as described — we will always make it right. @* Renders part of the home page markup. *@
+                    No argument. No hassle. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+                <p> @* Renders paragraph text for the user. *@
+ @* ----- Order Display ----- *@
+                    <strong>Reporting an issue.</strong> If there is a problem with your order — wrong items, missing products, @* Renders part of the home page markup. *@
+ @* ----- Card Layout ----- *@
+                    or damaged produce — contact us at <a href="mailto:support@growndifferent.co.uk">support@growndifferent.co.uk</a> @* Renders part of the home page markup. *@
+ @* ----- Producer Display ----- *@
+                    as soon as possible. We'll work with you and the producer to put it right. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+ @* ----- Form Actions ----- *@
+                    <strong>Cancellations.</strong> If you need to cancel an order, please contact us before it has been confirmed @* Renders part of the home page markup. *@
+                    by the producer. Once a producer has accepted an order, cancellation may not be possible as fresh produce @* Renders part of the home page markup. *@
+ @* ----- Order Display ----- *@
+                    will already be set aside for your delivery. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+                <p> @* Renders paragraph text for the user. *@
+ @* ----- Product Display ----- *@
+                    <strong>Fresh perishables.</strong> Because our products are fresh and perishable, we are unable to accept @* Renders part of the home page markup. *@
+                    returns for change of mind under the Consumer Contracts Regulations 2013 exemption for perishable goods. @* Renders part of the home page markup. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="prv-divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+
+        <!-- ── 10. Contact ── --> @* Keeps an existing comment in the Razor file. *@
+        <article class="prv-section reveal" id="contact"> @* Renders a navigation link or action link. *@
+            <div class="prv-section__header"> @* Starts a layout container for this section. *@
+                <div class="prv-section__icon-wrap prv-section__icon-wrap--pink"> @* Starts a layout container for this section. *@
+                    <i data-lucide="mail" style="width:22px;height:22px;"></i> @* Renders part of the home page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2 class="prv-section__heading">Contact Us</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p class="prv-section__updated">We're real humans who actually reply</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-prose"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                <p>Got a question about this policy, a data request, or just want to say hello? We're here.</p> @* Renders paragraph text for the user. *@
+                <p> @* Renders paragraph text for the user. *@
+                    <strong>Greenfield Local Hub</strong><br> @* Renders part of the home page markup. *@
+                    <a href="mailto:privacy@greenfieldlocalhub.co.uk">privacy@greenfieldlocalhub.co.uk</a> — privacy &amp; data requests<br> @* Renders a navigation link or action link. *@
+ @* ----- Card Layout ----- *@
+                    <a href="mailto:support@growndifferent.co.uk">support@growndifferent.co.uk</a> — orders &amp; general help @* Renders a navigation link or action link. *@
+                </p> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="prv-cta-strip reveal"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h3 class="prv-cta-strip__title">Questions? We'd love to hear from you.</h3> @* Renders a heading for this page section. *@
+ @* ----- Styling Section ----- *@
+                <p class="prv-cta-strip__sub">We aim to reply within one working day. Usually faster.</p> @* Renders paragraph text for the user. *@
+                <div class="prv-cta-strip__actions"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+                    <a href="mailto:support@growndifferent.co.uk" class="pw-btn pw-btn--ghost-dark pw-btn--lg"> @* Renders a navigation link or action link. *@
+                        <i data-lucide="mail" style="width:16px;height:16px;"></i> @* Renders part of the home page markup. *@
+ @* ----- Identity Account ----- *@
+                        Email Us @* Renders part of the home page markup. *@
+                    </a> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="pw-btn pw-btn--ghost-dark pw-btn--lg"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                        <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> @* Renders part of the home page markup. *@
+                        Back to Home @* Renders part of the home page markup. *@
+                    </a> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </article> @* Closes the matching HTML element. *@
+
+    </main> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <script src="~/js/pages/home/HomePrivacy.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Styling Section ----- *@
+    <link rel="stylesheet" href="~/css/pages/home/HomePrivacy.css" asp-append-version="true" /> @* Renders one list item. *@
+}

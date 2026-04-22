@@ -1,0 +1,56 @@
+/* ----- Grid layout ----- */
+.adm-settings-grid { display: grid; grid-template-columns: 1fr 360px; gap: 20px; align-items: start; } /* Styles part of the AdminDashboardSettings page or component. */
+@media (max-width: 900px) { .adm-settings-grid { grid-template-columns: 1fr; } } /* Starts responsive rules for this viewport range. */
+
+/* ----- Theme variables ----- */
+.adm-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 18px; } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-card__head { display: flex; align-items: center; gap: 9px; padding: 14px 20px; background: var(--cream); border-bottom: 1px solid var(--border); } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-card__title { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text); margin: 0; display: flex; align-items: center; gap: 8px; } /* Styles part of the AdminDashboardSettings page or component. */
+/* ----- Base layout ----- */
+.adm-card__body { padding: 18px 20px; } /* Styles part of the AdminDashboardSettings page or component. */
+
+/* ----- Theme variables ----- */
+.adm-stat-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; } /* Styles part of the AdminDashboardSettings page or component. */
+/* ----- Card layout ----- */
+.adm-stat-row:last-child { border-bottom: none; } /* Styles part of the AdminDashboardSettings page or component. */
+/* ----- Theme variables ----- */
+.adm-stat-row__label { color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 7px; } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-stat-row__val   { font-weight: 700; color: var(--text); } /* Styles part of the AdminDashboardSettings page or component. */
+
+.adm-role-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: var(--r-full); font-size: 12px; font-weight: 700; margin: 3px; } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-role-chip--admin    { background: var(--purple-100); color: var(--purple); } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-role-chip--producer { background: var(--green-100); color: var(--green); } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-role-chip--default  { background: var(--cream-2); color: var(--text-muted); } /* Styles part of the AdminDashboardSettings page or component. */
+
+/* ----- Grid layout ----- */
+.adm-create-role-form { display: flex; gap: 8px; margin-top: 14px; } /* Styles part of the AdminDashboardSettings page or component. */
+/* ----- Forms ----- */
+.adm-role-input { /* Starts styles for the .adm-role-input selector. */
+    /* ----- Grid layout ----- */
+    flex: 1; height: 38px; padding: 0 12px; /* Sets the flex style for this rule. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); font-size: 13px; color: var(--text); /* Sets the font family. */
+    background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-sm); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    outline: none; transition: border-color .15s; /* Sets the outline style for this rule. */
+}
+/* ----- Theme variables ----- */
+.adm-role-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-100); } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-btn-create { height: 38px; padding: 0 16px; background: var(--green); color: #fff; border: none; border-radius: var(--r-sm); font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-btn-create:hover { background: var(--green-700); } /* Styles part of the AdminDashboardSettings page or component. */
+
+.adm-link-row { display: flex; align-items: center; gap: 9px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; } /* Styles part of the AdminDashboardSettings page or component. */
+/* ----- Grid layout ----- */
+.adm-link-row:last-child { border-bottom: none; } /* Styles part of the AdminDashboardSettings page or component. */
+/* ----- Theme variables ----- */
+.adm-link-row a { color: var(--green); font-weight: 600; text-decoration: none; margin-left: auto; font-size: 12px; } /* Styles part of the AdminDashboardSettings page or component. */
+.adm-link-row a:hover { color: var(--green-700); text-decoration: underline; } /* Styles part of the AdminDashboardSettings page or component. */
+
+.adm-info-box { /* Starts styles for the .adm-info-box selector. */
+    background: var(--green-100); border: 1.5px solid var(--green-200); /* Sets the element background treatment. */
+    border-radius: var(--r-sm); padding: 14px 16px; /* Rounds the element corners. */
+    font-size: 13px; color: var(--green-800); line-height: 1.6; /* Sets the text size. */
+    margin-bottom: 18px; /* Sets the margin-bottom style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; gap: 10px; /* Controls how the element participates in layout. */
+}

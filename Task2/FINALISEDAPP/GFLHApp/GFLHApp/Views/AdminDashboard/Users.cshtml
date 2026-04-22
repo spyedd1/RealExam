@@ -1,0 +1,186 @@
+ @* ----- Imports and Services ----- *@
+ @* Imports a namespace for this Razor file. *@
+@using GFLHApp.Controllers
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model IEnumerable<AdminUserRow>
+ @* ----- Imports and Services ----- *@
+ @* Imports a namespace for this Razor file. *@
+@using System.Linq
+@{
+ // ----- Page Model Setup -----
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Chooses the layout used to render this page.
+    ViewData["Title"] = "Users"; // Sets the browser and page title for this view.
+    ViewData["AdminSection"] = "users"; // Reads view data supplied by the controller.
+    string search  = ViewBag.Search ?? ""; // Reads view data supplied by the controller.
+    string role    = ViewBag.Role   ?? ""; // Reads view data supplied by the controller.
+    var    allRoles= (ViewBag.AllRoles as IEnumerable<string>) ?? Enumerable.Empty<string>(); // Reads view data supplied by the controller.
+}
+
+
+
+ @* ----- Form Setup ----- *@
+<form method="get" action="/AdminDashboard/Users"> @* Starts the form that submits this page's user input. *@
+ @* ----- Search and Filters ----- *@
+    <div class="adm-filters"> @* Starts a layout container for this section. *@
+        <div class="adm-filter-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <label>Search</label> @* Renders text identifying a form field. *@
+            <input name="search" class="adm-filter-input" value="@search" placeholder="Email or username…" style="width:260px;" /> @* Renders a user input field. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Search and Filters ----- *@
+        <div class="adm-filter-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <label>Role</label> @* Renders text identifying a form field. *@
+            <select name="role" class="adm-filter-select"> @* Renders a dropdown selection field. *@
+                <option value="">All roles</option> @* Renders one dropdown option. *@
+ @* ----- Loop Rendering ----- *@
+                @foreach (var r in allRoles) @* Loops through the collection and renders each item. *@
+                { <option value="@r" selected="@(role==r)">@r</option> } @* Renders part of the admin dashboard page markup. *@
+            </select> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+        <button type="submit" class="adm-btn-filter"><i data-lucide="search" style="width:13px;height:13px;" aria-hidden="true"></i>Search</button> @* Renders a button for the user action. *@
+ @* ----- Search and Filters ----- *@
+        @if (!string.IsNullOrEmpty(search) || !string.IsNullOrEmpty(role)) @* Conditionally renders this block when the check passes. *@
+ @* ----- Form Actions ----- *@
+        { <a href="/AdminDashboard/Users" class="adm-btn-clear"><i data-lucide="x" style="width:13px;height:13px;" aria-hidden="true"></i>Clear</a> } @* Renders part of the admin dashboard page markup. *@
+    </div> @* Closes the matching HTML element. *@
+</form> @* Closes the form after its fields and actions. *@
+
+ @* ----- Card Layout ----- *@
+<div class="adm-card"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+    <div class="adm-results-info">@Model.Count() user@(Model.Count() == 1 ? "" : "s") found</div> @* Starts a layout container for this section. *@
+
+    @if (Model.Any()) @* Conditionally renders this block when the check passes. *@
+    {
+        <div style="overflow-x:auto;"> @* Starts a layout container for this section. *@
+ @* ----- Table Layout ----- *@
+            <table class="adm-table"> @* Starts a table for structured row data. *@
+                <thead> @* Starts the table header section. *@
+                    <tr> @* Starts one table row. *@
+                        <th></th> @* Renders a table header cell. *@
+                        <th>User</th> @* Renders a table header cell. *@
+                        <th>Roles</th> @* Renders a table header cell. *@
+                        <th>Orders</th> @* Renders a table header cell. *@
+                        <th>Email confirmed</th> @* Renders a table header cell. *@
+                        <th>Assign role</th> @* Renders a table header cell. *@
+                    </tr> @* Closes the matching HTML element. *@
+                </thead> @* Closes the matching HTML element. *@
+                <tbody> @* Starts the table body section. *@
+ @* ----- Card Layout ----- *@
+                @foreach (var row in Model) @* Loops through the collection and renders each item. *@
+                {
+                    var u = row.User; @* Renders part of the admin dashboard page markup. *@
+                    string avatarMod = row.Roles.Contains("Admin") ? "adm-avatar--purple" @* Renders part of the admin dashboard page markup. *@
+                                     : row.Roles.Contains("Producer") ? "adm-avatar--orange" : ""; @* Renders part of the admin dashboard page markup. *@
+ @* ----- Table Layout ----- *@
+                    <tr> @* Starts one table row. *@
+                        <td style="padding:8px 8px 8px 14px;"> @* Renders a table data cell. *@
+ @* ----- Conditional Rendering ----- *@
+                            <div class="adm-avatar @avatarMod">@(u.Email?.Substring(0,1).ToUpper() ?? "?")</div> @* Starts a layout container for this section. *@
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td> @* Renders a table data cell. *@
+ @* ----- Identity Account ----- *@
+                            <div style="font-weight:600;">@u.Email</div> @* Starts a layout container for this section. *@
+                            <div style="font-size:11px;color:var(--text-light);">@u.Id.Substring(0,8)…</div> @* Starts a layout container for this section. *@
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td> @* Renders a table data cell. *@
+ @* ----- Card Layout ----- *@
+                            @if (row.Roles.Any()) @* Conditionally renders this block when the check passes. *@
+                            {
+                                @foreach (var r in row.Roles) @* Loops through the collection and renders each item. *@
+                                {
+ @* ----- Conditional Rendering ----- *@
+                                    string cm = r == "Admin" ? "adm-role-chip--admin" @* Renders part of the admin dashboard page markup. *@
+                                              : r == "Producer" ? "adm-role-chip--producer" @* Renders part of the admin dashboard page markup. *@
+                                              : "adm-role-chip--default"; @* Renders part of the admin dashboard page markup. *@
+ @* ----- Styling Section ----- *@
+                                    <span class="adm-role-chip @cm"> @* Renders inline text or badge content. *@
+                                        @r @* Outputs Razor data or executes Razor logic. *@
+ @* ----- Navigation ----- *@
+                                        <form asp-action="RemoveRole" method="post" style="display:inline;" @* Starts the form that submits this page's user input. *@
+ @* ----- Conditional Rendering ----- *@
+                                              onsubmit="return confirm('Remove @r from @u.Email?');"> @* Renders part of the admin dashboard page markup. *@
+                                            @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+ @* ----- Form Fields ----- *@
+                                            <input type="hidden" name="userId"   value="@u.Id" /> @* Renders a user input field. *@
+                                            <input type="hidden" name="roleName" value="@r" /> @* Renders a user input field. *@
+ @* ----- Form Actions ----- *@
+                                            <button type="submit" class="adm-role-remove" title="Remove role">×</button> @* Renders a button for the user action. *@
+                                        </form> @* Closes the form after its fields and actions. *@
+                                    </span> @* Closes the matching HTML element. *@
+                                }
+                            }
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+                            {
+                                <span style="font-size:12px;color:var(--text-light);">No roles</span> @* Renders inline text or badge content. *@
+                            }
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td style="font-weight:600;">@row.OrderCount</td> @* Renders a table data cell. *@
+                        <td> @* Renders a table data cell. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (u.EmailConfirmed) @* Conditionally renders this block when the check passes. *@
+                            { <span style="color:var(--green);font-size:13px;font-weight:700;">✓ Yes</span> } @* Renders part of the admin dashboard page markup. *@
+                            else @* Renders the fallback branch for the previous condition. *@
+                            { <span style="color:var(--text-light);font-size:13px;">Pending</span> } @* Renders part of the admin dashboard page markup. *@
+                        </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                        <td> @* Renders a table data cell. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (allRoles.Any()) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Navigation ----- *@
+                                <form asp-action="AssignRole" method="post" class="adm-role-form"> @* Starts the form that submits this page's user input. *@
+                                    @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+ @* ----- Form Fields ----- *@
+                                    <input type="hidden" name="userId" value="@u.Id" /> @* Renders a user input field. *@
+                                    <select name="roleName" class="adm-role-select"> @* Renders a dropdown selection field. *@
+ @* ----- Loop Rendering ----- *@
+                                        @foreach (var r in allRoles) @* Loops through the collection and renders each item. *@
+                                        { <option value="@r">@r</option> } @* Renders part of the admin dashboard page markup. *@
+                                    </select> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                                    <button type="submit" class="adm-role-btn"> @* Renders a button for the user action. *@
+                                        <i data-lucide="plus" style="width:11px;height:11px;" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+                                        Assign @* Renders part of the admin dashboard page markup. *@
+                                    </button> @* Closes the matching HTML element. *@
+                                </form> @* Closes the form after its fields and actions. *@
+                            }
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Form Actions ----- *@
+                                <a href="/AdminDashboard/Settings" style="font-size:12px;color:var(--green);">Create roles first</a> @* Renders a navigation link or action link. *@
+                            }
+                        </td> @* Closes the matching HTML element. *@
+                    </tr> @* Closes the matching HTML element. *@
+                }
+                </tbody> @* Closes the matching HTML element. *@
+            </table> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    }
+ @* ----- Conditional Rendering ----- *@
+    else @* Renders the fallback branch for the previous condition. *@
+    {
+        <div style="padding:48px;text-align:center;color:var(--text-muted);"> @* Starts a layout container for this section. *@
+            <i data-lucide="users" style="width:40px;height:40px;display:block;margin:0 auto 10px;opacity:.3;" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+ @* ----- Search and Filters ----- *@
+            <p style="font-size:14px;margin:0;">No users match your filters.</p> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+    }
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Card Layout ----- *@
+    <script src="~/js/pages/admindashboard/AdminDashboardUsers.js" asp-append-version="true"></script>  } @* Starts client-side script for this page. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/admindashboard/AdminDashboardUsers.css" asp-append-version="true" /> @* Renders one list item. *@
+}

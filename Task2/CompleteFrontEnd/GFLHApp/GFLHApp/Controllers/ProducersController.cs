@@ -1,12 +1,15 @@
 ﻿using GFLHApp.Data;
 using GFLHApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,17 +17,23 @@ namespace GFLHApp.Controllers
 {
     public class ProducersController : Controller
     {
+        private static readonly string[] AllowedImageExtensions = [".jpg", ".jpeg", ".png", ".webp"];
+        private const long MaxImageUploadBytes = 5 * 1024 * 1024;
+
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IWebHostEnvironment _environment;
 
         public ProducersController(ApplicationDbContext context,
                                    UserManager<IdentityUser> userManager,
-                                   RoleManager<IdentityRole> roleManager)
+                                   RoleManager<IdentityRole> roleManager,
+                                   IWebHostEnvironment environment)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            _environment = environment;
         }
 
         // GET: Producers
@@ -51,6 +60,7 @@ namespace GFLHApp.Controllers
         // GET: Producers/Create
         public IActionResult Create()
         {
+            PopulateExistingProducerImages();
             return View();
         }
 
@@ -60,23 +70,28 @@ namespace GFLHApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        
+
         public async Task<IActionResult> Create(
-            [Bind("ProducersId,ProducerName,ProducerEmail,ProducerInformation,IsVATRegistered,VATNumber")]
+            [Bind("ProducersId,ProducerName,ProducerEmail,ProducerInformation,ImagePath,IsVATRegistered,VATNumber")]
             Producers producers,
+            IFormFile? imageUpload,
             string AccountPassword) // Bind the form fields to the Producers model and also accept an additional parameter for the account password, which is not part of the Producers model but is needed to create the associated Identity user account. 
         {
-            
-            
+
+
 
             ModelState.Remove("UserId"); // Remove validation for UserId since it will be set programmatically after creating the Identity user account. This prevents model validation from failing due to the UserId being null at this point.
             ModelState.Remove("ProducerOrders"); // Remove validation for ProducerOrders since it's a navigation property and not part of the form input. This prevents model validation from failing due to ProducerOrders being null at this point.
+            NormalizeProducer(producers);
+            ValidateProducerFields(producers);
+            ValidateImageUpload(imageUpload);
 
             if (!ModelState.IsValid) // If the model state is invalid, log the validation errors to the debug output and return the view with the current producers object to display validation messages to the user.
             {
                 foreach (var kvp in ModelState) // Iterate through the model state dictionary to find any validation errors and log them for debugging purposes. This can help identify why the model state is invalid when testing the form submission.
                     foreach (var err in kvp.Value.Errors) // For each entry in the model state, check if there are any errors and log the error messages along with the corresponding field name (key) to the debug output.
                         System.Diagnostics.Debug.WriteLine($"{kvp.Key}: {err.ErrorMessage}"); // Log the field name (key) and the associated error message to the debug output. This can help developers understand which fields are causing validation issues when the form is submitted with invalid data.
+                PopulateExistingProducerImages();
                 return View(producers); // Return the view with the current producers object to display validation messages to the user. This allows the user to correct any errors in the form and resubmit it.
             }
 
@@ -105,7 +120,10 @@ namespace GFLHApp.Controllers
                 ModelState.AddModelError("AccountPassword", "A password is required.");
 
             if (!ModelState.IsValid)
+            {
+                PopulateExistingProducerImages();
                 return View(producers);
+            }
 
             // --- Create the Identity user account ---
             var identityUser = new IdentityUser
@@ -121,6 +139,7 @@ namespace GFLHApp.Controllers
             {
                 foreach (var error in createResult.Errors)
                     ModelState.AddModelError("AccountPassword", error.Description);
+                PopulateExistingProducerImages();
                 return View(producers);
             }
 
@@ -132,6 +151,10 @@ namespace GFLHApp.Controllers
 
             // --- Link the new Identity userId to the producer record ---
             producers.UserId = identityUser.Id;
+            if (imageUpload != null)
+            {
+                producers.ImagePath = await SaveProducerImageAsync(imageUpload);
+            }
 
             _context.Add(producers);
             await _context.SaveChangesAsync();
@@ -149,6 +172,7 @@ namespace GFLHApp.Controllers
             var producers = await _context.Producers.FindAsync(id);
             if (producers == null) return NotFound();
 
+            PopulateExistingProducerImages();
             return View(producers);
         }
 
@@ -157,10 +181,19 @@ namespace GFLHApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,
-            [Bind("ProducersId,UserId,ProducerName,ProducerEmail,ProducerInformation,IsVATRegistered,VATNumber")]
-            Producers producers)
+            [Bind("ProducersId,UserId,ProducerName,ProducerEmail,ProducerInformation,ImagePath,IsVATRegistered,VATNumber")]
+            Producers producers,
+            IFormFile? imageUpload,
+            string? existingImagePath)
         {
             if (id != producers.ProducersId) return NotFound();
+
+            var existingProducer = await _context.Producers.FirstOrDefaultAsync(p => p.ProducersId == id);
+            if (existingProducer == null) return NotFound();
+
+            NormalizeProducer(producers);
+            ValidateProducerFields(producers);
+            ValidateImageUpload(imageUpload);
 
             // Uniqueness checks excluding the current record
             bool emailInUse = await _context.Producers
@@ -184,11 +217,35 @@ namespace GFLHApp.Controllers
                     ModelState.AddModelError("VATNumber", "This VAT number is already registered to another producer.");
             }
 
-            if (!ModelState.IsValid) return View(producers);
+            if (!ModelState.IsValid)
+            {
+                if (string.IsNullOrWhiteSpace(producers.ImagePath))
+                {
+                    producers.ImagePath = existingProducer.ImagePath ?? existingImagePath;
+                }
+
+                PopulateExistingProducerImages();
+                return View(producers);
+            }
 
             try
             {
-                _context.Update(producers);
+                existingProducer.UserId = producers.UserId;
+                existingProducer.ProducerName = producers.ProducerName;
+                existingProducer.ProducerEmail = producers.ProducerEmail;
+                existingProducer.ProducerInformation = producers.ProducerInformation;
+                existingProducer.IsVATRegistered = producers.IsVATRegistered;
+                existingProducer.VATNumber = producers.IsVATRegistered ? producers.VATNumber : null;
+
+                if (imageUpload != null)
+                {
+                    existingProducer.ImagePath = await SaveProducerImageAsync(imageUpload);
+                }
+                else if (!string.IsNullOrWhiteSpace(producers.ImagePath))
+                {
+                    existingProducer.ImagePath = producers.ImagePath;
+                }
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -231,6 +288,124 @@ namespace GFLHApp.Controllers
         private bool ProducersExists(int id)
         {
             return _context.Producers.Any(e => e.ProducersId == id);
+        }
+
+        private void PopulateExistingProducerImages()
+        {
+            var imagesRoot = Path.Combine(_environment.WebRootPath, "images", "producers");
+            var imagePaths = Directory.Exists(imagesRoot)
+                ? Directory.EnumerateFiles(imagesRoot, "*.*", SearchOption.TopDirectoryOnly)
+                    .Where(path => AllowedImageExtensions.Contains(Path.GetExtension(path).ToLowerInvariant()))
+                    .Select(path => "/images/producers/" + Path.GetFileName(path))
+                    .OrderBy(path => path)
+                    .ToList()
+                : [];
+
+            ViewBag.ExistingImages = new SelectList(imagePaths);
+        }
+
+        private void NormalizeProducer(Producers producers)
+        {
+            producers.ProducerName = producers.ProducerName?.Trim() ?? string.Empty;
+            producers.ProducerEmail = producers.ProducerEmail?.Trim() ?? string.Empty;
+            producers.ProducerInformation = producers.ProducerInformation?.Trim() ?? string.Empty;
+            producers.ImagePath = NormalizeImagePath(producers.ImagePath);
+            producers.VATNumber = producers.IsVATRegistered
+                ? producers.VATNumber?.Trim().ToUpperInvariant()
+                : null;
+        }
+
+        private void ValidateProducerFields(Producers producers)
+        {
+            if (string.IsNullOrWhiteSpace(producers.ProducerName))
+            {
+                ModelState.AddModelError(nameof(producers.ProducerName), "Producer name is required.");
+            }
+            else if (producers.ProducerName.Length < 3 || producers.ProducerName.Length > 100)
+            {
+                ModelState.AddModelError(nameof(producers.ProducerName), "Producer name must be between 3 and 100 characters.");
+            }
+
+            if (string.IsNullOrWhiteSpace(producers.ProducerEmail))
+            {
+                ModelState.AddModelError(nameof(producers.ProducerEmail), "Email address is required.");
+            }
+            else if (producers.ProducerEmail.Length > 150 || !producers.ProducerEmail.Contains('@'))
+            {
+                ModelState.AddModelError(nameof(producers.ProducerEmail), "Enter a valid email address.");
+            }
+
+            if (string.IsNullOrWhiteSpace(producers.ProducerInformation))
+            {
+                ModelState.AddModelError(nameof(producers.ProducerInformation), "Producer information is required.");
+            }
+            else if (producers.ProducerInformation.Length < 10 || producers.ProducerInformation.Length > 500)
+            {
+                ModelState.AddModelError(nameof(producers.ProducerInformation), "Producer information must be between 10 and 500 characters.");
+            }
+
+            if (producers.IsVATRegistered)
+            {
+                if (string.IsNullOrWhiteSpace(producers.VATNumber))
+                {
+                    ModelState.AddModelError(nameof(producers.VATNumber), "VAT number is required if VAT registered.");
+                }
+                else if (!System.Text.RegularExpressions.Regex.IsMatch(producers.VATNumber, "^GB[0-9]{9}$"))
+                {
+                    ModelState.AddModelError(nameof(producers.VATNumber), "VAT number must start with GB followed by exactly 9 digits.");
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(producers.ImagePath)
+                && !producers.ImagePath.StartsWith("/")
+                && !Uri.IsWellFormedUriString(producers.ImagePath, UriKind.Absolute))
+            {
+                ModelState.AddModelError(nameof(producers.ImagePath), "Use a relative web path like /images/producers/example.jpg or a full URL.");
+            }
+        }
+
+        private void ValidateImageUpload(IFormFile? imageUpload)
+        {
+            if (imageUpload == null || imageUpload.Length == 0)
+            {
+                return;
+            }
+
+            var extension = Path.GetExtension(imageUpload.FileName).ToLowerInvariant();
+            if (!AllowedImageExtensions.Contains(extension))
+            {
+                ModelState.AddModelError("imageUpload", "Upload a JPG, PNG, or WebP image.");
+            }
+
+            if (imageUpload.Length > MaxImageUploadBytes)
+            {
+                ModelState.AddModelError("imageUpload", "Image files must be smaller than 5 MB.");
+            }
+        }
+
+        private async Task<string> SaveProducerImageAsync(IFormFile imageUpload)
+        {
+            var uploadsFolder = Path.Combine(_environment.WebRootPath, "images", "producers");
+            Directory.CreateDirectory(uploadsFolder);
+
+            var extension = Path.GetExtension(imageUpload.FileName).ToLowerInvariant();
+            var fileName = $"producer-{Guid.NewGuid():N}{extension}";
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            await using var stream = new FileStream(filePath, FileMode.Create);
+            await imageUpload.CopyToAsync(stream);
+
+            return $"/images/producers/{fileName}";
+        }
+
+        private static string? NormalizeImagePath(string? imagePath)
+        {
+            if (string.IsNullOrWhiteSpace(imagePath))
+            {
+                return null;
+            }
+
+            return imagePath.Trim();
         }
     }
 }

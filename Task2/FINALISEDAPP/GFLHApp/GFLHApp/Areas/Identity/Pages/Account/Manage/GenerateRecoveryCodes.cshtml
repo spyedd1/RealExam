@@ -1,0 +1,53 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model GenerateRecoveryCodesModel
+@{
+    ViewData["Title"] = "Generate Recovery Codes"; // Sets the browser and page title for this view.
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication; // Reads view data supplied by the controller.
+}
+
+ @* ----- Status Messages ----- *@
+<partial name="_StatusMessage" for="StatusMessage" /> @* Renders a shared partial view here. *@
+
+ @* ----- Card Layout ----- *@
+<span class="pw-manage-content__eyebrow">Security · Two-Factor Auth</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+<h2 class="pw-manage-content__title">Generate Recovery Codes</h2> @* Renders a heading for this page section. *@
+ @* ----- Identity Account ----- *@
+<p class="pw-manage-content__sub">Recovery codes let you sign in if you ever lose access to your authenticator app.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Status Messages ----- *@
+<div class="pw-manage-alert pw-manage-alert--warning" role="alert"> @* Starts a layout container for this section. *@
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> @* Renders part of the identity page markup. *@
+    <div> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+        <strong>Save your recovery codes somewhere safe.</strong><br> @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+        If you lose your device and don't have recovery codes, you will be locked out of your account. @* Renders part of the identity page markup. *@
+ @* ----- Form Setup ----- *@
+        Generating new codes does <em>not</em> change your authenticator app key — to change that, <a asp-page="./ResetAuthenticator" class="pw-link" style="font-size:inherit;">reset your authenticator</a>. @* Builds a link or form target using MVC routing. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+<div class="pw-danger-zone"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+    <h3 class="pw-danger-zone__title"> @* Renders a heading for this page section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> @* Renders part of the identity page markup. *@
+        Generate new codes @* Renders part of the identity page markup. *@
+    </h3> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+    <p class="pw-danger-zone__desc">Generating new codes will <strong>invalidate all existing recovery codes</strong>. Make sure to save the new ones immediately.</p> @* Renders paragraph text for the user. *@
+ @* ----- Form Setup ----- *@
+    <form method="post"> @* Starts the form that submits this page's user input. *@
+ @* ----- Form Actions ----- *@
+        <button class="pw-btn pw-btn--danger pw-btn--md" type="submit"> @* Renders a button for the user action. *@
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg> @* Renders part of the identity page markup. *@
+ @* ----- Identity Account ----- *@
+            Generate recovery codes @* Renders part of the identity page markup. *@
+        </button> @* Closes the matching HTML element. *@
+    </form> @* Closes the form after its fields and actions. *@
+</div> @* Closes the matching HTML element. *@

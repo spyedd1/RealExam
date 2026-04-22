@@ -1,0 +1,132 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model LoginModel
+@{
+    ViewData["Title"] = "Sign in"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-auth-page"> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--1"></div> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--2"></div> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--3"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+    <div class="pw-auth-card"> @* Starts a layout container for this section. *@
+        <div class="pw-auth-card__header"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-card__brand"> @* Starts a layout container for this section. *@
+                <i data-lucide="sprout" style="width:18px;height:18px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+                Greenfield @* Renders part of the identity page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h1 class="pw-auth-card__title">Welcome back</h1> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="pw-auth-card__subtitle">Sign in to your farm account</p> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="pw-auth-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+            <form id="account" method="post" class="pw-auth-form"> @* Starts the form that submits this page's user input. *@
+ @* ----- Status Messages ----- *@
+                <div asp-validation-summary="ModelOnly" class="pw-auth-errors" role="alert"></div> @* Shows page-level validation messages. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="form-floating mb-3"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="you@example.com" /> @* Binds this input to the matching model property. *@
+                    <label asp-for="Input.Email">Email address</label> @* Renders a label tied to the model field. *@
+ @* ----- Status Messages ----- *@
+                    <span asp-validation-for="Input.Email" class="pw-auth-field-error"></span> @* Shows validation feedback for this model field. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="form-floating mb-3 pw-auth-input-wrap"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Password" id="loginPassword" style="padding-right:48px" /> @* Binds this input to the matching model property. *@
+                    <label asp-for="Input.Password">Password</label> @* Renders a label tied to the model field. *@
+                    <button type="button" class="pw-auth-eye" aria-label="Toggle password visibility" onclick="togglePw('loginPassword',this)"> @* Renders a button for the user action. *@
+                        <i data-lucide="eye" style="width:17px;height:17px;stroke-width:2"></i> @* Renders part of the identity page markup. *@
+                    </button> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                    <span asp-validation-for="Input.Password" class="pw-auth-field-error"></span> @* Shows validation feedback for this model field. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                <div class="pw-auth-check-row mb-3"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <input class="form-check-input" asp-for="Input.RememberMe" type="checkbox" id="rememberMe" /> @* Binds this input to the matching model property. *@
+                    <label for="rememberMe">Remember me</label> @* Renders text identifying a form field. *@
+ @* ----- Form Setup ----- *@
+                    <a asp-page="./ForgotPassword" style="margin-left:auto;font-size:13px;color:var(--green-700);font-weight:600;">Forgot password?</a> @* Builds a link or form target using MVC routing. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Actions ----- *@
+                <button id="login-submit" type="submit" class="pw-btn pw-btn--primary pw-btn--lg pw-auth-submit"> @* Renders a button for the user action. *@
+                    <i data-lucide="log-in" style="width:17px;height:17px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+                    Sign in @* Renders part of the identity page markup. *@
+                </button> @* Closes the matching HTML element. *@
+            </form> @* Closes the form after its fields and actions. *@
+
+ @* ----- Loop Rendering ----- *@
+            @if ((Model.ExternalLogins?.Count ?? 0) > 0) @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Styling Section ----- *@
+                <div class="pw-auth-divider">or continue with</div> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post"> @* Starts the form that submits this page's user input. *@
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                        @foreach (var provider in Model.ExternalLogins!) @* Loops through the collection and renders each item. *@
+                        {
+ @* ----- Form Actions ----- *@
+                            <button type="submit" class="pw-btn pw-btn--ghost pw-btn--md" name="provider" value="@provider.Name" @* Renders a button for the user action. *@
+                                    title="Sign in with @provider.DisplayName" style="flex:1;min-width:120px;"> @* Renders part of the identity page markup. *@
+                                @provider.DisplayName @* Outputs Razor data or executes Razor logic. *@
+                            </button> @* Closes the matching HTML element. *@
+                        }
+                    </div> @* Closes the matching HTML element. *@
+                </form> @* Closes the form after its fields and actions. *@
+            }
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <div class="pw-auth-card__footer"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-link-row"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                <span>New to Greenfield?</span> @* Renders inline text or badge content. *@
+ @* ----- Form Setup ----- *@
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create an account</a> @* Builds a link or form target using MVC routing. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-auth-link-row"> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a> @* Builds a link or form target using MVC routing. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <partial name="_ValidationScriptsPartial" /> @* Renders a shared partial view here. *@
+    <script> @* Starts client-side script for this page. *@
+ @* ----- Form Actions ----- *@
+        function togglePw(id, btn) { @* Renders part of the identity page markup. *@
+            const input = document.getElementById(id); @* Renders part of the identity page markup. *@
+            const isText = input.type === 'text'; @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+            input.type = isText ? 'password' : 'text'; @* Renders part of the identity page markup. *@
+ @* ----- Form Actions ----- *@
+            btn.innerHTML = isText @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                ? '<i data-lucide="eye" style="width:17px;height:17px;stroke-width:2"></i>' @* Renders part of the identity page markup. *@
+                : '<i data-lucide="eye-off" style="width:17px;height:17px;stroke-width:2"></i>'; @* Renders part of the identity page markup. *@
+ @* ----- Form Actions ----- *@
+            lucide.createIcons(); @* Renders part of the identity page markup. *@
+        }
+    </script> @* Closes the matching HTML element. *@
+}

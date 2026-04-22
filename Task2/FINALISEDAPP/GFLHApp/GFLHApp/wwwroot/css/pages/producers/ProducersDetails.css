@@ -1,0 +1,932 @@
+/* ----- Hero section ----- */
+.pd-hero { /* Starts styles for the .pd-hero selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    background: #f0fdf4; /* Sets the element background treatment. */
+    padding: 8rem 1.5rem 5rem; /* Sets spacing inside the element. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    text-align: center; /* Sets the text-align style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.pd-hero__blob { /* Starts styles for the .pd-hero__blob selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    border-radius: 50%; /* Rounds the element corners. */
+    filter: blur(80px); /* Sets the filter style for this rule. */
+    /* ----- Animation ----- */
+    opacity: .55; /* Controls element transparency. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.pd-hero__blob--a { /* Starts styles for the .pd-hero__blob--a selector. */
+    /* ----- Tables ----- */
+    width: 500px; /* Sets the element width. */
+    height: 500px; /* Sets the element height. */
+    background: #86efac; /* Sets the element background treatment. */
+    top: -180px; /* Sets the top style for this rule. */
+    left: -120px; /* Sets the left style for this rule. */
+    /* ----- Animation ----- */
+    animation: blob-drift-1 16s ease-in-out infinite alternate; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.pd-hero__blob--b { /* Starts styles for the .pd-hero__blob--b selector. */
+    /* ----- Tables ----- */
+    width: 420px; /* Sets the element width. */
+    height: 420px; /* Sets the element height. */
+    background: #bbf7d0; /* Sets the element background treatment. */
+    top: -120px; /* Sets the top style for this rule. */
+    right: -100px; /* Sets the right style for this rule. */
+    /* ----- Animation ----- */
+    animation: blob-drift-2 12s ease-in-out infinite alternate; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.pd-hero__blob--c { /* Starts styles for the .pd-hero__blob--c selector. */
+    /* ----- Tables ----- */
+    width: 320px; /* Sets the element width. */
+    height: 320px; /* Sets the element height. */
+    background: #d9f99d; /* Sets the element background treatment. */
+    bottom: -80px; /* Sets the bottom style for this rule. */
+    left: 30%; /* Sets the left style for this rule. */
+    /* ----- Animation ----- */
+    animation: blob-drift-3 18s ease-in-out infinite alternate; /* Sets the animation style for this rule. */
+}
+
+@keyframes blob-drift-1 { /* Defines an animation sequence used by this page. */
+    to { /* Starts styles for the to selector. */
+        /* ----- Forms ----- */
+        transform: translate(40px,30px) scale(1.08); /* Moves, scales, or rotates the element. */
+    }
+}
+
+/* ----- Animation ----- */
+@keyframes blob-drift-2 { /* Defines an animation sequence used by this page. */
+    to { /* Starts styles for the to selector. */
+        /* ----- Forms ----- */
+        transform: translate(-30px,20px) scale(.93); /* Moves, scales, or rotates the element. */
+    }
+}
+
+/* ----- Animation ----- */
+@keyframes blob-drift-3 { /* Defines an animation sequence used by this page. */
+    to { /* Starts styles for the to selector. */
+        /* ----- Forms ----- */
+        transform: translate(20px,-35px) scale(1.06); /* Moves, scales, or rotates the element. */
+    }
+}
+
+/* ----- Hero section ----- */
+.pd-hero__float { /* Starts styles for the .pd-hero__float selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+    /* ----- Forms ----- */
+    will-change: transform; /* Sets the will-change style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.pd-hero__float--1 { /* Starts styles for the .pd-hero__float--1 selector. */
+    top: 18%; /* Sets the top style for this rule. */
+    left: 7%; /* Sets the left style for this rule. */
+}
+
+.pd-hero__float--2 { /* Starts styles for the .pd-hero__float--2 selector. */
+    top: 22%; /* Sets the top style for this rule. */
+    right: 8%; /* Sets the right style for this rule. */
+}
+
+.pd-hero__float--3 { /* Starts styles for the .pd-hero__float--3 selector. */
+    bottom: 25%; /* Sets the bottom style for this rule. */
+    left: 6%; /* Sets the left style for this rule. */
+}
+
+.pd-hero__float--4 { /* Starts styles for the .pd-hero__float--4 selector. */
+    bottom: 20%; /* Sets the bottom style for this rule. */
+    right: 9%; /* Sets the right style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.pd-hero__float svg { /* Starts styles for the .pd-hero__float svg selector. */
+    /* ----- Tables ----- */
+    width: 44px; /* Sets the element width. */
+    height: 44px; /* Sets the element height. */
+    stroke: #15803d; /* Sets the stroke style for this rule. */
+    /* ----- Animation ----- */
+    opacity: .35; /* Controls element transparency. */
+}
+
+/* ----- Navigation ----- */
+.pd-hero__breadcrumb { /* Starts styles for the .pd-hero__breadcrumb selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+    font-size: .8rem; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    color: #15803d; /* Sets the text color. */
+    margin-bottom: 2rem; /* Sets the margin-bottom style for this rule. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    background: rgba(255,255,255,.6); /* Sets the element background treatment. */
+    border: 1px solid #bbf7d0; /* Sets the border around the element. */
+    padding: 6px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    backdrop-filter: blur(6px); /* Sets the backdrop-filter style for this rule. */
+    /* ----- Grid layout ----- */
+    transition: background .2s, color .2s; /* Animates property changes smoothly. */
+}
+
+    /* ----- Navigation ----- */
+    .pd-hero__breadcrumb:hover { /* Starts styles for the .pd-hero__breadcrumb:hover selector. */
+        background: #dcfce7; /* Sets the element background treatment. */
+        /* ----- Grid layout ----- */
+        color: #065f46; /* Sets the text color. */
+    }
+
+    /* ----- Navigation ----- */
+    .pd-hero__breadcrumb i { /* Starts styles for the .pd-hero__breadcrumb i selector. */
+        /* ----- Tables ----- */
+        width: 13px; /* Sets the element width. */
+        height: 13px; /* Sets the element height. */
+    }
+
+/* ----- Hero section ----- */
+.pd-hero__avatar { /* Starts styles for the .pd-hero__avatar selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+    /* ----- Tables ----- */
+    width: 100px; /* Sets the element width. */
+    height: 100px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    background: linear-gradient(135deg, #16A34A, #4ade80); /* Sets the element background treatment. */
+    border: 4px solid #fff; /* Sets the border around the element. */
+    box-shadow: 0 8px 28px rgba(22,163,74,.3), 0 2px 8px rgba(0,0,0,.08); /* Adds depth with a shadow. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    margin: 0 auto 1.5rem; /* Sets spacing outside the element. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 2.6rem; /* Sets the text size. */
+    font-weight: 900; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    color: #fff; /* Sets the text color. */
+    /* ----- Tables ----- */
+    animation: sticker-pop .5s cubic-bezier(.34,1.56,.64,1) both; /* Sets the animation style for this rule. */
+    cursor: default; /* Sets the cursor style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease; /* Animates property changes smoothly. */
+}
+
+    /* ----- Hero section ----- */
+    .pd-hero__avatar:hover { /* Starts styles for the .pd-hero__avatar:hover selector. */
+        /* ----- Forms ----- */
+        transform: scale(1.12) rotate(-4deg); /* Moves, scales, or rotates the element. */
+        box-shadow: 0 12px 36px rgba(22,163,74,.4); /* Adds depth with a shadow. */
+    }
+
+/* ----- Hero section ----- */
+.pd-hero__name { /* Starts styles for the .pd-hero__name selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(2rem, 5vw, 3.4rem); /* Sets the text size. */
+    font-weight: 900; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    color: #052e16; /* Sets the text color. */
+    line-height: 1.1; /* Sets vertical text rhythm. */
+    margin: 0 0 1rem; /* Sets spacing outside the element. */
+    letter-spacing: -.02em; /* Sets the letter-spacing style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.pd-hero__badges { /* Starts styles for the .pd-hero__badges selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: .6rem; /* Sets spacing between flex or grid children. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    margin-bottom: 1.5rem; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.pd-hero__pill { /* Starts styles for the .pd-hero__pill selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+    padding: 7px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    font-size: .78rem; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    background: rgba(255,255,255,.75); /* Sets the element background treatment. */
+    border: 1.5px solid #bbf7d0; /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    color: #15803d; /* Sets the text color. */
+    backdrop-filter: blur(6px); /* Sets the backdrop-filter style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .2s ease, box-shadow .2s ease; /* Animates property changes smoothly. */
+}
+
+    /* ----- Hero section ----- */
+    .pd-hero__pill:hover { /* Starts styles for the .pd-hero__pill:hover selector. */
+        /* ----- Forms ----- */
+        transform: translateY(-2px); /* Moves, scales, or rotates the element. */
+        box-shadow: 0 4px 12px rgba(0,0,0,.1); /* Adds depth with a shadow. */
+    }
+
+/* ----- Theme variables ----- */
+.pd-hero__pill--green { /* Starts styles for the .pd-hero__pill--green selector. */
+    background: #dcfce7; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #4ade80; /* Sets the border-color style for this rule. */
+    color: #14532d; /* Sets the text color. */
+}
+
+/* ----- Theme variables ----- */
+.pd-hero__pill--yellow { /* Starts styles for the .pd-hero__pill--yellow selector. */
+    background: #fef9c3; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #fde68a; /* Sets the border-color style for this rule. */
+    color: #713f12; /* Sets the text color. */
+}
+
+/* ----- Hero section ----- */
+.pd-hero__email { /* Starts styles for the .pd-hero__email selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 7px; /* Sets spacing between flex or grid children. */
+    font-size: .85rem; /* Sets the text size. */
+    color: #15803d; /* Sets the text color. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    background: rgba(255,255,255,.6); /* Sets the element background treatment. */
+    border: 1px solid #bbf7d0; /* Sets the border around the element. */
+    padding: 6px 14px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    backdrop-filter: blur(4px); /* Sets the backdrop-filter style for this rule. */
+    /* ----- Grid layout ----- */
+    transition: background .2s, color .2s; /* Animates property changes smoothly. */
+}
+
+    /* ----- Hero section ----- */
+    .pd-hero__email:hover { /* Starts styles for the .pd-hero__email:hover selector. */
+        background: #dcfce7; /* Sets the element background treatment. */
+        /* ----- Grid layout ----- */
+        color: #065f46; /* Sets the text color. */
+    }
+
+/* ----- Hero section ----- */
+.pd-hero__wave { /* Starts styles for the .pd-hero__wave selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    bottom: 0; /* Sets the bottom style for this rule. */
+    left: 0; /* Sets the left style for this rule. */
+    right: 0; /* Sets the right style for this rule. */
+    line-height: 0; /* Sets vertical text rhythm. */
+    z-index: 2; /* Controls stacking order. */
+}
+
+    .pd-hero__wave svg { /* Starts styles for the .pd-hero__wave svg selector. */
+        display: block; /* Controls how the element participates in layout. */
+    }
+
+/* ----- Card layout ----- */
+.pd-fact-card { /* Starts styles for the .pd-fact-card selector. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    cursor: default; /* Sets the cursor style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .25s ease, box-shadow .25s ease; /* Animates property changes smoothly. */
+}
+
+    /* ----- Card layout ----- */
+    .pd-fact-card:hover { /* Starts styles for the .pd-fact-card:hover selector. */
+        /* ----- Forms ----- */
+        transform: translateY(-3px); /* Moves, scales, or rotates the element. */
+        /* ----- Theme variables ----- */
+        box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+    }
+
+.pd-ripple { /* Starts styles for the .pd-ripple selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    border-radius: 50%; /* Rounds the element corners. */
+    background: rgba(22,163,74,.18); /* Sets the element background treatment. */
+    /* ----- Forms ----- */
+    transform: scale(0); /* Moves, scales, or rotates the element. */
+    /* ----- Animation ----- */
+    animation: ripple-out .55s ease-out forwards; /* Sets the animation style for this rule. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+
+@keyframes ripple-out { /* Defines an animation sequence used by this page. */
+    to { /* Starts styles for the to selector. */
+        /* ----- Forms ----- */
+        transform: scale(4); /* Moves, scales, or rotates the element. */
+        /* ----- Animation ----- */
+        opacity: 0; /* Controls element transparency. */
+    }
+}
+
+/* ----- Base layout ----- */
+.pd-body { /* Starts styles for the .pd-body selector. */
+    background: #f0fdf4; /* Sets the element background treatment. */
+    padding: 3.5rem 1.5rem 0; /* Sets spacing inside the element. */
+}
+
+.pd-body__grid { /* Starts styles for the .pd-body__grid selector. */
+    /* ----- Grid layout ----- */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 1fr 320px; /* Defines the grid column layout. */
+    gap: 1.75rem; /* Sets spacing between flex or grid children. */
+    /* ----- Tables ----- */
+    max-width: 1000px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+}
+
+@media (max-width: 860px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Base layout ----- */
+    .pd-body__grid { /* Starts styles for the .pd-body__grid selector. */
+        /* ----- Grid layout ----- */
+        grid-template-columns: 1fr; /* Defines the grid column layout. */
+    }
+}
+
+.pd-about { /* Starts styles for the .pd-about selector. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    padding: 2rem; /* Sets spacing inside the element. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    border: 1.5px solid #d1fae5; /* Sets the border around the element. */
+}
+
+/* ----- Grid layout ----- */
+.pd-about__eyebrow { /* Starts styles for the .pd-about__eyebrow selector. */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 7px; /* Sets spacing between flex or grid children. */
+    font-size: .75rem; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Grid layout ----- */
+    color: #15803d; /* Sets the text color. */
+    background: #dcfce7; /* Sets the element background treatment. */
+    padding: 4px 14px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    width: fit-content; /* Sets the element width. */
+    margin-bottom: 1rem; /* Sets the margin-bottom style for this rule. */
+}
+
+.pd-about__text { /* Starts styles for the .pd-about__text selector. */
+    font-size: 1rem; /* Sets the text size. */
+    line-height: 1.75; /* Sets vertical text rhythm. */
+    /* ----- Grid layout ----- */
+    color: #374151; /* Sets the text color. */
+    margin: 0; /* Sets spacing outside the element. */
+    white-space: pre-line; /* Sets the white-space style for this rule. */
+}
+
+.pd-about__empty { /* Starts styles for the .pd-about__empty selector. */
+    font-size: .95rem; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    font-style: italic; /* Sets the font-style style for this rule. */
+}
+
+.pd-facts { /* Starts styles for the .pd-facts selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: 1rem; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Card layout ----- */
+.pd-fact-card { /* Starts styles for the .pd-fact-card selector. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    padding: 1.25rem 1.5rem; /* Sets spacing inside the element. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    border: 1.5px solid #d1fae5; /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 1rem; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Card layout ----- */
+.pd-fact-card__icon { /* Starts styles for the .pd-fact-card__icon selector. */
+    /* ----- Tables ----- */
+    width: 44px; /* Sets the element width. */
+    height: 44px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+}
+
+/* ----- Theme variables ----- */
+.pd-fact-card__icon--green { /* Starts styles for the .pd-fact-card__icon--green selector. */
+    background: #dcfce7; /* Sets the element background treatment. */
+}
+
+.pd-fact-card__icon--lime { /* Starts styles for the .pd-fact-card__icon--lime selector. */
+    background: #d9f99d; /* Sets the element background treatment. */
+}
+
+.pd-fact-card__icon--teal { /* Starts styles for the .pd-fact-card__icon--teal selector. */
+    background: #a7f3d0; /* Sets the element background treatment. */
+}
+
+.pd-fact-card__icon--mint { /* Starts styles for the .pd-fact-card__icon--mint selector. */
+    background: #bbf7d0; /* Sets the element background treatment. */
+}
+
+/* ----- Base layout ----- */
+.pd-fact-card__body { /* Starts styles for the .pd-fact-card__body selector. */
+    /* ----- Tables ----- */
+    min-width: 0; /* Sets the min-width style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pd-fact-card__label { /* Starts styles for the .pd-fact-card__label selector. */
+    font-size: .72rem; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .07em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin: 0 0 2px; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.pd-fact-card__value { /* Starts styles for the .pd-fact-card__value selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 1rem; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    margin: 0; /* Sets spacing outside the element. */
+    word-break: break-all; /* Sets the word-break style for this rule. */
+}
+
+    /* ----- Card layout ----- */
+    .pd-fact-card__value a { /* Starts styles for the .pd-fact-card__value a selector. */
+        /* ----- Grid layout ----- */
+        color: #16A34A; /* Sets the text color. */
+        text-decoration: none; /* Sets the text-decoration style for this rule. */
+    }
+
+        /* ----- Card layout ----- */
+        .pd-fact-card__value a:hover { /* Starts styles for the .pd-fact-card__value a:hover selector. */
+            text-decoration: underline; /* Sets the text-decoration style for this rule. */
+        }
+
+.pd-stats-strip { /* Starts styles for the .pd-stats-strip selector. */
+    /* ----- Tables ----- */
+    max-width: 1000px; /* Limits the element width on larger screens. */
+    margin: 1.75rem auto 0; /* Sets spacing outside the element. */
+    /* ----- Grid layout ----- */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: repeat(3, 1fr); /* Defines the grid column layout. */
+    gap: 1rem; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Card layout ----- */
+.pd-stat-tile { /* Starts styles for the .pd-stat-tile selector. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    padding: 1.5rem; /* Sets spacing inside the element. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    border: 1.5px solid #d1fae5; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transition: transform .25s ease, box-shadow .25s ease; /* Animates property changes smoothly. */
+}
+
+    /* ----- Card layout ----- */
+    .pd-stat-tile:hover { /* Starts styles for the .pd-stat-tile:hover selector. */
+        /* ----- Forms ----- */
+        transform: translateY(-4px); /* Moves, scales, or rotates the element. */
+        /* ----- Theme variables ----- */
+        box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+    }
+
+/* ----- Card layout ----- */
+.pd-stat-tile__value { /* Starts styles for the .pd-stat-tile__value selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 2rem; /* Sets the text size. */
+    font-weight: 900; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    color: #16A34A; /* Sets the text color. */
+    line-height: 1; /* Sets vertical text rhythm. */
+    margin: 0 0 .3rem; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.pd-stat-tile__label { /* Starts styles for the .pd-stat-tile__label selector. */
+    font-size: .78rem; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .06em; /* Sets the letter-spacing style for this rule. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 600px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Card layout ----- */
+    .pd-stats-strip { /* Starts styles for the .pd-stats-strip selector. */
+        /* ----- Grid layout ----- */
+        grid-template-columns: 1fr 1fr; /* Defines the grid column layout. */
+    }
+}
+
+.pd-produce { /* Starts styles for the .pd-produce selector. */
+    background: #f0fdf4; /* Sets the element background treatment. */
+    padding: 4rem 1.5rem 5rem; /* Sets spacing inside the element. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card { /* Starts styles for the .pd-product-card selector. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    /* ----- Theme variables ----- */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    border: 1.5px solid #d1fae5; /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease; /* Animates property changes smoothly. */
+    position: relative; /* Controls how the element is positioned on the page. */
+}
+
+    /* ----- Card layout ----- */
+    .pd-product-card:hover { /* Starts styles for the .pd-product-card:hover selector. */
+        /* ----- Forms ----- */
+        transform: translateY(-6px); /* Moves, scales, or rotates the element. */
+        /* ----- Theme variables ----- */
+        box-shadow: var(--shadow-lg); /* Adds depth with a shadow. */
+    }
+
+/* ----- Card layout ----- */
+.pd-product-card__img-wrap { /* Starts styles for the .pd-product-card__img-wrap selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    height: 180px; /* Sets the element height. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card__img { /* Starts styles for the .pd-product-card__img selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    height: 100%; /* Sets the element height. */
+    object-fit: cover; /* Sets the object-fit style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .4s ease; /* Animates property changes smoothly. */
+    display: block; /* Controls how the element participates in layout. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card:hover .pd-product-card__img { /* Starts styles for the .pd-product-card:hover .pd-product-card__img selector. */
+    /* ----- Forms ----- */
+    transform: scale(1.07); /* Moves, scales, or rotates the element. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card__no-img { /* Starts styles for the .pd-product-card__no-img selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    height: 100%; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+}
+
+    /* ----- Card layout ----- */
+    .pd-product-card__no-img i { /* Starts styles for the .pd-product-card__no-img i selector. */
+        /* ----- Tables ----- */
+        width: 48px; /* Sets the element width. */
+        height: 48px; /* Sets the element height. */
+        stroke: rgba(255,255,255,.85); /* Sets the stroke style for this rule. */
+        stroke-width: 1.5; /* Sets the stroke-width style for this rule. */
+    }
+
+/* ----- Card layout ----- */
+.pd-product-card__badge { /* Starts styles for the .pd-product-card__badge selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    top: 10px; /* Sets the top style for this rule. */
+    left: 10px; /* Sets the left style for this rule. */
+}
+
+/* ----- Base layout ----- */
+.pd-product-card__body { /* Starts styles for the .pd-product-card__body selector. */
+    padding: 1.1rem; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: .4rem; /* Sets spacing between flex or grid children. */
+    flex: 1; /* Sets the flex style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card__category { /* Starts styles for the .pd-product-card__category selector. */
+    font-size: .7rem; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Grid layout ----- */
+    color: #15803d; /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card__name { /* Starts styles for the .pd-product-card__name selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 1rem; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    margin: 0; /* Sets spacing outside the element. */
+    line-height: 1.2; /* Sets vertical text rhythm. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card__desc { /* Starts styles for the .pd-product-card__desc selector. */
+    font-size: .82rem; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    line-height: 1.5; /* Sets vertical text rhythm. */
+    display: -webkit-box; /* Controls how the element participates in layout. */
+    /* ----- Responsive layout ----- */
+    -webkit-line-clamp: 2; /* Sets the -webkit-line-clamp style for this rule. */
+    -webkit-box-orient: vertical; /* Sets the -webkit-box-orient style for this rule. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card__footer { /* Starts styles for the .pd-product-card__footer selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    gap: .5rem; /* Sets spacing between flex or grid children. */
+    margin-top: auto; /* Sets the margin-top style for this rule. */
+    padding-top: .75rem; /* Sets the padding-top style for this rule. */
+    border-top: 1px solid #d1fae5; /* Sets the border-top style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card__price { /* Starts styles for the .pd-product-card__price selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 1.1rem; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    color: #16A34A; /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.pd-product-card__stock { /* Starts styles for the .pd-product-card__stock selector. */
+    font-size: .72rem; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+}
+
+/* ----- Admin dashboard styling ----- */
+.pd-admin-bar { /* Starts styles for the .pd-admin-bar selector. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    padding: 1rem 1.5rem; /* Sets spacing inside the element. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    border: 1.5px solid #d1fae5; /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: .75rem; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    /* ----- Tables ----- */
+    max-width: 1000px; /* Limits the element width on larger screens. */
+    margin: 1.75rem auto 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Forms ----- */
+.pd-admin-bar__label { /* Starts styles for the .pd-admin-bar__label selector. */
+    font-size: .8rem; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+    margin-right: auto; /* Sets the margin-right style for this rule. */
+}
+
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero { /* Starts styles for the body.dark-mode .pd-hero selector. */
+    background: #0f172a; /* Sets the element background treatment. */
+}
+
+/* ----- Theme variables ----- */
+body.dark-mode .pd-hero__blob--a, /* Continues a selector or value list on the next line. */
+body.dark-mode .pd-hero__blob--b, /* Continues a selector or value list on the next line. */
+body.dark-mode .pd-hero__blob--c { /* Starts styles for the body.dark-mode .pd-hero__blob--c selector. */
+    /* ----- Animation ----- */
+    opacity: .1; /* Controls element transparency. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__float svg { /* Starts styles for the body.dark-mode .pd-hero__float svg selector. */
+    /* ----- Tables ----- */
+    stroke: #86efac; /* Sets the stroke style for this rule. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__name { /* Starts styles for the body.dark-mode .pd-hero__name selector. */
+    /* ----- Grid layout ----- */
+    color: #f1f5f9; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__breadcrumb { /* Starts styles for the body.dark-mode .pd-hero__breadcrumb selector. */
+    background: rgba(30, 41, 59, .85); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+    color: #86efac; /* Sets the text color. */
+}
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__breadcrumb:hover { /* Starts styles for the body.dark-mode .pd-hero__breadcrumb:hover selector. */
+    background: rgba(22, 163, 74, .15); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #6ee7b7; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__avatar { /* Starts styles for the body.dark-mode .pd-hero__avatar selector. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__pill { /* Starts styles for the body.dark-mode .pd-hero__pill selector. */
+    background: rgba(30, 41, 59, .85); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+    color: #86efac; /* Sets the text color. */
+}
+/* ----- Theme variables ----- */
+body.dark-mode .pd-hero__pill--green { /* Starts styles for the body.dark-mode .pd-hero__pill--green selector. */
+    background: rgba(22, 163, 74, .15); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: rgba(74, 222, 128, .3); /* Sets the border-color style for this rule. */
+    color: #86efac; /* Sets the text color. */
+}
+/* ----- Theme variables ----- */
+body.dark-mode .pd-hero__pill--yellow { /* Starts styles for the body.dark-mode .pd-hero__pill--yellow selector. */
+    background: rgba(245, 158, 11, .12); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: rgba(253, 230, 138, .25); /* Sets the border-color style for this rule. */
+    color: #fbbf24; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__email { /* Starts styles for the body.dark-mode .pd-hero__email selector. */
+    background: rgba(30, 41, 59, .85); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+    color: #86efac; /* Sets the text color. */
+}
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__email:hover { /* Starts styles for the body.dark-mode .pd-hero__email:hover selector. */
+    background: rgba(22, 163, 74, .15); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #6ee7b7; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-hero__wave path { /* Starts styles for the body.dark-mode .pd-hero__wave path selector. */
+    fill: #0f172a; /* Sets the fill style for this rule. */
+}
+
+body.dark-mode .pd-body { /* Starts styles for the body.dark-mode .pd-body selector. */
+    background: #0f172a; /* Sets the element background treatment. */
+}
+
+body.dark-mode .pd-about { /* Starts styles for the body.dark-mode .pd-about selector. */
+    background: #1e293b; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+}
+/* ----- Base layout ----- */
+body.dark-mode .pd-about__eyebrow { /* Starts styles for the body.dark-mode .pd-about__eyebrow selector. */
+    background: rgba(22, 163, 74, .15); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #86efac; /* Sets the text color. */
+}
+/* ----- Base layout ----- */
+body.dark-mode .pd-about__text { /* Starts styles for the body.dark-mode .pd-about__text selector. */
+    /* ----- Grid layout ----- */
+    color: #94a3b8; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-fact-card { /* Starts styles for the body.dark-mode .pd-fact-card selector. */
+    background: #1e293b; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+}
+/* ----- Theme variables ----- */
+body.dark-mode .pd-fact-card__icon--green { background: rgba(22, 163, 74, .15); } /* Styles part of the ProducersDetails page or component. */
+body.dark-mode .pd-fact-card__icon--lime  { background: rgba(163, 230, 53, .12); } /* Styles part of the ProducersDetails page or component. */
+body.dark-mode .pd-fact-card__icon--teal  { background: rgba(20, 184, 166, .12); } /* Styles part of the ProducersDetails page or component. */
+body.dark-mode .pd-fact-card__icon--mint  { background: rgba(52, 211, 153, .12); } /* Styles part of the ProducersDetails page or component. */
+/* ----- Base layout ----- */
+body.dark-mode .pd-fact-card__value a     { color: #6ee7b7; } /* Styles part of the ProducersDetails page or component. */
+
+body.dark-mode .pd-stat-tile { /* Starts styles for the body.dark-mode .pd-stat-tile selector. */
+    background: #1e293b; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-produce { /* Starts styles for the body.dark-mode .pd-produce selector. */
+    background: #0f172a; /* Sets the element background treatment. */
+}
+
+body.dark-mode .pd-product-card { /* Starts styles for the body.dark-mode .pd-product-card selector. */
+    background: #1e293b; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+}
+/* ----- Base layout ----- */
+body.dark-mode .pd-product-card__footer { /* Starts styles for the body.dark-mode .pd-product-card__footer selector. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+}
+/* ----- Base layout ----- */
+body.dark-mode .pd-product-card__category { /* Starts styles for the body.dark-mode .pd-product-card__category selector. */
+    /* ----- Grid layout ----- */
+    color: #6ee7b7; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .pd-admin-bar { /* Starts styles for the body.dark-mode .pd-admin-bar selector. */
+    background: #1e293b; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode [style*="color:#15803d"] { /* Starts styles for the body.dark-mode [style*="color:#15803d"] selector. */
+    /* ----- Grid layout ----- */
+    color: #86efac !important; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode [style*="background:#fff"][style*="border-color:#d1fae5"] { /* Starts styles for the body.dark-mode [style*="background:#fff"][style*="border-color:#d1fae5"] selector. */
+    background: #1e293b !important; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155 !important; /* Sets the border-color style for this rule. */
+}
+/* ----- Base layout ----- */
+body.dark-mode [style*="background:#dcfce7"] { /* Starts styles for the body.dark-mode [style*="background:#dcfce7"] selector. */
+    background: rgba(22, 163, 74, .14) !important; /* Sets the element background treatment. */
+}

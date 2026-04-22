@@ -641,6 +641,22 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.Google/9.0.15": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/9.0.12": {
         "type": "package",
         "compile": {
@@ -4237,6 +4253,21 @@
         "lib/netstandard1.0/zh-Hant/Humanizer.resources.dll",
         "lib/netstandard2.0/zh-Hant/Humanizer.resources.dll",
         "logo.png"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Google/9.0.15": {
+      "sha512": "SdKGux15f8v2bc8srCCOmMC90BXmIWYWeOtyLjjphHiYMoJoLeDau7VbPddT4k5AHHSTnqH7QbG4vngRfBKxdw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.google/9.0.15",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net9.0/Microsoft.AspNetCore.Authentication.Google.dll",
+        "lib/net9.0/Microsoft.AspNetCore.Authentication.Google.xml",
+        "microsoft.aspnetcore.authentication.google.9.0.15.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/9.0.12": {
@@ -8984,6 +9015,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Microsoft.AspNetCore.Authentication.Google >= 9.0.15",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 9.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 9.0.12",
       "Microsoft.AspNetCore.Identity.UI >= 9.0.12",
@@ -8995,23 +9027,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Digi-T-Y2-10\\.nuget\\packages\\": {},
+    "C:\\Users\\Jamie\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\CompleteFrontEnd\\GFLHApp\\GFLHApp\\GFLHApp.csproj",
+      "projectUniqueName": "D:\\Documents\\GitHub\\RealExam\\Task2\\CompleteFrontEnd\\GFLHApp\\GFLHApp\\GFLHApp.csproj",
       "projectName": "GFLHApp",
-      "projectPath": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\CompleteFrontEnd\\GFLHApp\\GFLHApp\\GFLHApp.csproj",
-      "packagesPath": "C:\\Users\\Digi-T-Y2-10\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Digi-T-Y2-10\\Documents\\GitHub\\RealExam\\Task2\\CompleteFrontEnd\\GFLHApp\\GFLHApp\\obj\\",
+      "projectPath": "D:\\Documents\\GitHub\\RealExam\\Task2\\CompleteFrontEnd\\GFLHApp\\GFLHApp\\GFLHApp.csproj",
+      "packagesPath": "C:\\Users\\Jamie\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\GitHub\\RealExam\\Task2\\CompleteFrontEnd\\GFLHApp\\GFLHApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Digi-T-Y2-10\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jamie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -9020,6 +9052,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -9036,14 +9069,18 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Google": {
+            "target": "Package",
+            "version": "[9.0.15, )"
+          },
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",
             "version": "[9.0.0, )"
@@ -9092,12 +9129,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[9.0.0, 9.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9106,40 +9137,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Build.Tasks.Core' 17.7.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-h4j7-5rxr-p4wc",
-      "libraryId": "Microsoft.Build.Tasks.Core",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "libraryId": "NuGet.Packaging",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'NuGet.Protocol' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "libraryId": "NuGet.Protocol",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  }
 }

@@ -39,9 +39,28 @@
     <div class="pw-admin-body">
         <!-- Two-column body: preview + form -->
         <!-- ── Left: sticky producer preview ─────────── -->
-        <div class="pw-admin-preview-col" aria-hidden="true">
+        <div class="pw-admin-img-col" aria-hidden="true">
             <!-- Preview column, hidden from screen readers -->
-            <div class="pw-admin-producer-card" id="previewCard">
+            <div class="pw-admin-img-card" id="adminImgCard">
+                @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+                {
+                    <img src="@Model.ImagePath" alt="@Model.ProducerName" id="adminImgEl" />
+                }
+                else
+                {
+                    <div class="pw-admin-img-placeholder" id="adminImgEl">
+                        <i data-lucide="sprout" style="width:72px;height:72px;opacity:.45;"></i>
+                    </div>
+                }
+                <div class="pw-admin-img-meta">
+                    <p class="pw-admin-img-meta__name" id="adminImgName">@Model.ProducerName</p>
+                    <p class="pw-admin-img-meta__path" id="adminImgPath">
+                        @(string.IsNullOrWhiteSpace(Model.ImagePath) ? "no image set" : Model.ImagePath)
+                    </p>
+                </div>
+            </div>
+
+            <div class="pw-admin-producer-card" id="previewCard" style="margin-top:18px;">
                 <!-- Live preview card -->
                 <div class="pw-admin-producer-card__hero">
                     <!-- Card hero section -->
@@ -78,10 +97,11 @@
         </div>
 
         <!-- ── Right: form ────────────────────────────── -->
-        <form asp-action="Edit" method="post" id="editProducerForm" novalidate>
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" id="editProducerForm" novalidate>
             <!-- Edit form, posts to Edit action -->
             <input type="hidden" asp-for="ProducersId" /> <!-- Hidden: preserve producer ID -->
             <input type="hidden" asp-for="UserId" /> <!-- Hidden: preserve associated user ID -->
+            <input type="hidden" name="existingImagePath" value="@Model.ImagePath" />
 
             <div class="pw-form-card">
                 <!-- Form card wrapper -->
@@ -126,6 +146,26 @@
                                   rows="5"></textarea> <!-- Bio textarea, wired to live preview -->
                         <span asp-validation-for="ProducerInformation" class="pw-field__error"></span> <!-- Inline validation message -->
                         <span class="pw-field__hint">Shown on the public producer page. Supports line breaks.</span> <!-- Helper hint -->
+                    </div>
+                </div>
+
+                <div class="pw-form-section">
+                    <p class="pw-form-section__label">Image</p>
+                    <div class="pw-form-row">
+                        <div class="pw-field">
+                            <label for="imageUpload">Upload a new image</label>
+                            <input type="file" id="imageUpload" name="imageUpload" class="pw-file" accept=".jpg,.jpeg,.png,.webp" />
+                            <span class="pw-field__hint">Upload a JPG, PNG, or WebP image up to 5 MB. Files save to /images/producers.</span>
+                            <span class="pw-field__error">@Html.ValidationMessage("imageUpload")</span>
+                        </div>
+
+                        <div class="pw-field">
+                            <label asp-for="ImagePath">Or choose an existing producer image</label>
+                            <select asp-for="ImagePath" class="pw-select" id="liveImageInput" asp-items="ViewBag.ExistingImages">
+                                <option value="">Keep current image / no existing image selected</option>
+                            </select>
+                            <span asp-validation-for="ImagePath" class="pw-field__error"></span>
+                        </div>
                     </div>
                 </div>
 
@@ -191,6 +231,6 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        <script src="~/js/pages/producers/ProducersEdit.js"></script>
     }
+    <script src="~/js/pages/producers/ProducersEdit.js"></script>
 }

@@ -1,0 +1,69 @@
+/* ----- Grid layout ----- */
+.adm-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; align-items: flex-end; } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-filter-group { display: flex; flex-direction: column; gap: 4px; } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Theme variables ----- */
+.adm-filter-group label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Forms ----- */
+.adm-filter-input, .adm-filter-select { /* Starts styles for the .adm-filter-input, .adm-filter-select selector. */
+    /* ----- Theme variables ----- */
+    height: 38px; padding: 0 12px; font-family: var(--font-body); font-size: 13px; font-weight: 500; /* Sets the element height. */
+    color: var(--text); background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-sm); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    outline: none; transition: border-color .15s; appearance: none; -webkit-appearance: none; /* Sets the outline style for this rule. */
+}
+/* ----- Theme variables ----- */
+.adm-filter-input:focus, .adm-filter-select:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-100); } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Forms ----- */
+.adm-filter-select { /* Starts styles for the .adm-filter-select selector. */
+    /* ----- Tables ----- */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); /* Sets the background-image style for this rule. */
+    background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; /* Sets the background-repeat style for this rule. */
+}
+/* ----- Theme variables ----- */
+.adm-btn-filter { height: 38px; padding: 0 16px; background: var(--green); color: #fff; border: none; border-radius: var(--r-sm); font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-btn-filter:hover { background: var(--green-700); } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-btn-clear { height: 38px; padding: 0 14px; background: transparent; color: var(--text-muted); border: 1.5px solid var(--border); border-radius: var(--r-sm); font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-btn-clear:hover { border-color: var(--text-muted); color: var(--text); } /* Styles part of the AdminDashboardUsers page or component. */
+
+.adm-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Grid layout ----- */
+.adm-table { width: 100%; border-collapse: collapse; font-size: 13px; } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Theme variables ----- */
+.adm-table th { padding: 9px 14px; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); border-bottom: 1.5px solid var(--border); background: var(--cream); } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Tables ----- */
+.adm-table tr:last-child td { border-bottom: none; } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-table tr:hover td { background: #fafaf9; } /* Styles part of the AdminDashboardUsers page or component. */
+
+/* ----- Theme variables ----- */
+.adm-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--green-100); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-avatar--purple { background: var(--purple-100); color: var(--purple); } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-avatar--orange { background: var(--orange-100); color: var(--orange); } /* Styles part of the AdminDashboardUsers page or component. */
+
+.adm-role-chip { /* Starts styles for the .adm-role-chip selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 4px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    padding: 2px 8px; border-radius: var(--r-full); /* Sets spacing inside the element. */
+    font-size: 11px; font-weight: 700; margin-right: 3px; /* Sets the text size. */
+}
+.adm-role-chip--admin    { background: var(--purple-100); color: var(--purple); } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-role-chip--producer { background: var(--green-100); color: var(--green); } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-role-chip--default  { background: var(--cream-2); color: var(--text-muted); } /* Styles part of the AdminDashboardUsers page or component. */
+
+/* ----- Grid layout ----- */
+.adm-role-form { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 5px; } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Theme variables ----- */
+.adm-role-select { height: 26px; padding: 0 22px 0 8px; font-size: 11px; font-weight: 600; color: var(--text); background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-sm); outline: none; appearance: none; -webkit-appearance: none; cursor: pointer; /* Sets the .adm-role-select { height style for this rule. */
+    /* ----- Tables ----- */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); /* Sets the background-image style for this rule. */
+    background-repeat: no-repeat; background-position: right 6px center; } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Theme variables ----- */
+.adm-role-btn { height: 26px; padding: 0 10px; border-radius: var(--r-sm); font-size: 11px; font-weight: 700; cursor: pointer; border: none; background: var(--green); color: #fff; } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-role-btn:hover { background: var(--green-700); } /* Styles part of the AdminDashboardUsers page or component. */
+/* ----- Grid layout ----- */
+.adm-role-remove { height: 22px; width: 22px; border-radius: 50%; background: transparent; border: 1.5px solid #fecaca; color: #DC2626; font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: background .1s; } /* Styles part of the AdminDashboardUsers page or component. */
+.adm-role-remove:hover { background: #fef2f2; } /* Styles part of the AdminDashboardUsers page or component. */
+
+/* ----- Theme variables ----- */
+.adm-results-info { font-size: 13px; color: var(--text-muted); padding: 12px 18px; border-bottom: 1px solid var(--border); background: var(--cream); } /* Styles part of the AdminDashboardUsers page or component. */

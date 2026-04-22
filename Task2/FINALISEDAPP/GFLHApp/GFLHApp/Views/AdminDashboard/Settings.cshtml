@@ -1,0 +1,205 @@
+ @* ----- Imports and Services ----- *@
+ @* Imports a namespace for this Razor file. *@
+@using System.Linq
+@{
+ // ----- Page Model Setup -----
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Chooses the layout used to render this page.
+    ViewData["Title"] = "Settings"; // Sets the browser and page title for this view.
+    ViewData["AdminSection"] = "settings"; // Reads view data supplied by the controller.
+    var allRoles = (ViewBag.AllRoles as IEnumerable<string>) ?? Enumerable.Empty<string>(); // Reads view data supplied by the controller.
+}
+
+
+
+<!-- Setup notice if no roles --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+@if (!allRoles.Any()) @* Conditionally renders this block when the check passes. *@
+{
+ @* ----- Styling Section ----- *@
+    <div class="adm-info-box"> @* Starts a layout container for this section. *@
+        <i data-lucide="info" style="width:18px;height:18px;flex-shrink:0;margin-top:1px;" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+        <div> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+            <strong>First-time setup:</strong> No roles exist yet. Create the <strong>Admin</strong> and <strong>Producer</strong> roles below, then assign them to users in the Users tab. @* Renders part of the admin dashboard page markup. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+}
+
+ @* ----- Card Layout ----- *@
+<div class="adm-settings-grid"> @* Starts a layout container for this section. *@
+
+    <div> @* Starts a layout container for this section. *@
+        <!-- Site stats --> @* Keeps an existing comment in the Razor file. *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="bar-chart-2" style="width:16px;height:16px;" aria-hidden="true"></i>System statistics</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+            <div class="adm-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                @foreach (var (icon, label, val) in new[]{ @* Loops through the collection and renders each item. *@
+ @* ----- Page Model Setup ----- *@
+                    ("users",         "Registered users",    ViewBag.UserCount?.ToString()    ?? "0"), @* Reads view data supplied by the controller. *@
+                    ("shopping-bag",  "Total orders",        ViewBag.OrderCount?.ToString()   ?? "0"), @* Reads view data supplied by the controller. *@
+                    ("package",       "Total products",      ViewBag.ProductCount?.ToString() ?? "0"), @* Reads view data supplied by the controller. *@
+                    ("sprout",        "Producers",           ViewBag.ProducerCount?.ToString()?? "0"), @* Reads view data supplied by the controller. *@
+                    ("pound-sterling","Total revenue",       "£" + ((decimal)(ViewBag.TotalRevenue ?? 0m)).ToString("0.00")), @* Reads view data supplied by the controller. *@
+                    ("shopping-cart", "Active baskets",      ViewBag.ActiveBaskets?.ToString() ?? "0"), @* Reads view data supplied by the controller. *@
+                })
+                {
+ @* ----- Card Layout ----- *@
+                    <div class="adm-stat-row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <span class="adm-stat-row__label"> @* Renders inline text or badge content. *@
+                            <i data-lucide="@icon" style="width:14px;height:14px;color:var(--green);" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+                            @label @* Outputs Razor data or executes Razor logic. *@
+                        </span> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                        <span class="adm-stat-row__val">@val</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- Quick navigation --> @* Keeps an existing comment in the Razor file. *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="link" style="width:16px;height:16px;" aria-hidden="true"></i>Admin shortcuts</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+            <div class="adm-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                @foreach (var (icon, label, href) in new[]{ @* Loops through the collection and renders each item. *@
+ @* ----- Card Layout ----- *@
+                    ("layout-dashboard","Overview",                "/AdminDashboard"), @* Renders part of the admin dashboard page markup. *@
+                    ("shopping-bag",    "Manage orders",           "/AdminDashboard/Orders"), @* Renders part of the admin dashboard page markup. *@
+                    ("package",         "Manage products",         "/AdminDashboard/Products"), @* Renders part of the admin dashboard page markup. *@
+                    ("sprout",          "Manage producers",        "/AdminDashboard/Producers"), @* Renders part of the admin dashboard page markup. *@
+                    ("users",           "Manage users",            "/AdminDashboard/Users"), @* Renders part of the admin dashboard page markup. *@
+ @* ----- Form Actions ----- *@
+                    ("plus",            "Add new product",         "/Products/Create"), @* Renders part of the admin dashboard page markup. *@
+ @* ----- Product Display ----- *@
+                    ("store",           "View public shop",        "/Products"), @* Renders part of the admin dashboard page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                    ("user",            "Identity account pages",  "/Identity/Account/Manage"), @* Renders part of the admin dashboard page markup. *@
+                })
+                {
+ @* ----- Card Layout ----- *@
+                    <div class="adm-link-row"> @* Starts a layout container for this section. *@
+                        <i data-lucide="@icon" style="width:14px;height:14px;color:var(--text-muted);" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+ @* ----- Form Fields ----- *@
+                        <span style="color:var(--text);font-weight:500;">@label</span> @* Renders inline text or badge content. *@
+                        <a href="@href">Open →</a> @* Renders a navigation link or action link. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <div> @* Starts a layout container for this section. *@
+        <!-- Role management --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="shield" style="width:16px;height:16px;" aria-hidden="true"></i>Roles</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+            <div class="adm-card__body"> @* Starts a layout container for this section. *@
+                <p style="font-size:13px;color:var(--text-muted);margin:0 0 12px;line-height:1.6;"> @* Renders paragraph text for the user. *@
+                    Roles control access. <strong>Admin</strong> grants full dashboard access. <strong>Producer</strong> grants the producer hub. Assign roles to users in the Users tab. @* Renders part of the admin dashboard page markup. *@
+                </p> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+                @if (allRoles.Any()) @* Conditionally renders this block when the check passes. *@
+                {
+                    <div style="margin-bottom:12px;"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                        @foreach (var r in allRoles) @* Loops through the collection and renders each item. *@
+                        {
+ @* ----- Conditional Rendering ----- *@
+                            string cm = r == "Admin" ? "adm-role-chip--admin" @* Renders part of the admin dashboard page markup. *@
+                                      : r == "Producer" ? "adm-role-chip--producer" @* Renders part of the admin dashboard page markup. *@
+                                      : "adm-role-chip--default"; @* Renders part of the admin dashboard page markup. *@
+ @* ----- Styling Section ----- *@
+                            <span class="adm-role-chip @cm"> @* Renders inline text or badge content. *@
+                                <i data-lucide="shield-check" style="width:11px;height:11px;" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+                                @r @* Outputs Razor data or executes Razor logic. *@
+                            </span> @* Closes the matching HTML element. *@
+                        }
+                    </div> @* Closes the matching HTML element. *@
+                }
+ @* ----- Conditional Rendering ----- *@
+                else @* Renders the fallback branch for the previous condition. *@
+                {
+ @* ----- Form Actions ----- *@
+                    <p style="font-size:13px;color:var(--text-light);margin:0 0 12px;">No roles created yet.</p> @* Renders paragraph text for the user. *@
+                }
+
+ @* ----- Navigation ----- *@
+                <form asp-action="CreateRole" method="post"> @* Starts the form that submits this page's user input. *@
+                    @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+ @* ----- Form Fields ----- *@
+                    <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);display:block;margin-bottom:6px;">Create new role</label> @* Renders text identifying a form field. *@
+ @* ----- Form Actions ----- *@
+                    <div class="adm-create-role-form"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <input name="roleName" class="adm-role-input" placeholder="e.g. Admin, Producer…" required /> @* Renders a user input field. *@
+ @* ----- Form Actions ----- *@
+                        <button type="submit" class="adm-btn-create"> @* Renders a button for the user action. *@
+                            <i data-lucide="plus" style="width:13px;height:13px;" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+                            Create @* Renders part of the admin dashboard page markup. *@
+                        </button> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </form> @* Closes the form after its fields and actions. *@
+
+ @* ----- Order Display ----- *@
+                <div style="margin-top:16px;padding:12px;background:var(--cream);border-radius:var(--r-sm);font-size:12px;color:var(--text-muted);line-height:1.6;"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+                    <strong>Tip:</strong> Create <code>Admin</code> first, then assign it to yourself via the Users tab. Once you're Admin, access is locked to other admins. @* Renders part of the admin dashboard page markup. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- App info --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="info" style="width:16px;height:16px;" aria-hidden="true"></i>App info</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+            <div class="adm-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                @foreach (var (label, val) in new[]{ @* Loops through the collection and renders each item. *@
+                    ("App name",    "Greenfield"), @* Renders part of the admin dashboard page markup. *@
+                    ("Framework",   "ASP.NET Core MVC"), @* Renders part of the admin dashboard page markup. *@
+                    ("Auth",        "ASP.NET Core Identity"), @* Renders part of the admin dashboard page markup. *@
+                    ("ORM",         "Entity Framework Core"), @* Renders part of the admin dashboard page markup. *@
+                    ("Server time", DateTime.UtcNow.ToString("d MMM yyyy HH:mm") + " UTC"), @* Renders part of the admin dashboard page markup. *@
+                })
+                {
+ @* ----- Card Layout ----- *@
+                    <div class="adm-stat-row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <span class="adm-stat-row__label">@label</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                        <span class="adm-stat-row__val" style="font-family:monospace;font-size:12px;">@val</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Card Layout ----- *@
+    <script src="~/js/pages/admindashboard/AdminDashboardSettings.js" asp-append-version="true"></script>  } @* Starts client-side script for this page. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/admindashboard/AdminDashboardSettings.css" asp-append-version="true" /> @* Renders one list item. *@
+}

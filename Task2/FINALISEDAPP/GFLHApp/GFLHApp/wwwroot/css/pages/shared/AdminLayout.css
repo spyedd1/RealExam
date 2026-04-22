@@ -1,0 +1,309 @@
+*, *::before, *::after { box-sizing: border-box; } /* Styles part of the AdminLayout page or component. */
+
+/* ----- Base layout ----- */
+body { /* Starts styles for the body selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    padding: 0; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); /* Sets the font family. */
+    background: var(--cream); /* Sets the element background treatment. */
+    color: var(--text); /* Sets the text color. */
+    /* ----- Tables ----- */
+    -webkit-font-smoothing: antialiased; /* Sets the -webkit-font-smoothing style for this rule. */
+}
+
+.adm-shell { /* Starts styles for the .adm-shell selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    min-height: 100vh; /* Sets the minimum element height. */
+}
+
+.adm-sidebar { /* Starts styles for the .adm-sidebar selector. */
+    /* ----- Tables ----- */
+    width: 240px; /* Sets the element width. */
+    min-height: 100vh; /* Sets the minimum element height. */
+    background: #172c1f; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    position: fixed; /* Controls how the element is positioned on the page. */
+    top: 0; /* Sets the top style for this rule. */
+    left: 0; /* Sets the left style for this rule. */
+    bottom: 0; /* Sets the bottom style for this rule. */
+    z-index: 200; /* Controls stacking order. */
+    /* ----- Forms ----- */
+    transition: transform .25s cubic-bezier(.4,0,.2,1); /* Animates property changes smoothly. */
+    overflow-y: auto; /* Sets the overflow-y style for this rule. */
+    /* ----- Tables ----- */
+    scrollbar-width: none; /* Sets the scrollbar-width style for this rule. */
+}
+.adm-sidebar::-webkit-scrollbar { display: none; } /* Styles part of the AdminLayout page or component. */
+
+.adm-sidebar__brand { /* Starts styles for the .adm-sidebar__brand selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 10px; /* Sets spacing between flex or grid children. */
+    padding: 22px 20px 18px; /* Sets spacing inside the element. */
+    border-bottom: 1px solid rgba(255,255,255,.08); /* Sets the border-bottom style for this rule. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+.adm-sidebar__brand-icon { /* Starts styles for the .adm-sidebar__brand-icon selector. */
+    /* ----- Tables ----- */
+    width: 36px; /* Sets the element width. */
+    height: 36px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: var(--green); /* Sets the element background treatment. */
+    border-radius: 10px; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    color: #fff; /* Sets the text color. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+.adm-sidebar__brand-text { /* Starts styles for the .adm-sidebar__brand-text selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 15px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    color: #fff; /* Sets the text color. */
+    line-height: 1.1; /* Sets vertical text rhythm. */
+}
+.adm-sidebar__brand-sub { /* Starts styles for the .adm-sidebar__brand-sub selector. */
+    font-size: 10px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    color: rgba(255,255,255,.4); /* Sets the text color. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.adm-sidebar__nav { /* Starts styles for the .adm-sidebar__nav selector. */
+    /* ----- Grid layout ----- */
+    flex: 1; /* Sets the flex style for this rule. */
+    padding: 12px 10px; /* Sets spacing inside the element. */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: 2px; /* Sets spacing between flex or grid children. */
+}
+/* ----- Base layout ----- */
+.adm-sidebar__section { /* Starts styles for the .adm-sidebar__section selector. */
+    font-size: 10px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    letter-spacing: .1em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    /* ----- Grid layout ----- */
+    color: rgba(255,255,255,.3); /* Sets the text color. */
+    padding: 14px 12px 4px; /* Sets spacing inside the element. */
+    margin-top: 4px; /* Sets the margin-top style for this rule. */
+}
+/* ----- Navigation ----- */
+.adm-nav-link { /* Starts styles for the .adm-nav-link selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 10px; /* Sets spacing between flex or grid children. */
+    padding: 9px 12px; /* Sets spacing inside the element. */
+    border-radius: 8px; /* Rounds the element corners. */
+    font-size: 13.5px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    color: rgba(255,255,255,.6); /* Sets the text color. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    transition: background .12s, color .12s; /* Animates property changes smoothly. */
+    position: relative; /* Controls how the element is positioned on the page. */
+}
+/* ----- Navigation ----- */
+.adm-nav-link:hover { background: rgba(255,255,255,.07); color: rgba(255,255,255,.9); } /* Styles part of the AdminLayout page or component. */
+.adm-nav-link.is-active { background: rgba(255,255,255,.12); color: #fff; } /* Styles part of the AdminLayout page or component. */
+.adm-nav-link.is-active::before { /* Starts styles for the .adm-nav-link.is-active::before selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    left: 0; /* Sets the left style for this rule. */
+    top: 6px; /* Sets the top style for this rule. */
+    bottom: 6px; /* Sets the bottom style for this rule. */
+    /* ----- Tables ----- */
+    width: 3px; /* Sets the element width. */
+    border-radius: 0 2px 2px 0; /* Rounds the element corners. */
+    /* ----- Theme variables ----- */
+    background: var(--green); /* Sets the element background treatment. */
+}
+/* ----- Navigation ----- */
+.adm-nav-link__icon { width: 17px; height: 17px; flex-shrink: 0; opacity: .75; } /* Styles part of the AdminLayout page or component. */
+.adm-nav-link.is-active .adm-nav-link__icon { opacity: 1; } /* Styles part of the AdminLayout page or component. */
+.adm-nav-badge { /* Starts styles for the .adm-nav-badge selector. */
+    margin-left: auto; /* Sets the margin-left style for this rule. */
+    /* ----- Theme variables ----- */
+    background: var(--orange); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #fff; /* Sets the text color. */
+    font-size: 10px; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    padding: 1px 6px; /* Sets spacing inside the element. */
+    border-radius: 999px; /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    min-width: 18px; /* Sets the min-width style for this rule. */
+    text-align: center; /* Sets the text-align style for this rule. */
+}
+.adm-sidebar__footer { /* Starts styles for the .adm-sidebar__footer selector. */
+    padding: 14px 16px; /* Sets spacing inside the element. */
+    border-top: 1px solid rgba(255,255,255,.08); /* Sets the border-top style for this rule. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+.adm-sidebar__footer a { /* Starts styles for the .adm-sidebar__footer a selector. */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    font-size: 12px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    color: rgba(255,255,255,.45); /* Sets the text color. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    transition: color .12s; /* Animates property changes smoothly. */
+}
+.adm-sidebar__footer a:hover { color: rgba(255,255,255,.7); } /* Styles part of the AdminLayout page or component. */
+
+/* ----- Base layout ----- */
+.adm-main { /* Starts styles for the .adm-main selector. */
+    margin-left: 240px; /* Sets the margin-left style for this rule. */
+    /* ----- Grid layout ----- */
+    flex: 1; /* Sets the flex style for this rule. */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    min-height: 100vh; /* Sets the minimum element height. */
+}
+.adm-topbar { /* Starts styles for the .adm-topbar selector. */
+    height: 58px; /* Sets the element height. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    padding: 0 28px; /* Sets spacing inside the element. */
+    gap: 16px; /* Sets spacing between flex or grid children. */
+    position: sticky; /* Controls how the element is positioned on the page. */
+    top: 0; /* Sets the top style for this rule. */
+    z-index: 100; /* Controls stacking order. */
+}
+.adm-topbar__title { /* Starts styles for the .adm-topbar__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 16px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    flex: 1; /* Sets the flex style for this rule. */
+}
+/* ----- Theme variables ----- */
+.adm-topbar__user { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-muted); } /* Styles part of the AdminLayout page or component. */
+/* ----- Producer styling ----- */
+.adm-topbar__avatar { /* Starts styles for the .adm-topbar__avatar selector. */
+    /* ----- Tables ----- */
+    width: 30px; /* Sets the element width. */
+    height: 30px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+    font-size: 12px; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+}
+.adm-topbar__back { /* Starts styles for the .adm-topbar__back selector. */
+    font-size: 12px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    color: var(--text-muted); /* Sets the text color. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    padding: 6px 12px; /* Sets spacing inside the element. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+    transition: color .12s, border-color .12s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.adm-topbar__back:hover { color: var(--text); border-color: var(--text-muted); } /* Styles part of the AdminLayout page or component. */
+/* ----- Grid layout ----- */
+.adm-topbar .pw-accessibility { flex-shrink: 0; } /* Styles part of the AdminLayout page or component. */
+.adm-topbar .pw-accessibility__toggle { /* Starts styles for the .adm-topbar .pw-accessibility__toggle selector. */
+    font-size: 12px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    padding: 6px 12px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    color: var(--text-muted); /* Sets the text color. */
+    background: var(--white); /* Sets the element background treatment. */
+}
+.adm-topbar .pw-accessibility__toggle:hover, /* Continues a selector or value list on the next line. */
+.adm-topbar .pw-accessibility.is-open .pw-accessibility__toggle { /* Starts styles for the .adm-topbar .pw-accessibility.is-open .pw-accessibility__toggle selector. */
+    color: var(--text); /* Sets the text color. */
+    border-color: var(--green-200); /* Sets the border-color style for this rule. */
+    background: var(--green-100); /* Sets the element background treatment. */
+}
+.adm-content { /* Starts styles for the .adm-content selector. */
+    padding: 28px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    flex: 1; /* Sets the flex style for this rule. */
+}
+/* ----- Badges and status ----- */
+.adm-toast { /* Starts styles for the .adm-toast selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 10px; /* Sets spacing between flex or grid children. */
+    padding: 12px 16px; /* Sets spacing inside the element. */
+    margin-bottom: 20px; /* Sets the margin-bottom style for this rule. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border: 1.5px solid var(--green-200); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    color: var(--green-800); /* Sets the text color. */
+}
+.adm-hamburger { /* Starts styles for the .adm-hamburger selector. */
+    display: none; /* Controls how the element participates in layout. */
+    background: none; /* Sets the element background treatment. */
+    border: none; /* Sets the border around the element. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    padding: 4px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+}
+.adm-overlay { /* Starts styles for the .adm-overlay selector. */
+    display: none; /* Controls how the element participates in layout. */
+    position: fixed; /* Controls how the element is positioned on the page. */
+    inset: 0; /* Sets the inset style for this rule. */
+    background: rgba(0,0,0,.4); /* Sets the element background treatment. */
+    z-index: 199; /* Controls stacking order. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 860px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Forms ----- */
+    .adm-sidebar { transform: translateX(-100%); } /* Styles part of the AdminLayout page or component. */
+    .adm-sidebar.is-open { transform: translateX(0); } /* Styles part of the AdminLayout page or component. */
+    /* ----- Base layout ----- */
+    .adm-main { margin-left: 0; } /* Styles part of the AdminLayout page or component. */
+    /* ----- Grid layout ----- */
+    .adm-hamburger { display: flex; } /* Styles part of the AdminLayout page or component. */
+    .adm-overlay.is-open { display: block; } /* Styles part of the AdminLayout page or component. */
+    .adm-content { padding: 18px; } /* Styles part of the AdminLayout page or component. */
+    .adm-topbar { padding: 0 14px; gap: 10px; } /* Styles part of the AdminLayout page or component. */
+    .adm-topbar .pw-accessibility__toggle span:last-child, /* Continues a selector or value list on the next line. */
+    .adm-topbar__user span { display: none; } /* Styles part of the AdminLayout page or component. */
+}

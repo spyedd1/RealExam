@@ -1,0 +1,580 @@
+
+/* ----- Theme variables ----- */
+.co-page { min-height:100vh; background:var(--cream); } /* Styles part of the OrderCreate page or component. */
+
+.co-steps { /* Starts styles for the .co-steps selector. */
+    background: var(--white); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    padding-top: 88px; /* Sets the padding-top style for this rule. */
+}
+.co-steps__inner { /* Starts styles for the .co-steps__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; margin: 0 auto; padding: 0 24px; /* Limits the element width on larger screens. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; /* Controls how the element participates in layout. */
+}
+.co-step { /* Starts styles for the .co-step selector. */
+    display: flex; align-items: center; gap: 8px; /* Controls how the element participates in layout. */
+    padding: 14px 20px 14px 0; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    font-size: 13px; font-weight: 600; color: var(--text-light); /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    position: relative; white-space: nowrap; /* Controls how the element is positioned on the page. */
+}
+.co-step + .co-step { padding-left: 20px; } /* Styles part of the OrderCreate page or component. */
+.co-step + .co-step::before { /* Starts styles for the .co-step + .co-step::before selector. */
+    content: ''; position: absolute; left: 0; top: 50%; /* Sets the content style for this rule. */
+    /* ----- Theme variables ----- */
+    transform: translateY(-50%); width: 1px; height: 20px; background: var(--border); /* Moves, scales, or rotates the element. */
+}
+.co-step__num { /* Starts styles for the .co-step__num selector. */
+    /* ----- Tables ----- */
+    width: 22px; height: 22px; border-radius: 50%; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--border); color: var(--text-light); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    font-size: 11px; font-weight: 800; flex-shrink: 0; /* Sets the text size. */
+}
+/* ----- Theme variables ----- */
+.co-step--done  { color: var(--text-muted); } /* Styles part of the OrderCreate page or component. */
+.co-step--done  .co-step__num { background: var(--green-100); color: var(--green); } /* Styles part of the OrderCreate page or component. */
+.co-step--active { color: var(--green-800); } /* Styles part of the OrderCreate page or component. */
+.co-step--active .co-step__num { /* Starts styles for the .co-step--active .co-step__num selector. */
+    background: var(--green); color: #fff; /* Sets the element background treatment. */
+    box-shadow: 0 2px 8px rgba(22,163,74,.35); /* Adds depth with a shadow. */
+}
+
+/* ----- Navigation ----- */
+.co-header { /* Starts styles for the .co-header selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(160deg, var(--cream) 0%, #ebf7f0 100%); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+}
+/* ----- Navigation ----- */
+.co-header__inner { /* Starts styles for the .co-header__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; margin: 0 auto; padding: 32px 24px 28px; /* Limits the element width on larger screens. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: flex-end; justify-content: space-between; /* Controls how the element participates in layout. */
+    flex-wrap: wrap; gap: 12px; /* Sets the flex-wrap style for this rule. */
+}
+/* ----- Navigation ----- */
+.co-header__eyebrow { /* Starts styles for the .co-header__eyebrow selector. */
+    /* ----- Forms ----- */
+    font-size: 12px; font-weight: 700; text-transform: uppercase; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    letter-spacing: .08em; color: var(--green); /* Sets the letter-spacing style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 6px; margin-bottom: 8px; /* Controls how the element participates in layout. */
+}
+/* ----- Navigation ----- */
+.co-header__title { /* Starts styles for the .co-header__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text); margin: 0; line-height: 1.15; letter-spacing: -.025em; /* Sets the text color. */
+}
+.co-header__title em { color: var(--green); font-style: normal; } /* Styles part of the OrderCreate page or component. */
+.co-header__sub { font-size: 14px; color: var(--text-muted); margin: 6px 0 0; } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Base layout ----- */
+.co-body { /* Starts styles for the .co-body selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; margin: 0 auto; /* Limits the element width on larger screens. */
+    padding: 36px 24px 80px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: grid; grid-template-columns: 1fr 360px; /* Controls how the element participates in layout. */
+    gap: 28px; align-items: start; /* Sets spacing between flex or grid children. */
+}
+/* ----- Tables ----- */
+@media (max-width: 900px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Base layout ----- */
+    .co-body { grid-template-columns: 1fr; } /* Styles part of the OrderCreate page or component. */
+    /* ----- Card layout ----- */
+    .co-summary-col { order: -1; } /* Styles part of the OrderCreate page or component. */
+}
+
+/* ----- Base layout ----- */
+.co-section { /* Starts styles for the .co-section selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    margin-bottom: 20px; /* Sets the margin-bottom style for this rule. */
+    /* ----- Tables ----- */
+    animation: co-rise .4s cubic-bezier(.34,1.56,.64,1) both; /* Sets the animation style for this rule. */
+}
+/* ----- Base layout ----- */
+.co-section:nth-child(1) { animation-delay:.04s; } /* Styles part of the OrderCreate page or component. */
+.co-section:nth-child(2) { animation-delay:.10s; } /* Styles part of the OrderCreate page or component. */
+.co-section:nth-child(3) { animation-delay:.16s; } /* Styles part of the OrderCreate page or component. */
+.co-section:nth-child(4) { animation-delay:.22s; } /* Styles part of the OrderCreate page or component. */
+.co-section:nth-child(5) { animation-delay:.28s; } /* Styles part of the OrderCreate page or component. */
+.co-section:nth-child(6) { animation-delay:.33s; } /* Styles part of the OrderCreate page or component. */
+/* ----- Animation ----- */
+@keyframes co-rise { /* Defines an animation sequence used by this page. */
+    /* ----- Forms ----- */
+    from { opacity:0; transform:translateY(16px) scale(.98); } /* Defines one point in the animation timeline. */
+    to   { opacity:1; transform:translateY(0) scale(1); } /* Defines one point in the animation timeline. */
+}
+/* ----- Base layout ----- */
+.co-section__head { /* Starts styles for the .co-section__head selector. */
+    padding: 16px 22px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    background: #FAFAF9; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+}
+/* ----- Base layout ----- */
+.co-section__head-icon { /* Starts styles for the .co-section__head-icon selector. */
+    /* ----- Grid layout ----- */
+    width: 32px; height: 32px; flex-shrink: 0; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); color: var(--green); /* Sets the element background treatment. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+}
+/* ----- Base layout ----- */
+.co-section__title { /* Starts styles for the .co-section__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 15px; font-weight: 700; color: var(--text); margin: 0; /* Sets the text size. */
+}
+/* ----- Base layout ----- */
+.co-section__sub { /* Starts styles for the .co-section__sub selector. */
+    /* ----- Theme variables ----- */
+    font-size: 12px; color: var(--text-muted); margin: 1px 0 0; /* Sets the text size. */
+}
+/* ----- Base layout ----- */
+.co-section__body { padding: 22px; } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Card layout ----- */
+.co-option-cards { /* Starts styles for the .co-option-cards selector. */
+    /* ----- Grid layout ----- */
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; /* Controls how the element participates in layout. */
+}
+/* ----- Card layout ----- */
+@media (max-width: 520px) { .co-option-cards { grid-template-columns: 1fr; } } /* Starts responsive rules for this viewport range. */
+
+.co-option-card { /* Starts styles for the .co-option-card selector. */
+    /* ----- Theme variables ----- */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    padding: 18px 16px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: flex-start; gap: 14px; /* Controls how the element participates in layout. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    transition: border-color .18s, background .18s, box-shadow .18s, transform .18s; /* Animates property changes smoothly. */
+    /* ----- Forms ----- */
+    position: relative; user-select: none; /* Controls how the element is positioned on the page. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+/* ----- Card layout ----- */
+.co-option-card:hover { /* Starts styles for the .co-option-card:hover selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green-200); /* Sets the border-color style for this rule. */
+    background: var(--white); /* Sets the element background treatment. */
+    /* ----- Forms ----- */
+    transform: translateY(-2px); /* Moves, scales, or rotates the element. */
+    /* ----- Theme variables ----- */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+}
+/* ----- Card layout ----- */
+.co-option-card.is-active { /* Starts styles for the .co-option-card.is-active selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    background: var(--white); /* Sets the element background treatment. */
+    box-shadow: 0 0 0 3px rgba(22,163,74,.12); /* Adds depth with a shadow. */
+}
+/* ----- Card layout ----- */
+.co-option-card.is-disabled { /* Starts styles for the .co-option-card.is-disabled selector. */
+    /* ----- Animation ----- */
+    opacity: .45; pointer-events: none; /* Controls element transparency. */
+}
+/* ----- Card layout ----- */
+.co-option-card input[type="checkbox"] { /* Starts styles for the .co-option-card input[type="checkbox"] selector. */
+    /* ----- Tables ----- */
+    position: absolute; opacity: 0; width: 0; height: 0; /* Controls how the element is positioned on the page. */
+}
+/* ----- Card layout ----- */
+.co-option-card__icon { /* Starts styles for the .co-option-card__icon selector. */
+    /* ----- Grid layout ----- */
+    width: 44px; height: 44px; flex-shrink: 0; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    background: var(--green-100); color: var(--green); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    /* ----- Tables ----- */
+    transition: background .18s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.co-option-card.is-active .co-option-card__icon { background: var(--green); color: #fff; } /* Styles part of the OrderCreate page or component. */
+/* ----- Base layout ----- */
+.co-option-card__body { flex: 1; } /* Styles part of the OrderCreate page or component. */
+/* ----- Card layout ----- */
+.co-option-card__label { /* Starts styles for the .co-option-card__label selector. */
+    /* ----- Theme variables ----- */
+    font-size: 15px; font-weight: 700; color: var(--text); display: block; margin-bottom: 3px; /* Sets the text size. */
+}
+.co-option-card__hint { font-size: 12px; color: var(--text-muted); line-height: 1.45; } /* Styles part of the OrderCreate page or component. */
+/* ----- Card layout ----- */
+.co-option-card__check { /* Starts styles for the .co-option-card__check selector. */
+    /* ----- Tables ----- */
+    width: 20px; height: 20px; border-radius: 50%; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    flex-shrink: 0; margin-top: 2px; /* Sets the flex-shrink style for this rule. */
+    transition: border-color .18s, background .18s; /* Animates property changes smoothly. */
+}
+/* ----- Card layout ----- */
+.co-option-card.is-active .co-option-card__check { /* Starts styles for the .co-option-card.is-active .co-option-card__check selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green); border-color: var(--green); /* Sets the element background treatment. */
+}
+/* ----- Card layout ----- */
+.co-option-card__check-dot { /* Starts styles for the .co-option-card__check-dot selector. */
+    /* ----- Tables ----- */
+    width: 8px; height: 8px; border-radius: 50%; background: #fff; /* Sets the element width. */
+    /* ----- Forms ----- */
+    opacity: 0; transform: scale(0); transition: opacity .15s, transform .2s cubic-bezier(.34,1.56,.64,1); /* Controls element transparency. */
+}
+/* ----- Card layout ----- */
+.co-option-card.is-active .co-option-card__check-dot { opacity: 1; transform: scale(1); } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Grid layout ----- */
+.co-delivery-methods { display: flex; flex-direction: column; gap: 10px; } /* Styles part of the OrderCreate page or component. */
+/* ----- Card layout ----- */
+.co-dm-card { /* Starts styles for the .co-dm-card selector. */
+    /* ----- Theme variables ----- */
+    border: 2px solid var(--border); border-radius: var(--r-md); /* Sets the border around the element. */
+    padding: 14px 16px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 14px; /* Controls how the element participates in layout. */
+    cursor: pointer; transition: border-color .18s, background .18s, box-shadow .18s, transform .15s; /* Sets the cursor style for this rule. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); position: relative; /* Sets the element background treatment. */
+}
+.co-dm-card:hover { border-color: var(--green-200); background: var(--white); transform: translateY(-1px); box-shadow: var(--shadow-sm); } /* Styles part of the OrderCreate page or component. */
+/* ----- Card layout ----- */
+.co-dm-card.is-active { /* Starts styles for the .co-dm-card.is-active selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green); background: #f0fdf4; /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px rgba(22,163,74,.15), 0 2px 8px rgba(22,163,74,.12); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transform: translateY(-1px); /* Moves, scales, or rotates the element. */
+}
+/* ----- Card layout ----- */
+.co-dm-card__tick { /* Starts styles for the .co-dm-card__tick selector. */
+    position: absolute; top: 10px; right: 10px; /* Controls how the element is positioned on the page. */
+    /* ----- Tables ----- */
+    width: 20px; height: 20px; border-radius: 50%; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--green); color: #fff; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    /* ----- Forms ----- */
+    opacity: 0; transform: scale(0); /* Controls element transparency. */
+    transition: opacity .2s, transform .22s cubic-bezier(.34,1.56,.64,1); /* Animates property changes smoothly. */
+}
+/* ----- Card layout ----- */
+.co-dm-card.is-active .co-dm-card__tick { opacity: 1; transform: scale(1); } /* Styles part of the OrderCreate page or component. */
+.co-dm-card__icon { /* Starts styles for the .co-dm-card__icon selector. */
+    /* ----- Grid layout ----- */
+    width: 38px; height: 38px; flex-shrink: 0; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    background: var(--green-100); color: var(--green); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    /* ----- Tables ----- */
+    transition: background .15s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.co-dm-card.is-active .co-dm-card__icon { background: var(--green); color: #fff; } /* Styles part of the OrderCreate page or component. */
+/* ----- Card layout ----- */
+.co-dm-card__info { flex: 1; } /* Styles part of the OrderCreate page or component. */
+/* ----- Theme variables ----- */
+.co-dm-card__name { font-size: 14px; font-weight: 700; color: var(--text); } /* Styles part of the OrderCreate page or component. */
+.co-dm-card__desc { font-size: 12px; color: var(--text-muted); margin-top: 1px; } /* Styles part of the OrderCreate page or component. */
+/* ----- Card layout ----- */
+.co-dm-card__price { /* Starts styles for the .co-dm-card__price selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); font-size: 15px; font-weight: 800; color: var(--text); /* Sets the font family. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; padding-right: 4px; /* Sets the white-space style for this rule. */
+}
+/* ----- Theme variables ----- */
+.co-dm-card__price--free { color: var(--green); } /* Styles part of the OrderCreate page or component. */
+
+
+/* ----- Forms ----- */
+.co-date-input { /* Starts styles for the .co-date-input selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    height: 44px; padding: 0 14px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; /* Sets the font family. */
+    color: var(--text); background: #fff; /* Sets the text color. */
+    border: 1.5px solid var(--border); border-radius: var(--r-sm); /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s; outline: none; /* Animates property changes smoothly. */
+    appearance: none; /* Sets the appearance style for this rule. */
+}
+/* ----- Theme variables ----- */
+.co-date-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-100); } /* Styles part of the OrderCreate page or component. */
+.co-date-hint { /* Starts styles for the .co-date-hint selector. */
+    font-size: 12px; color: var(--text-muted); margin-top: 6px; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 5px; /* Controls how the element participates in layout. */
+}
+
+.co-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; } /* Styles part of the OrderCreate page or component. */
+/* ----- Forms ----- */
+.co-field:last-child { margin-bottom: 0; } /* Styles part of the OrderCreate page or component. */
+.co-field label { /* Starts styles for the .co-field label selector. */
+    /* ----- Theme variables ----- */
+    font-size: 13px; font-weight: 600; color: var(--text); /* Sets the text size. */
+}
+.co-field__req { color: var(--orange); margin-left: 2px; } /* Styles part of the OrderCreate page or component. */
+.co-field__hint { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.5; } /* Styles part of the OrderCreate page or component. */
+/* ----- Grid layout ----- */
+.co-field__error { font-size: 12px; color: #DC2626; margin-top: 2px; } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Forms ----- */
+.co-input { /* Starts styles for the .co-input selector. */
+    /* ----- Tables ----- */
+    width: 100%; height: 44px; padding: 0 14px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); font-size: 14px; font-weight: 500; /* Sets the font family. */
+    color: var(--text); background: #fff; /* Sets the text color. */
+    border: 1.5px solid var(--border); border-radius: var(--r-sm); /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s; outline: none; /* Animates property changes smoothly. */
+    appearance: none; /* Sets the appearance style for this rule. */
+}
+.co-input:hover { border-color: #c4c0bb; } /* Styles part of the OrderCreate page or component. */
+/* ----- Theme variables ----- */
+.co-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-100); } /* Styles part of the OrderCreate page or component. */
+/* ----- Grid layout ----- */
+.co-input.input-validation-error { border-color: #DC2626; box-shadow: 0 0 0 3px #fee2e2; } /* Styles part of the OrderCreate page or component. */
+
+.co-addr-grid { /* Starts styles for the .co-addr-grid selector. */
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; /* Controls how the element participates in layout. */
+}
+@media (max-width: 520px) { .co-addr-grid { grid-template-columns: 1fr; } } /* Starts responsive rules for this viewport range. */
+
+#deliveryFieldsWrap { /* Starts styles for the #deliveryFieldsWrap selector. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    /* ----- Tables ----- */
+    transition: max-height .38s ease, opacity .28s ease; /* Animates property changes smoothly. */
+}
+
+/* ----- Grid layout ----- */
+.co-same-row { /* Starts styles for the .co-same-row selector. */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+    padding: 12px 14px; margin-bottom: 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); border: 1.5px solid var(--green-200); /* Sets the element background treatment. */
+    border-radius: var(--r-md); cursor: pointer; /* Rounds the element corners. */
+}
+.co-same-row input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; } /* Styles part of the OrderCreate page or component. */
+.co-same-row label { font-size: 13.5px; font-weight: 600; color: var(--green-800); cursor: pointer; } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Product styling ----- */
+.co-allergen-head { /* Starts styles for the .co-allergen-head selector. */
+    background: #FFEDD5; border-bottom: 1px solid #FED7AA; /* Sets the element background treatment. */
+}
+/* ----- Grid layout ----- */
+.co-allergen-table { width: 100%; border-collapse: collapse; font-size: 13.5px; } /* Styles part of the OrderCreate page or component. */
+/* ----- Tables ----- */
+.co-allergen-table th { /* Starts styles for the .co-allergen-table th selector. */
+    padding: 10px 14px; text-align: left; /* Sets spacing inside the element. */
+    /* ----- Forms ----- */
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); border-bottom: 1.5px solid var(--border); /* Sets the text color. */
+    background: #FAFAF9; /* Sets the element background treatment. */
+}
+.co-allergen-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; } /* Styles part of the OrderCreate page or component. */
+/* ----- Tables ----- */
+.co-allergen-table tr:last-child td { border-bottom: none; } /* Styles part of the OrderCreate page or component. */
+.co-allergen-table tr:hover td { background: #FFFBEB; } /* Styles part of the OrderCreate page or component. */
+/* ----- Product styling ----- */
+.co-allergen-chip { /* Starts styles for the .co-allergen-chip selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 3px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    padding: 2px 8px; border-radius: var(--r-full); /* Sets spacing inside the element. */
+    border: 1px solid #FED7AA; background: #FFF7ED; /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    color: #9A3412; font-size: 11px; font-weight: 700; /* Sets the text color. */
+    margin: 2px 2px 2px 0; /* Sets spacing outside the element. */
+}
+/* ----- Product styling ----- */
+.co-allergen-safe { /* Starts styles for the .co-allergen-safe selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 5px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-size: 12.5px; font-weight: 600; color: var(--green); /* Sets the text size. */
+}
+
+/* ----- Grid layout ----- */
+.co-terms-row { /* Starts styles for the .co-terms-row selector. */
+    display: flex; align-items: flex-start; gap: 12px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    padding: 16px; background: var(--cream); /* Sets spacing inside the element. */
+    border: 1.5px solid var(--border); border-radius: var(--r-md); cursor: pointer; /* Sets the border around the element. */
+}
+/* ----- Grid layout ----- */
+.co-terms-row input[type="checkbox"] { /* Starts styles for the .co-terms-row input[type="checkbox"] selector. */
+    /* ----- Theme variables ----- */
+    width: 18px; height: 18px; accent-color: var(--green); cursor: pointer; margin-top: 2px; flex-shrink: 0; /* Sets the element width. */
+}
+.co-terms-row label { font-size: 13.5px; color: var(--text); cursor: pointer; line-height: 1.55; } /* Styles part of the OrderCreate page or component. */
+.co-terms-row label a { color: var(--green-700); font-weight: 600; text-decoration: underline; } /* Styles part of the OrderCreate page or component. */
+/* ----- Grid layout ----- */
+.co-terms-error { font-size: 12px; color: #DC2626; margin-top: 6px; } /* Styles part of the OrderCreate page or component. */
+
+.co-slide { display: none; } /* Styles part of the OrderCreate page or component. */
+
+.co-errors { /* Starts styles for the .co-errors selector. */
+    background: #fef2f2; border: 1.5px solid #fecaca; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); padding: 12px 16px; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    font-size: 13px; color: #DC2626; margin-bottom: 20px; /* Sets the text size. */
+}
+.co-errors ul { margin: 5px 0 0 16px; padding: 0; } /* Styles part of the OrderCreate page or component. */
+/* ----- Card layout ----- */
+.co-errors.validation-summary-valid { display: none; } /* Styles part of the OrderCreate page or component. */
+
+.co-summary-col { position: sticky; top: 100px; } /* Styles part of the OrderCreate page or component. */
+.co-summary { /* Starts styles for the .co-summary selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); border: 1.5px solid var(--border); /* Sets the element background treatment. */
+    border-radius: var(--r-xl); box-shadow: var(--shadow-md); overflow: hidden; /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    animation: co-rise .45s .06s cubic-bezier(.34,1.56,.64,1) both; /* Sets the animation style for this rule. */
+}
+/* ----- Card layout ----- */
+.co-summary__head { /* Starts styles for the .co-summary__head selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-900) 0%, #1a4a2a 50%, var(--green-800) 100%); /* Sets the element background treatment. */
+    /* ----- Utility classes ----- */
+    padding: 20px 24px; position: relative; overflow: hidden; /* Sets spacing inside the element. */
+}
+/* ----- Card layout ----- */
+.co-summary__head::after { /* Starts styles for the .co-summary__head::after selector. */
+    content: ''; position: absolute; inset: 0; /* Sets the content style for this rule. */
+    /* ----- Tables ----- */
+    background: radial-gradient(ellipse at top right, rgba(245,158,11,.18) 0%, transparent 60%); /* Sets the element background treatment. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+/* ----- Card layout ----- */
+.co-summary__head-title { /* Starts styles for the .co-summary__head-title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); font-size: 17px; font-weight: 800; /* Sets the font family. */
+    /* ----- Grid layout ----- */
+    color: #fff; margin: 0 0 2px; position: relative; z-index: 1; /* Sets the text color. */
+}
+/* ----- Card layout ----- */
+.co-summary__head-sub { font-size: 12px; color: rgba(255,255,255,.6); position: relative; z-index: 1; } /* Styles part of the OrderCreate page or component. */
+/* ----- Base layout ----- */
+.co-summary__body { padding: 20px 24px; } /* Styles part of the OrderCreate page or component. */
+/* ----- Card layout ----- */
+.co-summary__row { /* Starts styles for the .co-summary__row selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    padding: 9px 0; border-bottom: 1px solid var(--border); /* Sets spacing inside the element. */
+    font-size: 14px; /* Sets the text size. */
+}
+/* ----- Card layout ----- */
+.co-summary__row:last-of-type { border-bottom: none; } /* Styles part of the OrderCreate page or component. */
+/* ----- Theme variables ----- */
+.co-summary__row-label { color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 6px; } /* Styles part of the OrderCreate page or component. */
+.co-summary__row-value { font-weight: 700; color: var(--text); } /* Styles part of the OrderCreate page or component. */
+.co-summary__row-value--free { color: var(--green); } /* Styles part of the OrderCreate page or component. */
+.co-summary__row-value--hidden { color: var(--text-light); font-weight: 400; font-style: italic; } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Card layout ----- */
+.co-summary__total { /* Starts styles for the .co-summary__total selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    padding: 16px 0 4px; margin-top: 4px; border-top: 2px solid var(--border); /* Sets spacing inside the element. */
+}
+.co-summary__total-label { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--text); } /* Styles part of the OrderCreate page or component. */
+.co-summary__total-value { font-family: var(--font-display); font-size: 26px; font-weight: 900; color: var(--text); letter-spacing: -.02em; } /* Styles part of the OrderCreate page or component. */
+.co-summary__total-vat { font-size: 11px; color: var(--text-muted); text-align: right; margin-top: -2px; display: block; } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Grid layout ----- */
+.co-mini-items { display: flex; flex-direction: column; gap: 0; margin-bottom: 4px; } /* Styles part of the OrderCreate page or component. */
+.co-mini-item { /* Starts styles for the .co-mini-item selector. */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    padding: 8px 0; border-bottom: 1px dashed var(--border); /* Sets spacing inside the element. */
+    font-size: 12.5px; /* Sets the text size. */
+}
+.co-mini-item:last-child { border-bottom: none; } /* Styles part of the OrderCreate page or component. */
+/* ----- Theme variables ----- */
+.co-mini-item__name { color: var(--text); font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 8px; } /* Styles part of the OrderCreate page or component. */
+.co-mini-item__qty  { color: var(--text-muted); flex-shrink: 0; margin-right: 8px; } /* Styles part of the OrderCreate page or component. */
+.co-mini-item__price { font-weight: 700; color: var(--text); flex-shrink: 0; } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Buttons ----- */
+.co-place-btn { /* Starts styles for the .co-place-btn selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; gap: 10px; /* Controls how the element participates in layout. */
+    /* ----- Tables ----- */
+    width: 100%; margin-top: 18px; padding: 17px 24px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-700) 100%); /* Sets the element background treatment. */
+    color: #fff; font-family: var(--font-display); /* Sets the text color. */
+    font-size: 16px; font-weight: 800; /* Sets the text size. */
+    border-radius: var(--r-full); border: none; cursor: pointer; /* Rounds the element corners. */
+    box-shadow: 0 6px 24px rgba(22,163,74,.4); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transition: transform .15s, box-shadow .15s; /* Animates property changes smoothly. */
+    /* ----- Utility classes ----- */
+    position: relative; overflow: hidden; letter-spacing: -.01em; /* Controls how the element is positioned on the page. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+}
+/* ----- Buttons ----- */
+.co-place-btn::before { /* Starts styles for the .co-place-btn::before selector. */
+    content: ''; position: absolute; inset: 0; /* Sets the content style for this rule. */
+    /* ----- Tables ----- */
+    background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%); /* Sets the element background treatment. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+/* ----- Grid layout ----- */
+.co-place-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(22,163,74,.5); color: #fff; } /* Styles part of the OrderCreate page or component. */
+/* ----- Forms ----- */
+.co-place-btn:active { transform: translateY(-1px); } /* Styles part of the OrderCreate page or component. */
+/* ----- Buttons ----- */
+.co-place-btn:disabled { opacity: .5; pointer-events: none; } /* Styles part of the OrderCreate page or component. */
+/* ----- Animation ----- */
+@keyframes co-pulse { 0%,100%{ box-shadow:0 6px 24px rgba(22,163,74,.4); } 50%{ box-shadow:0 8px 32px rgba(22,163,74,.65),0 0 0 6px rgba(22,163,74,.1); } } /* Defines an animation sequence used by this page. */
+/* ----- Buttons ----- */
+.co-place-btn { animation: co-pulse 2.8s ease-in-out infinite; } /* Styles part of the OrderCreate page or component. */
+.co-place-btn:hover { animation: none; } /* Styles part of the OrderCreate page or component. */
+
+/* ----- Theme variables ----- */
+.co-trust { display: flex; flex-direction: column; gap: 7px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); } /* Styles part of the OrderCreate page or component. */
+.co-trust__item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--text-muted); } /* Styles part of the OrderCreate page or component. */
+.co-trust__item i { width: 14px; height: 14px; color: var(--green); flex-shrink: 0; } /* Styles part of the OrderCreate page or component. */
+
+.co-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-top: 14px; transition: color .15s; } /* Styles part of the OrderCreate page or component. */
+.co-back:hover { color: var(--text); } /* Styles part of the OrderCreate page or component. */

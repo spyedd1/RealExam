@@ -1,0 +1,61 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.OrderProducts
+
+@{
+    ViewData["Title"] = "Create"; // Sets the browser and page title for this view.
+}
+
+ @* ----- Page Header ----- *@
+<h1>Create</h1> @* Renders a heading for this page section. *@
+
+ @* ----- Order Display ----- *@
+<h4>OrderProducts</h4> @* Renders a heading for this page section. *@
+<hr /> @* Renders part of the create page markup. *@
+ @* ----- Card Layout ----- *@
+<div class="row"> @* Starts a layout container for this section. *@
+    <div class="col-md-4"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+        <form asp-action="Create"> @* Starts the form that submits this page's user input. *@
+ @* ----- Status Messages ----- *@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div> @* Shows page-level validation messages. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="OrdersId" class="control-label"></label> @* Renders a label tied to the model field. *@
+ @* ----- Page Model Setup ----- *@
+                <select asp-for="OrdersId" class ="form-control" asp-items="ViewBag.OrdersId"></select> @* Binds this dropdown to the matching model property. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="ProductsId" class="control-label"></label> @* Renders a label tied to the model field. *@
+ @* ----- Page Model Setup ----- *@
+                <select asp-for="ProductsId" class ="form-control" asp-items="ViewBag.ProductsId"></select> @* Binds this dropdown to the matching model property. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label asp-for="ProductQuantity" class="control-label"></label> @* Renders a label tied to the model field. *@
+                <input asp-for="ProductQuantity" class="form-control" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <span asp-validation-for="ProductQuantity" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="form-group"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <input type="submit" value="Create" class="btn btn-primary" /> @* Renders a user input field. *@
+            </div> @* Closes the matching HTML element. *@
+        </form> @* Closes the form after its fields and actions. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+<div> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+    <a asp-action="Index">Back to List</a> @* Builds a link or form target using MVC routing. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} // Starts a Razor code block for page setup.
+}

@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GFLHApp</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GFLHApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+
+    <style>
+        /* ── GLOBAL ────────────────────────────────── */
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        body > .container {
+            flex: 1;
+        }
+
+        /* ── NAVBAR ────────────────────────────────── */
+        .nav-main {
+            padding-inline: 24px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .nav-main.navbar-nav { gap: 24px; }
+        .nav-main .nav-link { color: #35424c; font-family: Inter, sans-serif; }
+
+        .has-sub-menu { position: relative; }
+        .has-sub-menu:hover .sub-menu { display: block; }
+        .has-sub-menu .sub-menu {
+            width: 220px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            list-style: none;
+            z-index: 1000;
+            padding: 0;
+            margin: 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            display: none;
+        }
+        .has-sub-menu .sub-menu .nav-link { padding-inline: 20px; }
+        .has-sub-menu .sub-menu .nav-link:hover { background: #e6f2ed; }
+        .has-sub-menu .sub-menu li:first-child { border-radius: 5px 5px 0 0; }
+        .has-sub-menu .sub-menu li:last-child  { border-radius: 0 0 5px 5px; }
+        .has-sub-menu > .nav-link { position: relative; padding-right: 20px !important; }
+        .has-sub-menu > .nav-link:after {
+            content: "";
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%235f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            height: 15px;
+            width: 15px;
+            position: absolute;
+            right: 0;
+            top: 10px;
+        }
+
+        .mobile-menu {
+            --bs-offcanvas-padding-y: 16px;
+            --bs-offcanvas-padding-x: 16px;
+            margin-top: 60px;
+            width: max-content;
+            min-width: 200px;
+        }
+        .mobile-menu .nav-link {
+            font-weight: 500;
+            font-family: Inter, sans-serif;
+            color: #35424c;
+        }
+        .mobile-menu .sub-menu { list-style: none; margin: 0 0 0 10px; padding: 0; }
+
+        /* Login partial inline centering */
+        #navbarNav .navbar-login-partial {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        #navbarNav .navbar-login-partial form,
+        #navbarNav .navbar-login-partial p,
+        #navbarNav .navbar-login-partial div { margin: 0; }
+
+        /* ── FOOTER ────────────────────────────────── */
+        .site-footer {
+            background: #005536;
+            color: #fff;
+            font-family: Inter, sans-serif;
+            padding-top: 40px;
+            padding-bottom: 0;
+            margin-top: 2rem;
+        }
+        /* Cancel the default MVC site.css body padding-bottom */
+        body { padding-bottom: 0 !important; }
+        .site-footer a {
+            color: #f6f6f6;
+            text-decoration: none;
+        }
+        .site-footer a:hover { color: #efcf16; }
+
+        .footer-brand { font-weight: 700; font-size: 1.25rem; }
+
+        .footer-heading {
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .footer-heading:hover { color: #efcf16; }
+
+        .footer-link-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+
+        .footer-quick-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 32px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+        .footer-social .social-icons {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 12px;
+            font-size: 18px;
+        }
+
+        .footer-to-top {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            border: none;
+            background: none;
+            padding: 0;
+            color: #fff;
+            cursor: pointer;
+            font-family: Inter, sans-serif;
+        }
+        .footer-to-top .icon {
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            border: 1px solid #f6f6f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+        .footer-to-top .label { font-size: 0.7rem; }
+        .footer-to-top:hover { color: #efcf16; }
+        .footer-to-top:hover .icon { border-color: #efcf16; }
+
+        .footer-bottom {
+            margin-top: 28px;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.78rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .footer-tagline {
+            font-size: 0.78rem;
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── NAVBAR ───────────────────────────────── -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light nav-main h-100">
+
+            <button type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar"
+                    aria-label="Toggle navigation"
+                    class="navbar-toggler border-0">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">GFLHApp</a>
+
+            <!-- Mobile offcanvas -->
+            <div id="offcanvasNavbar"
+                 data-bs-backdrop="true"
+                 tabindex="-1"
+                 aria-labelledby="offcanvasNavbarLabel"
+                 class="offcanvas offcanvas-start d-lg-none mobile-menu">
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" asp-area="" asp-controller="Producers" asp-action="Index">Producers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" asp-area="" asp-controller="Baskets" asp-action="Index">Basket</a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+
+            <!-- Desktop nav -->
+            <div id="navbarNav" class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav mx-auto justify-content-center nav-main">
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                    <li class="nav-item has-sub-menu">
+                        <a class="nav-link fw-semibold" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                        <ul class="sub-menu">
+                            <li><a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index">All Products</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" asp-area="" asp-controller="Producers" asp-action="Index">Producers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" asp-area="" asp-controller="Baskets" asp-action="Index">Basket</a>
+                    </li>
+                </ul>
+                <div class="navbar-login-partial">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- ── PAGE CONTENT ─────────────────────────── -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- ── FOOTER ───────────────────────────────── -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- Brand + link groups -->
+                <div class="col-lg-5">
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <span class="footer-brand">GFLHApp</span>
+                        </div>
+                        <div class="col-4">
+                            <a class="footer-heading" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <ul class="footer-link-list">
+                                <li><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></li>
+                                <li><a asp-area="" asp-controller="Producers" asp-action="Index">Producers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-4">
+                            <a class="footer-heading" asp-area="" asp-controller="Home" asp-action="Privacy">Legal</a>
+                            <ul class="footer-link-list">
+                                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                                <li><a asp-area="" asp-controller="Baskets" asp-action="Index">Basket</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick links + social + to-top -->
+                <div class="col-lg-7">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <ul class="footer-quick-links">
+                                <li><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></li>
+                                <li><a asp-area="" asp-controller="Producers" asp-action="Index">Producers</a></li>
+                                <li><a asp-area="" asp-controller="Baskets" asp-action="Index">Basket</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                            </ul>
+                            <div class="footer-social">
+                                <span>Follow us</span>
+                                <ul class="social-icons">
+                                    <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button type="button"
+                                class="footer-to-top"
+                                aria-label="Scroll to top"
+                                onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                            <span class="icon"><i class="fa-solid fa-chevron-up"></i></span>
+                            <span class="label">To top</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="footer-bottom">
+                <span>GFLHApp &copy; 2026</span>
+                <span class="footer-tagline">Fresh local produce, delivered to your door.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

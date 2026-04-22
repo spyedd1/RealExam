@@ -1,0 +1,82 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Account created"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-auth-page"> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--1"></div> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--2"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+    <div class="pw-auth-card"> @* Starts a layout container for this section. *@
+        <div class="pw-auth-card__header"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-card__brand"> @* Starts a layout container for this section. *@
+                <i data-lucide="sprout" style="width:18px;height:18px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+                Greenfield @* Renders part of the identity page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h1 class="pw-auth-card__title">Almost there!</h1> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="pw-auth-card__subtitle">One last step to get started</p> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="pw-auth-card__body"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-status"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                @if (Model.DisplayConfirmAccountLink) @* Conditionally renders this block when the check passes. *@
+                {
+ @* ----- Card Layout ----- *@
+                    <div class="pw-auth-status__icon pw-auth-status__icon--warning"> @* Starts a layout container for this section. *@
+                        <i data-lucide="construction" style="width:34px;height:34px;stroke-width:1.75"></i> @* Renders part of the identity page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <p class="pw-auth-status__title">Confirmation</p> @* Renders paragraph text for the user. *@
+                    <p class="pw-auth-status__body"> @* Renders paragraph text for the user. *@
+ @* ----- Identity Account ----- *@
+                        No real email sender is configured yet. @* Renders part of the identity page markup. *@
+ @* ----- Loop Rendering ----- *@
+                        <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a> @* Renders a navigation link or action link. *@
+ @* ----- Identity Account ----- *@
+                        (this link would normally be emailed to you). @* Renders part of the identity page markup. *@
+                    </p> @* Closes the matching HTML element. *@
+                }
+ @* ----- Conditional Rendering ----- *@
+                else @* Renders the fallback branch for the previous condition. *@
+                {
+ @* ----- Card Layout ----- *@
+                    <div class="pw-auth-status__icon pw-auth-status__icon--success"> @* Starts a layout container for this section. *@
+                        <i data-lucide="mail-check" style="width:34px;height:34px;stroke-width:1.75"></i> @* Renders part of the identity page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <p class="pw-auth-status__title">Check your email</p> @* Renders paragraph text for the user. *@
+                    <p class="pw-auth-status__body"> @* Renders paragraph text for the user. *@
+ @* ----- Order Display ----- *@
+                        We've sent a confirmation link to your email address. @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                        Click the link to activate your account — it'll only take a second. @* Renders part of the identity page markup. *@
+                    </p> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <div class="pw-auth-card__footer"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-link-row"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                <span>Wrong email?</span> @* Renders inline text or badge content. *@
+ @* ----- Form Setup ----- *@
+                <a asp-page="./Register">Start over</a> @* Builds a link or form target using MVC routing. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-auth-link-row"> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+                <a asp-page="./ResendEmailConfirmation">Resend confirmation email</a> @* Builds a link or form target using MVC routing. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@

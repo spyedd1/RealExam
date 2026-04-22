@@ -1,0 +1,283 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Producers
+@{
+    ViewData["Title"] = "Delete — " + Model.ProducerName; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+ // ----- Loop Rendering -----
+    var initial     = string.IsNullOrWhiteSpace(Model.ProducerName) ? "?" : Model.ProducerName[0].ToString().ToUpper(); // Displays or uses data from the producers model.
+    var productCount = Model.Products?.Count() ?? 0; // Displays or uses data from the producers model.
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-del-page"> @* Starts a layout container for this section. *@
+
+    <!-- ── Header ──────────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+    <div class="pw-del-header"> @* Starts a layout container for this section. *@
+        <div class="pw-del-header__inner"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+            <nav aria-label="Breadcrumb"> @* Starts the navigation area. *@
+                <ol class="pw-del-breadcrumb"> @* Starts a list of related items. *@
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li> @* Builds a link or form target using MVC routing. *@
+                    <li><a asp-controller="Producers" asp-action="Index">Growers</a></li> @* Builds a link or form target using MVC routing. *@
+                    <li><a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducersId">@Model.ProducerName</a></li> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                    <li><span aria-current="page">Delete</span></li> @* Renders one list item. *@
+                </ol> @* Closes the matching HTML element. *@
+            </nav> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-del-header__title"> @* Starts a layout container for this section. *@
+                <div class="pw-del-header__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <i data-lucide="trash-2" style="width:20px;height:20px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h1>Delete producer</h1> @* Renders a heading for this page section. *@
+                    <p>This action is permanent and cannot be undone</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pw-del-body"> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+        <!-- ── Producer summary card ──────────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <section aria-label="Producer details"> @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-del-summary"> @* Starts a layout container for this section. *@
+                <div class="pw-del-summary__hero"> @* Starts a layout container for this section. *@
+                    <div class="pw-del-summary__avatar" aria-hidden="true">@initial</div> @* Starts a layout container for this section. *@
+                    <div class="pw-del-summary__info"> @* Starts a layout container for this section. *@
+                        <p class="pw-del-summary__name">@Model.ProducerName</p> @* Renders paragraph text for the user. *@
+                        <p class="pw-del-summary__email"> @* Renders paragraph text for the user. *@
+                            <i data-lucide="mail" style="width:13px;height:13px;"></i> @* Renders part of the producers page markup. *@
+ @* ----- Page Model Setup ----- *@
+                            @Model.ProducerEmail @* Displays or uses data from the producers model. *@
+                        </p> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                        <div class="pw-del-summary__pills"> @* Starts a layout container for this section. *@
+                            <span class="pw-del-summary__pill"> @* Renders inline text or badge content. *@
+                                <i data-lucide="package" style="width:11px;height:11px;"></i> @* Renders part of the producers page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                                @productCount product@(productCount != 1 ? "s" : "") @* Outputs Razor data or executes Razor logic. *@
+                            </span> @* Closes the matching HTML element. *@
+ @* ----- Loop Rendering ----- *@
+							@if (Model.IsVATRegistered) // Only show VAT registration pill if producer is registered, otherwise it may cause confusion @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+								// VAT registration is an important status indicator for producers, so we show it as a pill in the summary section. However, we only show this pill if the producer is actually registered to avoid confusion or misinterpretation of missing information as a loading error. If they are registered, we display the pill prominently with an icon to make it easily identifiable at a glance. @* Renders part of the producers page markup. *@
+                                <span class="pw-del-summary__pill"> @* Renders inline text or badge content. *@
+                                    <i data-lucide="receipt" style="width:11px;height:11px;"></i> @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                                    VAT Registered @* Renders part of the producers page markup. *@
+                                </span> @* Closes the matching HTML element. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                <div class="pw-del-summary__body"> @* Starts a layout container for this section. *@
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--green"> @* Starts a layout container for this section. *@
+                            <i data-lucide="user" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">Producer name</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-del-row__value">@Model.ProducerName</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--green"> @* Starts a layout container for this section. *@
+                            <i data-lucide="mail" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">Email address</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-del-row__value"> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                                <a href="mailto:@Model.ProducerEmail">@Model.ProducerEmail</a> @* Renders a navigation link or action link. *@
+                            </span> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--muted"> @* Starts a layout container for this section. *@
+                            <i data-lucide="align-left" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">Bio / description</span> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+							@if (!string.IsNullOrWhiteSpace(Model.ProducerInformation)) // Only show bio if it exists, otherwise show muted placeholder text to indicate it's optional and not missing due to a loading error @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Producer Display ----- *@
+								// We allow basic HTML in the producer bio for formatting, so we render it as raw HTML. We trust this content because only admin users can edit it, and we ensure that any HTML entered is sanitized to prevent XSS attacks while still allowing safe formatting options like paragraphs, line breaks, and links. @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-row__value">@Model.ProducerInformation</span> @* Renders inline text or badge content. *@
+                            }
+ @* ----- Conditional Rendering ----- *@
+							else // No bio provided, show muted placeholder text to indicate it's optional and not missing due to a loading error @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Producer Display ----- *@
+							// Since the producer bio is an optional field, we want to avoid showing an empty space if it's not provided, which could be misinterpreted as a loading error. Instead, we display a muted placeholder message to clearly indicate that no bio has been provided for this producer. This helps set the right expectation for users and maintains a consistent layout even when optional information is missing. @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-row__value pw-del-row__value--muted">No bio provided.</span> @* Renders inline text or badge content. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Loop Rendering ----- *@
+					@if (Model.IsVATRegistered) // Only show VAT number if producer is registered, otherwise it may cause confusion @* Conditionally renders this block when the check passes. *@
+                    {
+ @* ----- Card Layout ----- *@
+						// VAT number is only relevant if producer is registered, so we check this before showing the row. If they are registered but no number is provided, we show a specific message to indicate that it's not missing due to a loading error and that there is simply no number on file. @* Renders part of the producers page markup. *@
+                        <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                            <div class="pw-del-row__icon pw-del-row__icon--yellow"> @* Starts a layout container for this section. *@
+                                <i data-lucide="receipt" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                            <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <span class="pw-del-row__label">VAT number</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                                <span class="pw-del-row__value"> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                                    @(string.IsNullOrWhiteSpace(Model.VATNumber) ? "Registered — no number on file" : Model.VATNumber) @* Displays or uses data from the producers model. *@
+                                </span> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    }
+
+ @* ----- Card Layout ----- *@
+                    <div class="pw-del-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-del-row__icon pw-del-row__icon--purple"> @* Starts a layout container for this section. *@
+                            <i data-lucide="hash" style="width:16px;height:16px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="pw-del-row__content"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-del-row__label">System ID</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-del-row__value" style="font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;">#@Model.ProducersId</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </section> @* Closes the matching HTML element. *@
+
+        <!-- ── Impact warning ───────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Status Messages ----- *@
+        <div class="pw-del-impact" role="alert"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-del-impact__header"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                <i data-lucide="triangle-alert" style="width:18px;height:18px;color:#9A3412;stroke-width:2;flex-shrink:0"></i> @* Renders part of the producers page markup. *@
+ @* ----- Page Header ----- *@
+                <h2>What will be permanently deleted</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-del-impact__body"> @* Starts a layout container for this section. *@
+                <div class="pw-del-impact__item"> @* Starts a layout container for this section. *@
+                    <span class="pw-del-impact__item-dot"></span> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                    The <strong>@Model.ProducerName</strong> producer profile and all associated data @* Displays or uses data from the producers model. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+				@if (productCount > 0) // Only show linked product listing impact if there are products, otherwise it may cause confusion or be perceived as a loading error @* Conditionally renders this block when the check passes. *@
+                {
+ @* ----- Form Actions ----- *@
+					// Since linked product listings are a significant part of the producer's presence on the platform, we want to clearly communicate that these will also be deleted when the producer is removed. However, we only show this impact item if there are actually products linked to the producer to avoid confusion or misinterpretation of missing information as a loading error. If there are linked products, we display the count prominently in bold to make it clear how many listings will be affected by this action. @* Renders part of the producers page markup. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-del-impact__item"> @* Starts a layout container for this section. *@
+                        <span class="pw-del-impact__item-dot"></span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                        <strong>@productCount product listing@(productCount != 1 ? "s" : "")</strong> linked to this producer @* Renders part of the producers page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+ @* ----- Styling Section ----- *@
+                <div class="pw-del-impact__item"> @* Starts a layout container for this section. *@
+                    <span class="pw-del-impact__item-dot"></span> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                    All order history and fulfilment records for this producer @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-del-impact__item"> @* Starts a layout container for this section. *@
+                    <span class="pw-del-impact__item-dot"></span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                    The linked user account connection (user account itself is preserved) @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- ── Danger confirm form ──────────────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+        <div class="pw-del-confirm"> @* Starts a layout container for this section. *@
+            <div class="pw-del-confirm__header"> @* Starts a layout container for this section. *@
+                <div class="pw-del-confirm__icon-box" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                    <i data-lucide="shield-alert" style="width:20px;height:20px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h2>Confirm deletion</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+                    <p>Check the box below to enable the delete button</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-del-confirm__body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label class="pw-del-checkbox-row" for="confirmDelete"> @* Renders text identifying a form field. *@
+                    <input type="checkbox" id="confirmDelete" aria-describedby="confirmDeleteDesc" /> @* Renders a user input field. *@
+ @* ----- Form Actions ----- *@
+                    <span class="pw-del-checkbox-row__text" id="confirmDeleteDesc"> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                        I understand that deleting <strong>@Model.ProducerName</strong> is permanent. @* Displays or uses data from the producers model. *@
+ @* ----- Conditional Rendering ----- *@
+                        This will remove the producer profile@(productCount > 0 ? $" and {productCount} associated product listing{(productCount != 1 ? "s" : "")}" : "") and cannot be recovered. @* Renders part of the producers page markup. *@
+                    </span> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+                </label> @* Closes the matching HTML element. *@
+
+ @* ----- Navigation ----- *@
+                <form asp-action="Delete" method="post"> @* Starts the form that submits this page's user input. *@
+ @* ----- Form Fields ----- *@
+                    <input type="hidden" asp-for="ProducersId" /> @* Binds this input to the matching model property. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-del-actions"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                        <a asp-action="Details" asp-route-id="@Model.ProducersId" class="pw-btn-cancel"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                            <i data-lucide="arrow-left" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+ @* ----- Form Actions ----- *@
+                            Cancel @* Renders part of the producers page markup. *@
+                        </a> @* Closes the matching HTML element. *@
+                        <button type="submit" class="pw-btn-delete" id="deleteBtn" disabled aria-disabled="true"> @* Renders a button for the user action. *@
+                            <i data-lucide="trash-2" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+                            Delete permanently @* Renders part of the producers page markup. *@
+                        </button> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </form> @* Closes the form after its fields and actions. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+	<link rel="stylesheet" href="~/css/pages/producers/ProducersDelete.css" /> @* Renders one list item. *@
+}
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Form Actions ----- *@
+    <script src="~/js/pages/producers/ProducersDelete.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+}

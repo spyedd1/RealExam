@@ -1,0 +1,55 @@
+
+/* ----- Navigation ----- */
+a.navbar-brand[b-z1xaqziagg] { /* Starts styles for the a.navbar-brand selector. */
+  white-space: normal; /* Sets the white-space style for this rule. */
+  text-align: center; /* Sets the text-align style for this rule. */
+  word-break: break-all; /* Sets the word-break style for this rule. */
+}
+
+a[b-z1xaqziagg] { /* Starts styles for the a selector. */
+  /* ----- Grid layout ----- */
+  color: #0077cc; /* Sets the text color. */
+}
+
+/* ----- Buttons ----- */
+.btn-primary[b-z1xaqziagg] { /* Starts styles for the .btn-primary selector. */
+  /* ----- Grid layout ----- */
+  color: #fff; /* Sets the text color. */
+  background-color: #1b6ec2; /* Sets the element background color. */
+  border-color: #1861ac; /* Sets the border-color style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.nav-pills .nav-link.active[b-z1xaqziagg], .nav-pills .show > .nav-link[b-z1xaqziagg] { /* Starts styles for the .nav-pills .nav-link.active, .nav-pills .show > .nav-link selector. */
+  /* ----- Grid layout ----- */
+  color: #fff; /* Sets the text color. */
+  background-color: #1b6ec2; /* Sets the element background color. */
+  border-color: #1861ac; /* Sets the border-color style for this rule. */
+}
+
+.border-top[b-z1xaqziagg] { /* Starts styles for the .border-top selector. */
+  border-top: 1px solid #e5e5e5; /* Sets the border-top style for this rule. */
+}
+.border-bottom[b-z1xaqziagg] { /* Starts styles for the .border-bottom selector. */
+  border-bottom: 1px solid #e5e5e5; /* Sets the border-bottom style for this rule. */
+}
+
+.box-shadow[b-z1xaqziagg] { /* Starts styles for the .box-shadow selector. */
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); /* Adds depth with a shadow. */
+}
+
+/* ----- Buttons ----- */
+button.accept-policy[b-z1xaqziagg] { /* Starts styles for the button.accept-policy selector. */
+  font-size: 1rem; /* Sets the text size. */
+  line-height: inherit; /* Sets vertical text rhythm. */
+}
+
+.footer[b-z1xaqziagg] { /* Starts styles for the .footer selector. */
+  position: absolute; /* Controls how the element is positioned on the page. */
+  bottom: 0; /* Sets the bottom style for this rule. */
+  /* ----- Tables ----- */
+  width: 100%; /* Sets the element width. */
+  /* ----- Grid layout ----- */
+  white-space: nowrap; /* Sets the white-space style for this rule. */
+  line-height: 60px; /* Sets vertical text rhythm. */
+}

@@ -1,0 +1,43 @@
+@{
+ // ----- Page Model Setup -----
+    Layout = "/Views/Shared/_Layout.cshtml"; // Chooses the layout used to render this page.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-manage-header"> @* Starts a layout container for this section. *@
+    <div class="pw-manage-header__blob pw-manage-header__blob--1"></div> @* Starts a layout container for this section. *@
+    <div class="pw-manage-header__blob pw-manage-header__blob--2"></div> @* Starts a layout container for this section. *@
+    <div class="pw-manage-header__inner"> @* Starts a layout container for this section. *@
+ @* ----- Producer Display ----- *@
+        <div class="pw-manage-header__avatar" aria-hidden="true"> @* Starts a layout container for this section. *@
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg> @* Renders part of the identity page markup. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+        <div class="pw-manage-header__text"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <span class="pw-manage-header__eyebrow">Greenfield Account</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+            <h1 class="pw-manage-header__title">Account Settings</h1> @* Renders a heading for this page section. *@
+ @* ----- Styling Section ----- *@
+            <p class="pw-manage-header__sub">Manage your profile, security and preferences</p> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+<div class="pw-manage-body"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+    <aside class="pw-manage-sidebar" aria-label="Account settings navigation"> @* Renders a navigation link or action link. *@
+        <span class="pw-manage-sidebar__label">Settings</span> @* Renders inline text or badge content. *@
+        <partial name="_ManageNav" /> @* Renders a shared partial view here. *@
+    </aside> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-manage-content"> @* Starts a layout container for this section. *@
+        @RenderBody() @* Renders the body content from the current view. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    @RenderSection("Scripts", required: false) @* Renders an optional section supplied by the view. *@
+}

@@ -1,0 +1,1105 @@
+﻿@{
+    ViewData["Title"] = "Greenfield Local Hub – Nourishing communities, cultivating connection";
+}
+
+@* =====================================================================
+   Index.cshtml – Greenfield Local Hub Home Page
+   Converted from The Produce Box Angular SSR snapshot.
+   Navbar and footer are rendered by _Layout.cshtml.
+   ===================================================================== *@
+
+@* ── Inline page-scoped styles ──────────────────────────────────────── *@
+<style>
+    /* ── CSS custom properties ────────────────────────────────────── */
+    :root {
+        --glh-green-dark:   #005536;
+        --glh-green:        #007E4C;
+        --glh-green-light:  #A6CC9A;
+        --glh-yellow:       #EFCF16;
+        --glh-orange:       #F17441;
+        --glh-pink:         #F44C75;
+        --glh-blue-light:   #B8D6EB;
+        --glh-peach:        #F3DCD9;
+        --font-size-1: 44px;
+        --font-size-2: 32px;
+        --font-size-3: 26px;
+        --font-size-4: 20px;
+        --font-size-5: 18px;
+        --font-size-6: 16px;
+        --font-size-7: 14px;
+        --font-size-8: 12px;
+    }
+
+    /* ── Base typography ──────────────────────────────────────────── */
+    body { font-family: Inter, sans-serif; font-size: var(--font-size-6); color: #323232; }
+
+    /* ── Buttons ──────────────────────────────────────────────────── */
+    .btn {
+        display: inline-block;
+        padding: .375rem 18px;
+        font-size: var(--font-size-7);
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 20px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: background-color .15s, color .15s, border-color .15s;
+    }
+    .btn-lg  { padding: .5rem 1rem; font-size: 1.25rem; border-radius: 30px; }
+    .btn-sm  { padding: .25rem .5rem; font-size: .875rem; border-radius: 10px; }
+    .btn-static { border-radius: 4px; }
+    .btn-padding-lg { padding-left: 100px; padding-right: 100px; }
+    .btn-primary   { background: var(--glh-green); border-color: var(--glh-green); color: #fff; }
+    .btn-primary:hover { background: #00603b; border-color: #00603b; color: #fff; }
+    .btn-secondary { background: var(--glh-green); border-color: var(--glh-green); color: #fff; }
+    .btn-secondary:hover { background: #00603b; color: #fff; }
+    .btn-special   { background: var(--glh-yellow); color: #000; border-color: var(--glh-yellow); }
+    .btn-special:hover { background: #d4b800; color: #000; }
+    .btn-secondary-300 { background: var(--glh-green-light); color: #000; border-color: var(--glh-green-light); }
+
+    /* ── Layout helpers (scoped to home page sections only) ─────── */
+    .section-hero .container,
+    .section-live-local .container,
+    .section-why .container,
+    .section-img-grid .container,
+    .section-how .container,
+    .section-categories .container,
+    .section-delivery .container,
+    .section-testimonials .container,
+    .pre-footer .container,
+    .py-5 .container,
+    .has-padding-block-5 .container {
+        width: 100%;
+        max-width: 1140px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+    .section-hero .row,
+    .section-live-local .row,
+    .section-why .row,
+    .section-img-grid .row,
+    .section-how .row,
+    .section-categories .row,
+    .section-delivery .row,
+    .section-testimonials .row,
+    .pre-footer .row,
+    .py-5 .row,
+    .has-padding-block-5 .row { display: flex; flex-wrap: wrap; margin-right: -12px; margin-left: -12px; }
+    .section-hero .row > *,
+    .section-live-local .row > *,
+    .section-why .row > *,
+    .section-img-grid .row > *,
+    .section-how .row > *,
+    .section-categories .row > *,
+    .section-delivery .row > *,
+    .section-testimonials .row > *,
+    .pre-footer .row > *,
+    .py-5 .row > *,
+    .has-padding-block-5 .row > * { padding-right: 12px; padding-left: 12px; flex-shrink: 0; width: 100%; max-width: 100%; }
+
+    @@media (min-width: 992px) {
+        .section-hero .col-md-4,
+        .section-live-local .col-md-4,
+        .section-why .col-md-4,
+        .section-img-grid .col-md-4,
+        .section-how .col-md-4,
+        .section-categories .col-md-4,
+        .section-delivery .col-md-4,
+        .section-testimonials .col-md-4,
+        .py-5 .col-md-4,
+        .has-padding-block-5 .col-md-4  { flex: 0 0 auto; width: 33.33%; }
+        .section-hero .col-md-5,
+        .section-live-local .col-md-5,
+        .section-why .col-md-5,
+        .section-img-grid .col-md-5,
+        .section-how .col-md-5,
+        .section-categories .col-md-5,
+        .section-delivery .col-md-5,
+        .section-testimonials .col-md-5,
+        .py-5 .col-md-5,
+        .has-padding-block-5 .col-md-5  { flex: 0 0 auto; width: 41.67%; }
+        .section-hero .col-md-6,
+        .section-live-local .col-md-6,
+        .section-why .col-md-6,
+        .section-img-grid .col-md-6,
+        .section-how .col-md-6,
+        .section-categories .col-md-6,
+        .section-delivery .col-md-6,
+        .section-testimonials .col-md-6,
+        .py-5 .col-md-6,
+        .has-padding-block-5 .col-md-6  { flex: 0 0 auto; width: 50%; }
+        .section-hero .col-md-8,
+        .section-live-local .col-md-8,
+        .section-why .col-md-8,
+        .section-img-grid .col-md-8,
+        .section-how .col-md-8,
+        .section-categories .col-md-8,
+        .section-delivery .col-md-8,
+        .section-testimonials .col-md-8,
+        .py-5 .col-md-8,
+        .has-padding-block-5 .col-md-8  { flex: 0 0 auto; width: 66.67%; }
+        .section-hero .offset-md-1,
+        .section-live-local .offset-md-1,
+        .section-why .offset-md-1,
+        .section-img-grid .offset-md-1,
+        .section-how .offset-md-1,
+        .section-categories .offset-md-1,
+        .section-delivery .offset-md-1,
+        .section-testimonials .offset-md-1,
+        .py-5 .offset-md-1,
+        .has-padding-block-5 .offset-md-1 { margin-left: 8.33%; }
+        .section-hero .order-md-1,
+        .section-live-local .order-md-1,
+        .section-why .order-md-1,
+        .section-img-grid .order-md-1,
+        .section-how .order-md-1,
+        .section-categories .order-md-1,
+        .section-delivery .order-md-1,
+        .section-testimonials .order-md-1,
+        .py-5 .order-md-1,
+        .has-padding-block-5 .order-md-1 { order: 1; }
+        .section-hero .order-md-2,
+        .section-live-local .order-md-2,
+        .section-why .order-md-2,
+        .section-img-grid .order-md-2,
+        .section-how .order-md-2,
+        .section-categories .order-md-2,
+        .section-delivery .order-md-2,
+        .section-testimonials .order-md-2,
+        .py-5 .order-md-2,
+        .has-padding-block-5 .order-md-2 { order: 2; }
+        .section-hero .d-md-none,
+        .section-live-local .d-md-none,
+        .section-why .d-md-none,
+        .section-img-grid .d-md-none,
+        .section-how .d-md-none,
+        .section-categories .d-md-none,
+        .section-delivery .d-md-none,
+        .section-testimonials .d-md-none,
+        .py-5 .d-md-none,
+        .has-padding-block-5 .d-md-none { display: none !important; }
+        .section-hero .d-md-flex,
+        .section-live-local .d-md-flex,
+        .section-why .d-md-flex,
+        .section-img-grid .d-md-flex,
+        .section-how .d-md-flex,
+        .section-categories .d-md-flex,
+        .section-delivery .d-md-flex,
+        .section-testimonials .d-md-flex,
+        .py-5 .d-md-flex,
+        .has-padding-block-5 .d-md-flex { display: flex !important; }
+        .section-hero .justify-content-md-end,
+        .section-live-local .justify-content-md-end,
+        .section-why .justify-content-md-end,
+        .section-img-grid .justify-content-md-end,
+        .section-how .justify-content-md-end,
+        .section-categories .justify-content-md-end,
+        .section-delivery .justify-content-md-end,
+        .section-testimonials .justify-content-md-end,
+        .py-5 .justify-content-md-end,
+        .has-padding-block-5 .justify-content-md-end  { justify-content: flex-end !important; }
+        .section-hero .text-md-start,
+        .section-live-local .text-md-start,
+        .section-why .text-md-start,
+        .section-img-grid .text-md-start,
+        .section-how .text-md-start,
+        .section-categories .text-md-start,
+        .section-delivery .text-md-start,
+        .section-testimonials .text-md-start,
+        .py-5 .text-md-start,
+        .has-padding-block-5 .text-md-start  { text-align: left !important; }
+        .section-hero .mb-md-0,
+        .section-live-local .mb-md-0,
+        .section-why .mb-md-0,
+        .section-img-grid .mb-md-0,
+        .section-how .mb-md-0,
+        .section-categories .mb-md-0,
+        .section-delivery .mb-md-0,
+        .section-testimonials .mb-md-0,
+        .py-5 .mb-md-0,
+        .has-padding-block-5 .mb-md-0 { margin-bottom: 0 !important; }
+    }
+    @@media (min-width: 1200px) {
+        .section-hero .col-lg-2,
+        .section-live-local .col-lg-2,
+        .section-why .col-lg-2,
+        .section-img-grid .col-lg-2,
+        .section-how .col-lg-2,
+        .section-categories .col-lg-2,
+        .section-delivery .col-lg-2,
+        .section-testimonials .col-lg-2,
+        .py-5 .col-lg-2,
+        .has-padding-block-5 .col-lg-2  { flex: 0 0 auto; width: 16.67%; }
+        .section-hero .col-lg-3,
+        .section-live-local .col-lg-3,
+        .section-why .col-lg-3,
+        .section-img-grid .col-lg-3,
+        .section-how .col-lg-3,
+        .section-categories .col-lg-3,
+        .section-delivery .col-lg-3,
+        .section-testimonials .col-lg-3,
+        .py-5 .col-lg-3,
+        .has-padding-block-5 .col-lg-3  { flex: 0 0 auto; width: 25%; }
+        .section-hero .col-lg-4,
+        .section-live-local .col-lg-4,
+        .section-why .col-lg-4,
+        .section-img-grid .col-lg-4,
+        .section-how .col-lg-4,
+        .section-categories .col-lg-4,
+        .section-delivery .col-lg-4,
+        .section-testimonials .col-lg-4,
+        .py-5 .col-lg-4,
+        .has-padding-block-5 .col-lg-4  { flex: 0 0 auto; width: 33.33%; }
+        .section-hero .col-lg-5,
+        .section-live-local .col-lg-5,
+        .section-why .col-lg-5,
+        .section-img-grid .col-lg-5,
+        .section-how .col-lg-5,
+        .section-categories .col-lg-5,
+        .section-delivery .col-lg-5,
+        .section-testimonials .col-lg-5,
+        .py-5 .col-lg-5,
+        .has-padding-block-5 .col-lg-5  { flex: 0 0 auto; width: 41.67%; }
+        .section-hero .col-lg-6,
+        .section-live-local .col-lg-6,
+        .section-why .col-lg-6,
+        .section-img-grid .col-lg-6,
+        .section-how .col-lg-6,
+        .section-categories .col-lg-6,
+        .section-delivery .col-lg-6,
+        .section-testimonials .col-lg-6,
+        .py-5 .col-lg-6,
+        .has-padding-block-5 .col-lg-6  { flex: 0 0 auto; width: 50%; }
+        .section-hero .col-lg-7,
+        .section-live-local .col-lg-7,
+        .section-why .col-lg-7,
+        .section-img-grid .col-lg-7,
+        .section-how .col-lg-7,
+        .section-categories .col-lg-7,
+        .section-delivery .col-lg-7,
+        .section-testimonials .col-lg-7,
+        .py-5 .col-lg-7,
+        .has-padding-block-5 .col-lg-7  { flex: 0 0 auto; width: 58.33%; }
+        .section-hero .col-lg-10,
+        .section-live-local .col-lg-10,
+        .section-why .col-lg-10,
+        .section-img-grid .col-lg-10,
+        .section-how .col-lg-10,
+        .section-categories .col-lg-10,
+        .section-delivery .col-lg-10,
+        .section-testimonials .col-lg-10,
+        .py-5 .col-lg-10,
+        .has-padding-block-5 .col-lg-10 { flex: 0 0 auto; width: 83.33%; }
+    }
+    @@media (min-width: 768px) {
+        .section-hero .col-sm-4,
+        .section-live-local .col-sm-4,
+        .section-why .col-sm-4,
+        .section-img-grid .col-sm-4,
+        .section-how .col-sm-4,
+        .section-categories .col-sm-4,
+        .section-delivery .col-sm-4,
+        .section-testimonials .col-sm-4,
+        .py-5 .col-sm-4,
+        .has-padding-block-5 .col-sm-4  { flex: 0 0 auto; width: 33.33%; }
+        .section-hero .text-sm-start,
+        .section-live-local .text-sm-start,
+        .section-why .text-sm-start,
+        .section-img-grid .text-sm-start,
+        .section-how .text-sm-start,
+        .section-categories .text-sm-start,
+        .section-delivery .text-sm-start,
+        .section-testimonials .text-sm-start,
+        .py-5 .text-sm-start,
+        .has-padding-block-5 .text-sm-start { text-align: left !important; }
+        .section-hero .justify-content-sm-start,
+        .section-live-local .justify-content-sm-start,
+        .section-why .justify-content-sm-start,
+        .section-img-grid .justify-content-sm-start,
+        .section-how .justify-content-sm-start,
+        .section-categories .justify-content-sm-start,
+        .section-delivery .justify-content-sm-start,
+        .section-testimonials .justify-content-sm-start,
+        .py-5 .justify-content-sm-start,
+        .has-padding-block-5 .justify-content-sm-start { justify-content: flex-start !important; }
+    }
+
+    .align-items-center { align-items: center; }
+    .justify-content-center { justify-content: center !important; }
+    .d-flex { display: flex !important; }
+    .d-none { display: none !important; }
+    .gap-3  { gap: 12px !important; }
+    .row-gap-3 { row-gap: 12px !important; }
+    .column-gap-0 { column-gap: 0 !important; }
+    .mx-0  { margin-right: 0 !important; margin-left: 0 !important; }
+    .my-4  { margin-top: 18px !important; margin-bottom: 18px !important; }
+    .my-5  { margin-top: 36px !important; margin-bottom: 36px !important; }
+    .mt-3  { margin-top: 12px !important; }
+    .mt-4  { margin-top: 18px !important; }
+    .mt-5  { margin-top: 36px !important; }
+    .mb-3  { margin-bottom: 12px !important; }
+    .mb-4  { margin-bottom: 18px !important; }
+    .mb-5  { margin-bottom: 36px !important; }
+    .px-2  { padding-right: 6px !important; padding-left: 6px !important; }
+    .px-3  { padding-right: 12px !important; padding-left: 12px !important; }
+    .py-5  { padding-top: 36px !important; padding-bottom: 36px !important; }
+    .position-relative { position: relative !important; }
+    .text-center  { text-align: center !important; }
+    .fw-semibold  { font-weight: 600 !important; }
+    .w-75  { width: 75% !important; }
+    .w-100 { width: 100% !important; }
+
+    /* ── Headings ─────────────────────────────────────────────────── */
+    h1, h2, h3, h5 { margin-top: 0; margin-bottom: 6px; font-weight: 500; line-height: 1.2; }
+    h2 { font-size: clamp(1.6rem, 2.5vw, 2rem); }
+    h3 { font-size: clamp(1.3rem, 2vw, 1.75rem); }
+    sup { position: relative; font-size: .75em; top: -.5em; }
+
+    /* ── Section: Hero ────────────────────────────────────────────── */
+    .section-hero {
+        min-height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url('/assets/images/landing/home/hero/bg-hero.webp');
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: cover;
+        position: relative;
+        overflow: hidden;
+    }
+    .section-hero::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(100deg, #005536 25.84%, rgba(0,85,54,.6) 48.37%, rgba(0,85,54,0) 70.81%);
+        position: absolute;
+        top: 0; left: 0;
+    }
+    .section-hero::after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        background-image: url('/assets/images/landing/home/hero/pattern.svg');
+        background-repeat: no-repeat;
+        background-position: left -50px;
+        background-size: contain;
+        position: absolute;
+        top: 0; left: 0;
+    }
+    .section-hero .container { position: relative; z-index: 10; }
+    .section-hero .title__main { color: #fff; font-family: Fraunces, sans-serif; margin-bottom: 10px; font-size: clamp(2rem, 4vw, var(--font-size-1)); font-weight: 600; }
+    .section-hero .title__sub  { color: var(--glh-green-light); font-family: Fraunces, sans-serif; font-size: var(--font-size-3); }
+    .section-hero .hero-actions {
+        width: 100%;
+        position: absolute;
+        bottom: 30px; right: 30px;
+        z-index: 10;
+    }
+    .action-btn-wrap { display: flex; gap: 10px; justify-content: flex-end; }
+    .section-padding-lg { padding-block: 65px; }
+
+    @@media (max-width: 991px) {
+        .section-hero { min-height: auto; text-align: center; align-items: flex-start; display: block; }
+        .section-hero .hero-actions { position: relative; bottom: auto; right: auto; padding-bottom: 30px; }
+        .action-btn-wrap { justify-content: center; }
+    }
+    @@media (max-width: 767px) {
+        .action-btn-wrap { flex-direction: column; }
+    }
+    .hero-actions .btn { padding-left: 30px; padding-right: 30px; }
+
+    /* ── Section: Text Banner ─────────────────────────────────────── */
+    .text-banner {
+        font-size: var(--font-size-1);
+        font-weight: 700;
+        color: #92519e;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+        display: table;
+        margin: 50px auto 20px;
+        transform: translate(-6ch);
+    }
+    .text-banner span { color: var(--glh-yellow); font-family: Fraunces, sans-serif; font-weight: 700; position: absolute; left: calc(100% + 20px); top: 0; white-space: nowrap; }
+    @@media (max-width: 991px) {
+        .text-banner { transform: initial; font-size: var(--font-size-3); }
+        .text-banner span { position: relative; top: initial; left: initial; display: block; }
+    }
+
+    /* ── Section: Live Local (pink wavy bg) ───────────────────────── */
+    .section-live-local {
+        background: url('/assets/images/landing/pattern.png') no-repeat center, linear-gradient(90deg, #F3DCD9, #F6C4C3);
+        background-size: 100% 100%;
+        padding-block: 8vw;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    .section-live-local::before {
+        content: ""; height: calc(8vw - 30px); width: 100%;
+        position: absolute; top: 0; left: 0;
+        background-color: #fff;
+        -webkit-mask-image: url('/assets/images/landing/bottom-curve.svg');
+        mask-image: url('/assets/images/landing/bottom-curve.svg');
+        -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+        -webkit-mask-size: 100% 8vw; mask-size: 100% 8vw;
+        -webkit-mask-position: bottom; mask-position: bottom;
+        z-index: 9;
+    }
+    .section-live-local::after {
+        content: ""; height: calc(8vw - 30px); width: 100%;
+        position: absolute; bottom: 0; left: 0;
+        background-color: #fff;
+        -webkit-mask-image: url('/assets/images/landing/top-curve.svg');
+        mask-image: url('/assets/images/landing/top-curve.svg');
+        -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+        -webkit-mask-size: 100% calc(8vw - 30px); mask-size: 100% calc(8vw - 30px);
+        -webkit-mask-position: bottom; mask-position: bottom;
+        z-index: 9;
+    }
+    .section-live-local .pre-header { color: var(--glh-green-dark); }
+    @@media (max-width: 767px) { .section-live-local { text-align: center; } }
+    .has-padding-block-5 { padding-block: 60px; }
+
+    /* ── Image grids ──────────────────────────────────────────────── */
+    .img-grid { position: relative; }
+    .img-grid .img-main {
+        width: 70%; object-fit: cover; object-position: center;
+        aspect-ratio: 4/5; border-radius: 10px; margin-bottom: 100px;
+    }
+    .img-grid .img-main-alone {
+        width: 70%; height: 376px;
+        object-fit: cover; object-position: center;
+        aspect-ratio: 4/5; border-radius: 10px; margin-bottom: 166px;
+    }
+    .img-grid .img-sub {
+        width: 50%; object-fit: cover; object-position: center;
+        aspect-ratio: 3/2.2; position: absolute; bottom: 0; right: 0;
+        border-radius: 20px; background: #fff; padding: 8px;
+    }
+    .img-grid-badge {
+        height: 140px; width: 140px; border-radius: 50%;
+        display: grid; place-items: center;
+        border: 1px solid var(--glh-orange);
+        background: rgba(241,116,65,.3);
+        position: absolute; top: 0; right: calc(30% - 100px);
+    }
+    .img-grid-badge .icon {
+        height: 90px; width: 90px; border-radius: 50%;
+        display: grid; place-items: center;
+        background: var(--glh-orange); color: #fff; font-size: 40px;
+    }
+    @@media (max-width: 767px) { .img-grid { max-width: 80vw; margin-inline: auto; } }
+
+    /* ── Section: Why ─────────────────────────────────────────────── */
+    .section-why { padding-block: 65px; position: relative; }
+
+    /* ── Icon list ────────────────────────────────────────────────── */
+    .ul-icon-list { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap; }
+    .ul-icon-list > li { display: flex; flex-direction: row; align-items: flex-start; gap: 10px; }
+    .ul-icon-list.col-2 { width: 100%; display: grid; grid-template-columns: repeat(2,1fr); }
+    .list-icon { color: var(--glh-green-dark); font-size: 24px; width: 24px; height: 24px; }
+
+    /* ── Section: Grid info ───────────────────────────────────────── */
+    .section-img-grid { padding: 36px 12px; }
+    .grid-info-list { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+    .grid-info {
+        max-width: 800px; display: grid;
+        grid-template-columns: repeat(2,1fr); gap: 20px;
+    }
+    .grid-info .info { text-align: right; }
+    .grid-info .info__title { text-transform: uppercase; font-weight: 700; font-size: var(--font-size-3); }
+    .grid-info .img { height: 200px; display: flex; overflow: hidden; border-radius: 5px; }
+    .grid-info .img > img { height: 100%; object-fit: contain; }
+    .grid-info.has-img-left .info { order: 2; text-align: left; }
+    .grid-info.has-img-left .img  { order: 1; flex-direction: row-reverse; }
+    .text-secondary-light { color: var(--glh-green-light); }
+    .text-info-light      { color: #84E0FE; }
+    .text-tertiary-200-light { color: #F8BAA0; }
+    @@media (max-width: 991px) {
+        .grid-info { grid-template-columns: 70% 30%; }
+        .grid-info.has-img-left { grid-template-columns: 30% 70%; }
+    }
+
+    /* ── Section: How it Works ────────────────────────────────────── */
+    .section-how { padding-block: 60px; position: relative; }
+    .how-banner {
+        background: url('/assets/images/landing/home/how/pattern.svg') no-repeat left center,
+                    linear-gradient(90deg, var(--glh-green), var(--glh-green-light));
+        padding: 40px; border-radius: 20px; color: #fff; z-index: 9;
+    }
+    .how-step { text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .how-step::before { content: ""; width: 100%; height: 1px; background: var(--glh-orange); position: absolute; top: 24.5px; left: 50%; }
+    .how-step.has-no-dash::before { display: none; }
+    .how-step .icon { height: 50px; width: 50px; border-radius: 50%; font-size: 32px; font-weight: 600; background: var(--glh-orange); color: #fff; display: grid; place-content: center; position: relative; z-index: 9; }
+    .how-step .detail { display: flex; gap: 10px; align-items: center; }
+    .how-step .detail .num { flex: 0 0 24px; height: 24px; width: 24px; display: grid; place-content: center; border-radius: 50%; background: var(--glh-orange); color: #fff; font-size: var(--font-size-5); }
+    .how-step .detail .text { text-align: center; }
+    @@media (max-width: 991px) {
+        .how-step::before { display: none; }
+        .how-step { gap: 10px; margin-bottom: 24px; }
+        .how-step .detail { text-align: left; gap: 10px; align-items: center; }
+    }
+
+    /* ── Section: Categories ──────────────────────────────────────── */
+    .section-categories { margin-bottom: 36px; }
+    .card-category { background: #fff; border-radius: 10px; padding: 12px; }
+    .card-category__img { width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 10px; border-radius: 10px; }
+    .card-category__title { font-family: Inter, sans-serif; font-size: var(--font-size-4); margin-bottom: 0; }
+    .card-category .btn { padding-inline: 0; margin: 0; font-weight: 700; font-size: var(--font-size-8); color: var(--glh-green); text-transform: uppercase; letter-spacing: 2px; background: none; border: none; cursor: pointer; }
+    @@media (max-width: 991px) { .card-category__img { aspect-ratio: 2/1.4; } }
+
+    /* ── Section: Delivery (blue wavy) ───────────────────────────── */
+    .section-delivery {
+        background: url('/assets/images/landing/pattern.png') no-repeat center, linear-gradient(90deg, #B8D6EB, #6BB1E2);
+        background-size: 100% 100%;
+        padding-block: 8vw;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    .section-delivery::before { content: ""; height: calc(8vw - 30px); width: 100%; position: absolute; top: 0; left: 0; background-color: #fff; -webkit-mask-image: url('/assets/images/landing/bottom-curve.svg'); mask-image: url('/assets/images/landing/bottom-curve.svg'); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% 8vw; mask-size: 100% 8vw; -webkit-mask-position: bottom; mask-position: bottom; z-index: 9; }
+    .section-delivery::after  { content: ""; height: calc(8vw - 30px); width: 100%; position: absolute; bottom: 0; left: 0; background-color: #fff; -webkit-mask-image: url('/assets/images/landing/top-curve.svg'); mask-image: url('/assets/images/landing/top-curve.svg'); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% calc(8vw - 30px); mask-size: 100% calc(8vw - 30px); -webkit-mask-position: bottom; mask-position: bottom; z-index: 9; }
+
+    /* ── Section: Testimonials ────────────────────────────────────── */
+    .testimonial { padding: 50px 20px 40px 40px; background: #fff; border-radius: 10px; height: 100%; }
+    .testimonial blockquote { padding-inline: 20px; color: #483e07; font-weight: 500; font-size: var(--font-size-5); font-style: normal; position: relative; display: inline-block; z-index: 4; margin: 0; }
+    .testimonial cite { display: flex; justify-content: flex-end; font-style: normal; }
+    .testimonial.is-info    { background: #E1EAEC; }
+    .testimonial.is-danger  { background: #F3E4E0; }
+    .testimonial.is-success { background: rgba(130,224,189,.2); }
+    @@media (max-width: 767px) { .testimonial { margin: 10px; height: auto; } }
+
+    /* ── Grid cards ───────────────────────────────────────────────── */
+    .grid-card { aspect-ratio: 1/1; border-radius: 10px; overflow: hidden; position: relative; }
+    .grid-card__img { height: 100%; width: 100%; object-fit: cover; object-position: center; }
+    .grid-card__detail { text-align: center; position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 1; display: grid; place-content: center; padding: 10px; }
+    .grid-card__detail .text { text-align: center; color: #fff; line-height: 1.4; }
+    .grid-card .only-text { color: var(--glh-green-dark); font-weight: 500; font-size: var(--font-size-1); height: 100%; width: 100%; display: grid; place-content: center; }
+    @@media (max-width: 767px) { .grid-card { aspect-ratio: 1/.6; } }
+
+    /* ── Pre-footer CTA ───────────────────────────────────────────── */
+    .pre-footer {
+        padding-block: 8vw 30px;
+        color: #fff;
+        background: url('/assets/images/landing/pattern.png') no-repeat center, linear-gradient(90deg, var(--glh-green), var(--glh-green-light));
+        background-size: cover;
+        position: relative;
+    }
+    .pre-footer::before {
+        content: ""; height: calc(8vw - 30px); width: 100%;
+        position: absolute; top: 0; left: 0;
+        background-color: #fff;
+        -webkit-mask-image: url('/assets/images/landing/bottom-curve.svg');
+        mask-image: url('/assets/images/landing/bottom-curve.svg');
+        -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+        -webkit-mask-size: 100% 8vw; mask-size: 100% 8vw;
+        -webkit-mask-position: bottom; mask-position: bottom;
+        z-index: 9;
+    }
+    .pre-footer .title { font-family: Fraunces, sans-serif; font-size: 32px; margin-bottom: 10px; }
+    .pre-footer .title span { color: var(--glh-green-light); }
+    @@media (max-width: 767px) { .pre-footer { padding-top: 100px; } }
+
+    /* ── Material icons ───────────────────────────────────────────── */
+    .material-symbols-outlined {
+        font-family: 'Material Symbols Outlined';
+        font-weight: normal; font-style: normal; font-size: 24px;
+        line-height: 1; letter-spacing: normal; text-transform: none;
+        display: inline-block; white-space: nowrap;
+        direction: ltr; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Fraunces font ────────────────────────────────────────────── */
+    .is-tertiary-font { font-family: Poppins, sans-serif; }
+    .head-font, .is-head-font { font-family: Fraunces, sans-serif; }
+
+    /* ── Title block ──────────────────────────────────────────────── */
+    .title { margin-inline: auto; margin-block: 0 30px; }
+    .title.is-center { width: clamp(400px, 50vw, 800px); text-align: center; }
+    .title.is-full-width { width: 100%; }
+    .title__main { font-family: Fraunces, sans-serif; line-height: 1; color: #323232; font-weight: 600; font-size: clamp(2rem, 4vw, var(--font-size-1)); }
+    .title__sub  { font-size: var(--font-size-4); color: #323232; }
+    @@media (max-width: 991px) {
+        .title.is-center { width: 100%; }
+        .title__main { font-size: var(--font-size-2); }
+        .title__sub  { font-size: var(--font-size-5); font-weight: 500; }
+    }
+
+    /* ── Background patterns ──────────────────────────────────────── */
+    .bg-pattern { z-index: -1; }
+    .bg-pattern + .container { position: relative; z-index: 9; }
+    .bg-pattern-1 { height: 300px; width: 300px; background-image: url('/assets/images/landing/bg-pattern-1.svg'); background-repeat: no-repeat; background-position: left center; background-size: contain; position: absolute; left: 0; bottom: 0; }
+    .bg-pattern-2, .bg-pattern-4 { height: 300px; width: 300px; background-image: url('/assets/images/landing/bg-pattern-2.svg'); background-repeat: no-repeat; background-position: right center; background-size: contain; position: absolute; right: 0; bottom: 0; }
+    .bg-pattern-3 { height: 500px; width: 400px; background-image: url('/assets/images/landing/bg-pattern-3.svg'); background-repeat: no-repeat; background-position: left center; background-size: cover; position: absolute; left: 0; bottom: 0; }
+</style>
+
+@* ── Google Fonts: Fraunces + Inter + Poppins ───────────────────────── *@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@@300;400;500;600;700&family=Poppins:wght@@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@@24,400,0,0" rel="stylesheet" />
+
+@* ============================================================
+   HERO
+   ============================================================ *@
+<section class="section-hero">
+    <div class="container z-1 section-padding-lg px-3">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="title is-left">
+                    <h1 class="title__main">Fresh. Local. Delivered.</h1>
+                    <p class="title__sub">
+                        Greenfield Local Hub brings the farmers market to you with farm-to-door
+                        local food delivery in your area.
+                    </p>
+                </div>
+                <div style="height:24px;display:block;"></div>
+                <a href="~/signup" class="btn btn-static btn-lg btn-secondary">Get Started</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-actions">
+        <div class="container">
+            <div class="action-btn-wrap">
+                <a href="~/shop"             class="btn btn-static btn-lg btn-special">Visit Our Store</a>
+                <a href="~/pages/producers"  class="btn btn-static btn-lg btn-secondary-300">Meet our Producers</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ============================================================
+   TEXT BANNER
+   ============================================================ *@
+<section class="py-5">
+    <div class="container">
+        <div class="text-banner">WE DELIVER TO <span>Your Area</span></div>
+    </div>
+</section>
+
+@* ============================================================
+   LIVE LOCAL
+   ============================================================ *@
+<section class="section-live-local has-padding-block-5 px-3">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="img-grid">
+                    <img src="~/images/home/producebox.jpg"
+                         alt="A local produce box" class="img-main" />
+                    <img src="~/images/home/olderLady.jpg"
+                         alt="Happy customer" class="img-sub" />
+                    <div class="img-grid-badge">
+                        <span class="icon material-symbols-outlined">grocery</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 offset-md-1">
+                <h5 class="pre-header">LIVE LOCAL</h5>
+                <h2 class="text-center text-md-start is-tertiary-font">
+                    Our online Farmers Market supports over 100 local Farmers and Artisan food makers
+                </h2>
+                <p class="text-justify" style="font-size:var(--font-size-4);font-family:Inter,sans-serif;">
+                    Every time you place an order with Greenfield Local Hub, you shorten the supply chain
+                    and get fresh, locally-sourced food delivered right to your doorstep, all while reducing
+                    your carbon footprint. Together, we can build a better food system.
+                </p>
+                <a href="~/signup" class="btn btn-static btn-lg btn-primary">Create an Account</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ============================================================
+   WHY SHOP WITH US
+   ============================================================ *@
+<section class="section-why">
+    <div class="bg-pattern bg-pattern-1"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="text-center text-md-start is-tertiary-font mb-4">
+                    Why shop with Greenfield Local Hub?
+                </h2>
+                <ul class="ul-icon-list col-2">
+                    <li>
+                        <span class="material-symbols-outlined list-icon">account_circle</span>
+                        Woman-owned and operated
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined list-icon">psychiatry</span>
+                        High quality local products from producers that you can trust
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined list-icon">sync</span>
+                        Returnable and low-waste packaging materials
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined list-icon">where_to_vote</span>
+                        We support small businesses and farmers in YOUR community!
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined list-icon">orders</span>
+                        We deliver low-cost fresh produce boxes to dozens of non-profits to serve food-insecure neighbours
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined list-icon">verified</span>
+                        15+ years in business as our region's original farm-to-table grocery provider
+                    </li>
+                </ul>
+                <div class="d-flex justify-content-sm-start justify-content-center my-4">
+                    <a href="~/pages/about-us" class="btn btn-static btn-padding-lg btn-secondary mb-3">About us</a>
+                </div>
+            </div>
+            <div class="col-md-5 offset-md-1">
+                <div class="img-grid">
+                    <img src="~/images/home/main.jpg"
+                         alt="Fresh local produce from Greenfield Local Hub" class="img-main" />
+                    <img src="~/images/home/sub.jpg"
+                         alt="Customer receiving Greenfield Local Hub delivery" class="img-sub" />
+                    <div class="img-grid-badge">
+                        <span class="icon material-symbols-outlined">eco</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ============================================================
+   ONE BOX SHOP – GRID INFO
+   ============================================================ *@
+<section class="py-5 section-img-grid px-3">
+    <div class="bg-pattern bg-pattern-2"></div>
+    <div class="container">
+        <div class="title is-center is-full-width">
+            <h2 class="title__main mb-5">Your One Box Shop</h2>
+        </div>
+        <div class="grid-info-list">
+
+            <div class="grid-info">
+                <div class="info">
+                    <h3 class="info__title text-secondary-light">Local Produce</h3>
+                    <p class="info__desc">
+                        Over 70% of our produce is sourced within 150 miles of our warehouse year-round.
+                        On average, our farmers earn three times more per dollar than farmers supplying traditional
+                        grocery stores! For items that don't grow here, we work with local aggregators to ensure
+                        a fresh, diverse selection.
+                    </p>
+                </div>
+                <div class="img">
+                    <img src="~/images/home/localproduceselection.png" alt="Fresh local produce selection" />
+                </div>
+            </div>
+
+            <div class="grid-info has-img-left">
+                <div class="info">
+                    <h3 class="info__title text-info-light">MEAT, DAIRY AND EGGS</h3>
+                    <p class="info__desc">
+                        We hand-pick small providers of meat, dairy, and eggs to deliver the best products
+                        from local family farms to you. Pasture-raised, grass-fed, antibiotic-free, and
+                        Animal Welfare Approved products make up the majority of our offerings.
+                    </p>
+                </div>
+                <div class="img">
+                    <img src="~/images/home/meatdairyeggs.png" alt="Local meat, dairy and eggs" />
+                </div>
+            </div>
+
+            <div class="grid-info">
+                <div class="info">
+                    <h3 class="info__title text-tertiary-200-light">ARTISAN PRODUCTS</h3>
+                    <p class="info__desc">
+                        Stock your pantry, fridge, and freezer with artisan foods from your favourite local makers.
+                        Enjoy fresh-baked bread, ready-to-heat meals, and healthy snacks, bringing local bakers
+                        and chefs to your table with home delivery convenience.
+                    </p>
+                </div>
+                <div class="img">
+                    <img src="~/images/home/artisanproducts.png" alt="Artisan food products" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center my-5">
+        <a href="~/shop" class="btn btn-static btn-padding-lg btn-primary">Shop Local Products</a>
+    </div>
+</section>
+
+@* ============================================================
+   HOW IT WORKS
+   ============================================================ *@
+<section class="section-how has-padding-block-5 position-relative">
+    <div class="bg-pattern bg-pattern-3"></div>
+    <div class="container">
+        <div class="how-banner">
+            <div class="row">
+                <div class="col-md-4 text-center text-md-start">
+                    <h2 class="how-title">How it Works</h2>
+                    <p class="how-desc">
+                        Create an account today to start shopping our freshest selection.
+                        Learn more about our £25 annual membership here.
+                    </p>
+                    <a href="~/pages/what-sets-us-apart"
+                       class="btn btn-static w-75 btn-secondary d-md-none mb-3">Our Membership</a>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="how-step">
+                                <span class="icon"><span class="material-symbols-outlined">person_check</span></span>
+                                <div class="detail">
+                                    <div class="num">1</div>
+                                    <div class="text">Sign up to become a member and receive your delivery day</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="how-step">
+                                <span class="icon"><span class="material-symbols-outlined">add_shopping_cart</span></span>
+                                <div class="detail">
+                                    <div class="num">2</div>
+                                    <div class="text">Shop from 400+ products every weekend and edit subscriptions as needed</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="how-step has-no-dash">
+                                <span class="icon"><span class="material-symbols-outlined">local_shipping</span></span>
+                                <div class="detail">
+                                    <div class="num">3</div>
+                                    <div class="text">We deliver straight to you!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="~/signup"
+                       class="btn btn-static w-75 btn-secondary d-md-none mt-3">Sign Up for Delivery</a>
+                </div>
+            </div>
+            <div class="row mt-3 d-none d-md-flex">
+                <div class="col-md-4">
+                    <a href="~/pages/what-sets-us-apart"
+                       class="btn btn-static w-100 btn-secondary">Our Membership</a>
+                </div>
+                <div class="col-md-8 d-flex justify-content-center">
+                    <a href="~/signup"
+                       class="btn btn-static btn-padding-lg btn-secondary">Sign Up for Delivery</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ============================================================
+   POPULAR CATEGORIES
+   ============================================================ *@
+<section class="section-categories mb-5">
+    <div class="container">
+        <div class="title is-center">
+            <h3 class="title__main">Popular Categories</h3>
+        </div>
+        <div class="row">
+            @{
+                var categories = new[]
+                {
+                    new { Img = "1.jpg", Alt = "Fresh Produce",   Label = "Fresh Produce"   },
+                    new { Img = "2.jpg", Alt = "Local Meat",      Label = "Local Meat"       },
+                    new { Img = "3.jpg", Alt = "Bakery",          Label = "Bakery"           },
+                    new { Img = "4.jpg",Alt = "Dairy & Eggs",    Label = "Dairy &amp; Eggs" },
+                    new { Img = "5.jpg", Alt = "Prepared Meals",  Label = "Prepared Meals"   },
+                    new { Img = "6.jpg", Alt = "Produce Boxes",   Label = "Produce Boxes"    },
+                };
+            }
+            @foreach (var cat in categories)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card-category">
+                        <img class="card-category__img"
+                             src="~/images/home/@cat.Img"
+                             alt="@cat.Alt" />
+                        <h3 class="card-category__title">@Html.Raw(cat.Label)</h3>
+                        <a href="~/shop" class="btn">Shop Now</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@* ============================================================
+   DELIVERY / NEIGHBORHOOD AMBASSADORS
+   ============================================================ *@
+<section class="section-delivery px-3">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-5 offset-md-1 order-md-2 mb-5">
+                <h2 class="text-center text-md-start is-tertiary-font">
+                    Neighbours delivering local food to neighbours.
+                </h2>
+                <p style="font-size:var(--font-size-4);font-family:Inter,sans-serif;">
+                    Our delivery model relies on Neighbourhood Ambassadors, people just like you who deliver
+                    fresh, local food to the doorsteps of their community. By choosing Greenfield Local Hub,
+                    you're not just shopping online for your groceries. You're supporting local farmers,
+                    strengthening your neighbourhood, and fuelling our local economy.
+                </p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <div class="img-grid">
+                    <img src="~/images/home/sideview.jpg"
+                         alt="Neighbourhood Ambassador delivering Greenfield Local Hub"
+                         class="img-main-alone" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ============================================================
+   TESTIMONIALS
+   ============================================================ *@
+<section class="section-testimonials has-padding-block-5 position-relative">
+    <div class="bg-pattern bg-pattern-2"></div>
+    <div class="container">
+        <div class="title is-center is-full-width">
+            <h2 class="title__main">What our customers are saying…</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="testimonial is-info">
+                    <blockquote>
+                        I love the convenience of getting local goods delivered to my home. I always want to
+                        support local, but sometimes making it out to the farmer's market is overwhelming.
+                        The bundles are especially handy. The food is always fresh and delicious, and the
+                        subscriptions are flexible.
+                    </blockquote>
+                    <cite><span>Martha S</span></cite>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="testimonial is-danger">
+                    <blockquote>
+                        We love using Greenfield Local Hub at our company. We receive a box of fresh fruit for
+                        our employees to have healthier alternatives to snack on. I love how you can add items
+                        to your orders or skip a week if needed. Also very convenient that they send you a text
+                        when on the way so you know when to expect the delivery. Highly recommend!
+                    </blockquote>
+                    <cite><span>Chelsea W</span></cite>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="testimonial is-success">
+                    <blockquote>
+                        We love Greenfield Local Hub and supporting our local farmers and vendors. We have 3 out
+                        of 4 family members with coeliac disease and it can be a challenge and expensive to shop
+                        for. There are lots of gluten-free options including a local bakery. Highly recommend.
+                    </blockquote>
+                    <cite><span>Kristen H</span></cite>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <a href="~/signup" class="btn btn-static btn-padding-lg btn-secondary">Start Your Membership</a>
+        </div>
+    </div>
+</section>
+
+@* ============================================================
+   IMPACT GRID CARDS
+   ============================================================ *@
+<section class="has-padding-block-5 px-3">
+    <div class="container">
+        <div class="row mx-0 d-flex row-gap-3 column-gap-0">
+            <div class="col-md-6 col-lg-3 px-2">
+                <div class="grid-card">
+                    <img src="~/images/home/1.jpg" alt="" class="grid-card__img" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 px-2">
+                <div class="grid-card">
+                    <img src="~/images/home/2.jpg" alt="" class="grid-card__img" />
+                    <div class="grid-card__detail">
+                        <div>
+                            <p class="text">Still have questions? See if we've answered them here:</p>
+                            <a href="~/pages/faq" class="btn btn-static btn-sm btn-secondary">FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 px-2">
+                <div class="grid-card">
+                    <img src="~/images/home/3.jpg" alt="" class="grid-card__img" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 px-2">
+                <div class="grid-card">
+                    <h2 class="only-text">Learn More About our Impact</h2>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 px-2">
+                <div class="grid-card">
+                    <img src="~/images/home/4.jpg" alt="" class="grid-card__img" />
+                    <div class="grid-card__detail">
+                        <div>
+                            <p class="text">Here's how we're increasing food access in our area</p>
+                            <a href="~/pages/community-impact"
+                               class="btn btn-static btn-sm btn-secondary">Community Impact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 px-2">
+                <div class="grid-card">
+                    <img src="~/images/home/5.jpg" alt="" class="grid-card__img" />
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 px-2">
+                <div class="grid-card">
+                    <img src="~/images/home/5.jpg" alt="" class="grid-card__img" />
+                    <div class="grid-card__detail">
+                        <div>
+                            <p class="text">Ready to bring healthy food to your workplace?</p>
+                            <a href="~/pages/workplace-wellness"
+                               class="btn btn-static btn-sm btn-secondary">Workplace Wellness</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 px-2">
+                <div class="grid-card">
+                    <img src="~/images/home/6.jpg" alt="" class="grid-card__img" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ============================================================
+   PRE-FOOTER CTA / NEWSLETTER
+   ============================================================ *@
+<div class="pre-footer">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 text-sm-start text-center">
+                <h2 class="title">
+                    <span>Stay in touch</span> and get the local lowdown on fresh finds,
+                    exclusive deals, and farm stories delivered to your inbox.
+                </h2>
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-end gap-3 text-sm-start text-center mt-5 mt-sm-0">
+                @* Replace with your MVC partial / tag helper for newsletter signup *@
+                <form action="~/Newsletter/Subscribe" method="post" style="display:flex;gap:10px;flex-wrap:wrap;">
+                    @Html.AntiForgeryToken()
+                    <input type="email" name="email" placeholder="Your email address"
+                           style="height:38px;padding:0 10px;border-radius:4px;border:none;font-size:var(--font-size-7);width:200px;" />
+                    <button type="submit" class="btn btn-static btn-secondary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

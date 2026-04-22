@@ -1,0 +1,289 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Producers
+@{
+    ViewData["Title"] = "Create Producer"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-admin-page"> @* Starts a layout container for this section. *@
+    <div class="pw-admin-header"> @* Starts a layout container for this section. *@
+        <div class="pw-admin-header__inner"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+            <nav aria-label="Breadcrumb"> @* Starts the navigation area. *@
+                <ol class="pw-admin-breadcrumb"> @* Starts a list of related items. *@
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li> @* Builds a link or form target using MVC routing. *@
+                    <li><a asp-controller="Producers" asp-action="Index">Growers</a></li> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                    <li><span aria-current="page">Create</span></li> @* Renders one list item. *@
+                </ol> @* Closes the matching HTML element. *@
+            </nav> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-admin-header__title"> @* Starts a layout container for this section. *@
+                <div class="pw-admin-header__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <i data-lucide="user-plus" style="width:20px;height:20px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h1>Create producer</h1> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                    <p>Add a new grower account, profile, and image.</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pw-admin-body"> @* Starts a layout container for this section. *@
+        <div class="pw-admin-img-col" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-admin-img-card" id="adminImgCard"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-admin-img-placeholder" id="adminImgEl"> @* Starts a layout container for this section. *@
+                    <i data-lucide="sprout" style="width:72px;height:72px;opacity:.45;"></i> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-admin-img-meta"> @* Starts a layout container for this section. *@
+ @* ----- Producer Display ----- *@
+                    <p class="pw-admin-img-meta__name" id="adminImgName">New producer</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <p class="pw-admin-img-meta__path" id="adminImgPath">no image selected</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <div class="pw-admin-producer-card" id="previewCard" style="margin-top:18px;"> @* Starts a layout container for this section. *@
+                <div class="pw-admin-producer-card__hero"> @* Starts a layout container for this section. *@
+                    <div class="pw-admin-producer-card__avatar" id="previewAvatar">?</div> @* Starts a layout container for this section. *@
+                    <p class="pw-admin-producer-card__name" id="previewName">Producer name</p> @* Renders paragraph text for the user. *@
+                    <p class="pw-admin-producer-card__email" id="previewEmail"> @* Renders paragraph text for the user. *@
+                        <i data-lucide="mail" style="width:12px;height:12px;"></i> @* Renders part of the producers page markup. *@
+ @* ----- Identity Account ----- *@
+                        <span id="previewEmailText">-</span> @* Renders inline text or badge content. *@
+                    </p> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                    <span class="pw-admin-producer-card__vat" id="previewVat"> @* Renders inline text or badge content. *@
+                        <i data-lucide="receipt" style="width:11px;height:11px;"></i> @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                        VAT Registered @* Renders part of the producers page markup. *@
+                    </span> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <div class="pw-admin-producer-card__meta"> @* Starts a layout container for this section. *@
+                    <div class="pw-admin-producer-card__row"> @* Starts a layout container for this section. *@
+                        <div class="pw-admin-producer-card__row-icon"> @* Starts a layout container for this section. *@
+                            <i data-lucide="info" style="width:14px;height:14px;stroke-width:2"></i> @* Renders part of the producers page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-admin-producer-card__row-label">About</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-admin-producer-card__row-value" id="previewInfo">No bio yet.</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Navigation ----- *@
+        <form asp-action="Create" method="post" enctype="multipart/form-data" id="producerForm" novalidate> @* Starts the form that submits this page's user input. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-form-card"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                <div asp-validation-summary="ModelOnly" class="pw-form-errors" hidden></div> @* Shows page-level validation messages. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Identity</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="ProducerName">Producer / business name <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                        <input asp-for="ProducerName" class="pw-input" id="producerName" @* Binds this input to the matching model property. *@
+                               placeholder="e.g. Green Valley Farm" autocomplete="organization" /> @* Renders part of the producers page markup. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="ProducerName" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+ @* ----- Styling Section ----- *@
+                        <span id="nameError" class="pw-field__error"></span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Contact</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="ProducerEmail">Email address <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                        <input asp-for="ProducerEmail" class="pw-input" id="producerEmail" @* Binds this input to the matching model property. *@
+ @* ----- Identity Account ----- *@
+                               type="email" placeholder="hello@example.com" autocomplete="email" /> @* Renders part of the producers page markup. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="ProducerEmail" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+ @* ----- Identity Account ----- *@
+                        <span id="emailError" class="pw-field__error"></span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                        <span class="pw-field__hint">Used for login, order notifications, and grower communications.</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">About</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="ProducerInformation">Bio / description <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                        <textarea asp-for="ProducerInformation" class="pw-textarea" id="producerInfo" @* Renders a multi-line text input. *@
+ @* ----- Card Layout ----- *@
+                                  placeholder="Tell customers about your farm, growing practices, certifications..." @* Renders part of the producers page markup. *@
+                                  rows="5"></textarea> @* Renders part of the producers page markup. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="ProducerInformation" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+ @* ----- Styling Section ----- *@
+                        <span id="infoError" class="pw-field__error"></span> @* Renders inline text or badge content. *@
+ @* ----- Producer Display ----- *@
+                        <span class="pw-field__hint">Shown on the public producer page. Use 10 to 500 characters.</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Image</p> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <div class="pw-form-row"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label for="imageUpload">Upload producer image</label> @* Renders text identifying a form field. *@
+                            <input type="file" id="imageUpload" name="imageUpload" class="pw-file" accept=".jpg,.jpeg,.png,.webp" /> @* Renders a user input field. *@
+ @* ----- Form Actions ----- *@
+                            <span class="pw-field__hint">Upload a JPG, PNG, or WebP image up to 5 MB. Files save to /images/producers.</span> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                            <span id="imageError" class="pw-field__error"></span> @* Renders inline text or badge content. *@
+                            <span class="pw-field__error">@Html.ValidationMessage("imageUpload")</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="ImagePath">Or choose an existing producer image</label> @* Renders a label tied to the model field. *@
+ @* ----- Page Model Setup ----- *@
+                            <select asp-for="ImagePath" class="pw-select" id="liveImagePathInput" asp-items="ViewBag.ExistingImages"> @* Binds this input to the matching model property. *@
+                                <option value="">No existing image selected</option> @* Renders one dropdown option. *@
+                            </select> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="ImagePath" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Business &amp; Tax</p> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <div class="pw-toggle-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-toggle-row__info"> @* Starts a layout container for this section. *@
+ @* ----- Producer Display ----- *@
+                            <strong>VAT registered</strong> @* Renders part of the producers page markup. *@
+                            <span>Enables VAT display on receipts and producer profile.</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+                        <label class="pw-toggle" aria-label="Toggle VAT registration"> @* Renders text identifying a form field. *@
+                            <input asp-for="IsVATRegistered" type="checkbox" role="switch" id="isVATRegistered" /> @* Binds this input to the matching model property. *@
+ @* ----- Styling Section ----- *@
+                            <span class="pw-toggle__track" aria-hidden="true"></span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                        </label> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Producer Display ----- *@
+                    <div class="pw-vat-field" id="vatNumberGroup"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="VATNumber">VAT number</label> @* Renders a label tied to the model field. *@
+                            <input asp-for="VATNumber" class="pw-input" id="vatNumber" @* Binds this input to the matching model property. *@
+                                   placeholder="e.g. GB123456789" @* Renders part of the producers page markup. *@
+                                   autocomplete="off" @* Renders part of the producers page markup. *@
+                                   style="font-family:'JetBrains Mono','Courier New',monospace;letter-spacing:.05em;" /> @* Renders part of the producers page markup. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="VATNumber" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+ @* ----- Producer Display ----- *@
+                            <span id="vatError" class="pw-field__error"></span> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                            <span class="pw-field__hint">Format: GB followed by 9 digits.</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Account login</p> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <div class="pw-form-row"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label for="accountPassword">Password <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders text identifying a form field. *@
+                            <input type="password" name="AccountPassword" class="pw-input" @* Renders a user input field. *@
+ @* ----- Conditional Rendering ----- *@
+                                   id="accountPassword" placeholder="Minimum 8 characters" autocomplete="new-password" /> @* Renders part of the producers page markup. *@
+ @* ----- Styling Section ----- *@
+                            <span class="pw-field__hint">Must include uppercase, lowercase, a number, and a special character.</span> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                            <span id="passwordError" class="pw-field__error"></span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                            <span class="pw-field__error">@Html.ValidationMessage("AccountPassword")</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label for="confirmPassword">Confirm password <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders text identifying a form field. *@
+                            <input type="password" id="confirmPassword" class="pw-input" @* Renders a user input field. *@
+ @* ----- Identity Account ----- *@
+                                   placeholder="Re-enter password" autocomplete="new-password" /> @* Renders part of the producers page markup. *@
+ @* ----- Order Display ----- *@
+                            <span id="confirmPasswordError" class="pw-field__error"></span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-actions"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                    <a asp-action="Index" class="pw-btn-back"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                        <i data-lucide="arrow-left" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+                        Back @* Renders part of the producers page markup. *@
+                    </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                    <button type="submit" class="pw-btn-save" id="submitBtn"> @* Renders a button for the user action. *@
+                        <i data-lucide="check" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+                        Create producer @* Renders part of the producers page markup. *@
+                    </button> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </form> @* Closes the form after its fields and actions. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Producer Display ----- *@
+    <link rel="stylesheet" href="~/css/pages/producers/ProducersEdit.css" /> @* Renders one list item. *@
+ @* ----- Form Actions ----- *@
+    <link rel="stylesheet" href="~/css/pages/producers/ProducersCreate.css" /> @* Renders one list item. *@
+}
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial"); // Renders part of the producers page markup.
+    }
+ @* ----- Form Actions ----- *@
+    <script src="~/js/pages/producers/ProducersCreate.js"></script> @* Starts client-side script for this page. *@
+}

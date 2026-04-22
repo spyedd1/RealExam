@@ -1,0 +1,525 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model IEnumerable<GFLHApp.Models.BasketProducts>
+@{
+    ViewData["Title"] = "Your Basket"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+
+ // ----- Loop Rendering -----
+    var basketId    = Model.FirstOrDefault()?.BasketId; // Displays or uses data from the basket model.
+    var itemCount   = Model.Count(); // Displays or uses data from the basket model.
+ // ----- Page Model Setup -----
+    var subtotal    = (decimal)(ViewBag.Subtotal ?? 0m); // Reads view data supplied by the controller.
+    var discount    = (decimal)(ViewBag.Discount  ?? 0m); // Reads view data supplied by the controller.
+    var total       = (decimal)(ViewBag.Total      ?? 0m); // Reads view data supplied by the controller.
+ // ----- Conditional Rendering -----
+    var hasDiscount = discount > 0; // Renders part of the basket page markup.
+ // ----- Page Model Setup -----
+    var hasHealthBundle = (bool)(ViewBag.HasHealthBundle ?? false); // Reads view data supplied by the controller.
+ // ----- Loop Rendering -----
+    var anyAllergens = Model.Any(i => !string.IsNullOrWhiteSpace(i.Products?.Allergens)); // Displays or uses data from the basket model.
+ // ----- Status Messages -----
+    var reorderSuccess = TempData["ReorderSuccess"] as string; // Reads a one-request message supplied by the controller.
+    var reorderWarning = TempData["ReorderWarning"] as string; // Reads a one-request message supplied by the controller.
+ // ----- Order Display -----
+    var hasReorderMessage = !string.IsNullOrWhiteSpace(reorderSuccess) || !string.IsNullOrWhiteSpace(reorderWarning); // Renders part of the basket page markup.
+
+ // ----- Conditional Rendering -----
+    string CatIcon(string cat) => (cat ?? "").ToLower() switch { // Renders part of the basket page markup.
+        var c when c.Contains("veg")               => "carrot", // Renders part of the basket page markup.
+        var c when c.Contains("fruit")             => "cherry", // Renders part of the basket page markup.
+        var c when c.Contains("dairy")             => "milk", // Renders part of the basket page markup.
+        var c when c.Contains("meat")              => "beef", // Renders part of the basket page markup.
+        var c when c.Contains("bread")||c.Contains("bak") => "wheat", // Renders part of the basket page markup.
+        var c when c.Contains("drink")             => "cup-soda", // Renders part of the basket page markup.
+        var c when c.Contains("egg")               => "egg", // Renders part of the basket page markup.
+        var c when c.Contains("herb")||c.Contains("flow") => "flower-2", // Renders part of the basket page markup.
+        var c when c.Contains("honey")             => "droplets", // Renders part of the basket page markup.
+        _                                          => "package" // Renders part of the basket page markup.
+    };
+    var gradients = new[]{ // Renders part of the basket page markup.
+        "linear-gradient(135deg,#dcfce7,#86efac)", // Renders part of the basket page markup.
+        "linear-gradient(135deg,#bbf7d0,#4ade80)", // Renders part of the basket page markup.
+        "linear-gradient(135deg,#a7f3d0,#34d399)", // Renders part of the basket page markup.
+        "linear-gradient(135deg,#d9f99d,#86efac)", // Renders part of the basket page markup.
+        "linear-gradient(135deg,#fef9c3,#fde68a)", // Renders part of the basket page markup.
+        "linear-gradient(135deg,#ffedd5,#fed7aa)", // Renders part of the basket page markup.
+    };
+}
+
+
+
+ @* ----- Styling Section ----- *@
+<div class="bk-page"> @* Starts a layout container for this section. *@
+
+ @* ----- Loop Rendering ----- *@
+@if (!Model.Any()) @* Conditionally renders this block when the check passes. *@
+{
+ @* ----- Card Layout ----- *@
+    <!-- ══ EMPTY STATE ═══════════════════════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="bk-empty-offset"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+        @if (hasReorderMessage) @* Conditionally renders this block when the check passes. *@
+        {
+ @* ----- Card Layout ----- *@
+            <div class="bk-flash" role="status" aria-live="polite"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                @if (!string.IsNullOrWhiteSpace(reorderSuccess)) @* Conditionally renders this block when the check passes. *@
+                {
+ @* ----- Styling Section ----- *@
+                    <div class="bk-flash__item"> @* Starts a layout container for this section. *@
+                        <i data-lucide="check-circle" style="width:16px;height:16px;stroke-width:2.5" aria-hidden="true"></i> @* Renders part of the basket page markup. *@
+ @* ----- Order Display ----- *@
+                        <span>@reorderSuccess</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+ @* ----- Conditional Rendering ----- *@
+                @if (!string.IsNullOrWhiteSpace(reorderWarning)) @* Conditionally renders this block when the check passes. *@
+                {
+ @* ----- Styling Section ----- *@
+                    <div class="bk-flash__item bk-flash__item--warning"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                        <i data-lucide="triangle-alert" style="width:16px;height:16px;stroke-width:2.5" aria-hidden="true"></i> @* Renders part of the basket page markup. *@
+ @* ----- Order Display ----- *@
+                        <span>@reorderWarning</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        }
+ @* ----- Styling Section ----- *@
+        <div class="bk-empty"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <div class="bk-empty__card"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                <div class="bk-empty__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Basket Display ----- *@
+                    <i data-lucide="shopping-basket"></i> @* Renders part of the basket page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h1 class="bk-empty__title">Your basket is empty</h1> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                <p class="bk-empty__sub">Looks like you haven't added anything yet. Discover fresh, local produce from our growers.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="bk-empty__hints"> @* Starts a layout container for this section. *@
+                    <div class="bk-empty__hint"> @* Starts a layout container for this section. *@
+                        <i data-lucide="sprout"></i> @* Renders part of the basket page markup. *@
+                        Seasonal vegetables &amp; fruit @* Renders part of the basket page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <div class="bk-empty__hint"> @* Starts a layout container for this section. *@
+                        <i data-lucide="milk"></i> @* Renders part of the basket page markup. *@
+                        Dairy, eggs &amp; artisan goods @* Renders part of the basket page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <div class="bk-empty__hint"> @* Starts a layout container for this section. *@
+                        <i data-lucide="wheat"></i> @* Renders part of the basket page markup. *@
+                        Fresh breads &amp; preserves @* Renders part of the basket page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Navigation ----- *@
+                <a asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                   class="pw-btn pw-btn--primary pw-btn--lg" style="width:100%;justify-content:center;"> @* Renders part of the basket page markup. *@
+                    <i data-lucide="store" style="width:17px;height:17px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+ @* ----- Card Layout ----- *@
+                    Browse the shop @* Renders part of the basket page markup. *@
+                </a> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                <a asp-controller="Producers" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                   class="pw-btn pw-btn--ghost pw-btn--md" style="width:100%;justify-content:center;margin-top:10px;"> @* Renders part of the basket page markup. *@
+                    <i data-lucide="users" style="width:16px;height:16px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+ @* ----- Card Layout ----- *@
+                    Meet the growers @* Renders part of the basket page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+}
+ @* ----- Conditional Rendering ----- *@
+else @* Renders the fallback branch for the previous condition. *@
+{
+    <!-- ══ STEPS BAR ═════════════════════════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+    <div class="bk-steps" aria-label="Checkout steps"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+        <div class="bk-steps__inner"> @* Starts a layout container for this section. *@
+            <div class="bk-step bk-step--active" aria-current="step"> @* Starts a layout container for this section. *@
+                <span class="bk-step__num" aria-hidden="true">1</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                <span>Your basket</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="bk-step"> @* Starts a layout container for this section. *@
+                <span class="bk-step__num" aria-hidden="true">2</span> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                <span>Review order</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="bk-step"> @* Starts a layout container for this section. *@
+                <span class="bk-step__num" aria-hidden="true">3</span> @* Renders inline text or badge content. *@
+                <span>Confirmed</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- ══ HEADER ════════════════════════════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+    @if (hasReorderMessage) @* Conditionally renders this block when the check passes. *@
+    {
+ @* ----- Card Layout ----- *@
+        <div class="bk-flash" role="status" aria-live="polite"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+            @if (!string.IsNullOrWhiteSpace(reorderSuccess)) @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Styling Section ----- *@
+                <div class="bk-flash__item"> @* Starts a layout container for this section. *@
+                    <i data-lucide="check-circle" style="width:16px;height:16px;stroke-width:2.5" aria-hidden="true"></i> @* Renders part of the basket page markup. *@
+ @* ----- Order Display ----- *@
+                    <span>@reorderSuccess</span> @* Renders inline text or badge content. *@
+                </div> @* Closes the matching HTML element. *@
+            }
+ @* ----- Conditional Rendering ----- *@
+            @if (!string.IsNullOrWhiteSpace(reorderWarning)) @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Styling Section ----- *@
+                <div class="bk-flash__item bk-flash__item--warning"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                    <i data-lucide="triangle-alert" style="width:16px;height:16px;stroke-width:2.5" aria-hidden="true"></i> @* Renders part of the basket page markup. *@
+ @* ----- Order Display ----- *@
+                    <span>@reorderWarning</span> @* Renders inline text or badge content. *@
+                </div> @* Closes the matching HTML element. *@
+            }
+        </div> @* Closes the matching HTML element. *@
+    }
+
+ @* ----- Styling Section ----- *@
+    <div class="bk-header"> @* Starts a layout container for this section. *@
+        <div class="bk-header__inner"> @* Starts a layout container for this section. *@
+            <div class="bk-header__left"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                <p class="bk-header__eyebrow"> @* Renders paragraph text for the user. *@
+ @* ----- Basket Display ----- *@
+                    <i data-lucide="shopping-basket" style="width:13px;height:13px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                    Ready to checkout @* Renders part of the basket page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h1 class="bk-header__title"> @* Renders a heading for this page section. *@
+ @* ----- Basket Display ----- *@
+                    Your basket @* Renders part of the basket page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                    <em>&nbsp;·&nbsp;@itemCount item@(itemCount != 1 ? "s" : "")</em> @* Renders part of the basket page markup. *@
+                </h1> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+                <p class="bk-header__sub">Review your items, then proceed when you're ready.</p> @* Renders paragraph text for the user. *@
+            </div> @* Closes the matching HTML element. *@
+            <div class="bk-header__cta"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                <a asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                   class="pw-btn pw-btn--ghost pw-btn--sm"> @* Renders part of the basket page markup. *@
+                    <i data-lucide="plus" style="width:14px;height:14px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                    Add more items @* Renders part of the basket page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- ══ BODY ══════════════════════════════════════════════ --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="bk-body"> @* Starts a layout container for this section. *@
+
+        <!-- ── Items column ──────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+        <div class="bk-items-col"> @* Starts a layout container for this section. *@
+
+ @* ----- Form Fields ----- *@
+            <div class="bk-items-label" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                <span>@itemCount item@(itemCount != 1 ? "s" : "") in your basket</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                <span>Line total</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+
+            @{ int idx = 0; } // Starts a Razor code block for page setup.
+ @* ----- Loop Rendering ----- *@
+            @foreach (var item in Model) @* Loops through the collection and renders each item. *@
+            {
+ @* ----- Basket Display ----- *@
+                var lineTotal   = item.Products.ItemPrice * item.ProductQuantity; @* Renders part of the basket page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                var allergens   = string.IsNullOrWhiteSpace(item.Products?.Allergens) @* Renders part of the basket page markup. *@
+                                    ? null @* Renders part of the basket page markup. *@
+ @* ----- Product Display ----- *@
+                                    : item.Products.Allergens.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries); @* Renders part of the basket page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                var hasImg      = !string.IsNullOrWhiteSpace(item.Products?.ImagePath); @* Renders part of the basket page markup. *@
+                var grad        = gradients[idx % gradients.Length]; @* Renders part of the basket page markup. *@
+ @* ----- Search and Filters ----- *@
+                var catIcon     = CatIcon(item.Products?.Category ?? ""); @* Renders part of the basket page markup. *@
+                idx++; @* Renders part of the basket page markup. *@
+
+ @* ----- Form Fields ----- *@
+                <article class="bk-item" aria-label="@item.Products.ItemName"> @* Renders a navigation link or action link. *@
+                    <!-- Image --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                    <div class="bk-item__img" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                        @if (hasImg) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Product Display ----- *@
+                            <img src="@item.Products.ImagePath" alt="@item.Products.ItemName" loading="lazy" /> @* Renders an image for the page content. *@
+                        }
+ @* ----- Conditional Rendering ----- *@
+                        else @* Renders the fallback branch for the previous condition. *@
+                        {
+ @* ----- Styling Section ----- *@
+                            <div class="bk-item__img--placeholder" style="background:@grad;"> @* Starts a layout container for this section. *@
+                                <i data-lucide="@catIcon" style="width:28px;height:28px;stroke-width:1.5;color:rgba(22,101,52,.7)"></i> @* Renders part of the basket page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                        }
+                    </div> @* Closes the matching HTML element. *@
+
+                    <!-- Info --> @* Keeps an existing comment in the Razor file. *@
+                    <div class="bk-item__body"> @* Starts a layout container for this section. *@
+ @* ----- Search and Filters ----- *@
+                        <span class="bk-item__category"> @* Renders inline text or badge content. *@
+                            <i data-lucide="tag" style="width:10px;height:10px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                            @item.Products.Category @* Outputs Razor data or executes Razor logic. *@
+                        </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                        <h2 class="bk-item__name">@item.Products.ItemName</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Fields ----- *@
+                        <div class="bk-item__allergens" aria-label="Allergen information"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (allergens != null && allergens.Length > 0) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Loop Rendering ----- *@
+                                @foreach (var a in allergens) @* Loops through the collection and renders each item. *@
+                                {
+ @* ----- Styling Section ----- *@
+                                    <span class="bk-item__allergen-chip"> @* Renders inline text or badge content. *@
+ @* ----- Status Messages ----- *@
+                                        <i data-lucide="alert-triangle" style="width:9px;height:9px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                                        @a @* Outputs Razor data or executes Razor logic. *@
+                                    </span> @* Closes the matching HTML element. *@
+                                }
+                            }
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Styling Section ----- *@
+                                <span class="bk-item__allergen-none"> @* Renders inline text or badge content. *@
+                                    <i data-lucide="check-circle-2" style="width:12px;height:12px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+ @* ----- Product Display ----- *@
+                                    No allergens declared @* Renders part of the basket page markup. *@
+                                </span> @* Closes the matching HTML element. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+                    <!-- Price / remove --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                    <div class="bk-item__right"> @* Starts a layout container for this section. *@
+ @* ----- Basket Display ----- *@
+                        <span class="bk-item__qty">Qty: @item.ProductQuantity</span> @* Renders inline text or badge content. *@
+ @* ----- Product Display ----- *@
+                        <span class="bk-item__unit-price">£@item.Products.ItemPrice.ToString("0.00") each</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                        <span class="bk-item__line-total">£@lineTotal.ToString("0.00")</span> @* Renders inline text or badge content. *@
+ @* ----- Navigation ----- *@
+                        <form asp-controller="BasketProducts" @* Starts the form that submits this page's user input. *@
+                              asp-action="RemoveFromBasket" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Setup ----- *@
+                              asp-route-id="@item.BasketProductsId" @* Renders part of the basket page markup. *@
+                              method="post"> @* Renders part of the basket page markup. *@
+                            @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+ @* ----- Form Actions ----- *@
+                            <button type="submit" @* Renders a button for the user action. *@
+ @* ----- Styling Section ----- *@
+                                    class="bk-item__remove" @* Renders part of the basket page markup. *@
+ @* ----- Form Fields ----- *@
+                                    aria-label="Remove @item.Products.ItemName from basket"> @* Renders part of the basket page markup. *@
+                            <i data-lucide="x" style="width:12px;height:12px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                            Remove @* Renders part of the basket page markup. *@
+                            </button> @* Closes the matching HTML element. *@
+                        </form> @* Closes the form after its fields and actions. *@
+                    </div> @* Closes the matching HTML element. *@
+                </article> @* Closes the matching HTML element. *@
+            }
+
+ @* ----- Product Display ----- *@
+            <!-- Allergen notice (shown only if any item has allergens) --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+            @if (anyAllergens) @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Form Fields ----- *@
+                <div class="bk-allergen-notice" role="note" aria-label="Allergen notice"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                    <i data-lucide="triangle-alert" style="width:18px;height:18px;stroke-width:2;color:#F97316;flex-shrink:0"></i> @* Renders part of the basket page markup. *@
+                    <span> @* Renders inline text or badge content. *@
+                        <strong>Allergen notice:</strong> Allergen information is shown on each item above. @* Renders part of the basket page markup. *@
+ @* ----- Order Display ----- *@
+                        If you have concerns about any allergen, please contact the producer before completing your order. @* Renders part of the basket page markup. *@
+                        Provided in accordance with Natasha's Law. @* Renders part of the basket page markup. *@
+                    </span> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            }
+
+ @* ----- Styling Section ----- *@
+            <div class="bk-items-footer"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                <a asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                   class="pw-btn pw-btn--outline pw-btn--sm"> @* Renders part of the basket page markup. *@
+ @* ----- Card Layout ----- *@
+                    <i data-lucide="arrow-left" style="width:14px;height:14px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                    Continue shopping @* Renders part of the basket page markup. *@
+                </a> @* Closes the matching HTML element. *@
+                <span style="font-size:13px;color:var(--text-muted);"> @* Renders inline text or badge content. *@
+                    <i data-lucide="shield-check" style="width:13px;height:13px;vertical-align:middle;color:var(--green);stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                    Secure checkout @* Renders part of the basket page markup. *@
+                </span> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- ── Summary column ────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <aside class="bk-summary-col" aria-label="Order summary"> @* Renders a navigation link or action link. *@
+ @* ----- Card Layout ----- *@
+            <div class="bk-summary"> @* Starts a layout container for this section. *@
+                <div class="bk-summary__header"> @* Starts a layout container for this section. *@
+                    <p class="bk-summary__header-title">Order summary</p> @* Renders paragraph text for the user. *@
+                    <p class="bk-summary__header-sub">@itemCount item@(itemCount != 1 ? "s" : "") from local farms</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <div class="bk-summary__body"> @* Starts a layout container for this section. *@
+
+                    <div class="bk-summary__row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <span class="bk-summary__row-label">Subtotal</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                        <span class="bk-summary__row-value">£@subtotal.ToString("0.00")</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+                        @if (hasDiscount) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Form Fields ----- *@
+                            <div class="bk-summary__discount" aria-label="Discount applied"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                                <div class="bk-summary__discount-left"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                                    <i data-lucide="@(hasHealthBundle ? "salad" : "star")" @* Renders part of the basket page markup. *@
+                                       style="width:15px;height:15px;stroke-width:2.5;color:var(--green)"></i> @* Renders part of the basket page markup. *@
+                                    <span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                                        <span class="bk-summary__discount-badge"> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                                            @(hasHealthBundle ? "Health bundle" : "Loyalty reward") @* Outputs Razor data or executes Razor logic. *@
+                                        </span><br /> @* Closes the matching HTML element. *@
+                                        <span style="font-size:11px;font-weight:500;color:var(--green-700);"> @* Renders inline text or badge content. *@
+ @* ----- Form Actions ----- *@
+                                            @(hasHealthBundle ? "Broccoli, carrot & apple 🥦🥕🍎" : "Saved on this order") @* Outputs Razor data or executes Razor logic. *@
+                                        </span> @* Closes the matching HTML element. *@
+                                    </span> @* Closes the matching HTML element. *@
+                                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                                <span class="bk-summary__discount-value">−£@discount.ToString("0.00")</span> @* Renders inline text or badge content. *@
+                            </div> @* Closes the matching HTML element. *@
+                        }
+ @* ----- Conditional Rendering ----- *@
+                        else @* Renders the fallback branch for the previous condition. *@
+                        {
+ @* ----- Card Layout ----- *@
+                            <div class="bk-summary__row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <span class="bk-summary__row-label" style="display:flex;align-items:center;gap:5px;"> @* Renders inline text or badge content. *@
+                                    <i data-lucide="star" style="width:13px;height:13px;stroke-width:2;color:var(--text-light)"></i> @* Renders part of the basket page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                                    Loyalty discount @* Renders part of the basket page markup. *@
+                                </span> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                                <span class="bk-summary__row-value" style="color:var(--text-light);font-weight:500;">—</span> @* Renders inline text or badge content. *@
+                            </div> @* Closes the matching HTML element. *@
+                            <div class="bk-summary__row" style="border-bottom:none;padding-top:4px;"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                                <span class="bk-summary__row-label" style="display:flex;align-items:center;gap:5px;font-size:12px;"> @* Renders inline text or badge content. *@
+                                    <i data-lucide="salad" style="width:13px;height:13px;stroke-width:2;color:var(--text-light)"></i> @* Renders part of the basket page markup. *@
+                                    Add broccoli, carrot &amp; apple for 10% off @* Renders part of the basket page markup. *@
+                                </span> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+                        }
+
+ @* ----- Conditional Rendering ----- *@
+                        @if (hasDiscount) @* Conditionally renders this block when the check passes. *@
+                        {
+                            <p style="font-size:12px;color:var(--green-700);font-weight:600;text-align:center;margin:6px 0 0;display:flex;align-items:center;justify-content:center;gap:5px;"> @* Renders paragraph text for the user. *@
+                                <i data-lucide="party-popper" style="width:13px;height:13px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                                @if (hasHealthBundle) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Form Actions ----- *@
+                                    <span>You saved £@discount.ToString("0.00") with the health bundle!</span> @* Renders inline text or badge content. *@
+                                }
+ @* ----- Conditional Rendering ----- *@
+                                else @* Renders the fallback branch for the previous condition. *@
+                                {
+ @* ----- Form Actions ----- *@
+                                    <span>You saved £@discount.ToString("0.00") with your loyalty reward!</span> @* Renders inline text or badge content. *@
+                                }
+                            </p> @* Closes the matching HTML element. *@
+                        }
+
+ @* ----- Navigation ----- *@
+                    <a asp-controller="Orders" asp-action="Create" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Setup ----- *@
+                       asp-route-basketId="@basketId" @* Renders part of the basket page markup. *@
+ @* ----- Form Actions ----- *@
+                       class="bk-checkout-btn" @* Renders part of the basket page markup. *@
+ @* ----- Form Fields ----- *@
+                       aria-label="Proceed to checkout"> @* Renders part of the basket page markup. *@
+                        <i data-lucide="lock" style="width:18px;height:18px;stroke-width:2.5"></i> @* Renders part of the basket page markup. *@
+                        Proceed to checkout @* Renders part of the basket page markup. *@
+ @* ----- Card Layout ----- *@
+                        <i data-lucide="arrow-right" style="width:18px;height:18px;stroke-width:2.5;margin-left:2px"></i> @* Renders part of the basket page markup. *@
+                    </a> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+                    <div class="bk-trust" aria-label="Trust signals"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                        <div class="bk-trust__item"> @* Starts a layout container for this section. *@
+                            <i data-lucide="shield-check"></i> @* Renders part of the basket page markup. *@
+                            Secure, encrypted checkout @* Renders part of the basket page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="bk-trust__item"> @* Starts a layout container for this section. *@
+                            <i data-lucide="sprout"></i> @* Renders part of the basket page markup. *@
+                            Direct from verified local farms @* Renders part of the basket page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="bk-trust__item"> @* Starts a layout container for this section. *@
+                            <i data-lucide="refresh-cw"></i> @* Renders part of the basket page markup. *@
+                            Easy returns &amp; support @* Renders part of the basket page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div class="bk-trust__item"> @* Starts a layout container for this section. *@
+                            <i data-lucide="leaf"></i> @* Renders part of the basket page markup. *@
+                            Fresh, seasonal &amp; sustainable @* Renders part of the basket page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </aside> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+}
+
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Basket Display ----- *@
+    <script src="~/js/pages/baskets/BasketIndex.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/baskets/BasketIndex.css" asp-append-version="true" /> @* Renders one list item. *@
+}

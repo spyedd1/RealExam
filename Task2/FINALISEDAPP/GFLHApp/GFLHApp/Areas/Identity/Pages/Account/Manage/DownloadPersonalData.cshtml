@@ -1,0 +1,36 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model DownloadPersonalDataModel
+@{
+    ViewData["Title"] = "Download Your Data"; // Sets the browser and page title for this view.
+    ViewData["ActivePage"] = ManageNavPages.PersonalData; // Reads view data supplied by the controller.
+}
+
+ @* ----- Card Layout ----- *@
+<span class="pw-manage-content__eyebrow">Privacy</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+<h2 class="pw-manage-content__title">Download Your Data</h2> @* Renders a heading for this page section. *@
+ @* ----- Styling Section ----- *@
+<p class="pw-manage-content__sub">Your personal data export is being prepared. The download will begin shortly.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Status Messages ----- *@
+<div class="pw-manage-alert pw-manage-alert--success" role="status"> @* Starts a layout container for this section. *@
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> @* Renders part of the identity page markup. *@
+    <span>Your data file is ready. Check your downloads folder.</span> @* Renders inline text or badge content. *@
+</div> @* Closes the matching HTML element. *@
+
+<div style="margin-top:8px;"> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+    <a asp-page="./PersonalData" class="pw-btn pw-btn--ghost pw-btn--sm"> @* Builds a link or form target using MVC routing. *@
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg> @* Renders part of the identity page markup. *@
+        Back to personal data @* Renders part of the identity page markup. *@
+    </a> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <partial name="_ValidationScriptsPartial" /> @* Renders a shared partial view here. *@
+}
