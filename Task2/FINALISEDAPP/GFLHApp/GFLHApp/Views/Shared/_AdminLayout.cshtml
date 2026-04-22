@@ -1,234 +1,271 @@
-<!DOCTYPE html> @* Renders part of the shared layout page markup. *@
-<html lang="en"> @* Renders part of the shared layout page markup. *@
-<head> @* Renders part of the shared layout page markup. *@
+<!DOCTYPE html>
+@* Renders part of the shared layout page markup. *@
+<html lang="en">
+@* Renders part of the shared layout page markup. *@
+<head>
+    @* Renders part of the shared layout page markup. *@
     <meta charset="utf-8" /> @* Renders part of the shared layout page markup. *@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> @* Renders part of the shared layout page markup. *@
- @* ----- Page Model Setup ----- *@
+    @* ----- Page Model Setup ----- *@
     <title>@ViewData["Title"] — Greenfield Admin</title> @* Sets the browser and page title for this view. *@
     <link rel="preconnect" href="https://fonts.googleapis.com"> @* Renders one list item. *@
- @* ----- Card Layout ----- *@
+    @* ----- Card Layout ----- *@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> @* Renders one list item. *@
- @* ----- Conditional Rendering ----- *@
+    @* ----- Conditional Rendering ----- *@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> @* Renders one list item. *@
- @* ----- Styling Section ----- *@
+    @* ----- Styling Section ----- *@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> @* Renders one list item. *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> @* Renders one list item. *@
     <link rel="stylesheet" href="~/css/pages/shared/AdminLayout.css" asp-append-version="true" /> @* Renders one list item. *@
+    @await RenderSectionAsync("Styles", required: false) @* Renders optional per-page stylesheets injected via @section Styles. *@
 
 </head> @* Closes the matching HTML element. *@
-<body> @* Renders part of the shared layout page markup. *@
+<body>
+    @* Renders part of the shared layout page markup. *@
 
-<div class="adm-shell"> @* Starts a layout container for this section. *@
+    <div class="adm-shell">
+        @* Starts a layout container for this section. *@
 
-    <!-- ── Sidebar ──────────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
- @* ----- Form Fields ----- *@
-    <aside class="adm-sidebar" id="adminSidebar" aria-label="Admin navigation"> @* Renders a navigation link or action link. *@
- @* ----- Styling Section ----- *@
-        <a href="/" class="adm-sidebar__brand"> @* Renders a navigation link or action link. *@
-            <div class="adm-sidebar__brand-icon" aria-hidden="true"> @* Starts a layout container for this section. *@
-                <i data-lucide="sprout" style="width:18px;height:18px;"></i> @* Renders part of the shared layout page markup. *@
+        <!-- ── Sidebar ──────────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+        @* ----- Form Fields ----- *@
+        <aside class="adm-sidebar" id="adminSidebar" aria-label="Admin navigation">
+            @* Renders a navigation link or action link. *@
+            @* ----- Styling Section ----- *@
+            <a href="/" class="adm-sidebar__brand">
+                @* Renders a navigation link or action link. *@
+                <div class="adm-sidebar__brand-icon" aria-hidden="true">
+                    @* Starts a layout container for this section. *@
+                    <i data-lucide="sprout" style="width:18px;height:18px;"></i> @* Renders part of the shared layout page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div>
+                    @* Starts a layout container for this section. *@
+                    <div class="adm-sidebar__brand-text">Greenfield</div> @* Starts a layout container for this section. *@
+                    <div class="adm-sidebar__brand-sub">Admin Panel</div> @* Starts a layout container for this section. *@
+                </div> @* Closes the matching HTML element. *@
+            </a> @* Closes the matching HTML element. *@
+
+            @* ----- Navigation ----- *@
+            <nav class="adm-sidebar__nav" aria-label="Admin sections">
+                @* Starts the navigation area. *@
+                @* ----- Card Layout ----- *@
+                <a href="/AdminDashboard" @* Renders a navigation link or action link. *@
+                @* ----- Page Model Setup ----- *@
+                   class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "overview" ? "is-active" : "")">
+                    @* Reads view data supplied by the controller. *@
+                    @* ----- Navigation ----- *@
+                    <i data-lucide="layout-dashboard" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                    Overview @* Renders part of the shared layout page markup. *@
+                </a> @* Closes the matching HTML element. *@
+
+                @* ----- Styling Section ----- *@
+                <div class="adm-sidebar__section">Manage</div> @* Starts a layout container for this section. *@
+
+                @* ----- Card Layout ----- *@
+                <a href="/AdminDashboard/Orders" @* Renders a navigation link or action link. *@
+                @* ----- Page Model Setup ----- *@
+                   class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "orders" ? "is-active" : "")">
+                    @* Reads view data supplied by the controller. *@
+                    @* ----- Navigation ----- *@
+                    <i data-lucide="shopping-bag" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                    @* ----- Order Display ----- *@
+                    Orders @* Renders part of the shared layout page markup. *@
+                    @* ----- Page Model Setup ----- *@
+                    @if (ViewBag.PendingOrdersBadge is int pb && pb > 0) @* Conditionally renders this block when the check passes. *@
+                    {
+                        @* ----- Styling Section ----- *@
+                        <span class="adm-nav-badge">@pb</span> @* Renders inline text or badge content. *@
+                    }
+                </a> @* Closes the matching HTML element. *@
+
+                @* ----- Card Layout ----- *@
+                <a href="/AdminDashboard/Products" @* Renders a navigation link or action link. *@
+                @* ----- Page Model Setup ----- *@
+                   class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "products" ? "is-active" : "")">
+                    @* Reads view data supplied by the controller. *@
+                    @* ----- Navigation ----- *@
+                    <i data-lucide="package" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                    @* ----- Product Display ----- *@
+                    Products @* Renders part of the shared layout page markup. *@
+                </a> @* Closes the matching HTML element. *@
+
+                @* ----- Card Layout ----- *@
+                <a href="/AdminDashboard/Producers" @* Renders a navigation link or action link. *@
+                @* ----- Page Model Setup ----- *@
+                   class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "producers" ? "is-active" : "")">
+                    @* Reads view data supplied by the controller. *@
+                    @* ----- Navigation ----- *@
+                    <i data-lucide="sprout" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                    @* ----- Producer Display ----- *@
+                    Producers @* Renders part of the shared layout page markup. *@
+                </a> @* Closes the matching HTML element. *@
+
+                @* ----- Card Layout ----- *@
+                <a href="/AdminDashboard/Users" @* Renders a navigation link or action link. *@
+                @* ----- Page Model Setup ----- *@
+                   class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "users" ? "is-active" : "")">
+                    @* Reads view data supplied by the controller. *@
+                    @* ----- Navigation ----- *@
+                    <i data-lucide="users" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                    Users @* Renders part of the shared layout page markup. *@
+                </a> @* Closes the matching HTML element. *@
+
+                @* ----- Styling Section ----- *@
+                <div class="adm-sidebar__section">System</div> @* Starts a layout container for this section. *@
+
+                @* ----- Card Layout ----- *@
+                <a href="/AdminDashboard/Settings" @* Renders a navigation link or action link. *@
+                @* ----- Page Model Setup ----- *@
+                   class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "settings" ? "is-active" : "")">
+                    @* Reads view data supplied by the controller. *@
+                    @* ----- Navigation ----- *@
+                    <i data-lucide="settings" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                    Settings @* Renders part of the shared layout page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </nav> @* Closes the matching HTML element. *@
+
+            @* ----- Styling Section ----- *@
+            <div class="adm-sidebar__footer">
+                @* Starts a layout container for this section. *@
+                <a href="/">
+                    @* Renders a navigation link or action link. *@
+                    @* ----- Card Layout ----- *@
+                    <i data-lucide="arrow-left" style="width:14px;height:14px;" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                    Back to site @* Renders part of the shared layout page markup. *@
+                </a> @* Closes the matching HTML element. *@
             </div> @* Closes the matching HTML element. *@
-            <div> @* Starts a layout container for this section. *@
-                <div class="adm-sidebar__brand-text">Greenfield</div> @* Starts a layout container for this section. *@
-                <div class="adm-sidebar__brand-sub">Admin Panel</div> @* Starts a layout container for this section. *@
-            </div> @* Closes the matching HTML element. *@
-        </a> @* Closes the matching HTML element. *@
+        </aside> @* Closes the matching HTML element. *@
 
- @* ----- Navigation ----- *@
-        <nav class="adm-sidebar__nav" aria-label="Admin sections"> @* Starts the navigation area. *@
- @* ----- Card Layout ----- *@
-            <a href="/AdminDashboard" @* Renders a navigation link or action link. *@
- @* ----- Page Model Setup ----- *@
-               class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "overview" ? "is-active" : "")"> @* Reads view data supplied by the controller. *@
- @* ----- Navigation ----- *@
-                <i data-lucide="layout-dashboard" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                Overview @* Renders part of the shared layout page markup. *@
-            </a> @* Closes the matching HTML element. *@
-
- @* ----- Styling Section ----- *@
-            <div class="adm-sidebar__section">Manage</div> @* Starts a layout container for this section. *@
-
- @* ----- Card Layout ----- *@
-            <a href="/AdminDashboard/Orders" @* Renders a navigation link or action link. *@
- @* ----- Page Model Setup ----- *@
-               class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "orders" ? "is-active" : "")"> @* Reads view data supplied by the controller. *@
- @* ----- Navigation ----- *@
-                <i data-lucide="shopping-bag" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Order Display ----- *@
-                Orders @* Renders part of the shared layout page markup. *@
- @* ----- Page Model Setup ----- *@
-                @if (ViewBag.PendingOrdersBadge is int pb && pb > 0) @* Conditionally renders this block when the check passes. *@
-                {
- @* ----- Styling Section ----- *@
-                    <span class="adm-nav-badge">@pb</span> @* Renders inline text or badge content. *@
-                }
-            </a> @* Closes the matching HTML element. *@
-
- @* ----- Card Layout ----- *@
-            <a href="/AdminDashboard/Products" @* Renders a navigation link or action link. *@
- @* ----- Page Model Setup ----- *@
-               class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "products" ? "is-active" : "")"> @* Reads view data supplied by the controller. *@
- @* ----- Navigation ----- *@
-                <i data-lucide="package" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Product Display ----- *@
-                Products @* Renders part of the shared layout page markup. *@
-            </a> @* Closes the matching HTML element. *@
-
- @* ----- Card Layout ----- *@
-            <a href="/AdminDashboard/Producers" @* Renders a navigation link or action link. *@
- @* ----- Page Model Setup ----- *@
-               class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "producers" ? "is-active" : "")"> @* Reads view data supplied by the controller. *@
- @* ----- Navigation ----- *@
-                <i data-lucide="sprout" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Producer Display ----- *@
-                Producers @* Renders part of the shared layout page markup. *@
-            </a> @* Closes the matching HTML element. *@
-
- @* ----- Card Layout ----- *@
-            <a href="/AdminDashboard/Users" @* Renders a navigation link or action link. *@
- @* ----- Page Model Setup ----- *@
-               class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "users" ? "is-active" : "")"> @* Reads view data supplied by the controller. *@
- @* ----- Navigation ----- *@
-                <i data-lucide="users" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                Users @* Renders part of the shared layout page markup. *@
-            </a> @* Closes the matching HTML element. *@
-
- @* ----- Styling Section ----- *@
-            <div class="adm-sidebar__section">System</div> @* Starts a layout container for this section. *@
-
- @* ----- Card Layout ----- *@
-            <a href="/AdminDashboard/Settings" @* Renders a navigation link or action link. *@
- @* ----- Page Model Setup ----- *@
-               class="adm-nav-link @(ViewData["AdminSection"]?.ToString() == "settings" ? "is-active" : "")"> @* Reads view data supplied by the controller. *@
- @* ----- Navigation ----- *@
-                <i data-lucide="settings" class="adm-nav-link__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                Settings @* Renders part of the shared layout page markup. *@
-            </a> @* Closes the matching HTML element. *@
-        </nav> @* Closes the matching HTML element. *@
-
- @* ----- Styling Section ----- *@
-        <div class="adm-sidebar__footer"> @* Starts a layout container for this section. *@
-            <a href="/"> @* Renders a navigation link or action link. *@
- @* ----- Card Layout ----- *@
-                <i data-lucide="arrow-left" style="width:14px;height:14px;" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                Back to site @* Renders part of the shared layout page markup. *@
-            </a> @* Closes the matching HTML element. *@
-        </div> @* Closes the matching HTML element. *@
-    </aside> @* Closes the matching HTML element. *@
-
-    <!-- ── Main ─────────────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
- @* ----- Styling Section ----- *@
-    <div class="adm-main" id="adminMain"> @* Starts a layout container for this section. *@
-        <header class="adm-topbar"> @* Starts the page header area. *@
- @* ----- Form Fields ----- *@
-            <button class="adm-hamburger" id="adminHamburger" aria-label="Open menu" aria-expanded="false"> @* Renders a button for the user action. *@
-                <i data-lucide="menu" style="width:20px;height:20px;" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-            </button> @* Closes the matching HTML element. *@
- @* ----- Page Model Setup ----- *@
-            <div class="adm-topbar__title">@(ViewData["Title"] ?? "Admin")</div> @* Sets the browser and page title for this view. *@
- @* ----- Styling Section ----- *@
-            <div class="pw-accessibility" id="accessibilityMenu"> @* Starts a layout container for this section. *@
- @* ----- Form Actions ----- *@
-                <button class="pw-accessibility__toggle" type="button" @* Renders a button for the user action. *@
-                        id="accessibilityToggle" @* Renders part of the shared layout page markup. *@
- @* ----- Form Fields ----- *@
-                        aria-label="Accessibility options" @* Renders part of the shared layout page markup. *@
-                        aria-expanded="false" @* Renders part of the shared layout page markup. *@
- @* ----- Navigation ----- *@
-                        aria-controls="accessibilityDropdown"> @* Renders part of the shared layout page markup. *@
- @* ----- Styling Section ----- *@
-                    <span class="pw-accessibility__hamburger" aria-hidden="true"> @* Renders inline text or badge content. *@
-                        <span></span> @* Renders inline text or badge content. *@
-                        <span></span> @* Renders inline text or badge content. *@
-                        <span></span> @* Renders inline text or badge content. *@
-                    </span> @* Closes the matching HTML element. *@
-                    <span>Accessibility</span> @* Renders inline text or badge content. *@
+        <!-- ── Main ─────────────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+        @* ----- Styling Section ----- *@
+        <div class="adm-main" id="adminMain">
+            @* Starts a layout container for this section. *@
+            <header class="adm-topbar">
+                @* Starts the page header area. *@
+                @* ----- Form Fields ----- *@
+                <button class="adm-hamburger" id="adminHamburger" aria-label="Open menu" aria-expanded="false">
+                    @* Renders a button for the user action. *@
+                    <i data-lucide="menu" style="width:20px;height:20px;" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
                 </button> @* Closes the matching HTML element. *@
- @* ----- Navigation ----- *@
-                <div class="pw-accessibility__dropdown" id="accessibilityDropdown" role="menu" aria-labelledby="accessibilityToggle" hidden> @* Starts a layout container for this section. *@
- @* ----- Form Actions ----- *@
-                    <button type="button" class="pw-accessibility__item" data-accessibility-action="dark-mode" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
-                        <i data-lucide="moon" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Form Fields ----- *@
-                        <span data-accessibility-label="dark-mode">Dark mode</span> @* Renders inline text or badge content. *@
+                @* ----- Page Model Setup ----- *@
+                <div class="adm-topbar__title">@(ViewData["Title"] ?? "Admin")</div> @* Sets the browser and page title for this view. *@
+                @* ----- Styling Section ----- *@
+                <div class="pw-accessibility" id="accessibilityMenu">
+                    @* Starts a layout container for this section. *@
+                    @* ----- Form Actions ----- *@
+                    <button class="pw-accessibility__toggle" type="button" @* Renders a button for the user action. *@
+                            id="accessibilityToggle" @* Renders part of the shared layout page markup. *@
+                    @* ----- Form Fields ----- *@
+                            aria-label="Accessibility options" @* Renders part of the shared layout page markup. *@
+                            aria-expanded="false" @* Renders part of the shared layout page markup. *@
+                    @* ----- Navigation ----- *@
+                            aria-controls="accessibilityDropdown">
+                        @* Renders part of the shared layout page markup. *@
+                        @* ----- Styling Section ----- *@
+                        <span class="pw-accessibility__hamburger" aria-hidden="true">
+                            @* Renders inline text or badge content. *@
+                            <span></span> @* Renders inline text or badge content. *@
+                            <span></span> @* Renders inline text or badge content. *@
+                            <span></span> @* Renders inline text or badge content. *@
+                        </span> @* Closes the matching HTML element. *@
+                        <span>Accessibility</span> @* Renders inline text or badge content. *@
                     </button> @* Closes the matching HTML element. *@
- @* ----- Form Actions ----- *@
-                    <button type="button" class="pw-accessibility__item" data-accessibility-action="increase-font" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
-                        <i data-lucide="zoom-in" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                        <span>Increase text</span> @* Renders inline text or badge content. *@
-                    </button> @* Closes the matching HTML element. *@
- @* ----- Form Actions ----- *@
-                    <button type="button" class="pw-accessibility__item" data-accessibility-action="decrease-font" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
-                        <i data-lucide="zoom-out" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                        <span>Decrease text</span> @* Renders inline text or badge content. *@
-                    </button> @* Closes the matching HTML element. *@
- @* ----- Form Actions ----- *@
-                    <button type="button" class="pw-accessibility__item" data-accessibility-action="reset-font" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
-                        <i data-lucide="rotate-ccw" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                        <span>Reset text size</span> @* Renders inline text or badge content. *@
-                    </button> @* Closes the matching HTML element. *@
- @* ----- Form Actions ----- *@
-                    <button type="button" class="pw-accessibility__item" data-accessibility-action="high-contrast" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
-                        <i data-lucide="contrast" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Form Fields ----- *@
-                        <span data-accessibility-label="high-contrast">High contrast</span> @* Renders inline text or badge content. *@
-                    </button> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
-                    <div class="pw-accessibility__divider" role="separator"></div> @* Starts a layout container for this section. *@
- @* ----- Form Actions ----- *@
-                    <button type="button" class="pw-accessibility__item" data-accessibility-action="speak" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
-                        <i data-lucide="volume-2" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Form Fields ----- *@
-                        <span data-accessibility-label="speak">Read page aloud</span> @* Renders inline text or badge content. *@
-                    </button> @* Closes the matching HTML element. *@
+                    @* ----- Navigation ----- *@
+                    <div class="pw-accessibility__dropdown" id="accessibilityDropdown" role="menu" aria-labelledby="accessibilityToggle" hidden>
+                        @* Starts a layout container for this section. *@
+                        @* ----- Form Actions ----- *@
+                        <button type="button" class="pw-accessibility__item" data-accessibility-action="dark-mode" role="menuitem">
+                            @* Renders a button for the user action. *@
+                            @* ----- Styling Section ----- *@
+                            <i data-lucide="moon" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                            @* ----- Form Fields ----- *@
+                            <span data-accessibility-label="dark-mode">Dark mode</span> @* Renders inline text or badge content. *@
+                        </button> @* Closes the matching HTML element. *@
+                        @* ----- Form Actions ----- *@
+                        <button type="button" class="pw-accessibility__item" data-accessibility-action="increase-font" role="menuitem">
+                            @* Renders a button for the user action. *@
+                            @* ----- Styling Section ----- *@
+                            <i data-lucide="zoom-in" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                            <span>Increase text</span> @* Renders inline text or badge content. *@
+                        </button> @* Closes the matching HTML element. *@
+                        @* ----- Form Actions ----- *@
+                        <button type="button" class="pw-accessibility__item" data-accessibility-action="decrease-font" role="menuitem">
+                            @* Renders a button for the user action. *@
+                            @* ----- Styling Section ----- *@
+                            <i data-lucide="zoom-out" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                            <span>Decrease text</span> @* Renders inline text or badge content. *@
+                        </button> @* Closes the matching HTML element. *@
+                        @* ----- Form Actions ----- *@
+                        <button type="button" class="pw-accessibility__item" data-accessibility-action="reset-font" role="menuitem">
+                            @* Renders a button for the user action. *@
+                            @* ----- Styling Section ----- *@
+                            <i data-lucide="rotate-ccw" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                            <span>Reset text size</span> @* Renders inline text or badge content. *@
+                        </button> @* Closes the matching HTML element. *@
+                        @* ----- Form Actions ----- *@
+                        <button type="button" class="pw-accessibility__item" data-accessibility-action="high-contrast" role="menuitem">
+                            @* Renders a button for the user action. *@
+                            @* ----- Styling Section ----- *@
+                            <i data-lucide="contrast" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                            @* ----- Form Fields ----- *@
+                            <span data-accessibility-label="high-contrast">High contrast</span> @* Renders inline text or badge content. *@
+                        </button> @* Closes the matching HTML element. *@
+                        @* ----- Styling Section ----- *@
+                        <div class="pw-accessibility__divider" role="separator"></div> @* Starts a layout container for this section. *@
+                        @* ----- Form Actions ----- *@
+                        <button type="button" class="pw-accessibility__item" data-accessibility-action="speak" role="menuitem">
+                            @* Renders a button for the user action. *@
+                            @* ----- Styling Section ----- *@
+                            <i data-lucide="volume-2" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                            @* ----- Form Fields ----- *@
+                            <span data-accessibility-label="speak">Read page aloud</span> @* Renders inline text or badge content. *@
+                        </button> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
                 </div> @* Closes the matching HTML element. *@
-            </div> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
-            <a href="/" class="adm-topbar__back"> @* Renders a navigation link or action link. *@
-                <i data-lucide="external-link" style="width:13px;height:13px;" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                View site @* Renders part of the shared layout page markup. *@
-            </a> @* Closes the matching HTML element. *@
-            <div class="adm-topbar__user"> @* Starts a layout container for this section. *@
- @* ----- Producer Display ----- *@
-                <div class="adm-topbar__avatar" aria-hidden="true"> @* Starts a layout container for this section. *@
- @* ----- Authorization Display ----- *@
-                    @(User.Identity?.Name?.Substring(0, 1).ToUpper() ?? "A") @* Outputs Razor data or executes Razor logic. *@
+                @* ----- Styling Section ----- *@
+                <a href="/" class="adm-topbar__back">
+                    @* Renders a navigation link or action link. *@
+                    <i data-lucide="external-link" style="width:13px;height:13px;" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                    View site @* Renders part of the shared layout page markup. *@
+                </a> @* Closes the matching HTML element. *@
+                <div class="adm-topbar__user">
+                    @* Starts a layout container for this section. *@
+                    @* ----- Producer Display ----- *@
+                    <div class="adm-topbar__avatar" aria-hidden="true">
+                        @* Starts a layout container for this section. *@
+                        @* ----- Authorization Display ----- *@
+                        @(User.Identity?.Name?.Substring(0, 1).ToUpper() ?? "A") @* Outputs Razor data or executes Razor logic. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <span>@User.Identity?.Name</span> @* Renders inline text or badge content. *@
                 </div> @* Closes the matching HTML element. *@
-                <span>@User.Identity?.Name</span> @* Renders inline text or badge content. *@
-            </div> @* Closes the matching HTML element. *@
-        </header> @* Closes the matching HTML element. *@
+            </header> @* Closes the matching HTML element. *@
 
- @* ----- Styling Section ----- *@
-        <main class="adm-content" id="main-content" role="main"> @* Starts the main page content area. *@
- @* ----- Status Messages ----- *@
-            @if (TempData["AdminSuccess"] is string msg) @* Conditionally renders this block when the check passes. *@
-            {
- @* ----- Card Layout ----- *@
-                <div class="adm-toast" role="status"> @* Starts a layout container for this section. *@
-                    <i data-lucide="check-circle" style="width:16px;height:16px;flex-shrink:0;" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
-                    @msg @* Outputs Razor data or executes Razor logic. *@
-                </div> @* Closes the matching HTML element. *@
-            }
-            @RenderBody() @* Renders the body content from the current view. *@
-        </main> @* Closes the matching HTML element. *@
+            @* ----- Styling Section ----- *@
+            <main class="adm-content" id="main-content" role="main">
+                @* Starts the main page content area. *@
+                @* ----- Status Messages ----- *@
+                @if (TempData["AdminSuccess"] is string msg) @* Conditionally renders this block when the check passes. *@
+                {
+                    @* ----- Card Layout ----- *@
+                    <div class="adm-toast" role="status">
+                        @* Starts a layout container for this section. *@
+                        <i data-lucide="check-circle" style="width:16px;height:16px;flex-shrink:0;" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
+                        @msg @* Outputs Razor data or executes Razor logic. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+                @RenderBody() @* Renders the body content from the current view. *@
+            </main> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        @* ----- Styling Section ----- *@
+        <div class="adm-overlay" id="adminOverlay" aria-hidden="true"></div> @* Starts a layout container for this section. *@
     </div> @* Closes the matching HTML element. *@
 
- @* ----- Styling Section ----- *@
-    <div class="adm-overlay" id="adminOverlay" aria-hidden="true"></div> @* Starts a layout container for this section. *@
-</div> @* Closes the matching HTML element. *@
+    @* ----- Script Section ----- *@
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script> @* Starts client-side script for this page. *@
 
- @* ----- Script Section ----- *@
-<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script> @* Starts client-side script for this page. *@
-
-<script src="~/js/accessibility.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+    <script src="~/js/accessibility.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
     <script src="~/js/pages/shared/AdminLayout.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
 
-@await RenderSectionAsync("Scripts", required: false) @* Awaits and renders asynchronous Razor output. *@
+    @await RenderSectionAsync("Scripts", required: false) @* Awaits and renders asynchronous Razor output. *@
 </body> @* Closes the matching HTML element. *@
 </html> @* Closes the matching HTML element. *@
