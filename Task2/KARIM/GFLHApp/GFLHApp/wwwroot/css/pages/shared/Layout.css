@@ -1,0 +1,24 @@
+/* ----- Badges and status ----- */
+.pw-basket-badge { /* Starts styles for the .pw-basket-badge selector. */
+            /* ----- Theme variables ----- */
+            background: var(--orange, #F97316); /* Sets the element background treatment. */
+            /* ----- Grid layout ----- */
+            color: #fff; /* Sets the text color. */
+            font-size: 11px; /* Sets the text size. */
+            font-weight: 800; /* Sets the text weight. */
+            /* ----- Tables ----- */
+            min-width: 18px; /* Sets the min-width style for this rule. */
+            height: 18px; /* Sets the element height. */
+            border-radius: 9999px; /* Rounds the element corners. */
+            /* ----- Grid layout ----- */
+            display: inline-flex; /* Controls how the element participates in layout. */
+            align-items: center; /* Aligns child items on the cross axis. */
+            justify-content: center; /* Aligns child items on the main axis. */
+            padding: 0 5px; /* Sets spacing inside the element. */
+            margin-left: 3px; /* Sets the margin-left style for this rule. */
+            line-height: 1; /* Sets vertical text rhythm. */
+            /* ----- Forms ----- */
+            transition: transform .3s cubic-bezier(.34,1.56,.64,1); /* Animates property changes smoothly. */
+        }
+        /* ----- Theme variables ----- */
+        .pw-basket-badge--pop { transform: scale(1.55); } /* Styles part of the Layout page or component. */

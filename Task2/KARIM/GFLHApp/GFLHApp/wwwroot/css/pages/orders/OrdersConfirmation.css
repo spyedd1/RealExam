@@ -1,0 +1,813 @@
+/* ----- Hero section ----- */
+.oc-hero { /* Starts styles for the .oc-hero selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    min-height: 560px; /* Sets the minimum element height. */
+    padding: 138px 24px 112px; /* Sets spacing inside the element. */
+    background: /* Styles part of the OrdersConfirmation page or component. */
+        linear-gradient(135deg, rgba(255,251,235,.92), rgba(220,252,231,.88)), /* Continues a selector or value list on the next line. */
+        /* ----- Product styling ----- */
+        url("/images/products/apple.jpg") center 42% / cover; /* Styles part of the OrdersConfirmation page or component. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    text-align: center; /* Sets the text-align style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.oc-hero::before { /* Starts styles for the .oc-hero::before selector. */
+    content: ""; /* Sets the content style for this rule. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    inset: 0; /* Sets the inset style for this rule. */
+    background: /* Styles part of the OrdersConfirmation page or component. */
+        /* ----- Tables ----- */
+        radial-gradient(circle at 20% 22%, rgba(245,158,11,.18), transparent 28%), /* Continues a selector or value list on the next line. */
+        radial-gradient(circle at 82% 18%, rgba(22,163,74,.18), transparent 30%), /* Continues a selector or value list on the next line. */
+        linear-gradient(180deg, rgba(255,251,235,.55), rgba(255,251,235,.12)); /* Styles part of the OrdersConfirmation page or component. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.oc-hero__field { /* Starts styles for the .oc-hero__field selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    inset: auto 0 0; /* Sets the inset style for this rule. */
+    height: 38%; /* Sets the element height. */
+    /* ----- Tables ----- */
+    background: linear-gradient(180deg, transparent, rgba(255,251,235,.78)); /* Sets the element background treatment. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.oc-hero__inner { /* Starts styles for the .oc-hero__inner selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 2; /* Controls stacking order. */
+    /* ----- Tables ----- */
+    width: min(760px, 100%); /* Sets the element width. */
+}
+
+.oc-confirm-mark { /* Starts styles for the .oc-confirm-mark selector. */
+    width: 86px; /* Sets the element width. */
+    height: 86px; /* Sets the element height. */
+    margin: 0 auto 22px; /* Sets spacing outside the element. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Theme variables ----- */
+    background: var(--green); /* Sets the element background treatment. */
+    color: var(--white); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    box-shadow: 0 18px 40px rgba(22,163,74,.28), 0 0 0 10px rgba(220,252,231,.78); /* Adds depth with a shadow. */
+}
+
+.oc-confirm-mark svg { /* Starts styles for the .oc-confirm-mark svg selector. */
+    /* ----- Tables ----- */
+    width: 42px; /* Sets the element width. */
+    height: 42px; /* Sets the element height. */
+    stroke-width: 3; /* Sets the stroke-width style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.oc-hero__title { /* Starts styles for the .oc-hero__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(42px, 6vw, 74px); /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    line-height: 1.04; /* Sets vertical text rhythm. */
+    letter-spacing: 0; /* Sets the letter-spacing style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    margin: 18px 0 18px; /* Sets spacing outside the element. */
+}
+
+/* ----- Hero section ----- */
+.oc-hero__sub { /* Starts styles for the .oc-hero__sub selector. */
+    /* ----- Tables ----- */
+    max-width: 640px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(16px, 1.8vw, 19px); /* Sets the text size. */
+    line-height: 1.7; /* Sets vertical text rhythm. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+}
+
+/* ----- Hero section ----- */
+.oc-hero__float { /* Starts styles for the .oc-hero__float selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    z-index: 1; /* Controls stacking order. */
+    /* ----- Theme variables ----- */
+    color: var(--green-700); /* Sets the text color. */
+    /* ----- Animation ----- */
+    opacity: .24; /* Controls element transparency. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+    /* ----- Theme variables ----- */
+    transform: translate(var(--oc-x, 0), var(--oc-y, 0)); /* Moves, scales, or rotates the element. */
+    /* ----- Forms ----- */
+    transition: transform .6s ease; /* Animates property changes smoothly. */
+}
+
+/* ----- Hero section ----- */
+.oc-hero__float svg { /* Starts styles for the .oc-hero__float svg selector. */
+    /* ----- Tables ----- */
+    width: 54px; /* Sets the element width. */
+    height: 54px; /* Sets the element height. */
+    stroke-width: 1.6; /* Sets the stroke-width style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.oc-hero__float--1 { /* Starts styles for the .oc-hero__float--1 selector. */
+    left: 10%; /* Sets the left style for this rule. */
+    top: 32%; /* Sets the top style for this rule. */
+}
+
+.oc-hero__float--2 { /* Starts styles for the .oc-hero__float--2 selector. */
+    right: 13%; /* Sets the right style for this rule. */
+    top: 24%; /* Sets the top style for this rule. */
+}
+
+.oc-hero__float--3 { /* Starts styles for the .oc-hero__float--3 selector. */
+    right: 22%; /* Sets the right style for this rule. */
+    bottom: 24%; /* Sets the bottom style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.oc-hero__wave { /* Starts styles for the .oc-hero__wave selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    left: 0; /* Sets the left style for this rule. */
+    right: 0; /* Sets the right style for this rule. */
+    bottom: -1px; /* Sets the bottom style for this rule. */
+    line-height: 0; /* Sets vertical text rhythm. */
+    z-index: 2; /* Controls stacking order. */
+}
+
+.oc-hero__wave svg { /* Starts styles for the .oc-hero__wave svg selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    display: block; /* Controls how the element participates in layout. */
+}
+
+.oc-page { /* Starts styles for the .oc-page selector. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+    padding: 0 24px 96px; /* Sets spacing inside the element. */
+}
+
+.oc-shell { /* Starts styles for the .oc-shell selector. */
+    /* ----- Tables ----- */
+    width: min(1120px, 100%); /* Sets the element width. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.oc-summary-strip { /* Starts styles for the .oc-summary-strip selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+    margin: -48px 0 28px; /* Sets spacing outside the element. */
+    /* ----- Grid layout ----- */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: repeat(4, 1fr); /* Defines the grid column layout. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    box-shadow: var(--shadow-lg); /* Adds depth with a shadow. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-summary-item { /* Starts styles for the .oc-summary-item selector. */
+    padding: 24px 26px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-right: 1.5px solid var(--border); /* Sets the border-right style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-summary-item:last-child { /* Starts styles for the .oc-summary-item:last-child selector. */
+    border-right: 0; /* Sets the border-right style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-summary-item__label, /* Continues a selector or value list on the next line. */
+.oc-panel__eyebrow, /* Continues a selector or value list on the next line. */
+.oc-muted { /* Starts styles for the .oc-muted selector. */
+    display: block; /* Controls how the element participates in layout. */
+    font-size: 12px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.oc-summary-item__value { /* Starts styles for the .oc-summary-item__value selector. */
+    display: block; /* Controls how the element participates in layout. */
+    margin-top: 5px; /* Sets the margin-top style for this rule. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 22px; /* Sets the text size. */
+    line-height: 1.18; /* Sets vertical text rhythm. */
+    color: var(--text); /* Sets the text color. */
+}
+
+.oc-summary-item--total { /* Starts styles for the .oc-summary-item--total selector. */
+    background: var(--green-100); /* Sets the element background treatment. */
+}
+
+.oc-summary-item--total .oc-summary-item__value { /* Starts styles for the .oc-summary-item--total .oc-summary-item__value selector. */
+    color: var(--green-800); /* Sets the text color. */
+}
+
+/* ----- Grid layout ----- */
+.oc-grid { /* Starts styles for the .oc-grid selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, .8fr); /* Defines the grid column layout. */
+    gap: 28px; /* Sets spacing between flex or grid children. */
+    align-items: start; /* Aligns child items on the cross axis. */
+    margin-bottom: 28px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-panel { /* Starts styles for the .oc-panel selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    padding: 30px; /* Sets spacing inside the element. */
+}
+
+/* ----- Navigation ----- */
+.oc-panel__header, /* Continues a selector or value list on the next line. */
+/* ----- Card layout ----- */
+.oc-panel__title-row { /* Starts styles for the .oc-panel__title-row selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: flex-start; /* Aligns child items on the cross axis. */
+    gap: 14px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Navigation ----- */
+.oc-panel__header { /* Starts styles for the .oc-panel__header selector. */
+    margin-bottom: 24px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.oc-panel__header--split { /* Starts styles for the .oc-panel__header--split selector. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    gap: 20px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Card layout ----- */
+.oc-panel__icon { /* Starts styles for the .oc-panel__icon selector. */
+    /* ----- Tables ----- */
+    width: 46px; /* Sets the element width. */
+    height: 46px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    background: var(--green-100); /* Sets the element background treatment. */
+    color: var(--green-700); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.oc-panel__icon--warm { /* Starts styles for the .oc-panel__icon--warm selector. */
+    background: var(--orange-100); /* Sets the element background treatment. */
+    color: var(--orange); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.oc-panel__icon svg { /* Starts styles for the .oc-panel__icon svg selector. */
+    /* ----- Tables ----- */
+    width: 22px; /* Sets the element width. */
+    height: 22px; /* Sets the element height. */
+    stroke-width: 2.2; /* Sets the stroke-width style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-panel__title { /* Starts styles for the .oc-panel__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 25px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    line-height: 1.18; /* Sets vertical text rhythm. */
+    letter-spacing: 0; /* Sets the letter-spacing style for this rule. */
+    margin: 3px 0 0; /* Sets spacing outside the element. */
+    color: var(--text); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.oc-status-card { /* Starts styles for the .oc-status-card selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--cream), #f0fdf4); /* Sets the element background treatment. */
+    border: 1.5px solid var(--green-200); /* Sets the border around the element. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    padding: 20px; /* Sets spacing inside the element. */
+    margin-bottom: 24px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-status-card__top { /* Starts styles for the .oc-status-card__top selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    margin-bottom: 10px; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-status-card p { /* Starts styles for the .oc-status-card p selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    font-size: 15px; /* Sets the text size. */
+    line-height: 1.65; /* Sets vertical text rhythm. */
+}
+
+/* ----- Card layout ----- */
+.oc-status-pill, /* Continues a selector or value list on the next line. */
+.oc-small-chip { /* Starts styles for the .oc-small-chip selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--green-800); /* Sets the text color. */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border: 1.5px solid var(--green-200); /* Sets the border around the element. */
+    padding: 7px 14px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-status-pill__dot { /* Starts styles for the .oc-status-pill__dot selector. */
+    /* ----- Tables ----- */
+    width: 8px; /* Sets the element width. */
+    height: 8px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Theme variables ----- */
+    background: var(--green); /* Sets the element background treatment. */
+    box-shadow: 0 0 0 4px rgba(22,163,74,.14); /* Adds depth with a shadow. */
+}
+
+.oc-timeline { /* Starts styles for the .oc-timeline selector. */
+    list-style: none; /* Sets the list-style style for this rule. */
+    margin: 0; /* Sets spacing outside the element. */
+    padding: 0; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: 18px; /* Sets spacing between flex or grid children. */
+}
+
+.oc-timeline__item { /* Starts styles for the .oc-timeline__item selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 42px 1fr; /* Defines the grid column layout. */
+    gap: 14px; /* Sets spacing between flex or grid children. */
+    position: relative; /* Controls how the element is positioned on the page. */
+}
+
+.oc-timeline__item:not(:last-child)::after { /* Starts styles for the .oc-timeline__item:not(:last-child)::after selector. */
+    content: ""; /* Sets the content style for this rule. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    left: 20px; /* Sets the left style for this rule. */
+    top: 43px; /* Sets the top style for this rule. */
+    bottom: -18px; /* Sets the bottom style for this rule. */
+    /* ----- Tables ----- */
+    width: 2px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--border); /* Sets the element background treatment. */
+}
+
+.oc-timeline__marker { /* Starts styles for the .oc-timeline__marker selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 1; /* Controls stacking order. */
+    /* ----- Tables ----- */
+    width: 42px; /* Sets the element width. */
+    height: 42px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Theme variables ----- */
+    background: var(--cream-2); /* Sets the element background treatment. */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    /* ----- Theme variables ----- */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+}
+
+.oc-timeline__item.is-complete .oc-timeline__marker, /* Continues a selector or value list on the next line. */
+.oc-timeline__item.is-active .oc-timeline__marker { /* Starts styles for the .oc-timeline__item.is-active .oc-timeline__marker selector. */
+    background: var(--green); /* Sets the element background treatment. */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    color: var(--white); /* Sets the text color. */
+}
+
+/* ----- Tables ----- */
+.oc-timeline__item strong { /* Starts styles for the .oc-timeline__item strong selector. */
+    display: block; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 17px; /* Sets the text size. */
+    line-height: 1.25; /* Sets vertical text rhythm. */
+    color: var(--text); /* Sets the text color. */
+    margin-bottom: 3px; /* Sets the margin-bottom style for this rule. */
+}
+
+.oc-timeline__item span:last-child { /* Starts styles for the .oc-timeline__item span:last-child selector. */
+    color: var(--text-muted); /* Sets the text color. */
+    font-size: 14px; /* Sets the text size. */
+    line-height: 1.55; /* Sets vertical text rhythm. */
+}
+
+.oc-detail-list, /* Continues a selector or value list on the next line. */
+/* ----- Producer styling ----- */
+.oc-vat-breakdown { /* Starts styles for the .oc-vat-breakdown selector. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+
+.oc-detail-list div { /* Starts styles for the .oc-detail-list div selector. */
+    padding: 16px 0; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-top: 1.5px solid var(--border); /* Sets the border-top style for this rule. */
+}
+
+.oc-detail-list div:first-child { /* Starts styles for the .oc-detail-list div:first-child selector. */
+    border-top: 0; /* Sets the border-top style for this rule. */
+    padding-top: 0; /* Sets the padding-top style for this rule. */
+}
+
+.oc-detail-list dt, /* Continues a selector or value list on the next line. */
+/* ----- Producer styling ----- */
+.oc-vat-breakdown dt { /* Starts styles for the .oc-vat-breakdown dt selector. */
+    font-size: 12px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin-bottom: 5px; /* Sets the margin-bottom style for this rule. */
+}
+
+.oc-detail-list dd { /* Starts styles for the .oc-detail-list dd selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    color: var(--text); /* Sets the text color. */
+    font-weight: 600; /* Sets the text weight. */
+    line-height: 1.55; /* Sets vertical text rhythm. */
+}
+
+/* ----- Grid layout ----- */
+.oc-grower-stack { /* Starts styles for the .oc-grower-stack selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    gap: 18px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Card layout ----- */
+.oc-grower-card { /* Starts styles for the .oc-grower-card selector. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    background: #fffefa; /* Sets the element background treatment. */
+}
+
+/* ----- Card layout ----- */
+.oc-grower-card__head { /* Starts styles for the .oc-grower-card__head selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: flex-start; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    gap: 16px; /* Sets spacing between flex or grid children. */
+    padding: 18px 20px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border-bottom: 1.5px solid var(--green-200); /* Sets the border-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.oc-grower-card__head h3 { /* Starts styles for the .oc-grower-card__head h3 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 20px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    margin: 0 0 3px; /* Sets spacing outside the element. */
+    color: var(--green-900); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.oc-grower-card__head p { /* Starts styles for the .oc-grower-card__head p selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--green-800); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.oc-grower-card__total { /* Starts styles for the .oc-grower-card__total selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 20px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--green-900); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+
+.oc-items { /* Starts styles for the .oc-items selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+}
+
+/* ----- Grid layout ----- */
+.oc-items__row { /* Starts styles for the .oc-items__row selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: minmax(160px, 1.4fr) .45fr .75fr .75fr; /* Defines the grid column layout. */
+    gap: 14px; /* Sets spacing between flex or grid children. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    padding: 13px 20px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    font-size: 14px; /* Sets the text size. */
+    color: var(--text); /* Sets the text color. */
+}
+
+/* ----- Grid layout ----- */
+.oc-items__row span:not(:first-child) { /* Starts styles for the .oc-items__row span:not(:first-child) selector. */
+    text-align: right; /* Sets the text-align style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.oc-items__row--head { /* Starts styles for the .oc-items__row--head selector. */
+    background: var(--white); /* Sets the element background treatment. */
+    color: var(--text-muted); /* Sets the text color. */
+    font-size: 11px; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.oc-items__row:not(.oc-items__row--head) span:first-child { /* Starts styles for the .oc-items__row:not(.oc-items__row--head) span:first-child selector. */
+    font-weight: 700; /* Sets the text weight. */
+}
+
+/* ----- Producer styling ----- */
+.oc-vat-breakdown { /* Starts styles for the .oc-vat-breakdown selector. */
+    padding: 14px 20px 18px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+}
+
+/* ----- Producer styling ----- */
+.oc-vat-breakdown div { /* Starts styles for the .oc-vat-breakdown div selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    justify-content: flex-end; /* Aligns child items on the main axis. */
+    gap: 24px; /* Sets spacing between flex or grid children. */
+    margin-top: 5px; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Producer styling ----- */
+.oc-vat-breakdown dt { /* Starts styles for the .oc-vat-breakdown dt selector. */
+    /* ----- Tables ----- */
+    min-width: 180px; /* Sets the min-width style for this rule. */
+    text-align: right; /* Sets the text-align style for this rule. */
+}
+
+/* ----- Producer styling ----- */
+.oc-vat-breakdown dd { /* Starts styles for the .oc-vat-breakdown dd selector. */
+    /* ----- Tables ----- */
+    min-width: 92px; /* Sets the min-width style for this rule. */
+    margin: 0; /* Sets spacing outside the element. */
+    text-align: right; /* Sets the text-align style for this rule. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+}
+
+/* ----- Basket styling ----- */
+.oc-vat-breakdown__total { /* Starts styles for the .oc-vat-breakdown__total selector. */
+    padding-top: 9px; /* Sets the padding-top style for this rule. */
+    /* ----- Theme variables ----- */
+    border-top: 1.5px solid var(--border); /* Sets the border-top style for this rule. */
+}
+
+/* ----- Basket styling ----- */
+.oc-vat-breakdown__total dt, /* Continues a selector or value list on the next line. */
+.oc-vat-breakdown__total dd { /* Starts styles for the .oc-vat-breakdown__total dd selector. */
+    /* ----- Theme variables ----- */
+    color: var(--green-800); /* Sets the text color. */
+}
+
+.oc-note { /* Starts styles for the .oc-note selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: flex-start; /* Aligns child items on the cross axis. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    padding: 16px 18px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    background: var(--yellow-100); /* Sets the element background treatment. */
+    border: 1.5px solid #FDE68A; /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    color: #713F12; /* Sets the text color. */
+}
+
+.oc-note svg { /* Starts styles for the .oc-note svg selector. */
+    /* ----- Tables ----- */
+    width: 20px; /* Sets the element width. */
+    height: 20px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    margin-top: 2px; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Tables ----- */
+.oc-note strong { /* Starts styles for the .oc-note strong selector. */
+    display: block; /* Controls how the element participates in layout. */
+    margin-bottom: 2px; /* Sets the margin-bottom style for this rule. */
+}
+
+.oc-note p { /* Starts styles for the .oc-note p selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    font-size: 14px; /* Sets the text size. */
+    line-height: 1.55; /* Sets vertical text rhythm. */
+}
+
+/* ----- Theme variables ----- */
+.oc-note--invoice { /* Starts styles for the .oc-note--invoice selector. */
+    margin: 0; /* Sets spacing outside the element. */
+    border-radius: 0; /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    border-width: 1.5px 0 0; /* Sets the border-width style for this rule. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+    color: var(--green-900); /* Sets the text color. */
+}
+
+.oc-note--quiet { /* Starts styles for the .oc-note--quiet selector. */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border-color: var(--green-200); /* Sets the border-color style for this rule. */
+    color: var(--green-900); /* Sets the text color. */
+}
+
+/* ----- Grid layout ----- */
+.oc-care-grid { /* Starts styles for the .oc-care-grid selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: repeat(2, 1fr); /* Defines the grid column layout. */
+    gap: 18px; /* Sets spacing between flex or grid children. */
+    margin-top: 28px; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.oc-actions { /* Starts styles for the .oc-actions selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    margin-top: 34px; /* Sets the margin-top style for this rule. */
+}
+
+.oc-pop { /* Starts styles for the .oc-pop selector. */
+    /* ----- Animation ----- */
+    animation: oc-pop .42s cubic-bezier(.34,1.56,.64,1); /* Sets the animation style for this rule. */
+}
+
+@keyframes oc-pop { /* Defines an animation sequence used by this page. */
+    0% { /* Starts styles for the 0% selector. */
+        /* ----- Forms ----- */
+        transform: scale(.9); /* Moves, scales, or rotates the element. */
+    }
+
+    70% { /* Starts styles for the 70% selector. */
+        transform: scale(1.07); /* Moves, scales, or rotates the element. */
+    }
+
+    100% { /* Starts styles for the 100% selector. */
+        transform: scale(1); /* Moves, scales, or rotates the element. */
+    }
+}
+
+/* ----- Tables ----- */
+@media (max-width: 920px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Card layout ----- */
+    .oc-summary-strip, /* Continues a selector or value list on the next line. */
+    /* ----- Grid layout ----- */
+    .oc-grid, /* Continues a selector or value list on the next line. */
+    .oc-care-grid { /* Starts styles for the .oc-care-grid selector. */
+        grid-template-columns: 1fr; /* Defines the grid column layout. */
+    }
+
+    /* ----- Card layout ----- */
+    .oc-summary-item { /* Starts styles for the .oc-summary-item selector. */
+        border-right: 0; /* Sets the border-right style for this rule. */
+        /* ----- Theme variables ----- */
+        border-bottom: 1.5px solid var(--border); /* Sets the border-bottom style for this rule. */
+    }
+
+    /* ----- Card layout ----- */
+    .oc-summary-item:last-child { /* Starts styles for the .oc-summary-item:last-child selector. */
+        border-bottom: 0; /* Sets the border-bottom style for this rule. */
+    }
+}
+
+/* ----- Tables ----- */
+@media (max-width: 680px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Hero section ----- */
+    .oc-hero { /* Starts styles for the .oc-hero selector. */
+        min-height: 500px; /* Sets the minimum element height. */
+        padding: 120px 18px 96px; /* Sets spacing inside the element. */
+    }
+
+    .oc-page { /* Starts styles for the .oc-page selector. */
+        padding: 0 16px 72px; /* Sets spacing inside the element. */
+    }
+
+    /* ----- Card layout ----- */
+    .oc-panel { /* Starts styles for the .oc-panel selector. */
+        padding: 22px 18px; /* Sets spacing inside the element. */
+    }
+
+    /* ----- Theme variables ----- */
+    .oc-panel__header--split { /* Starts styles for the .oc-panel__header--split selector. */
+        /* ----- Grid layout ----- */
+        align-items: flex-start; /* Aligns child items on the cross axis. */
+        flex-direction: column; /* Sets the flex-direction style for this rule. */
+    }
+
+    .oc-items__row { /* Starts styles for the .oc-items__row selector. */
+        grid-template-columns: 1fr; /* Defines the grid column layout. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+    }
+
+    /* ----- Theme variables ----- */
+    .oc-items__row--head { /* Starts styles for the .oc-items__row--head selector. */
+        display: none; /* Controls how the element participates in layout. */
+    }
+
+    /* ----- Grid layout ----- */
+    .oc-items__row span:not(:first-child) { /* Starts styles for the .oc-items__row span:not(:first-child) selector. */
+        text-align: left; /* Sets the text-align style for this rule. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+    }
+
+    /* ----- Grid layout ----- */
+    .oc-items__row span:nth-child(2)::before { /* Starts styles for the .oc-items__row span:nth-child(2)::before selector. */
+        content: "Qty: "; /* Sets the content style for this rule. */
+        font-weight: 700; /* Sets the text weight. */
+    }
+
+    .oc-items__row span:nth-child(3)::before { /* Starts styles for the .oc-items__row span:nth-child(3)::before selector. */
+        /* ----- Product styling ----- */
+        content: "Unit price: "; /* Sets the content style for this rule. */
+        font-weight: 700; /* Sets the text weight. */
+    }
+
+    /* ----- Grid layout ----- */
+    .oc-items__row span:nth-child(4)::before { /* Starts styles for the .oc-items__row span:nth-child(4)::before selector. */
+        /* ----- Basket styling ----- */
+        content: "Line total: "; /* Sets the content style for this rule. */
+        font-weight: 700; /* Sets the text weight. */
+    }
+
+    /* ----- Producer styling ----- */
+    .oc-vat-breakdown div { /* Starts styles for the .oc-vat-breakdown div selector. */
+        justify-content: space-between; /* Aligns child items on the main axis. */
+        gap: 12px; /* Sets spacing between flex or grid children. */
+    }
+
+    .oc-vat-breakdown dt { /* Starts styles for the .oc-vat-breakdown dt selector. */
+        /* ----- Tables ----- */
+        min-width: 0; /* Sets the min-width style for this rule. */
+        text-align: left; /* Sets the text-align style for this rule. */
+    }
+
+    /* ----- Producer styling ----- */
+    .oc-vat-breakdown dd { /* Starts styles for the .oc-vat-breakdown dd selector. */
+        /* ----- Tables ----- */
+        min-width: 0; /* Sets the min-width style for this rule. */
+    }
+}

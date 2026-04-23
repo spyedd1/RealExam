@@ -1,0 +1,1483 @@
+/* ----- Tables ----- */
+.gw-intro { /* Starts styles for the .gw-intro selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    background: #FFFBEB; /* Sets the element background treatment. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    padding: 7rem 1.5rem 3rem; /* Sets spacing inside the element. */
+    text-align: center; /* Sets the text-align style for this rule. */
+}
+
+.gw-blob { /* Starts styles for the .gw-blob selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    border-radius: 50%; /* Rounds the element corners. */
+    filter: blur(72px); /* Sets the filter style for this rule. */
+    /* ----- Animation ----- */
+    opacity: .55; /* Controls element transparency. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-blob--pink { /* Starts styles for the .gw-blob--pink selector. */
+    /* ----- Tables ----- */
+    width: 420px; /* Sets the element width. */
+    height: 420px; /* Sets the element height. */
+    background: #86efac; /* Sets the element background treatment. */
+    top: -120px; /* Sets the top style for this rule. */
+    left: -80px; /* Sets the left style for this rule. */
+    /* ----- Animation ----- */
+    animation: blob-drift-1 14s ease-in-out infinite alternate; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-blob--lavender { /* Starts styles for the .gw-blob--lavender selector. */
+    /* ----- Tables ----- */
+    width: 360px; /* Sets the element width. */
+    height: 360px; /* Sets the element height. */
+    background: #4ade80; /* Sets the element background treatment. */
+    top: -60px; /* Sets the top style for this rule. */
+    right: -60px; /* Sets the right style for this rule. */
+    /* ----- Animation ----- */
+    animation: blob-drift-2 11s ease-in-out infinite alternate; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-blob--lime { /* Starts styles for the .gw-blob--lime selector. */
+    /* ----- Tables ----- */
+    width: 300px; /* Sets the element width. */
+    height: 300px; /* Sets the element height. */
+    background: #bbf7d0; /* Sets the element background treatment. */
+    bottom: 40px; /* Sets the bottom style for this rule. */
+    left: 20%; /* Sets the left style for this rule. */
+    /* ----- Animation ----- */
+    animation: blob-drift-3 16s ease-in-out infinite alternate; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-blob--peach { /* Starts styles for the .gw-blob--peach selector. */
+    /* ----- Tables ----- */
+    width: 260px; /* Sets the element width. */
+    height: 260px; /* Sets the element height. */
+    background: #d9f99d; /* Sets the element background treatment. */
+    bottom: 20px; /* Sets the bottom style for this rule. */
+    right: 10%; /* Sets the right style for this rule. */
+    /* ----- Animation ----- */
+    animation: blob-drift-1 13s ease-in-out infinite alternate-reverse; /* Sets the animation style for this rule. */
+}
+
+@keyframes blob-drift-1 { /* Defines an animation sequence used by this page. */
+    to { /* Starts styles for the to selector. */
+        /* ----- Forms ----- */
+        transform: translate(40px, 30px) scale(1.08); /* Moves, scales, or rotates the element. */
+    }
+}
+
+/* ----- Animation ----- */
+@keyframes blob-drift-2 { /* Defines an animation sequence used by this page. */
+    to { /* Starts styles for the to selector. */
+        /* ----- Forms ----- */
+        transform: translate(-30px, 20px) scale(.94); /* Moves, scales, or rotates the element. */
+    }
+}
+
+/* ----- Animation ----- */
+@keyframes blob-drift-3 { /* Defines an animation sequence used by this page. */
+    to { /* Starts styles for the to selector. */
+        /* ----- Forms ----- */
+        transform: translate(20px, -40px) scale(1.05); /* Moves, scales, or rotates the element. */
+    }
+}
+
+.gw-sticker { /* Starts styles for the .gw-sticker selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-weight: 700; /* Sets the text weight. */
+    font-size: .72rem; /* Sets the text size. */
+    padding: 6px 14px; /* Sets spacing inside the element. */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    box-shadow: 0 4px 12px rgba(0,0,0,.12); /* Adds depth with a shadow. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+    z-index: 2; /* Controls stacking order. */
+}
+
+/* ----- Theme variables ----- */
+.gw-sticker--1 { /* Starts styles for the .gw-sticker--1 selector. */
+    background: #d9f99d; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #365314; /* Sets the text color. */
+    top: 22%; /* Sets the top style for this rule. */
+    left: 7%; /* Sets the left style for this rule. */
+    /* ----- Forms ----- */
+    transform: rotate(-8deg); /* Moves, scales, or rotates the element. */
+    /* ----- Animation ----- */
+    animation: float-a 6s ease-in-out infinite; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-sticker--2 { /* Starts styles for the .gw-sticker--2 selector. */
+    background: #bbf7d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #14532d; /* Sets the text color. */
+    top: 18%; /* Sets the top style for this rule. */
+    right: 9%; /* Sets the right style for this rule. */
+    /* ----- Forms ----- */
+    transform: rotate(5deg); /* Moves, scales, or rotates the element. */
+    /* ----- Animation ----- */
+    animation: float-b 8s ease-in-out infinite; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-sticker--3 { /* Starts styles for the .gw-sticker--3 selector. */
+    background: #a7f3d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #065f46; /* Sets the text color. */
+    top: 58%; /* Sets the top style for this rule. */
+    left: 5%; /* Sets the left style for this rule. */
+    /* ----- Forms ----- */
+    transform: rotate(-4deg); /* Moves, scales, or rotates the element. */
+    /* ----- Animation ----- */
+    animation: float-a 7s 1s ease-in-out infinite; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-sticker--4 { /* Starts styles for the .gw-sticker--4 selector. */
+    background: #6ee7b7; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #064e3b; /* Sets the text color. */
+    top: 52%; /* Sets the top style for this rule. */
+    right: 6%; /* Sets the right style for this rule. */
+    /* ----- Forms ----- */
+    transform: rotate(6deg); /* Moves, scales, or rotates the element. */
+    /* ----- Animation ----- */
+    animation: float-b 9s .5s ease-in-out infinite; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-sticker--5 { /* Starts styles for the .gw-sticker--5 selector. */
+    background: #dcfce7; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #14532d; /* Sets the text color. */
+    bottom: 14%; /* Sets the bottom style for this rule. */
+    left: 14%; /* Sets the left style for this rule. */
+    /* ----- Forms ----- */
+    transform: rotate(-3deg); /* Moves, scales, or rotates the element. */
+    /* ----- Animation ----- */
+    animation: float-a 10s .8s ease-in-out infinite; /* Sets the animation style for this rule. */
+}
+
+/* ----- Tables ----- */
+.gw-intro__content { /* Starts styles for the .gw-intro__content selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+    max-width: 680px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+}
+
+/* ----- Grid layout ----- */
+.gw-intro__eyebrow { /* Starts styles for the .gw-intro__eyebrow selector. */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 7px; /* Sets spacing between flex or grid children. */
+    font-size: .82rem; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    background: rgba(22,163,74,.1); /* Sets the element background treatment. */
+    padding: 5px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    margin-bottom: 1.5rem; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Tables ----- */
+.gw-intro__title { /* Starts styles for the .gw-intro__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(2.6rem, 6vw, 4.2rem); /* Sets the text size. */
+    font-weight: 900; /* Sets the text weight. */
+    line-height: 1.08; /* Sets vertical text rhythm. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    margin: 0 0 1.25rem; /* Sets spacing outside the element. */
+    letter-spacing: -.02em; /* Sets the letter-spacing style for this rule. */
+}
+    /* ----- Tables ----- */
+    .gw-intro__title .hl-green { /* Starts styles for the .gw-intro__title .hl-green selector. */
+        /* ----- Grid layout ----- */
+        color: #16A34A; /* Sets the text color. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-intro__title .hl-pink { /* Starts styles for the .gw-intro__title .hl-pink selector. */
+        /* ----- Grid layout ----- */
+        color: #059669; /* Sets the text color. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-intro__title .hl-orange { /* Starts styles for the .gw-intro__title .hl-orange selector. */
+        /* ----- Grid layout ----- */
+        color: #15803d; /* Sets the text color. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-intro__title .hl-purple { /* Starts styles for the .gw-intro__title .hl-purple selector. */
+        /* ----- Grid layout ----- */
+        color: #0d9488; /* Sets the text color. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-intro__title .hl-squig { /* Starts styles for the .gw-intro__title .hl-squig selector. */
+        display: inline-block; /* Controls how the element participates in layout. */
+        position: relative; /* Controls how the element is positioned on the page. */
+    }
+
+        .gw-intro__title .hl-squig::after { /* Starts styles for the .gw-intro__title .hl-squig::after selector. */
+            content: ''; /* Sets the content style for this rule. */
+            position: absolute; /* Controls how the element is positioned on the page. */
+            left: 0; /* Sets the left style for this rule. */
+            right: 0; /* Sets the right style for this rule. */
+            bottom: -4px; /* Sets the bottom style for this rule. */
+            height: 6px; /* Sets the element height. */
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 8'%3E%3Cpath d='M0,4 Q7.5,0 15,4 Q22.5,8 30,4 Q37.5,0 45,4 Q52.5,8 60,4' stroke='%2316A34A' stroke-width='2.5' fill='none'/%3E%3C/svg%3E") repeat-x center / 60px 8px; /* Sets the element background treatment. */
+        }
+
+.gw-intro__sub { /* Starts styles for the .gw-intro__sub selector. */
+    font-size: 1.05rem; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    line-height: 1.65; /* Sets vertical text rhythm. */
+    margin: 0 0 2.25rem; /* Sets spacing outside the element. */
+}
+
+/* ----- Grid layout ----- */
+.gw-intro__cta-row { /* Starts styles for the .gw-intro__cta-row selector. */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    gap: 1rem; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    margin-bottom: 3.5rem; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.gw-intro__scroll-cta { /* Starts styles for the .gw-intro__scroll-cta selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-weight: 700; /* Sets the text weight. */
+    font-size: .9rem; /* Sets the text size. */
+    color: var(--green); /* Sets the text color. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    border: 2px solid var(--green); /* Sets the border around the element. */
+    padding: 10px 22px; /* Sets spacing inside the element. */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    transition: background .2s, color .2s; /* Animates property changes smoothly. */
+    /* ----- Animation ----- */
+    animation: bounce-cue 2.4s ease-in-out 1.5s infinite; /* Sets the animation style for this rule. */
+}
+
+    /* ----- Buttons ----- */
+    .gw-intro__scroll-cta:hover { /* Starts styles for the .gw-intro__scroll-cta:hover selector. */
+        /* ----- Theme variables ----- */
+        background: var(--green); /* Sets the element background treatment. */
+        /* ----- Grid layout ----- */
+        color: #fff; /* Sets the text color. */
+    }
+
+/* ----- Tables ----- */
+.gw-polaroid-strip { /* Starts styles for the .gw-polaroid-strip selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: 1.25rem; /* Sets spacing between flex or grid children. */
+    padding: 1.5rem 2rem 2rem; /* Sets spacing inside the element. */
+    overflow-x: auto; /* Sets the overflow-x style for this rule. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    flex-wrap: nowrap; /* Sets the flex-wrap style for this rule. */
+    /* ----- Tables ----- */
+    scrollbar-width: none; /* Sets the scrollbar-width style for this rule. */
+    -webkit-overflow-scrolling: touch; /* Sets the -webkit-overflow-scrolling style for this rule. */
+}
+
+    .gw-polaroid-strip::-webkit-scrollbar { /* Starts styles for the .gw-polaroid-strip::-webkit-scrollbar selector. */
+        display: none; /* Controls how the element participates in layout. */
+    }
+
+.gw-polaroid { /* Starts styles for the .gw-polaroid selector. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    background: #fff; /* Sets the element background treatment. */
+    padding: 10px 10px 32px; /* Sets spacing inside the element. */
+    border-radius: 4px; /* Rounds the element corners. */
+    box-shadow: 0 6px 20px rgba(0,0,0,.14), 0 1px 4px rgba(0,0,0,.08); /* Adds depth with a shadow. */
+    /* ----- Tables ----- */
+    width: 160px; /* Sets the element width. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease; /* Animates property changes smoothly. */
+    position: relative; /* Controls how the element is positioned on the page. */
+}
+
+    /* ----- Tables ----- */
+    .gw-polaroid:nth-child(1) { /* Starts styles for the .gw-polaroid:nth-child(1) selector. */
+        /* ----- Forms ----- */
+        transform: rotate(-6deg); /* Moves, scales, or rotates the element. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-polaroid:nth-child(2) { /* Starts styles for the .gw-polaroid:nth-child(2) selector. */
+        /* ----- Forms ----- */
+        transform: rotate(3deg) translateY(-12px); /* Moves, scales, or rotates the element. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-polaroid:nth-child(3) { /* Starts styles for the .gw-polaroid:nth-child(3) selector. */
+        /* ----- Forms ----- */
+        transform: rotate(-2deg) translateY(8px); /* Moves, scales, or rotates the element. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-polaroid:nth-child(4) { /* Starts styles for the .gw-polaroid:nth-child(4) selector. */
+        /* ----- Forms ----- */
+        transform: rotate(5deg) translateY(-6px); /* Moves, scales, or rotates the element. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-polaroid:nth-child(5) { /* Starts styles for the .gw-polaroid:nth-child(5) selector. */
+        /* ----- Forms ----- */
+        transform: rotate(-4deg) translateY(10px); /* Moves, scales, or rotates the element. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-polaroid:nth-child(6) { /* Starts styles for the .gw-polaroid:nth-child(6) selector. */
+        /* ----- Forms ----- */
+        transform: rotate(2deg) translateY(-4px); /* Moves, scales, or rotates the element. */
+    }
+
+    .gw-polaroid:hover { /* Starts styles for the .gw-polaroid:hover selector. */
+        transform: rotate(0deg) translateY(-16px) scale(1.08) !important; /* Moves, scales, or rotates the element. */
+        box-shadow: 0 16px 36px rgba(0,0,0,.22); /* Adds depth with a shadow. */
+        z-index: 10; /* Controls stacking order. */
+    }
+
+.gw-polaroid__img { /* Starts styles for the .gw-polaroid__img selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    aspect-ratio: 1; /* Sets the aspect-ratio style for this rule. */
+    object-fit: cover; /* Sets the object-fit style for this rule. */
+    display: block; /* Controls how the element participates in layout. */
+    border-radius: 2px; /* Rounds the element corners. */
+}
+
+.gw-polaroid__caption { /* Starts styles for the .gw-polaroid__caption selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    bottom: 7px; /* Sets the bottom style for this rule. */
+    left: 0; /* Sets the left style for this rule. */
+    right: 0; /* Sets the right style for this rule. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    font-family: 'Caveat', 'Comic Sans MS', cursive; /* Sets the font family. */
+    font-size: .85rem; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    color: #374151; /* Sets the text color. */
+    letter-spacing: .01em; /* Sets the letter-spacing style for this rule. */
+}
+
+.gw-polaroid::before { /* Starts styles for the .gw-polaroid::before selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    top: -10px; /* Sets the top style for this rule. */
+    left: 50%; /* Sets the left style for this rule. */
+    /* ----- Forms ----- */
+    transform: translateX(-50%); /* Moves, scales, or rotates the element. */
+    /* ----- Tables ----- */
+    width: 40px; /* Sets the element width. */
+    height: 20px; /* Sets the element height. */
+    background: rgba(254,240,138,.75); /* Sets the element background treatment. */
+    border-radius: 2px; /* Rounds the element corners. */
+    box-shadow: 0 1px 3px rgba(0,0,0,.1); /* Adds depth with a shadow. */
+}
+
+/* ----- Tables ----- */
+.gw-intro__wave { /* Starts styles for the .gw-intro__wave selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    bottom: 0; /* Sets the bottom style for this rule. */
+    left: 0; /* Sets the left style for this rule. */
+    right: 0; /* Sets the right style for this rule. */
+    line-height: 0; /* Sets vertical text rhythm. */
+    z-index: 2; /* Controls stacking order. */
+}
+
+    .gw-intro__wave svg { /* Starts styles for the .gw-intro__wave svg selector. */
+        display: block; /* Controls how the element participates in layout. */
+    }
+
+/* ----- Grid layout ----- */
+.gw-tag-row { /* Starts styles for the .gw-tag-row selector. */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: .6rem; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    padding: 1.8rem 1.5rem 0; /* Sets spacing inside the element. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+}
+
+.gw-tag { /* Starts styles for the .gw-tag selector. */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+    padding: 6px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    font-size: .8rem; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    cursor: default; /* Sets the cursor style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .2s ease, box-shadow .2s ease; /* Animates property changes smoothly. */
+    /* ----- Tables ----- */
+    animation: sticker-pop .4s cubic-bezier(.34,1.56,.64,1) both; /* Sets the animation style for this rule. */
+}
+
+    .gw-tag:hover { /* Starts styles for the .gw-tag:hover selector. */
+        /* ----- Forms ----- */
+        transform: translateY(-3px) scale(1.06); /* Moves, scales, or rotates the element. */
+        box-shadow: 0 6px 14px rgba(0,0,0,.13); /* Adds depth with a shadow. */
+    }
+
+/* ----- Theme variables ----- */
+.gw-tag--a { /* Starts styles for the .gw-tag--a selector. */
+    background: #dcfce7; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #14532d; /* Sets the text color. */
+    /* ----- Animation ----- */
+    animation-delay: .05s; /* Sets the animation-delay style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-tag--b { /* Starts styles for the .gw-tag--b selector. */
+    background: #bbf7d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #065f46; /* Sets the text color. */
+    /* ----- Animation ----- */
+    animation-delay: .12s; /* Sets the animation-delay style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-tag--c { /* Starts styles for the .gw-tag--c selector. */
+    background: #a7f3d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #065f46; /* Sets the text color. */
+    /* ----- Animation ----- */
+    animation-delay: .19s; /* Sets the animation-delay style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-tag--d { /* Starts styles for the .gw-tag--d selector. */
+    background: #6ee7b7; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #064e3b; /* Sets the text color. */
+    /* ----- Animation ----- */
+    animation-delay: .26s; /* Sets the animation-delay style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-tag--e { /* Starts styles for the .gw-tag--e selector. */
+    background: #d9f99d; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #365314; /* Sets the text color. */
+    /* ----- Animation ----- */
+    animation-delay: .33s; /* Sets the animation-delay style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-tag--f { /* Starts styles for the .gw-tag--f selector. */
+    background: #86efac; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #14532d; /* Sets the text color. */
+    /* ----- Animation ----- */
+    animation-delay: .40s; /* Sets the animation-delay style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-tag--g { /* Starts styles for the .gw-tag--g selector. */
+    background: #ecfdf5; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #065f46; /* Sets the text color. */
+    /* ----- Animation ----- */
+    animation-delay: .47s; /* Sets the animation-delay style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-tag--h { /* Starts styles for the .gw-tag--h selector. */
+    background: #4ade80; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #052e16; /* Sets the text color. */
+    /* ----- Animation ----- */
+    animation-delay: .54s; /* Sets the animation-delay style for this rule. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 768px) { /* Starts responsive rules for this viewport range. */
+    .gw-sticker { /* Starts styles for the .gw-sticker selector. */
+        display: none; /* Controls how the element participates in layout. */
+    }
+
+    .gw-polaroid-strip { /* Starts styles for the .gw-polaroid-strip selector. */
+        /* ----- Grid layout ----- */
+        justify-content: flex-start; /* Aligns child items on the main axis. */
+        padding: 1rem; /* Sets spacing inside the element. */
+    }
+
+    /* ----- Tables ----- */
+    .gw-intro { /* Starts styles for the .gw-intro selector. */
+        padding: 5rem 1rem 2rem; /* Sets spacing inside the element. */
+    }
+}
+
+/* ----- Grid layout ----- */
+.pw-producers-grid { /* Starts styles for the .pw-producers-grid selector. */
+    gap: 1.5rem; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Theme variables ----- */
+.pw-card--producer { /* Starts styles for the .pw-card--producer selector. */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: row !important; /* override pw-card--grower stacking */
+    /* ----- Forms ----- */
+    transition: transform .28s ease, box-shadow .28s ease; /* Animates property changes smoothly. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    min-height: 180px; /* Sets the minimum element height. */
+}
+
+    /* ----- Theme variables ----- */
+    .pw-card--producer:hover { /* Starts styles for the .pw-card--producer:hover selector. */
+        /* ----- Forms ----- */
+        transform: translateY(-5px); /* Moves, scales, or rotates the element. */
+        /* ----- Theme variables ----- */
+        box-shadow: var(--shadow-lg); /* Adds depth with a shadow. */
+    }
+
+    .pw-card--producer .pw-card__grower-img { /* Starts styles for the .pw-card--producer .pw-card__grower-img selector. */
+        /* ----- Tables ----- */
+        width: 160px !important; /* Sets the element width. */
+        min-width: 160px !important; /* Sets the min-width style for this rule. */
+        height: auto !important; /* Sets the element height. */
+        position: relative; /* Controls how the element is positioned on the page. */
+        /* ----- Utility classes ----- */
+        overflow: hidden; /* Sets the overflow style for this rule. */
+        /* ----- Grid layout ----- */
+        flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+        display: flex; /* Controls how the element participates in layout. */
+        flex-direction: column; /* Sets the flex-direction style for this rule. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        justify-content: center; /* Aligns child items on the main axis. */
+        gap: .5rem; /* Sets spacing between flex or grid children. */
+    }
+
+    /* ----- Theme variables ----- */
+    .pw-card--producer .pw-card__has-photo { /* Starts styles for the .pw-card--producer .pw-card__has-photo selector. */
+        background: #14532d; /* Sets the element background treatment. */
+    }
+
+        .pw-card--producer .pw-card__has-photo::after { /* Starts styles for the .pw-card--producer .pw-card__has-photo::after selector. */
+            content: ''; /* Sets the content style for this rule. */
+            position: absolute; /* Controls how the element is positioned on the page. */
+            inset: 0; /* Sets the inset style for this rule. */
+            background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.08) 45%, rgba(0,0,0,.38)); /* Sets the element background treatment. */
+            z-index: 1; /* Controls stacking order. */
+            pointer-events: none; /* Sets the pointer-events style for this rule. */
+        }
+
+    .pw-card--producer .pw-card__grower-photo { /* Starts styles for the .pw-card--producer .pw-card__grower-photo selector. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        inset: 0; /* Sets the inset style for this rule. */
+        /* ----- Tables ----- */
+        width: 100%; /* Sets the element width. */
+        height: 100%; /* Sets the element height. */
+        object-fit: cover; /* Sets the object-fit style for this rule. */
+        /* ----- Forms ----- */
+        transition: transform .35s ease; /* Animates property changes smoothly. */
+    }
+
+    /* ----- Theme variables ----- */
+    .pw-card--producer:hover .pw-card__grower-photo { /* Starts styles for the .pw-card--producer:hover .pw-card__grower-photo selector. */
+        /* ----- Forms ----- */
+        transform: scale(1.05); /* Moves, scales, or rotates the element. */
+    }
+
+    /* ----- Theme variables ----- */
+    .pw-card--producer .pw-card__sticker { /* Starts styles for the .pw-card--producer .pw-card__sticker selector. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        top: 10px; /* Sets the top style for this rule. */
+        left: 50%; /* Sets the left style for this rule. */
+        /* ----- Forms ----- */
+        transform: translateX(-50%) rotate(-2deg); /* Moves, scales, or rotates the element. */
+        background: rgba(255,255,255,.88); /* Sets the element background treatment. */
+        /* ----- Grid layout ----- */
+        color: #422006; /* Sets the text color. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-display); /* Sets the font family. */
+        font-weight: 700; /* Sets the text weight. */
+        font-size: .65rem; /* Sets the text size. */
+        padding: 3px 10px; /* Sets spacing inside the element. */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        box-shadow: 0 2px 6px rgba(0,0,0,.12); /* Adds depth with a shadow. */
+        /* ----- Grid layout ----- */
+        white-space: nowrap; /* Sets the white-space style for this rule. */
+        z-index: 3; /* Controls stacking order. */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+        /* ----- Tables ----- */
+        animation: sticker-pop .4s cubic-bezier(.34,1.56,.64,1) both; /* Sets the animation style for this rule. */
+    }
+
+    /* ----- Theme variables ----- */
+    .pw-card--producer .pw-card__img-number { /* Starts styles for the .pw-card--producer .pw-card__img-number selector. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        bottom: 10px; /* Sets the bottom style for this rule. */
+        left: 50%; /* Sets the left style for this rule. */
+        /* ----- Forms ----- */
+        transform: translateX(-50%); /* Moves, scales, or rotates the element. */
+        /* ----- Tables ----- */
+        width: 32px; /* Sets the element width. */
+        height: 32px; /* Sets the element height. */
+        border-radius: 50%; /* Rounds the element corners. */
+        background: rgba(255,255,255,.82); /* Sets the element background treatment. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-display); /* Sets the font family. */
+        font-weight: 800; /* Sets the text weight. */
+        font-size: .72rem; /* Sets the text size. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        justify-content: center; /* Aligns child items on the main axis. */
+        /* ----- Theme variables ----- */
+        color: var(--green); /* Sets the text color. */
+        box-shadow: 0 1px 6px rgba(0,0,0,.14); /* Adds depth with a shadow. */
+        z-index: 2; /* Controls stacking order. */
+    }
+
+    .pw-card--producer .pw-card__img-badge { /* Starts styles for the .pw-card--producer .pw-card__img-badge selector. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        bottom: 48px; /* Sets the bottom style for this rule. */
+        left: 0; /* Sets the left style for this rule. */
+        right: 0; /* Sets the right style for this rule. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        flex-direction: column; /* Sets the flex-direction style for this rule. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+        padding: 0 6px; /* Sets spacing inside the element. */
+        z-index: 2; /* Controls stacking order. */
+    }
+
+        /* ----- Theme variables ----- */
+        .pw-card--producer .pw-card__img-badge .pw-badge { /* Starts styles for the .pw-card--producer .pw-card__img-badge .pw-badge selector. */
+            font-size: .65rem; /* Sets the text size. */
+            padding: 2px 8px; /* Sets spacing inside the element. */
+        }
+
+    .pw-card--producer .pw-card__body { /* Starts styles for the .pw-card--producer .pw-card__body selector. */
+        padding: 1.25rem 1.25rem 1rem; /* Sets spacing inside the element. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        flex-direction: column; /* Sets the flex-direction style for this rule. */
+        gap: .45rem; /* Sets spacing between flex or grid children. */
+        flex: 1; /* Sets the flex style for this rule. */
+        /* ----- Tables ----- */
+        min-width: 0; /* Sets the min-width style for this rule. */
+    }
+
+    /* ----- Theme variables ----- */
+    .pw-card--producer .pw-card__producer-name { /* Starts styles for the .pw-card--producer .pw-card__producer-name selector. */
+        font-family: var(--font-display); /* Sets the font family. */
+        font-size: 1.2rem; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        color: var(--text); /* Sets the text color. */
+        margin: 0; /* Sets spacing outside the element. */
+        line-height: 1.2; /* Sets vertical text rhythm. */
+    }
+
+    .pw-card--producer .pw-card__email { /* Starts styles for the .pw-card--producer .pw-card__email selector. */
+        font-size: .78rem; /* Sets the text size. */
+        color: var(--text-muted); /* Sets the text color. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+        margin: 0; /* Sets spacing outside the element. */
+    }
+
+    /* ----- Theme variables ----- */
+    .pw-card--producer .pw-card__info { /* Starts styles for the .pw-card--producer .pw-card__info selector. */
+        font-size: .85rem; /* Sets the text size. */
+        /* ----- Grid layout ----- */
+        color: #374151; /* Sets the text color. */
+        line-height: 1.5; /* Sets vertical text rhythm. */
+        margin: .2rem 0 .5rem; /* Sets spacing outside the element. */
+        display: -webkit-box; /* Controls how the element participates in layout. */
+        /* ----- Responsive layout ----- */
+        -webkit-line-clamp: 2; /* Sets the -webkit-line-clamp style for this rule. */
+        -webkit-box-orient: vertical; /* Sets the -webkit-box-orient style for this rule. */
+        /* ----- Utility classes ----- */
+        overflow: hidden; /* Sets the overflow style for this rule. */
+    }
+
+    /* ----- Theme variables ----- */
+    .pw-card--producer .pw-card__meta { /* Starts styles for the .pw-card--producer .pw-card__meta selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 6px; /* Sets spacing between flex or grid children. */
+        flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+        margin-top: auto; /* Sets the margin-top style for this rule. */
+        padding-top: .6rem; /* Sets the padding-top style for this rule. */
+        /* ----- Theme variables ----- */
+        border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+    }
+
+    .pw-card--producer .pw-card__admin-actions { /* Starts styles for the .pw-card--producer .pw-card__admin-actions selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+        margin-left: auto; /* Sets the margin-left style for this rule. */
+    }
+
+/* ----- Tables ----- */
+@media (max-width: 640px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Theme variables ----- */
+    .pw-card--producer { /* Starts styles for the .pw-card--producer selector. */
+        /* ----- Grid layout ----- */
+        flex-direction: column !important; /* Sets the flex-direction style for this rule. */
+    }
+
+        /* ----- Theme variables ----- */
+        .pw-card--producer .pw-card__grower-img { /* Starts styles for the .pw-card--producer .pw-card__grower-img selector. */
+            /* ----- Tables ----- */
+            width: 100% !important; /* Sets the element width. */
+            min-width: unset !important; /* Sets the min-width style for this rule. */
+            height: 140px !important; /* Sets the element height. */
+        }
+
+        /* ----- Theme variables ----- */
+        .pw-card--producer .pw-card__sticker { /* Starts styles for the .pw-card--producer .pw-card__sticker selector. */
+            top: 10px; /* Sets the top style for this rule. */
+            left: 50%; /* Sets the left style for this rule. */
+            /* ----- Forms ----- */
+            transform: translateX(-50%) rotate(-2deg); /* Moves, scales, or rotates the element. */
+        }
+}
+
+/* ----- Card layout ----- */
+.pw-empty-state { /* Starts styles for the .pw-empty-state selector. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    padding: 4rem 2rem; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    border: 2px dashed var(--border); /* Sets the border around the element. */
+}
+
+/* ----- Card layout ----- */
+.pw-empty-state__icon { /* Starts styles for the .pw-empty-state__icon selector. */
+    /* ----- Tables ----- */
+    width: 64px; /* Sets the element width. */
+    height: 64px; /* Sets the element height. */
+    background: #f0fdf4; /* Sets the element background treatment. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    margin: 0 auto 1.25rem; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.pw-empty-state__title { /* Starts styles for the .pw-empty-state__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 1.3rem; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    margin: 0 0 .5rem; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.pw-empty-state__sub { /* Starts styles for the .pw-empty-state__sub selector. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin: 0 0 1.5rem; /* Sets spacing outside the element. */
+}
+
+/* ----- Tables ----- */
+.pw-admin-strip { /* Starts styles for the .pw-admin-strip selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    gap: 1rem; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    padding: 1rem 1.5rem; /* Sets spacing inside the element. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    margin-bottom: 2.5rem; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-admin-strip__label { /* Starts styles for the .pw-admin-strip__label selector. */
+    font-size: .85rem; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+}
+
+    /* ----- Forms ----- */
+    .pw-admin-strip__label strong { /* Starts styles for the .pw-admin-strip__label strong selector. */
+        /* ----- Theme variables ----- */
+        color: var(--text); /* Sets the text color. */
+    }
+
+/* ----- Card layout ----- */
+.pw-card__no-photo { /* Starts styles for the .pw-card__no-photo selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    gap: .75rem; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Card layout ----- */
+.pw-card__farm-icon { /* Starts styles for the .pw-card__farm-icon selector. */
+    /* ----- Tables ----- */
+    width: 80px; /* Sets the element width. */
+    height: 80px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    background: rgba(255,255,255,.35); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    backdrop-filter: blur(4px); /* Sets the backdrop-filter style for this rule. */
+    box-shadow: 0 4px 16px rgba(0,0,0,.12); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1); /* Animates property changes smoothly. */
+}
+
+/* ----- Theme variables ----- */
+.pw-card--producer:hover .pw-card__farm-icon { /* Starts styles for the .pw-card--producer:hover .pw-card__farm-icon selector. */
+    /* ----- Forms ----- */
+    transform: scale(1.15) rotate(-6deg); /* Moves, scales, or rotates the element. */
+}
+
+/* ----- Card layout ----- */
+.pw-card__initials-badge { /* Starts styles for the .pw-card__initials-badge selector. */
+    background: rgba(255,255,255,.75); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #1a1a1a; /* Sets the text color. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-weight: 800; /* Sets the text weight. */
+    font-size: 1.1rem; /* Sets the text size. */
+    /* ----- Tables ----- */
+    width: 38px; /* Sets the element width. */
+    height: 38px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    box-shadow: 0 2px 8px rgba(0,0,0,.15); /* Adds depth with a shadow. */
+}
+/* ----- Theme variables ----- */
+.pw-card__no-photo--0 { /* Starts styles for the .pw-card__no-photo--0 selector. */
+    background: linear-gradient(135deg,#dcfce7,#86efac); /* Sets the element background treatment. */
+}
+
+.pw-card__no-photo--1 { /* Starts styles for the .pw-card__no-photo--1 selector. */
+    background: linear-gradient(135deg,#bbf7d0,#4ade80); /* Sets the element background treatment. */
+}
+
+.pw-card__no-photo--2 { /* Starts styles for the .pw-card__no-photo--2 selector. */
+    background: linear-gradient(135deg,#a7f3d0,#34d399); /* Sets the element background treatment. */
+}
+
+.pw-card__no-photo--3 { /* Starts styles for the .pw-card__no-photo--3 selector. */
+    background: linear-gradient(135deg,#6ee7b7,#10b981); /* Sets the element background treatment. */
+}
+
+.pw-card__no-photo--4 { /* Starts styles for the .pw-card__no-photo--4 selector. */
+    background: linear-gradient(135deg,#d9f99d,#86efac); /* Sets the element background treatment. */
+}
+
+.pw-card__no-photo--5 { /* Starts styles for the .pw-card__no-photo--5 selector. */
+    background: linear-gradient(135deg,#ecfdf5,#6ee7b7); /* Sets the element background treatment. */
+}
+
+.gw-why { /* Starts styles for the .gw-why selector. */
+    background: #f0fdf4; /* Sets the element background treatment. */
+    padding: 5rem 1.5rem; /* Sets spacing inside the element. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.gw-why__header { /* Starts styles for the .gw-why__header selector. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    margin-bottom: 3rem; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Grid layout ----- */
+.gw-why__eyebrow { /* Starts styles for the .gw-why__eyebrow selector. */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 7px; /* Sets spacing between flex or grid children. */
+    font-size: .8rem; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Grid layout ----- */
+    color: #15803d; /* Sets the text color. */
+    background: #dcfce7; /* Sets the element background treatment. */
+    padding: 5px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    margin-bottom: 1rem; /* Sets the margin-bottom style for this rule. */
+}
+
+.gw-why__title { /* Starts styles for the .gw-why__title selector. */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Sets the text size. */
+    font-weight: 900; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    line-height: 1.15; /* Sets vertical text rhythm. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+
+    .gw-why__title em { /* Starts styles for the .gw-why__title em selector. */
+        font-style: normal; /* Sets the font-style style for this rule. */
+        /* ----- Grid layout ----- */
+        color: #16A34A; /* Sets the text color. */
+    }
+
+.gw-why__grid { /* Starts styles for the .gw-why__grid selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Defines the grid column layout. */
+    gap: 1.25rem; /* Sets spacing between flex or grid children. */
+    /* ----- Tables ----- */
+    max-width: 1000px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.gw-why__card { /* Starts styles for the .gw-why__card selector. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    padding: 2rem 1.5rem; /* Sets spacing inside the element. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    cursor: default; /* Sets the cursor style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease; /* Animates property changes smoothly. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+    /* ----- Card layout ----- */
+    .gw-why__card:hover { /* Starts styles for the .gw-why__card:hover selector. */
+        /* ----- Forms ----- */
+        transform: translateY(-8px) rotate(-1deg) scale(1.03); /* Moves, scales, or rotates the element. */
+        box-shadow: 0 16px 40px rgba(0,0,0,.14); /* Adds depth with a shadow. */
+    }
+
+/* ----- Theme variables ----- */
+.gw-why__card--a { /* Starts styles for the .gw-why__card--a selector. */
+    background: #dcfce7; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #14532d; /* Sets the text color. */
+}
+/* ----- Theme variables ----- */
+.gw-why__card--b { /* Starts styles for the .gw-why__card--b selector. */
+    background: #bbf7d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #065f46; /* Sets the text color. */
+}
+/* ----- Theme variables ----- */
+.gw-why__card--c { /* Starts styles for the .gw-why__card--c selector. */
+    background: #d9f99d; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #365314; /* Sets the text color. */
+}
+/* ----- Theme variables ----- */
+.gw-why__card--d { /* Starts styles for the .gw-why__card--d selector. */
+    background: #a7f3d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #064e3b; /* Sets the text color. */
+}
+/* ----- Card layout ----- */
+.gw-why__card__icon { /* Starts styles for the .gw-why__card__icon selector. */
+    /* ----- Tables ----- */
+    width: 60px; /* Sets the element width. */
+    height: 60px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    background: rgba(255,255,255,.5); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    margin: 0 auto 1rem; /* Sets spacing outside the element. */
+    /* ----- Forms ----- */
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1); /* Animates property changes smoothly. */
+}
+
+/* ----- Card layout ----- */
+.gw-why__card:hover .gw-why__card__icon { /* Starts styles for the .gw-why__card:hover .gw-why__card__icon selector. */
+    /* ----- Forms ----- */
+    transform: rotate(10deg) scale(1.15); /* Moves, scales, or rotates the element. */
+}
+
+/* ----- Card layout ----- */
+.gw-why__card__title { /* Starts styles for the .gw-why__card__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 1.1rem; /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    margin: 0 0 .5rem; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.gw-why__card__desc { /* Starts styles for the .gw-why__card__desc selector. */
+    font-size: .85rem; /* Sets the text size. */
+    line-height: 1.6; /* Sets vertical text rhythm. */
+    /* ----- Animation ----- */
+    opacity: .85; /* Controls element transparency. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+/* ----- Card layout ----- */
+.gw-why__card::after { /* Starts styles for the .gw-why__card::after selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    /* ----- Tables ----- */
+    width: 120px; /* Sets the element width. */
+    height: 120px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    background: rgba(255,255,255,.2); /* Sets the element background treatment. */
+    bottom: -40px; /* Sets the bottom style for this rule. */
+    right: -30px; /* Sets the right style for this rule. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+
+.gw-facts { /* Starts styles for the .gw-facts selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    padding: 3.5rem 0; /* Sets spacing inside the element. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.gw-facts__header { /* Starts styles for the .gw-facts__header selector. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    margin-bottom: 2rem; /* Sets the margin-bottom style for this rule. */
+    padding: 0 1.5rem; /* Sets spacing inside the element. */
+}
+
+/* ----- Forms ----- */
+.gw-facts__label { /* Starts styles for the .gw-facts__label selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: .75rem; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .1em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+}
+
+/* ----- Grid layout ----- */
+.gw-facts__track-wrap { /* Starts styles for the .gw-facts__track-wrap selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+}
+.gw-facts__row { /* Starts styles for the .gw-facts__row selector. */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: 1rem; /* Sets spacing between flex or grid children. */
+    padding: .5rem 0; /* Sets spacing inside the element. */
+    /* ----- Tables ----- */
+    width: max-content; /* Sets the element width. */
+}
+
+/* ----- Theme variables ----- */
+.gw-facts__row--fwd { /* Starts styles for the .gw-facts__row--fwd selector. */
+    /* ----- Animation ----- */
+    animation: marquee 28s linear infinite; /* Sets the animation style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.gw-facts__row--rev { /* Starts styles for the .gw-facts__row--rev selector. */
+    /* ----- Animation ----- */
+    animation: marquee 32s linear infinite reverse; /* Sets the animation style for this rule. */
+}
+
+/* ----- Badges and status ----- */
+.gw-fact-pill { /* Starts styles for the .gw-fact-pill selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    padding: 10px 20px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    font-size: .85rem; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    cursor: default; /* Sets the cursor style for this rule. */
+    /* ----- Forms ----- */
+    transition: transform .2s ease; /* Animates property changes smoothly. */
+}
+
+    /* ----- Badges and status ----- */
+    .gw-fact-pill:hover { /* Starts styles for the .gw-fact-pill:hover selector. */
+        /* ----- Forms ----- */
+        transform: scale(1.07) translateY(-2px); /* Moves, scales, or rotates the element. */
+    }
+
+/* ----- Theme variables ----- */
+.gw-fact-pill--a { /* Starts styles for the .gw-fact-pill--a selector. */
+    background: #dcfce7; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #14532d; /* Sets the text color. */
+}
+
+/* ----- Theme variables ----- */
+.gw-fact-pill--b { /* Starts styles for the .gw-fact-pill--b selector. */
+    background: #bbf7d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #065f46; /* Sets the text color. */
+}
+
+/* ----- Theme variables ----- */
+.gw-fact-pill--c { /* Starts styles for the .gw-fact-pill--c selector. */
+    background: #a7f3d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #065f46; /* Sets the text color. */
+}
+
+/* ----- Theme variables ----- */
+.gw-fact-pill--d { /* Starts styles for the .gw-fact-pill--d selector. */
+    background: #6ee7b7; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #064e3b; /* Sets the text color. */
+}
+
+/* ----- Theme variables ----- */
+.gw-fact-pill--e { /* Starts styles for the .gw-fact-pill--e selector. */
+    background: #d9f99d; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #365314; /* Sets the text color. */
+}
+
+/* ----- Theme variables ----- */
+.gw-fact-pill--f { /* Starts styles for the .gw-fact-pill--f selector. */
+    background: #86efac; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #14532d; /* Sets the text color. */
+}
+
+/* ----- Badges and status ----- */
+.gw-fact-pill__icon { /* Starts styles for the .gw-fact-pill__icon selector. */
+    /* ----- Tables ----- */
+    width: 16px; /* Sets the element width. */
+    height: 16px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.gw-cta { /* Starts styles for the .gw-cta selector. */
+    background: #FFFBEB; /* Sets the element background treatment. */
+    padding: 5rem 1.5rem 6rem; /* Sets spacing inside the element. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.gw-cta__blob-a { /* Starts styles for the .gw-cta__blob-a selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    /* ----- Tables ----- */
+    width: 500px; /* Sets the element width. */
+    height: 500px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    filter: blur(90px); /* Sets the filter style for this rule. */
+    /* ----- Animation ----- */
+    opacity: .35; /* Controls element transparency. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+    background: #86efac; /* Sets the element background treatment. */
+    top: -200px; /* Sets the top style for this rule. */
+    left: -100px; /* Sets the left style for this rule. */
+    animation: blob-drift-1 18s ease-in-out infinite alternate; /* Sets the animation style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.gw-cta__blob-b { /* Starts styles for the .gw-cta__blob-b selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    /* ----- Tables ----- */
+    width: 400px; /* Sets the element width. */
+    height: 400px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    filter: blur(80px); /* Sets the filter style for this rule. */
+    /* ----- Animation ----- */
+    opacity: .3; /* Controls element transparency. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+    background: #4ade80; /* Sets the element background treatment. */
+    bottom: -150px; /* Sets the bottom style for this rule. */
+    right: -80px; /* Sets the right style for this rule. */
+    animation: blob-drift-2 15s ease-in-out infinite alternate; /* Sets the animation style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.gw-cta__inner { /* Starts styles for the .gw-cta__inner selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 2; /* Controls stacking order. */
+    /* ----- Tables ----- */
+    max-width: 600px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+}
+/* ----- Buttons ----- */
+.gw-cta__bubble { /* Starts styles for the .gw-cta__bubble selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border-radius: 2rem; /* Rounds the element corners. */
+    padding: 2.5rem 2rem 2rem; /* Sets spacing inside the element. */
+    box-shadow: 0 8px 32px rgba(0,0,0,.10); /* Adds depth with a shadow. */
+    margin-bottom: 2rem; /* Sets the margin-bottom style for this rule. */
+    position: relative; /* Controls how the element is positioned on the page. */
+}
+
+    /* ----- Buttons ----- */
+    .gw-cta__bubble::after { /* Starts styles for the .gw-cta__bubble::after selector. */
+        content: ''; /* Sets the content style for this rule. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        bottom: -18px; /* Sets the bottom style for this rule. */
+        left: 50%; /* Sets the left style for this rule. */
+        /* ----- Forms ----- */
+        transform: translateX(-50%); /* Moves, scales, or rotates the element. */
+        /* ----- Tables ----- */
+        width: 0; /* Sets the element width. */
+        height: 0; /* Sets the element height. */
+        border-left: 18px solid transparent; /* Sets the border-left style for this rule. */
+        border-right: 18px solid transparent; /* Sets the border-right style for this rule. */
+        /* ----- Theme variables ----- */
+        border-top: 20px solid var(--white); /* Sets the border-top style for this rule. */
+        filter: drop-shadow(0 4px 4px rgba(0,0,0,.07)); /* Sets the filter style for this rule. */
+    }
+
+/* ----- Grid layout ----- */
+.gw-cta__farmers-row { /* Starts styles for the .gw-cta__farmers-row selector. */
+    display: flex; /* Controls how the element participates in layout. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    gap: -8px; /* Sets spacing between flex or grid children. */
+    margin-bottom: 1.25rem; /* Sets the margin-bottom style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.gw-cta__farmer-avatar { /* Starts styles for the .gw-cta__farmer-avatar selector. */
+    /* ----- Tables ----- */
+    width: 44px; /* Sets the element width. */
+    height: 44px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    border: 3px solid #fff; /* Sets the border around the element. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    margin-left: -8px; /* Sets the margin-left style for this rule. */
+    box-shadow: 0 2px 8px rgba(0,0,0,.15); /* Adds depth with a shadow. */
+    background: #bbf7d0; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-weight: 800; /* Sets the text weight. */
+    font-size: .9rem; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    color: #14532d; /* Sets the text color. */
+}
+
+    /* ----- Buttons ----- */
+    .gw-cta__farmer-avatar:first-child { /* Starts styles for the .gw-cta__farmer-avatar:first-child selector. */
+        margin-left: 0; /* Sets the margin-left style for this rule. */
+    }
+
+    .gw-cta__farmer-avatar img { /* Starts styles for the .gw-cta__farmer-avatar img selector. */
+        /* ----- Tables ----- */
+        width: 100%; /* Sets the element width. */
+        height: 100%; /* Sets the element height. */
+        object-fit: cover; /* Sets the object-fit style for this rule. */
+    }
+
+/* ----- Buttons ----- */
+.gw-cta__bubble-text { /* Starts styles for the .gw-cta__bubble-text selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(1.3rem, 3.5vw, 1.9rem); /* Sets the text size. */
+    font-weight: 900; /* Sets the text weight. */
+    line-height: 1.2; /* Sets vertical text rhythm. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    margin: 0 0 .5rem; /* Sets spacing outside the element. */
+}
+
+    /* ----- Buttons ----- */
+    .gw-cta__bubble-text em { /* Starts styles for the .gw-cta__bubble-text em selector. */
+        font-style: normal; /* Sets the font-style style for this rule. */
+        /* ----- Theme variables ----- */
+        color: var(--green); /* Sets the text color. */
+    }
+
+/* ----- Buttons ----- */
+.gw-cta__bubble-sub { /* Starts styles for the .gw-cta__bubble-sub selector. */
+    font-size: .9rem; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Buttons ----- */
+.gw-cta__actions { /* Starts styles for the .gw-cta__actions selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: 1rem; /* Sets spacing between flex or grid children. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    padding-top: 2rem; /* Sets the padding-top style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-card__burst-target { /* Starts styles for the .pw-card__burst-target selector. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 768px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Grid layout ----- */
+    .pw-producers-grid { /* Starts styles for the .pw-producers-grid selector. */
+        grid-template-columns: 1fr !important; /* Defines the grid column layout. */
+    }
+
+    .gw-why__grid { /* Starts styles for the .gw-why__grid selector. */
+        grid-template-columns: 1fr 1fr; /* Defines the grid column layout. */
+    }
+
+    /* ----- Buttons ----- */
+    .gw-cta__bubble { /* Starts styles for the .gw-cta__bubble selector. */
+        padding: 2rem 1.25rem 1.75rem; /* Sets spacing inside the element. */
+    }
+}
+
+
+/* ----- Base layout ----- */
+body.dark-mode .gw-intro { /* Starts styles for the body.dark-mode .gw-intro selector. */
+    background: #0f172a; /* Sets the element background treatment. */
+}
+
+body.dark-mode .gw-blob { /* Starts styles for the body.dark-mode .gw-blob selector. */
+    /* ----- Animation ----- */
+    opacity: .12; /* Controls element transparency. */
+}
+
+/* ----- Theme variables ----- */
+body.dark-mode .gw-sticker--1 { background: rgba(217,249,157,.12); color: #bef264; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-sticker--2 { background: rgba(187,247,208,.12); color: #86efac; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-sticker--3 { background: rgba(167,243,208,.12); color: #6ee7b7; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-sticker--4 { background: rgba(110,231,183,.12); color: #34d399; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-sticker--5 { background: rgba(220,252,231,.12); color: #86efac; } /* Styles part of the ProducersIndex page or component. */
+
+/* ----- Base layout ----- */
+body.dark-mode .gw-polaroid { /* Starts styles for the body.dark-mode .gw-polaroid selector. */
+    background: #1e293b; /* Sets the element background treatment. */
+    box-shadow: 0 6px 20px rgba(0,0,0,.55), 0 1px 4px rgba(0,0,0,.35); /* Adds depth with a shadow. */
+}
+body.dark-mode .gw-polaroid__caption { color: #94a3b8; } /* Styles part of the ProducersIndex page or component. */
+
+/* ----- Theme variables ----- */
+body.dark-mode .gw-tag--a { background: rgba(220,252,231,.1);  color: #86efac; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-tag--b { background: rgba(187,247,208,.1);  color: #6ee7b7; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-tag--c { background: rgba(167,243,208,.1);  color: #5eead4; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-tag--d { background: rgba(110,231,183,.12); color: #34d399; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-tag--e { background: rgba(217,249,157,.1);  color: #bef264; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-tag--f { background: rgba(134,239,172,.1);  color: #86efac; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-tag--g { background: rgba(236,253,245,.07); color: #6ee7b7; } /* Styles part of the ProducersIndex page or component. */
+body.dark-mode .gw-tag--h { background: rgba(74,222,128,.12);  color: #4ade80; } /* Styles part of the ProducersIndex page or component. */
+
+/* ----- Base layout ----- */
+body.dark-mode .gw-intro__wave path { /* Starts styles for the body.dark-mode .gw-intro__wave path selector. */
+    fill: #0f172a; /* Sets the fill style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+body.dark-mode .pw-card--producer .pw-card__info { /* Starts styles for the body.dark-mode .pw-card--producer .pw-card__info selector. */
+    /* ----- Grid layout ----- */
+    color: #94a3b8; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .gw-why, /* Continues a selector or value list on the next line. */
+body.dark-mode .gw-cta__bubble, /* Continues a selector or value list on the next line. */
+body.dark-mode [class*="gw-why"] { /* Starts styles for the body.dark-mode [class*="gw-why"] selector. */
+    background: #1e293b; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #334155; /* Sets the border-color style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .gw-cta { /* Starts styles for the body.dark-mode .gw-cta selector. */
+    background: #0f172a; /* Sets the element background treatment. */
+}
+body.dark-mode .gw-cta__blob-a, /* Continues a selector or value list on the next line. */
+body.dark-mode .gw-cta__blob-b { /* Starts styles for the body.dark-mode .gw-cta__blob-b selector. */
+    /* ----- Animation ----- */
+    opacity: .1; /* Controls element transparency. */
+}
+
+/* ----- Base layout ----- */
+body.dark-mode .gw-intro__wave svg path { /* Starts styles for the body.dark-mode .gw-intro__wave svg path selector. */
+    fill: #0f172a; /* Sets the fill style for this rule. */
+}

@@ -1,0 +1,647 @@
+
+.bk-page { /* Starts styles for the .bk-page selector. */
+    min-height: 100vh; /* Sets the minimum element height. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+
+.bk-flash { /* Starts styles for the .bk-flash selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 12px 24px 0; /* Sets spacing inside the element. */
+}
+.bk-flash__item { /* Starts styles for the .bk-flash__item selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 10px; /* Sets spacing between flex or grid children. */
+    padding: 12px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    border: 1.5px solid var(--green-200); /* Sets the border around the element. */
+    background: var(--green-100); /* Sets the element background treatment. */
+    color: var(--green-800); /* Sets the text color. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+}
+.bk-flash__item + .bk-flash__item { /* Starts styles for the .bk-flash__item + .bk-flash__item selector. */
+    margin-top: 8px; /* Sets the margin-top style for this rule. */
+}
+.bk-flash__item--warning { /* Starts styles for the .bk-flash__item--warning selector. */
+    border-color: var(--orange-100); /* Sets the border-color style for this rule. */
+    background: var(--orange-100); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #9A3412; /* Sets the text color. */
+}
+
+.bk-empty-offset { /* Starts styles for the .bk-empty-offset selector. */
+    padding-top: 88px; /* Sets the padding-top style for this rule. */
+}
+
+.bk-steps { /* Starts styles for the .bk-steps selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    padding: 0; /* Sets spacing inside the element. */
+    padding-top: 88px; /* Sets the padding-top style for this rule. */
+}
+.bk-steps__inner { /* Starts styles for the .bk-steps__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 0 24px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 0; /* Sets spacing between flex or grid children. */
+}
+.bk-step { /* Starts styles for the .bk-step selector. */
+    display: flex; align-items: center; gap: 8px; /* Controls how the element participates in layout. */
+    padding: 14px 20px 14px 0; /* Sets spacing inside the element. */
+    font-size: 13px; font-weight: 600; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-light); /* Sets the text color. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+.bk-step + .bk-step { padding-left: 20px; } /* Styles part of the BasketIndex page or component. */
+.bk-step + .bk-step::before { /* Starts styles for the .bk-step + .bk-step::before selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; left: 0; top: 50%; /* Controls how the element is positioned on the page. */
+    /* ----- Forms ----- */
+    transform: translateY(-50%); /* Moves, scales, or rotates the element. */
+    /* ----- Tables ----- */
+    width: 1px; height: 20px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--border); /* Sets the element background treatment. */
+}
+.bk-step__num { /* Starts styles for the .bk-step__num selector. */
+    /* ----- Tables ----- */
+    width: 22px; height: 22px; /* Sets the element width. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Theme variables ----- */
+    background: var(--border); /* Sets the element background treatment. */
+    color: var(--text-light); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    font-size: 11px; font-weight: 800; /* Sets the text size. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+/* ----- Theme variables ----- */
+.bk-step--active { color: var(--green-800); } /* Styles part of the BasketIndex page or component. */
+.bk-step--active .bk-step__num { /* Starts styles for the .bk-step--active .bk-step__num selector. */
+    background: var(--green); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #fff; /* Sets the text color. */
+    box-shadow: 0 2px 8px rgba(22,163,74,.35); /* Adds depth with a shadow. */
+}
+/* ----- Theme variables ----- */
+.bk-step--done { color: var(--text-muted); } /* Styles part of the BasketIndex page or component. */
+.bk-step--done .bk-step__num { /* Starts styles for the .bk-step--done .bk-step__num selector. */
+    background: var(--green-100); /* Sets the element background treatment. */
+    color: var(--green); /* Sets the text color. */
+}
+
+/* ----- Navigation ----- */
+.bk-header { /* Starts styles for the .bk-header selector. */
+    padding: 0; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(160deg, var(--cream) 0%, #ebf7f0 100%); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+}
+/* ----- Navigation ----- */
+.bk-header__inner { /* Starts styles for the .bk-header__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 32px 24px 28px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: flex-end; justify-content: space-between; /* Controls how the element participates in layout. */
+    flex-wrap: wrap; gap: 12px; /* Sets the flex-wrap style for this rule. */
+}
+/* ----- Navigation ----- */
+.bk-header__left {} /* Styles part of the BasketIndex page or component. */
+.bk-header__eyebrow { /* Starts styles for the .bk-header__eyebrow selector. */
+    /* ----- Forms ----- */
+    font-size: 12px; font-weight: 700; text-transform: uppercase; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    letter-spacing: .08em; color: var(--green); /* Sets the letter-spacing style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 6px; /* Controls how the element participates in layout. */
+    margin-bottom: 8px; /* Sets the margin-bottom style for this rule. */
+}
+/* ----- Navigation ----- */
+.bk-header__title { /* Starts styles for the .bk-header__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(22px, 3.5vw, 32px); /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    font-weight: 800; color: var(--text); /* Sets the text weight. */
+    margin: 0; line-height: 1.15; letter-spacing: -.025em; /* Sets spacing outside the element. */
+}
+.bk-header__title em { color: var(--green); font-style: normal; } /* Styles part of the BasketIndex page or component. */
+/* ----- Navigation ----- */
+.bk-header__sub { /* Starts styles for the .bk-header__sub selector. */
+    /* ----- Theme variables ----- */
+    font-size: 14px; color: var(--text-muted); /* Sets the text size. */
+    margin: 6px 0 0; /* Sets spacing outside the element. */
+}
+/* ----- Navigation ----- */
+.bk-header__cta { /* Starts styles for the .bk-header__cta selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 8px; /* Controls how the element participates in layout. */
+}
+
+/* ----- Base layout ----- */
+.bk-body { /* Starts styles for the .bk-body selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 36px 24px 80px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 1fr 360px; /* Defines the grid column layout. */
+    gap: 28px; /* Sets spacing between flex or grid children. */
+    align-items: start; /* Aligns child items on the cross axis. */
+}
+/* ----- Tables ----- */
+@media (max-width: 900px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Base layout ----- */
+    .bk-body { grid-template-columns: 1fr; } /* Styles part of the BasketIndex page or component. */
+    /* ----- Card layout ----- */
+    .bk-summary-col { order: -1; } /* Styles part of the BasketIndex page or component. */
+}
+
+/* ----- Forms ----- */
+.bk-items-label { /* Starts styles for the .bk-items-label selector. */
+    font-size: 11px; font-weight: 700; text-transform: uppercase; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    letter-spacing: .09em; color: var(--text-muted); /* Sets the letter-spacing style for this rule. */
+    padding: 0 0 12px; /* Sets spacing inside the element. */
+    border-bottom: 1.5px solid var(--border); /* Sets the border-bottom style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; justify-content: space-between; align-items: center; /* Controls how the element participates in layout. */
+    margin-bottom: 4px; /* Sets the margin-bottom style for this rule. */
+}
+
+.bk-item { /* Starts styles for the .bk-item selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    padding: 18px 20px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; gap: 16px; align-items: flex-start; /* Controls how the element participates in layout. */
+    transition: box-shadow .2s, border-color .2s, transform .2s; /* Animates property changes smoothly. */
+    /* ----- Tables ----- */
+    animation: bk-slide-in .4s cubic-bezier(.34,1.56,.64,1) both; /* Sets the animation style for this rule. */
+    margin-bottom: 12px; /* Sets the margin-bottom style for this rule. */
+}
+.bk-item:hover { /* Starts styles for the .bk-item:hover selector. */
+    /* ----- Theme variables ----- */
+    box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+    border-color: var(--green-200); /* Sets the border-color style for this rule. */
+    /* ----- Forms ----- */
+    transform: translateY(-2px); /* Moves, scales, or rotates the element. */
+}
+/* ----- Animation ----- */
+@keyframes bk-slide-in { /* Defines an animation sequence used by this page. */
+    /* ----- Forms ----- */
+    from { opacity: 0; transform: translateY(18px) scale(.97); } /* Defines one point in the animation timeline. */
+    to   { opacity: 1; transform: translateY(0)   scale(1); } /* Defines one point in the animation timeline. */
+}
+
+/* ----- Tables ----- */
+.bk-item:nth-child(1) { animation-delay: .05s; } /* Styles part of the BasketIndex page or component. */
+.bk-item:nth-child(2) { animation-delay: .12s; } /* Styles part of the BasketIndex page or component. */
+.bk-item:nth-child(3) { animation-delay: .19s; } /* Styles part of the BasketIndex page or component. */
+.bk-item:nth-child(4) { animation-delay: .26s; } /* Styles part of the BasketIndex page or component. */
+.bk-item:nth-child(5) { animation-delay: .33s; } /* Styles part of the BasketIndex page or component. */
+.bk-item:nth-child(n+6) { animation-delay: .38s; } /* Styles part of the BasketIndex page or component. */
+
+.bk-item__img { /* Starts styles for the .bk-item__img selector. */
+    /* ----- Grid layout ----- */
+    width: 76px; height: 76px; flex-shrink: 0; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    /* ----- Forms ----- */
+    transition: transform .25s ease; /* Animates property changes smoothly. */
+}
+.bk-item:hover .bk-item__img { transform: scale(1.04); } /* Styles part of the BasketIndex page or component. */
+.bk-item__img img { /* Starts styles for the .bk-item__img img selector. */
+    /* ----- Tables ----- */
+    width: 100%; height: 100%; object-fit: cover; display: block; /* Sets the element width. */
+}
+/* ----- Theme variables ----- */
+.bk-item__img--placeholder { /* Starts styles for the .bk-item__img--placeholder selector. */
+    /* ----- Tables ----- */
+    width: 100%; height: 100%; /* Sets the element width. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+}
+/* ----- Theme variables ----- */
+.bk-item__img--placeholder i { /* Starts styles for the .bk-item__img--placeholder i selector. */
+    /* ----- Tables ----- */
+    width: 28px; height: 28px; stroke-width: 1.5; /* Sets the element width. */
+    /* ----- Grid layout ----- */
+    color: rgba(255,255,255,.85); /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+.bk-item__body { flex: 1; min-width: 0; } /* Styles part of the BasketIndex page or component. */
+.bk-item__category { /* Starts styles for the .bk-item__category selector. */
+    /* ----- Forms ----- */
+    font-size: 11px; font-weight: 700; text-transform: uppercase; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    letter-spacing: .07em; color: var(--green); /* Sets the letter-spacing style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 4px; /* Controls how the element participates in layout. */
+    margin-bottom: 4px; /* Sets the margin-bottom style for this rule. */
+}
+.bk-item__name { /* Starts styles for the .bk-item__name selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 16px; font-weight: 700; color: var(--text); /* Sets the text size. */
+    margin: 0 0 8px; line-height: 1.25; /* Sets spacing outside the element. */
+}
+/* ----- Product styling ----- */
+.bk-item__allergens { /* Starts styles for the .bk-item__allergens selector. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-wrap: wrap; gap: 4px; /* Controls how the element participates in layout. */
+}
+/* ----- Product styling ----- */
+.bk-item__allergen-chip { /* Starts styles for the .bk-item__allergen-chip selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 3px; /* Controls how the element participates in layout. */
+    padding: 2px 8px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    border: 1px solid #FED7AA; /* Sets the border around the element. */
+    background: #FFF7ED; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #9A3412; /* Sets the text color. */
+    font-size: 10.5px; font-weight: 700; /* Sets the text size. */
+}
+/* ----- Product styling ----- */
+.bk-item__allergen-none { /* Starts styles for the .bk-item__allergen-none selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 4px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-size: 12px; font-weight: 600; color: var(--green); /* Sets the text size. */
+}
+
+.bk-item__right { /* Starts styles for the .bk-item__right selector. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-direction: column; /* Controls how the element participates in layout. */
+    align-items: flex-end; gap: 6px; /* Aligns child items on the cross axis. */
+    flex-shrink: 0; min-width: 90px; /* Sets the flex-shrink style for this rule. */
+}
+/* ----- Forms ----- */
+.bk-item__right form { /* Starts styles for the .bk-item__right form selector. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+.bk-item__qty { /* Starts styles for the .bk-item__qty selector. */
+    /* ----- Theme variables ----- */
+    font-size: 12px; color: var(--text-muted); font-weight: 500; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+/* ----- Product styling ----- */
+.bk-item__unit-price { /* Starts styles for the .bk-item__unit-price selector. */
+    /* ----- Theme variables ----- */
+    font-size: 12px; color: var(--text-muted); /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+/* ----- Basket styling ----- */
+.bk-item__line-total { /* Starts styles for the .bk-item__line-total selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 18px; font-weight: 800; color: var(--text); /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+.bk-item__remove { /* Starts styles for the .bk-item__remove selector. */
+    display: inline-flex; align-items: center; gap: 4px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-size: 12px; font-weight: 600; color: var(--text-light); /* Sets the text size. */
+    cursor: pointer; text-decoration: none; /* Sets the cursor style for this rule. */
+    padding: 4px 8px; border-radius: var(--r-full); /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    transition: background .15s, color .15s; /* Animates property changes smoothly. */
+    margin-top: 4px; /* Sets the margin-top style for this rule. */
+    /* ----- Tables ----- */
+    border: 1px solid transparent; /* Sets the border around the element. */
+    background: transparent; /* Sets the element background treatment. */
+}
+.bk-item__remove:hover { /* Starts styles for the .bk-item__remove:hover selector. */
+    /* ----- Grid layout ----- */
+    background: #fee2e2; color: #DC2626; /* Sets the element background treatment. */
+    border-color: #fecaca; /* Sets the border-color style for this rule. */
+}
+
+/* ----- Product styling ----- */
+.bk-allergen-notice { /* Starts styles for the .bk-allergen-notice selector. */
+    background: #FFF7ED; /* Sets the element background treatment. */
+    border: 1.5px solid #FED7AA; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    padding: 14px 16px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; gap: 10px; align-items: flex-start; /* Controls how the element participates in layout. */
+    font-size: 13px; color: #7C2D12; /* Sets the text size. */
+    line-height: 1.55; /* Sets vertical text rhythm. */
+    margin-bottom: 20px; /* Sets the margin-bottom style for this rule. */
+}
+.bk-allergen-notice i { flex-shrink: 0; margin-top: 1px; } /* Styles part of the BasketIndex page or component. */
+
+.bk-items-footer { /* Starts styles for the .bk-items-footer selector. */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    flex-wrap: wrap; gap: 10px; /* Sets the flex-wrap style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.bk-summary-col { /* Starts styles for the .bk-summary-col selector. */
+    position: sticky; /* Controls how the element is positioned on the page. */
+    top: 100px; /* Sets the top style for this rule. */
+}
+.bk-summary { /* Starts styles for the .bk-summary selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    /* ----- Tables ----- */
+    animation: bk-slide-in .45s .08s cubic-bezier(.34,1.56,.64,1) both; /* Sets the animation style for this rule. */
+}
+/* ----- Navigation ----- */
+.bk-summary__header { /* Starts styles for the .bk-summary__header selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-900) 0%, #1a4a2a 50%, var(--green-800) 100%); /* Sets the element background treatment. */
+    padding: 20px 24px; /* Sets spacing inside the element. */
+    /* ----- Utility classes ----- */
+    position: relative; overflow: hidden; /* Controls how the element is positioned on the page. */
+}
+/* ----- Navigation ----- */
+.bk-summary__header::after { /* Starts styles for the .bk-summary__header::after selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; inset: 0; /* Controls how the element is positioned on the page. */
+    /* ----- Tables ----- */
+    background: radial-gradient(ellipse at top right, rgba(245,158,11,.18) 0%, transparent 60%); /* Sets the element background treatment. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+/* ----- Navigation ----- */
+.bk-summary__header-title { /* Starts styles for the .bk-summary__header-title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Grid layout ----- */
+    font-size: 17px; font-weight: 800; color: #fff; /* Sets the text size. */
+    margin: 0 0 2px; position: relative; z-index: 1; /* Sets spacing outside the element. */
+}
+/* ----- Navigation ----- */
+.bk-summary__header-sub { /* Starts styles for the .bk-summary__header-sub selector. */
+    /* ----- Grid layout ----- */
+    font-size: 12px; color: rgba(255,255,255,.6); /* Sets the text size. */
+    position: relative; z-index: 1; /* Controls how the element is positioned on the page. */
+}
+
+/* ----- Base layout ----- */
+.bk-summary__body { padding: 20px 24px; } /* Styles part of the BasketIndex page or component. */
+
+/* ----- Card layout ----- */
+.bk-summary__row { /* Starts styles for the .bk-summary__row selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    padding: 10px 0; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    font-size: 14px; /* Sets the text size. */
+}
+/* ----- Card layout ----- */
+.bk-summary__row:last-of-type { border-bottom: none; } /* Styles part of the BasketIndex page or component. */
+/* ----- Theme variables ----- */
+.bk-summary__row-label { color: var(--text-muted); font-weight: 500; } /* Styles part of the BasketIndex page or component. */
+.bk-summary__row-value { font-weight: 700; color: var(--text); } /* Styles part of the BasketIndex page or component. */
+
+/* ----- Card layout ----- */
+.bk-summary__discount { /* Starts styles for the .bk-summary__discount selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border: 1.5px solid var(--green-200); /* Sets the border around the element. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    padding: 12px 14px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    margin-bottom: 4px; /* Sets the margin-bottom style for this rule. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+}
+/* ----- Card layout ----- */
+.bk-summary__discount-left { /* Starts styles for the .bk-summary__discount-left selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 8px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-size: 13px; font-weight: 600; color: var(--green-800); /* Sets the text size. */
+}
+/* ----- Card layout ----- */
+.bk-summary__discount-badge { /* Starts styles for the .bk-summary__discount-badge selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #fff; /* Sets the text color. */
+    /* ----- Forms ----- */
+    font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    padding: 2px 8px; border-radius: var(--r-full); /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+/* ----- Card layout ----- */
+.bk-summary__discount-value { /* Starts styles for the .bk-summary__discount-value selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 15px; font-weight: 800; color: var(--green-800); /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.bk-summary__total { /* Starts styles for the .bk-summary__total selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    padding: 16px 0 4px; /* Sets spacing inside the element. */
+    margin-top: 4px; /* Sets the margin-top style for this rule. */
+    /* ----- Theme variables ----- */
+    border-top: 2px solid var(--border); /* Sets the border-top style for this rule. */
+}
+/* ----- Card layout ----- */
+.bk-summary__total-label { /* Starts styles for the .bk-summary__total-label selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 16px; font-weight: 700; color: var(--text); /* Sets the text size. */
+}
+/* ----- Card layout ----- */
+.bk-summary__total-value { /* Starts styles for the .bk-summary__total-value selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 26px; font-weight: 900; color: var(--text); /* Sets the text size. */
+    letter-spacing: -.02em; /* Sets the letter-spacing style for this rule. */
+}
+/* ----- Card layout ----- */
+.bk-summary__total-vat { /* Starts styles for the .bk-summary__total-vat selector. */
+    /* ----- Theme variables ----- */
+    font-size: 11px; color: var(--text-muted); /* Sets the text size. */
+    text-align: right; margin-top: -2px; /* Sets the text-align style for this rule. */
+    display: block; /* Controls how the element participates in layout. */
+}
+
+/* ----- Buttons ----- */
+.bk-checkout-btn { /* Starts styles for the .bk-checkout-btn selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; gap: 10px; /* Controls how the element participates in layout. */
+    /* ----- Tables ----- */
+    width: 100%; margin-top: 18px; /* Sets the element width. */
+    padding: 17px 24px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-700) 100%); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #fff; /* Sets the text color. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 16px; font-weight: 800; /* Sets the text size. */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    border: none; cursor: pointer; /* Sets the border around the element. */
+    box-shadow: 0 6px 24px rgba(22,163,74,.4); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transition: transform .15s, box-shadow .15s; /* Animates property changes smoothly. */
+    /* ----- Utility classes ----- */
+    position: relative; overflow: hidden; /* Controls how the element is positioned on the page. */
+    letter-spacing: -.01em; /* Sets the letter-spacing style for this rule. */
+}
+/* ----- Buttons ----- */
+.bk-checkout-btn::before { /* Starts styles for the .bk-checkout-btn::before selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; inset: 0; /* Controls how the element is positioned on the page. */
+    /* ----- Tables ----- */
+    background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%); /* Sets the element background treatment. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+/* ----- Buttons ----- */
+.bk-checkout-btn:hover { /* Starts styles for the .bk-checkout-btn:hover selector. */
+    /* ----- Forms ----- */
+    transform: translateY(-3px); /* Moves, scales, or rotates the element. */
+    box-shadow: 0 12px 32px rgba(22,163,74,.5); /* Adds depth with a shadow. */
+    /* ----- Grid layout ----- */
+    color: #fff; /* Sets the text color. */
+}
+/* ----- Forms ----- */
+.bk-checkout-btn:active { transform: translateY(-1px); } /* Styles part of the BasketIndex page or component. */
+/* ----- Order styling ----- */
+@keyframes bk-checkout-pulse { /* Defines an animation sequence used by this page. */
+    0%, 100% { box-shadow: 0 6px 24px rgba(22,163,74,.4); } /* Defines one point in the animation timeline. */
+    50%       { box-shadow: 0 8px 32px rgba(22,163,74,.65), 0 0 0 6px rgba(22,163,74,.12); } /* Defines one point in the animation timeline. */
+}
+/* ----- Buttons ----- */
+.bk-checkout-btn { animation: bk-checkout-pulse 2.8s ease-in-out infinite; } /* Styles part of the BasketIndex page or component. */
+.bk-checkout-btn:hover { animation: none; } /* Styles part of the BasketIndex page or component. */
+
+/* ----- Tables ----- */
+.bk-trust { /* Starts styles for the .bk-trust selector. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-direction: column; gap: 8px; /* Controls how the element participates in layout. */
+    margin-top: 18px; padding-top: 18px; /* Sets the margin-top style for this rule. */
+    /* ----- Theme variables ----- */
+    border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+}
+/* ----- Tables ----- */
+.bk-trust__item { /* Starts styles for the .bk-trust__item selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 8px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-size: 12px; font-weight: 500; color: var(--text-muted); /* Sets the text size. */
+}
+/* ----- Tables ----- */
+.bk-trust__item i { /* Starts styles for the .bk-trust__item i selector. */
+    /* ----- Theme variables ----- */
+    width: 15px; height: 15px; color: var(--green); flex-shrink: 0; /* Sets the element width. */
+}
+
+.bk-empty { /* Starts styles for the .bk-empty selector. */
+    min-height: calc(100vh - 200px); /* Sets the minimum element height. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    padding: 80px 24px; /* Sets spacing inside the element. */
+}
+/* ----- Card layout ----- */
+.bk-empty__card { /* Starts styles for the .bk-empty__card selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+    padding: 56px 48px; /* Sets spacing inside the element. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    /* ----- Tables ----- */
+    max-width: 420px; /* Limits the element width on larger screens. */
+    width: 100%; /* Sets the element width. */
+    animation: bk-slide-in .5s cubic-bezier(.34,1.56,.64,1) both; /* Sets the animation style for this rule. */
+}
+.bk-empty__icon { /* Starts styles for the .bk-empty__icon selector. */
+    width: 88px; height: 88px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-100), var(--cream-2)); /* Sets the element background treatment. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    margin: 0 auto 24px; /* Sets spacing outside the element. */
+    /* ----- Animation ----- */
+    animation: bk-float 3s ease-in-out infinite; /* Sets the animation style for this rule. */
+}
+@keyframes bk-float { /* Defines an animation sequence used by this page. */
+    /* ----- Forms ----- */
+    0%, 100% { transform: translateY(0); } /* Defines one point in the animation timeline. */
+    50%       { transform: translateY(-8px); } /* Defines one point in the animation timeline. */
+}
+/* ----- Theme variables ----- */
+.bk-empty__icon i { width: 40px; height: 40px; color: var(--green); stroke-width: 1.5; } /* Styles part of the BasketIndex page or component. */
+.bk-empty__title { /* Starts styles for the .bk-empty__title selector. */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 24px; font-weight: 800; color: var(--text); /* Sets the text size. */
+    margin: 0 0 10px; letter-spacing: -.02em; /* Sets spacing outside the element. */
+}
+.bk-empty__sub { /* Starts styles for the .bk-empty__sub selector. */
+    font-size: 15px; color: var(--text-muted); /* Sets the text size. */
+    line-height: 1.6; margin: 0 0 28px; /* Sets vertical text rhythm. */
+}
+.bk-empty__hints { /* Starts styles for the .bk-empty__hints selector. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-direction: column; gap: 8px; /* Controls how the element participates in layout. */
+    margin-bottom: 28px; /* Sets the margin-bottom style for this rule. */
+}
+.bk-empty__hint { /* Starts styles for the .bk-empty__hint selector. */
+    display: flex; align-items: center; gap: 8px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-size: 13px; color: var(--text-muted); font-weight: 500; /* Sets the text size. */
+}
+.bk-empty__hint i { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; } /* Styles part of the BasketIndex page or component. */
+
+/* ----- Tables ----- */
+@media (max-width: 520px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Grid layout ----- */
+    .bk-item { flex-wrap: wrap; } /* Styles part of the BasketIndex page or component. */
+    .bk-item__right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; min-width: unset; } /* Styles part of the BasketIndex page or component. */
+    /* ----- Card layout ----- */
+    .bk-empty__card { padding: 40px 24px; } /* Styles part of the BasketIndex page or component. */
+    .bk-steps__inner { gap: 0; overflow-x: auto; } /* Styles part of the BasketIndex page or component. */
+}

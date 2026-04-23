@@ -1,0 +1,640 @@
+.cu-page {
+    background:
+        radial-gradient(circle at top left, rgba(245, 158, 11, 0.1), transparent 28%),
+        radial-gradient(circle at top right, rgba(22, 163, 74, 0.12), transparent 32%),
+        var(--cream);
+}
+
+.cu-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 132px 0 88px;
+    background: linear-gradient(180deg, #fffdf3 0%, #f4faeb 48%, var(--cream) 100%);
+}
+
+.cu-hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.cu-hero__badge {
+    margin-bottom: 18px;
+}
+
+.cu-hero__title {
+    margin: 0 0 20px;
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -.035em;
+    max-width: 11ch;
+}
+
+.cu-hero__title em {
+    font-style: normal;
+    color: var(--green);
+}
+
+.cu-hero__sub {
+    max-width: 58ch;
+    margin: 0 0 24px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    font-size: 1.04rem;
+}
+
+.cu-hero__points {
+    display: grid;
+    gap: 12px;
+}
+
+.cu-hero__points span {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.cu-hero__points i {
+    color: var(--green-700);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.cu-hero__panel {
+    position: relative;
+}
+
+.cu-card,
+.cu-form-card,
+.cu-side__card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(28, 25, 23, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(28, 25, 23, 0.06);
+}
+
+.cu-card {
+    padding: 28px;
+}
+
+.cu-card__eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--green-700);
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.cu-card__list,
+.cu-side__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+}
+
+.cu-card__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.cu-card__list i {
+    color: var(--green);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.cu-hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(68px);
+    pointer-events: none;
+    opacity: .55;
+}
+
+.cu-hero__glow--one {
+    width: 300px;
+    height: 300px;
+    left: -84px;
+    top: 24px;
+    background: rgba(245, 158, 11, 0.2);
+}
+
+.cu-hero__glow--two {
+    width: 340px;
+    height: 340px;
+    right: -90px;
+    top: 92px;
+    background: rgba(22, 163, 74, 0.16);
+}
+
+.cu-hero__wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    line-height: 0;
+}
+
+.cu-hero__wave svg {
+    display: block;
+    width: 100%;
+}
+
+.cu-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.cu-form-card {
+    padding: 30px;
+}
+
+.cu-form-card__head {
+    margin-bottom: 24px;
+}
+
+.cu-form-card__sub {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.cu-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    border-radius: var(--r-md);
+    margin-bottom: 18px;
+    font-size: .94rem;
+    font-weight: 600;
+}
+
+.cu-alert--success {
+    background: var(--green-100);
+    color: var(--green-800);
+    border: 1px solid var(--green-200);
+}
+
+.cu-alert--error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.cu-alert--hidden {
+    display: none;
+}
+
+.cu-form {
+    display: grid;
+    gap: 18px;
+}
+
+.cu-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.cu-field {
+    display: grid;
+    gap: 8px;
+}
+
+.cu-field__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.cu-field__label {
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.cu-field__hint {
+    font-size: .78rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.cu-field__input {
+    width: 100%;
+    min-height: 50px;
+    padding: 0 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-md);
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.cu-field__input:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .14);
+}
+
+.cu-field__input.is-invalid {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, .12);
+}
+
+.cu-field__input--textarea {
+    min-height: 180px;
+    padding: 14px 16px;
+    resize: vertical;
+}
+
+.cu-field__error {
+    font-size: .82rem;
+    color: #b91c1c;
+    font-weight: 600;
+}
+
+.cu-field__help {
+    font-size: .8rem;
+    color: var(--text-light);
+}
+
+.cu-form__actions {
+    padding-top: 6px;
+}
+
+.cu-side {
+    display: grid;
+    gap: 18px;
+}
+
+.cu-side__card {
+    padding: 24px;
+}
+
+.cu-side__card h3 {
+    margin: 0 0 14px;
+    font-family: var(--font-display);
+    font-size: 1.28rem;
+}
+
+.cu-side__steps li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.cu-side__steps li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .7em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+}
+
+.cu-side__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cu-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 8px 14px;
+    border-radius: var(--r-full);
+    background: var(--green-100);
+    color: var(--green-800);
+    font-size: .88rem;
+    font-weight: 700;
+}
+
+.cu-history-head {
+    margin-bottom: 24px;
+}
+
+.cu-history-head__sub {
+    margin: 10px 0 0;
+    max-width: 64ch;
+    color: var(--text-muted);
+    line-height: 1.75;
+}
+
+.cu-history-list {
+    display: grid;
+    gap: 18px;
+}
+
+.cu-history-card {
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(28, 25, 23, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(28, 25, 23, 0.06);
+}
+
+.cu-history-card__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.cu-history-card__head h3 {
+    margin: 6px 0 0;
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+}
+
+.cu-history-card__eyebrow {
+    margin: 0;
+    color: var(--green-700);
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.cu-history-card__meta {
+    display: grid;
+    gap: 8px;
+    justify-items: end;
+    color: var(--text-light);
+    font-size: .86rem;
+    white-space: nowrap;
+}
+
+.cu-history-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 6px 12px;
+    border-radius: var(--r-full);
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.cu-history-badge--replied {
+    background: var(--green-100);
+    color: var(--green-800);
+}
+
+.cu-history-badge--waiting {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.cu-thread {
+    display: grid;
+    gap: 14px;
+}
+
+.cu-thread__item {
+    padding: 18px;
+    border-radius: 18px;
+    background: #fffdf7;
+    border: 1px solid rgba(28, 25, 23, 0.08);
+}
+
+.cu-thread__item--reply {
+    background: #f4faeb;
+    border-color: rgba(22, 163, 74, 0.16);
+}
+
+.cu-thread__author {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.cu-thread__item p {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.75;
+    white-space: pre-wrap;
+}
+
+.cu-thread__stamp {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: .8rem;
+    color: var(--text-light);
+}
+
+.cu-history-empty {
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    min-height: 220px;
+    padding: 32px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(28, 25, 23, 0.08);
+    border-radius: 24px;
+    color: var(--text-muted);
+}
+
+.cu-history-empty i {
+    width: 42px;
+    height: 42px;
+    opacity: .35;
+}
+
+body.dark-mode .cu-page {
+    background:
+        radial-gradient(circle at top left, rgba(249, 115, 22, 0.08), transparent 26%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.1), transparent 30%),
+        linear-gradient(180deg, #0b1220 0%, #101827 52%, #0f172a 100%);
+}
+
+body.dark-mode .cu-hero {
+    background:
+        linear-gradient(180deg, #0f172a 0%, #132033 48%, #111827 100%);
+}
+
+body.dark-mode .cu-hero__title,
+body.dark-mode .cu-side__card h3,
+body.dark-mode .cu-history-card__head h3,
+body.dark-mode .cu-thread__item p {
+    color: #f8fafc;
+}
+
+body.dark-mode .cu-hero__title em {
+    color: #86efac;
+}
+
+body.dark-mode .cu-hero__sub,
+body.dark-mode .cu-form-card__sub,
+body.dark-mode .cu-side__steps li,
+body.dark-mode .cu-history-head__sub,
+body.dark-mode .cu-thread__stamp,
+body.dark-mode .cu-field__help {
+    color: #cbd5e1;
+}
+
+body.dark-mode .cu-hero__points span,
+body.dark-mode .cu-thread__author {
+    color: #e2e8f0;
+}
+
+body.dark-mode .cu-hero__points i,
+body.dark-mode .cu-card__eyebrow,
+body.dark-mode .cu-history-card__eyebrow {
+    color: #86efac;
+}
+
+body.dark-mode .cu-card,
+body.dark-mode .cu-form-card,
+body.dark-mode .cu-side__card,
+body.dark-mode .cu-history-card,
+body.dark-mode .cu-history-empty {
+    background: rgba(15, 23, 42, 0.88);
+    border-color: rgba(148, 163, 184, 0.18);
+    box-shadow: 0 20px 44px rgba(2, 6, 23, 0.42);
+}
+
+body.dark-mode .cu-card__list li span,
+body.dark-mode .cu-history-card__meta {
+    color: #cbd5e1;
+}
+
+body.dark-mode .cu-chip {
+    background: rgba(34, 197, 94, 0.14);
+    color: #bbf7d0;
+}
+
+body.dark-mode .cu-alert--success {
+    background: rgba(22, 163, 74, 0.14);
+    border-color: rgba(74, 222, 128, 0.28);
+    color: #bbf7d0;
+}
+
+body.dark-mode .cu-alert--error {
+    background: rgba(127, 29, 29, 0.35);
+    border-color: rgba(248, 113, 113, 0.32);
+    color: #fecaca;
+}
+
+body.dark-mode .cu-field__label,
+body.dark-mode .cu-field__hint {
+    color: #cbd5e1;
+}
+
+body.dark-mode .cu-field__input {
+    background: rgba(15, 23, 42, 0.92);
+    border-color: rgba(148, 163, 184, 0.22);
+    color: #f8fafc;
+}
+
+body.dark-mode .cu-field__input::placeholder {
+    color: #94a3b8;
+}
+
+body.dark-mode .cu-field__input:focus {
+    border-color: #4ade80;
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.16);
+}
+
+body.dark-mode .cu-field__input.is-invalid {
+    border-color: #f87171;
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.16);
+}
+
+body.dark-mode .cu-field__error {
+    color: #fca5a5;
+}
+
+body.dark-mode .cu-history-badge--replied {
+    background: rgba(22, 163, 74, 0.16);
+    color: #bbf7d0;
+}
+
+body.dark-mode .cu-history-badge--waiting {
+    background: rgba(249, 115, 22, 0.14);
+    color: #fdba74;
+}
+
+body.dark-mode .cu-thread__item {
+    background: rgba(15, 23, 42, 0.72);
+    border-color: rgba(148, 163, 184, 0.16);
+}
+
+body.dark-mode .cu-thread__item--reply {
+    background: rgba(20, 83, 45, 0.34);
+    border-color: rgba(74, 222, 128, 0.18);
+}
+
+body.dark-mode .cu-history-empty {
+    color: #cbd5e1;
+}
+
+body.dark-mode .cu-hero__wave path {
+    fill: #111827;
+}
+
+@media (max-width: 960px) {
+    .cu-hero {
+        padding-top: 118px;
+    }
+
+    .cu-hero__inner,
+    .cu-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .cu-hero {
+        padding: 108px 0 72px;
+    }
+
+    .cu-page .pw-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .cu-form-card,
+    .cu-card,
+    .cu-side__card {
+        padding: 22px;
+    }
+
+    .cu-form__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cu-history-card__head {
+        flex-direction: column;
+    }
+
+    .cu-history-card__meta {
+        justify-items: start;
+        white-space: normal;
+    }
+}

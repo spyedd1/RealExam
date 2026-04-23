@@ -1,0 +1,85 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model LoginWith2faModel
+@{
+    ViewData["Title"] = "Two-factor authentication"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-auth-page"> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--1"></div> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--2"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+    <div class="pw-auth-card"> @* Starts a layout container for this section. *@
+        <div class="pw-auth-card__header"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-card__brand"> @* Starts a layout container for this section. *@
+                <i data-lucide="sprout" style="width:18px;height:18px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+                Greenfield @* Renders part of the identity page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h1 class="pw-auth-card__title">Verify your identity</h1> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="pw-auth-card__subtitle">Enter the code from your authenticator app</p> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="pw-auth-card__body"> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+            <div style="background:var(--green-100);border:1.5px solid var(--green-200);border-radius:var(--r-md);padding:14px 16px;margin-bottom:24px;font-size:13.5px;color:var(--green-800);display:flex;gap:10px;align-items:flex-start;"> @* Starts a layout container for this section. *@
+                <i data-lucide="shield" style="width:17px;height:17px;stroke-width:2;flex-shrink:0;margin-top:1px"></i> @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                <span>Open your authenticator app and enter the 6-digit code shown for this account.</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Setup ----- *@
+            <form method="post" asp-route-returnUrl="@Model.ReturnUrl" class="pw-auth-form"> @* Starts the form that submits this page's user input. *@
+ @* ----- Form Fields ----- *@
+                <input asp-for="RememberMe" type="hidden" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                <div asp-validation-summary="ModelOnly" class="pw-auth-errors" role="alert"></div> @* Shows page-level validation messages. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="form-floating mb-3"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off" placeholder="000000" @* Binds this input to the matching model property. *@
+                           style="font-size:20px;letter-spacing:.25em;font-family:var(--font-display);font-weight:700;text-align:center" /> @* Renders part of the identity page markup. *@
+                    <label asp-for="Input.TwoFactorCode">Authenticator code</label> @* Renders a label tied to the model field. *@
+ @* ----- Status Messages ----- *@
+                    <span asp-validation-for="Input.TwoFactorCode" class="pw-auth-field-error"></span> @* Shows validation feedback for this model field. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                <div class="pw-auth-check-row mb-4"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <input asp-for="Input.RememberMachine" type="checkbox" id="rememberMachine" /> @* Binds this input to the matching model property. *@
+                    <label for="rememberMachine">@Html.DisplayNameFor(m => m.Input.RememberMachine)</label> @* Renders text identifying a form field. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Actions ----- *@
+                <button type="submit" class="pw-btn pw-btn--primary pw-btn--lg pw-auth-submit"> @* Renders a button for the user action. *@
+                    <i data-lucide="shield-check" style="width:17px;height:17px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+                    Verify @* Renders part of the identity page markup. *@
+                </button> @* Closes the matching HTML element. *@
+            </form> @* Closes the form after its fields and actions. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <div class="pw-auth-card__footer"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-link-row"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                <span>No device access?</span> @* Renders inline text or badge content. *@
+ @* ----- Form Setup ----- *@
+                <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">Use a recovery code</a> @* Builds a link or form target using MVC routing. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <partial name="_ValidationScriptsPartial" /> @* Renders a shared partial view here. *@
+}

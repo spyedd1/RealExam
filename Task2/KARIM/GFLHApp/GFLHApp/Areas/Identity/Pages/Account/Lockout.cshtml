@@ -1,0 +1,58 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model LockoutModel
+@{
+    ViewData["Title"] = "Account locked"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-auth-page"> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--1" style="background:var(--orange);opacity:.12"></div> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--2"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+    <div class="pw-auth-card"> @* Starts a layout container for this section. *@
+        <div class="pw-auth-card__header" style="background:linear-gradient(135deg,#7f1d1d 0%,#450a0a 50%,#991b1b 100%)"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-card__brand"> @* Starts a layout container for this section. *@
+                <i data-lucide="sprout" style="width:18px;height:18px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+                Greenfield @* Renders part of the identity page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h1 class="pw-auth-card__title">Account locked</h1> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="pw-auth-card__subtitle">Too many failed sign-in attempts</p> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="pw-auth-card__body"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-status"> @* Starts a layout container for this section. *@
+                <div class="pw-auth-status__icon pw-auth-status__icon--danger"> @* Starts a layout container for this section. *@
+                    <i data-lucide="lock" style="width:34px;height:34px;stroke-width:1.75"></i> @* Renders part of the identity page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <p class="pw-auth-status__title">Temporarily locked out</p> @* Renders paragraph text for the user. *@
+                <p class="pw-auth-status__body"> @* Renders paragraph text for the user. *@
+ @* ----- Conditional Rendering ----- *@
+                    Your account has been locked for security. Please wait a few minutes and try again, @* Renders part of the identity page markup. *@
+                    or contact support if you believe this is a mistake. @* Renders part of the identity page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Form Setup ----- *@
+                <a asp-page="./ForgotPassword" class="pw-btn pw-btn--outline pw-btn--md" style="width:100%;justify-content:center;"> @* Builds a link or form target using MVC routing. *@
+                    <i data-lucide="key" style="width:16px;height:16px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+ @* ----- Identity Account ----- *@
+                    Reset your password @* Renders part of the identity page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <div class="pw-auth-card__footer"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-link-row"> @* Starts a layout container for this section. *@
+ @* ----- Form Setup ----- *@
+                <a asp-page="./Login">Try signing in again</a> @* Builds a link or form target using MVC routing. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@

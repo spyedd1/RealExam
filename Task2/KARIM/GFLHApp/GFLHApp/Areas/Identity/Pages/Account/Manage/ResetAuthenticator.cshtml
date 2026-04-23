@@ -1,0 +1,51 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model ResetAuthenticatorModel
+@{
+    ViewData["Title"] = "Reset Authenticator Key"; // Sets the browser and page title for this view.
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication; // Reads view data supplied by the controller.
+}
+
+ @* ----- Status Messages ----- *@
+<partial name="_StatusMessage" for="StatusMessage" /> @* Renders a shared partial view here. *@
+
+ @* ----- Card Layout ----- *@
+<span class="pw-manage-content__eyebrow">Security · Two-Factor Auth</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+<h2 class="pw-manage-content__title">Reset Authenticator Key</h2> @* Renders a heading for this page section. *@
+ @* ----- Identity Account ----- *@
+<p class="pw-manage-content__sub">Generate a new secret key for your authenticator app.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Status Messages ----- *@
+<div class="pw-manage-alert pw-manage-alert--warning" role="alert"> @* Starts a layout container for this section. *@
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> @* Renders part of the identity page markup. *@
+    <div> @* Starts a layout container for this section. *@
+ @* ----- Identity Account ----- *@
+        <strong>Your authenticator app will stop working immediately after resetting.</strong><br> @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+        2FA will be disabled until you reconfigure your authenticator with the new key. If you don't complete setup, you may lose access to your account. @* Renders part of the identity page markup. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+<div class="pw-danger-zone"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+    <h3 class="pw-danger-zone__title"> @* Renders a heading for this page section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg> @* Renders part of the identity page markup. *@
+        Confirm reset @* Renders part of the identity page markup. *@
+    </h3> @* Closes the matching HTML element. *@
+ @* ----- Identity Account ----- *@
+    <p class="pw-danger-zone__desc">After resetting, you'll need to re-scan the QR code and re-verify your authenticator app before 2FA is active again.</p> @* Renders paragraph text for the user. *@
+ @* ----- Form Setup ----- *@
+    <form id="reset-authenticator-form" method="post"> @* Starts the form that submits this page's user input. *@
+ @* ----- Form Actions ----- *@
+        <button id="reset-authenticator-button" class="pw-btn pw-btn--danger pw-btn--md" type="submit"> @* Renders a button for the user action. *@
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg> @* Renders part of the identity page markup. *@
+ @* ----- Identity Account ----- *@
+            Reset authenticator key @* Renders part of the identity page markup. *@
+        </button> @* Closes the matching HTML element. *@
+    </form> @* Closes the form after its fields and actions. *@
+</div> @* Closes the matching HTML element. *@

@@ -1,0 +1,700 @@
+    /* ----- Hero section ----- */
+    .pw-shop-hero { /* Starts styles for the .pw-shop-hero selector. */
+        /* ----- Theme variables ----- */
+        background: linear-gradient(140deg, var(--cream-3) 0%, #E9FAF0 55%, var(--green-100) 100%); /* Sets the element background treatment. */
+        padding: 130px 32px 80px; /* Sets spacing inside the element. */
+        position: relative; /* Controls how the element is positioned on the page. */
+        /* ----- Utility classes ----- */
+        overflow: hidden; /* Sets the overflow style for this rule. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        justify-content: center; /* Aligns child items on the main axis. */
+        min-height: 42vh; /* Sets the minimum element height. */
+    }
+
+    /* ----- Hero section ----- */
+    .pw-shop-hero__content { /* Starts styles for the .pw-shop-hero__content selector. */
+        text-align: center; /* Sets the text-align style for this rule. */
+        position: relative; /* Controls how the element is positioned on the page. */
+        z-index: 2; /* Controls stacking order. */
+        /* ----- Tables ----- */
+        max-width: 680px; /* Limits the element width on larger screens. */
+    }
+
+    /* ----- Hero section ----- */
+    .pw-shop-hero__badge { /* Starts styles for the .pw-shop-hero__badge selector. */
+        margin-bottom: 20px; /* Sets the margin-bottom style for this rule. */
+    }
+
+    .pw-shop-hero__title { /* Starts styles for the .pw-shop-hero__title selector. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-display); /* Sets the font family. */
+        /* ----- Responsive layout ----- */
+        font-size: clamp(40px, 6vw, 68px); /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        line-height: 1.08; /* Sets vertical text rhythm. */
+        letter-spacing: -.03em; /* Sets the letter-spacing style for this rule. */
+        margin: 0 0 16px; /* Sets spacing outside the element. */
+        /* ----- Theme variables ----- */
+        color: var(--text); /* Sets the text color. */
+    }
+
+        /* ----- Hero section ----- */
+        .pw-shop-hero__title em { /* Starts styles for the .pw-shop-hero__title em selector. */
+            /* ----- Theme variables ----- */
+            color: var(--green); /* Sets the text color. */
+            font-style: normal; /* Sets the font-style style for this rule. */
+        }
+
+    /* ----- Hero section ----- */
+    .pw-shop-hero__sub { /* Starts styles for the .pw-shop-hero__sub selector. */
+        /* ----- Responsive layout ----- */
+        font-size: clamp(15px, 1.6vw, 18px); /* Sets the text size. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        margin: 0; /* Sets spacing outside the element. */
+        line-height: 1.6; /* Sets vertical text rhythm. */
+    }
+
+    /* ----- Admin dashboard styling ----- */
+    .pw-admin-ribbon { /* Starts styles for the .pw-admin-ribbon selector. */
+        /* ----- Theme variables ----- */
+        background: var(--text); /* Sets the element background treatment. */
+        padding: 10px 0; /* Sets spacing inside the element. */
+    }
+
+    /* ----- Admin dashboard styling ----- */
+    .pw-admin-ribbon__inner { /* Starts styles for the .pw-admin-ribbon__inner selector. */
+        /* ----- Tables ----- */
+        max-width: 1200px; /* Limits the element width on larger screens. */
+        margin: 0 auto; /* Sets spacing outside the element. */
+        padding: 0 32px; /* Sets spacing inside the element. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        justify-content: space-between; /* Aligns child items on the main axis. */
+        gap: 12px; /* Sets spacing between flex or grid children. */
+    }
+
+    /* ----- Forms ----- */
+    .pw-admin-ribbon__label { /* Starts styles for the .pw-admin-ribbon__label selector. */
+        font-size: 13px; /* Sets the text size. */
+        font-weight: 600; /* Sets the text weight. */
+        /* ----- Theme variables ----- */
+        color: var(--cream-2); /* Sets the text color. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 6px; /* Sets spacing between flex or grid children. */
+    }
+
+    .pw-filters-bar { /* Starts styles for the .pw-filters-bar selector. */
+        background: rgba(255,251,235,.96); /* Sets the element background treatment. */
+        backdrop-filter: blur(12px); /* Sets the backdrop-filter style for this rule. */
+        -webkit-backdrop-filter: blur(12px); /* Sets the -webkit-backdrop-filter style for this rule. */
+        /* ----- Theme variables ----- */
+        border-bottom: 2px solid var(--border); /* Sets the border-bottom style for this rule. */
+        padding: 14px 0; /* Sets spacing inside the element. */
+        position: sticky; /* Controls how the element is positioned on the page. */
+        top: 72px; /* Sets the top style for this rule. */
+        z-index: 200; /* Controls stacking order. */
+        box-shadow: 0 2px 12px rgba(0,0,0,.06); /* Adds depth with a shadow. */
+    }
+
+    .pw-filters-inner { /* Starts styles for the .pw-filters-inner selector. */
+        /* ----- Tables ----- */
+        max-width: 1200px; /* Limits the element width on larger screens. */
+        margin: 0 auto; /* Sets spacing outside the element. */
+        padding: 0 32px; /* Sets spacing inside the element. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 10px; /* Sets spacing between flex or grid children. */
+        flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    }
+
+    .pw-filter-search { /* Starts styles for the .pw-filter-search selector. */
+        position: relative; /* Controls how the element is positioned on the page. */
+        /* ----- Tables ----- */
+        min-width: 200px; /* Sets the min-width style for this rule. */
+        max-width: 240px; /* Limits the element width on larger screens. */
+        /* ----- Grid layout ----- */
+        flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    }
+
+    .pw-filter-search__icon { /* Starts styles for the .pw-filter-search__icon selector. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        left: 14px; /* Sets the left style for this rule. */
+        top: 50%; /* Sets the top style for this rule. */
+        /* ----- Forms ----- */
+        transform: translateY(-50%); /* Moves, scales, or rotates the element. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        pointer-events: none; /* Sets the pointer-events style for this rule. */
+        /* ----- Tables ----- */
+        width: 15px; /* Sets the element width. */
+        height: 15px; /* Sets the element height. */
+    }
+
+    /* ----- Forms ----- */
+    .pw-filter-input { /* Starts styles for the .pw-filter-input selector. */
+        /* ----- Tables ----- */
+        width: 100%; /* Sets the element width. */
+        padding: 9px 14px 9px 38px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        border: 2px solid var(--border); /* Sets the border around the element. */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        font-family: var(--font-body); /* Sets the font family. */
+        font-size: 14px; /* Sets the text size. */
+        background: var(--white); /* Sets the element background treatment. */
+        color: var(--text); /* Sets the text color. */
+        /* ----- Grid layout ----- */
+        transition: border-color .15s; /* Animates property changes smoothly. */
+        outline: none; /* Sets the outline style for this rule. */
+    }
+
+        /* ----- Forms ----- */
+        .pw-filter-input:focus { /* Starts styles for the .pw-filter-input:focus selector. */
+            /* ----- Theme variables ----- */
+            border-color: var(--green); /* Sets the border-color style for this rule. */
+        }
+
+    /* ----- Forms ----- */
+    .pw-filter-select { /* Starts styles for the .pw-filter-select selector. */
+        padding: 9px 34px 9px 14px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        border: 2px solid var(--border); /* Sets the border around the element. */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        font-family: var(--font-body); /* Sets the font family. */
+        font-size: 14px; /* Sets the text size. */
+        font-weight: 500; /* Sets the text weight. */
+        background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; /* Sets the element background treatment. */
+        -webkit-appearance: none; /* Sets the -webkit-appearance style for this rule. */
+        appearance: none; /* Sets the appearance style for this rule. */
+        color: var(--text); /* Sets the text color. */
+        cursor: pointer; /* Sets the cursor style for this rule. */
+        /* ----- Grid layout ----- */
+        transition: border-color .15s; /* Animates property changes smoothly. */
+        outline: none; /* Sets the outline style for this rule. */
+    }
+
+        /* ----- Forms ----- */
+        .pw-filter-select:focus { /* Starts styles for the .pw-filter-select:focus selector. */
+            /* ----- Theme variables ----- */
+            border-color: var(--green); /* Sets the border-color style for this rule. */
+        }
+
+    /* ----- Badges and status ----- */
+    .pw-filter-pills { /* Starts styles for the .pw-filter-pills selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+        align-items: center; /* Aligns child items on the cross axis. */
+    }
+
+    /* ----- Badges and status ----- */
+    .pw-filter-pill { /* Starts styles for the .pw-filter-pill selector. */
+        padding: 7px 14px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        font-size: 13px; /* Sets the text size. */
+        font-weight: 600; /* Sets the text weight. */
+        border: 2px solid var(--border); /* Sets the border around the element. */
+        background: var(--white); /* Sets the element background treatment. */
+        color: var(--text-muted); /* Sets the text color. */
+        cursor: pointer; /* Sets the cursor style for this rule. */
+        /* ----- Tables ----- */
+        transition: all .15s; /* Animates property changes smoothly. */
+        /* ----- Grid layout ----- */
+        white-space: nowrap; /* Sets the white-space style for this rule. */
+        line-height: 1; /* Sets vertical text rhythm. */
+        display: inline-flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+    }
+
+        /* ----- Badges and status ----- */
+        .pw-filter-pill:hover { /* Starts styles for the .pw-filter-pill:hover selector. */
+            /* ----- Theme variables ----- */
+            border-color: var(--green-200); /* Sets the border-color style for this rule. */
+            color: var(--text); /* Sets the text color. */
+            background: var(--green-100); /* Sets the element background treatment. */
+        }
+
+        /* ----- Badges and status ----- */
+        .pw-filter-pill.is-active { /* Starts styles for the .pw-filter-pill.is-active selector. */
+            /* ----- Theme variables ----- */
+            background: var(--green); /* Sets the element background treatment. */
+            border-color: var(--green); /* Sets the border-color style for this rule. */
+            color: var(--white); /* Sets the text color. */
+        }
+
+        /* ----- Badges and status ----- */
+        .pw-filter-pill:focus-visible { /* Starts styles for the .pw-filter-pill:focus-visible selector. */
+            /* ----- Theme variables ----- */
+            outline: 2px solid var(--green); /* Sets the outline style for this rule. */
+            outline-offset: 2px; /* Sets the outline-offset style for this rule. */
+        }
+
+    .pw-filter-sep { /* Starts styles for the .pw-filter-sep selector. */
+        /* ----- Tables ----- */
+        width: 1px; /* Sets the element width. */
+        height: 24px; /* Sets the element height. */
+        /* ----- Theme variables ----- */
+        background: var(--border); /* Sets the element background treatment. */
+        /* ----- Grid layout ----- */
+        flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    }
+
+    .pw-filter-count { /* Starts styles for the .pw-filter-count selector. */
+        font-size: 13px; /* Sets the text size. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        font-weight: 500; /* Sets the text weight. */
+        /* ----- Grid layout ----- */
+        white-space: nowrap; /* Sets the white-space style for this rule. */
+        margin-left: auto; /* Sets the margin-left style for this rule. */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 6px; /* Sets spacing between flex or grid children. */
+    }
+
+        /* ----- Tables ----- */
+        .pw-filter-count strong { /* Starts styles for the .pw-filter-count strong selector. */
+            font-weight: 700; /* Sets the text weight. */
+            /* ----- Theme variables ----- */
+            color: var(--text); /* Sets the text color. */
+        }
+
+    .pw-filter-clear { /* Starts styles for the .pw-filter-clear selector. */
+        display: none; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+        font-size: 13px; /* Sets the text size. */
+        font-weight: 600; /* Sets the text weight. */
+        color: var(--text-muted); /* Sets the text color. */
+        background: none; /* Sets the element background treatment. */
+        border: 1.5px solid var(--border); /* Sets the border around the element. */
+        cursor: pointer; /* Sets the cursor style for this rule. */
+        padding: 5px 12px; /* Sets spacing inside the element. */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        /* ----- Tables ----- */
+        transition: all .15s; /* Animates property changes smoothly. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-body); /* Sets the font family. */
+    }
+
+        /* ----- Utility classes ----- */
+        .pw-filter-clear.is-visible { /* Starts styles for the .pw-filter-clear.is-visible selector. */
+            /* ----- Grid layout ----- */
+            display: inline-flex; /* Controls how the element participates in layout. */
+        }
+
+        .pw-filter-clear:hover { /* Starts styles for the .pw-filter-clear:hover selector. */
+            /* ----- Theme variables ----- */
+            background: var(--cream-2); /* Sets the element background treatment. */
+            color: var(--text); /* Sets the text color. */
+            border-color: var(--text-muted); /* Sets the border-color style for this rule. */
+        }
+
+    /* ----- Grid layout ----- */
+    .pw-shop-grid { /* Starts styles for the .pw-shop-grid selector. */
+        padding: 56px 0 96px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        background: var(--cream); /* Sets the element background treatment. */
+        min-height: 400px; /* Sets the minimum element height. */
+    }
+
+    /* ----- Card layout ----- */
+    .pw-card__stock { /* Starts styles for the .pw-card__stock selector. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        top: 12px; /* Sets the top style for this rule. */
+        left: 12px; /* Sets the left style for this rule. */
+        z-index: 1; /* Controls stacking order. */
+    }
+
+    .pw-card__img-placeholder { /* Starts styles for the .pw-card__img-placeholder selector. */
+        /* ----- Tables ----- */
+        width: 100%; /* Sets the element width. */
+        height: 100%; /* Sets the element height. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        justify-content: center; /* Aligns child items on the main axis. */
+        /* ----- Theme variables ----- */
+        background: linear-gradient(135deg, var(--green-100) 0%, var(--cream-2) 100%); /* Sets the element background treatment. */
+    }
+
+    /* ----- Card layout ----- */
+    .pw-card__cat { /* Starts styles for the .pw-card__cat selector. */
+        /* ----- Grid layout ----- */
+        display: inline-flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 3px; /* Sets spacing between flex or grid children. */
+        font-size: 10px; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        padding: 3px 9px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        letter-spacing: .04em; /* Sets the letter-spacing style for this rule. */
+        /* ----- Forms ----- */
+        text-transform: uppercase; /* Sets the text-transform style for this rule. */
+        /* ----- Theme variables ----- */
+        background: var(--green-100); /* Sets the element background treatment. */
+        color: var(--green-800); /* Sets the text color. */
+        margin-bottom: 8px; /* Sets the margin-bottom style for this rule. */
+    }
+
+    .pw-card--out { /* Starts styles for the .pw-card--out selector. */
+        /* ----- Animation ----- */
+        opacity: .72; /* Controls element transparency. */
+    }
+
+        /* ----- Theme variables ----- */
+        .pw-card--out .pw-card__photo { /* Starts styles for the .pw-card--out .pw-card__photo selector. */
+            filter: grayscale(35%); /* Sets the filter style for this rule. */
+        }
+
+    /* ----- Card layout ----- */
+    .pw-card__allergens { /* Starts styles for the .pw-card__allergens selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+        gap: 4px; /* Sets spacing between flex or grid children. */
+        margin-bottom: 14px; /* Sets the margin-bottom style for this rule. */
+    }
+
+    /* ----- Product styling ----- */
+    .pw-allergen-tag { /* Starts styles for the .pw-allergen-tag selector. */
+        /* ----- Grid layout ----- */
+        display: inline-flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        font-size: 10px; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        padding: 2px 7px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        background: var(--yellow-100); /* Sets the element background treatment. */
+        /* ----- Grid layout ----- */
+        color: #92400E; /* Sets the text color. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        letter-spacing: .02em; /* Sets the letter-spacing style for this rule. */
+        /* ----- Forms ----- */
+        text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    }
+
+    /* ----- Card layout ----- */
+    .pw-card__admin { /* Starts styles for the .pw-card__admin selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        gap: 6px; /* Sets spacing between flex or grid children. */
+        padding-top: 10px; /* Sets the padding-top style for this rule. */
+        /* ----- Theme variables ----- */
+        border-top: 1.5px solid var(--border); /* Sets the border-top style for this rule. */
+        margin-top: 4px; /* Sets the margin-top style for this rule. */
+    }
+
+        /* ----- Card layout ----- */
+        .pw-card__admin a { /* Starts styles for the .pw-card__admin a selector. */
+            font-size: 12px; /* Sets the text size. */
+            font-weight: 600; /* Sets the text weight. */
+            padding: 4px 10px; /* Sets spacing inside the element. */
+            /* ----- Theme variables ----- */
+            border-radius: var(--r-full); /* Rounds the element corners. */
+            border: 1.5px solid var(--border); /* Sets the border around the element. */
+            color: var(--text-muted); /* Sets the text color. */
+            /* ----- Tables ----- */
+            transition: all .15s; /* Animates property changes smoothly. */
+        }
+
+            /* ----- Card layout ----- */
+            .pw-card__admin a:hover { /* Starts styles for the .pw-card__admin a:hover selector. */
+                /* ----- Theme variables ----- */
+                border-color: var(--green); /* Sets the border-color style for this rule. */
+                color: var(--green); /* Sets the text color. */
+                background: var(--green-100); /* Sets the element background treatment. */
+            }
+
+            /* ----- Card layout ----- */
+            .pw-card__admin a.danger:hover { /* Starts styles for the .pw-card__admin a.danger:hover selector. */
+                /* ----- Grid layout ----- */
+                border-color: #DC2626; /* Sets the border-color style for this rule. */
+                color: #DC2626; /* Sets the text color. */
+                background: #FEF2F2; /* Sets the element background treatment. */
+            }
+
+    /* ----- Card layout ----- */
+    .pw-empty-state { /* Starts styles for the .pw-empty-state selector. */
+        display: none; /* Controls how the element participates in layout. */
+        text-align: center; /* Sets the text-align style for this rule. */
+        padding: 80px 32px; /* Sets spacing inside the element. */
+        /* ----- Grid layout ----- */
+        grid-column: 1 / -1; /* Sets the grid-column style for this rule. */
+    }
+
+        /* ----- Card layout ----- */
+        .pw-empty-state.is-visible { /* Starts styles for the .pw-empty-state.is-visible selector. */
+            display: block; /* Controls how the element participates in layout. */
+        }
+
+    .pw-empty-icon { /* Starts styles for the .pw-empty-icon selector. */
+        /* ----- Theme variables ----- */
+        color: var(--text-light); /* Sets the text color. */
+        margin-bottom: 20px; /* Sets the margin-bottom style for this rule. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        justify-content: center; /* Aligns child items on the main axis. */
+    }
+
+    .pw-empty-title { /* Starts styles for the .pw-empty-title selector. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-display); /* Sets the font family. */
+        font-size: 22px; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        margin: 0 0 8px; /* Sets spacing outside the element. */
+        color: var(--text); /* Sets the text color. */
+    }
+
+    .pw-empty-sub { /* Starts styles for the .pw-empty-sub selector. */
+        color: var(--text-muted); /* Sets the text color. */
+        margin: 0 0 24px; /* Sets spacing outside the element. */
+        font-size: 15px; /* Sets the text size. */
+    }
+
+    .pw-add-group { /* Starts styles for the .pw-add-group selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 6px; /* Sets spacing between flex or grid children. */
+    }
+
+    /* ----- Tables ----- */
+    .pw-qty-control { /* Starts styles for the .pw-qty-control selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        /* ----- Theme variables ----- */
+        border: 2px solid var(--border); /* Sets the border around the element. */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        background: var(--white); /* Sets the element background treatment. */
+        /* ----- Utility classes ----- */
+        overflow: hidden; /* Sets the overflow style for this rule. */
+    }
+
+    /* ----- Buttons ----- */
+    .pw-qty-btn { /* Starts styles for the .pw-qty-btn selector. */
+        /* ----- Tables ----- */
+        width: 26px; /* Sets the element width. */
+        height: 28px; /* Sets the element height. */
+        background: none; /* Sets the element background treatment. */
+        border: none; /* Sets the border around the element. */
+        font-size: 15px; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        cursor: pointer; /* Sets the cursor style for this rule. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        justify-content: center; /* Aligns child items on the main axis. */
+        transition: background .12s, color .12s; /* Animates property changes smoothly. */
+        padding: 0; /* Sets spacing inside the element. */
+        line-height: 1; /* Sets vertical text rhythm. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-body); /* Sets the font family. */
+        /* ----- Grid layout ----- */
+        flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    }
+
+        /* ----- Buttons ----- */
+        .pw-qty-btn:hover { /* Starts styles for the .pw-qty-btn:hover selector. */
+            /* ----- Theme variables ----- */
+            background: var(--green-100); /* Sets the element background treatment. */
+            color: var(--green); /* Sets the text color. */
+        }
+
+        /* ----- Buttons ----- */
+        .pw-qty-btn:focus-visible { /* Starts styles for the .pw-qty-btn:focus-visible selector. */
+            /* ----- Theme variables ----- */
+            outline: 2px solid var(--green); /* Sets the outline style for this rule. */
+            outline-offset: -2px; /* Sets the outline-offset style for this rule. */
+        }
+
+    .pw-qty-display { /* Starts styles for the .pw-qty-display selector. */
+        font-size: 13px; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        color: var(--text); /* Sets the text color. */
+        /* ----- Tables ----- */
+        min-width: 22px; /* Sets the min-width style for this rule. */
+        text-align: center; /* Sets the text-align style for this rule. */
+        /* ----- Forms ----- */
+        user-select: none; /* Sets the user-select style for this rule. */
+        padding: 0 2px; /* Sets spacing inside the element. */
+    }
+
+    .pw-spinner { /* Starts styles for the .pw-spinner selector. */
+        display: inline-block; /* Controls how the element participates in layout. */
+        /* ----- Tables ----- */
+        width: 13px; /* Sets the element width. */
+        height: 13px; /* Sets the element height. */
+        border: 2px solid rgba(255,255,255,.4); /* Sets the border around the element. */
+        /* ----- Grid layout ----- */
+        border-top-color: white; /* Sets the border-top-color style for this rule. */
+        border-radius: 50%; /* Rounds the element corners. */
+        /* ----- Animation ----- */
+        animation: pw-spin .6s linear infinite; /* Sets the animation style for this rule. */
+        vertical-align: middle; /* Sets the vertical-align style for this rule. */
+    }
+
+    @keyframes pw-spin { /* Defines an animation sequence used by this page. */
+        to { /* Starts styles for the to selector. */
+            /* ----- Forms ----- */
+            transform: rotate(360deg); /* Moves, scales, or rotates the element. */
+        }
+    }
+
+    /* ----- Badges and status ----- */
+    .pw-add-toast { /* Starts styles for the .pw-add-toast selector. */
+        position: fixed; /* Controls how the element is positioned on the page. */
+        bottom: 28px; /* Sets the bottom style for this rule. */
+        left: 50%; /* Sets the left style for this rule. */
+        /* ----- Forms ----- */
+        transform: translateX(-50%) translateY(14px); /* Moves, scales, or rotates the element. */
+        /* ----- Theme variables ----- */
+        background: var(--text); /* Sets the element background treatment. */
+        color: var(--cream); /* Sets the text color. */
+        padding: 10px 22px; /* Sets spacing inside the element. */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        font-size: 14px; /* Sets the text size. */
+        font-weight: 600; /* Sets the text weight. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 10px; /* Sets spacing between flex or grid children. */
+        z-index: 9998; /* Controls stacking order. */
+        /* ----- Animation ----- */
+        opacity: 0; /* Controls element transparency. */
+        /* ----- Forms ----- */
+        transition: opacity .22s, transform .22s; /* Animates property changes smoothly. */
+        /* ----- Grid layout ----- */
+        white-space: nowrap; /* Sets the white-space style for this rule. */
+        /* ----- Theme variables ----- */
+        box-shadow: var(--shadow-lg); /* Adds depth with a shadow. */
+        pointer-events: none; /* Sets the pointer-events style for this rule. */
+    }
+
+        /* ----- Badges and status ----- */
+        .pw-add-toast.is-visible { /* Starts styles for the .pw-add-toast.is-visible selector. */
+            /* ----- Animation ----- */
+            opacity: 1; /* Controls element transparency. */
+            /* ----- Forms ----- */
+            transform: translateX(-50%) translateY(0); /* Moves, scales, or rotates the element. */
+        }
+
+    /* ----- Badges and status ----- */
+    .pw-toast { /* Starts styles for the .pw-toast selector. */
+        position: fixed; /* Controls how the element is positioned on the page. */
+        top: 96px; /* Sets the top style for this rule. */
+        right: 24px; /* Sets the right style for this rule. */
+        z-index: 9999; /* Controls stacking order. */
+        padding: 14px 20px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-md); /* Rounds the element corners. */
+        box-shadow: var(--shadow-lg); /* Adds depth with a shadow. */
+        font-size: 14px; /* Sets the text size. */
+        font-weight: 600; /* Sets the text weight. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 10px; /* Sets spacing between flex or grid children. */
+        /* ----- Tables ----- */
+        max-width: 380px; /* Limits the element width on larger screens. */
+        /* ----- Badges and status ----- */
+        animation: toastIn .3s ease; /* Sets the animation style for this rule. */
+    }
+
+    /* ----- Theme variables ----- */
+    .pw-toast--error { /* Starts styles for the .pw-toast--error selector. */
+        background: #DC2626; /* Sets the element background treatment. */
+        /* ----- Grid layout ----- */
+        color: white; /* Sets the text color. */
+    }
+
+    /* ----- Badges and status ----- */
+    @keyframes toastIn { /* Defines an animation sequence used by this page. */
+        from { /* Starts styles for the from selector. */
+            /* ----- Animation ----- */
+            opacity: 0; /* Controls element transparency. */
+            /* ----- Forms ----- */
+            transform: translateX(20px); /* Moves, scales, or rotates the element. */
+        }
+
+        to { /* Starts styles for the to selector. */
+            /* ----- Animation ----- */
+            opacity: 1; /* Controls element transparency. */
+            /* ----- Forms ----- */
+            transform: translateX(0); /* Moves, scales, or rotates the element. */
+        }
+    }
+
+    /* ----- Tables ----- */
+    @media (max-width: 900px) { /* Starts responsive rules for this viewport range. */
+        .pw-filters-inner { /* Starts styles for the .pw-filters-inner selector. */
+            gap: 8px; /* Sets spacing between flex or grid children. */
+        }
+
+        .pw-filter-search { /* Starts styles for the .pw-filter-search selector. */
+            min-width: 160px; /* Sets the min-width style for this rule. */
+        }
+
+        .pw-filter-count { /* Starts styles for the .pw-filter-count selector. */
+            margin-left: 0; /* Sets the margin-left style for this rule. */
+        }
+    }
+
+    @media (max-width: 640px) { /* Starts responsive rules for this viewport range. */
+        /* ----- Hero section ----- */
+        .pw-shop-hero { /* Starts styles for the .pw-shop-hero selector. */
+            padding: 120px 20px 60px; /* Sets spacing inside the element. */
+            min-height: 35vh; /* Sets the minimum element height. */
+        }
+
+        .pw-filters-bar { /* Starts styles for the .pw-filters-bar selector. */
+            top: 60px; /* Sets the top style for this rule. */
+        }
+
+        .pw-filters-inner { /* Starts styles for the .pw-filters-inner selector. */
+            /* ----- Grid layout ----- */
+            flex-direction: column; /* Sets the flex-direction style for this rule. */
+            /* ----- Tables ----- */
+            align-items: stretch; /* Aligns child items on the cross axis. */
+        }
+
+        .pw-filter-search { /* Starts styles for the .pw-filter-search selector. */
+            max-width: 100%; /* Limits the element width on larger screens. */
+            min-width: unset; /* Sets the min-width style for this rule. */
+        }
+
+        /* ----- Forms ----- */
+        .pw-filter-select { /* Starts styles for the .pw-filter-select selector. */
+            /* ----- Tables ----- */
+            width: 100%; /* Sets the element width. */
+        }
+
+        /* ----- Badges and status ----- */
+        .pw-filter-pills { /* Starts styles for the .pw-filter-pills selector. */
+            justify-content: center; /* Aligns child items on the main axis. */
+            /* ----- Grid layout ----- */
+            flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+        }
+
+        .pw-filter-count { /* Starts styles for the .pw-filter-count selector. */
+            text-align: center; /* Sets the text-align style for this rule. */
+            justify-content: center; /* Aligns child items on the main axis. */
+        }
+
+        .pw-filter-sep { /* Starts styles for the .pw-filter-sep selector. */
+            display: none; /* Controls how the element participates in layout. */
+        }
+    }

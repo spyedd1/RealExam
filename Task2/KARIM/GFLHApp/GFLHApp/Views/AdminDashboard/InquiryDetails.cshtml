@@ -1,0 +1,95 @@
+@model GFLHApp.Models.ContactInquiry
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Inquiry Details";
+    ViewData["AdminSection"] = "inquiries";
+}
+
+<div class="adm-inquiry-shell">
+    @if (TempData["AdminSuccess"] is string adminSuccess)
+    {
+        <div class="adm-inline-alert" role="status">@adminSuccess</div>
+    }
+
+    <div class="adm-inquiry-head">
+        <div>
+            <p class="adm-inquiry-head__eyebrow">Customer inquiry</p>
+            <h1 class="adm-inquiry-head__title">@Model.Subject</h1>
+            <p class="adm-inquiry-head__meta">
+                From <strong>@Model.FullName</strong> at @Model.EmailAddress
+                <span aria-hidden="true">·</span>
+                Submitted @Model.SubmittedAtUtc.ToLocalTime().ToString("d MMM yyyy HH:mm")
+            </p>
+        </div>
+
+        <div class="adm-inquiry-head__actions">
+            <form asp-action="ToggleInquiryRead" method="post" class="adm-inline-form">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.ContactInquiryId" />
+                <button type="submit" class="pw-btn pw-btn--ghost pw-btn--md">
+                    @(Model.IsRead ? "Mark unread" : "Mark read")
+                </button>
+            </form>
+
+            <a href="/AdminDashboard/Inquiries" class="pw-btn pw-btn--outline pw-btn--md">Back to inquiries</a>
+        </div>
+    </div>
+
+    <div class="adm-card adm-inquiry-card">
+        <div class="adm-inquiry-card__body">
+            <h2>Message</h2>
+            <p>@Model.Message</p>
+        </div>
+    </div>
+
+    <div class="adm-card adm-inquiry-card">
+        <div class="adm-inquiry-card__body">
+            <div class="adm-reply-head">
+                <div>
+                    <h2>Admin reply</h2>
+                    <p class="adm-reply-head__sub">
+                        Write the response that signed-in users will see on the Contact page when it matches their email.
+                    </p>
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.AdminReply))
+                {
+                    <span class="adm-badge adm-badge--accepted">Reply saved</span>
+                }
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.AdminReply))
+            {
+                <div class="adm-reply-preview">
+                    <p>@Model.AdminReply</p>
+                    <span class="adm-inline-meta">
+                        @(string.IsNullOrWhiteSpace(Model.RepliedByEmail) ? "Admin" : Model.RepliedByEmail)
+                        @if (Model.RepliedAtUtc.HasValue)
+                        {
+                            <text> on @Model.RepliedAtUtc.Value.ToLocalTime().ToString("d MMM yyyy HH:mm")</text>
+                        }
+                    </span>
+                </div>
+            }
+
+            <form asp-action="ReplyToInquiry" method="post" class="adm-reply-form">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.ContactInquiryId" />
+                <label for="replyMessage" class="adm-reply-label">Reply message</label>
+                <textarea id="replyMessage" name="replyMessage" class="adm-reply-textarea" rows="7" placeholder="Write your reply to the customer here...">@Model.AdminReply</textarea>
+                <div class="adm-reply-actions">
+                    <button type="submit" class="pw-btn pw-btn--primary pw-btn--md">Save reply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/pages/admindashboard/AdminDashboardInquiries.js" asp-append-version="true"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/admindashboard/AdminDashboardInquiries.css" asp-append-version="true" />
+}

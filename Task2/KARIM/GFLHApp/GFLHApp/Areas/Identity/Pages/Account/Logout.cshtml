@@ -1,0 +1,27 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out"; // Sets the browser and page title for this view.
+}
+
+<header> @* Starts the page header area. *@
+    <h1>@ViewData["Title"]</h1> @* Sets the browser and page title for this view. *@
+    @{
+ // ----- Authorization Display -----
+        if (User.Identity?.IsAuthenticated ?? false) // Renders part of the identity page markup.
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post"> // Starts the form that submits this page's user input.
+                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button> // Renders a button for the user action.
+            </form> // Closes the form after its fields and actions.
+        }
+ // ----- Conditional Rendering -----
+        else // Renders the fallback branch for the previous condition.
+        {
+            <p>You have successfully logged out of the application.</p> // Renders paragraph text for the user.
+        }
+    }
+</header> @* Closes the matching HTML element. *@

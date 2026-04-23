@@ -1,0 +1,252 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Products
+@{
+    ViewData["Title"] = "Create Product"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+
+
+ @* ----- Styling Section ----- *@
+<div class="pw-admin-page"> @* Starts a layout container for this section. *@
+    <div class="pw-admin-header"> @* Starts a layout container for this section. *@
+        <div class="pw-admin-header__inner"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+            <nav aria-label="Breadcrumb"> @* Starts the navigation area. *@
+                <ol class="pw-admin-breadcrumb"> @* Starts a list of related items. *@
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li> @* Builds a link or form target using MVC routing. *@
+                    <li><a asp-controller="Products" asp-action="Index">Products</a></li> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                    <li><span aria-current="page">Create</span></li> @* Renders one list item. *@
+                </ol> @* Closes the matching HTML element. *@
+            </nav> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-admin-header__title"> @* Starts a layout container for this section. *@
+                <div class="pw-admin-header__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <i data-lucide="package-plus"></i> @* Renders part of the products page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h1>Create product</h1> @* Renders a heading for this page section. *@
+                    <p>Add a new item to your farm shop with image upload and live preview.</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pw-admin-body"> @* Starts a layout container for this section. *@
+        <div class="pw-admin-img-col" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-admin-img-card"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-admin-img-placeholder" id="adminImgPreview"> @* Starts a layout container for this section. *@
+                    <i data-lucide="sprout" style="width:72px;height:72px;opacity:.45;"></i> @* Renders part of the products page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pw-admin-img-meta"> @* Starts a layout container for this section. *@
+ @* ----- Product Display ----- *@
+                    <p class="pw-admin-img-meta__name" id="adminImgName">New product</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <p class="pw-admin-img-meta__path" id="adminImgPath">no image selected</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Navigation ----- *@
+        <form asp-action="Create" method="post" enctype="multipart/form-data" novalidate> @* Starts the form that submits this page's user input. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-form-card"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                <div asp-validation-summary="All" class="pw-form-errors" hidden></div> @* Shows page-level validation messages. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Basic information</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Styling Section ----- *@
+                    <div class="pw-field" style="margin-bottom:16px;"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="ItemName">Product name <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                        <input asp-for="ItemName" class="pw-input" id="liveNameInput" placeholder="e.g. Fresh Organic Tomatoes" autocomplete="off" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="ItemName" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                    <div class="pw-form-row"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="Category">Category <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                            <select asp-for="Category" class="pw-select"> @* Binds this dropdown to the matching model property. *@
+ @* ----- Search and Filters ----- *@
+                                <option value="">Select a category</option> @* Renders one dropdown option. *@
+                                <option value="Vegetables">Vegetables</option> @* Renders one dropdown option. *@
+                                <option value="Fruit">Fruit</option> @* Renders one dropdown option. *@
+                                <option value="Dairy">Dairy</option> @* Renders one dropdown option. *@
+                                <option value="Eggs">Eggs</option> @* Renders one dropdown option. *@
+                                <option value="Meat">Meat</option> @* Renders one dropdown option. *@
+                                <option value="Bakery">Bakery</option> @* Renders one dropdown option. *@
+                                <option value="Honey">Honey &amp; Preserves</option> @* Renders one dropdown option. *@
+                                <option value="Herbs">Herbs &amp; Flowers</option> @* Renders one dropdown option. *@
+                                <option value="Drinks">Drinks</option> @* Renders one dropdown option. *@
+                                <option value="Other">Other</option> @* Renders one dropdown option. *@
+                            </select> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="Category" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label for="imageUpload">Upload image</label> @* Renders text identifying a form field. *@
+                            <input type="file" id="imageUpload" name="imageUpload" class="pw-file" accept=".jpg,.jpeg,.png,.webp" /> @* Renders a user input field. *@
+ @* ----- Styling Section ----- *@
+                            <span class="pw-field__hint">Upload a JPG, PNG, or WebP image up to 5 MB from your computer.</span> @* Renders inline text or badge content. *@
+                            <span class="pw-field__error">@Html.ValidationMessage("imageUpload")</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+                    <div class="pw-field" style="margin-top:16px;"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="ImagePath">Or choose an existing image</label> @* Renders a label tied to the model field. *@
+ @* ----- Page Model Setup ----- *@
+                        <select asp-for="ImagePath" class="pw-select" id="liveImagePathInput" asp-items="ViewBag.ExistingImages"> @* Binds this input to the matching model property. *@
+                            <option value="">No existing image selected</option> @* Renders one dropdown option. *@
+                        </select> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="ImagePath" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+ @* ----- Styling Section ----- *@
+                        <span class="pw-field__hint">This list is loaded from `wwwroot/images`. If you upload a file above, that uploaded image will be used instead.</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+
+                    <div class="pw-field" style="margin-top:16px;"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="Description">Description <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                        <textarea asp-for="Description" class="pw-textarea" placeholder="Tell customers what makes this product special..." rows="4"></textarea> @* Renders a multi-line text input. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="Description" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Pricing &amp; stock</p> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <div class="pw-form-row"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="ItemPrice">Price (GBP) <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                            <div class="pw-stepper" role="group" aria-label="Price"> @* Starts a layout container for this section. *@
+                                <button type="button" class="pw-stepper__btn" data-target="ItemPrice" data-action="dec" aria-label="Decrease price">-</button> @* Renders a button for the user action. *@
+                                <input asp-for="ItemPrice" class="pw-stepper__input" type="number" min="0.01" step="0.01" /> @* Binds this input to the matching model property. *@
+                                <button type="button" class="pw-stepper__btn" data-target="ItemPrice" data-action="inc" aria-label="Increase price">+</button> @* Renders a button for the user action. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="ItemPrice" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="QuantityInStock">Quantity in stock <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
+                            <div class="pw-stepper" role="group" aria-label="Quantity in stock"> @* Starts a layout container for this section. *@
+                                <button type="button" class="pw-stepper__btn" data-target="QuantityInStock" data-action="dec" aria-label="Decrease quantity">-</button> @* Renders a button for the user action. *@
+                                <input asp-for="QuantityInStock" class="pw-stepper__input" type="number" min="0" step="1" /> @* Binds this input to the matching model property. *@
+                                <button type="button" class="pw-stepper__btn" data-target="QuantityInStock" data-action="inc" aria-label="Increase quantity">+</button> @* Renders a button for the user action. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="QuantityInStock" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Availability</p> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <div class="pw-toggle-row"> @* Starts a layout container for this section. *@
+                        <div class="pw-toggle-row__info"> @* Starts a layout container for this section. *@
+                            <strong>Listed for sale</strong> @* Renders part of the products page markup. *@
+ @* ----- Form Actions ----- *@
+                            <span>Turn this off if you want to save the product without showing it to customers yet.</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+                        <label class="pw-toggle" aria-label="Toggle product availability"> @* Renders text identifying a form field. *@
+                            <input asp-for="Available" type="checkbox" role="switch" /> @* Binds this input to the matching model property. *@
+ @* ----- Styling Section ----- *@
+                            <span class="pw-toggle__track" aria-hidden="true"></span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                        </label> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Allergens</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="Allergens">Allergen list</label> @* Renders a label tied to the model field. *@
+                        <input asp-for="Allergens" class="pw-input" id="allergensInput" placeholder="e.g. Gluten, Milk, Eggs - leave blank if none" autocomplete="off" /> @* Binds this input to the matching model property. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="Allergens" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+ @* ----- Product Display ----- *@
+                        <span class="pw-field__hint">Use commas to separate allergens. Quick-add buttons below can help you fill this in faster.</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                        <div class="pw-allergen-chips" role="group" aria-label="Quick-add allergens"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Gluten">Gluten</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Milk">Milk</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Eggs">Eggs</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Peanuts">Peanuts</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Tree nuts">Tree nuts</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Fish">Fish</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Crustaceans">Crustaceans</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Sesame">Sesame</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Sulphites">Sulphites</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Mustard">Mustard</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Celery">Celery</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Soybeans">Soybeans</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Lupin">Lupin</button> @* Renders a button for the user action. *@
+                            <button type="button" class="pw-allergen-chip" data-allergen="Molluscs">Molluscs</button> @* Renders a button for the user action. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-actions"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                    <a asp-action="Index" class="pw-btn-back"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                        <i data-lucide="arrow-left" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                        Back @* Renders part of the products page markup. *@
+                    </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                    <button type="submit" class="pw-btn-save"> @* Renders a button for the user action. *@
+                        <i data-lucide="check" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the products page markup. *@
+                        Create product @* Renders part of the products page markup. *@
+                    </button> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </form> @* Closes the form after its fields and actions. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Form Actions ----- *@
+    <script src="~/js/pages/products/ProductCreate.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); } // Starts a Razor code block for page setup.
+
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/products/ProductCreate.css" asp-append-version="true" /> @* Renders one list item. *@
+}

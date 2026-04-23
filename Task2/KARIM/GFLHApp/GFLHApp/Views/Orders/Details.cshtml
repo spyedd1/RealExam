@@ -1,0 +1,316 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Orders
+
+@{
+    ViewData["Title"] = "Order Details"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+
+ // ----- Conditional Rendering -----
+    var orderProducts = Model?.OrderProducts ?? new List<GFLHApp.Models.OrderProducts>(); // Renders part of the orders page markup.
+    var productCount = orderProducts.Sum(item => item.ProductQuantity); // Renders part of the orders page markup.
+ // ----- Loop Rendering -----
+    var formattedId = Model == null ? "" : $"#{Model.OrdersId:D6}"; // Displays or uses data from the orders model.
+ // ----- Form Fields -----
+    var fulfilmentLabel = Model?.Delivery == true ? "Delivery" : "Collection"; // Renders part of the orders page markup.
+ // ----- Conditional Rendering -----
+    var fulfilmentDetail = Model?.Delivery == true // Renders part of the orders page markup.
+ // ----- Loop Rendering -----
+        ? (string.IsNullOrWhiteSpace(Model.DeliveryMethod) ? "Delivery details being prepared" : Model.DeliveryMethod) // Displays or uses data from the orders model.
+        : (Model?.DateOfCollection.HasValue == true ? Model.DateOfCollection.Value.ToString("dd MMMM yyyy") : "Collection date to be confirmed"); // Displays or uses data from the orders model.
+
+ // ----- Search and Filters -----
+    var statusClass = Model?.TrackingStatus switch // Renders part of the orders page markup.
+    {
+        "Delivered" => "pw-badge--green", // Renders part of the orders page markup.
+ // ----- Order Display -----
+        "Awaiting Confirmation" => "pw-badge--purple", // Renders part of the orders page markup.
+        "Preparing Delivery" => "pw-badge--orange", // Renders part of the orders page markup.
+        _ => "pw-badge--yellow" // Renders part of the orders page markup.
+    };
+
+ // ----- Search and Filters -----
+    var statusIcon = Model?.TrackingStatus switch // Renders part of the orders page markup.
+    {
+        "Delivered" => "check-circle", // Renders part of the orders page markup.
+ // ----- Order Display -----
+        "Awaiting Confirmation" => "clock", // Renders part of the orders page markup.
+        "Preparing Delivery" => "truck", // Renders part of the orders page markup.
+        _ => "package" // Renders part of the orders page markup.
+    };
+}
+
+ @* ----- Conditional Rendering ----- *@
+@if (Model == null) @* Conditionally renders this block when the check passes. *@
+{
+ @* ----- Styling Section ----- *@
+    <main class="od-page od-page--empty"> @* Starts the main page content area. *@
+        <section class="od-empty"> @* Renders part of the orders page markup. *@
+            <span class="od-empty__icon" aria-hidden="true"> @* Renders inline text or badge content. *@
+                <i data-lucide="package-x"></i> @* Renders part of the orders page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h1>We could not find that order.</h1> @* Renders a heading for this page section. *@
+            <p>It may have moved, or you may not have access to view it.</p> @* Renders paragraph text for the user. *@
+ @* ----- Navigation ----- *@
+            <a class="pw-btn pw-btn--primary pw-btn--lg" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="clipboard-list" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                Back to Orders @* Renders part of the orders page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </section> @* Closes the matching HTML element. *@
+    </main> @* Closes the matching HTML element. *@
+}
+ @* ----- Conditional Rendering ----- *@
+else @* Renders the fallback branch for the previous condition. *@
+{
+ @* ----- Form Fields ----- *@
+    <section class="od-hero" aria-labelledby="order-details-title"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+        <span class="od-hero__float od-hero__float--1"><i data-lucide="leaf" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+        <span class="od-hero__float od-hero__float--2"><i data-lucide="package-check" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+        <span class="od-hero__float od-hero__float--3"><i data-lucide="sprout" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+
+        <div class="od-hero__inner"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+            <a class="od-back-link reveal" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                <i data-lucide="arrow-left" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                Orders @* Renders part of the orders page markup. *@
+            </a> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+            <span class="pw-badge @statusClass reveal"> @* Renders inline text or badge content. *@
+                <i data-lucide="@statusIcon" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+ @* ----- Page Model Setup ----- *@
+                @Model.TrackingStatus @* Displays or uses data from the orders model. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h1 id="order-details-title" class="od-hero__title reveal">Your order is in good hands.</h1> @* Renders a heading for this page section. *@
+ @* ----- Styling Section ----- *@
+            <p class="od-hero__sub reveal"> @* Renders paragraph text for the user. *@
+ @* ----- Loop Rendering ----- *@
+                Thanks for choosing Greenfield. Here is every detail we have for @formattedId, @* Renders part of the orders page markup. *@
+                from the items selected to the care notes for getting it to you. @* Renders part of the orders page markup. *@
+            </p> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="od-hero__wave" aria-hidden="true"> @* Starts a layout container for this section. *@
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none"> @* Renders part of the orders page markup. *@
+                <path d="M0,35 C260,72 480,6 720,34 C980,65 1180,10 1440,35 L1440,70 L0,70 Z" fill="#FFFBEB" /> @* Renders paragraph text for the user. *@
+            </svg> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </section> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+    <main class="od-page" aria-label="Order detail content"> @* Starts the main page content area. *@
+ @* ----- Styling Section ----- *@
+        <div class="od-shell"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+            <section class="od-summary reveal" aria-label="Order at a glance"> @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                <div class="od-summary__item"> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                    <span>Order reference</span> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                    <strong>@formattedId</strong> @* Renders part of the orders page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <div class="od-summary__item"> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                    <span>Ordered on</span> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                    <strong>@Model.OrderDate.ToString("dd MMM yyyy")</strong> @* Displays or uses data from the orders model. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <div class="od-summary__item"> @* Starts a layout container for this section. *@
+                    <span>Items</span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                    <strong>@productCount item@(productCount == 1 ? "" : "s")</strong> @* Renders part of the orders page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <div class="od-summary__item od-summary__item--total"> @* Starts a layout container for this section. *@
+ @* ----- Basket Display ----- *@
+                    <span>Total</span> @* Renders inline text or badge content. *@
+ @* ----- Loop Rendering ----- *@
+                    <strong>&pound;@Model.OrdersTotal.ToString("0.00")</strong> @* Displays or uses data from the orders model. *@
+                </div> @* Closes the matching HTML element. *@
+            </section> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <div class="od-grid"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <section class="od-panel reveal" aria-labelledby="items-heading"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+                    <div class="od-panel__header"> @* Starts a layout container for this section. *@
+ @* ----- Basket Display ----- *@
+                        <span class="od-panel__icon"><i data-lucide="shopping-basket" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                            <span class="od-panel__eyebrow">Picked for you</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+                            <h2 id="items-heading">Order contents</h2> @* Renders a heading for this page section. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+                    @if (!orderProducts.Any()) @* Conditionally renders this block when the check passes. *@
+                    {
+ @* ----- Order Display ----- *@
+                        <p class="od-muted">No items are attached to this order yet.</p> @* Renders paragraph text for the user. *@
+                    }
+ @* ----- Conditional Rendering ----- *@
+                    else @* Renders the fallback branch for the previous condition. *@
+                    {
+ @* ----- Form Fields ----- *@
+                        <div class="od-items" role="table" aria-label="Items in @formattedId"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                            <div class="od-items__row od-items__row--head" role="row"> @* Starts a layout container for this section. *@
+ @* ----- Product Display ----- *@
+                                <span role="columnheader">Product</span> @* Renders inline text or badge content. *@
+                                <span role="columnheader">Qty</span> @* Renders inline text or badge content. *@
+                                <span role="columnheader">Unit price</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                                <span role="columnheader">Line total</span> @* Renders inline text or badge content. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Loop Rendering ----- *@
+                            @foreach (var item in orderProducts) @* Loops through the collection and renders each item. *@
+                            {
+ @* ----- Conditional Rendering ----- *@
+                                var itemName = item.Products?.ItemName ?? "Item"; @* Renders part of the orders page markup. *@
+                                var itemPrice = item.Products?.ItemPrice ?? 0m; @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                                <div class="od-items__row" role="row"> @* Starts a layout container for this section. *@
+ @* ----- Product Display ----- *@
+                                    <span role="cell">@itemName</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                                    <span role="cell">@item.ProductQuantity</span> @* Renders inline text or badge content. *@
+ @* ----- Product Display ----- *@
+                                    <span role="cell">&pound;@itemPrice.ToString("0.00")</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                                    <span role="cell">&pound;@((itemPrice * item.ProductQuantity).ToString("0.00"))</span> @* Renders inline text or badge content. *@
+                                </div> @* Closes the matching HTML element. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+                    }
+                </section> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+                <aside class="od-panel od-panel--side reveal" aria-labelledby="journey-heading"> @* Renders a navigation link or action link. *@
+ @* ----- Styling Section ----- *@
+                    <div class="od-panel__header"> @* Starts a layout container for this section. *@
+                        <span class="od-panel__icon od-panel__icon--warm"><i data-lucide="route" aria-hidden="true"></i></span> @* Renders inline text or badge content. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                            <span class="od-panel__eyebrow">Order journey</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+                            <h2 id="journey-heading">@fulfilmentLabel</h2> @* Renders a heading for this page section. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                    <div class="od-status-card"> @* Starts a layout container for this section. *@
+                        <span class="od-status-card__pill"> @* Renders inline text or badge content. *@
+                            <span aria-hidden="true"></span> @* Renders inline text or badge content. *@
+ @* ----- Page Model Setup ----- *@
+                            @Model.TrackingStatus @* Displays or uses data from the orders model. *@
+                        </span> @* Closes the matching HTML element. *@
+                        <p>@fulfilmentDetail</p> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                    <dl class="od-detail-list"> @* Renders part of the orders page markup. *@
+                        <div> @* Starts a layout container for this section. *@
+                            <dt>Fulfilment</dt> @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+                            <dd>@fulfilmentLabel</dd> @* Renders part of the orders page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+ @* ----- Loop Rendering ----- *@
+                        @if (Model.Delivery) @* Conditionally renders this block when the check passes. *@
+                        {
+                            <div> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                                <dt>Delivery address</dt> @* Renders part of the orders page markup. *@
+                                <dd> @* Renders part of the orders page markup. *@
+ @* ----- Page Model Setup ----- *@
+                                    @Model.DeliveryLine1<br /> @* Displays or uses data from the orders model. *@
+ @* ----- Loop Rendering ----- *@
+                                    @if (!string.IsNullOrWhiteSpace(Model.DeliveryLine2)) @* Conditionally renders this block when the check passes. *@
+                                    {
+ @* ----- Page Model Setup ----- *@
+                                        @Model.DeliveryLine2 @* Displays or uses data from the orders model. *@
+
+                                        <br /> @* Renders part of the orders page markup. *@
+                                    }
+                                    @Model.DeliveryCity<br /> @* Displays or uses data from the orders model. *@
+                                    @Model.DeliveryPostcode?.ToUpper() @* Displays or uses data from the orders model. *@
+                                </dd> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+                        }
+                        <div> @* Starts a layout container for this section. *@
+                            <dt>Billing address</dt> @* Renders part of the orders page markup. *@
+                            <dd> @* Renders part of the orders page markup. *@
+                                @Model.BillingLine1<br /> @* Displays or uses data from the orders model. *@
+ @* ----- Loop Rendering ----- *@
+                                @if (!string.IsNullOrWhiteSpace(Model.BillingLine2)) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Page Model Setup ----- *@
+                                    @Model.BillingLine2 @* Displays or uses data from the orders model. *@
+
+                                    <br /> @* Renders part of the orders page markup. *@
+                                }
+                                @Model.BillingCity<br /> @* Displays or uses data from the orders model. *@
+                                @Model.BillingPostcode.ToUpper() @* Displays or uses data from the orders model. *@
+                            </dd> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </dl> @* Closes the matching HTML element. *@
+                </aside> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Fields ----- *@
+            <section class="od-care reveal" aria-label="Customer care note"> @* Renders part of the orders page markup. *@
+                <i data-lucide="hand-heart" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                    <strong>We value your order.</strong> @* Renders part of the orders page markup. *@
+                    <p> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                        Every order supports local growers directly. If anything does not look right, @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                        keep your order reference nearby and we will help put it right. @* Renders part of the orders page markup. *@
+                    </p> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </section> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="od-actions reveal"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+                <a class="pw-btn pw-btn--primary pw-btn--lg" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="clipboard-list" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                    Back to Orders @* Renders part of the orders page markup. *@
+                </a> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                <a class="pw-btn pw-btn--ghost pw-btn--lg" asp-controller="Products" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="sprout" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+                    Shop Again @* Renders part of the orders page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </main> @* Closes the matching HTML element. *@
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Order Display ----- *@
+    <link rel="stylesheet" href="~/css/pages/orders/OrdersDetails.css" asp-append-version="true" /> @* Renders one list item. *@
+}
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Order Display ----- *@
+    <script src="~/js/pages/orders/OrdersDetails.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+}

@@ -1,0 +1,631 @@
+
+    /* ----- Hero section ----- */
+    .prv-hero { /* Starts styles for the .prv-hero selector. */
+        /* ----- Theme variables ----- */
+        background: linear-gradient(135deg, var(--green-900) 0%, #166534 55%, #14532d 100%); /* Sets the element background treatment. */
+        color: var(--white); /* Sets the text color. */
+        padding: 120px 0 80px; /* Sets spacing inside the element. */
+        position: relative; /* Controls how the element is positioned on the page. */
+        /* ----- Utility classes ----- */
+        overflow: hidden; /* Sets the overflow style for this rule. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-hero::before { /* Starts styles for the .prv-hero::before selector. */
+        content: ''; /* Sets the content style for this rule. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        inset: 0; /* Sets the inset style for this rule. */
+        /* ----- Tables ----- */
+        background: radial-gradient(ellipse 70% 60% at 80% 30%, rgba(245,158,11,.18) 0%, transparent 60%), /* Continues a selector or value list on the next line. */
+                    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(22,163,74,.25) 0%, transparent 55%); /* Styles part of the HomePrivacy page or component. */
+        pointer-events: none; /* Sets the pointer-events style for this rule. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-hero__float { /* Starts styles for the .prv-hero__float selector. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        /* ----- Animation ----- */
+        opacity: .12; /* Controls element transparency. */
+        animation: prv-drift 9s ease-in-out infinite; /* Sets the animation style for this rule. */
+    }
+
+    /* ----- Theme variables ----- */
+    .prv-hero__float--1 { top: 12%; left:  8%; font-size: 3.5rem; animation-delay: 0s; } /* Styles part of the HomePrivacy page or component. */
+    .prv-hero__float--2 { top: 20%; right: 10%; font-size: 2.5rem; animation-delay: 2s; } /* Styles part of the HomePrivacy page or component. */
+    .prv-hero__float--3 { bottom: 18%; left: 15%; font-size: 2rem; animation-delay: 4s; } /* Styles part of the HomePrivacy page or component. */
+    .prv-hero__float--4 { bottom: 25%; right: 18%; font-size: 3rem; animation-delay: 1.5s; } /* Styles part of the HomePrivacy page or component. */
+
+    /* ----- Animation ----- */
+    @keyframes prv-drift { /* Defines an animation sequence used by this page. */
+        /* ----- Forms ----- */
+        0%, 100% { transform: translateY(0) rotate(-4deg); } /* Defines one point in the animation timeline. */
+        50%       { transform: translateY(-18px) rotate(4deg); } /* Defines one point in the animation timeline. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-hero__inner { /* Starts styles for the .prv-hero__inner selector. */
+        position: relative; /* Controls how the element is positioned on the page. */
+        z-index: 1; /* Controls stacking order. */
+        /* ----- Tables ----- */
+        max-width: 780px; /* Limits the element width on larger screens. */
+        margin: 0 auto; /* Sets spacing outside the element. */
+        padding: 0 32px; /* Sets spacing inside the element. */
+        text-align: center; /* Sets the text-align style for this rule. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-hero__badge { /* Starts styles for the .prv-hero__badge selector. */
+        /* ----- Grid layout ----- */
+        display: inline-flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 6px; /* Sets spacing between flex or grid children. */
+        background: rgba(255,255,255,.12); /* Sets the element background treatment. */
+        border: 1px solid rgba(255,255,255,.2); /* Sets the border around the element. */
+        /* ----- Grid layout ----- */
+        color: #bbf7d0; /* Sets the text color. */
+        font-size: 0.75rem; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        letter-spacing: .08em; /* Sets the letter-spacing style for this rule. */
+        /* ----- Forms ----- */
+        text-transform: uppercase; /* Sets the text-transform style for this rule. */
+        padding: 6px 16px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        margin-bottom: 24px; /* Sets the margin-bottom style for this rule. */
+        backdrop-filter: blur(8px); /* Sets the backdrop-filter style for this rule. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-hero__title { /* Starts styles for the .prv-hero__title selector. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-display); /* Sets the font family. */
+        /* ----- Responsive layout ----- */
+        font-size: clamp(2.25rem, 5vw, 3.5rem); /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        line-height: 1.1; /* Sets vertical text rhythm. */
+        margin: 0 0 16px; /* Sets spacing outside the element. */
+        /* ----- Grid layout ----- */
+        color: #ffffff; /* Sets the text color. */
+        text-shadow: 0 2px 24px rgba(0,0,0,.25); /* Sets the text-shadow style for this rule. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-hero__title em { /* Starts styles for the .prv-hero__title em selector. */
+        font-style: normal; /* Sets the font-style style for this rule. */
+        background: linear-gradient(90deg, #4ade80, #fcd34d); /* Sets the element background treatment. */
+        -webkit-background-clip: text; /* Sets the -webkit-background-clip style for this rule. */
+        /* ----- Grid layout ----- */
+        -webkit-text-fill-color: transparent; /* Sets the -webkit-text-fill-color style for this rule. */
+        background-clip: text; /* Sets the background-clip style for this rule. */
+        filter: brightness(1.15); /* Sets the filter style for this rule. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-hero__sub { /* Starts styles for the .prv-hero__sub selector. */
+        font-size: 1.0625rem; /* Sets the text size. */
+        /* ----- Grid layout ----- */
+        color: rgba(255,255,255,.72); /* Sets the text color. */
+        margin: 0 0 40px; /* Sets spacing outside the element. */
+        line-height: 1.7; /* Sets vertical text rhythm. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-hero__chips { /* Starts styles for the .prv-hero__chips selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+        gap: 10px; /* Sets spacing between flex or grid children. */
+        justify-content: center; /* Aligns child items on the main axis. */
+    }
+
+    .prv-chip { /* Starts styles for the .prv-chip selector. */
+        display: inline-flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 6px; /* Sets spacing between flex or grid children. */
+        background: rgba(255,255,255,.1); /* Sets the element background treatment. */
+        border: 1px solid rgba(255,255,255,.15); /* Sets the border around the element. */
+        /* ----- Grid layout ----- */
+        color: rgba(255,255,255,.85); /* Sets the text color. */
+        font-size: 0.8125rem; /* Sets the text size. */
+        font-weight: 500; /* Sets the text weight. */
+        padding: 8px 16px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-full); /* Rounds the element corners. */
+        /* ----- Tables ----- */
+        transition: background .15s; /* Animates property changes smoothly. */
+    }
+
+    .prv-chip:hover { background: rgba(255,255,255,.18); } /* Styles part of the HomePrivacy page or component. */
+
+    /* ----- Hero section ----- */
+    .prv-hero__wave { /* Starts styles for the .prv-hero__wave selector. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        bottom: -1px; /* Sets the bottom style for this rule. */
+        left: 0; /* Sets the left style for this rule. */
+        right: 0; /* Sets the right style for this rule. */
+        line-height: 0; /* Sets vertical text rhythm. */
+    }
+
+    .prv-layout { /* Starts styles for the .prv-layout selector. */
+        /* ----- Grid layout ----- */
+        display: grid; /* Controls how the element participates in layout. */
+        grid-template-columns: 240px 1fr; /* Defines the grid column layout. */
+        gap: 48px; /* Sets spacing between flex or grid children. */
+        /* ----- Tables ----- */
+        max-width: 1200px; /* Limits the element width on larger screens. */
+        margin: 0 auto; /* Sets spacing outside the element. */
+        padding: 72px 32px 96px; /* Sets spacing inside the element. */
+        align-items: start; /* Aligns child items on the cross axis. */
+    }
+
+    .prv-toc { /* Starts styles for the .prv-toc selector. */
+        position: sticky; /* Controls how the element is positioned on the page. */
+        top: 104px; /* Sets the top style for this rule. */
+    }
+
+    /* ----- Forms ----- */
+    .prv-toc__label { /* Starts styles for the .prv-toc__label selector. */
+        font-size: 0.6875rem; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        letter-spacing: .1em; /* Sets the letter-spacing style for this rule. */
+        text-transform: uppercase; /* Sets the text-transform style for this rule. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        margin-bottom: 12px; /* Sets the margin-bottom style for this rule. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 6px; /* Sets spacing between flex or grid children. */
+    }
+
+    .prv-toc__list { /* Starts styles for the .prv-toc__list selector. */
+        list-style: none; /* Sets the list-style style for this rule. */
+        margin: 0; /* Sets spacing outside the element. */
+        padding: 0; /* Sets spacing inside the element. */
+        display: flex; /* Controls how the element participates in layout. */
+        flex-direction: column; /* Sets the flex-direction style for this rule. */
+        gap: 2px; /* Sets spacing between flex or grid children. */
+    }
+
+    .prv-toc__link { /* Starts styles for the .prv-toc__link selector. */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 8px; /* Sets spacing between flex or grid children. */
+        font-size: 0.875rem; /* Sets the text size. */
+        font-weight: 500; /* Sets the text weight. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        padding: 9px 14px; /* Sets spacing inside the element. */
+        border-radius: var(--r-md); /* Rounds the element corners. */
+        /* ----- Grid layout ----- */
+        transition: background .15s, color .15s; /* Animates property changes smoothly. */
+        /* ----- Tables ----- */
+        border-left: 3px solid transparent; /* Sets the border-left style for this rule. */
+    }
+
+    .prv-toc__link:hover, /* Continues a selector or value list on the next line. */
+    .prv-toc__link.is-active { /* Starts styles for the .prv-toc__link.is-active selector. */
+        /* ----- Theme variables ----- */
+        background: var(--green-100); /* Sets the element background treatment. */
+        color: var(--green-800); /* Sets the text color. */
+        border-left-color: var(--green); /* Sets the border-left-color style for this rule. */
+    }
+
+    .prv-toc__dot { /* Starts styles for the .prv-toc__dot selector. */
+        /* ----- Tables ----- */
+        width: 7px; height: 7px; /* Sets the element width. */
+        border-radius: 50%; /* Rounds the element corners. */
+        /* ----- Grid layout ----- */
+        background: currentColor; /* Sets the element background treatment. */
+        /* ----- Animation ----- */
+        opacity: .5; /* Controls element transparency. */
+        /* ----- Grid layout ----- */
+        flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    }
+
+    .prv-content { /* Starts styles for the .prv-content selector. */
+        /* ----- Tables ----- */
+        min-width: 0; /* Sets the min-width style for this rule. */
+    }
+
+    /* ----- Base layout ----- */
+    .prv-section { /* Starts styles for the .prv-section selector. */
+        margin-bottom: 64px; /* Sets the margin-bottom style for this rule. */
+        scroll-margin-top: 104px; /* Sets the scroll-margin-top style for this rule. */
+    }
+
+    .prv-section__header { /* Starts styles for the .prv-section__header selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: flex-start; /* Aligns child items on the cross axis. */
+        gap: 16px; /* Sets spacing between flex or grid children. */
+        margin-bottom: 24px; /* Sets the margin-bottom style for this rule. */
+    }
+
+    /* ----- Base layout ----- */
+    .prv-section__icon-wrap { /* Starts styles for the .prv-section__icon-wrap selector. */
+        /* ----- Tables ----- */
+        width: 48px; /* Sets the element width. */
+        height: 48px; /* Sets the element height. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-md); /* Rounds the element corners. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        justify-content: center; /* Aligns child items on the main axis. */
+        flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+        margin-top: 4px; /* Sets the margin-top style for this rule. */
+    }
+
+    /* ----- Theme variables ----- */
+    .prv-section__icon-wrap--green   { background: var(--green-100);  color: var(--green); } /* Styles part of the HomePrivacy page or component. */
+    .prv-section__icon-wrap--yellow  { background: var(--yellow-100); color: var(--yellow); } /* Styles part of the HomePrivacy page or component. */
+    .prv-section__icon-wrap--orange  { background: var(--orange-100); color: var(--orange); } /* Styles part of the HomePrivacy page or component. */
+    .prv-section__icon-wrap--pink    { background: var(--pink-100);   color: var(--pink); } /* Styles part of the HomePrivacy page or component. */
+    .prv-section__icon-wrap--cream   { background: var(--cream-2);    color: var(--text-muted); } /* Styles part of the HomePrivacy page or component. */
+
+    /* ----- Base layout ----- */
+    .prv-section__heading { /* Starts styles for the .prv-section__heading selector. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-display); /* Sets the font family. */
+        font-size: 1.5rem; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        margin: 0 0 4px; /* Sets spacing outside the element. */
+        color: var(--text); /* Sets the text color. */
+        line-height: 1.2; /* Sets vertical text rhythm. */
+    }
+
+    /* ----- Base layout ----- */
+    .prv-section__updated { /* Starts styles for the .prv-section__updated selector. */
+        font-size: 0.8125rem; /* Sets the text size. */
+        /* ----- Theme variables ----- */
+        color: var(--text-light); /* Sets the text color. */
+    }
+
+    .prv-prose { /* Starts styles for the .prv-prose selector. */
+        font-size: 0.9375rem; /* Sets the text size. */
+        line-height: 1.75; /* Sets vertical text rhythm. */
+        color: var(--text-muted); /* Sets the text color. */
+    }
+
+    .prv-prose p { margin: 0 0 16px; } /* Styles part of the HomePrivacy page or component. */
+    .prv-prose p:last-child { margin-bottom: 0; } /* Styles part of the HomePrivacy page or component. */
+
+    .prv-prose strong { color: var(--text); font-weight: 600; } /* Styles part of the HomePrivacy page or component. */
+
+    .prv-prose a { /* Starts styles for the .prv-prose a selector. */
+        color: var(--green); /* Sets the text color. */
+        font-weight: 500; /* Sets the text weight. */
+        text-decoration: underline; /* Sets the text-decoration style for this rule. */
+        text-underline-offset: 3px; /* Sets the text-underline-offset style for this rule. */
+    }
+
+    .prv-prose a:hover { color: var(--green-700); } /* Styles part of the HomePrivacy page or component. */
+
+    .prv-callout { /* Starts styles for the .prv-callout selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        gap: 14px; /* Sets spacing between flex or grid children. */
+        padding: 18px 20px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-md); /* Rounds the element corners. */
+        margin: 20px 0; /* Sets spacing outside the element. */
+        border-left: 4px solid; /* Sets the border-left style for this rule. */
+    }
+
+    /* ----- Theme variables ----- */
+    .prv-callout--green  { background: var(--green-100);  border-color: var(--green);  color: var(--green-800); } /* Styles part of the HomePrivacy page or component. */
+    .prv-callout--yellow { background: var(--yellow-100); border-color: var(--yellow); color: #92400E; } /* Styles part of the HomePrivacy page or component. */
+    .prv-callout--orange { background: var(--orange-100); border-color: var(--orange); color: #9A3412; } /* Styles part of the HomePrivacy page or component. */
+
+    body.dark-mode .prv-callout--green  { color: #86efac; } /* Styles part of the HomePrivacy page or component. */
+    body.dark-mode .prv-callout--yellow { color: #fde68a; } /* Styles part of the HomePrivacy page or component. */
+    body.dark-mode .prv-callout--orange { color: #fdba74; } /* Styles part of the HomePrivacy page or component. */
+
+    /* ----- Grid layout ----- */
+    .prv-callout__icon { flex-shrink: 0; margin-top: 1px; } /* Styles part of the HomePrivacy page or component. */
+
+    .prv-callout__text { /* Starts styles for the .prv-callout__text selector. */
+        font-size: 0.9rem; /* Sets the text size. */
+        line-height: 1.65; /* Sets vertical text rhythm. */
+        font-weight: 500; /* Sets the text weight. */
+    }
+
+    .prv-rights { /* Starts styles for the .prv-rights selector. */
+        display: grid; /* Controls how the element participates in layout. */
+        grid-template-columns: repeat(2, 1fr); /* Defines the grid column layout. */
+        gap: 16px; /* Sets spacing between flex or grid children. */
+        margin-top: 20px; /* Sets the margin-top style for this rule. */
+    }
+
+    /* ----- Card layout ----- */
+    .prv-right-card { /* Starts styles for the .prv-right-card selector. */
+        /* ----- Theme variables ----- */
+        background: var(--white); /* Sets the element background treatment. */
+        border: 1px solid var(--border); /* Sets the border around the element. */
+        border-radius: var(--r-md); /* Rounds the element corners. */
+        padding: 18px 20px; /* Sets spacing inside the element. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        gap: 12px; /* Sets spacing between flex or grid children. */
+        align-items: flex-start; /* Aligns child items on the cross axis. */
+        /* ----- Theme variables ----- */
+        box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+        /* ----- Forms ----- */
+        transition: box-shadow .15s, transform .15s; /* Animates property changes smoothly. */
+    }
+
+    /* ----- Card layout ----- */
+    .prv-right-card:hover { /* Starts styles for the .prv-right-card:hover selector. */
+        /* ----- Theme variables ----- */
+        box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+        /* ----- Forms ----- */
+        transform: translateY(-2px); /* Moves, scales, or rotates the element. */
+    }
+
+    /* ----- Card layout ----- */
+    .prv-right-card__icon { /* Starts styles for the .prv-right-card__icon selector. */
+        /* ----- Tables ----- */
+        width: 36px; height: 36px; /* Sets the element width. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-sm); /* Rounds the element corners. */
+        background: var(--green-100); /* Sets the element background treatment. */
+        color: var(--green); /* Sets the text color. */
+        /* ----- Grid layout ----- */
+        display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+        flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    }
+
+    /* ----- Card layout ----- */
+    .prv-right-card__title { /* Starts styles for the .prv-right-card__title selector. */
+        font-size: 0.9rem; /* Sets the text size. */
+        font-weight: 600; /* Sets the text weight. */
+        /* ----- Theme variables ----- */
+        color: var(--text); /* Sets the text color. */
+        margin: 0 0 4px; /* Sets spacing outside the element. */
+    }
+
+    /* ----- Card layout ----- */
+    .prv-right-card__desc { /* Starts styles for the .prv-right-card__desc selector. */
+        font-size: 0.8125rem; /* Sets the text size. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        line-height: 1.55; /* Sets vertical text rhythm. */
+        margin: 0; /* Sets spacing outside the element. */
+    }
+
+    /* ----- Tables ----- */
+    .prv-cookie-table { /* Starts styles for the .prv-cookie-table selector. */
+        width: 100%; /* Sets the element width. */
+        /* ----- Grid layout ----- */
+        border-collapse: collapse; /* Sets the border-collapse style for this rule. */
+        font-size: 0.875rem; /* Sets the text size. */
+        margin-top: 20px; /* Sets the margin-top style for this rule. */
+        /* ----- Theme variables ----- */
+        border-radius: var(--r-md); /* Rounds the element corners. */
+        /* ----- Utility classes ----- */
+        overflow: hidden; /* Sets the overflow style for this rule. */
+        /* ----- Theme variables ----- */
+        box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    }
+
+    /* ----- Tables ----- */
+    .prv-cookie-table thead { /* Starts styles for the .prv-cookie-table thead selector. */
+        /* ----- Theme variables ----- */
+        background: linear-gradient(135deg, var(--green-900), var(--green-700)); /* Sets the element background treatment. */
+        color: var(--white); /* Sets the text color. */
+    }
+
+    /* ----- Tables ----- */
+    .prv-cookie-table th { /* Starts styles for the .prv-cookie-table th selector. */
+        padding: 12px 16px; /* Sets spacing inside the element. */
+        text-align: left; /* Sets the text-align style for this rule. */
+        font-weight: 600; /* Sets the text weight. */
+        font-size: 0.8125rem; /* Sets the text size. */
+        letter-spacing: .04em; /* Sets the letter-spacing style for this rule. */
+    }
+
+    /* ----- Base layout ----- */
+    .prv-cookie-table tbody tr { /* Starts styles for the .prv-cookie-table tbody tr selector. */
+        /* ----- Theme variables ----- */
+        border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+        /* ----- Tables ----- */
+        transition: background .1s; /* Animates property changes smoothly. */
+    }
+
+    /* ----- Base layout ----- */
+    .prv-cookie-table tbody tr:last-child { border-bottom: none; } /* Styles part of the HomePrivacy page or component. */
+
+    /* ----- Theme variables ----- */
+    .prv-cookie-table tbody tr:hover { background: var(--green-100); } /* Styles part of the HomePrivacy page or component. */
+
+    /* ----- Tables ----- */
+    .prv-cookie-table td { /* Starts styles for the .prv-cookie-table td selector. */
+        padding: 12px 16px; /* Sets spacing inside the element. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        vertical-align: top; /* Sets the vertical-align style for this rule. */
+    }
+
+    .prv-cookie-table td:first-child { color: var(--text); font-weight: 500; } /* Styles part of the HomePrivacy page or component. */
+
+    /* ----- Base layout ----- */
+    body.dark-mode .prv-cookie-table tbody tr:hover { background: rgba(22,163,74,.1); } /* Styles part of the HomePrivacy page or component. */
+
+    .prv-list { /* Starts styles for the .prv-list selector. */
+        list-style: none; /* Sets the list-style style for this rule. */
+        margin: 16px 0; /* Sets spacing outside the element. */
+        padding: 0; /* Sets spacing inside the element. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        flex-direction: column; /* Sets the flex-direction style for this rule. */
+        gap: 10px; /* Sets spacing between flex or grid children. */
+    }
+
+    .prv-list li { /* Starts styles for the .prv-list li selector. */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: flex-start; /* Aligns child items on the cross axis. */
+        gap: 10px; /* Sets spacing between flex or grid children. */
+        font-size: 0.9375rem; /* Sets the text size. */
+        /* ----- Theme variables ----- */
+        color: var(--text-muted); /* Sets the text color. */
+        line-height: 1.6; /* Sets vertical text rhythm. */
+    }
+
+    .prv-list__check { /* Starts styles for the .prv-list__check selector. */
+        /* ----- Tables ----- */
+        width: 20px; height: 20px; /* Sets the element width. */
+        /* ----- Theme variables ----- */
+        background: var(--green-100); /* Sets the element background treatment. */
+        color: var(--green); /* Sets the text color. */
+        border-radius: 50%; /* Rounds the element corners. */
+        /* ----- Grid layout ----- */
+        display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+        flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+        margin-top: 1px; /* Sets the margin-top style for this rule. */
+    }
+
+    .prv-divider { /* Starts styles for the .prv-divider selector. */
+        height: 1px; /* Sets the element height. */
+        /* ----- Theme variables ----- */
+        background: linear-gradient(90deg, transparent, var(--border), transparent); /* Sets the element background treatment. */
+        margin: 64px 0; /* Sets spacing outside the element. */
+    }
+
+    /* ----- Hero section ----- */
+    .prv-updated-banner { /* Starts styles for the .prv-updated-banner selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        align-items: center; /* Aligns child items on the cross axis. */
+        gap: 12px; /* Sets spacing between flex or grid children. */
+        /* ----- Theme variables ----- */
+        background: var(--cream-2); /* Sets the element background treatment. */
+        border: 1px solid var(--border); /* Sets the border around the element. */
+        border-radius: var(--r-md); /* Rounds the element corners. */
+        padding: 14px 20px; /* Sets spacing inside the element. */
+        margin-bottom: 48px; /* Sets the margin-bottom style for this rule. */
+        font-size: 0.875rem; /* Sets the text size. */
+        color: var(--text-muted); /* Sets the text color. */
+    }
+
+    .prv-updated-banner strong { color: var(--text); } /* Styles part of the HomePrivacy page or component. */
+
+    /* ----- Buttons ----- */
+    .prv-cta-strip { /* Starts styles for the .prv-cta-strip selector. */
+        /* ----- Theme variables ----- */
+        background: linear-gradient(135deg, var(--green-900) 0%, var(--green-700) 100%); /* Sets the element background treatment. */
+        border-radius: var(--r-xl); /* Rounds the element corners. */
+        padding: 48px 40px; /* Sets spacing inside the element. */
+        text-align: center; /* Sets the text-align style for this rule. */
+        position: relative; /* Controls how the element is positioned on the page. */
+        /* ----- Utility classes ----- */
+        overflow: hidden; /* Sets the overflow style for this rule. */
+        margin-top: 48px; /* Sets the margin-top style for this rule. */
+    }
+
+    /* ----- Buttons ----- */
+    .prv-cta-strip::before { /* Starts styles for the .prv-cta-strip::before selector. */
+        content: ''; /* Sets the content style for this rule. */
+        position: absolute; /* Controls how the element is positioned on the page. */
+        inset: 0; /* Sets the inset style for this rule. */
+        /* ----- Tables ----- */
+        background: radial-gradient(ellipse 60% 60% at 80% 40%, rgba(245,158,11,.25) 0%, transparent 65%); /* Sets the element background treatment. */
+        pointer-events: none; /* Sets the pointer-events style for this rule. */
+    }
+
+    /* ----- Buttons ----- */
+    .prv-cta-strip__title { /* Starts styles for the .prv-cta-strip__title selector. */
+        /* ----- Theme variables ----- */
+        font-family: var(--font-display); /* Sets the font family. */
+        font-size: 1.5rem; /* Sets the text size. */
+        font-weight: 700; /* Sets the text weight. */
+        color: var(--white); /* Sets the text color. */
+        margin: 0 0 10px; /* Sets spacing outside the element. */
+        position: relative; /* Controls how the element is positioned on the page. */
+    }
+
+    /* ----- Buttons ----- */
+    .prv-cta-strip__sub { /* Starts styles for the .prv-cta-strip__sub selector. */
+        font-size: 0.9375rem; /* Sets the text size. */
+        /* ----- Grid layout ----- */
+        color: rgba(255,255,255,.7); /* Sets the text color. */
+        margin: 0 0 28px; /* Sets spacing outside the element. */
+        position: relative; /* Controls how the element is positioned on the page. */
+    }
+
+    /* ----- Buttons ----- */
+    .prv-cta-strip__actions { /* Starts styles for the .prv-cta-strip__actions selector. */
+        /* ----- Grid layout ----- */
+        display: flex; /* Controls how the element participates in layout. */
+        gap: 12px; /* Sets spacing between flex or grid children. */
+        justify-content: center; /* Aligns child items on the main axis. */
+        flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+        position: relative; /* Controls how the element is positioned on the page. */
+    }
+
+    /* ----- Tables ----- */
+    @media (max-width: 900px) { /* Starts responsive rules for this viewport range. */
+        .prv-layout { /* Starts styles for the .prv-layout selector. */
+            /* ----- Grid layout ----- */
+            grid-template-columns: 1fr; /* Defines the grid column layout. */
+            padding: 48px 24px 72px; /* Sets spacing inside the element. */
+            gap: 32px; /* Sets spacing between flex or grid children. */
+        }
+
+        .prv-toc { /* Starts styles for the .prv-toc selector. */
+            /* ----- Card layout ----- */
+            position: static; /* Controls how the element is positioned on the page. */
+            /* ----- Grid layout ----- */
+            display: flex; /* Controls how the element participates in layout. */
+            flex-direction: column; /* Sets the flex-direction style for this rule. */
+        }
+
+        .prv-toc__list { /* Starts styles for the .prv-toc__list selector. */
+            flex-direction: row; /* Sets the flex-direction style for this rule. */
+            flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+        }
+
+        .prv-rights { /* Starts styles for the .prv-rights selector. */
+            grid-template-columns: 1fr; /* Defines the grid column layout. */
+        }
+    }
+
+    /* ----- Tables ----- */
+    @media (max-width: 600px) { /* Starts responsive rules for this viewport range. */
+        /* ----- Hero section ----- */
+        .prv-hero { padding: 100px 0 64px; } /* Styles part of the HomePrivacy page or component. */
+        /* ----- Buttons ----- */
+        .prv-cta-strip { padding: 36px 24px; } /* Styles part of the HomePrivacy page or component. */
+        /* ----- Base layout ----- */
+        .prv-section__header { flex-direction: column; gap: 12px; } /* Styles part of the HomePrivacy page or component. */
+    }
+
+    body.dark-mode .prv-hero { /* Starts styles for the body.dark-mode .prv-hero selector. */
+        background: linear-gradient(135deg, #071a0e 0%, #0d2a17 55%, #14532d 100%); /* Sets the element background treatment. */
+    }
+
+    body.dark-mode .prv-right-card { /* Starts styles for the body.dark-mode .prv-right-card selector. */
+        /* ----- Theme variables ----- */
+        background: var(--white); /* Sets the element background treatment. */
+        border-color: var(--border); /* Sets the border-color style for this rule. */
+    }
+
+    /* ----- Base layout ----- */
+    body.dark-mode .prv-updated-banner { /* Starts styles for the body.dark-mode .prv-updated-banner selector. */
+        /* ----- Theme variables ----- */
+        background: var(--cream-2); /* Sets the element background treatment. */
+        border-color: var(--border); /* Sets the border-color style for this rule. */
+    }
+
+    /* ----- Base layout ----- */
+    body.dark-mode .prv-cookie-table thead { /* Starts styles for the body.dark-mode .prv-cookie-table thead selector. */
+        background: linear-gradient(135deg, #14532d, #166534); /* Sets the element background treatment. */
+    }
+
+    body.high-contrast .prv-toc__link.is-active, /* Continues a selector or value list on the next line. */
+    body.high-contrast .prv-toc__link:hover { /* Starts styles for the body.high-contrast .prv-toc__link:hover selector. */
+        /* ----- Theme variables ----- */
+        outline: 2px solid var(--green); /* Sets the outline style for this rule. */
+    }
+
+    body.high-contrast .prv-right-card { outline: 1px solid var(--border); } /* Styles part of the HomePrivacy page or component. */

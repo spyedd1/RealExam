@@ -1,0 +1,280 @@
+@{
+ // ----- Page Model Setup -----
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Chooses the layout used to render this page.
+    ViewData["Title"] = "Overview"; // Sets the browser and page title for this view.
+    ViewData["AdminSection"] = "overview"; // Reads view data supplied by the controller.
+
+    var recentOrders    = (ViewBag.RecentOrders    as IEnumerable<GFLHApp.Models.Orders>) ?? Enumerable.Empty<GFLHApp.Models.Orders>(); // Reads view data supplied by the controller.
+    var monthlyRevenue  = (ViewBag.MonthlyRevenue  as IEnumerable<dynamic>)               ?? Enumerable.Empty<dynamic>(); // Reads view data supplied by the controller.
+    var topProducts     = (ViewBag.TopProducts     as IEnumerable<dynamic>)               ?? Enumerable.Empty<dynamic>(); // Reads view data supplied by the controller.
+    var statusBreakdown = (ViewBag.StatusBreakdown as IEnumerable<dynamic>)               ?? Enumerable.Empty<dynamic>(); // Reads view data supplied by the controller.
+
+    decimal totalRevenue = (decimal)(ViewBag.TotalRevenue ?? 0m); // Reads view data supplied by the controller.
+    decimal monthRevenue = (decimal)(ViewBag.MonthRevenue  ?? 0m); // Reads view data supplied by the controller.
+ // ----- Conditional Rendering -----
+    decimal maxRev       = monthlyRevenue.Any() ? (decimal)monthlyRevenue.Max(m => (decimal)m.Revenue) : 1m; // Renders part of the admin dashboard page markup.
+    if (maxRev == 0) maxRev = 1m; // Renders part of the admin dashboard page markup.
+}
+
+
+
+ @* ----- Card Layout ----- *@
+<!-- Row 1 stats --> @* Keeps an existing comment in the Razor file. *@
+<div class="adm-stats"> @* Starts a layout container for this section. *@
+    <div class="adm-stat"> @* Starts a layout container for this section. *@
+        <div class="adm-stat__icon adm-stat__icon--blue"><i data-lucide="users" style="width:19px;height:19px;" aria-hidden="true"></i></div> @* Starts a layout container for this section. *@
+ @* ----- Page Model Setup ----- *@
+        <div><div class="adm-stat__val">@ViewBag.TotalUsers</div><div class="adm-stat__lbl">Users</div></div> @* Starts a layout container for this section. *@
+    </div> @* Closes the matching HTML element. *@
+    <div class="adm-stat @(((int)(ViewBag.PendingOrders ?? 0)) > 0 ? "adm-stat--warn" : "")"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+        <div class="adm-stat__icon adm-stat__icon--orange"><i data-lucide="shopping-bag" style="width:19px;height:19px;" aria-hidden="true"></i></div> @* Starts a layout container for this section. *@
+ @* ----- Page Model Setup ----- *@
+        <div><div class="adm-stat__val">@ViewBag.TotalOrders</div><div class="adm-stat__lbl">Orders</div><div class="adm-stat__sub">@ViewBag.PendingOrders pending</div></div> @* Starts a layout container for this section. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+    <div class="adm-stat"> @* Starts a layout container for this section. *@
+        <div class="adm-stat__icon adm-stat__icon--purple"><i data-lucide="pound-sterling" style="width:19px;height:19px;" aria-hidden="true"></i></div> @* Starts a layout container for this section. *@
+        <div><div class="adm-stat__val">£@totalRevenue.ToString("0.00")</div><div class="adm-stat__lbl">Revenue</div><div class="adm-stat__sub">£@monthRevenue.ToString("0.00") this month</div></div> @* Starts a layout container for this section. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Page Model Setup ----- *@
+    <div class="adm-stat @(((int)(ViewBag.LowStock ?? 0)) > 0 ? "adm-stat--danger" : "")"> @* Starts a layout container for this section. *@
+        <div class="adm-stat__icon @(((int)(ViewBag.LowStock ?? 0)) > 0 ? "adm-stat__icon--red" : "adm-stat__icon--green")"> @* Starts a layout container for this section. *@
+            <i data-lucide="@(((int)(ViewBag.LowStock ?? 0)) > 0 ? "alert-triangle" : "check-circle")" style="width:19px;height:19px;" aria-hidden="true"></i> @* Reads view data supplied by the controller. *@
+        </div> @* Closes the matching HTML element. *@
+        <div><div class="adm-stat__val">@ViewBag.LowStock</div><div class="adm-stat__lbl">Low stock</div><div class="adm-stat__sub">@ViewBag.TotalProducts products total</div></div> @* Starts a layout container for this section. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+<!-- Row 2 stats --> @* Keeps an existing comment in the Razor file. *@
+<div class="adm-stats"> @* Starts a layout container for this section. *@
+    <div class="adm-stat"> @* Starts a layout container for this section. *@
+        <div class="adm-stat__icon adm-stat__icon--green"><i data-lucide="sprout" style="width:19px;height:19px;" aria-hidden="true"></i></div> @* Starts a layout container for this section. *@
+ @* ----- Page Model Setup ----- *@
+        <div><div class="adm-stat__val">@ViewBag.TotalProducers</div><div class="adm-stat__lbl">Producers</div></div> @* Starts a layout container for this section. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+    <div class="adm-stat"> @* Starts a layout container for this section. *@
+        <div class="adm-stat__icon adm-stat__icon--orange"><i data-lucide="clock" style="width:19px;height:19px;" aria-hidden="true"></i></div> @* Starts a layout container for this section. *@
+ @* ----- Page Model Setup ----- *@
+        <div><div class="adm-stat__val">@ViewBag.PendingOrders</div><div class="adm-stat__lbl">Pending</div></div> @* Starts a layout container for this section. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+    <div class="adm-stat"> @* Starts a layout container for this section. *@
+        <div class="adm-stat__icon adm-stat__icon--blue"><i data-lucide="package" style="width:19px;height:19px;" aria-hidden="true"></i></div> @* Starts a layout container for this section. *@
+ @* ----- Page Model Setup ----- *@
+        <div><div class="adm-stat__val">@ViewBag.TotalProducts</div><div class="adm-stat__lbl">Products</div></div> @* Starts a layout container for this section. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+    <div class="adm-stat"> @* Starts a layout container for this section. *@
+        <div class="adm-stat__icon adm-stat__icon--purple"><i data-lucide="calendar" style="width:19px;height:19px;" aria-hidden="true"></i></div> @* Starts a layout container for this section. *@
+        <div><div class="adm-stat__val">£@monthRevenue.ToString("0")</div><div class="adm-stat__lbl">This month</div></div> @* Starts a layout container for this section. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+<!-- Content grid --> @* Keeps an existing comment in the Razor file. *@
+<div style="display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start;"> @* Starts a layout container for this section. *@
+
+    <div style="display:flex;flex-direction:column;gap:18px;"> @* Starts a layout container for this section. *@
+
+ @* ----- Order Display ----- *@
+        <!-- Recent orders --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="clock" style="width:15px;height:15px;" aria-hidden="true"></i>Recent orders</h2> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                <a href="/AdminDashboard/Orders" class="adm-card__link">View all <i data-lucide="arrow-right" style="width:11px;height:11px;" aria-hidden="true"></i></a> @* Renders a navigation link or action link. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+            @if (recentOrders.Any()) @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Table Layout ----- *@
+                <table class="adm-table"> @* Starts a table for structured row data. *@
+                    <thead><tr><th>Order</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead> @* Starts the table header section. *@
+                    <tbody> @* Starts the table body section. *@
+ @* ----- Loop Rendering ----- *@
+                    @foreach (var o in recentOrders) @* Loops through the collection and renders each item. *@
+                    {
+ @* ----- Search and Filters ----- *@
+                        string bm = (o.OrderStatus ?? "") switch { @* Renders part of the admin dashboard page markup. *@
+                            "Accepted"          => "adm-badge--accepted", @* Renders part of the admin dashboard page markup. *@
+ @* ----- Form Actions ----- *@
+                            "Cancelled"         => "adm-badge--cancelled", @* Renders part of the admin dashboard page markup. *@
+                            "Partially Complete"=> "adm-badge--partial", @* Renders part of the admin dashboard page markup. *@
+                            _                   => "adm-badge--pending" @* Renders part of the admin dashboard page markup. *@
+                        };
+ @* ----- Table Layout ----- *@
+                        <tr> @* Starts one table row. *@
+                            <td><strong>#@o.OrdersId</strong></td> @* Renders a table data cell. *@
+                            <td>@o.OrderDate.ToString("d MMM yy")</td> @* Renders a table data cell. *@
+                            <td>@(o.OrderProducts?.Count ?? 0) item@(o.OrderProducts?.Count == 1 ? "" : "s")</td> @* Renders a table data cell. *@
+                            <td>£@o.OrdersTotal.ToString("0.00")</td> @* Renders a table data cell. *@
+ @* ----- Search and Filters ----- *@
+                            <td><span class="adm-badge @bm">@o.OrderStatus</span></td> @* Renders a table data cell. *@
+                        </tr> @* Closes the matching HTML element. *@
+                    }
+                    </tbody> @* Closes the matching HTML element. *@
+                </table> @* Closes the matching HTML element. *@
+            }
+ @* ----- Conditional Rendering ----- *@
+            else @* Renders the fallback branch for the previous condition. *@
+            {
+ @* ----- Order Display ----- *@
+                <div style="padding:28px;text-align:center;color:var(--text-muted);font-size:14px;">No orders yet.</div> @* Starts a layout container for this section. *@
+            }
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+        <!-- Revenue bar chart --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="bar-chart-2" style="width:15px;height:15px;" aria-hidden="true"></i>Revenue — last 6 months</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+            @if (monthlyRevenue.Any()) @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Script Section ----- *@
+                <div class="adm-bar-chart"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                    @foreach (var m in monthlyRevenue) @* Loops through the collection and renders each item. *@
+                    {
+                        decimal rev = (decimal)m.Revenue; @* Renders part of the admin dashboard page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                        int pct = maxRev > 0 ? (int)Math.Round(rev / maxRev * 100) : 0; @* Renders part of the admin dashboard page markup. *@
+ @* ----- Card Layout ----- *@
+                        <div class="adm-bar-row"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="adm-bar-row__label">@m.Label</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <div class="adm-bar-row__track"><div class="adm-bar-row__fill" style="width:@pct%"></div></div> @* Starts a layout container for this section. *@
+                            <span class="adm-bar-row__val">£@rev.ToString("0")</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    }
+                </div> @* Closes the matching HTML element. *@
+            }
+ @* ----- Conditional Rendering ----- *@
+            else @* Renders the fallback branch for the previous condition. *@
+            {
+                <div style="padding:22px;text-align:center;color:var(--text-muted);font-size:13px;">No revenue data yet.</div> @* Starts a layout container for this section. *@
+            }
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <div style="display:flex;flex-direction:column;gap:18px;"> @* Starts a layout container for this section. *@
+
+ @* ----- Product Display ----- *@
+        <!-- Top products --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="trending-up" style="width:15px;height:15px;" aria-hidden="true"></i>Top products</h2> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                <a href="/AdminDashboard/Products" class="adm-card__link">All</a> @* Renders a navigation link or action link. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+            @if (topProducts.Any()) @* Conditionally renders this block when the check passes. *@
+            {
+                <div style="padding:8px 10px;"> @* Starts a layout container for this section. *@
+                    @{ int rank = 0; }
+ @* ----- Loop Rendering ----- *@
+                    @foreach (var p in topProducts) @* Loops through the collection and renders each item. *@
+                    {
+                        rank++; @* Renders part of the admin dashboard page markup. *@
+ @* ----- Card Layout ----- *@
+                        <div class="adm-top-row"> @* Starts a layout container for this section. *@
+                            <span style="font-size:12px;font-weight:800;color:var(--text-light);width:16px;">@rank</span> @* Renders inline text or badge content. *@
+                            <span style="flex:1;font-size:13px;font-weight:600;color:var(--text);">@p.Name</span> @* Renders inline text or badge content. *@
+ @* ----- Basket Display ----- *@
+                            <span style="font-size:12px;font-weight:700;color:var(--green);">×@p.TotalOrdered</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    }
+                </div> @* Closes the matching HTML element. *@
+            }
+ @* ----- Conditional Rendering ----- *@
+            else { <div style="padding:18px;text-align:center;color:var(--text-muted);font-size:13px;">No order data yet.</div> } @* Renders the fallback branch for the previous condition. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <!-- Order status breakdown --> @* Keeps an existing comment in the Razor file. *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="pie-chart" style="width:15px;height:15px;" aria-hidden="true"></i>Status breakdown</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+            @{
+                var dotMap = new Dictionary<string,string>{ // Renders part of the admin dashboard page markup.
+                    ["Pending"]="var(--orange)",["Accepted"]="var(--green)", // Renders part of the admin dashboard page markup.
+ // ----- Form Actions -----
+                    ["Cancelled"]="var(--text-light)",["Partially Complete"]="var(--yellow)" // Renders part of the admin dashboard page markup.
+                };
+            }
+            <div style="padding:12px 18px;display:flex;flex-direction:column;gap:7px;"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                @foreach (var s in statusBreakdown) @* Loops through the collection and renders each item. *@
+                {
+                    string statusKey = s.Status == null ? "" : (string)s.Status.ToString(); @* Renders part of the admin dashboard page markup. *@
+                    string col = dotMap.ContainsKey(statusKey) ? dotMap[statusKey] : "var(--text-light)"; @* Renders part of the admin dashboard page markup. *@
+                    <div style="display:flex;align-items:center;gap:9px;font-size:13px;"> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                        <span style="width:8px;height:8px;border-radius:50%;background:@col;flex-shrink:0;"></span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                        <span style="flex:1;color:var(--text-muted);font-weight:500;">@s.Status</span> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                        <span style="font-weight:700;color:var(--text);">@s.Count</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+ @* ----- Card Layout ----- *@
+                @if (!statusBreakdown.Any()) @* Conditionally renders this block when the check passes. *@
+                {
+                    <div style="text-align:center;color:var(--text-muted);font-size:13px;">No data.</div> @* Starts a layout container for this section. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- Quick links --> @* Keeps an existing comment in the Razor file. *@
+        <div class="adm-card"> @* Starts a layout container for this section. *@
+            <div class="adm-card__head"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                <h2 class="adm-card__title"><i data-lucide="zap" style="width:15px;height:15px;" aria-hidden="true"></i>Quick actions</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+            <div style="padding:10px;display:flex;flex-direction:column;gap:4px;"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                @foreach (var item in new[]{ @* Loops through the collection and renders each item. *@
+ @* ----- Form Actions ----- *@
+                    ("/Products/Create",        "plus",        "Add new product"), @* Renders part of the admin dashboard page markup. *@
+ @* ----- Card Layout ----- *@
+                    ("/AdminDashboard/Orders",  "shopping-bag","All orders"), @* Renders part of the admin dashboard page markup. *@
+                    ("/AdminDashboard/Users",   "users",       "Manage users"), @* Renders part of the admin dashboard page markup. *@
+                    ("/AdminDashboard/Settings","settings",    "Settings & roles"), @* Renders part of the admin dashboard page markup. *@
+ @* ----- Producer Display ----- *@
+                    ("/Producers/Index",        "sprout",      "View producers"), @* Renders part of the admin dashboard page markup. *@
+                })
+                {
+ @* ----- Order Display ----- *@
+                    <a href="@item.Item1" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--text-muted);text-decoration:none;transition:background .12s,color .12s;" @* Renders a navigation link or action link. *@
+                       onmouseover="this.style.background='var(--cream)';this.style.color='var(--text)';" @* Renders part of the admin dashboard page markup. *@
+                       onmouseout="this.style.background='';this.style.color='var(--text-muted)';"> @* Renders part of the admin dashboard page markup. *@
+                        <i data-lucide="@item.Item2" style="width:14px;height:14px;" aria-hidden="true"></i> @* Renders part of the admin dashboard page markup. *@
+                        @item.Item3 @* Outputs Razor data or executes Razor logic. *@
+                    </a> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Card Layout ----- *@
+    <script src="~/js/pages/admindashboard/AdminDashboardIndex.js" asp-append-version="true"></script>  } @* Starts client-side script for this page. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/admindashboard/AdminDashboardIndex.css" asp-append-version="true" /> @* Renders one list item. *@
+}

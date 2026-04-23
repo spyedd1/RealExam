@@ -1,0 +1,13 @@
+/* ----- Card layout ----- */
+.pw-admin-producer-card__email { /* Starts styles for the .pw-admin-producer-card__email selector. */
+    min-height: 18px; /* Sets the minimum element height. */
+}
+
+/* ----- Forms ----- */
+.pw-form-errors[hidden] { /* Starts styles for the .pw-form-errors[hidden] selector. */
+    display: none; /* Controls how the element participates in layout. */
+}
+
+.pw-file { /* Starts styles for the .pw-file selector. */
+    height: auto; /* Sets the element height. */
+}

@@ -1,0 +1,346 @@
+@model GFLHApp.Models.AboutViewModel
+
+@{
+    ViewData["Title"] = "About Us";
+    ViewData["FullWidth"] = true;
+}
+
+<div class="au-page">
+    <section class="au-hero" aria-labelledby="about-hero-title">
+        <div class="au-hero__glow au-hero__glow--one" aria-hidden="true"></div>
+        <div class="au-hero__glow au-hero__glow--two" aria-hidden="true"></div>
+
+        <div class="pw-container au-hero__inner">
+            <div class="au-hero__content">
+                <span class="pw-badge pw-badge--green au-hero__badge reveal">
+                    <i data-lucide="sprout" class="pw-icon-sm" aria-hidden="true"></i>
+                    Built around local growers
+                </span>
+
+                <h1 class="au-hero__title reveal reveal--blur" id="about-hero-title">
+                    We made Greenfield to feel
+                    <em>closer to the farm</em>
+                    and warmer than the weekly shop.
+                </h1>
+
+                <p class="au-hero__sub reveal" data-delay="100">
+                    Greenfield Local Hub connects households with independent growers, seasonal produce,
+                    and the kind of food story you can actually trace. Less supply-chain fog. More good food,
+                    good people, and a platform that feels welcoming from the first click.
+                </p>
+
+                <div class="au-hero__benefits reveal" data-delay="140" aria-label="Benefits of buying local">
+                    <span class="au-hero__benefit">
+                        <i data-lucide="map-pinned" aria-hidden="true"></i>
+                        Shorter supply chains and fresher produce
+                    </span>
+                    <span class="au-hero__benefit">
+                        <i data-lucide="badge-pound-sterling" aria-hidden="true"></i>
+                        More of your money stays with local growers
+                    </span>
+                    <span class="au-hero__benefit">
+                        <i data-lucide="truck" aria-hidden="true"></i>
+                        Fewer food miles and less unnecessary transport
+                    </span>
+                </div>
+
+                <div class="au-hero__actions reveal reveal--pop" data-delay="180">
+                    <a class="pw-btn pw-btn--primary pw-btn--lg"
+                       asp-area="" asp-controller="Products" asp-action="Index">
+                        Explore the shop
+                    </a>
+                    <a class="pw-btn pw-btn--outline pw-btn--lg"
+                       asp-area="" asp-controller="Producers" asp-action="Index">
+                        Meet our growers
+                    </a>
+                </div>
+
+                <nav class="au-jump-nav reveal" data-delay="240" aria-label="About page sections">
+                    <a class="au-jump-link" href="#our-story">Our story</a>
+                    <a class="au-jump-link" href="#our-values">Our values</a>
+                    <a class="au-jump-link" href="#our-impact">Our impact</a>
+                    <a class="au-jump-link" href="#our-promise">Our promise</a>
+                </nav>
+            </div>
+
+            <div class="au-hero__visual reveal reveal--right" data-delay="120">
+                <div class="au-hero__card au-hero__card--main">
+                    <img src="~/images/home/produceBox.jpg"
+                         alt="A box filled with fresh seasonal produce ready for delivery."
+                         class="au-hero__image" />
+                    <div class="au-hero__card-copy">
+                        <span class="au-hero__eyebrow">Fresh every week</span>
+                        <p>Picked by real growers, packed with care, and delivered without the supermarket coldness.</p>
+                    </div>
+                </div>
+
+                <div class="au-hero__stack" aria-hidden="true">
+                    <div class="au-hero__mini-card">
+                        <img src="~/images/home/olderLady.jpg" alt="" class="au-hero__mini-image" />
+                        <span>Real farming families</span>
+                    </div>
+                    <div class="au-hero__mini-card">
+                        <img src="~/images/home/homeveg.jpg" alt="" class="au-hero__mini-image" />
+                        <span>Season-led sourcing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="au-hero__wave" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 88" preserveAspectRatio="none">
+                <path d="M0,48 C180,92 420,0 720,42 C990,80 1200,18 1440,56 L1440,88 L0,88 Z" fill="#FFFBEB" />
+            </svg>
+        </div>
+    </section>
+
+    <section class="pw-section pw-section--cream" id="our-story" aria-labelledby="about-story-heading">
+        <div class="pw-container">
+            <div class="pw-section__header reveal reveal--blur">
+                <span class="pw-section__eyebrow">
+                    <i data-lucide="sprout" class="pw-icon-sm" aria-hidden="true"></i>
+                    Our story
+                </span>
+                <h2 class="pw-section__title" id="about-story-heading">
+                    A friendlier food chain starts
+                    <em class="pw-text--green">with fewer layers</em>
+                </h2>
+                <p class="pw-section__subtitle">
+                    We wanted a place where growers felt visible, customers felt informed,
+                    and buying local did not feel harder than buying bland.
+                </p>
+            </div>
+
+            <div class="au-story">
+                <article class="au-story__panel reveal reveal--left">
+                    <span class="au-story__step" aria-hidden="true">01</span>
+                    <h3>It began with a simple frustration</h3>
+                    <p>
+                        Great local produce existed, but discovering it often depended on luck, market timing,
+                        or already knowing the right farm. We built Greenfield to make that connection easier.
+                    </p>
+                </article>
+
+                <article class="au-story__panel reveal" data-delay="100">
+                    <span class="au-story__step" aria-hidden="true">02</span>
+                    <h3>Then we designed for trust</h3>
+                    <p>
+                        Clear grower profiles, seasonal listings, and a clean, calm shopping experience help people
+                        understand where food comes from instead of guessing.
+                    </p>
+                </article>
+
+                <article class="au-story__panel reveal reveal--right" data-delay="200">
+                    <span class="au-story__step" aria-hidden="true">03</span>
+                    <h3>Now we keep the human bit front and centre</h3>
+                    <p>
+                        Every part of the platform is meant to feel open, reassuring, and useful for both customers
+                        and producers, with accessibility baked in rather than added as an afterthought.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="pw-section pw-section--white" id="our-values" aria-labelledby="about-values-heading">
+        <div class="pw-container">
+            <div class="pw-section__header reveal reveal--blur">
+                <span class="pw-section__eyebrow">
+                    <i data-lucide="shield-check" class="pw-icon-sm" aria-hidden="true"></i>
+                    Our values
+                </span>
+                <h2 class="pw-section__title" id="about-values-heading">
+                    What we protect
+                    <em class="pw-text--green">as we grow</em>
+                </h2>
+            </div>
+
+            <div class="au-values">
+                <article class="au-value-card reveal reveal--pop" data-delay="0">
+                    <div class="au-value-card__icon" aria-hidden="true">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>People first</h3>
+                    <p>Growers are not hidden behind generic listings, and customers are not treated like order numbers.</p>
+                </article>
+
+                <article class="au-value-card reveal reveal--pop" data-delay="120">
+                    <div class="au-value-card__icon" aria-hidden="true">
+                        <i data-lucide="eye"></i>
+                    </div>
+                    <h3>Clarity over clutter</h3>
+                    <p>We keep the experience readable, welcoming, and honest so good decisions feel easy.</p>
+                </article>
+
+                <article class="au-value-card reveal reveal--pop" data-delay="240">
+                    <div class="au-value-card__icon" aria-hidden="true">
+                        <i data-lucide="leaf"></i>
+                    </div>
+                    <h3>Seasonal by default</h3>
+                    <p>We celebrate what is genuinely available now rather than pretending every crop should exist all year.</p>
+                </article>
+
+                <article class="au-value-card reveal reveal--pop" data-delay="360">
+                    <div class="au-value-card__icon" aria-hidden="true">
+                        <i data-lucide="contrast"></i>
+                    </div>
+                    <h3>Accessible to more people</h3>
+                    <p>Dark mode, contrast options, text resizing, keyboard support, and sensible structure all matter here.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="pw-section pw-section--cream" id="why-local" aria-labelledby="about-local-heading">
+        <div class="pw-container">
+            <div class="pw-section__header reveal reveal--blur">
+                <span class="pw-section__eyebrow">
+                    <i data-lucide="shopping-basket" class="pw-icon-sm" aria-hidden="true"></i>
+                    Why local matters
+                </span>
+                <h2 class="pw-section__title" id="about-local-heading">
+                    Buying local is better for
+                    <em class="pw-text--green">taste, trust, and community</em>
+                </h2>
+                <p class="pw-section__subtitle">
+                    Choosing nearby growers is not just a nice idea. It changes the quality of what you eat
+                    and who benefits when you spend.
+                </p>
+            </div>
+
+            <div class="au-local-benefits">
+                <article class="au-local-card reveal reveal--left">
+                    <div class="au-local-card__icon" aria-hidden="true">
+                        <i data-lucide="apple"></i>
+                    </div>
+                    <h3>Fresher food</h3>
+                    <p>
+                        Local produce spends less time in storage and transit, so fruit and veg can reach you
+                        closer to harvest and in better condition.
+                    </p>
+                </article>
+
+                <article class="au-local-card reveal" data-delay="100">
+                    <div class="au-local-card__icon" aria-hidden="true">
+                        <i data-lucide="hand-coins"></i>
+                    </div>
+                    <h3>Stronger local economy</h3>
+                    <p>
+                        More of each order goes back to the people growing the food, helping independent farms
+                        stay visible, viable, and worth supporting.
+                    </p>
+                </article>
+
+                <article class="au-local-card reveal reveal--right" data-delay="200">
+                    <div class="au-local-card__icon" aria-hidden="true">
+                        <i data-lucide="leaf"></i>
+                    </div>
+                    <h3>Lower food miles</h3>
+                    <p>
+                        Shorter journeys usually mean less transport, less handling, and a more sensible route
+                        from field to front door.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="pw-section pw-section--green" id="our-impact" aria-labelledby="about-impact-heading">
+        <div class="pw-container">
+            <div class="pw-section__header pw-section__header--light reveal reveal--blur">
+                <span class="pw-section__eyebrow pw-eyebrow--light">
+                    <i data-lucide="globe" class="pw-icon-sm" aria-hidden="true"></i>
+                    Our impact
+                </span>
+                <h2 class="pw-section__title" id="about-impact-heading">
+                    Small choices can build
+                    <br />a healthier local food web.
+                </h2>
+            </div>
+
+            <div class="au-impact">
+                <div class="au-impact__intro reveal reveal--left">
+                    <p>
+                        The goal is not just fast checkout. It is a better relationship between local producers and the people
+                        feeding their households. When that loop tightens, everyone gets something better.
+                    </p>
+                    <ul class="au-impact__list" role="list">
+                        <li><i data-lucide="check" aria-hidden="true"></i> More visibility for independent growers</li>
+                        <li><i data-lucide="check" aria-hidden="true"></i> More confidence in where food comes from</li>
+                        <li><i data-lucide="check" aria-hidden="true"></i> Less waste through season-aware buying</li>
+                    </ul>
+                </div>
+
+                <div class="au-impact__stats reveal reveal--right" data-delay="120" role="list" aria-label="Greenfield impact highlights">
+                    <div class="au-impact__stat" role="listitem">
+                        <span class="au-impact__number pw-stat__value" data-target="@Model.GrowerCount">@Model.GrowerCount.ToString("N0")</span>
+                        <span class="au-impact__label">growers currently selling through the platform</span>
+                    </div>
+                    <div class="au-impact__stat" role="listitem">
+                        <span class="au-impact__number pw-stat__value" data-target="@Model.AvailableProductCount">@Model.AvailableProductCount.ToString("N0")</span>
+                        <span class="au-impact__label">products available to browse right now</span>
+                    </div>
+                    <div class="au-impact__stat" role="listitem">
+                        <span class="au-impact__number pw-stat__value" data-target="@Model.OrderCount">@Model.OrderCount.ToString("N0")</span>
+                        <span class="au-impact__label">orders placed through Greenfield so far</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pw-section__wave-bottom" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path d="M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z" fill="#fffdf4" />
+            </svg>
+        </div>
+    </section>
+
+    <section class="pw-section pw-section--cream" id="our-promise" aria-labelledby="about-promise-heading">
+        <div class="pw-container">
+            <div class="pw-grid pw-grid--2 au-promise">
+                <div class="au-promise__content reveal reveal--left">
+                    <span class="pw-section__eyebrow">
+                        <i data-lucide="shield-check" class="pw-icon-sm" aria-hidden="true"></i>
+                        Our promise
+                    </span>
+                    <h2 class="pw-section__title" id="about-promise-heading">
+                        Keep it local.
+                        <br />Keep it lovely.
+                    </h2>
+                    <p class="au-promise__lead">
+                        If Greenfield ever becomes harder to use, colder in tone, or less transparent about the people behind the food,
+                        then we've missed the point. This page exists so that promise stays visible.
+                    </p>
+                    <div class="au-promise__actions">
+                        <a class="pw-btn pw-btn--primary pw-btn--lg"
+                           asp-area="" asp-controller="Products" asp-action="Index">
+                            Start shopping
+                        </a>
+                        <a class="pw-btn pw-btn--ghost pw-btn--lg"
+                           asp-area="" asp-controller="Home" asp-action="Privacy">
+                            Read our privacy page
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="au-promise__panel reveal reveal--right" data-delay="120" aria-label="What you can expect from Greenfield">
+                    <h3>What you can expect from us</h3>
+                    <ul class="au-promise__list" role="list">
+                        <li><i data-lucide="check" aria-hidden="true"></i><span>Accessible controls that work across the site</span></li>
+                        <li><i data-lucide="check" aria-hidden="true"></i><span>Real grower visibility instead of anonymous sourcing</span></li>
+                        <li><i data-lucide="check" aria-hidden="true"></i><span>Design that feels warm, clear, and easy to trust</span></li>
+                        <li><i data-lucide="check" aria-hidden="true"></i><span>A platform shaped around seasonal reality, not supermarket theatre</span></li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/pages/home/HomeAbout.js" asp-append-version="true"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/home/HomeAbout.css" asp-append-version="true" />
+}

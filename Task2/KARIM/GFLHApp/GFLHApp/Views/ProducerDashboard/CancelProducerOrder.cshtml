@@ -1,0 +1,174 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.ProducerOrders
+@{
+    ViewData["Title"] = "Cancel Order #" + Model.Orders.OrdersId; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+
+ // ----- Loop Rendering -----
+    var items = Model.OrderProducts.Where(op => op.ProducerOrdersId == Model.ProducerOrdersId).ToList(); // Displays or uses data from the producers model.
+}
+
+
+
+ @* ----- Styling Section ----- *@
+<div class="pw-admin-page"> @* Starts a layout container for this section. *@
+
+    <div class="pw-admin-header"> @* Starts a layout container for this section. *@
+        <div class="pw-admin-header__inner"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+            <nav aria-label="Breadcrumb"> @* Starts the navigation area. *@
+                <ol class="pw-admin-breadcrumb"> @* Starts a list of related items. *@
+                    <li><a asp-controller="ProducerDashboard" asp-action="Index">Dashboard</a></li> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                    <li><span aria-current="page">Cancel order #@Model.Orders.OrdersId</span></li> @* Renders one list item. *@
+                </ol> @* Closes the matching HTML element. *@
+            </nav> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-admin-header__title"> @* Starts a layout container for this section. *@
+                <div class="pw-admin-header__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <i data-lucide="x-circle"></i> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h1>Cancel order #@Model.Orders.OrdersId</h1> @* Renders a heading for this page section. *@
+ @* ----- Loop Rendering ----- *@
+                    <p>Placed @Model.Orders.OrderDate.ToString("d MMMM yyyy") &middot; @items.Count item@(items.Count == 1 ? "" : "s")</p> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pw-admin-body"> @* Starts a layout container for this section. *@
+
+        <!-- Individual item removal --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Actions ----- *@
+        <div class="pw-cancel-card"> @* Starts a layout container for this section. *@
+            <div class="pw-cancel-card__head"> @* Starts a layout container for this section. *@
+                <i data-lucide="list-x" style="width:17px;height:17px;color:var(--text-muted);" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+ @* ----- Page Header ----- *@
+                <h2>Remove individual items</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+            <div class="pw-cancel-card__body"> @* Starts a layout container for this section. *@
+                <p class="pw-cancel-card__desc"> @* Renders paragraph text for the user. *@
+ @* ----- Order Display ----- *@
+                    Remove specific items from this order. Stock will be automatically restocked when an item is removed. @* Renders part of the producers page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                <table class="pw-items-table"> @* Starts a table for structured row data. *@
+                    <thead> @* Starts the table header section. *@
+                        <tr> @* Starts one table row. *@
+                            <th>Product</th> @* Renders a table header cell. *@
+                            <th>Qty</th> @* Renders a table header cell. *@
+                            <th>Unit price</th> @* Renders a table header cell. *@
+                            <th>Line total</th> @* Renders a table header cell. *@
+                            <th></th> @* Renders a table header cell. *@
+                        </tr> @* Closes the matching HTML element. *@
+                    </thead> @* Closes the matching HTML element. *@
+                    <tbody> @* Starts the table body section. *@
+ @* ----- Loop Rendering ----- *@
+                        @foreach (var item in items) @* Loops through the collection and renders each item. *@
+                        {
+ @* ----- Table Layout ----- *@
+                            <tr> @* Starts one table row. *@
+                                <td> @* Renders a table data cell. *@
+ @* ----- Styling Section ----- *@
+                                    <div class="pw-item-thumb"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                                        @if (!string.IsNullOrEmpty(item.Products?.ImagePath)) @* Conditionally renders this block when the check passes. *@
+                                        {
+                                            <img src="@item.Products.ImagePath" alt="@item.Products?.ItemName" /> @* Renders an image for the page content. *@
+                                        }
+                                        else @* Renders the fallback branch for the previous condition. *@
+                                        {
+ @* ----- Styling Section ----- *@
+                                            <div class="pw-item-thumb__placeholder"> @* Starts a layout container for this section. *@
+                                                <i data-lucide="sprout" style="width:14px;height:14px;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+                                            </div> @* Closes the matching HTML element. *@
+                                        }
+ @* ----- Conditional Rendering ----- *@
+                                        <strong>@item.Products?.ItemName</strong> @* Renders part of the producers page markup. *@
+                                    </div> @* Closes the matching HTML element. *@
+                                </td> @* Closes the matching HTML element. *@
+ @* ----- Table Layout ----- *@
+                                <td>@item.ProductQuantity</td> @* Renders a table data cell. *@
+                                <td>£@item.Products?.ItemPrice.ToString("0.00")</td> @* Renders a table data cell. *@
+                                <td>£@((item.Products?.ItemPrice * item.ProductQuantity)?.ToString("0.00"))</td> @* Renders a table data cell. *@
+                                <td> @* Renders a table data cell. *@
+ @* ----- Navigation ----- *@
+                                    <form asp-action="CancelOrderItem" asp-route-id="@item.OrderProductsId" method="post"> @* Starts the form that submits this page's user input. *@
+                                        @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+ @* ----- Form Actions ----- *@
+                                        <button type="submit" class="pw-btn-remove"> @* Renders a button for the user action. *@
+                                            <i data-lucide="trash-2" style="width:12px;height:12px;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+                                            Remove @* Renders part of the producers page markup. *@
+                                        </button> @* Closes the matching HTML element. *@
+                                    </form> @* Closes the form after its fields and actions. *@
+                                </td> @* Closes the matching HTML element. *@
+                            </tr> @* Closes the matching HTML element. *@
+                        }
+                    </tbody> @* Closes the matching HTML element. *@
+                    <tfoot> @* Renders part of the producers page markup. *@
+ @* ----- Table Layout ----- *@
+                        <tr> @* Starts one table row. *@
+                            <td colspan="3" style="text-align:right;color:var(--text-muted);font-size:13px;">Your subtotal</td> @* Renders a table data cell. *@
+                            <td>£@Model.ProducerSubtotal.ToString("0.00")</td> @* Renders a table data cell. *@
+                            <td></td> @* Renders a table data cell. *@
+                        </tr> @* Closes the matching HTML element. *@
+                    </tfoot> @* Closes the matching HTML element. *@
+                </table> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Actions ----- *@
+        <!-- Cancel entire slice --> @* Keeps an existing comment in the Razor file. *@
+        <div class="pw-cancel-card"> @* Starts a layout container for this section. *@
+            <div class="pw-cancel-card__head"> @* Starts a layout container for this section. *@
+                <i data-lucide="ban" style="width:17px;height:17px;color:#DC2626;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+ @* ----- Page Header ----- *@
+                <h2 style="color:#DC2626;">Cancel entire order slice</h2> @* Renders a heading for this page section. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+            <div class="pw-cancel-card__body"> @* Starts a layout container for this section. *@
+                <p class="pw-cancel-card__desc"> @* Renders paragraph text for the user. *@
+                    Cancel all @items.Count item@(items.Count == 1 ? "" : "s") in your slice of this order at once. @* Renders part of the producers page markup. *@
+                    All stock will be restocked automatically. <strong>This cannot be undone.</strong> @* Renders part of the producers page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                <form asp-action="CancelProducerOrder" asp-route-id="@Model.ProducerOrdersId" method="post" @* Starts the form that submits this page's user input. *@
+ @* ----- Form Actions ----- *@
+                      id="cancelAllForm" data-order-id="@Model.Orders.OrdersId"> @* Displays or uses data from the producers model. *@
+                    @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+                    <button type="submit" class="pw-btn-cancel-all" id="cancelAllBtn"> @* Renders a button for the user action. *@
+                        <i data-lucide="x-circle" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+                        Cancel entire order slice @* Renders part of the producers page markup. *@
+                    </button> @* Closes the matching HTML element. *@
+                </form> @* Closes the form after its fields and actions. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- Back --> @* Keeps an existing comment in the Razor file. *@
+        <div style="margin-top:8px;"> @* Starts a layout container for this section. *@
+ @* ----- Navigation ----- *@
+            <a asp-controller="ProducerDashboard" asp-action="Index" class="pw-btn-back"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                <i data-lucide="arrow-left" style="width:15px;height:15px;" aria-hidden="true"></i> @* Renders part of the producers page markup. *@
+                Back to dashboard @* Renders part of the producers page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Form Actions ----- *@
+    <script src="~/js/pages/producerdashboard/ProducerDashboardCancelProducerOrder.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/producerdashboard/ProducerDashboardCancelProducerOrder.css" asp-append-version="true" /> @* Renders one list item. *@
+}

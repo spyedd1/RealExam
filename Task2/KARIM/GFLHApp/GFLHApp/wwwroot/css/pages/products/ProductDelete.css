@@ -1,0 +1,372 @@
+.pw-del-page { /* Starts styles for the .pw-del-page selector. */
+    min-height: 100vh; /* Sets the minimum element height. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+
+/* ----- Navigation ----- */
+.pw-del-header { /* Starts styles for the .pw-del-header selector. */
+    background: linear-gradient(160deg, #fff1f2 0%, #ffe4e6 100%); /* Sets the element background treatment. */
+    border-bottom: 1px solid #fecdd3; /* Sets the border-bottom style for this rule. */
+    padding: 80px 0 28px; /* Sets spacing inside the element. */
+}
+/* ----- Navigation ----- */
+.pw-del-header__inner { /* Starts styles for the .pw-del-header__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 720px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 0 24px; /* Sets spacing inside the element. */
+}
+
+/* ----- Navigation ----- */
+.pw-del-breadcrumb { /* Starts styles for the .pw-del-breadcrumb selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 6px; /* Controls how the element participates in layout. */
+    list-style: none; margin: 0 0 16px; padding: 0; /* Sets the list-style style for this rule. */
+    font-size: 13px; font-weight: 500; flex-wrap: wrap; /* Sets the text size. */
+}
+/* ----- Navigation ----- */
+.pw-del-breadcrumb li { display: flex; align-items: center; gap: 6px; } /* Styles part of the ProductDelete page or component. */
+/* ----- Theme variables ----- */
+.pw-del-breadcrumb li + li::before { content: '/'; color: var(--text-muted); opacity: .5; } /* Styles part of the ProductDelete page or component. */
+.pw-del-breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .15s; } /* Styles part of the ProductDelete page or component. */
+/* ----- Navigation ----- */
+.pw-del-breadcrumb a:hover { color: #DC2626; } /* Styles part of the ProductDelete page or component. */
+/* ----- Theme variables ----- */
+.pw-del-breadcrumb [aria-current] { color: var(--text); font-weight: 600; } /* Styles part of the ProductDelete page or component. */
+
+/* ----- Navigation ----- */
+.pw-del-header__title { /* Starts styles for the .pw-del-header__title selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 14px; /* Controls how the element participates in layout. */
+}
+/* ----- Navigation ----- */
+.pw-del-header__icon { /* Starts styles for the .pw-del-header__icon selector. */
+    /* ----- Tables ----- */
+    width: 44px; height: 44px; /* Sets the element width. */
+    background: #fee2e2; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    color: #DC2626; /* Sets the text color. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+/* ----- Navigation ----- */
+.pw-del-header__title h1 { /* Starts styles for the .pw-del-header__title h1 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 24px; font-weight: 700; color: var(--text); /* Sets the text size. */
+    margin: 0; line-height: 1.2; /* Sets spacing outside the element. */
+}
+/* ----- Navigation ----- */
+.pw-del-header__title p { /* Starts styles for the .pw-del-header__title p selector. */
+    /* ----- Theme variables ----- */
+    font-size: 13px; color: var(--text-muted); margin: 2px 0 0; /* Sets the text size. */
+}
+
+/* ----- Base layout ----- */
+.pw-del-body { /* Starts styles for the .pw-del-body selector. */
+    /* ----- Tables ----- */
+    max-width: 720px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 40px 24px 80px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-direction: column; gap: 24px; /* Controls how the element participates in layout. */
+}
+
+/* ----- Card layout ----- */
+.pw-del-summary { /* Starts styles for the .pw-del-summary selector. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+/* ----- Hero section ----- */
+.pw-del-summary__hero { /* Starts styles for the .pw-del-summary__hero selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-700) 0%, var(--green) 50%, #22c55e 100%); /* Sets the element background treatment. */
+    padding: 28px 28px 24px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 18px; /* Controls how the element participates in layout. */
+    /* ----- Utility classes ----- */
+    position: relative; overflow: hidden; /* Controls how the element is positioned on the page. */
+}
+/* ----- Hero section ----- */
+.pw-del-summary__hero::after { /* Starts styles for the .pw-del-summary__hero::after selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; inset: 0; /* Controls how the element is positioned on the page. */
+    /* ----- Tables ----- */
+    background: radial-gradient(ellipse at top right, rgba(245,158,11,.15) 0%, transparent 60%); /* Sets the element background treatment. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+/* ----- Card layout ----- */
+.pw-del-summary__img { /* Starts styles for the .pw-del-summary__img selector. */
+    /* ----- Grid layout ----- */
+    width: 64px; height: 64px; flex-shrink: 0; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    border: 2px solid rgba(255,255,255,.3); /* Sets the border around the element. */
+    position: relative; z-index: 1; /* Controls how the element is positioned on the page. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0); /* Sets the element background treatment. */
+}
+/* ----- Card layout ----- */
+.pw-del-summary__img img { /* Starts styles for the .pw-del-summary__img img selector. */
+    /* ----- Tables ----- */
+    width: 100%; height: 100%; object-fit: cover; display: block; /* Sets the element width. */
+}
+/* ----- Card layout ----- */
+.pw-del-summary__img i { width: 28px; height: 28px; color: rgba(255,255,255,.9); } /* Styles part of the ProductDelete page or component. */
+.pw-del-summary__info { position: relative; z-index: 1; min-width: 0; } /* Styles part of the ProductDelete page or component. */
+.pw-del-summary__name { /* Starts styles for the .pw-del-summary__name selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Grid layout ----- */
+    font-size: 20px; font-weight: 700; color: #fff; /* Sets the text size. */
+    margin: 0 0 4px; /* Sets spacing outside the element. */
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; /* Sets the white-space style for this rule. */
+}
+/* ----- Card layout ----- */
+.pw-del-summary__meta { /* Starts styles for the .pw-del-summary__meta selector. */
+    /* ----- Grid layout ----- */
+    font-size: 13px; color: rgba(255,255,255,.7); /* Sets the text size. */
+    display: flex; align-items: center; gap: 6px; /* Controls how the element participates in layout. */
+}
+/* ----- Card layout ----- */
+.pw-del-summary__pills { /* Starts styles for the .pw-del-summary__pills selector. */
+    /* ----- Grid layout ----- */
+    display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; position: relative; z-index: 1; /* Controls how the element participates in layout. */
+}
+/* ----- Card layout ----- */
+.pw-del-summary__pill { /* Starts styles for the .pw-del-summary__pill selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 5px; /* Controls how the element participates in layout. */
+    /* ----- Forms ----- */
+    font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    padding: 3px 10px; border-radius: var(--r-full); /* Sets spacing inside the element. */
+    background: rgba(255,255,255,.15); /* Sets the element background treatment. */
+    border: 1px solid rgba(255,255,255,.25); /* Sets the border around the element. */
+    /* ----- Grid layout ----- */
+    color: rgba(255,255,255,.9); /* Sets the text color. */
+}
+/* ----- Theme variables ----- */
+.pw-del-summary__pill--red { /* Starts styles for the .pw-del-summary__pill--red selector. */
+    background: rgba(220,38,38,.25); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: rgba(220,38,38,.4); /* Sets the border-color style for this rule. */
+    color: #fca5a5; /* Sets the text color. */
+}
+
+/* ----- Base layout ----- */
+.pw-del-summary__body { padding: 0; } /* Styles part of the ProductDelete page or component. */
+/* ----- Grid layout ----- */
+.pw-del-row { /* Starts styles for the .pw-del-row selector. */
+    display: flex; align-items: flex-start; gap: 12px; /* Controls how the element participates in layout. */
+    padding: 16px 24px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+}
+/* ----- Grid layout ----- */
+.pw-del-row:last-child { border-bottom: none; } /* Styles part of the ProductDelete page or component. */
+.pw-del-row__icon { /* Starts styles for the .pw-del-row__icon selector. */
+    width: 34px; height: 34px; flex-shrink: 0; /* Sets the element width. */
+    border-radius: 8px; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    margin-top: 2px; /* Sets the margin-top style for this rule. */
+}
+/* ----- Theme variables ----- */
+.pw-del-row__icon--green  { background: var(--green-100); color: var(--green); } /* Styles part of the ProductDelete page or component. */
+.pw-del-row__icon--yellow { background: var(--yellow-100); color: #92400E; } /* Styles part of the ProductDelete page or component. */
+.pw-del-row__icon--orange { background: var(--orange-100); color: var(--orange); } /* Styles part of the ProductDelete page or component. */
+.pw-del-row__icon--purple { background: var(--purple-100); color: #5B21B6; } /* Styles part of the ProductDelete page or component. */
+.pw-del-row__icon--muted  { background: var(--cream-2); color: var(--text-muted); } /* Styles part of the ProductDelete page or component. */
+.pw-del-row__icon--red    { background: #fee2e2; color: #DC2626; } /* Styles part of the ProductDelete page or component. */
+/* ----- Grid layout ----- */
+.pw-del-row__content { flex: 1; min-width: 0; } /* Styles part of the ProductDelete page or component. */
+.pw-del-row__label { /* Starts styles for the .pw-del-row__label selector. */
+    /* ----- Forms ----- */
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); display: block; margin-bottom: 3px; /* Sets the text color. */
+}
+/* ----- Grid layout ----- */
+.pw-del-row__value { /* Starts styles for the .pw-del-row__value selector. */
+    /* ----- Theme variables ----- */
+    font-size: 14px; font-weight: 500; color: var(--text); /* Sets the text size. */
+    line-height: 1.55; word-break: break-word; /* Sets vertical text rhythm. */
+}
+.pw-del-row__value--muted { color: var(--text-muted); font-style: italic; } /* Styles part of the ProductDelete page or component. */
+.pw-del-row__value a { color: var(--green); text-decoration: none; } /* Styles part of the ProductDelete page or component. */
+/* ----- Grid layout ----- */
+.pw-del-row__value a:hover { text-decoration: underline; } /* Styles part of the ProductDelete page or component. */
+
+/* ----- Product styling ----- */
+.pw-del-allergen-list { /* Starts styles for the .pw-del-allergen-list selector. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; /* Controls how the element participates in layout. */
+}
+/* ----- Product styling ----- */
+.pw-del-allergen-chip { /* Starts styles for the .pw-del-allergen-chip selector. */
+    padding: 3px 10px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    border: 1.5px solid #FED7AA; /* Sets the border around the element. */
+    font-size: 11.5px; font-weight: 600; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    color: #9A3412; /* Sets the text color. */
+    background: #FFF7ED; /* Sets the element background treatment. */
+}
+
+.pw-del-impact { /* Starts styles for the .pw-del-impact selector. */
+    background: #FFF7ED; /* Sets the element background treatment. */
+    border: 1.5px solid #FED7AA; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+/* ----- Navigation ----- */
+.pw-del-impact__header { /* Starts styles for the .pw-del-impact__header selector. */
+    padding: 16px 20px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+    border-bottom: 1px solid #FED7AA; /* Sets the border-bottom style for this rule. */
+    background: #FFEDD5; /* Sets the element background treatment. */
+}
+/* ----- Navigation ----- */
+.pw-del-impact__header h2 { /* Starts styles for the .pw-del-impact__header h2 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Grid layout ----- */
+    font-size: 15px; font-weight: 700; color: #9A3412; /* Sets the text size. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+/* ----- Base layout ----- */
+.pw-del-impact__body { /* Starts styles for the .pw-del-impact__body selector. */
+    padding: 16px 20px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-direction: column; gap: 10px; /* Controls how the element participates in layout. */
+}
+.pw-del-impact__item { /* Starts styles for the .pw-del-impact__item selector. */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+    font-size: 13.5px; font-weight: 500; color: #7C2D12; /* Sets the text size. */
+}
+.pw-del-impact__item-dot { /* Starts styles for the .pw-del-impact__item-dot selector. */
+    width: 7px; height: 7px; flex-shrink: 0; /* Sets the element width. */
+    background: #F97316; border-radius: 50%; /* Sets the element background treatment. */
+}
+
+.pw-del-confirm { /* Starts styles for the .pw-del-confirm selector. */
+    background: #fff; /* Sets the element background treatment. */
+    border: 1.5px solid #FECACA; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+/* ----- Navigation ----- */
+.pw-del-confirm__header { /* Starts styles for the .pw-del-confirm__header selector. */
+    background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); /* Sets the element background treatment. */
+    padding: 20px 24px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 12px; /* Controls how the element participates in layout. */
+}
+/* ----- Navigation ----- */
+.pw-del-confirm__header h2 { /* Starts styles for the .pw-del-confirm__header h2 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Grid layout ----- */
+    font-size: 16px; font-weight: 700; color: #fff; /* Sets the text size. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+/* ----- Navigation ----- */
+.pw-del-confirm__header p { /* Starts styles for the .pw-del-confirm__header p selector. */
+    /* ----- Grid layout ----- */
+    font-size: 12px; color: rgba(255,255,255,.65); margin: 2px 0 0; /* Sets the text size. */
+}
+.pw-del-confirm__icon-box { /* Starts styles for the .pw-del-confirm__icon-box selector. */
+    width: 40px; height: 40px; flex-shrink: 0; /* Sets the element width. */
+    background: rgba(255,255,255,.12); /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    color: #fff; /* Sets the text color. */
+}
+/* ----- Base layout ----- */
+.pw-del-confirm__body { padding: 24px; } /* Styles part of the ProductDelete page or component. */
+
+/* ----- Grid layout ----- */
+.pw-del-checkbox-row { /* Starts styles for the .pw-del-checkbox-row selector. */
+    display: flex; align-items: flex-start; gap: 12px; /* Controls how the element participates in layout. */
+    padding: 14px 16px; /* Sets spacing inside the element. */
+    background: #fef2f2; /* Sets the element background treatment. */
+    border: 1.5px solid #fecaca; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    margin-bottom: 20px; /* Sets the margin-bottom style for this rule. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+}
+/* ----- Grid layout ----- */
+.pw-del-checkbox-row input[type="checkbox"] { /* Starts styles for the .pw-del-checkbox-row input[type="checkbox"] selector. */
+    width: 18px; height: 18px; flex-shrink: 0; /* Sets the element width. */
+    accent-color: #DC2626; cursor: pointer; margin-top: 2px; /* Sets the accent-color style for this rule. */
+}
+.pw-del-checkbox-row__text { /* Starts styles for the .pw-del-checkbox-row__text selector. */
+    font-size: 13.5px; color: #991B1B; font-weight: 500; line-height: 1.5; /* Sets the text size. */
+}
+.pw-del-checkbox-row__text strong { font-weight: 700; } /* Styles part of the ProductDelete page or component. */
+
+/* ----- Buttons ----- */
+.pw-del-actions { /* Starts styles for the .pw-del-actions selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; /* Controls how the element participates in layout. */
+}
+/* ----- Buttons ----- */
+.pw-btn-cancel { /* Starts styles for the .pw-btn-cancel selector. */
+    height: 42px; padding: 0 20px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: transparent; color: var(--text-muted); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; /* Sets the font family. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 7px; /* Controls how the element participates in layout. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+    transition: border-color .15s, color .15s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.pw-btn-cancel:hover { border-color: var(--text-muted); color: var(--text); } /* Styles part of the ProductDelete page or component. */
+
+/* ----- Buttons ----- */
+.pw-btn-delete { /* Starts styles for the .pw-btn-delete selector. */
+    height: 42px; padding: 0 24px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    background: #DC2626; color: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border: none; border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-family: var(--font-body); font-size: 14px; font-weight: 700; /* Sets the font family. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 7px; /* Controls how the element participates in layout. */
+    /* ----- Forms ----- */
+    transition: background .15s, box-shadow .15s, transform .1s; /* Animates property changes smoothly. */
+    box-shadow: 0 2px 8px rgba(220,38,38,.3); /* Adds depth with a shadow. */
+    /* ----- Animation ----- */
+    opacity: .45; /* Controls element transparency. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+/* ----- Buttons ----- */
+.pw-btn-delete.is-ready { opacity: 1; pointer-events: auto; } /* Styles part of the ProductDelete page or component. */
+/* ----- Forms ----- */
+.pw-btn-delete.is-ready:hover { background: #b91c1c; box-shadow: 0 4px 14px rgba(185,28,28,.4); transform: translateY(-1px); } /* Styles part of the ProductDelete page or component. */
+.pw-btn-delete.is-ready:active { transform: translateY(0); } /* Styles part of the ProductDelete page or component. */

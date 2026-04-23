@@ -1,0 +1,669 @@
+@* ----- Page Model Setup ----- *@
+@* Sets the model type used by this view. *@
+@model IEnumerable<GFLHApp.Models.Producers>
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Meet Our Growers"; // Page title
+    ViewData["FullWidth"] = true; // Enable full-width layout
+
+ // ----- Card Layout -----
+    var cardAccents = new[] { "--green", "--orange", "--purple", "--pop", "--green", "--orange" }; // Accent classes cycled per card
+    var floatIcons = new[] { "sprout", "leaf", "wheat", "carrot", "flower-2", "cherry" };              // Icons cycled per card sticker
+    int idx = 0; // Card index counter for cycling accents, icons and delays
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Current signed-in user id for ownership checks.
+    var isAdminOrDeveloper = User.IsInRole("Admin") || User.IsInRole("Developer"); // Admins can manage any producer profile.
+}
+
+<!-- Scroll progress bar --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+<div id="scrollProgress" class="pw-scroll-progress" aria-hidden="true"></div> <!-- Scroll progress indicator --> @* Starts a layout container for this section. *@
+<!-- ════════════════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+     GROWERS INTRO  (unique — not a copy of home hero) @* Renders part of the producers page markup. *@
+════════════════════════════════════════════════════ --> @* Renders part of the producers page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="gw-intro" aria-label="Meet our growers"> @* Renders part of the producers page markup. *@
+    <!-- Intro hero section --> @* Keeps an existing comment in the Razor file. *@
+    <!-- Coloured blobs --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-blob gw-blob--pink" aria-hidden="true"></div> <!-- Decorative pink blob --> @* Starts a layout container for this section. *@
+    <div class="gw-blob gw-blob--lavender" aria-hidden="true"></div> <!-- Decorative lavender blob --> @* Starts a layout container for this section. *@
+    <div class="gw-blob gw-blob--lime" aria-hidden="true"></div> <!-- Decorative lime blob --> @* Starts a layout container for this section. *@
+    <div class="gw-blob gw-blob--peach" aria-hidden="true"></div> <!-- Decorative peach blob --> @* Starts a layout container for this section. *@
+    <!-- Floating sticker badges --> @* Keeps an existing comment in the Razor file. *@
+    <div class="gw-sticker gw-sticker--1" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <!-- Floating sticker 1 --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <i data-lucide="sprout" style="width:12px;height:12px;"></i> UK Grown <!-- Sprout icon + label --> @* Renders part of the producers page markup. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-sticker gw-sticker--2" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <!-- Floating sticker 2 --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <i data-lucide="shield-check" style="width:12px;height:12px;"></i> Verified <!-- Shield icon + label --> @* Renders part of the producers page markup. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-sticker gw-sticker--3" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <!-- Floating sticker 3 --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <i data-lucide="heart" style="width:12px;height:12px;"></i> With Love <!-- Heart icon + label --> @* Renders part of the producers page markup. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-sticker gw-sticker--4" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <!-- Floating sticker 4 --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <i data-lucide="leaf" style="width:12px;height:12px;"></i> Seasonal <!-- Leaf icon + label --> @* Renders part of the producers page markup. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-sticker gw-sticker--5" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <!-- Floating sticker 5 --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <i data-lucide="sun" style="width:12px;height:12px;"></i> Fresh! <!-- Sun icon + label --> @* Renders part of the producers page markup. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- Main copy --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-intro__content"> @* Starts a layout container for this section. *@
+        <!-- Main text block --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+        <p class="gw-intro__eyebrow"> @* Renders paragraph text for the user. *@
+ @* ----- Form Fields ----- *@
+            <!-- Eyebrow label --> @* Keeps an existing comment in the Razor file. *@
+            <i data-lucide="users" style="width:14px;height:14px;"></i> <!-- Users icon --> @* Renders part of the producers page markup. *@
+ @* ----- Page Model Setup ----- *@
+            @Model.Count() grower@(Model.Count() != 1 ? "s" : "") on the platform <!-- Pluralised grower count --> @* Displays or uses data from the producers model. *@
+        </p> @* Closes the matching HTML element. *@
+
+ @* ----- Page Header ----- *@
+        <h1 class="gw-intro__title"> @* Renders a heading for this page section. *@
+            <!-- Main hero heading --> @* Keeps an existing comment in the Razor file. *@
+            Say hello to the<br> @* Renders part of the producers page markup. *@
+ @* ----- Styling Section ----- *@
+            <span class="hl-green hl-squig">humans</span>   <!-- "humans" with green squiggle highlight --> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+            <span class="hl-orange"> growing</span><br>     <!-- "growing" in orange --> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+            your <span class="hl-pink">favourite</span>     <!-- "favourite" in pink --> @* Renders part of the producers page markup. *@
+            <span class="hl-purple"> things.</span>         <!-- "things." in purple --> @* Renders inline text or badge content. *@
+        </h1> @* Closes the matching HTML element. *@
+
+        <p class="gw-intro__sub"> @* Renders paragraph text for the user. *@
+            <!-- Intro subtitle paragraph --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Basket Display ----- *@
+            Every item in your basket has a face behind it — a real farmer, @* Renders part of the producers page markup. *@
+            a real field, a real story. Come and meet them. @* Renders part of the producers page markup. *@
+        </p> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <div class="gw-intro__cta-row"> @* Starts a layout container for this section. *@
+            <!-- CTA button row --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--primary pw-btn--lg" href="#growers-section"> @* Renders a navigation link or action link. *@
+ @* ----- Card Layout ----- *@
+                <!-- Primary CTA: scroll to grid --> @* Keeps an existing comment in the Razor file. *@
+                Meet the Farmers @* Renders part of the producers page markup. *@
+            </a> @* Closes the matching HTML element. *@
+            <a class="gw-intro__scroll-cta" href="#growers-section"> @* Renders a navigation link or action link. *@
+                <!-- Secondary scroll prompt --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="arrow-down" style="width:15px;height:15px;"></i> <!-- Down arrow icon --> @* Renders part of the producers page markup. *@
+                Scroll to explore @* Renders part of the producers page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- Polaroid photo strip --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-polaroid-strip" aria-hidden="true" role="presentation"> @* Starts a layout container for this section. *@
+        <!-- Decorative photo strip --> @* Keeps an existing comment in the Razor file. *@
+        <div class="gw-polaroid" data-burst> @* Starts a layout container for this section. *@
+            <!-- Polaroid 1; data-burst triggers particle effect on hover --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+            <img class="gw-polaroid__img" src="~/images/producers/meadowFreshOrganicFarm.jpg" alt="" loading="eager"> <!-- Farm field photo --> @* Renders an image for the page content. *@
+ @* ----- Styling Section ----- *@
+            <span class="gw-polaroid__caption">The fields ☀️</span> <!-- Caption --> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+        <div class="gw-polaroid" data-burst> @* Starts a layout container for this section. *@
+            <!-- Polaroid 2 --> @* Keeps an existing comment in the Razor file. *@
+            <img class="gw-polaroid__img" src="~/images/home/olderLady.jpg" alt="" loading="eager"> <!-- Martha photo --> @* Renders an image for the page content. *@
+            <span class="gw-polaroid__caption">Martha 🌿</span> <!-- Caption --> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+        <div class="gw-polaroid" data-burst> @* Starts a layout container for this section. *@
+            <!-- Polaroid 3 --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+            <img class="gw-polaroid__img" src="~/images/producers/greenValleyProduce.jpg" alt="" loading="eager"> <!-- Harvest photo --> @* Renders an image for the page content. *@
+ @* ----- Styling Section ----- *@
+            <span class="gw-polaroid__caption">Fruit Frenzy</span> <!-- Caption --> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+        <div class="gw-polaroid" data-burst> @* Starts a layout container for this section. *@
+            <!-- Polaroid 4 --> @* Keeps an existing comment in the Razor file. *@
+            <img class="gw-polaroid__img" src="~/images/home/manwalking.jpg" alt="" loading="eager"> <!-- Tom's farm photo --> @* Renders an image for the page content. *@
+            <span class="gw-polaroid__caption">Tom's farm 🥕</span> <!-- Caption --> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+        <div class="gw-polaroid" data-burst> @* Starts a layout container for this section. *@
+            <!-- Polaroid 5 --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+            <img class="gw-polaroid__img" src="~/images/producers/oakridgeHarvestHub.jpg" alt="" loading="eager"> <!-- Soil photo --> @* Renders an image for the page content. *@
+ @* ----- Styling Section ----- *@
+            <span class="gw-polaroid__caption">Platonic Planter        🌱</span> <!-- Caption --> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+        <div class="gw-polaroid" data-burst> @* Starts a layout container for this section. *@
+            <!-- Polaroid 6 --> @* Keeps an existing comment in the Razor file. *@
+            <img class="gw-polaroid__img" src="~/images/home/homestrawberries.jpg" alt="" loading="eager"> <!-- Barn photo --> @* Renders an image for the page content. *@
+            <span class="gw-polaroid__caption">Strawberries! 🍓</span> <!-- Caption --> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- Colourful topic tags --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+    <div class="gw-tag-row" role="list" aria-label="Topics"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+        <!-- Tag row, announced as a list --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+        <span class="gw-tag gw-tag--a" role="listitem"><i data-lucide="sun" style="width:12px;height:12px;"></i> Seasonal</span>        <!-- Seasonal tag --> @* Renders inline text or badge content. *@
+        <span class="gw-tag gw-tag--b" role="listitem"><i data-lucide="map-pin" style="width:12px;height:12px;"></i> UK Only</span>          <!-- UK Only tag --> @* Renders inline text or badge content. *@
+        <span class="gw-tag gw-tag--c" role="listitem"><i data-lucide="heart" style="width:12px;height:12px;"></i> Family Farms</span>     <!-- Family Farms tag --> @* Renders inline text or badge content. *@
+        <span class="gw-tag gw-tag--d" role="listitem"><i data-lucide="sprout" style="width:12px;height:12px;"></i> Sustainable</span>      <!-- Sustainable tag --> @* Renders inline text or badge content. *@
+        <span class="gw-tag gw-tag--e" role="listitem"><i data-lucide="package" style="width:12px;height:12px;"></i> Zero Plastic</span>     <!-- Zero Plastic tag --> @* Renders inline text or badge content. *@
+        <span class="gw-tag gw-tag--f" role="listitem"><i data-lucide="handshake" style="width:12px;height:12px;"></i> Fair Pay</span>         <!-- Fair Pay tag --> @* Renders inline text or badge content. *@
+        <span class="gw-tag gw-tag--g" role="listitem"><i data-lucide="leaf" style="width:12px;height:12px;"></i> Organic Options</span>  <!-- Organic Options tag --> @* Renders inline text or badge content. *@
+        <span class="gw-tag gw-tag--h" role="listitem"><i data-lucide="shield-check" style="width:12px;height:12px;"></i> Verified Quality</span> <!-- Verified Quality tag --> @* Renders inline text or badge content. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- Soft wave into next section --> @* Keeps an existing comment in the Razor file. *@
+    <div class="gw-intro__wave" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <!-- Decorative wave transition --> @* Keeps an existing comment in the Razor file. *@
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none"> @* Renders part of the producers page markup. *@
+            <!-- Wave SVG --> @* Keeps an existing comment in the Razor file. *@
+            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#F9FAFB" /> <!-- Wave path filled with next section background colour --> @* Renders paragraph text for the user. *@
+        </svg> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ════════════════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+     GROWERS GRID @* Renders part of the producers page markup. *@
+════════════════════════════════════════════════════ --> @* Renders part of the producers page markup. *@
+ @* ----- Form Fields ----- *@
+<section id="growers-section" class="pw-section pw-section--cream" aria-labelledby="growers-heading"> @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+    <!-- Growers grid section; anchor target for CTA links --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+        <!-- Centred container --> @* Keeps an existing comment in the Razor file. *@
+
+        <div class="pw-section__header reveal reveal--blur"> @* Starts a layout container for this section. *@
+            <!-- Section header, animates in with blur --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+            <span class="pw-section__eyebrow"> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                <!-- Eyebrow label --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="users" class="pw-icon-sm"></i> <!-- Users icon --> @* Renders part of the producers page markup. *@
+                The people @* Renders part of the producers page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h2 class="pw-section__title" id="growers-heading"> @* Renders a heading for this page section. *@
+                <!-- Section heading --> @* Keeps an existing comment in the Razor file. *@
+                Not a supermarket.<br> @* Renders part of the producers page markup. *@
+ @* ----- Styling Section ----- *@
+                <em class="pw-text--green">Not even close.</em> <!-- Green emphasis --> @* Renders part of the producers page markup. *@
+            </h2> @* Closes the matching HTML element. *@
+            <p class="pw-section__subtitle"> @* Renders paragraph text for the user. *@
+                <!-- Section subtitle --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Product Display ----- *@
+                Every product is traceable to a real farm, a real face, and a real story. @* Renders part of the producers page markup. *@
+            </p> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Authorization Display ----- *@
+        @if (User.IsInRole("Admin")) // Only show admin strip to admin users @* Conditionally renders this block when the check passes. *@
+        {
+ @* ----- Styling Section ----- *@
+            <div class="pw-admin-strip reveal" data-delay="100"> @* Starts a layout container for this section. *@
+                <!-- Admin toolbar strip --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                <p class="pw-admin-strip__label"> @* Renders paragraph text for the user. *@
+                    <!-- Label with producer count --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="shield" class="pw-icon-sm pw-icon-green"></i> <!-- Shield icon --> @* Renders part of the producers page markup. *@
+ @* ----- Loop Rendering ----- *@
+                    <strong>Admin view</strong> — managing @Model.Count() producer@(Model.Count() != 1 ? "s" : "") <!-- Pluralised count --> @* Displays or uses data from the producers model. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                <a class="pw-btn pw-btn--primary pw-btn--sm" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                   asp-action="Create"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                    <!-- Link to Create action --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="plus" class="pw-icon-sm"></i> <!-- Plus icon --> @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                    Add Producer @* Renders part of the producers page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        }
+
+ @* ----- Card Layout ----- *@
+        @if (Model.Any()) // Render grid if producers exist @* Conditionally renders this block when the check passes. *@
+        {
+            <div class="pw-grid pw-grid--2 pw-producers-grid"> @* Starts a layout container for this section. *@
+                <!-- 2-column producer card grid --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Loop Rendering ----- *@
+                @foreach (var item in Model) // Loop through each producer @* Loops through the collection and renders each item. *@
+                {
+ @* ----- Card Layout ----- *@
+                    var accentClass = cardAccents[idx % cardAccents.Length]; // Cycle accent class by index @* Renders part of the producers page markup. *@
+                    var delay = (idx % 4) * 120;                       // Staggered animation delay: 0, 120, 240, 360ms @* Renders part of the producers page markup. *@
+                    var revealDir = idx % 2 == 0 ? "reveal--left" : "reveal--right"; // Alternate reveal direction per card @* Renders part of the producers page markup. *@
+                    var floatIcon = floatIcons[idx % floatIcons.Length];   // Cycle sticker icon by index @* Renders part of the producers page markup. *@
+                    var paletteCls = "pw-card__no-photo--" + (idx % 6);     // Cycle colour palette class (0–5) @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                    var hasImage = !string.IsNullOrWhiteSpace(item.ImagePath); // Whether the producer has an image to show @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+                    idx++; // Increment index for next card @* Renders part of the producers page markup. *@
+
+                    <article class="pw-card pw-card--grower pw-card--producer reveal @revealDir" @* Renders a navigation link or action link. *@
+                             data-delay="@delay" @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                             data-producer-id="@item.ProducersId"> @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+                        <!-- Producer card article --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+                        <!-- Coloured icon panel (no image on Producer model — show farm icon) --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+                        <div class="pw-card__grower-img pw-card__burst-target @(hasImage ? "pw-card__has-photo" : $"pw-card__no-photo {paletteCls}")"> @* Starts a layout container for this section. *@
+                            <!-- Coloured image panel; burst-target triggers particle effect --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (hasImage) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <img class="pw-card__grower-photo" @* Renders an image for the page content. *@
+                                     src="@item.ImagePath" @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                                     alt="@item.ProducerName" @* Renders part of the producers page markup. *@
+                                     loading="lazy" /> @* Renders part of the producers page markup. *@
+                            }
+ @* ----- Conditional Rendering ----- *@
+                            else @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <div class="pw-card__farm-icon"> @* Starts a layout container for this section. *@
+                                    <!-- Large centred farm icon --> @* Keeps an existing comment in the Razor file. *@
+                                    <i data-lucide="warehouse" style="width:40px;height:40px;stroke:rgba(255,255,255,.92);stroke-width:1.5;"></i> <!-- Warehouse icon --> @* Renders part of the producers page markup. *@
+                                </div> @* Closes the matching HTML element. *@
+                            }
+                            <!-- sticker sits inside the panel at top --> @* Keeps an existing comment in the Razor file. *@
+                            <div class="pw-card__sticker"> @* Starts a layout container for this section. *@
+                                <!-- Small sticker badge --> @* Keeps an existing comment in the Razor file. *@
+                                <i data-lucide="@floatIcon" style="width:10px;height:10px;"></i> <!-- Cycled icon --> @* Renders part of the producers page markup. *@
+                                Local Farm @* Renders part of the producers page markup. *@
+                            </div> @* Closes the matching HTML element. *@
+                            <div class="pw-card__img-badge"> @* Starts a layout container for this section. *@
+                                <!-- Badge row at bottom of panel --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                                <span class="pw-badge pw-badge--green" style="font-size:.62rem;padding:2px 7px;"> @* Renders inline text or badge content. *@
+                                    <!-- Verified badge --> @* Keeps an existing comment in the Razor file. *@
+                                    <i data-lucide="check-circle" style="width:10px;height:10px;"></i> <!-- Check icon --> @* Renders part of the producers page markup. *@
+                                    Verified @* Renders part of the producers page markup. *@
+                                </span> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+                                @if (item.IsVATRegistered) // Only show VAT badge if registered @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Producer Display ----- *@
+                                    <span class="pw-badge pw-badge--purple" style="font-size:.62rem;padding:2px 7px;">VAT Reg.</span> <!-- VAT registered badge --> @* Renders inline text or badge content. *@
+                                }
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <div class="pw-card__img-number">@idx.ToString("D2")</div> <!-- Zero-padded card number --> @* Starts a layout container for this section. *@
+                        </div> @* Closes the matching HTML element. *@
+
+                        <!-- Body --> @* Keeps an existing comment in the Razor file. *@
+                        <div class="pw-card__body"> @* Starts a layout container for this section. *@
+                            <!-- Card text content --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Page Header ----- *@
+                            <h3 class="pw-card__producer-name">@item.ProducerName</h3> <!-- Producer name --> @* Renders a heading for this page section. *@
+
+ @* ----- Card Layout ----- *@
+                            <p class="pw-card__email"> @* Renders paragraph text for the user. *@
+                                <!-- Email row --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                                <i data-lucide="mail" class="pw-icon-sm pw-icon-muted"></i> <!-- Mail icon --> @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                                @item.ProducerEmail <!-- Producer email --> @* Outputs Razor data or executes Razor logic. *@
+                            </p> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+                            @if (!string.IsNullOrWhiteSpace(item.ProducerInformation)) // Only show bio if one exists @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <p class="pw-card__info">"@item.ProducerInformation"</p> <!-- Producer bio in quotes --> @* Renders paragraph text for the user. *@
+                            }
+
+                            <div class="pw-card__meta"> @* Starts a layout container for this section. *@
+                                <!-- Action buttons row --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Actions ----- *@
+                                <a class="pw-btn pw-btn--sm pw-btn--primary" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                                   asp-area="" asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Setup ----- *@
+                                   asp-route-producerId="@item.ProducersId" @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+                                   title="Browse products by @item.ProducerName"> @* Renders part of the producers page markup. *@
+ @* ----- Product Display ----- *@
+                                    <!-- Link to this producer's products --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                                    <i data-lucide="shopping-bag" class="pw-icon-sm"></i> <!-- Bag icon --> @* Renders part of the producers page markup. *@
+                                    Their Produce @* Renders part of the producers page markup. *@
+                                </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                                <a class="pw-btn pw-btn--sm pw-btn--outline" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                                   asp-area="" asp-controller="Producers" asp-action="Details" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Setup ----- *@
+                                   asp-route-id="@item.ProducersId" @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                                   title="View @item.ProducerName profile"> @* Renders part of the producers page markup. *@
+                                    <!-- Link to producer detail page --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                                    <i data-lucide="user" class="pw-icon-sm"></i> <!-- User icon --> @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                                    View Producer @* Renders part of the producers page markup. *@
+                                </a> @* Closes the matching HTML element. *@
+
+ @* ----- Authorization Display ----- *@
+                                @if (isAdminOrDeveloper || item.UserId == currentUserId) // Show permitted producer management actions @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Card Layout ----- *@
+                                    <div class="pw-card__admin-actions"> @* Starts a layout container for this section. *@
+                                        <!-- Admin action icon buttons --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Actions ----- *@
+                                        @if (isAdminOrDeveloper) @* Conditionally renders this block when the check passes. *@
+                                        {
+                                        <a class="pw-btn pw-btn--sm pw-btn--ghost" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                                           asp-action="Edit" asp-route-id="@item.ProducersId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Producer Display ----- *@
+                                           title="Edit Producer"> @* Renders part of the producers page markup. *@
+                                            <!-- Edit button --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                                            <i data-lucide="pencil" class="pw-icon-sm"></i> <!-- Pencil icon --> @* Renders part of the producers page markup. *@
+                                        </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                                        <a class="pw-btn pw-btn--sm pw-btn--ghost" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                                           asp-action="Delete" asp-route-id="@item.ProducersId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                                           title="Delete Producer" @* Renders part of the producers page markup. *@
+                                           style="color:var(--danger,#DC2626);"> @* Renders part of the producers page markup. *@
+                                            <!-- Delete button, red text --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                                            <i data-lucide="trash-2" class="pw-icon-sm"></i> <!-- Trash icon --> @* Renders part of the producers page markup. *@
+                                        </a> @* Closes the matching HTML element. *@
+                                        }
+                                    </div> @* Closes the matching HTML element. *@
+                                }
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </article> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        }
+ @* ----- Conditional Rendering ----- *@
+        else // No producers in the model @* Renders the fallback branch for the previous condition. *@
+        {
+ @* ----- Card Layout ----- *@
+            <!-- Empty state --> @* Keeps an existing comment in the Razor file. *@
+            <div class="pw-empty-state reveal"> @* Starts a layout container for this section. *@
+                <!-- Empty state card --> @* Keeps an existing comment in the Razor file. *@
+                <div class="pw-empty-state__icon"> @* Starts a layout container for this section. *@
+                    <!-- Icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                    <i data-lucide="sprout" style="width:28px;height:28px;stroke:var(--green);"></i> <!-- Sprout icon --> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h3 class="pw-empty-state__title">No growers yet</h3> <!-- Empty state heading --> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                <p class="pw-empty-state__sub"> @* Renders paragraph text for the user. *@
+                    <!-- Empty state message --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+                    The fields are quiet for now. Be the first to join our producer family. @* Renders part of the producers page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Authorization Display ----- *@
+                @if (User.IsInRole("Admin")) // Only show add button to admins @* Conditionally renders this block when the check passes. *@
+                {
+ @* ----- Navigation ----- *@
+                    <a class="pw-btn pw-btn--primary pw-btn--lg" asp-action="Create"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                        <!-- Link to Create action --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                        <i data-lucide="plus" class="pw-icon-sm"></i> <!-- Plus icon --> @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                        Add First Producer @* Renders part of the producers page markup. *@
+                    </a> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+        }
+
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ════════════════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     WHY OUR FARMERS ARE WONDERFUL @* Renders part of the producers page markup. *@
+════════════════════════════════════════════════════ --> @* Renders part of the producers page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="gw-why" aria-labelledby="why-heading"> @* Renders part of the producers page markup. *@
+    <!-- Why section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-why__header reveal reveal--blur"> @* Starts a layout container for this section. *@
+        <!-- Section header, animates in with blur --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+        <p class="gw-why__eyebrow"> @* Renders paragraph text for the user. *@
+ @* ----- Form Fields ----- *@
+            <!-- Eyebrow label --> @* Keeps an existing comment in the Razor file. *@
+            <i data-lucide="heart" style="width:13px;height:13px;"></i> <!-- Heart icon --> @* Renders part of the producers page markup. *@
+            The good stuff @* Renders part of the producers page markup. *@
+        </p> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+        <h2 class="gw-why__title" id="why-heading"> @* Renders a heading for this page section. *@
+            <!-- Section heading --> @* Keeps an existing comment in the Razor file. *@
+            What makes them<br><em>so bloody wonderful</em> <!-- Italic emphasis --> @* Renders part of the producers page markup. *@
+        </h2> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+    <div class="gw-why__grid"> @* Starts a layout container for this section. *@
+        <!-- 4-card feature grid --> @* Keeps an existing comment in the Razor file. *@
+        <div class="gw-why__card gw-why__card--a reveal reveal--pop" data-delay="0"> @* Starts a layout container for this section. *@
+            <!-- Feature card 1 --> @* Keeps an existing comment in the Razor file. *@
+            <div class="gw-why__card__icon"> @* Starts a layout container for this section. *@
+                <!-- Icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="sun" style="width:28px;height:28px;stroke:#14532d;"></i> <!-- Sun icon --> @* Renders part of the producers page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h3 class="gw-why__card__title">Up before the sun</h3> <!-- Card heading --> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="gw-why__card__desc">While you're still asleep, they're already in the field. That's the kind of dedication you can actually taste.</p> <!-- Card description --> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="gw-why__card gw-why__card--b reveal reveal--pop" data-delay="120"> @* Starts a layout container for this section. *@
+            <!-- Feature card 2 --> @* Keeps an existing comment in the Razor file. *@
+            <div class="gw-why__card__icon"> @* Starts a layout container for this section. *@
+                <!-- Icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="worm" style="width:28px;height:28px;stroke:#14532d;"></i> <!-- Worm icon --> @* Renders part of the producers page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h3 class="gw-why__card__title">They know their soil</h3> <!-- Card heading --> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="gw-why__card__desc">Not just what grows in it — but why. Years of listening to the land makes for food that can't be rushed.</p> <!-- Card description --> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="gw-why__card gw-why__card--c reveal reveal--pop" data-delay="240"> @* Starts a layout container for this section. *@
+            <!-- Feature card 3 --> @* Keeps an existing comment in the Razor file. *@
+            <div class="gw-why__card__icon"> @* Starts a layout container for this section. *@
+                <!-- Icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="handshake" style="width:28px;height:28px;stroke:#365314;"></i> <!-- Handshake icon --> @* Renders part of the producers page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h3 class="gw-why__card__title">They keep it honest</h3> <!-- Card heading --> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="gw-why__card__desc">No fancy packaging to hide behind. Just real people growing real things and being straight with you about it.</p> <!-- Card description --> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="gw-why__card gw-why__card--d reveal reveal--pop" data-delay="360"> @* Starts a layout container for this section. *@
+            <!-- Feature card 4 --> @* Keeps an existing comment in the Razor file. *@
+            <div class="gw-why__card__icon"> @* Starts a layout container for this section. *@
+                <!-- Icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="leaf" style="width:28px;height:28px;stroke:#064e3b;"></i> <!-- Leaf icon --> @* Renders part of the producers page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h3 class="gw-why__card__title">They grow with care</h3> <!-- Card heading --> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="gw-why__card__desc">Seasonal. Thoughtful. Never more than the land can give. Because a farm that's loved always gives more back.</p> <!-- Card description --> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ════════════════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     FARM LOVE NOTES  (double-row fun-fact marquee) @* Renders part of the producers page markup. *@
+════════════════════════════════════════════════════ --> @* Renders part of the producers page markup. *@
+ @* ----- Form Fields ----- *@
+<div class="gw-facts" role="region" aria-label="Fun facts about our growers"> @* Starts a layout container for this section. *@
+    <!-- Fun facts marquee region --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-facts__header"> @* Starts a layout container for this section. *@
+        <!-- Marquee header --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <p class="gw-facts__label">Little things that make us happy</p> <!-- Header label --> @* Renders paragraph text for the user. *@
+    </div> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-facts__track-wrap"> @* Starts a layout container for this section. *@
+        <!-- Scrolling track wrapper --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+        <!-- Row 1 — scrolls forward --> @* Keeps an existing comment in the Razor file. *@
+        <div class="gw-facts__row gw-facts__row--fwd" aria-hidden="true"> @* Starts a layout container for this section. *@
+            <!-- Forward-scrolling row; decorative, hidden from screen readers --> @* Keeps an existing comment in the Razor file. *@
+            <span class="gw-fact-pill gw-fact-pill--a"><i data-lucide="sunrise" class="gw-fact-pill__icon"></i> Most growers start at 5am</span>          <!-- Fact pill --> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+            <span class="gw-fact-pill gw-fact-pill--b"><i data-lucide="leaf" class="gw-fact-pill__icon"></i> Every vegetable has a personality</span>   <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--c"><i data-lucide="heart" class="gw-fact-pill__icon"></i> Soil health = your health</span>           <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--d"><i data-lucide="cloud-rain" class="gw-fact-pill__icon"></i> They genuinely love rainy days</span>      <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--e"><i data-lucide="bird" class="gw-fact-pill__icon"></i> Farms are noisier than you think</span>    <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--f"><i data-lucide="sprout" class="gw-fact-pill__icon"></i> Some seeds take 3 years to fruit</span>    <!-- Fact pill --> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+            <span class="gw-fact-pill gw-fact-pill--a"><i data-lucide="sunrise" class="gw-fact-pill__icon"></i> Most growers start at 5am</span>           <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+            <span class="gw-fact-pill gw-fact-pill--b"><i data-lucide="leaf" class="gw-fact-pill__icon"></i> Every vegetable has a personality</span>   <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--c"><i data-lucide="heart" class="gw-fact-pill__icon"></i> Soil health = your health</span>           <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--d"><i data-lucide="cloud-rain" class="gw-fact-pill__icon"></i> They genuinely love rainy days</span>      <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--e"><i data-lucide="bird" class="gw-fact-pill__icon"></i> Farms are noisier than you think</span>    <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--f"><i data-lucide="sprout" class="gw-fact-pill__icon"></i> Some seeds take 3 years to fruit</span>    <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <!-- Row 2 — scrolls reverse --> @* Keeps an existing comment in the Razor file. *@
+        <div class="gw-facts__row gw-facts__row--rev" aria-hidden="true"> @* Starts a layout container for this section. *@
+            <!-- Reverse-scrolling row; decorative, hidden from screen readers --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+            <span class="gw-fact-pill gw-fact-pill--d"><i data-lucide="moon" class="gw-fact-pill__icon"></i> Harvest happens by moonlight sometimes</span> <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--e"><i data-lucide="worm" class="gw-fact-pill__icon"></i> Worms are basically co-farmers</span>         <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--a"><i data-lucide="thermometer" class="gw-fact-pill__icon"></i> Temperature matters more than water</span>    <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--c"><i data-lucide="wheat" class="gw-fact-pill__icon"></i> Ugly veg tastes better — it's science</span>  <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--f"><i data-lucide="flower-2" class="gw-fact-pill__icon"></i> Companion planting is pure magic</span>       <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--b"><i data-lucide="tractor" class="gw-fact-pill__icon"></i> No two harvests are ever the same</span>      <!-- Fact pill --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--d"><i data-lucide="moon" class="gw-fact-pill__icon"></i> Harvest happens by moonlight sometimes</span> <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--e"><i data-lucide="worm" class="gw-fact-pill__icon"></i> Worms are basically co-farmers</span>         <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--a"><i data-lucide="thermometer" class="gw-fact-pill__icon"></i> Temperature matters more than water</span>    <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--c"><i data-lucide="wheat" class="gw-fact-pill__icon"></i> Ugly veg tastes better — it's science</span>  <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--f"><i data-lucide="flower-2" class="gw-fact-pill__icon"></i> Companion planting is pure magic</span>       <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+            <span class="gw-fact-pill gw-fact-pill--b"><i data-lucide="tractor" class="gw-fact-pill__icon"></i> No two harvests are ever the same</span>      <!-- Duplicate for seamless loop --> @* Renders inline text or badge content. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+
+<!-- ════════════════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     FIND YOUR FARMER  (speech-bubble CTA) @* Renders part of the producers page markup. *@
+════════════════════════════════════════════════════ --> @* Renders part of the producers page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="gw-cta" aria-labelledby="farmer-cta-heading"> @* Renders part of the producers page markup. *@
+    <!-- CTA section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="gw-cta__blob-a" aria-hidden="true"></div> <!-- Decorative blob A --> @* Starts a layout container for this section. *@
+    <div class="gw-cta__blob-b" aria-hidden="true"></div> <!-- Decorative blob B --> @* Starts a layout container for this section. *@
+
+    <div class="gw-cta__inner"> @* Starts a layout container for this section. *@
+        <!-- Inner content wrapper --> @* Keeps an existing comment in the Razor file. *@
+        <div class="gw-cta__bubble reveal reveal--pop"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <!-- Speech-bubble card, animates in with pop --> @* Keeps an existing comment in the Razor file. *@
+            <!-- Mini farmer avatar row --> @* Keeps an existing comment in the Razor file. *@
+            <div class="gw-cta__farmers-row" aria-hidden="true"> @* Starts a layout container for this section. *@
+                <!-- Decorative avatar row --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+                <div class="gw-cta__farmer-avatar"> @* Starts a layout container for this section. *@
+                    <!-- Photo avatar --> @* Keeps an existing comment in the Razor file. *@
+                    <img src="~/images/home/olderLady.jpg" alt=""> <!-- Martha photo --> @* Renders an image for the page content. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="gw-cta__farmer-avatar" style="background:#fef08a;color:#713f12;">T</div> <!-- Initial avatar: T --> @* Starts a layout container for this section. *@
+                <div class="gw-cta__farmer-avatar" style="background:#ddd6fe;color:#4c1d95;">S</div> <!-- Initial avatar: S --> @* Starts a layout container for this section. *@
+                <div class="gw-cta__farmer-avatar" style="background:#fed7aa;color:#7c2d12;">R</div> <!-- Initial avatar: R --> @* Starts a layout container for this section. *@
+                <div class="gw-cta__farmer-avatar"> @* Starts a layout container for this section. *@
+                    <!-- Photo avatar --> @* Keeps an existing comment in the Razor file. *@
+                    <img src="~/images/home/manwalking.jpg" alt=""> <!-- Tom photo --> @* Renders an image for the page content. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Page Header ----- *@
+            <h2 class="gw-cta__bubble-text" id="farmer-cta-heading"> @* Renders a heading for this page section. *@
+                <!-- Bubble heading --> @* Keeps an existing comment in the Razor file. *@
+                Your perfect farmer is<br>probably <em>on this page</em> right now. <!-- Italic emphasis --> @* Renders part of the producers page markup. *@
+            </h2> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <p class="gw-cta__bubble-sub"> @* Renders paragraph text for the user. *@
+                <!-- Bubble subtext --> @* Keeps an existing comment in the Razor file. *@
+                Scroll back up. Pick someone whose story resonates. Then buy their things. @* Renders part of the producers page markup. *@
+            </p> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="gw-cta__actions reveal" data-delay="160"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <!-- CTA button row --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--primary pw-btn--xl" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+               asp-area="" asp-controller="Products" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Product Display ----- *@
+                <!-- Link to all products --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="shopping-bag" class="pw-icon-sm"></i> <!-- Bag icon --> @* Renders part of the producers page markup. *@
+                Shop Their Produce @* Renders part of the producers page markup. *@
+            </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--outline pw-btn--xl" href="#growers-section"> @* Renders a navigation link or action link. *@
+ @* ----- Card Layout ----- *@
+                <!-- Scroll back to grid --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="arrow-up" class="pw-icon-sm"></i> <!-- Up arrow icon --> @* Renders part of the producers page markup. *@
+                Back to the Farmers @* Renders part of the producers page markup. *@
+            </a> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+        <p class="gw-cta__bubble-sub reveal" style="margin-top:1.5rem;font-size:.82rem;" data-delay="260"> @* Renders paragraph text for the user. *@
+            <!-- Small reassurance text --> @* Keeps an existing comment in the Razor file. *@
+            No subscription · No commitment · Just great food from real people @* Renders part of the producers page markup. *@
+        </p> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Producer Display ----- *@
+    <link rel="stylesheet" href="~/css/pages/producers/ProducersIndex.css" /> @* Renders one list item. *@
+}
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Producer Display ----- *@
+    <script src="~/js/pages/producers/ProducersIndex.js"></script> @* Starts client-side script for this page. *@
+}

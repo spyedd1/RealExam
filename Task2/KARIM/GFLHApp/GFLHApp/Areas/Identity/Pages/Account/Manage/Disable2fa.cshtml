@@ -1,0 +1,51 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model Disable2faModel
+@{
+    ViewData["Title"] = "Disable 2FA"; // Sets the browser and page title for this view.
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication; // Reads view data supplied by the controller.
+}
+
+ @* ----- Status Messages ----- *@
+<partial name="_StatusMessage" for="StatusMessage" /> @* Renders a shared partial view here. *@
+
+ @* ----- Card Layout ----- *@
+<span class="pw-manage-content__eyebrow">Security · Two-Factor Auth</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+<h2 class="pw-manage-content__title">Disable Two-Factor Authentication</h2> @* Renders a heading for this page section. *@
+ @* ----- Conditional Rendering ----- *@
+<p class="pw-manage-content__sub">You're about to turn off the extra security layer on your account.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Status Messages ----- *@
+<div class="pw-manage-alert pw-manage-alert--warning" role="alert"> @* Starts a layout container for this section. *@
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> @* Renders part of the identity page markup. *@
+    <div> @* Starts a layout container for this section. *@
+ @* ----- Identity Account ----- *@
+        <strong>This only disables 2FA — it does not change your authenticator app keys.</strong><br> @* Renders part of the identity page markup. *@
+        If you also want to change the key used in your authenticator app, you'll need to @* Renders part of the identity page markup. *@
+ @* ----- Form Setup ----- *@
+        <a asp-page="./ResetAuthenticator" class="pw-link" style="font-size:inherit;">reset your authenticator keys</a> separately. @* Builds a link or form target using MVC routing. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+<div class="pw-danger-zone"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+    <h3 class="pw-danger-zone__title"> @* Renders a heading for this page section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> @* Renders part of the identity page markup. *@
+        Confirm action @* Renders part of the identity page markup. *@
+    </h3> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+    <p class="pw-danger-zone__desc">Your account will be less secure without two-factor authentication.</p> @* Renders paragraph text for the user. *@
+ @* ----- Form Setup ----- *@
+    <form method="post"> @* Starts the form that submits this page's user input. *@
+ @* ----- Form Actions ----- *@
+        <button class="pw-btn pw-btn--danger pw-btn--md" type="submit"> @* Renders a button for the user action. *@
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9.09" y1="9" x2="14.91" y2="9"/><line x1="12" y1="12" x2="12" y2="15"/></svg> @* Renders part of the identity page markup. *@
+            Disable 2FA @* Renders part of the identity page markup. *@
+        </button> @* Closes the matching HTML element. *@
+    </form> @* Closes the form after its fields and actions. *@
+</div> @* Closes the matching HTML element. *@

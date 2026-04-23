@@ -1,0 +1,322 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model GFLHApp.Models.Producers
+@{
+    ViewData["Title"] = "Edit — " + Model.ProducerName; // Page title includes producer name
+    ViewData["FullWidth"] = true; // Enable full-width layout
+ // ----- Loop Rendering -----
+    var initial = string.IsNullOrWhiteSpace(Model.ProducerName) ? "?" : Model.ProducerName[0].ToString().ToUpper(); // First letter for avatar display
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-admin-page"> @* Starts a layout container for this section. *@
+    <!-- Outer admin page wrapper --> @* Keeps an existing comment in the Razor file. *@
+
+    <div class="pw-admin-header"> @* Starts a layout container for this section. *@
+        <!-- Page header bar --> @* Keeps an existing comment in the Razor file. *@
+        <div class="pw-admin-header__inner"> @* Starts a layout container for this section. *@
+            <!-- Centred inner wrapper --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Navigation ----- *@
+            <nav aria-label="Breadcrumb"> @* Starts the navigation area. *@
+                <!-- Breadcrumb navigation --> @* Keeps an existing comment in the Razor file. *@
+                <ol class="pw-admin-breadcrumb"> @* Starts a list of related items. *@
+                    <!-- Ordered breadcrumb list --> @* Keeps an existing comment in the Razor file. *@
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li> <!-- Home crumb --> @* Builds a link or form target using MVC routing. *@
+                    <li><a asp-controller="Producers" asp-action="Index">Growers</a></li> <!-- Producers list crumb --> @* Builds a link or form target using MVC routing. *@
+                    <li><a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducersId">@Model.ProducerName</a></li> <!-- This producer's detail crumb --> @* Builds a link or form target using MVC routing. *@
+                    <li><span aria-current="page">Edit</span></li> <!-- Current page crumb --> @* Renders one list item. *@
+                </ol> @* Closes the matching HTML element. *@
+            </nav> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-admin-header__title"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                <!-- Title row --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-admin-header__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <!-- Icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                    <i data-lucide="user-pen" style="width:20px;height:20px;stroke-width:2"></i> <!-- User-pen icon --> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                    <h1>Edit producer</h1> <!-- Page heading --> @* Renders a heading for this page section. *@
+ @* ----- Loop Rendering ----- *@
+                    <p>@Model.ProducerName</p> <!-- Subheading showing producer name --> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pw-admin-body"> @* Starts a layout container for this section. *@
+        <!-- Two-column body: preview + form --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+        <!-- ── Left: sticky producer preview ─────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+        <div class="pw-admin-img-col" aria-hidden="true"> @* Starts a layout container for this section. *@
+            <!-- Preview column, hidden from screen readers --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+            <div class="pw-admin-img-card" id="adminImgCard"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                @if (!string.IsNullOrWhiteSpace(Model.ImagePath)) @* Conditionally renders this block when the check passes. *@
+                {
+                    <img src="@Model.ImagePath" alt="@Model.ProducerName" id="adminImgEl" /> @* Renders an image for the page content. *@
+                }
+ @* ----- Conditional Rendering ----- *@
+                else @* Renders the fallback branch for the previous condition. *@
+                {
+ @* ----- Styling Section ----- *@
+                    <div class="pw-admin-img-placeholder" id="adminImgEl"> @* Starts a layout container for this section. *@
+                        <i data-lucide="sprout" style="width:72px;height:72px;opacity:.45;"></i> @* Renders part of the producers page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                }
+                <div class="pw-admin-img-meta"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                    <p class="pw-admin-img-meta__name" id="adminImgName">@Model.ProducerName</p> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <p class="pw-admin-img-meta__path" id="adminImgPath"> @* Renders paragraph text for the user. *@
+ @* ----- Loop Rendering ----- *@
+                        @(string.IsNullOrWhiteSpace(Model.ImagePath) ? "no image set" : Model.ImagePath) @* Displays or uses data from the producers model. *@
+                    </p> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <div class="pw-admin-producer-card" id="previewCard" style="margin-top:18px;"> @* Starts a layout container for this section. *@
+                <!-- Live preview card --> @* Keeps an existing comment in the Razor file. *@
+                <div class="pw-admin-producer-card__hero"> @* Starts a layout container for this section. *@
+                    <!-- Card hero section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Actions ----- *@
+                    <div class="pw-admin-producer-card__avatar" id="previewAvatar">@initial</div> <!-- Avatar initial, updated live by JS --> @* Starts a layout container for this section. *@
+                    <p class="pw-admin-producer-card__name" id="previewName">@Model.ProducerName</p> <!-- Producer name, updated live by JS --> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pw-admin-producer-card__email" id="previewEmail"> @* Renders paragraph text for the user. *@
+                        <!-- Email row --> @* Keeps an existing comment in the Razor file. *@
+                        <i data-lucide="mail" style="width:12px;height:12px;"></i> <!-- Mail icon --> @* Renders part of the producers page markup. *@
+ @* ----- Form Actions ----- *@
+                        <span id="previewEmailText">@Model.ProducerEmail</span> <!-- Email text, updated live by JS --> @* Renders inline text or badge content. *@
+                    </p> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                    <span class="pw-admin-producer-card__vat @(Model.IsVATRegistered ? "is-visible" : "")" id="previewVat"> @* Renders inline text or badge content. *@
+ @* ----- Producer Display ----- *@
+                        <!-- VAT badge; visible if registered --> @* Keeps an existing comment in the Razor file. *@
+                        <i data-lucide="receipt" style="width:11px;height:11px;"></i> <!-- Receipt icon --> @* Renders part of the producers page markup. *@
+                        VAT Registered @* Renders part of the producers page markup. *@
+                    </span> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <div class="pw-admin-producer-card__meta"> @* Starts a layout container for this section. *@
+                    <!-- Card meta section --> @* Keeps an existing comment in the Razor file. *@
+                    <div class="pw-admin-producer-card__row"> @* Starts a layout container for this section. *@
+                        <!-- Info row --> @* Keeps an existing comment in the Razor file. *@
+                        <div class="pw-admin-producer-card__row-icon"> @* Starts a layout container for this section. *@
+                            <!-- Row icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                            <i data-lucide="info" style="width:14px;height:14px;stroke-width:2"></i> <!-- Info icon --> @* Renders part of the producers page markup. *@
+                        </div> @* Closes the matching HTML element. *@
+                        <div> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <span class="pw-admin-producer-card__row-label">About</span> <!-- Row label --> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-admin-producer-card__row-value" id="previewInfo"> @* Renders inline text or badge content. *@
+ @* ----- Form Actions ----- *@
+                                @(string.IsNullOrWhiteSpace(Model.ProducerInformation) ? "No bio yet." : Model.ProducerInformation) <!-- Bio or fallback text, updated live by JS --> @* Displays or uses data from the producers model. *@
+                            </span> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- ── Right: form ────────────────────────────── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Navigation ----- *@
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" id="editProducerForm" novalidate> @* Starts the form that submits this page's user input. *@
+            <!-- Edit form, posts to Edit action --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+            <input type="hidden" asp-for="ProducersId" /> <!-- Hidden: preserve producer ID --> @* Binds this input to the matching model property. *@
+            <input type="hidden" asp-for="UserId" /> <!-- Hidden: preserve associated user ID --> @* Binds this input to the matching model property. *@
+            <input type="hidden" name="existingImagePath" value="@Model.ImagePath" /> @* Renders a user input field. *@
+
+ @* ----- Card Layout ----- *@
+            <div class="pw-form-card"> @* Starts a layout container for this section. *@
+                <!-- Form card wrapper --> @* Keeps an existing comment in the Razor file. *@
+
+ @* ----- Status Messages ----- *@
+                <div asp-validation-summary="ModelOnly" class="pw-form-errors" hidden></div> <!-- Model-level validation errors, shown by JS if present --> @* Shows page-level validation messages. *@
+                <!-- Identity --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+                    <!-- Identity section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Identity</p> <!-- Section label --> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-field"> @* Starts a layout container for this section. *@
+                        <!-- Field wrapper --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="ProducerName">Producer / business name <span class="pw-field__req" aria-hidden="true">*</span></label> <!-- Required field label --> @* Renders a label tied to the model field. *@
+                        <input asp-for="ProducerName" class="pw-input" id="liveNameInput" @* Binds this input to the matching model property. *@
+                               placeholder="e.g. Green Valley Farm" autocomplete="organization" /> <!-- Name input, wired to live preview --> @* Renders part of the producers page markup. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="ProducerName" class="pw-field__error"></span> <!-- Inline validation message --> @* Shows validation feedback for this model field. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <!-- Contact --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+                    <!-- Contact section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Contact</p> <!-- Section label --> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-field"> @* Starts a layout container for this section. *@
+                        <!-- Field wrapper --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="ProducerEmail">Email address <span class="pw-field__req" aria-hidden="true">*</span></label> <!-- Required field label --> @* Renders a label tied to the model field. *@
+                        <input asp-for="ProducerEmail" class="pw-input" id="liveEmailInput" @* Binds this input to the matching model property. *@
+ @* ----- Identity Account ----- *@
+                               type="email" placeholder="hello@example.com" autocomplete="email" /> <!-- Email input, wired to live preview --> @* Renders part of the producers page markup. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="ProducerEmail" class="pw-field__error"></span> <!-- Inline validation message --> @* Shows validation feedback for this model field. *@
+ @* ----- Card Layout ----- *@
+                        <span class="pw-field__hint">Used for order notifications and grower communications.</span> <!-- Helper hint --> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <!-- About --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+                    <!-- About section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">About</p> <!-- Section label --> @* Renders paragraph text for the user. *@
+ @* ----- Styling Section ----- *@
+                    <div class="pw-field"> @* Starts a layout container for this section. *@
+                        <!-- Field wrapper --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                        <label asp-for="ProducerInformation">Bio / description</label> <!-- Optional field label --> @* Renders a label tied to the model field. *@
+                        <textarea asp-for="ProducerInformation" class="pw-textarea" id="liveInfoInput" @* Binds this input to the matching model property. *@
+ @* ----- Card Layout ----- *@
+                                  placeholder="Tell customers about your farm, growing practices, certifications…" @* Renders part of the producers page markup. *@
+                                  rows="5"></textarea> <!-- Bio textarea, wired to live preview --> @* Renders part of the producers page markup. *@
+ @* ----- Status Messages ----- *@
+                        <span asp-validation-for="ProducerInformation" class="pw-field__error"></span> <!-- Inline validation message --> @* Shows validation feedback for this model field. *@
+ @* ----- Producer Display ----- *@
+                        <span class="pw-field__hint">Shown on the public producer page. Supports line breaks.</span> <!-- Helper hint --> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Image</p> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <div class="pw-form-row"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label for="imageUpload">Upload a new image</label> @* Renders text identifying a form field. *@
+                            <input type="file" id="imageUpload" name="imageUpload" class="pw-file" accept=".jpg,.jpeg,.png,.webp" /> @* Renders a user input field. *@
+ @* ----- Form Actions ----- *@
+                            <span class="pw-field__hint">Upload a JPG, PNG, or WebP image up to 5 MB. Files save to /images/producers.</span> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                            <span class="pw-field__error">@Html.ValidationMessage("imageUpload")</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="ImagePath">Or choose an existing producer image</label> @* Renders a label tied to the model field. *@
+ @* ----- Page Model Setup ----- *@
+                            <select asp-for="ImagePath" class="pw-select" id="liveImageInput" asp-items="ViewBag.ExistingImages"> @* Binds this input to the matching model property. *@
+                                <option value="">Keep current image / no existing image selected</option> @* Renders one dropdown option. *@
+                            </select> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="ImagePath" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+ @* ----- Producer Display ----- *@
+                <!-- VAT / Business details --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <div class="pw-form-section"> @* Starts a layout container for this section. *@
+                    <!-- Business & tax section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pw-form-section__label">Business &amp; Tax</p> <!-- Section label --> @* Renders paragraph text for the user. *@
+
+ @* ----- Card Layout ----- *@
+                    <div class="pw-toggle-row"> @* Starts a layout container for this section. *@
+                        <!-- Toggle row layout --> @* Keeps an existing comment in the Razor file. *@
+                        <div class="pw-toggle-row__info"> @* Starts a layout container for this section. *@
+                            <!-- Toggle description --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+                            <strong>VAT registered</strong> <!-- Toggle title --> @* Renders part of the producers page markup. *@
+                            <span>Enables VAT display on receipts and producer profile.</span> <!-- Toggle description --> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+                        <label class="pw-toggle" aria-label="Toggle VAT registration"> @* Renders text identifying a form field. *@
+                            <!-- Toggle label wrapper --> @* Keeps an existing comment in the Razor file. *@
+                            <input asp-for="IsVATRegistered" type="checkbox" role="switch" id="vatToggle" /> <!-- VAT checkbox, wired to JS toggle --> @* Binds this input to the matching model property. *@
+ @* ----- Styling Section ----- *@
+                            <span class="pw-toggle__track" aria-hidden="true"></span> <!-- Visual toggle track --> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                        </label> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Loop Rendering ----- *@
+                    <div class="pw-vat-field @(Model.IsVATRegistered ? "is-open" : "")" id="vatNumberField"> @* Starts a layout container for this section. *@
+ @* ----- Producer Display ----- *@
+                        <!-- VAT number field; open if already registered --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                        <div class="pw-field"> @* Starts a layout container for this section. *@
+                            <!-- Field wrapper --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                            <label asp-for="VATNumber">VAT number</label> <!-- Field label --> @* Renders a label tied to the model field. *@
+                            <input asp-for="VATNumber" class="pw-input" @* Binds this input to the matching model property. *@
+                                   placeholder="e.g. GB123456789" @* Renders part of the producers page markup. *@
+                                   autocomplete="off" @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                                   style="font-family:'JetBrains Mono','Courier New',monospace;letter-spacing:.05em;" /> <!-- Monospace input for VAT number readability --> @* Renders part of the producers page markup. *@
+ @* ----- Status Messages ----- *@
+                            <span asp-validation-for="VATNumber" class="pw-field__error"></span> <!-- Inline validation message --> @* Shows validation feedback for this model field. *@
+ @* ----- Styling Section ----- *@
+                            <span class="pw-field__hint">Format: GB followed by 9 digits.</span> <!-- Helper hint --> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+                <!-- Actions --> @* Keeps an existing comment in the Razor file. *@
+                <div class="pw-form-actions"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                    <!-- Form action buttons row --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Navigation ----- *@
+                    <a asp-action="Details" asp-route-id="@Model.ProducersId" class="pw-btn-back"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                        <!-- Cancel / back link --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+                        <i data-lucide="arrow-left" style="width:15px;height:15px;" aria-hidden="true"></i> <!-- Arrow icon --> @* Renders part of the producers page markup. *@
+                        Back @* Renders part of the producers page markup. *@
+                    </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                    <button type="submit" class="pw-btn-save"> @* Renders a button for the user action. *@
+                        <!-- Submit button --> @* Keeps an existing comment in the Razor file. *@
+                        <i data-lucide="check" style="width:15px;height:15px;" aria-hidden="true"></i> <!-- Check icon --> @* Renders part of the producers page markup. *@
+                        Save changes @* Renders part of the producers page markup. *@
+                    </button> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+
+            </div> @* Closes the matching HTML element. *@
+        </form> @* Closes the form after its fields and actions. *@
+
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Producer Display ----- *@
+    <link rel="stylesheet" href="~/css/pages/producers/ProducersEdit.css" /> @* Renders one list item. *@
+}
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial"); // Renders part of the producers page markup.
+    }
+ @* ----- Producer Display ----- *@
+    <script src="~/js/pages/producers/ProducersEdit.js"></script> @* Starts client-side script for this page. *@
+}

@@ -1,0 +1,87 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model EnableAuthenticatorModel
+@{
+    ViewData["Title"] = "Set Up Authenticator"; // Sets the browser and page title for this view.
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication; // Reads view data supplied by the controller.
+}
+
+ @* ----- Status Messages ----- *@
+<partial name="_StatusMessage" for="StatusMessage" /> @* Renders a shared partial view here. *@
+
+ @* ----- Card Layout ----- *@
+<span class="pw-manage-content__eyebrow">Security · Two-Factor Auth</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+<h2 class="pw-manage-content__title">Set Up Authenticator App</h2> @* Renders a heading for this page section. *@
+ @* ----- Identity Account ----- *@
+<p class="pw-manage-content__sub">Follow these steps to link your authenticator app and enable 2FA.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Styling Section ----- *@
+<ol class="pw-setup-steps" role="list"> @* Starts a list of related items. *@
+    <li class="pw-setup-step"> @* Renders one list item. *@
+        <span class="pw-setup-step__num" aria-hidden="true">1</span> @* Renders inline text or badge content. *@
+        <div class="pw-setup-step__body"> @* Starts a layout container for this section. *@
+ @* ----- Identity Account ----- *@
+            <strong>Download an authenticator app</strong><br> @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+            Get <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Microsoft Authenticator for Android</a> or @* Renders part of the identity page markup. *@
+            <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a>, or @* Renders a navigation link or action link. *@
+            <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Google Authenticator for Android</a> or @* Renders a navigation link or action link. *@
+            <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>. @* Renders a navigation link or action link. *@
+        </div> @* Closes the matching HTML element. *@
+    </li> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <li class="pw-setup-step"> @* Renders one list item. *@
+        <span class="pw-setup-step__num" aria-hidden="true">2</span> @* Renders inline text or badge content. *@
+        <div class="pw-setup-step__body"> @* Starts a layout container for this section. *@
+            <strong>Scan the QR code or enter the key below</strong><br> @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+            Open your authenticator app and add a new account. Spaces and casing don't matter. @* Renders part of the identity page markup. *@
+ @* ----- Styling Section ----- *@
+            <div class="pw-qr-container" id="qrCode" style="margin-top:16px;"></div> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+            <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+            <div class="pw-manage-alert pw-manage-alert--info" style="margin-top:16px;margin-bottom:0;"> @* Starts a layout container for this section. *@
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> @* Renders part of the identity page markup. *@
+ @* ----- Loop Rendering ----- *@
+                <span>Manual key: <code class="pw-shared-key">@Model.SharedKey</code></span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </li> @* Closes the matching HTML element. *@
+ @* ----- Styling Section ----- *@
+    <li class="pw-setup-step"> @* Renders one list item. *@
+        <span class="pw-setup-step__num" aria-hidden="true">3</span> @* Renders inline text or badge content. *@
+        <div class="pw-setup-step__body"> @* Starts a layout container for this section. *@
+            <strong>Enter the verification code from your app</strong><br> @* Renders part of the identity page markup. *@
+            Once you've scanned the QR code, your app will show a 6-digit code. Enter it below. @* Renders part of the identity page markup. *@
+ @* ----- Form Setup ----- *@
+            <form id="send-code" method="post" class="pw-manage-form" style="margin-top:20px;max-width:320px;"> @* Starts the form that submits this page's user input. *@
+ @* ----- Styling Section ----- *@
+                <div class="form-floating mb-3"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                    <input asp-for="Input.Code" class="form-control" autocomplete="off" placeholder="6-digit code" inputmode="numeric" /> @* Binds this input to the matching model property. *@
+                    <label asp-for="Input.Code">Verification code</label> @* Renders a label tied to the model field. *@
+ @* ----- Status Messages ----- *@
+                    <span asp-validation-for="Input.Code" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                <button type="submit" class="pw-btn pw-btn--primary pw-btn--md" style="width:100%;"> @* Renders a button for the user action. *@
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> @* Renders part of the identity page markup. *@
+ @* ----- Producer Display ----- *@
+                    Verify and activate @* Renders part of the identity page markup. *@
+                </button> @* Closes the matching HTML element. *@
+ @* ----- Status Messages ----- *@
+                <div asp-validation-summary="ModelOnly" class="pw-manage-alert pw-manage-alert--danger" role="alert" style="margin-top:16px;margin-bottom:0;"></div> @* Shows page-level validation messages. *@
+            </form> @* Closes the form after its fields and actions. *@
+        </div> @* Closes the matching HTML element. *@
+    </li> @* Closes the matching HTML element. *@
+</ol> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <partial name="_ValidationScriptsPartial" /> @* Renders a shared partial view here. *@
+}

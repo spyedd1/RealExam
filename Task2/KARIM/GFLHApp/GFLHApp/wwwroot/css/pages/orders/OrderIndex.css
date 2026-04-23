@@ -1,0 +1,695 @@
+
+/* ----- Hero section ----- */
+.pw-orders-hero { /* Starts styles for the .pw-orders-hero selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(140deg, var(--cream-3) 0%, #E9FAF0 55%, var(--green-100) 100%); /* Sets the element background treatment. */
+    padding: 130px 0 0; /* Sets spacing inside the element. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Hero section ----- */
+.pw-orders-hero__inner { /* Starts styles for the .pw-orders-hero__inner selector. */
+    padding-bottom: 64px; /* Sets the padding-bottom style for this rule. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    z-index: 2; /* Controls stacking order. */
+}
+
+.pw-orders-hero__badge { margin-bottom: 22px; } /* Styles part of the OrderIndex page or component. */
+
+.pw-orders-hero__title { /* Starts styles for the .pw-orders-hero__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(36px, 5vw, 68px); /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    line-height: 1.08; /* Sets vertical text rhythm. */
+    letter-spacing: -.03em; /* Sets the letter-spacing style for this rule. */
+    margin: 0 0 18px; /* Sets spacing outside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: 2px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Hero section ----- */
+.pw-orders-hero__sub { /* Starts styles for the .pw-orders-hero__sub selector. */
+    font-size: 18px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Tables ----- */
+    max-width: 440px; /* Limits the element width on larger screens. */
+    line-height: 1.65; /* Sets vertical text rhythm. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Hero section ----- */
+.pw-orders-hero__badge  { animation: hero-up .70s cubic-bezier(.16,1,.3,1) both .10s; } /* Styles part of the OrderIndex page or component. */
+.pw-orders-hero__title  { animation: hero-up .80s cubic-bezier(.16,1,.3,1) both .24s; } /* Styles part of the OrderIndex page or component. */
+.pw-orders-hero__sub    { animation: hero-up .80s cubic-bezier(.16,1,.3,1) both .44s; } /* Styles part of the OrderIndex page or component. */
+
+/* ----- Card layout ----- */
+.pw-orders-stats { /* Starts styles for the .pw-orders-stats selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-orders-stats__inner { /* Starts styles for the .pw-orders-stats__inner selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    padding: 4px 0; /* Sets spacing inside the element. */
+}
+
+/* ----- Card layout ----- */
+.pw-orders-stat { /* Starts styles for the .pw-orders-stat selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    padding: 18px 36px; /* Sets spacing inside the element. */
+}
+
+/* ----- Card layout ----- */
+.pw-orders-stat__value { /* Starts styles for the .pw-orders-stat__value selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 26px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    line-height: 1; /* Sets vertical text rhythm. */
+    display: block; /* Controls how the element participates in layout. */
+}
+
+/* ----- Card layout ----- */
+.pw-orders-stat__label { /* Starts styles for the .pw-orders-stat__label selector. */
+    font-size: 11px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    letter-spacing: .07em; /* Sets the letter-spacing style for this rule. */
+    display: block; /* Controls how the element participates in layout. */
+    margin-top: 4px; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-orders-stat__divider { /* Starts styles for the .pw-orders-stat__divider selector. */
+    /* ----- Tables ----- */
+    width: 1px; /* Sets the element width. */
+    height: 44px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: var(--border); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-orders-stat__icon { /* Starts styles for the .pw-orders-stat__icon selector. */
+    /* ----- Tables ----- */
+    width: 36px; /* Sets the element width. */
+    height: 36px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+/* ----- Theme variables ----- */
+.pw-orders-stat__icon--cream  { background: var(--cream-2); } /* Styles part of the OrderIndex page or component. */
+.pw-orders-stat__icon--orange { background: var(--orange-100); } /* Styles part of the OrderIndex page or component. */
+.pw-orders-stat__icon--green  { background: var(--green-100); } /* Styles part of the OrderIndex page or component. */
+.pw-orders-stat__icon--purple { background: var(--purple-100); } /* Styles part of the OrderIndex page or component. */
+
+/* ----- Order styling ----- */
+.pw-orders-toolbar { /* Starts styles for the .pw-orders-toolbar selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    margin-bottom: 28px; /* Sets the margin-bottom style for this rule. */
+    padding: 18px 22px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    position: sticky; /* Controls how the element is positioned on the page. */
+    top: 72px; /* Sets the top style for this rule. */
+    z-index: 100; /* Controls stacking order. */
+}
+
+/* ----- Order styling ----- */
+.pw-orders-flash { /* Starts styles for the .pw-orders-flash selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 10px; /* Sets spacing between flex or grid children. */
+    margin-bottom: 18px; /* Sets the margin-bottom style for this rule. */
+    padding: 12px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    border: 1.5px solid var(--orange-100); /* Sets the border around the element. */
+    background: var(--orange-100); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #9A3412; /* Sets the text color. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__reorder-form { /* Starts styles for the .pw-order-card__reorder-form selector. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Order styling ----- */
+.pw-orders-search { /* Starts styles for the .pw-orders-search selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Grid layout ----- */
+    flex: 1; /* Sets the flex style for this rule. */
+    /* ----- Tables ----- */
+    min-width: 160px; /* Sets the min-width style for this rule. */
+    max-width: 240px; /* Limits the element width on larger screens. */
+}
+
+/* ----- Order styling ----- */
+.pw-orders-search__icon { /* Starts styles for the .pw-orders-search__icon selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    left: 13px; /* Sets the left style for this rule. */
+    top: 50%; /* Sets the top style for this rule. */
+    /* ----- Forms ----- */
+    transform: translateY(-50%); /* Moves, scales, or rotates the element. */
+    /* ----- Tables ----- */
+    width: 15px; /* Sets the element width. */
+    height: 15px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    color: var(--text-light); /* Sets the text color. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+    /* ----- Tables ----- */
+    stroke-width: 2; /* Sets the stroke-width style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-orders-search__input { /* Starts styles for the .pw-orders-search__input selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    padding: 9px 14px 9px 38px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 14px; /* Sets the text size. */
+    color: var(--text); /* Sets the text color. */
+    background: var(--cream); /* Sets the element background treatment. */
+    outline: none; /* Sets the outline style for this rule. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s; /* Animates property changes smoothly. */
+}
+
+/* ----- Forms ----- */
+.pw-orders-search__input:focus { /* Starts styles for the .pw-orders-search__input:focus selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px rgba(22,163,74,.1); /* Adds depth with a shadow. */
+}
+
+.pw-orders-search__input::placeholder { color: var(--text-light); } /* Styles part of the OrderIndex page or component. */
+
+/* ----- Order styling ----- */
+.pw-orders-sort { /* Starts styles for the .pw-orders-sort selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-orders-sort__label { /* Starts styles for the .pw-orders-sort__label selector. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-orders-sort__select { /* Starts styles for the .pw-orders-sort__select selector. */
+    padding: 8px 14px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 500; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    background: var(--white); /* Sets the element background treatment. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    outline: none; /* Sets the outline style for this rule. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s; /* Animates property changes smoothly. */
+    appearance: none; /* Sets the appearance style for this rule. */
+    padding-right: 32px; /* Sets the padding-right style for this rule. */
+    /* ----- Tables ----- */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); /* Sets the background-image style for this rule. */
+    background-repeat: no-repeat; /* Sets the background-repeat style for this rule. */
+    background-position: right 12px center; /* Sets the background-position style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.pw-orders-sort__select:focus { border-color: var(--green); } /* Styles part of the OrderIndex page or component. */
+
+/* ----- Order styling ----- */
+.pw-orders-filters { /* Starts styles for the .pw-orders-filters selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: 4px; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    margin-left: auto; /* Sets the margin-left style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.pw-orders-filter-btn { /* Starts styles for the .pw-orders-filter-btn selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+    padding: 7px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    background: var(--white); /* Sets the element background treatment. */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    color: var(--text-muted); /* Sets the text color. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Tables ----- */
+    transition: all .15s; /* Animates property changes smoothly. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.pw-orders-filter-btn:hover { /* Starts styles for the .pw-orders-filter-btn:hover selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green-200); /* Sets the border-color style for this rule. */
+    color: var(--text); /* Sets the text color. */
+    background: var(--green-100); /* Sets the element background treatment. */
+}
+
+/* ----- Buttons ----- */
+.pw-orders-filter-btn.is-active { /* Starts styles for the .pw-orders-filter-btn.is-active selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green); /* Sets the element background treatment. */
+    color: var(--white); /* Sets the text color. */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    box-shadow: 0 4px 12px rgba(22,163,74,.25); /* Adds depth with a shadow. */
+}
+
+/* ----- Buttons ----- */
+.pw-orders-filter-btn:focus-visible { /* Starts styles for the .pw-orders-filter-btn:focus-visible selector. */
+    /* ----- Theme variables ----- */
+    outline: 3px solid var(--green); /* Sets the outline style for this rule. */
+    outline-offset: 2px; /* Sets the outline-offset style for this rule. */
+}
+
+/* ----- Order styling ----- */
+.pw-orders-count { /* Starts styles for the .pw-orders-count selector. */
+    font-size: 14px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin: 0 0 20px; /* Sets spacing outside the element. */
+    font-weight: 500; /* Sets the text weight. */
+}
+
+.pw-orders-count strong { color: var(--text); font-weight: 700; } /* Styles part of the OrderIndex page or component. */
+
+/* ----- Order styling ----- */
+.pw-orders-list { /* Starts styles for the .pw-orders-list selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: 16px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card { /* Starts styles for the .pw-order-card selector. */
+    /* ----- Theme variables ----- */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Grid layout ----- */
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s; /* Animates property changes smoothly. */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card:hover { /* Starts styles for the .pw-order-card:hover selector. */
+    /* ----- Forms ----- */
+    transform: translateY(-4px); /* Moves, scales, or rotates the element. */
+    box-shadow: 0 16px 48px rgba(0,0,0,.10), 0 4px 16px rgba(22,163,74,.06); /* Adds depth with a shadow. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green-200); /* Sets the border-color style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__accent { /* Starts styles for the .pw-order-card__accent selector. */
+    height: 5px; /* Sets the element height. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Theme variables ----- */
+.pw-order-card--pending   .pw-order-card__accent { background: linear-gradient(90deg, var(--yellow), #FCD34D); } /* Styles part of the OrderIndex page or component. */
+.pw-order-card--preparing .pw-order-card__accent { background: linear-gradient(90deg, var(--orange), #FB923C); } /* Styles part of the OrderIndex page or component. */
+.pw-order-card--awaiting  .pw-order-card__accent { background: linear-gradient(90deg, var(--purple), #A78BFA); } /* Styles part of the OrderIndex page or component. */
+.pw-order-card--delivered .pw-order-card__accent { background: linear-gradient(90deg, var(--green), #4ADE80); } /* Styles part of the OrderIndex page or component. */
+
+/* ----- Navigation ----- */
+.pw-order-card__header { /* Starts styles for the .pw-order-card__header selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: flex-start; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    padding: 20px 24px 10px; /* Sets spacing inside the element. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.pw-order-card__header-left { /* Starts styles for the .pw-order-card__header-left selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    flex: 1; /* Sets the flex style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__id { /* Starts styles for the .pw-order-card__id selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 20px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    margin: 0; /* Sets spacing outside the element. */
+    letter-spacing: -.02em; /* Sets the letter-spacing style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__total { /* Starts styles for the .pw-order-card__total selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 26px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__meta { /* Starts styles for the .pw-order-card__meta selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    padding: 4px 24px 16px; /* Sets spacing inside the element. */
+    font-size: 14px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__meta-item { /* Starts styles for the .pw-order-card__meta-item selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+    font-weight: 500; /* Sets the text weight. */
+}
+
+/* ----- Theme variables ----- */
+.pw-order-card__meta-sep { color: var(--text-light); } /* Styles part of the OrderIndex page or component. */
+
+/* ----- Card layout ----- */
+.pw-order-card__meta-sub { /* Starts styles for the .pw-order-card__meta-sub selector. */
+    font-size: 12px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-light); /* Sets the text color. */
+    font-weight: 400; /* Sets the text weight. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__user-id { /* Starts styles for the .pw-order-card__user-id selector. */
+    font-size: 11px; /* Sets the text size. */
+    font-family: 'JetBrains Mono', monospace; /* Sets the font family. */
+    /* ----- Theme variables ----- */
+    background: var(--cream-2); /* Sets the element background treatment. */
+    padding: 2px 8px; /* Sets spacing inside the element. */
+    border-radius: 4px; /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    max-width: 220px; /* Limits the element width on larger screens. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    text-overflow: ellipsis; /* Sets the text-overflow style for this rule. */
+    /* ----- Grid layout ----- */
+    white-space: nowrap; /* Sets the white-space style for this rule. */
+    display: inline-block; /* Controls how the element participates in layout. */
+    vertical-align: middle; /* Sets the vertical-align style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__items { /* Starts styles for the .pw-order-card__items selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+    padding: 12px 24px 14px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-top: 1.5px dashed var(--border); /* Sets the border-top style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__item-pill { /* Starts styles for the .pw-order-card__item-pill selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    background: var(--cream); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    padding: 4px 12px; /* Sets spacing inside the element. */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    transition: background .15s; /* Animates property changes smoothly. */
+}
+
+/* ----- Theme variables ----- */
+.pw-order-card__item-pill:hover { background: var(--green-100); border-color: var(--green-200); } /* Styles part of the OrderIndex page or component. */
+
+/* ----- Card layout ----- */
+.pw-order-card__item-more { /* Starts styles for the .pw-order-card__item-more selector. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Tables ----- */
+    background: transparent; /* Sets the element background treatment. */
+    border-style: dashed; /* Sets the border-style style for this rule. */
+    font-weight: 500; /* Sets the text weight. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__address { /* Starts styles for the .pw-order-card__address selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+    padding: 0 24px 12px; /* Sets spacing inside the element. */
+    font-size: 13px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    font-weight: 500; /* Sets the text weight. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__footer { /* Starts styles for the .pw-order-card__footer selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    padding: 14px 24px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-top: 1.5px solid var(--border); /* Sets the border-top style for this rule. */
+    /* ----- Grid layout ----- */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+    margin-top: auto; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__actions-primary, /* Continues a selector or value list on the next line. */
+.pw-order-card__actions-secondary { /* Starts styles for the .pw-order-card__actions-secondary selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    gap: 8px; /* Sets spacing between flex or grid children. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    align-items: center; /* Aligns child items on the cross axis. */
+}
+
+/* ----- Theme variables ----- */
+.pw-btn--danger { /* Starts styles for the .pw-btn--danger selector. */
+    /* ----- Grid layout ----- */
+    color: #DC2626; /* Sets the text color. */
+    border-color: #FECACA; /* Sets the border-color style for this rule. */
+    /* ----- Tables ----- */
+    background: transparent; /* Sets the element background treatment. */
+}
+
+/* ----- Theme variables ----- */
+.pw-btn--danger:hover { /* Starts styles for the .pw-btn--danger:hover selector. */
+    background: #FEF2F2; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    border-color: #FCA5A5; /* Sets the border-color style for this rule. */
+    color: #B91C1C; /* Sets the text color. */
+}
+
+/* ----- Order styling ----- */
+.pw-orders-empty { /* Starts styles for the .pw-orders-empty selector. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    padding: 80px 24px 48px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 16px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Order styling ----- */
+.pw-orders-empty__icon { /* Starts styles for the .pw-orders-empty__icon selector. */
+    /* ----- Tables ----- */
+    width: 88px; /* Sets the element width. */
+    height: 88px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: var(--cream-2); /* Sets the element background treatment. */
+    border-radius: 50%; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    margin-bottom: 4px; /* Sets the margin-bottom style for this rule. */
+    /* ----- Theme variables ----- */
+    border: 2px solid var(--yellow-100); /* Sets the border around the element. */
+}
+
+/* ----- Order styling ----- */
+.pw-orders-empty__title { /* Starts styles for the .pw-orders-empty__title selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 28px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    margin: 0; /* Sets spacing outside the element. */
+    letter-spacing: -.025em; /* Sets the letter-spacing style for this rule. */
+}
+
+/* ----- Order styling ----- */
+.pw-orders-empty__desc { /* Starts styles for the .pw-orders-empty__desc selector. */
+    font-size: 16px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Tables ----- */
+    max-width: 360px; /* Limits the element width on larger screens. */
+    margin: 0; /* Sets spacing outside the element. */
+    line-height: 1.65; /* Sets vertical text rhythm. */
+}
+
+/* ----- Accessibility ----- */
+@media (prefers-reduced-motion: reduce) { /* Starts responsive rules for this viewport range. */
+    /* ----- Hero section ----- */
+    .pw-orders-hero__badge, /* Continues a selector or value list on the next line. */
+    .pw-orders-hero__title, /* Continues a selector or value list on the next line. */
+    .pw-orders-hero__sub { /* Starts styles for the .pw-orders-hero__sub selector. */
+        /* ----- Animation ----- */
+        animation: none !important; /* Sets the animation style for this rule. */
+        opacity: 1 !important; /* Controls element transparency. */
+        /* ----- Forms ----- */
+        transform: none !important; /* Moves, scales, or rotates the element. */
+    }
+    /* ----- Card layout ----- */
+    .pw-order-card { transition: none !important; } /* Styles part of the OrderIndex page or component. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 900px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Hero section ----- */
+    .pw-orders-hero { padding: 120px 0 0; } /* Styles part of the OrderIndex page or component. */
+    /* ----- Card layout ----- */
+    .pw-orders-stat { padding: 14px 24px; } /* Styles part of the OrderIndex page or component. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 768px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Hero section ----- */
+    .pw-orders-hero { padding: 110px 0 0; } /* Styles part of the OrderIndex page or component. */
+    .pw-orders-hero__sub { font-size: 16px; } /* Styles part of the OrderIndex page or component. */
+
+    /* ----- Card layout ----- */
+    .pw-orders-stats__inner { flex-direction: row; flex-wrap: wrap; } /* Styles part of the OrderIndex page or component. */
+    .pw-orders-stat__divider { display: none; } /* Styles part of the OrderIndex page or component. */
+    .pw-orders-stat { padding: 12px 20px; } /* Styles part of the OrderIndex page or component. */
+
+    /* ----- Order styling ----- */
+    .pw-orders-toolbar { /* Starts styles for the .pw-orders-toolbar selector. */
+        /* ----- Grid layout ----- */
+        flex-direction: column; /* Sets the flex-direction style for this rule. */
+        /* ----- Tables ----- */
+        align-items: stretch; /* Aligns child items on the cross axis. */
+        top: 64px; /* Sets the top style for this rule. */
+        gap: 10px; /* Sets spacing between flex or grid children. */
+    }
+    .pw-orders-search { max-width: 100%; } /* Styles part of the OrderIndex page or component. */
+    /* ----- Order styling ----- */
+    .pw-orders-filters { margin-left: 0; } /* Styles part of the OrderIndex page or component. */
+
+    /* ----- Navigation ----- */
+    .pw-order-card__header { padding: 16px 18px 8px; } /* Styles part of the OrderIndex page or component. */
+    /* ----- Card layout ----- */
+    .pw-order-card__meta   { padding: 4px 18px 12px; } /* Styles part of the OrderIndex page or component. */
+    .pw-order-card__items  { padding: 10px 18px 12px; } /* Styles part of the OrderIndex page or component. */
+    .pw-order-card__address{ padding: 0 18px 10px; } /* Styles part of the OrderIndex page or component. */
+    .pw-order-card__footer { padding: 12px 18px; flex-direction: column; align-items: flex-start; } /* Styles part of the OrderIndex page or component. */
+    .pw-order-card__total  { font-size: 22px; } /* Styles part of the OrderIndex page or component. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 480px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Card layout ----- */
+    .pw-orders-stat__value { font-size: 20px; } /* Styles part of the OrderIndex page or component. */
+    /* ----- Buttons ----- */
+    .pw-orders-filter-btn  { font-size: 12px; padding: 6px 12px; } /* Styles part of the OrderIndex page or component. */
+}

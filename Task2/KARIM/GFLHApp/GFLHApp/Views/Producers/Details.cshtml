@@ -1,0 +1,518 @@
+@* ----- Page Model Setup ----- *@
+@* Sets the model type used by this view. *@
+@model GFLHApp.Models.Producers
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = Model.ProducerName; // Set page title to producer's name
+    ViewData["FullWidth"] = true; // Enable full-width layout
+
+ // ----- Loop Rendering -----
+    var products = Model.Products?.ToList() ?? new List<GFLHApp.Models.Products>(); // Materialise list to avoid multiple enumeration
+ // ----- Conditional Rendering -----
+    var productCount = products.Count; // Total number of products
+    var availCount = products.Count(p => p.Available && p.QuantityInStock > 0); // Number of products currently in stock
+ // ----- Loop Rendering -----
+    var initial = string.IsNullOrWhiteSpace(Model.ProducerName) ? "?" : Model.ProducerName[0].ToString().ToUpper(); // First letter for avatar display
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Current signed-in user id for ownership checks.
+    var isAdminOrDeveloper = User.IsInRole("Admin") || User.IsInRole("Developer"); // Admins can manage any producer profile.
+    var canEditProducer = isAdminOrDeveloper || Model.UserId == currentUserId; // Producers can edit only their own profile.
+
+ // ----- Search and Filters -----
+    // Returns a lucide icon name based on product category keyword
+    string CategoryIcon(string cat) => (cat ?? "").ToLower() switch // Renders part of the producers page markup.
+    {
+        var c when c.Contains("veg") => "carrot",    // Vegetables
+        var c when c.Contains("fruit") => "cherry",    // Fruit
+        var c when c.Contains("dairy") => "milk",      // Dairy
+        var c when c.Contains("meat") => "beef",      // Meat
+        var c when c.Contains("bread") => "wheat",     // Bread/bakery
+        var c when c.Contains("drink") => "cup-soda",  // Drinks
+        _ => "package"                                 // Default fallback
+    };
+
+ // ----- Card Layout -----
+    // Soft green gradients cycled as fallback backgrounds on product cards with no image
+    var prodGradients = new[] // Renders part of the producers page markup.
+    {
+        "linear-gradient(135deg,#dcfce7,#86efac)", // Soft mint
+        "linear-gradient(135deg,#bbf7d0,#4ade80)", // Bright mint
+        "linear-gradient(135deg,#a7f3d0,#34d399)", // Teal
+        "linear-gradient(135deg,#d9f99d,#86efac)", // Lime
+        "linear-gradient(135deg,#6ee7b7,#10b981)", // Fresh green
+        "linear-gradient(135deg,#ecfdf5,#6ee7b7)"  // Light mint
+    };
+}
+
+
+ @* ----- Styling Section ----- *@
+<div id="scrollProgress" class="pw-scroll-progress" aria-hidden="true"></div> <!-- Scroll progress bar --> @* Starts a layout container for this section. *@
+ @* ----- Hero Section ----- *@
+<section class="pd-hero" aria-label="Producer profile hero"> @* Renders part of the producers page markup. *@
+    <!-- Hero section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="pd-hero__blob pd-hero__blob--a" aria-hidden="true"></div> <!-- Decorative blob A --> @* Starts a layout container for this section. *@
+    <div class="pd-hero__blob pd-hero__blob--b" aria-hidden="true"></div> <!-- Decorative blob B --> @* Starts a layout container for this section. *@
+    <div class="pd-hero__blob pd-hero__blob--c" aria-hidden="true"></div> <!-- Decorative blob C --> @* Starts a layout container for this section. *@
+
+    <span class="pd-hero__float pd-hero__float--1" aria-hidden="true"><i data-lucide="sprout"></i></span>    <!-- Floating sprout icon --> @* Renders inline text or badge content. *@
+    <span class="pd-hero__float pd-hero__float--2" aria-hidden="true"><i data-lucide="leaf"></i></span>      <!-- Floating leaf icon --> @* Renders inline text or badge content. *@
+    <span class="pd-hero__float pd-hero__float--3" aria-hidden="true"><i data-lucide="wheat"></i></span>     <!-- Floating wheat icon --> @* Renders inline text or badge content. *@
+    <span class="pd-hero__float pd-hero__float--4" aria-hidden="true"><i data-lucide="flower-2"></i></span>  <!-- Floating flower icon --> @* Renders inline text or badge content. *@
+
+    <div style="position:relative;z-index:3;"> @* Starts a layout container for this section. *@
+        <!-- Content sits above decorative elements --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Navigation ----- *@
+        <a class="pd-hero__breadcrumb" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Producer Display ----- *@
+            <!-- Back link to producers list --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+            <i data-lucide="arrow-left"></i> <!-- Back arrow icon --> @* Renders part of the producers page markup. *@
+            Back to all growers @* Renders part of the producers page markup. *@
+        </a> @* Closes the matching HTML element. *@
+
+ @* ----- Producer Display ----- *@
+        <div class="pd-hero__avatar" aria-hidden="true">@initial</div> <!-- Avatar showing producer's initial --> @* Starts a layout container for this section. *@
+
+ @* ----- Page Header ----- *@
+        <h1 class="pd-hero__name">@Model.ProducerName</h1> <!-- Producer name heading --> @* Renders a heading for this page section. *@
+
+ @* ----- Styling Section ----- *@
+        <div class="pd-hero__badges"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <!-- Badge row --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+            <span class="pd-hero__pill pd-hero__pill--green"> @* Renders inline text or badge content. *@
+                <!-- Verified partner badge --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="check-circle" style="width:13px;height:13px;"></i> <!-- Check icon --> @* Renders part of the producers page markup. *@
+                Verified Partner @* Renders part of the producers page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Loop Rendering ----- *@
+            @if (Model.IsVATRegistered) // Only show VAT badge if producer is VAT registered @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Styling Section ----- *@
+                <span class="pd-hero__pill pd-hero__pill--yellow"> @* Renders inline text or badge content. *@
+ @* ----- Producer Display ----- *@
+                    <!-- VAT registered badge --> @* Keeps an existing comment in the Razor file. *@
+                    <i data-lucide="receipt" style="width:13px;height:13px;"></i> <!-- Receipt icon --> @* Renders part of the producers page markup. *@
+                    VAT Registered @* Renders part of the producers page markup. *@
+                </span> @* Closes the matching HTML element. *@
+            }
+ @* ----- Styling Section ----- *@
+            <span class="pd-hero__pill"> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                <!-- Product count badge --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="package" style="width:13px;height:13px;"></i> <!-- Package icon --> @* Renders part of the producers page markup. *@
+                @productCount product@(productCount != 1 ? "s" : "") <!-- Pluralised product count --> @* Outputs Razor data or executes Razor logic. *@
+            </span> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Loop Rendering ----- *@
+        <a class="pd-hero__email" href="mailto:@Model.ProducerEmail"> @* Renders a navigation link or action link. *@
+            <!-- Mailto link --> @* Keeps an existing comment in the Razor file. *@
+            <i data-lucide="mail" style="width:15px;height:15px;"></i> <!-- Mail icon --> @* Renders part of the producers page markup. *@
+ @* ----- Page Model Setup ----- *@
+            @Model.ProducerEmail <!-- Producer email address --> @* Displays or uses data from the producers model. *@
+        </a> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pd-hero__wave" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <!-- Decorative wave transition --> @* Keeps an existing comment in the Razor file. *@
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none"> @* Renders part of the producers page markup. *@
+            <!-- Wave SVG --> @* Keeps an existing comment in the Razor file. *@
+            <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#f0fdf4" /> <!-- Wave path filled with page background colour --> @* Renders paragraph text for the user. *@
+        </svg> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     BODY  (about + quick facts) @* Renders part of the producers page markup. *@
+════════════════════════════════════════════════════════ --> @* Renders part of the producers page markup. *@
+<div class="pd-body"> @* Starts a layout container for this section. *@
+    <!-- Main body wrapper --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+    <div class="pd-body__grid"> @* Starts a layout container for this section. *@
+        <!-- Two-column grid: about + facts --> @* Keeps an existing comment in the Razor file. *@
+        <!-- About --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+        <div class="pd-about reveal reveal--left"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+            <!-- About card, animates in from the left --> @* Keeps an existing comment in the Razor file. *@
+            <p class="pd-about__eyebrow"> @* Renders paragraph text for the user. *@
+ @* ----- Form Fields ----- *@
+                <!-- Section label --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="user" style="width:12px;height:12px;"></i> <!-- User icon --> @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+                About this grower @* Renders part of the producers page markup. *@
+            </p> @* Closes the matching HTML element. *@
+ @* ----- Loop Rendering ----- *@
+            @if (!string.IsNullOrWhiteSpace(Model.ProducerInformation)) // Show bio if one exists @* Conditionally renders this block when the check passes. *@
+            {
+                <p class="pd-about__text">@Model.ProducerInformation</p> <!-- Producer bio --> @* Renders paragraph text for the user. *@
+            }
+ @* ----- Conditional Rendering ----- *@
+            else // Friendly placeholder when no bio has been added @* Renders the fallback branch for the previous condition. *@
+            {
+ @* ----- Card Layout ----- *@
+                <p class="pd-about__empty">This grower hasn't added a bio yet — but their produce speaks for itself.</p> <!-- Empty state message --> @* Renders paragraph text for the user. *@
+            }
+        </div> @* Closes the matching HTML element. *@
+
+        <!-- Quick facts sidebar --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+        <div class="pd-facts reveal reveal--right"> @* Starts a layout container for this section. *@
+            <!-- Facts column, animates in from the right --> @* Keeps an existing comment in the Razor file. *@
+
+ @* ----- Card Layout ----- *@
+            <div class="pd-fact-card"> @* Starts a layout container for this section. *@
+                <!-- Email fact card --> @* Keeps an existing comment in the Razor file. *@
+                <div class="pd-fact-card__icon pd-fact-card__icon--green"> @* Starts a layout container for this section. *@
+                    <!-- Green icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                    <i data-lucide="mail" style="width:20px;height:20px;stroke:#15803d;"></i> <!-- Mail icon --> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pd-fact-card__body"> @* Starts a layout container for this section. *@
+                    <!-- Card text content --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pd-fact-card__label">Email</p> <!-- Label --> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pd-fact-card__value"> @* Renders paragraph text for the user. *@
+ @* ----- Loop Rendering ----- *@
+                        <a href="mailto:@Model.ProducerEmail">@Model.ProducerEmail</a> <!-- Clickable email --> @* Renders a navigation link or action link. *@
+                    </p> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <div class="pd-fact-card"> @* Starts a layout container for this section. *@
+                <!-- Products listed fact card --> @* Keeps an existing comment in the Razor file. *@
+                <div class="pd-fact-card__icon pd-fact-card__icon--lime"> @* Starts a layout container for this section. *@
+                    <!-- Lime icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                    <i data-lucide="warehouse" style="width:20px;height:20px;stroke:#365314;"></i> <!-- Warehouse icon --> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pd-fact-card__body"> @* Starts a layout container for this section. *@
+                    <!-- Card text content --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pd-fact-card__label">Products Listed</p> <!-- Label --> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pd-fact-card__value">@productCount item@(productCount != 1 ? "s" : "")</p> <!-- Pluralised count --> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+            <div class="pd-fact-card"> @* Starts a layout container for this section. *@
+                <!-- Available now fact card --> @* Keeps an existing comment in the Razor file. *@
+                <div class="pd-fact-card__icon pd-fact-card__icon--teal"> @* Starts a layout container for this section. *@
+                    <!-- Teal icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                    <i data-lucide="shopping-bag" style="width:20px;height:20px;stroke:#065f46;"></i> <!-- Shopping bag icon --> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div class="pd-fact-card__body"> @* Starts a layout container for this section. *@
+                    <!-- Card text content --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                    <p class="pd-fact-card__label">Available Now</p> <!-- Label --> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <p class="pd-fact-card__value">@availCount in stock</p> <!-- In-stock count --> @* Renders paragraph text for the user. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+            @if (Model.IsVATRegistered && !string.IsNullOrWhiteSpace(Model.VATNumber)) // Only show VAT card if registered and number exists @* Conditionally renders this block when the check passes. *@
+            {
+                <div class="pd-fact-card"> @* Starts a layout container for this section. *@
+                    <!-- VAT number fact card --> @* Keeps an existing comment in the Razor file. *@
+                    <div class="pd-fact-card__icon pd-fact-card__icon--mint"> @* Starts a layout container for this section. *@
+                        <!-- Mint icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                        <i data-lucide="receipt" style="width:20px;height:20px;stroke:#065f46;"></i> <!-- Receipt icon --> @* Renders part of the producers page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <div class="pd-fact-card__body"> @* Starts a layout container for this section. *@
+                        <!-- Card text content --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                        <p class="pd-fact-card__label">VAT Number</p> <!-- Label --> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                        <p class="pd-fact-card__value">@Model.VATNumber</p> <!-- VAT number value --> @* Renders paragraph text for the user. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            }
+
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+    <!-- Stats strip --> @* Keeps an existing comment in the Razor file. *@
+    <div class="pd-stats-strip"> @* Starts a layout container for this section. *@
+        <!-- Animated stats bar --> @* Keeps an existing comment in the Razor file. *@
+        <div class="pd-stat-tile reveal reveal--pop" data-delay="0"> @* Starts a layout container for this section. *@
+ @* ----- Product Display ----- *@
+            <!-- Products tile --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+            <p class="pd-stat-tile__value" data-target="@productCount" data-suffix="">@productCount</p> <!-- Animated counter target --> @* Renders paragraph text for the user. *@
+ @* ----- Form Fields ----- *@
+            <p class="pd-stat-tile__label">Products Listed</p> <!-- Tile label --> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <div class="pd-stat-tile reveal reveal--pop" data-delay="100"> @* Starts a layout container for this section. *@
+            <!-- In-stock tile --> @* Keeps an existing comment in the Razor file. *@
+            <p class="pd-stat-tile__value" data-target="@availCount" data-suffix="">@availCount</p> <!-- Animated counter target --> @* Renders paragraph text for the user. *@
+ @* ----- Form Fields ----- *@
+            <p class="pd-stat-tile__label">In Stock</p> <!-- Tile label --> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+        <div class="pd-stat-tile reveal reveal--pop" data-delay="200"> @* Starts a layout container for this section. *@
+            <!-- VAT status tile --> @* Keeps an existing comment in the Razor file. *@
+            <p class="pd-stat-tile__value" data-target="@(Model.IsVATRegistered ? 1 : 0)" data-suffix=""> @* Renders paragraph text for the user. *@
+ @* ----- Loop Rendering ----- *@
+                @(Model.IsVATRegistered ? "Yes" : "No") <!-- Yes/No based on VAT registration --> @* Displays or uses data from the producers model. *@
+            </p> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+            <p class="pd-stat-tile__label">VAT Registered</p> <!-- Tile label --> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Authorization Display ----- *@
+    @if (canEditProducer) // Render profile controls only when this user may manage the producer @* Conditionally renders this block when the check passes. *@
+    {
+ @* ----- Styling Section ----- *@
+        <div class="pd-admin-bar reveal"> @* Starts a layout container for this section. *@
+            <!-- Admin toolbar --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+            <p class="pd-admin-bar__label"> @* Renders paragraph text for the user. *@
+                <!-- Toolbar label --> @* Keeps an existing comment in the Razor file. *@
+                <i data-lucide="shield" style="width:13px;height:13px;stroke:#15803d;"></i> <!-- Shield icon --> @* Renders part of the producers page markup. *@
+                Admin controls @* Renders part of the producers page markup. *@
+            </p> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+            <a class="pw-btn pw-btn--sm pw-btn--outline" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+               asp-action="Edit" asp-route-id="@Model.ProducersId"> @* Builds a link or form target using MVC routing. *@
+                <!-- Edit button --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="pencil" class="pw-icon-sm"></i> <!-- Pencil icon --> @* Renders part of the producers page markup. *@
+ @* ----- Producer Display ----- *@
+                Edit Producer @* Renders part of the producers page markup. *@
+            </a> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+            @if (isAdminOrDeveloper) @* Conditionally renders this block when the check passes. *@
+            {
+            <a class="pw-btn pw-btn--sm pw-btn--ghost" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+               asp-action="Delete" asp-route-id="@Model.ProducersId" @* Builds a link or form target using MVC routing. *@
+               style="color:#DC2626;"> @* Renders part of the producers page markup. *@
+ @* ----- Form Actions ----- *@
+                <!-- Delete button, red text --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="trash-2" class="pw-icon-sm"></i> <!-- Trash icon --> @* Renders part of the producers page markup. *@
+ @* ----- Form Actions ----- *@
+                Delete @* Renders part of the producers page markup. *@
+            </a> @* Closes the matching HTML element. *@
+            }
+        </div> @* Closes the matching HTML element. *@
+    }
+</div> @* Closes the matching HTML element. *@
+
+
+<!-- ═══════════════════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+ @* ----- Producer Display ----- *@
+     PRODUCE FROM THIS PRODUCER @* Renders part of the producers page markup. *@
+════════════════════════════════════════════════════════ --> @* Renders part of the producers page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="pd-produce" aria-labelledby="produce-heading"> @* Renders part of the producers page markup. *@
+ @* ----- Product Display ----- *@
+    <!-- Products section --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+        <!-- Centred container --> @* Keeps an existing comment in the Razor file. *@
+
+        <div class="pw-section__header reveal reveal--blur"> @* Starts a layout container for this section. *@
+            <!-- Section header, animates in with blur --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+            <span class="pw-section__eyebrow" style="color:#15803d;"> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                <!-- Eyebrow label --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Styling Section ----- *@
+                <i data-lucide="sprout" class="pw-icon-sm"></i> <!-- Sprout icon --> @* Renders part of the producers page markup. *@
+                Straight from the source @* Renders part of the producers page markup. *@
+            </span> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h2 class="pw-section__title" id="produce-heading"> @* Renders a heading for this page section. *@
+                <!-- Section heading --> @* Keeps an existing comment in the Razor file. *@
+                Produce from<br> @* Renders part of the producers page markup. *@
+ @* ----- Loop Rendering ----- *@
+                <em class="pw-text--green">@Model.ProducerName</em> <!-- Producer name in green --> @* Displays or uses data from the producers model. *@
+            </h2> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+            @if (productCount > 0) // Only show subtitle if there are products @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Styling Section ----- *@
+                <p class="pw-section__subtitle"> @* Renders paragraph text for the user. *@
+ @* ----- Card Layout ----- *@
+                    <!-- Product count summary --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+                    @productCount product@(productCount != 1 ? "s" : "") listed · @availCount available now <!-- Pluralised counts --> @* Outputs Razor data or executes Razor logic. *@
+                </p> @* Closes the matching HTML element. *@
+            }
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        @if (products.Any()) // Render product grid if products exist @* Conditionally renders this block when the check passes. *@
+        {
+            <div class="pw-grid pw-grid--3"> @* Starts a layout container for this section. *@
+                <!-- 3-column product grid --> @* Keeps an existing comment in the Razor file. *@
+                @{
+                    int pi = 0; // Renders part of the producers page markup.
+ // ----- Product Display -----
+                } <!-- Product index for gradient/delay cycling --> 
+ @* ----- Loop Rendering ----- *@
+                @foreach (var p in products) // Loop through each product @* Loops through the collection and renders each item. *@
+                {
+                    var grad = prodGradients[pi % prodGradients.Length]; // Pick gradient by index @* Renders part of the producers page markup. *@
+ @* ----- Search and Filters ----- *@
+                    var icon = CategoryIcon(p.Category);                 // Icon based on category @* Renders part of the producers page markup. *@
+                    var delay = (pi % 3) * 120;                           // Staggered delay: 0, 120, 240ms @* Renders part of the producers page markup. *@
+ @* ----- Basket Display ----- *@
+                    var inStock = p.Available && p.QuantityInStock > 0;     // Whether product is in stock @* Renders part of the producers page markup. *@
+ @* ----- Card Layout ----- *@
+                    pi++; // Increment index for next card @* Renders part of the producers page markup. *@
+
+                    <article class="pd-product-card reveal reveal--pop" data-delay="@delay"> @* Renders a navigation link or action link. *@
+                        <!-- Product card --> @* Keeps an existing comment in the Razor file. *@
+
+                        <div class="pd-product-card__img-wrap"> @* Starts a layout container for this section. *@
+                            <!-- Image/fallback wrapper --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (!string.IsNullOrWhiteSpace(p.ImagePath)) // Show image if path exists @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <img class="pd-product-card__img" @* Renders an image for the page content. *@
+                                     src="@p.ImagePath" @* Renders part of the producers page markup. *@
+ @* ----- Product Display ----- *@
+                                     alt="@p.ItemName" @* Renders part of the producers page markup. *@
+                                     loading="lazy"> <!-- Lazy-loaded product image --> @* Renders part of the producers page markup. *@
+                            }
+ @* ----- Search and Filters ----- *@
+                            else // No image — show gradient + category icon instead @* Renders the fallback branch for the previous condition. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <div class="pd-product-card__no-img" style="background:@grad;"> @* Starts a layout container for this section. *@
+                                    <!-- Gradient fallback --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Search and Filters ----- *@
+                                    <i data-lucide="@icon"></i> <!-- Category icon --> @* Renders part of the producers page markup. *@
+                                </div> @* Closes the matching HTML element. *@
+                            }
+
+ @* ----- Card Layout ----- *@
+                            <div class="pd-product-card__badge"> @* Starts a layout container for this section. *@
+                                <!-- Stock status badge --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+                                @if (!inStock) // Out of stock @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Styling Section ----- *@
+                                    <span class="pw-badge pw-badge--orange">Out of Stock</span> <!-- Out-of-stock badge --> @* Renders inline text or badge content. *@
+                                }
+ @* ----- Conditional Rendering ----- *@
+                                else if (p.QuantityInStock <= 5) // Low stock threshold @* Renders the fallback branch for the previous condition. *@
+                                {
+ @* ----- Styling Section ----- *@
+                                    <span class="pw-badge pw-badge--orange"> @* Renders inline text or badge content. *@
+                                        <!-- Low-stock badge --> @* Keeps an existing comment in the Razor file. *@
+                                        <i data-lucide="zap" class="pw-icon-sm"></i> <!-- Zap icon --> @* Renders part of the producers page markup. *@
+                                        Low Stock @* Renders part of the producers page markup. *@
+                                    </span> @* Closes the matching HTML element. *@
+                                }
+ @* ----- Conditional Rendering ----- *@
+                                else // Plenty in stock @* Renders the fallback branch for the previous condition. *@
+                                {
+ @* ----- Styling Section ----- *@
+                                    <span class="pw-badge pw-badge--green">In Stock</span> <!-- In-stock badge --> @* Renders inline text or badge content. *@
+                                }
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+                        <div class="pd-product-card__body"> @* Starts a layout container for this section. *@
+                            <!-- Card text content --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                            <p class="pd-product-card__category">@p.Category</p>   <!-- Category label --> @* Renders paragraph text for the user. *@
+ @* ----- Page Header ----- *@
+                            <h3 class="pd-product-card__name">@p.ItemName</h3>     <!-- Product name --> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                            <p class="pd-product-card__desc">@p.Description</p>    <!-- Short description --> @* Renders paragraph text for the user. *@
+
+                            <div class="pd-product-card__footer"> @* Starts a layout container for this section. *@
+                                <!-- Price + action row --> @* Keeps an existing comment in the Razor file. *@
+                                <div> @* Starts a layout container for this section. *@
+                                    <span class="pd-product-card__price">£@p.ItemPrice.ToString("0.00")</span> <!-- Formatted price --> @* Renders inline text or badge content. *@
+                                    <span class="pd-product-card__stock"> · @p.QuantityInStock left</span>     <!-- Remaining stock --> @* Renders inline text or badge content. *@
+                                </div> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                                <a class="pw-btn pw-btn--sm pw-btn--primary" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                                   asp-area="" asp-controller="Products" asp-action="Details" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Setup ----- *@
+                                   asp-route-id="@p.ProductsId" @* Renders part of the producers page markup. *@
+ @* ----- Form Fields ----- *@
+                                   aria-label="View @p.ItemName"> @* Renders part of the producers page markup. *@
+ @* ----- Product Display ----- *@
+                                    <!-- Link to product details page --> @* Keeps an existing comment in the Razor file. *@
+                                    View → @* Renders part of the producers page markup. *@
+                                </a> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+                    </article> @* Closes the matching HTML element. *@
+                }
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+            <div class="pw-section__cta reveal" data-delay="200"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                <!-- CTA below product grid --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Actions ----- *@
+                <a class="pw-btn pw-btn--outline pw-btn--lg" @* Renders a navigation link or action link. *@
+ @* ----- Navigation ----- *@
+                   asp-area="" asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Setup ----- *@
+                   asp-route-producerId="@Model.ProducersId"> @* Displays or uses data from the producers model. *@
+ @* ----- Search and Filters ----- *@
+                    <!-- Link to all products filtered by this producer --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+                    See all @productCount product@(productCount != 1 ? "s" : "") from @Model.ProducerName → <!-- Pluralised label --> @* Displays or uses data from the producers model. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        }
+ @* ----- Conditional Rendering ----- *@
+        else // No products listed yet @* Renders the fallback branch for the previous condition. *@
+        {
+ @* ----- Card Layout ----- *@
+            <!-- Empty state --> @* Keeps an existing comment in the Razor file. *@
+            <div class="pw-empty-state reveal" style="background:#fff;border-color:#d1fae5;"> @* Starts a layout container for this section. *@
+                <!-- Empty state card --> @* Keeps an existing comment in the Razor file. *@
+                <div class="pw-empty-state__icon" style="background:#dcfce7;"> @* Starts a layout container for this section. *@
+                    <!-- Icon wrapper --> @* Keeps an existing comment in the Razor file. *@
+                    <i data-lucide="package" style="width:28px;height:28px;stroke:#15803d;"></i> <!-- Package icon --> @* Renders part of the producers page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h3 class="pw-empty-state__title">No produce listed yet</h3> <!-- Empty state heading --> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                <p class="pw-empty-state__sub"> @* Renders paragraph text for the user. *@
+ @* ----- Page Model Setup ----- *@
+                    @Model.ProducerName hasn't added any products yet. Check back soon — good things take time to grow. <!-- Empty state message --> @* Displays or uses data from the producers model. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                <a class="pw-btn pw-btn--outline pw-btn--lg" asp-action="Index"> @* Builds a link or form target using MVC routing. *@
+ @* ----- Card Layout ----- *@
+                    <!-- Back to growers CTA --> @* Keeps an existing comment in the Razor file. *@
+                    Browse other growers → @* Renders part of the producers page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        }
+
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Producer Display ----- *@
+    <link rel="stylesheet" href="~/css/pages/producers/ProducersDetails.css" /> @* Renders one list item. *@
+}
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Producer Display ----- *@
+    <script src="~/js/pages/producers/ProducersDetails.js"></script> @* Starts client-side script for this page. *@
+}

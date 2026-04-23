@@ -1,0 +1,124 @@
+@model IEnumerable<GFLHApp.Models.ContactInquiry>
+@using System.Linq
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Inquiries";
+    ViewData["AdminSection"] = "inquiries";
+
+    string search = ViewBag.Search ?? "";
+    string status = ViewBag.Status ?? "";
+    string sort = ViewBag.Sort ?? "newest";
+}
+
+<form method="get" action="/AdminDashboard/Inquiries">
+    <div class="adm-filters">
+        <div class="adm-filter-group">
+            <label>Search</label>
+            <input name="search" class="adm-filter-input" value="@search" placeholder="Name, email, subject, message..." style="width:280px;" />
+        </div>
+
+        <div class="adm-filter-group">
+            <label>Status</label>
+            <select name="status" class="adm-filter-select">
+                <option value="">All inquiries</option>
+                <option value="unread" selected="@(status == "unread")">Unread</option>
+                <option value="read" selected="@(status == "read")">Read</option>
+            </select>
+        </div>
+
+        <div class="adm-filter-group">
+            <label>Sort</label>
+            <select name="sort" class="adm-filter-select">
+                <option value="newest" selected="@(sort == "newest")">Newest first</option>
+                <option value="oldest" selected="@(sort == "oldest")">Oldest first</option>
+            </select>
+        </div>
+
+        <button type="submit" class="adm-btn-filter">
+            <i data-lucide="search" aria-hidden="true"></i>
+            Filter
+        </button>
+
+        @if (!string.IsNullOrWhiteSpace(search) || !string.IsNullOrWhiteSpace(status) || sort != "newest")
+        {
+            <a href="/AdminDashboard/Inquiries" class="adm-btn-clear">
+                <i data-lucide="x" aria-hidden="true"></i>
+                Clear
+            </a>
+        }
+    </div>
+</form>
+
+<div class="adm-card">
+    <div class="adm-results-info">@Model.Count() inquir@(Model.Count() == 1 ? "y" : "ies") found</div>
+
+    @if (Model.Any())
+    {
+        <div style="overflow-x:auto;">
+            <table class="adm-table">
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>Subject</th>
+                        <th>Submitted</th>
+                        <th>Status</th>
+                        <th>Reply</th>
+                        <th>Message</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var inquiry in Model)
+                    {
+                        var badgeClass = inquiry.IsRead ? "adm-badge adm-badge--accepted" : "adm-badge adm-badge--pending";
+                        var preview = inquiry.Message.Length > 90
+                            ? inquiry.Message.Substring(0, 90) + "..."
+                            : inquiry.Message;
+
+                        <tr>
+                            <td>
+                                <strong>@inquiry.FullName</strong><br />
+                                <span class="adm-inline-meta">@inquiry.EmailAddress</span>
+                            </td>
+                            <td class="adm-cell-cutoff adm-cell-cutoff--subject" title="@inquiry.Subject">@inquiry.Subject</td>
+                            <td style="white-space:nowrap;">@inquiry.SubmittedAtUtc.ToLocalTime().ToString("d MMM yyyy HH:mm")</td>
+                            <td><span class="@badgeClass">@(inquiry.IsRead ? "Read" : "Unread")</span></td>
+                            <td>
+                                <span class="@(string.IsNullOrWhiteSpace(inquiry.AdminReply) ? "adm-badge adm-badge--pending" : "adm-badge adm-badge--accepted")">
+                                    @(string.IsNullOrWhiteSpace(inquiry.AdminReply) ? "Waiting" : "Replied")
+                                </span>
+                            </td>
+                            <td class="adm-inquiry-preview" title="@inquiry.Message">@preview</td>
+                            <td class="adm-actions-cell">
+                                <div class="adm-actions">
+                                    <a href="/AdminDashboard/InquiryDetails/@inquiry.ContactInquiryId" class="adm-tbl-btn">View</a>
+                                    <form asp-action="ToggleInquiryRead" method="post" class="adm-inline-form">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@inquiry.ContactInquiryId" />
+                                        <button type="submit" class="adm-tbl-btn">@(inquiry.IsRead ? "Mark unread" : "Mark read")</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="adm-empty-state">
+            <i data-lucide="inbox" aria-hidden="true"></i>
+            <p>No inquiries match your current filters.</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/pages/admindashboard/AdminDashboardInquiries.js" asp-append-version="true"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/admindashboard/AdminDashboardInquiries.css" asp-append-version="true" />
+}

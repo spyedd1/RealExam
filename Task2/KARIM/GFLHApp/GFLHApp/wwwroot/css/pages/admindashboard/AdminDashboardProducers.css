@@ -1,0 +1,39 @@
+/* ----- Grid layout ----- */
+.adm-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; align-items: flex-end; } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-filter-group { display: flex; flex-direction: column; gap: 4px; } /* Styles part of the AdminDashboardProducers page or component. */
+/* ----- Theme variables ----- */
+.adm-filter-group label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-filter-input { height: 38px; padding: 0 12px; font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--text); background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-sm); outline: none; transition: border-color .15s; } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-filter-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-100); } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-btn-filter { height: 38px; padding: 0 16px; background: var(--green); color: #fff; border: none; border-radius: var(--r-sm); font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-btn-filter:hover { background: var(--green-700); } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-btn-clear { height: 38px; padding: 0 14px; background: transparent; color: var(--text-muted); border: 1.5px solid var(--border); border-radius: var(--r-sm); font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-btn-clear:hover { border-color: var(--text-muted); color: var(--text); } /* Styles part of the AdminDashboardProducers page or component. */
+
+.adm-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); } /* Styles part of the AdminDashboardProducers page or component. */
+/* ----- Grid layout ----- */
+.adm-table { width: 100%; border-collapse: collapse; font-size: 13px; } /* Styles part of the AdminDashboardProducers page or component. */
+/* ----- Theme variables ----- */
+.adm-table th { padding: 9px 14px; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); border-bottom: 1.5px solid var(--border); background: var(--cream); } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; } /* Styles part of the AdminDashboardProducers page or component. */
+/* ----- Tables ----- */
+.adm-table tr:last-child td { border-bottom: none; } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-table tr:hover td { background: #fafaf9; } /* Styles part of the AdminDashboardProducers page or component. */
+/* ----- Theme variables ----- */
+.adm-badge { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: var(--r-full); font-size: 11px; font-weight: 700; } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-badge--ok  { background: var(--green-100); color: var(--green); } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-badge--off { background: #f3f4f6; color: var(--text-muted); } /* Styles part of the AdminDashboardProducers page or component. */
+/* ----- Producer styling ----- */
+.adm-avatar { /* Starts styles for the .adm-avatar selector. */
+    /* ----- Tables ----- */
+    width: 36px; height: 36px; border-radius: 50%; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); color: var(--green); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    font-size: 14px; font-weight: 800; flex-shrink: 0; /* Sets the text size. */
+}
+/* ----- Theme variables ----- */
+.adm-tbl-btn { height: 28px; padding: 0 10px; border-radius: var(--r-sm); font-size: 11px; font-weight: 700; cursor: pointer; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: all .1s; } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-tbl-btn:hover { border-color: var(--green); color: var(--green); background: var(--green-100); } /* Styles part of the AdminDashboardProducers page or component. */
+.adm-results-info { font-size: 13px; color: var(--text-muted); padding: 12px 18px; border-bottom: 1px solid var(--border); background: var(--cream); } /* Styles part of the AdminDashboardProducers page or component. */

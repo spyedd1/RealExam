@@ -1,0 +1,59 @@
+/* ----- Card layout ----- */
+.adm-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 22px; } /* Styles part of the AdminDashboardIndex page or component. */
+@media (max-width: 1100px) { .adm-stats { grid-template-columns: repeat(2,1fr); } } /* Starts responsive rules for this viewport range. */
+@media (max-width: 520px)  { .adm-stats { grid-template-columns: 1fr; } } /* Starts responsive rules for this viewport range. */
+
+.adm-stat { /* Starts styles for the .adm-stat selector. */
+    /* ----- Theme variables ----- */
+    background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-md); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    padding: 16px 18px; display: flex; align-items: center; gap: 13px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    box-shadow: var(--shadow-sm); transition: box-shadow .15s, transform .15s; /* Adds depth with a shadow. */
+}
+.adm-stat:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat--warn  { border-color: #fed7aa; background: #fff7ed; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat--danger{ border-color: #fecaca; background: #fef2f2; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__icon  { width: 42px; height: 42px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__icon--green  { background: var(--green-100); color: var(--green); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__icon--orange { background: var(--orange-100); color: var(--orange); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__icon--purple { background: var(--purple-100); color: var(--purple); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__icon--blue   { background: #dbeafe; color: #2563eb; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__icon--red    { background: #fee2e2; color: #DC2626; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__val { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--text); line-height: 1; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-top: 2px; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-stat__sub { font-size: 11px; color: var(--text-light); margin-top: 1px; } /* Styles part of the AdminDashboardIndex page or component. */
+
+.adm-card { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-card__head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--cream); border-bottom: 1px solid var(--border); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-card__title { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 7px; margin: 0; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-card__link { font-size: 12px; font-weight: 600; color: var(--green); text-decoration: none; display: flex; align-items: center; gap: 4px; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-card__link:hover { color: var(--green-700); } /* Styles part of the AdminDashboardIndex page or component. */
+
+/* ----- Grid layout ----- */
+.adm-table { width: 100%; border-collapse: collapse; font-size: 13px; } /* Styles part of the AdminDashboardIndex page or component. */
+/* ----- Theme variables ----- */
+.adm-table th { padding: 9px 14px; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); border-bottom: 1.5px solid var(--border); background: var(--cream); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; } /* Styles part of the AdminDashboardIndex page or component. */
+/* ----- Tables ----- */
+.adm-table tr:last-child td { border-bottom: none; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-table tr:hover td { background: #fafaf9; } /* Styles part of the AdminDashboardIndex page or component. */
+
+/* ----- Theme variables ----- */
+.adm-badge { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: var(--r-full); font-size: 11px; font-weight: 700; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-badge--pending   { background: var(--orange-100); color: var(--orange); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-badge--accepted  { background: var(--green-100);  color: var(--green); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-badge--cancelled { background: #f3f4f6; color: var(--text-muted); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-badge--partial   { background: var(--yellow-100); color: #78350f; } /* Styles part of the AdminDashboardIndex page or component. */
+
+/* ----- Grid layout ----- */
+.adm-bar-chart { padding: 14px 18px; display: flex; flex-direction: column; gap: 7px; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-bar-row   { display: flex; align-items: center; gap: 8px; } /* Styles part of the AdminDashboardIndex page or component. */
+/* ----- Theme variables ----- */
+.adm-bar-row__label { font-size: 11px; font-weight: 600; color: var(--text-muted); width: 48px; flex-shrink: 0; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-bar-row__track { flex: 1; height: 16px; background: var(--cream); border-radius: 4px; overflow: hidden; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-bar-row__fill  { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--green-700), var(--green)); } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-bar-row__val   { font-size: 11px; font-weight: 700; color: var(--text); width: 50px; text-align: right; flex-shrink: 0; } /* Styles part of the AdminDashboardIndex page or component. */
+
+.adm-top-row { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: var(--r-sm); transition: background .1s; } /* Styles part of the AdminDashboardIndex page or component. */
+.adm-top-row:hover { background: var(--cream); } /* Styles part of the AdminDashboardIndex page or component. */

@@ -1,0 +1,398 @@
+/* ----- Navigation ----- */
+.pw-detail-header { /* Starts styles for the .pw-detail-header selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(160deg, var(--cream) 0%, #f0ebe0 100%); /* Sets the element background treatment. */
+    padding: 100px 0 36px; /* Sets spacing inside the element. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    border-bottom: 1px solid rgba(0,0,0,.06); /* Sets the border-bottom style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.pw-detail-header__deco { /* Starts styles for the .pw-detail-header__deco selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+    /* ----- Animation ----- */
+    opacity: .08; /* Controls element transparency. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+}
+.pw-detail-header__deco--1 { top: 20%; right: 8%;  animation: float-a 7s ease-in-out infinite; } /* Styles part of the ProductDetails page or component. */
+.pw-detail-header__deco--2 { top: 50%; left: 5%;   animation: float-b 8s ease-in-out infinite 1s; } /* Styles part of the ProductDetails page or component. */
+.pw-detail-header__deco--3 { bottom: 30%; right: 20%; animation: float-a 6s ease-in-out infinite .5s; } /* Styles part of the ProductDetails page or component. */
+
+/* ----- Navigation ----- */
+.pw-breadcrumb { /* Starts styles for the .pw-breadcrumb selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 6px; /* Controls how the element participates in layout. */
+    list-style: none; margin: 0; padding: 0; /* Sets the list-style style for this rule. */
+    font-size: 13px; font-weight: 500; flex-wrap: wrap; /* Sets the text size. */
+}
+/* ----- Navigation ----- */
+.pw-breadcrumb li { display: flex; align-items: center; gap: 6px; } /* Styles part of the ProductDetails page or component. */
+/* ----- Theme variables ----- */
+.pw-breadcrumb li + li::before { content: '/'; color: var(--text-muted); opacity: .6; } /* Styles part of the ProductDetails page or component. */
+.pw-breadcrumb a { color: var(--text-muted); transition: color .15s; text-decoration: none; } /* Styles part of the ProductDetails page or component. */
+.pw-breadcrumb a:hover { color: var(--green); } /* Styles part of the ProductDetails page or component. */
+.pw-breadcrumb [aria-current] { color: var(--text); font-weight: 600; } /* Styles part of the ProductDetails page or component. */
+
+/* ----- Base layout ----- */
+.pw-detail-section { /* Starts styles for the .pw-detail-section selector. */
+    padding: 56px 0 88px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+
+/* ----- Grid layout ----- */
+.pw-detail-grid { /* Starts styles for the .pw-detail-grid selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 1fr 1fr; /* Defines the grid column layout. */
+    gap: 72px; /* Sets spacing between flex or grid children. */
+    align-items: start; /* Aligns child items on the cross axis. */
+}
+
+.pw-detail__img-col { /* Starts styles for the .pw-detail__img-col selector. */
+    position: sticky; /* Controls how the element is positioned on the page. */
+    top: 96px; /* Sets the top style for this rule. */
+}
+
+.pw-detail__img-wrap { /* Starts styles for the .pw-detail__img-wrap selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    padding: 18px 0; /* Sets spacing inside the element. */
+}
+
+/* ----- Card layout ----- */
+.pw-detail__img-card { /* Starts styles for the .pw-detail__img-card selector. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-xl); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    /* ----- Theme variables ----- */
+    box-shadow: var(--shadow-lg), 0 0 0 4px var(--green-200); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transition: transform .18s ease-out, box-shadow .18s ease-out; /* Animates property changes smoothly. */
+    transform-style: preserve-3d; /* Sets the transform-style style for this rule. */
+    will-change: transform; /* Sets the will-change style for this rule. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-100) 0%, var(--cream-2) 100%); /* Sets the element background treatment. */
+    aspect-ratio: 1 / 1; /* Sets the aspect-ratio style for this rule. */
+    cursor: crosshair; /* Sets the cursor style for this rule. */
+}
+
+.pw-detail__img { /* Starts styles for the .pw-detail__img selector. */
+    /* ----- Tables ----- */
+    width: 100%; height: 100%; /* Sets the element width. */
+    object-fit: cover; /* Sets the object-fit style for this rule. */
+    display: block; /* Controls how the element participates in layout. */
+    pointer-events: none; /* Sets the pointer-events style for this rule. */
+}
+
+.pw-detail__img-placeholder { /* Starts styles for the .pw-detail__img-placeholder selector. */
+    width: 100%; height: 100%; /* Sets the element width. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    padding: 80px; /* Sets spacing inside the element. */
+    min-height: 320px; /* Sets the minimum element height. */
+}
+
+.pw-detail__sticker { /* Starts styles for the .pw-detail__sticker selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    z-index: 3; /* Controls stacking order. */
+}
+/* ----- Theme variables ----- */
+.pw-detail__sticker--tl { top: -14px; left: 20px;  transform: rotate(-4deg); } /* Styles part of the ProductDetails page or component. */
+.pw-detail__sticker--br { bottom: -14px; right: 20px; transform: rotate(3.5deg); } /* Styles part of the ProductDetails page or component. */
+
+/* ----- Tables ----- */
+.pw-detail__trust { /* Starts styles for the .pw-detail__trust selector. */
+    /* ----- Grid layout ----- */
+    display: flex; justify-content: center; gap: 20px; /* Controls how the element participates in layout. */
+    margin-top: 28px; flex-wrap: wrap; /* Sets the margin-top style for this rule. */
+}
+/* ----- Tables ----- */
+.pw-detail__trust-item { /* Starts styles for the .pw-detail__trust-item selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 5px; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    font-size: 12px; font-weight: 600; color: var(--text-muted); /* Sets the text size. */
+}
+
+/* ----- Grid layout ----- */
+.pw-detail__info-col { display: flex; flex-direction: column; } /* Styles part of the ProductDetails page or component. */
+
+.pw-detail__badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; } /* Styles part of the ProductDetails page or component. */
+
+.pw-detail__name { /* Starts styles for the .pw-detail__name selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(28px, 3.8vw, 50px); /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    letter-spacing: -.03em; /* Sets the letter-spacing style for this rule. */
+    margin: 0 0 12px; /* Sets spacing outside the element. */
+    line-height: 1.06; /* Sets vertical text rhythm. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+}
+
+/* ----- Grid layout ----- */
+.pw-detail__producer-row { /* Starts styles for the .pw-detail__producer-row selector. */
+    display: flex; align-items: center; gap: 7px; /* Controls how the element participates in layout. */
+    font-size: 14px; font-weight: 500; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); margin-bottom: 28px; /* Sets the text color. */
+}
+.pw-detail__producer-row strong { color: var(--text); } /* Styles part of the ProductDetails page or component. */
+
+/* ----- Product styling ----- */
+.pw-detail__price-block { /* Starts styles for the .pw-detail__price-block selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border: 2px solid var(--green-200); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    padding: 16px 22px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: baseline; gap: 12px; /* Controls how the element participates in layout. */
+    margin-bottom: 24px; /* Sets the margin-bottom style for this rule. */
+}
+/* ----- Product styling ----- */
+.pw-detail__price { /* Starts styles for the .pw-detail__price selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    /* ----- Responsive layout ----- */
+    font-size: clamp(36px, 4vw, 52px); /* Sets the text size. */
+    font-weight: 800; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+    line-height: 1; /* Sets vertical text rhythm. */
+    letter-spacing: -.03em; /* Sets the letter-spacing style for this rule. */
+}
+.pw-detail__price-label { font-size: 13px; color: var(--text-muted); font-weight: 500; } /* Styles part of the ProductDetails page or component. */
+
+.pw-detail__desc { /* Starts styles for the .pw-detail__desc selector. */
+    font-size: 16px; line-height: 1.75; /* Sets the text size. */
+    color: var(--text-muted); margin-bottom: 24px; /* Sets the text color. */
+}
+
+/* ----- Forms ----- */
+.pw-detail__label { /* Starts styles for the .pw-detail__label selector. */
+    font-size: 11px; font-weight: 700; /* Sets the text size. */
+    text-transform: uppercase; letter-spacing: .08em; /* Sets the text-transform style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); margin-bottom: 8px; /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 4px; /* Controls how the element participates in layout. */
+}
+
+/* ----- Product styling ----- */
+.pw-detail__stock { /* Starts styles for the .pw-detail__stock selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 8px; /* Controls how the element participates in layout. */
+    font-size: 14px; font-weight: 600; /* Sets the text size. */
+    margin-bottom: 20px; padding: 10px 18px; /* Sets the margin-bottom style for this rule. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); border: 2px solid; /* Rounds the element corners. */
+}
+.pw-detail__stock--ok     { background: var(--green-100);  border-color: var(--green-200); color: var(--green-800); } /* Styles part of the ProductDetails page or component. */
+.pw-detail__stock--low    { background: var(--orange-100); border-color: #FED7AA;          color: #9A3412; } /* Styles part of the ProductDetails page or component. */
+.pw-detail__stock--out    { background: #FEE2E2;           border-color: #FECACA;          color: #991B1B; } /* Styles part of the ProductDetails page or component. */
+.pw-detail__stock--unavail { background: #F5F5F4;          border-color: var(--border);    color: var(--text-muted); } /* Styles part of the ProductDetails page or component. */
+
+.pw-detail__add-area { /* Starts styles for the .pw-detail__add-area selector. */
+    background: var(--white); /* Sets the element background treatment. */
+    border: 2px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    padding: 20px; /* Sets spacing inside the element. */
+    margin-bottom: 24px; /* Sets the margin-bottom style for this rule. */
+}
+/* ----- Forms ----- */
+.pw-detail__add-label { /* Starts styles for the .pw-detail__add-label selector. */
+    font-size: 13px; font-weight: 600; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); margin-bottom: 12px; /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 5px; /* Controls how the element participates in layout. */
+}
+.pw-detail__add-row { /* Starts styles for the .pw-detail__add-row selector. */
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap; /* Controls how the element participates in layout. */
+}
+
+/* ----- Product styling ----- */
+.pw-detail__allergens { margin-bottom: 20px; } /* Styles part of the ProductDetails page or component. */
+.pw-allergen-tag { /* Starts styles for the .pw-allergen-tag selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; /* Controls how the element participates in layout. */
+    font-size: 11px; font-weight: 700; padding: 3px 9px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    background: var(--yellow-100); color: #92400E; /* Sets the element background treatment. */
+    border-radius: var(--r-full); letter-spacing: .02em; text-transform: uppercase; /* Rounds the element corners. */
+}
+/* ----- Grid layout ----- */
+.pw-detail__allergen-list { display: flex; flex-wrap: wrap; gap: 5px; } /* Styles part of the ProductDetails page or component. */
+
+/* ----- Card layout ----- */
+.pw-detail__producer-card { /* Starts styles for the .pw-detail__producer-card selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-100) 0%, #DFF6EA 100%); /* Sets the element background treatment. */
+    border: 2px solid var(--green-200); /* Sets the border around the element. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    padding: 20px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: flex; gap: 14px; align-items: flex-start; /* Controls how the element participates in layout. */
+    margin-bottom: 20px; /* Sets the margin-bottom style for this rule. */
+}
+/* ----- Producer styling ----- */
+.pw-detail__producer-avatar { /* Starts styles for the .pw-detail__producer-avatar selector. */
+    /* ----- Grid layout ----- */
+    width: 44px; height: 44px; flex-shrink: 0; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--green); border-radius: var(--r-full); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    color: white; /* Sets the text color. */
+}
+/* ----- Producer styling ----- */
+.pw-detail__producer-name { /* Starts styles for the .pw-detail__producer-name selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); font-size: 16px; /* Sets the font family. */
+    font-weight: 700; margin: 0 0 4px; color: var(--text); /* Sets the text weight. */
+}
+/* ----- Producer styling ----- */
+.pw-detail__producer-bio { /* Starts styles for the .pw-detail__producer-bio selector. */
+    /* ----- Theme variables ----- */
+    font-size: 13px; color: var(--text-muted); /* Sets the text size. */
+    margin: 0 0 8px; line-height: 1.55; /* Sets spacing outside the element. */
+}
+
+/* ----- Admin dashboard styling ----- */
+.pw-detail__admin { /* Starts styles for the .pw-detail__admin selector. */
+    /* ----- Grid layout ----- */
+    display: flex; gap: 8px; flex-wrap: wrap; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    padding-top: 16px; border-top: 2px solid var(--border); /* Sets the padding-top style for this rule. */
+}
+/* ----- Admin dashboard styling ----- */
+.pw-detail__admin a { /* Starts styles for the .pw-detail__admin a selector. */
+    font-size: 13px; font-weight: 600; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    padding: 6px 16px; border-radius: var(--r-full); /* Sets spacing inside the element. */
+    border: 2px solid var(--border); color: var(--text-muted); transition: all .15s; /* Sets the border around the element. */
+}
+.pw-detail__admin a:hover          { border-color: var(--green);  color: var(--green);  background: var(--green-100); } /* Styles part of the ProductDetails page or component. */
+/* ----- Grid layout ----- */
+.pw-detail__admin a.danger:hover   { border-color: #DC2626;       color: #DC2626;       background: #FEF2F2; } /* Styles part of the ProductDetails page or component. */
+
+/* ----- Base layout ----- */
+.pw-more-section { /* Starts styles for the .pw-more-section selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%); /* Sets the element background treatment. */
+    padding: 80px 0 96px; /* Sets spacing inside the element. */
+    position: relative; /* Controls how the element is positioned on the page. */
+}
+/* ----- Base layout ----- */
+.pw-more-section::before { /* Starts styles for the .pw-more-section::before selector. */
+    content: ''; position: absolute; /* Sets the content style for this rule. */
+    top: 0; left: 0; right: 0; /* Sets the top style for this rule. */
+    /* ----- Theme variables ----- */
+    height: 2px; background: var(--green-200); /* Sets the element height. */
+}
+
+/* ----- Grid layout ----- */
+.pw-add-group { display: flex; align-items: center; gap: 6px; } /* Styles part of the ProductDetails page or component. */
+/* ----- Tables ----- */
+.pw-qty-control { /* Starts styles for the .pw-qty-control selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    border: 2px solid var(--border); border-radius: var(--r-full); /* Sets the border around the element. */
+    background: var(--cream); overflow: hidden; /* Sets the element background treatment. */
+}
+/* ----- Buttons ----- */
+.pw-qty-btn { /* Starts styles for the .pw-qty-btn selector. */
+    /* ----- Tables ----- */
+    width: 28px; height: 32px; background: none; border: none; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    font-size: 16px; font-weight: 700; color: var(--text-muted); /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    cursor: pointer; display: flex; align-items: center; justify-content: center; /* Sets the cursor style for this rule. */
+    transition: background .12s, color .12s; /* Animates property changes smoothly. */
+    /* ----- Theme variables ----- */
+    padding: 0; line-height: 1; font-family: var(--font-body); flex-shrink: 0; /* Sets spacing inside the element. */
+}
+.pw-qty-btn:hover { background: var(--green-100); color: var(--green); } /* Styles part of the ProductDetails page or component. */
+.pw-qty-btn:focus-visible { outline: 2px solid var(--green); outline-offset: -2px; } /* Styles part of the ProductDetails page or component. */
+.pw-qty-display { /* Starts styles for the .pw-qty-display selector. */
+    font-size: 14px; font-weight: 700; color: var(--text); /* Sets the text size. */
+    /* ----- Forms ----- */
+    min-width: 26px; text-align: center; user-select: none; padding: 0 2px; /* Sets the min-width style for this rule. */
+}
+.pw-spinner { /* Starts styles for the .pw-spinner selector. */
+    /* ----- Tables ----- */
+    display: inline-block; width: 14px; height: 14px; /* Controls how the element participates in layout. */
+    /* ----- Grid layout ----- */
+    border: 2px solid rgba(255,255,255,.4); border-top-color: white; /* Sets the border around the element. */
+    border-radius: 50%; animation: pw-spin .6s linear infinite; vertical-align: middle; /* Rounds the element corners. */
+}
+/* ----- Forms ----- */
+@keyframes pw-spin { to { transform: rotate(360deg); } } /* Defines an animation sequence used by this page. */
+/* ----- Badges and status ----- */
+.pw-add-toast { /* Starts styles for the .pw-add-toast selector. */
+    position: fixed; bottom: 28px; left: 50%; /* Controls how the element is positioned on the page. */
+    /* ----- Forms ----- */
+    transform: translateX(-50%) translateY(14px); /* Moves, scales, or rotates the element. */
+    /* ----- Theme variables ----- */
+    background: var(--text); color: var(--cream); /* Sets the element background treatment. */
+    padding: 10px 22px; border-radius: var(--r-full); /* Sets spacing inside the element. */
+    font-size: 14px; font-weight: 600; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+    /* ----- Animation ----- */
+    z-index: 9998; opacity: 0; /* Controls stacking order. */
+    /* ----- Forms ----- */
+    transition: opacity .22s, transform .22s; /* Animates property changes smoothly. */
+    /* ----- Theme variables ----- */
+    white-space: nowrap; box-shadow: var(--shadow-lg); pointer-events: none; /* Sets the white-space style for this rule. */
+}
+/* ----- Forms ----- */
+.pw-add-toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); } /* Styles part of the ProductDetails page or component. */
+
+/* ----- Theme variables ----- */
+.pw-card--out { opacity: .72; } /* Styles part of the ProductDetails page or component. */
+.pw-card--out .pw-card__photo { filter: grayscale(35%); } /* Styles part of the ProductDetails page or component. */
+/* ----- Card layout ----- */
+.pw-card__stock { position: absolute; top: 12px; left: 12px; z-index: 1; } /* Styles part of the ProductDetails page or component. */
+.pw-card__img-placeholder { /* Starts styles for the .pw-card__img-placeholder selector. */
+    /* ----- Grid layout ----- */
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-100) 0%, var(--cream-2) 100%); /* Sets the element background treatment. */
+}
+/* ----- Card layout ----- */
+.pw-card__cat { /* Starts styles for the .pw-card__cat selector. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 3px; /* Controls how the element participates in layout. */
+    font-size: 10px; font-weight: 700; padding: 3px 9px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); letter-spacing: .04em; text-transform: uppercase; /* Rounds the element corners. */
+    background: var(--green-100); color: var(--green-800); margin-bottom: 8px; /* Sets the element background treatment. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 900px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Grid layout ----- */
+    .pw-detail-grid { grid-template-columns: 1fr; gap: 40px; } /* Styles part of the ProductDetails page or component. */
+    /* ----- Card layout ----- */
+    .pw-detail__img-col { position: static; } /* Styles part of the ProductDetails page or component. */
+}
+/* ----- Tables ----- */
+@media (max-width: 640px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Navigation ----- */
+    .pw-detail-header { padding: 88px 0 28px; } /* Styles part of the ProductDetails page or component. */
+    /* ----- Base layout ----- */
+    .pw-detail-section { padding: 36px 0 60px; } /* Styles part of the ProductDetails page or component. */
+    /* ----- Product styling ----- */
+    .pw-detail__price { font-size: 36px; } /* Styles part of the ProductDetails page or component. */
+    .pw-detail__name  { font-size: 28px; } /* Styles part of the ProductDetails page or component. */
+}

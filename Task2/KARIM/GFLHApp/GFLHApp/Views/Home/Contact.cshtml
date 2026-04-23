@@ -1,0 +1,242 @@
+@model GFLHApp.Models.ContactPageViewModel
+@using System.Linq
+
+@{
+    ViewData["Title"] = "Contact Us";
+    ViewData["FullWidth"] = true;
+}
+
+<div class="cu-page">
+    <section class="cu-hero" aria-labelledby="contact-hero-title">
+        <div class="cu-hero__glow cu-hero__glow--one" aria-hidden="true"></div>
+        <div class="cu-hero__glow cu-hero__glow--two" aria-hidden="true"></div>
+
+        <div class="pw-container cu-hero__inner">
+            <div class="cu-hero__content">
+                <span class="pw-badge pw-badge--green cu-hero__badge reveal">
+                    <i data-lucide="mail" class="pw-icon-sm" aria-hidden="true"></i>
+                    Contact Greenfield
+                </span>
+
+                <h1 class="cu-hero__title reveal reveal--blur" id="contact-hero-title">
+                    Need help, have feedback,
+                    <em>or want to say hello?</em>
+                </h1>
+
+                <p class="cu-hero__sub reveal" data-delay="100">
+                    Send us a message and the Greenfield team will pick it up from the admin dashboard.
+                    Whether it is a product question, a delivery issue, or a partnership idea, we will make sure it reaches a real person.
+                </p>
+
+                <div class="cu-hero__points reveal" data-delay="160" aria-label="Contact page highlights">
+                    <span><i data-lucide="clock-3" aria-hidden="true"></i> Reviewed by admins inside the dashboard</span>
+                    <span><i data-lucide="shield-check" aria-hidden="true"></i> Simple form with clear validation</span>
+                    <span><i data-lucide="sprout" aria-hidden="true"></i> Built to match the rest of Greenfield</span>
+                </div>
+            </div>
+
+            <div class="cu-hero__panel reveal reveal--right" data-delay="120">
+                <div class="cu-card">
+                    <span class="cu-card__eyebrow">Best for</span>
+                    <ul class="cu-card__list" role="list">
+                        <li><i data-lucide="check" aria-hidden="true"></i><span>Order support and delivery questions</span></li>
+                        <li><i data-lucide="check" aria-hidden="true"></i><span>General feedback about the website</span></li>
+                        <li><i data-lucide="check" aria-hidden="true"></i><span>Grower and partnership enquiries</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cu-hero__wave" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 88" preserveAspectRatio="none">
+                <path d="M0,48 C180,92 420,0 720,42 C990,80 1200,18 1440,56 L1440,88 L0,88 Z" fill="#FFFBEB" />
+            </svg>
+        </div>
+    </section>
+
+    <section class="pw-section pw-section--cream" aria-labelledby="contact-form-title">
+        <div class="pw-container">
+            <div class="cu-grid">
+                <div class="cu-form-wrap reveal reveal--left">
+                    <div class="cu-form-card">
+                        <div class="cu-form-card__head">
+                            <span class="pw-section__eyebrow">
+                                <i data-lucide="message-square" class="pw-icon-sm" aria-hidden="true"></i>
+                                Send us a message
+                            </span>
+                            <h2 class="pw-section__title" id="contact-form-title">Tell us what you need</h2>
+                            <p class="cu-form-card__sub">
+                                Fill out the form below and your message will appear in the admin dashboard inquiries area.
+                            </p>
+                        </div>
+
+                        @if (TempData["ContactSuccess"] is string successMessage)
+                        {
+                            <div class="cu-alert cu-alert--success" role="status">
+                                <i data-lucide="check-circle" aria-hidden="true"></i>
+                                <span>@successMessage</span>
+                            </div>
+                        }
+
+                        <div class="cu-alert cu-alert--error cu-alert--hidden" id="contactFormSummary" role="alert">
+                            <i data-lucide="alert-circle" aria-hidden="true"></i>
+                            <span id="contactFormSummaryText">Please fix the highlighted fields and try again.</span>
+                        </div>
+
+                        <form asp-action="Contact" method="post" class="cu-form" id="contactForm" novalidate>
+                            @Html.AntiForgeryToken()
+
+                            <div class="cu-form__grid">
+                                <div class="cu-field">
+                                    <label for="FullName" class="cu-field__label">Full name</label>
+                                    <input asp-for="FullName" class="cu-field__input" id="FullName" placeholder="Your name" maxlength="120" />
+                                    <span class="cu-field__error" data-valmsg-for="FullName"></span>
+                                </div>
+
+                                <div class="cu-field">
+                                    <label for="EmailAddress" class="cu-field__label">Email address</label>
+                                    @if (Model.IsSignedIn)
+                                    {
+                                        <input asp-for="EmailAddress" class="cu-field__input" id="EmailAddress" placeholder="you@example.com" maxlength="160" readonly />
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="EmailAddress" class="cu-field__input" id="EmailAddress" placeholder="you@example.com" maxlength="160" />
+                                    }
+                                    <span class="cu-field__error" data-valmsg-for="EmailAddress"></span>
+                                    @if (Model.IsSignedIn)
+                                    {
+                                        <span class="cu-field__help">Using your signed-in account email so replies stay linked to your profile.</span>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="cu-field">
+                                <label for="Subject" class="cu-field__label">Subject</label>
+                                <input asp-for="Subject" class="cu-field__input" id="Subject" placeholder="How can we help?" maxlength="160" />
+                                <span class="cu-field__error" data-valmsg-for="Subject"></span>
+                            </div>
+
+                            <div class="cu-field">
+                                <div class="cu-field__row">
+                                    <label for="Message" class="cu-field__label">Message</label>
+                                    <span class="cu-field__hint" id="messageCounter">0 / 3000</span>
+                                </div>
+                                <textarea asp-for="Message" class="cu-field__input cu-field__input--textarea" id="Message" rows="8" placeholder="Write your message here..." maxlength="3000"></textarea>
+                                <span class="cu-field__error" data-valmsg-for="Message"></span>
+                            </div>
+
+                            <div class="cu-form__actions">
+                                <button type="submit" class="pw-btn pw-btn--primary pw-btn--lg">
+                                    <i data-lucide="send" aria-hidden="true"></i>
+                                    Send message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <aside class="cu-side reveal reveal--right" data-delay="120" aria-label="Contact information">
+                    <div class="cu-side__card">
+                        <h3>What happens next?</h3>
+                        <ol class="cu-side__steps">
+                            <li>Your message is saved as an inquiry in the database.</li>
+                            <li>Admins can review it from the dashboard.</li>
+                            <li>They can reply, and signed-in users can read that reply here.</li>
+                        </ol>
+                    </div>
+
+                    <div class="cu-side__card">
+                        <h3>Helpful topics</h3>
+                        <div class="cu-side__chips">
+                            <span class="cu-chip">Delivery</span>
+                            <span class="cu-chip">Orders</span>
+                            <span class="cu-chip">Growers</span>
+                            <span class="cu-chip">Partnerships</span>
+                            <span class="cu-chip">Feedback</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    @if (Model.IsSignedIn)
+    {
+        <section class="pw-section" aria-labelledby="contact-history-title">
+            <div class="pw-container">
+                <div class="cu-history-head reveal">
+                    <span class="pw-section__eyebrow">
+                        <i data-lucide="messages-square" class="pw-icon-sm" aria-hidden="true"></i>
+                        Your conversations
+                    </span>
+                    <h2 class="pw-section__title" id="contact-history-title">Replies linked to @Model.CurrentUserEmail</h2>
+                    <p class="cu-history-head__sub">
+                        This section shows the inquiries sent from your account email and any replies written by admins.
+                    </p>
+                </div>
+
+                @if (Model.MyInquiries.Any())
+                {
+                    <div class="cu-history-list">
+                        @foreach (var inquiry in Model.MyInquiries)
+                        {
+                            var hasReply = !string.IsNullOrWhiteSpace(inquiry.AdminReply);
+
+                            <article class="cu-history-card reveal">
+                                <div class="cu-history-card__head">
+                                    <div>
+                                        <p class="cu-history-card__eyebrow">Inquiry</p>
+                                        <h3>@inquiry.Subject</h3>
+                                    </div>
+                                    <div class="cu-history-card__meta">
+                                        <span>@inquiry.SubmittedAtUtc.ToLocalTime().ToString("d MMM yyyy HH:mm")</span>
+                                        <span class="cu-history-badge @(hasReply ? "cu-history-badge--replied" : "cu-history-badge--waiting")">
+                                            @(hasReply ? "Replied" : "Awaiting reply")
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="cu-thread">
+                                    <div class="cu-thread__item">
+                                        <span class="cu-thread__author">You</span>
+                                        <p>@inquiry.Message</p>
+                                    </div>
+
+                                    @if (hasReply)
+                                    {
+                                        <div class="cu-thread__item cu-thread__item--reply">
+                                            <span class="cu-thread__author">Admin reply</span>
+                                            <p>@inquiry.AdminReply</p>
+                                            @if (inquiry.RepliedAtUtc.HasValue)
+                                            {
+                                                <span class="cu-thread__stamp">
+                                                    Replied @inquiry.RepliedAtUtc.Value.ToLocalTime().ToString("d MMM yyyy HH:mm")
+                                                </span>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </article>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="cu-history-empty reveal">
+                        <i data-lucide="inbox" aria-hidden="true"></i>
+                        <p>You have not sent any inquiries from this account yet.</p>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/pages/home/HomeContact.js" asp-append-version="true"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/pages/home/HomeContact.css" asp-append-version="true" />
+}

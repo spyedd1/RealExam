@@ -1,0 +1,30 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error"; // Sets the browser and page title for this view.
+}
+
+ @* ----- Page Header ----- *@
+<h1 class="text-danger">Error.</h1> @* Renders a heading for this page section. *@
+<h2 class="text-danger">An error occurred while processing your request.</h2> @* Renders a heading for this page section. *@
+
+ @* ----- Loop Rendering ----- *@
+@if (Model.ShowRequestId) @* Conditionally renders this block when the check passes. *@
+{
+    <p> @* Renders paragraph text for the user. *@
+        <strong>Request ID:</strong> <code>@Model.RequestId</code> @* Displays or uses data from the shared layout model. *@
+    </p> @* Closes the matching HTML element. *@
+}
+
+ @* ----- Page Header ----- *@
+<h3>Development Mode</h3> @* Renders a heading for this page section. *@
+<p> @* Renders paragraph text for the user. *@
+    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred. @* Renders part of the shared layout page markup. *@
+</p> @* Closes the matching HTML element. *@
+<p> @* Renders paragraph text for the user. *@
+    <strong>The Development environment shouldn't be enabled for deployed applications.</strong> @* Renders part of the shared layout page markup. *@
+    It can result in displaying sensitive information from exceptions to end users. @* Renders part of the shared layout page markup. *@
+    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong> @* Renders part of the shared layout page markup. *@
+    and restarting the app. @* Renders part of the shared layout page markup. *@
+</p> @* Closes the matching HTML element. *@

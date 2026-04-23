@@ -1,0 +1,53 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile"; // Sets the browser and page title for this view.
+    ViewData["ActivePage"] = ManageNavPages.Index; // Reads view data supplied by the controller.
+}
+
+ @* ----- Status Messages ----- *@
+<partial name="_StatusMessage" for="StatusMessage" /> @* Renders a shared partial view here. *@
+
+ @* ----- Card Layout ----- *@
+<span class="pw-manage-content__eyebrow">Account</span> @* Renders inline text or badge content. *@
+ @* ----- Page Header ----- *@
+<h2 class="pw-manage-content__title">Your Profile</h2> @* Renders a heading for this page section. *@
+ @* ----- Form Actions ----- *@
+<p class="pw-manage-content__sub">Update your display name and contact details.</p> @* Renders paragraph text for the user. *@
+
+ @* ----- Form Setup ----- *@
+<form id="profile-form" method="post" class="pw-manage-form" style="max-width:480px;"> @* Starts the form that submits this page's user input. *@
+ @* ----- Status Messages ----- *@
+    <div asp-validation-summary="ModelOnly" class="pw-manage-alert pw-manage-alert--danger" role="alert"></div> @* Shows page-level validation messages. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="form-floating mb-3"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+        <input asp-for="Username" class="form-control" placeholder="Username" disabled /> @* Binds this input to the matching model property. *@
+        <label asp-for="Username">Username</label> @* Renders a label tied to the model field. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="form-floating mb-4"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+        <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Phone number" /> @* Binds this input to the matching model property. *@
+        <label asp-for="Input.PhoneNumber">Phone number</label> @* Renders a label tied to the model field. *@
+ @* ----- Status Messages ----- *@
+        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> @* Shows validation feedback for this model field. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Form Actions ----- *@
+    <button id="update-profile-button" type="submit" class="pw-btn pw-btn--primary pw-btn--md" style="width:100%;"> @* Renders a button for the user action. *@
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> @* Renders part of the identity page markup. *@
+        Save changes @* Renders part of the identity page markup. *@
+    </button> @* Closes the matching HTML element. *@
+</form> @* Closes the form after its fields and actions. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+    <partial name="_ValidationScriptsPartial" /> @* Renders a shared partial view here. *@
+}

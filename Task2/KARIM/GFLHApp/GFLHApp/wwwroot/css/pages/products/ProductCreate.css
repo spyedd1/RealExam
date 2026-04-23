@@ -1,0 +1,663 @@
+/* ----- Admin dashboard styling ----- */
+.pw-admin-page { /* Starts styles for the .pw-admin-page selector. */
+    min-height: 100vh; /* Sets the minimum element height. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-header { /* Starts styles for the .pw-admin-header selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(160deg, var(--cream) 0%, #f0ebe0 100%); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    padding: 80px 0 28px; /* Sets spacing inside the element. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-header__inner { /* Starts styles for the .pw-admin-header__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 0 24px; /* Sets spacing inside the element. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb { /* Starts styles for the .pw-admin-breadcrumb selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+    list-style: none; /* Sets the list-style style for this rule. */
+    margin: 0 0 16px; /* Sets spacing outside the element. */
+    padding: 0; /* Sets spacing inside the element. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 500; /* Sets the text weight. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb li { /* Starts styles for the .pw-admin-breadcrumb li selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 6px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb li + li::before { /* Starts styles for the .pw-admin-breadcrumb li + li::before selector. */
+    content: '/'; /* Sets the content style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Animation ----- */
+    opacity: .5; /* Controls element transparency. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb a { /* Starts styles for the .pw-admin-breadcrumb a selector. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    transition: color .15s; /* Animates property changes smoothly. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb a:hover { /* Starts styles for the .pw-admin-breadcrumb a:hover selector. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb [aria-current] { /* Starts styles for the .pw-admin-breadcrumb [aria-current] selector. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    font-weight: 600; /* Sets the text weight. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-header__title { /* Starts styles for the .pw-admin-header__title selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 14px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-header__icon { /* Starts styles for the .pw-admin-header__icon selector. */
+    /* ----- Tables ----- */
+    width: 44px; /* Sets the element width. */
+    height: 44px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    /* ----- Theme variables ----- */
+    color: var(--green); /* Sets the text color. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-header__title h1 { /* Starts styles for the .pw-admin-header__title h1 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 24px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    margin: 0; /* Sets spacing outside the element. */
+    line-height: 1.2; /* Sets vertical text rhythm. */
+}
+
+/* ----- Navigation ----- */
+.pw-admin-header__title p { /* Starts styles for the .pw-admin-header__title p selector. */
+    font-size: 13px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin: 2px 0 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Base layout ----- */
+.pw-admin-body { /* Starts styles for the .pw-admin-body selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; /* Limits the element width on larger screens. */
+    margin: 0 auto; /* Sets spacing outside the element. */
+    padding: 40px 24px 80px; /* Sets spacing inside the element. */
+    /* ----- Grid layout ----- */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 320px 1fr; /* Defines the grid column layout. */
+    gap: 36px; /* Sets spacing between flex or grid children. */
+    align-items: start; /* Aligns child items on the cross axis. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 860px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Base layout ----- */
+    .pw-admin-body { grid-template-columns: 1fr; } /* Styles part of the ProductCreate page or component. */
+    /* ----- Grid layout ----- */
+    .pw-admin-img-col { display: none; } /* Styles part of the ProductCreate page or component. */
+}
+
+.pw-admin-img-col { /* Starts styles for the .pw-admin-img-col selector. */
+    position: sticky; /* Controls how the element is positioned on the page. */
+    top: 96px; /* Sets the top style for this rule. */
+}
+
+/* ----- Card layout ----- */
+.pw-admin-img-card { /* Starts styles for the .pw-admin-img-card selector. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border: 1px solid var(--border); /* Sets the border around the element. */
+    box-shadow: var(--shadow-md); /* Adds depth with a shadow. */
+}
+
+/* ----- Card layout ----- */
+.pw-admin-img-card img { /* Starts styles for the .pw-admin-img-card img selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    aspect-ratio: 1 / 1; /* Sets the aspect-ratio style for this rule. */
+    object-fit: cover; /* Sets the object-fit style for this rule. */
+    display: block; /* Controls how the element participates in layout. */
+}
+
+/* ----- Admin dashboard styling ----- */
+.pw-admin-img-placeholder { /* Starts styles for the .pw-admin-img-placeholder selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    aspect-ratio: 1 / 1; /* Sets the aspect-ratio style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(135deg, var(--green-100) 0%, var(--cream-2) 100%); /* Sets the element background treatment. */
+    color: var(--green); /* Sets the text color. */
+}
+
+/* ----- Admin dashboard styling ----- */
+.pw-admin-img-meta { /* Starts styles for the .pw-admin-img-meta selector. */
+    padding: 14px 16px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+
+/* ----- Admin dashboard styling ----- */
+.pw-admin-img-meta__name { /* Starts styles for the .pw-admin-img-meta__name selector. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    margin: 0 0 2px; /* Sets spacing outside the element. */
+}
+
+/* ----- Tables ----- */
+.pw-admin-img-meta__path { /* Starts styles for the .pw-admin-img-meta__path selector. */
+    font-size: 11px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-light); /* Sets the text color. */
+    font-family: monospace; /* Sets the font family. */
+    word-break: break-all; /* Sets the word-break style for this rule. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Card layout ----- */
+.pw-form-card { /* Starts styles for the .pw-form-card selector. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+    border-radius: var(--r-lg); /* Rounds the element corners. */
+    border: 1px solid var(--border); /* Sets the border around the element. */
+    box-shadow: var(--shadow-sm); /* Adds depth with a shadow. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+}
+
+/* ----- Base layout ----- */
+.pw-form-section { /* Starts styles for the .pw-form-section selector. */
+    padding: 24px 28px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--cream); /* Sets the element background treatment. */
+}
+
+/* ----- Base layout ----- */
+.pw-form-section + .pw-form-section { /* Starts styles for the .pw-form-section + .pw-form-section selector. */
+    /* ----- Theme variables ----- */
+    border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+}
+
+/* ----- Base layout ----- */
+.pw-form-section__label { /* Starts styles for the .pw-form-section__label selector. */
+    font-size: 10px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    letter-spacing: .1em; /* Sets the letter-spacing style for this rule. */
+    /* ----- Forms ----- */
+    text-transform: uppercase; /* Sets the text-transform style for this rule. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    margin: 0 0 18px; /* Sets spacing outside the element. */
+}
+
+/* ----- Grid layout ----- */
+.pw-form-row { /* Starts styles for the .pw-form-row selector. */
+    display: grid; /* Controls how the element participates in layout. */
+    grid-template-columns: 1fr 1fr; /* Defines the grid column layout. */
+    gap: 16px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Tables ----- */
+@media (max-width: 520px) { /* Starts responsive rules for this viewport range. */
+    /* ----- Grid layout ----- */
+    .pw-form-row { grid-template-columns: 1fr; } /* Styles part of the ProductCreate page or component. */
+    /* ----- Base layout ----- */
+    .pw-form-section { padding: 18px 16px; } /* Styles part of the ProductCreate page or component. */
+}
+
+/* ----- Forms ----- */
+.pw-field { /* Starts styles for the .pw-field selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-direction: column; /* Sets the flex-direction style for this rule. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Forms ----- */
+.pw-field label { /* Starts styles for the .pw-field label selector. */
+    font-size: 13px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+}
+
+/* ----- Forms ----- */
+.pw-field__req { /* Starts styles for the .pw-field__req selector. */
+    /* ----- Theme variables ----- */
+    color: var(--orange); /* Sets the text color. */
+    margin-left: 2px; /* Sets the margin-left style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-field__hint { /* Starts styles for the .pw-field__hint selector. */
+    font-size: 12px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    line-height: 1.5; /* Sets vertical text rhythm. */
+    margin-top: 3px; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-field__error { /* Starts styles for the .pw-field__error selector. */
+    font-size: 12px; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    color: #DC2626; /* Sets the text color. */
+    margin-top: 2px; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-input, /* Continues a selector or value list on the next line. */
+.pw-select, /* Continues a selector or value list on the next line. */
+.pw-textarea, /* Continues a selector or value list on the next line. */
+.pw-file { /* Starts styles for the .pw-file selector. */
+    /* ----- Tables ----- */
+    width: 100%; /* Sets the element width. */
+    min-height: 42px; /* Sets the minimum element height. */
+    padding: 0 13px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 500; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    background: #fff; /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s; /* Animates property changes smoothly. */
+    outline: none; /* Sets the outline style for this rule. */
+    appearance: none; /* Sets the appearance style for this rule. */
+    -webkit-appearance: none; /* Sets the -webkit-appearance style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-input:hover, /* Continues a selector or value list on the next line. */
+.pw-select:hover, /* Continues a selector or value list on the next line. */
+.pw-textarea:hover, /* Continues a selector or value list on the next line. */
+.pw-file:hover { /* Starts styles for the .pw-file:hover selector. */
+    /* ----- Grid layout ----- */
+    border-color: #c4c0bb; /* Sets the border-color style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-input:focus, /* Continues a selector or value list on the next line. */
+.pw-select:focus, /* Continues a selector or value list on the next line. */
+.pw-textarea:focus, /* Continues a selector or value list on the next line. */
+/* ----- Accessibility ----- */
+.pw-file:focus { /* Starts styles for the .pw-file:focus selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px var(--green-100); /* Adds depth with a shadow. */
+}
+
+/* ----- Forms ----- */
+.pw-input.input-validation-error, /* Continues a selector or value list on the next line. */
+.pw-select.input-validation-error, /* Continues a selector or value list on the next line. */
+.pw-textarea.input-validation-error, /* Continues a selector or value list on the next line. */
+.pw-file.input-validation-error { /* Starts styles for the .pw-file.input-validation-error selector. */
+    /* ----- Grid layout ----- */
+    border-color: #DC2626; /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px #fee2e2; /* Adds depth with a shadow. */
+}
+
+.pw-file { /* Starts styles for the .pw-file selector. */
+    padding: 10px 13px; /* Sets spacing inside the element. */
+}
+
+/* ----- Forms ----- */
+.pw-select { /* Starts styles for the .pw-select selector. */
+    /* ----- Tables ----- */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); /* Sets the background-image style for this rule. */
+    background-repeat: no-repeat; /* Sets the background-repeat style for this rule. */
+    background-position: right 12px center; /* Sets the background-position style for this rule. */
+    /* ----- Grid layout ----- */
+    background-color: #fff; /* Sets the element background color. */
+    padding-right: 36px; /* Sets the padding-right style for this rule. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-textarea { /* Starts styles for the .pw-textarea selector. */
+    height: auto; /* Sets the element height. */
+    min-height: 96px; /* Sets the minimum element height. */
+    padding: 11px 13px; /* Sets spacing inside the element. */
+    resize: vertical; /* Sets the resize style for this rule. */
+    line-height: 1.6; /* Sets vertical text rhythm. */
+}
+
+.pw-stepper { /* Starts styles for the .pw-stepper selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    height: 42px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; /* Sets the overflow style for this rule. */
+    background: #fff; /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    transition: border-color .15s, box-shadow .15s; /* Animates property changes smoothly. */
+}
+
+/* ----- Tables ----- */
+.pw-stepper:focus-within { /* Starts styles for the .pw-stepper:focus-within selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--green); /* Sets the border-color style for this rule. */
+    box-shadow: 0 0 0 3px var(--green-100); /* Adds depth with a shadow. */
+}
+
+/* ----- Buttons ----- */
+.pw-stepper__btn { /* Starts styles for the .pw-stepper__btn selector. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+    /* ----- Tables ----- */
+    width: 38px; /* Sets the element width. */
+    height: 100%; /* Sets the element height. */
+    border: none; /* Sets the border around the element. */
+    /* ----- Tables ----- */
+    background: transparent; /* Sets the element background treatment. */
+    font-size: 18px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: center; /* Aligns child items on the main axis. */
+}
+
+/* ----- Buttons ----- */
+.pw-stepper__btn:hover { /* Starts styles for the .pw-stepper__btn:hover selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); /* Sets the element background treatment. */
+    color: var(--green); /* Sets the text color. */
+}
+
+/* ----- Forms ----- */
+.pw-stepper__input { /* Starts styles for the .pw-stepper__input selector. */
+    /* ----- Grid layout ----- */
+    flex: 1; /* Sets the flex style for this rule. */
+    height: 100%; /* Sets the element height. */
+    border: none; /* Sets the border around the element. */
+    /* ----- Tables ----- */
+    background: transparent; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 15px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    color: var(--text); /* Sets the text color. */
+    text-align: center; /* Sets the text-align style for this rule. */
+    outline: none; /* Sets the outline style for this rule. */
+    /* ----- Tables ----- */
+    min-width: 0; /* Sets the min-width style for this rule. */
+    padding: 0 4px; /* Sets spacing inside the element. */
+    /* ----- Forms ----- */
+    -moz-appearance: textfield; /* Sets the -moz-appearance style for this rule. */
+}
+
+.pw-stepper__input::-webkit-outer-spin-button, /* Continues a selector or value list on the next line. */
+.pw-stepper__input::-webkit-inner-spin-button { /* Starts styles for the .pw-stepper__input::-webkit-inner-spin-button selector. */
+    -webkit-appearance: none; /* Sets the -webkit-appearance style for this rule. */
+    margin: 0; /* Sets spacing outside the element. */
+}
+
+/* ----- Grid layout ----- */
+.pw-toggle-row { /* Starts styles for the .pw-toggle-row selector. */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 14px; /* Sets spacing between flex or grid children. */
+    padding: 10px 0; /* Sets spacing inside the element. */
+}
+
+.pw-toggle-row__info { /* Starts styles for the .pw-toggle-row__info selector. */
+    flex: 1; /* Sets the flex style for this rule. */
+}
+
+.pw-toggle-row__info strong { /* Starts styles for the .pw-toggle-row__info strong selector. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    /* ----- Theme variables ----- */
+    color: var(--text); /* Sets the text color. */
+    display: block; /* Controls how the element participates in layout. */
+}
+
+/* ----- Grid layout ----- */
+.pw-toggle-row__info span { /* Starts styles for the .pw-toggle-row__info span selector. */
+    font-size: 12px; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+}
+
+.pw-toggle { /* Starts styles for the .pw-toggle selector. */
+    position: relative; /* Controls how the element is positioned on the page. */
+    display: inline-block; /* Controls how the element participates in layout. */
+    /* ----- Tables ----- */
+    width: 46px; /* Sets the element width. */
+    height: 25px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Forms ----- */
+.pw-toggle input { /* Starts styles for the .pw-toggle input selector. */
+    /* ----- Animation ----- */
+    opacity: 0; /* Controls element transparency. */
+    /* ----- Tables ----- */
+    width: 0; /* Sets the element width. */
+    height: 0; /* Sets the element height. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+}
+
+.pw-toggle__track { /* Starts styles for the .pw-toggle__track selector. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    inset: 0; /* Sets the inset style for this rule. */
+    /* ----- Theme variables ----- */
+    background: var(--border); /* Sets the element background treatment. */
+    border-radius: 999px; /* Rounds the element corners. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Tables ----- */
+    transition: background .2s; /* Animates property changes smoothly. */
+}
+
+.pw-toggle__track::after { /* Starts styles for the .pw-toggle__track::after selector. */
+    content: ''; /* Sets the content style for this rule. */
+    position: absolute; /* Controls how the element is positioned on the page. */
+    left: 3px; /* Sets the left style for this rule. */
+    top: 3px; /* Sets the top style for this rule. */
+    width: 19px; /* Sets the element width. */
+    height: 19px; /* Sets the element height. */
+    border-radius: 50%; /* Rounds the element corners. */
+    background: #fff; /* Sets the element background treatment. */
+    box-shadow: 0 1px 4px rgba(0,0,0,.15); /* Adds depth with a shadow. */
+    /* ----- Forms ----- */
+    transition: transform .2s cubic-bezier(.34,1.56,.64,1); /* Animates property changes smoothly. */
+}
+
+.pw-toggle input:checked + .pw-toggle__track { /* Starts styles for the .pw-toggle input:checked + .pw-toggle__track selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green); /* Sets the element background treatment. */
+}
+
+/* ----- Forms ----- */
+.pw-toggle input:checked + .pw-toggle__track::after { /* Starts styles for the .pw-toggle input:checked + .pw-toggle__track::after selector. */
+    transform: translateX(21px); /* Moves, scales, or rotates the element. */
+}
+
+/* ----- Product styling ----- */
+.pw-allergen-chips { /* Starts styles for the .pw-allergen-chips selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+    gap: 5px; /* Sets spacing between flex or grid children. */
+    margin-top: 10px; /* Sets the margin-top style for this rule. */
+}
+
+/* ----- Product styling ----- */
+.pw-allergen-chip { /* Starts styles for the .pw-allergen-chip selector. */
+    padding: 4px 10px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    font-size: 12px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    color: var(--text-muted); /* Sets the text color. */
+    background: var(--cream); /* Sets the element background treatment. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+}
+
+/* ----- Product styling ----- */
+.pw-allergen-chip:hover { /* Starts styles for the .pw-allergen-chip:hover selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--orange); /* Sets the border-color style for this rule. */
+    color: var(--orange); /* Sets the text color. */
+}
+
+/* ----- Product styling ----- */
+.pw-allergen-chip.is-active { /* Starts styles for the .pw-allergen-chip.is-active selector. */
+    /* ----- Theme variables ----- */
+    background: var(--orange-100); /* Sets the element background treatment. */
+    border-color: var(--orange); /* Sets the border-color style for this rule. */
+    color: var(--orange); /* Sets the text color. */
+}
+
+/* ----- Forms ----- */
+.pw-form-actions { /* Starts styles for the .pw-form-actions selector. */
+    /* ----- Grid layout ----- */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    justify-content: space-between; /* Aligns child items on the main axis. */
+    padding: 18px 28px; /* Sets spacing inside the element. */
+    background: #f0ebe0; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+    gap: 12px; /* Sets spacing between flex or grid children. */
+}
+
+/* ----- Buttons ----- */
+.pw-btn-save { /* Starts styles for the .pw-btn-save selector. */
+    height: 42px; /* Sets the element height. */
+    padding: 0 24px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    background: var(--green); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    color: #fff; /* Sets the text color. */
+    border: none; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 700; /* Sets the text weight. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 7px; /* Sets spacing between flex or grid children. */
+    box-shadow: 0 2px 8px rgba(22,163,74,.22); /* Adds depth with a shadow. */
+}
+
+/* ----- Buttons ----- */
+.pw-btn-save:hover { /* Starts styles for the .pw-btn-save:hover selector. */
+    /* ----- Theme variables ----- */
+    background: var(--green-700); /* Sets the element background treatment. */
+}
+
+/* ----- Buttons ----- */
+.pw-btn-back { /* Starts styles for the .pw-btn-back selector. */
+    height: 42px; /* Sets the element height. */
+    padding: 0 16px; /* Sets spacing inside the element. */
+    /* ----- Tables ----- */
+    background: transparent; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    color: var(--text-muted); /* Sets the text color. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    font-family: var(--font-body); /* Sets the font family. */
+    font-size: 14px; /* Sets the text size. */
+    font-weight: 600; /* Sets the text weight. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
+    gap: 7px; /* Sets spacing between flex or grid children. */
+    text-decoration: none; /* Sets the text-decoration style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.pw-btn-back:hover { /* Starts styles for the .pw-btn-back:hover selector. */
+    /* ----- Theme variables ----- */
+    border-color: var(--text-muted); /* Sets the border-color style for this rule. */
+    color: var(--text); /* Sets the text color. */
+}
+
+/* ----- Forms ----- */
+.pw-form-errors { /* Starts styles for the .pw-form-errors selector. */
+    margin: 20px 28px 0; /* Sets spacing outside the element. */
+    padding: 12px 16px; /* Sets spacing inside the element. */
+    background: #fef2f2; /* Sets the element background treatment. */
+    border: 1.5px solid #fecaca; /* Sets the border around the element. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-sm); /* Rounds the element corners. */
+    font-size: 13px; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    color: #DC2626; /* Sets the text color. */
+}
+
+/* ----- Forms ----- */
+.pw-form-errors ul { /* Starts styles for the .pw-form-errors ul selector. */
+    margin: 5px 0 0 16px; /* Sets spacing outside the element. */
+    padding: 0; /* Sets spacing inside the element. */
+}

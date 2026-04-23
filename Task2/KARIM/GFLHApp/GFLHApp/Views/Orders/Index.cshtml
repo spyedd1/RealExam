@@ -1,0 +1,623 @@
+ @* ----- Page Model Setup ----- *@
+ @* Sets the model type used by this view. *@
+@model IEnumerable<GFLHApp.Models.Orders>
+
+@{
+    ViewData["Title"] = "Your Orders"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+ // ----- Authorization Display -----
+    var isAdmin    = User.IsInRole("Admin"); // Renders part of the orders page markup.
+    var isProducer = User.IsInRole("Producer"); // Renders part of the orders page markup.
+ // ----- Loop Rendering -----
+    var ordersList = Model.ToList(); // Displays or uses data from the orders model.
+ // ----- Conditional Rendering -----
+    var totalOrders  = ordersList.Count; // Renders part of the orders page markup.
+ // ----- Search and Filters -----
+    var activeOrders = ordersList.Count(o => o.TrackingStatus != "Delivered"); // Renders part of the orders page markup.
+ // ----- Basket Display -----
+    var totalSpend   = ordersList.Sum(o => o.OrdersTotal); // Renders part of the orders page markup.
+ // ----- Conditional Rendering -----
+    // Controller grants free delivery when orderCount % 3 == 2.
+ // ----- Order Display -----
+    // So: 0 orders → 2 away, 1 order → 1 away, 2 orders → free now.
+ // ----- Basket Display -----
+    var remainder = totalOrders % 3; // Renders part of the orders page markup.
+ // ----- Conditional Rendering -----
+    var nextFreeDeliveryIn = (remainder == 2) ? 0 : (2 - remainder); // Renders part of the orders page markup.
+}
+
+
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     SCROLL PROGRESS @* Renders part of the orders page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+<div id="scrollProgress" class="pw-scroll-progress" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     PAGE HERO @* Renders part of the orders page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+<section class="pw-orders-hero" aria-label="Orders header"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+    <span class="pw-hero__float pw-hero__float--1" aria-hidden="true"><i data-lucide="package" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--2" aria-hidden="true"><i data-lucide="truck" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--4" aria-hidden="true"><i data-lucide="leaf" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+    <span class="pw-hero__float pw-hero__float--6" aria-hidden="true"><i data-lucide="check-circle" class="pw-icon-float"></i></span> @* Renders inline text or badge content. *@
+
+ @* ----- Order Display ----- *@
+    <div class="pw-container pw-orders-hero__inner"> @* Starts a layout container for this section. *@
+        <div class="pw-orders-hero__badge"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+            <span class="pw-badge pw-badge--pop"> @* Renders inline text or badge content. *@
+                <i data-lucide="receipt-text" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                @(isAdmin ? "Admin — All Orders" : isProducer ? "Producer Dashboard" : "Order History") @* Outputs Razor data or executes Razor logic. *@
+            </span> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+        <h1 class="pw-orders-hero__title"> @* Renders a heading for this page section. *@
+ @* ----- Conditional Rendering ----- *@
+            <span>@(isAdmin ? "Order" : isProducer ? "Your" : "Your")</span> @* Renders inline text or badge content. *@
+ @* ----- Card Layout ----- *@
+            <span class="pw-text--green">@(isAdmin ? "Dashboard" : isProducer ? "Orders" : "Orders")</span> @* Renders inline text or badge content. *@
+        </h1> @* Closes the matching HTML element. *@
+ @* ----- Order Display ----- *@
+        <p class="pw-orders-hero__sub"> @* Renders paragraph text for the user. *@
+ @* ----- Conditional Rendering ----- *@
+            @if (isAdmin) @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Order Display ----- *@
+                <text>Every order across every customer — all in one place.</text> @* Renders part of the orders page markup. *@
+            }
+ @* ----- Conditional Rendering ----- *@
+            else if (isProducer) @* Renders the fallback branch for the previous condition. *@
+            {
+ @* ----- Order Display ----- *@
+                <text>Orders containing your produce, tracked and managed.</text> @* Renders part of the orders page markup. *@
+            }
+ @* ----- Conditional Rendering ----- *@
+            else @* Renders the fallback branch for the previous condition. *@
+            {
+                <text>Track deliveries, confirm arrivals, and relive the freshness.</text> @* Renders part of the orders page markup. *@
+            }
+        </p> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+
+ @* ----- Styling Section ----- *@
+    <div class="pw-hero__wave" aria-hidden="true"> @* Starts a layout container for this section. *@
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none"> @* Renders part of the orders page markup. *@
+            <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF" /> @* Renders paragraph text for the user. *@
+        </svg> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+     STATS BAR @* Renders part of the orders page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+<div class="pw-orders-stats reveal" role="region" aria-label="Order summary statistics"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+        <div class="pw-orders-stats__inner"> @* Starts a layout container for this section. *@
+
+            <div class="pw-orders-stat"> @* Starts a layout container for this section. *@
+                <div class="pw-orders-stat__icon pw-orders-stat__icon--cream"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="layers" class="pw-icon-sm pw-icon-muted"></i> @* Renders part of the orders page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                    <span class="pw-orders-stat__value">@totalOrders</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                    <span class="pw-orders-stat__label">Total Orders</span> @* Renders inline text or badge content. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <div class="pw-orders-stat__divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+            <div class="pw-orders-stat"> @* Starts a layout container for this section. *@
+                <div class="pw-orders-stat__icon pw-orders-stat__icon--orange"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="clock" class="pw-icon-sm pw-icon-orange"></i> @* Renders part of the orders page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                    <span class="pw-orders-stat__value">@activeOrders</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                    <span class="pw-orders-stat__label">Active</span> @* Renders inline text or badge content. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+            <div class="pw-orders-stat__divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+            <div class="pw-orders-stat"> @* Starts a layout container for this section. *@
+                <div class="pw-orders-stat__icon pw-orders-stat__icon--green"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="banknote" class="pw-icon-sm pw-icon-green"></i> @* Renders part of the orders page markup. *@
+                </div> @* Closes the matching HTML element. *@
+                <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                    <span class="pw-orders-stat__value">£@totalSpend.ToString("0.00")</span> @* Renders inline text or badge content. *@
+ @* ----- Form Fields ----- *@
+                    <span class="pw-orders-stat__label">Total Spent</span> @* Renders inline text or badge content. *@
+                </div> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+            @if (!isAdmin && !isProducer) @* Conditionally renders this block when the check passes. *@
+            {
+ @* ----- Card Layout ----- *@
+                <div class="pw-orders-stat__divider" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+                <div class="pw-orders-stat"> @* Starts a layout container for this section. *@
+                    <div class="pw-orders-stat__icon pw-orders-stat__icon--purple"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                        <i data-lucide="gift" class="pw-icon-sm pw-icon-purple"></i> @* Renders part of the orders page markup. *@
+                    </div> @* Closes the matching HTML element. *@
+                    <div> @* Starts a layout container for this section. *@
+ @* ----- Card Layout ----- *@
+                        <span class="pw-orders-stat__value"> @* Renders inline text or badge content. *@
+ @* ----- Order Display ----- *@
+                            @(nextFreeDeliveryIn == 0 @* Outputs Razor data or executes Razor logic. *@
+ @* ----- Conditional Rendering ----- *@
+                                ? "Next order!" @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                                : nextFreeDeliveryIn + " away") @* Renders part of the orders page markup. *@
+                        </span> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+                        <span class="pw-orders-stat__label">Free Delivery</span> @* Renders inline text or badge content. *@
+                    </div> @* Closes the matching HTML element. *@
+                </div> @* Closes the matching HTML element. *@
+            }
+
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@
+
+<!-- ═══════════════════════════════════════════ @* Keeps an existing comment in the Razor file. *@
+     MAIN CONTENT @* Renders part of the orders page markup. *@
+════════════════════════════════════════════ --> @* Renders part of the orders page markup. *@
+<section class="pw-section pw-section--white" aria-labelledby="orders-heading"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+    <div class="pw-container"> @* Starts a layout container for this section. *@
+
+ @* ----- Page Header ----- *@
+        <h2 id="orders-heading" class="sr-only">Orders list</h2> @* Renders a heading for this page section. *@
+
+ @* ----- Status Messages ----- *@
+        @if (TempData["ReorderWarning"] is string reorderWarning) @* Conditionally renders this block when the check passes. *@
+        {
+ @* ----- Card Layout ----- *@
+            <div class="pw-orders-flash" role="status"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                <i data-lucide="triangle-alert" class="pw-icon-sm" aria-hidden="true"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                <span>@reorderWarning</span> @* Renders inline text or badge content. *@
+            </div> @* Closes the matching HTML element. *@
+        }
+
+ @* ----- Search and Filters ----- *@
+        <!-- ─── Filter & Sort Toolbar ─── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+        <div class="pw-orders-toolbar reveal" role="search" aria-label="Filter and sort orders"> @* Starts a layout container for this section. *@
+
+ @* ----- Search and Filters ----- *@
+            <!-- Search --> @* Keeps an existing comment in the Razor file. *@
+            <div class="pw-orders-search"> @* Starts a layout container for this section. *@
+                <svg class="pw-orders-search__icon" xmlns="http://www.w3.org/2000/svg" @* Renders part of the orders page markup. *@
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"> @* Renders part of the orders page markup. *@
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/> @* Renders part of the orders page markup. *@
+                </svg> @* Closes the matching HTML element. *@
+ @* ----- Form Fields ----- *@
+                <input type="text" id="ordersSearch" class="pw-orders-search__input" @* Renders a user input field. *@
+                       placeholder="Search order #…" aria-label="Search by order number" @* Renders part of the orders page markup. *@
+                       autocomplete="off"> @* Renders part of the orders page markup. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Search and Filters ----- *@
+            <!-- Sort --> @* Keeps an existing comment in the Razor file. *@
+            <div class="pw-orders-sort"> @* Starts a layout container for this section. *@
+ @* ----- Form Fields ----- *@
+                <label for="ordersSort" class="pw-orders-sort__label"> @* Renders text identifying a form field. *@
+ @* ----- Card Layout ----- *@
+                    <i data-lucide="arrow-up-down" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+ @* ----- Search and Filters ----- *@
+                    Sort @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+                </label> @* Closes the matching HTML element. *@
+                <select id="ordersSort" class="pw-orders-sort__select" aria-label="Sort orders"> @* Renders a dropdown selection field. *@
+                    <option value="newest">Most Recent</option> @* Renders one dropdown option. *@
+                    <option value="oldest">Oldest First</option> @* Renders one dropdown option. *@
+                    <option value="highest">Highest Value</option> @* Renders one dropdown option. *@
+                    <option value="lowest">Lowest Value</option> @* Renders one dropdown option. *@
+                </select> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Search and Filters ----- *@
+            <!-- Status Filter Chips --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Form Fields ----- *@
+            <div class="pw-orders-filters" role="group" aria-label="Filter by status"> @* Starts a layout container for this section. *@
+ @* ----- Form Actions ----- *@
+                <button class="pw-orders-filter-btn is-active" data-filter="all" type="button">All</button> @* Renders a button for the user action. *@
+                <button class="pw-orders-filter-btn" data-filter="Pending" type="button"> @* Renders a button for the user action. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="package" class="pw-icon-sm"></i> Pending @* Renders part of the orders page markup. *@
+                </button> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                <button class="pw-orders-filter-btn" data-filter="Preparing Delivery" type="button"> @* Renders a button for the user action. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="truck" class="pw-icon-sm"></i> Preparing @* Renders part of the orders page markup. *@
+                </button> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                <button class="pw-orders-filter-btn" data-filter="Awaiting Confirmation" type="button"> @* Renders a button for the user action. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="clock" class="pw-icon-sm"></i> Awaiting @* Renders part of the orders page markup. *@
+                </button> @* Closes the matching HTML element. *@
+ @* ----- Form Actions ----- *@
+                <button class="pw-orders-filter-btn" data-filter="Delivered" type="button"> @* Renders a button for the user action. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="check-circle" class="pw-icon-sm"></i> Delivered @* Renders part of the orders page markup. *@
+                </button> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Conditional Rendering ----- *@
+        <!-- Results count --> @* Keeps an existing comment in the Razor file. *@
+        <p class="pw-orders-count" id="ordersCount" aria-live="polite"> @* Renders paragraph text for the user. *@
+            Showing <strong id="ordersCountNum">@ordersList.Count</strong> @* Renders part of the orders page markup. *@
+            order@(ordersList.Count != 1 ? "s" : "") @* Renders part of the orders page markup. *@
+        </p> @* Closes the matching HTML element. *@
+
+ @* ----- Card Layout ----- *@
+        <!-- ─── Order Cards ─── --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+        @if (!ordersList.Any()) @* Conditionally renders this block when the check passes. *@
+        {
+ @* ----- Card Layout ----- *@
+            <div class="pw-orders-empty reveal" role="status"> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                <div class="pw-orders-empty__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+                    <i data-lucide="package-open" style="width:36px;height:36px;stroke-width:1.5;color:var(--text-light)"></i> @* Renders part of the orders page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h2 class="pw-orders-empty__title">No orders yet</h2> @* Renders a heading for this page section. *@
+ @* ----- Order Display ----- *@
+                <p class="pw-orders-empty__desc"> @* Renders paragraph text for the user. *@
+                    When you place an order it'll appear here.<br>Go find something fresh! @* Renders part of the orders page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                <a asp-area="" asp-controller="Products" asp-action="Index" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                   class="pw-btn pw-btn--primary pw-btn--lg"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="sprout" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+                    Shop the Harvest @* Renders part of the orders page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        }
+ @* ----- Conditional Rendering ----- *@
+        else @* Renders the fallback branch for the previous condition. *@
+        {
+ @* ----- Form Fields ----- *@
+            <div class="pw-orders-list" id="ordersList" aria-label="Your orders"> @* Starts a layout container for this section. *@
+
+ @* ----- Loop Rendering ----- *@
+                @foreach (var order in ordersList.OrderByDescending(o => o.OrderDate)) @* Loops through the collection and renders each item. *@
+                {
+ @* ----- Search and Filters ----- *@
+                    var statusBadge = order.TrackingStatus switch { @* Renders part of the orders page markup. *@
+                        "Delivered"             => "pw-badge--green", @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                        "Awaiting Confirmation" => "pw-badge--purple", @* Renders part of the orders page markup. *@
+                        "Preparing Delivery"    => "pw-badge--orange", @* Renders part of the orders page markup. *@
+                        _                       => "pw-badge--yellow" @* Renders part of the orders page markup. *@
+                    };
+ @* ----- Search and Filters ----- *@
+                    var cardAccent = order.TrackingStatus switch { @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                        "Delivered"             => "pw-order-card--delivered", @* Renders part of the orders page markup. *@
+                        "Awaiting Confirmation" => "pw-order-card--awaiting", @* Renders part of the orders page markup. *@
+                        "Preparing Delivery"    => "pw-order-card--preparing", @* Renders part of the orders page markup. *@
+                        _                       => "pw-order-card--pending" @* Renders part of the orders page markup. *@
+                    };
+ @* ----- Search and Filters ----- *@
+                    var statusIcon = order.TrackingStatus switch { @* Renders part of the orders page markup. *@
+                        "Delivered"             => "check-circle", @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                        "Awaiting Confirmation" => "clock", @* Renders part of the orders page markup. *@
+                        "Preparing Delivery"    => "truck", @* Renders part of the orders page markup. *@
+                        _                       => "package" @* Renders part of the orders page markup. *@
+                    };
+ @* ----- Conditional Rendering ----- *@
+                    var itemCount       = order.OrderProducts?.Count ?? 0; @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                    var formattedId     = $"#PF-{order.OrdersId:D6}"; @* Renders part of the orders page markup. *@
+ @* ----- Basket Display ----- *@
+                    var daysSinceOrder  = (DateTime.Now - order.OrderDate.ToDateTime(TimeOnly.MinValue)).TotalDays; @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                    var autoDelivered   = order.DeliveryConfirmed || daysSinceOrder >= 7; @* Renders part of the orders page markup. *@
+ @* ----- Search and Filters ----- *@
+                    var canConfirm      = order.Delivery && !autoDelivered && order.TrackingStatus == "Awaiting Confirmation"; @* Renders part of the orders page markup. *@
+
+ @* ----- Card Layout ----- *@
+                    <article class="pw-order-card @cardAccent reveal" @* Renders a navigation link or action link. *@
+ @* ----- Search and Filters ----- *@
+                             data-status="@order.TrackingStatus" @* Renders part of the orders page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                             data-method="@(order.Delivery ? "delivery" : "collection")" @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                             data-date="@order.OrderDate.ToString("yyyy-MM-dd")" @* Renders part of the orders page markup. *@
+ @* ----- Basket Display ----- *@
+                             data-value="@order.OrdersTotal.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)" @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                             data-id="@order.OrdersId" @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+                             aria-label="Order @formattedId, @order.TrackingStatus, £@order.OrdersTotal.ToString("0.00")"> @* Renders part of the orders page markup. *@
+
+                        <!-- Accent stripe --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+                        <div class="pw-order-card__accent" aria-hidden="true"></div> @* Starts a layout container for this section. *@
+
+                        <!-- Header: ID + status + total --> @* Keeps an existing comment in the Razor file. *@
+                        <div class="pw-order-card__header"> @* Starts a layout container for this section. *@
+                            <div class="pw-order-card__header-left"> @* Starts a layout container for this section. *@
+ @* ----- Page Header ----- *@
+                                <h3 class="pw-order-card__id">@formattedId</h3> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+                                <span class="pw-badge @statusBadge"> @* Renders inline text or badge content. *@
+                                    <i data-lucide="@statusIcon" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+ @* ----- Search and Filters ----- *@
+                                    @order.TrackingStatus @* Outputs Razor data or executes Razor logic. *@
+                                </span> @* Closes the matching HTML element. *@
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-order-card__total">£@order.OrdersTotal.ToString("0.00")</span> @* Renders inline text or badge content. *@
+                        </div> @* Closes the matching HTML element. *@
+
+                        <!-- Meta row: date · method · items [· user if admin] --> @* Keeps an existing comment in the Razor file. *@
+                        <div class="pw-order-card__meta"> @* Starts a layout container for this section. *@
+                            <span class="pw-order-card__meta-item"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                                <i data-lucide="calendar" class="pw-icon-sm pw-icon-muted"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                                @order.OrderDate.ToString("d MMMM yyyy") @* Outputs Razor data or executes Razor logic. *@
+                            </span> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <span class="pw-order-card__meta-sep" aria-hidden="true">·</span> @* Renders inline text or badge content. *@
+                            <span class="pw-order-card__meta-item"> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                                @if (order.Delivery) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Styling Section ----- *@
+                                    <i data-lucide="truck" class="pw-icon-sm pw-icon-muted"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                                    <text>Delivery</text> @* Renders part of the orders page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                                    @if (!string.IsNullOrEmpty(order.DeliveryMethod)) @* Conditionally renders this block when the check passes. *@
+                                    {
+ @* ----- Card Layout ----- *@
+                                        <span class="pw-order-card__meta-sub">(@order.DeliveryMethod)</span> @* Renders inline text or badge content. *@
+                                    }
+                                }
+ @* ----- Conditional Rendering ----- *@
+                                else @* Renders the fallback branch for the previous condition. *@
+                                {
+ @* ----- Styling Section ----- *@
+                                    <i data-lucide="store" class="pw-icon-sm pw-icon-muted"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                                    <text>Collection</text> @* Renders part of the orders page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                                    @if (order.DateOfCollection.HasValue) @* Conditionally renders this block when the check passes. *@
+                                    {
+ @* ----- Card Layout ----- *@
+                                        <span class="pw-order-card__meta-sub">(@order.DateOfCollection.Value.ToString("d MMM"))</span> @* Renders inline text or badge content. *@
+                                    }
+                                }
+                            </span> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+                            @if (itemCount > 0) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <span class="pw-order-card__meta-sep" aria-hidden="true">·</span> @* Renders inline text or badge content. *@
+                                <span class="pw-order-card__meta-item"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                                    <i data-lucide="shopping-bag" class="pw-icon-sm pw-icon-muted"></i> @* Renders part of the orders page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                                    @itemCount item@(itemCount != 1 ? "s" : "") @* Outputs Razor data or executes Razor logic. *@
+                                </span> @* Closes the matching HTML element. *@
+                            }
+                            @if (isAdmin) @* Conditionally renders this block when the check passes. *@
+                            {
+ @* ----- Card Layout ----- *@
+                                <span class="pw-order-card__meta-sep" aria-hidden="true">·</span> @* Renders inline text or badge content. *@
+                                <span class="pw-order-card__meta-item"> @* Renders inline text or badge content. *@
+ @* ----- Styling Section ----- *@
+                                    <i data-lucide="user" class="pw-icon-sm pw-icon-muted"></i> @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                                    <span class="pw-order-card__user-id" title="@order.UserId">@order.UserId</span> @* Renders inline text or badge content. *@
+                                </span> @* Closes the matching HTML element. *@
+                            }
+                        </div> @* Closes the matching HTML element. *@
+
+ @* ----- Product Display ----- *@
+                        <!-- Product pills --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+                        @if (order.OrderProducts != null && order.OrderProducts.Any()) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Form Fields ----- *@
+                            <div class="pw-order-card__items" aria-label="Items in this order"> @* Starts a layout container for this section. *@
+ @* ----- Loop Rendering ----- *@
+                                @foreach (var op in order.OrderProducts.Take(4)) @* Loops through the collection and renders each item. *@
+                                {
+ @* ----- Card Layout ----- *@
+                                    <span class="pw-order-card__item-pill"> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                                        @(op.Products?.ItemName ?? "Item") ×@op.ProductQuantity @* Outputs Razor data or executes Razor logic. *@
+                                    </span> @* Closes the matching HTML element. *@
+                                }
+                                @if (order.OrderProducts.Count > 4) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Card Layout ----- *@
+                                    <span class="pw-order-card__item-pill pw-order-card__item-more"> @* Renders inline text or badge content. *@
+ @* ----- Conditional Rendering ----- *@
+                                        +@(order.OrderProducts.Count - 4) more @* Renders part of the orders page markup. *@
+                                    </span> @* Closes the matching HTML element. *@
+                                }
+                            </div> @* Closes the matching HTML element. *@
+                        }
+
+ @* ----- Order Display ----- *@
+                        <!-- Delivery address snippet --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Conditional Rendering ----- *@
+                        @if (order.Delivery && !string.IsNullOrEmpty(order.DeliveryLine1)) @* Conditionally renders this block when the check passes. *@
+                        {
+ @* ----- Card Layout ----- *@
+                            <div class="pw-order-card__address"> @* Starts a layout container for this section. *@
+ @* ----- Styling Section ----- *@
+                                <i data-lucide="map-pin" class="pw-icon-sm pw-icon-muted"></i> @* Renders part of the orders page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                                <span>@order.DeliveryLine1@(string.IsNullOrEmpty(order.DeliveryCity) ? "" : ", " + order.DeliveryCity)@(string.IsNullOrEmpty(order.DeliveryPostcode) ? "" : " " + order.DeliveryPostcode)</span> @* Renders inline text or badge content. *@
+                            </div> @* Closes the matching HTML element. *@
+                        }
+
+                        <!-- Footer: actions --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+                        <div class="pw-order-card__footer"> @* Starts a layout container for this section. *@
+                            <div class="pw-order-card__actions-primary"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                                @if (canConfirm) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Navigation ----- *@
+                                    <form asp-controller="Orders" asp-action="ConfirmDelivery" @* Starts the form that submits this page's user input. *@
+ @* ----- Form Setup ----- *@
+                                          asp-route-id="@order.OrdersId" method="post" @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                                          class="pw-order-card__confirm-form"> @* Renders part of the orders page markup. *@
+                                        @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+ @* ----- Form Actions ----- *@
+                                        <button type="submit" class="pw-btn pw-btn--sm pw-btn--primary pw-confirm-btn" @* Renders a button for the user action. *@
+ @* ----- Loop Rendering ----- *@
+                                                data-order="@formattedId"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+                                            <i data-lucide="check" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                                            Confirm Delivery @* Renders part of the orders page markup. *@
+                                        </button> @* Closes the matching HTML element. *@
+                                    </form> @* Closes the form after its fields and actions. *@
+                                }
+ @* ----- Conditional Rendering ----- *@
+                                @if (autoDelivered && order.Delivery) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Styling Section ----- *@
+                                    <span class="pw-badge pw-badge--green"> @* Renders inline text or badge content. *@
+                                        <i data-lucide="check-circle" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+                                        Delivered ✓ @* Renders part of the orders page markup. *@
+                                    </span> @* Closes the matching HTML element. *@
+                                }
+                            </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                            <div class="pw-order-card__actions-secondary"> @* Starts a layout container for this section. *@
+ @* ----- Conditional Rendering ----- *@
+                                @if (!isAdmin && !isProducer) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Navigation ----- *@
+                                    <form asp-controller="Orders" asp-action="Reorder" @* Starts the form that submits this page's user input. *@
+ @* ----- Form Setup ----- *@
+                                          asp-route-id="@order.OrdersId" method="post" @* Renders part of the orders page markup. *@
+ @* ----- Card Layout ----- *@
+                                          class="pw-order-card__reorder-form"> @* Renders part of the orders page markup. *@
+                                        @Html.AntiForgeryToken() @* Uses an HTML helper to render dynamic output. *@
+ @* ----- Form Actions ----- *@
+                                        <button type="submit" class="pw-btn pw-btn--sm pw-btn--primary" @* Renders a button for the user action. *@
+ @* ----- Form Fields ----- *@
+                                                aria-label="Re-order items from @formattedId"> @* Renders part of the orders page markup. *@
+ @* ----- Basket Display ----- *@
+                                            <i data-lucide="shopping-basket" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+ @* ----- Order Display ----- *@
+                                            Re-order @* Renders part of the orders page markup. *@
+                                        </button> @* Closes the matching HTML element. *@
+                                    </form> @* Closes the form after its fields and actions. *@
+                                }
+ @* ----- Navigation ----- *@
+                                <a asp-action="Details" asp-route-id="@order.OrdersId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                                   class="pw-btn pw-btn--sm pw-btn--ghost" @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+                                   aria-label="View details for @formattedId"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+                                    <i data-lucide="eye" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+                                    Details @* Renders part of the orders page markup. *@
+                                </a> @* Closes the matching HTML element. *@
+ @* ----- Conditional Rendering ----- *@
+                                @if (isAdmin) @* Conditionally renders this block when the check passes. *@
+                                {
+ @* ----- Navigation ----- *@
+                                    <a asp-action="Edit" asp-route-id="@order.OrdersId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                                       class="pw-btn pw-btn--sm pw-btn--ghost" @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+                                       aria-label="Edit @formattedId"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+                                        <i data-lucide="pencil" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+                                        Edit @* Renders part of the orders page markup. *@
+                                    </a> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                                    <a asp-action="Delete" asp-route-id="@order.OrdersId" @* Builds a link or form target using MVC routing. *@
+ @* ----- Form Actions ----- *@
+                                       class="pw-btn pw-btn--sm pw-btn--danger" @* Renders part of the orders page markup. *@
+ @* ----- Form Fields ----- *@
+                                       aria-label="Delete @formattedId"> @* Renders part of the orders page markup. *@
+ @* ----- Styling Section ----- *@
+                                        <i data-lucide="trash-2" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+ @* ----- Form Actions ----- *@
+                                        Delete @* Renders part of the orders page markup. *@
+                                    </a> @* Closes the matching HTML element. *@
+                                }
+                            </div> @* Closes the matching HTML element. *@
+                        </div> @* Closes the matching HTML element. *@
+
+                    </article> @* Closes the matching HTML element. *@
+                }
+
+            </div> @* Closes the matching HTML element. *@
+
+ @* ----- Search and Filters ----- *@
+            <!-- No-results state (shown by JS when filters match nothing) --> @* Keeps an existing comment in the Razor file. *@
+ @* ----- Card Layout ----- *@
+            <div id="noResults" class="pw-orders-empty" style="display:none;" role="status" aria-live="polite"> @* Starts a layout container for this section. *@
+ @* ----- Order Display ----- *@
+                <div class="pw-orders-empty__icon" aria-hidden="true"> @* Starts a layout container for this section. *@
+ @* ----- Search and Filters ----- *@
+                    <i data-lucide="search-x" style="width:36px;height:36px;stroke-width:1.5;color:var(--text-light)"></i> @* Renders part of the orders page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+                <h3 class="pw-orders-empty__title">No orders match</h3> @* Renders a heading for this page section. *@
+ @* ----- Search and Filters ----- *@
+                <p class="pw-orders-empty__desc">Try adjusting your search or filter.</p> @* Renders paragraph text for the user. *@
+ @* ----- Form Actions ----- *@
+                <button id="clearFiltersBtn" class="pw-btn pw-btn--ghost pw-btn--md" type="button"> @* Renders a button for the user action. *@
+ @* ----- Styling Section ----- *@
+                    <i data-lucide="x" class="pw-icon-sm"></i> @* Renders part of the orders page markup. *@
+ @* ----- Search and Filters ----- *@
+                    Clear filters @* Renders part of the orders page markup. *@
+                </button> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        }
+
+    </div> @* Closes the matching HTML element. *@
+</section> @* Closes the matching HTML element. *@
+
+ @* ----- Script Section ----- *@
+@section Scripts { @* Starts a named Razor section rendered by the layout. *@
+ @* ----- Order Display ----- *@
+    <script src="~/js/pages/orders/OrderIndex.js" asp-append-version="true"></script> @* Starts client-side script for this page. *@
+
+}
+
+@section Styles { @* Starts a named Razor section rendered by the layout. *@
+    <link rel="stylesheet" href="~/css/pages/orders/OrderIndex.css" asp-append-version="true" /> @* Renders one list item. *@
+}

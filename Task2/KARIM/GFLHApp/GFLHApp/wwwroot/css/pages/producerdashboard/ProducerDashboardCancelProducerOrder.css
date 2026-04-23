@@ -1,0 +1,173 @@
+/* ----- Theme variables ----- */
+.pw-admin-page { min-height: 100vh; background: var(--cream); } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+
+/* ----- Navigation ----- */
+.pw-admin-header { /* Starts styles for the .pw-admin-header selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(160deg, var(--cream) 0%, #f0ebe0 100%); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    padding: 80px 0 28px; /* Sets spacing inside the element. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__inner { /* Starts styles for the .pw-admin-header__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 780px; margin: 0 auto; padding: 0 24px; /* Limits the element width on larger screens. */
+}
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb { /* Starts styles for the .pw-admin-breadcrumb selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 6px; /* Controls how the element participates in layout. */
+    list-style: none; margin: 0 0 16px; padding: 0; /* Sets the list-style style for this rule. */
+    font-size: 13px; font-weight: 500; flex-wrap: wrap; /* Sets the text size. */
+}
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb li { display: flex; align-items: center; gap: 6px; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+/* ----- Theme variables ----- */
+.pw-admin-breadcrumb li + li::before { content: '/'; color: var(--text-muted); opacity: .5; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+.pw-admin-breadcrumb a { color: var(--text-muted); transition: color .15s; text-decoration: none; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+.pw-admin-breadcrumb a:hover { color: var(--green); } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+.pw-admin-breadcrumb [aria-current] { color: var(--text); font-weight: 600; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+
+/* ----- Navigation ----- */
+.pw-admin-header__title { /* Starts styles for the .pw-admin-header__title selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 14px; /* Controls how the element participates in layout. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__icon { /* Starts styles for the .pw-admin-header__icon selector. */
+    /* ----- Tables ----- */
+    width: 44px; height: 44px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: #fee2e2; border-radius: var(--r-md); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    color: #DC2626; flex-shrink: 0; /* Sets the text color. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__title h1 { /* Starts styles for the .pw-admin-header__title h1 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 24px; font-weight: 700; color: var(--text); margin: 0; /* Sets the text size. */
+}
+.pw-admin-header__title p { font-size: 13px; color: var(--text-muted); margin: 2px 0 0; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+
+/* ----- Base layout ----- */
+.pw-admin-body { max-width: 780px; margin: 0 auto; padding: 36px 24px 80px; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+
+/* ----- Card layout ----- */
+.pw-cancel-card { /* Starts styles for the .pw-cancel-card selector. */
+    /* ----- Theme variables ----- */
+    background: #fff; border-radius: var(--r-lg); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); box-shadow: var(--shadow-sm); /* Sets the border around the element. */
+    /* ----- Utility classes ----- */
+    overflow: hidden; margin-bottom: 20px; /* Sets the overflow style for this rule. */
+}
+/* ----- Card layout ----- */
+.pw-cancel-card__head { /* Starts styles for the .pw-cancel-card__head selector. */
+    padding: 18px 24px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    background: var(--cream); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+}
+/* ----- Card layout ----- */
+.pw-cancel-card__head h2 { /* Starts styles for the .pw-cancel-card__head h2 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 15px; font-weight: 700; color: var(--text); margin: 0; /* Sets the text size. */
+}
+/* ----- Base layout ----- */
+.pw-cancel-card__body { padding: 20px 24px; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+/* ----- Theme variables ----- */
+.pw-cancel-card__desc { font-size: 13px; color: var(--text-muted); margin: 0 0 18px; line-height: 1.6; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+
+/* ----- Grid layout ----- */
+.pw-items-table { width: 100%; border-collapse: collapse; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+/* ----- Tables ----- */
+.pw-items-table th { /* Starts styles for the .pw-items-table th selector. */
+    /* ----- Forms ----- */
+    font-size: 11px; font-weight: 700; text-transform: uppercase; /* Sets the text size. */
+    /* ----- Theme variables ----- */
+    letter-spacing: .06em; color: var(--text-muted); /* Sets the letter-spacing style for this rule. */
+    padding: 8px 12px; text-align: left; /* Sets spacing inside the element. */
+    border-bottom: 1.5px solid var(--border); /* Sets the border-bottom style for this rule. */
+}
+/* ----- Tables ----- */
+.pw-items-table td { /* Starts styles for the .pw-items-table td selector. */
+    /* ----- Theme variables ----- */
+    padding: 12px; border-bottom: 1px solid var(--border); /* Sets spacing inside the element. */
+    font-size: 13px; color: var(--text); vertical-align: middle; /* Sets the text size. */
+}
+/* ----- Tables ----- */
+.pw-items-table tr:last-child td { border-bottom: none; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+.pw-items-table tfoot td { /* Starts styles for the .pw-items-table tfoot td selector. */
+    /* ----- Theme variables ----- */
+    padding: 12px; font-size: 14px; font-weight: 700; color: var(--text); /* Sets spacing inside the element. */
+    border-top: 1.5px solid var(--border); /* Sets the border-top style for this rule. */
+}
+
+/* ----- Tables ----- */
+.pw-item-thumb { /* Starts styles for the .pw-item-thumb selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+}
+/* ----- Tables ----- */
+.pw-item-thumb img { /* Starts styles for the .pw-item-thumb img selector. */
+    width: 36px; height: 36px; border-radius: 8px; object-fit: cover; /* Sets the element width. */
+}
+.pw-item-thumb__placeholder { /* Starts styles for the .pw-item-thumb__placeholder selector. */
+    width: 36px; height: 36px; border-radius: 8px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); color: var(--green); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    flex-shrink: 0; /* Sets the flex-shrink style for this rule. */
+}
+
+/* ----- Buttons ----- */
+.pw-btn-remove { /* Starts styles for the .pw-btn-remove selector. */
+    height: 32px; padding: 0 12px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    background: transparent; color: #DC2626; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid #fecaca; border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-size: 12px; font-weight: 700; cursor: pointer; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 5px; /* Controls how the element participates in layout. */
+    transition: background .12s, border-color .12s; /* Animates property changes smoothly. */
+}
+.pw-btn-remove:hover { background: #fef2f2; border-color: #DC2626; } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+
+/* ----- Buttons ----- */
+.pw-btn-cancel-all { /* Starts styles for the .pw-btn-cancel-all selector. */
+    height: 42px; padding: 0 22px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    background: #DC2626; color: #fff; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border: none; border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-family: var(--font-body); font-size: 14px; font-weight: 700; /* Sets the font family. */
+    cursor: pointer; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 8px; /* Controls how the element participates in layout. */
+    /* ----- Forms ----- */
+    transition: background .15s, transform .1s; /* Animates property changes smoothly. */
+    box-shadow: 0 2px 8px rgba(220,38,38,.2); /* Adds depth with a shadow. */
+}
+.pw-btn-cancel-all:hover { background: #b91c1c; transform: translateY(-1px); } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+.pw-btn-cancel-all:active { transform: translateY(0); } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */
+
+/* ----- Buttons ----- */
+.pw-btn-back { /* Starts styles for the .pw-btn-back selector. */
+    height: 42px; padding: 0 18px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: transparent; color: var(--text-muted); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; /* Sets the font family. */
+    cursor: pointer; text-decoration: none; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 7px; /* Controls how the element participates in layout. */
+    transition: border-color .15s, color .15s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.pw-btn-back:hover { border-color: var(--text-muted); color: var(--text); } /* Styles part of the ProducerDashboardCancelProducerOrder page or component. */

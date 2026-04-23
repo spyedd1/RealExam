@@ -1,0 +1,52 @@
+ @* ----- Page Model Setup ----- *@
+@page
+@* Declares this Razor file as a routable page. *@
+ @* Declares this Razor file as a routable page. *@
+ @* Sets the model type used by this view. *@
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied"; // Sets the browser and page title for this view.
+    ViewData["FullWidth"] = true; // Reads view data supplied by the controller.
+}
+
+ @* ----- Styling Section ----- *@
+<div class="pw-auth-page"> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--1" style="background:var(--orange);opacity:.12"></div> @* Starts a layout container for this section. *@
+    <div class="pw-auth-blob pw-auth-blob--2"></div> @* Starts a layout container for this section. *@
+
+ @* ----- Card Layout ----- *@
+    <div class="pw-auth-card"> @* Starts a layout container for this section. *@
+        <div class="pw-auth-card__header" style="background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%)"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-card__brand"> @* Starts a layout container for this section. *@
+                <i data-lucide="sprout" style="width:18px;height:18px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+                Greenfield @* Renders part of the identity page markup. *@
+            </div> @* Closes the matching HTML element. *@
+ @* ----- Page Header ----- *@
+            <h1 class="pw-auth-card__title">Access denied</h1> @* Renders a heading for this page section. *@
+ @* ----- Card Layout ----- *@
+            <p class="pw-auth-card__subtitle">You don't have permission to view this page</p> @* Renders paragraph text for the user. *@
+        </div> @* Closes the matching HTML element. *@
+
+        <div class="pw-auth-card__body"> @* Starts a layout container for this section. *@
+            <div class="pw-auth-status"> @* Starts a layout container for this section. *@
+                <div class="pw-auth-status__icon pw-auth-status__icon--warning"> @* Starts a layout container for this section. *@
+ @* ----- Status Messages ----- *@
+                    <i data-lucide="shield-alert" style="width:34px;height:34px;stroke-width:1.75"></i> @* Renders part of the identity page markup. *@
+                </div> @* Closes the matching HTML element. *@
+ @* ----- Card Layout ----- *@
+                <p class="pw-auth-status__title">Restricted area</p> @* Renders paragraph text for the user. *@
+                <p class="pw-auth-status__body"> @* Renders paragraph text for the user. *@
+                    You don't have the required permissions to access this resource. @* Renders part of the identity page markup. *@
+                    If you think this is a mistake, please contact support. @* Renders part of the identity page markup. *@
+ @* ----- Conditional Rendering ----- *@
+                    Please ensure you are logged in to an account to make use of the system. @* Renders part of the identity page markup. *@
+                </p> @* Closes the matching HTML element. *@
+ @* ----- Navigation ----- *@
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="pw-btn pw-btn--primary pw-btn--md" style="width:100%;justify-content:center;"> @* Builds a link or form target using MVC routing. *@
+                    <i data-lucide="home" style="width:16px;height:16px;stroke-width:2.5"></i> @* Renders part of the identity page markup. *@
+                    Back to home @* Renders part of the identity page markup. *@
+                </a> @* Closes the matching HTML element. *@
+            </div> @* Closes the matching HTML element. *@
+        </div> @* Closes the matching HTML element. *@
+    </div> @* Closes the matching HTML element. *@
+</div> @* Closes the matching HTML element. *@

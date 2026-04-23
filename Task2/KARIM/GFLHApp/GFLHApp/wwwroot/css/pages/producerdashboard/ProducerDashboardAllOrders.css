@@ -1,0 +1,261 @@
+/* ----- Theme variables ----- */
+.pw-admin-page { min-height: 100vh; background: var(--cream); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+/* ----- Navigation ----- */
+.pw-admin-header { /* Starts styles for the .pw-admin-header selector. */
+    /* ----- Theme variables ----- */
+    background: linear-gradient(160deg, var(--cream) 0%, #f0ebe0 100%); /* Sets the element background treatment. */
+    border-bottom: 1px solid var(--border); /* Sets the border-bottom style for this rule. */
+    padding: 80px 0 28px; /* Sets spacing inside the element. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__inner { /* Starts styles for the .pw-admin-header__inner selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; margin: 0 auto; padding: 0 24px; /* Limits the element width on larger screens. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; /* Controls how the element participates in layout. */
+}
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb { /* Starts styles for the .pw-admin-breadcrumb selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 6px; /* Controls how the element participates in layout. */
+    list-style: none; margin: 0 0 14px; padding: 0; /* Sets the list-style style for this rule. */
+    font-size: 13px; font-weight: 500; /* Sets the text size. */
+}
+/* ----- Navigation ----- */
+.pw-admin-breadcrumb li { display: flex; align-items: center; gap: 6px; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+/* ----- Theme variables ----- */
+.pw-admin-breadcrumb li + li::before { content: '/'; color: var(--text-muted); opacity: .5; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-admin-breadcrumb a { color: var(--text-muted); transition: color .15s; text-decoration: none; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-admin-breadcrumb a:hover { color: var(--green); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-admin-breadcrumb [aria-current] { color: var(--text); font-weight: 600; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+/* ----- Navigation ----- */
+.pw-admin-header__title { /* Starts styles for the .pw-admin-header__title selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 14px; /* Controls how the element participates in layout. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__icon { /* Starts styles for the .pw-admin-header__icon selector. */
+    /* ----- Theme variables ----- */
+    width: 44px; height: 44px; background: var(--green-100); /* Sets the element width. */
+    border-radius: var(--r-md); /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    color: var(--green); flex-shrink: 0; /* Sets the text color. */
+}
+/* ----- Navigation ----- */
+.pw-admin-header__title h1 { /* Starts styles for the .pw-admin-header__title h1 selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); /* Sets the font family. */
+    font-size: 24px; font-weight: 700; color: var(--text); margin: 0; /* Sets the text size. */
+}
+.pw-admin-header__title p { font-size: 13px; color: var(--text-muted); margin: 2px 0 0; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+/* ----- Buttons ----- */
+.pw-btn-back { /* Starts styles for the .pw-btn-back selector. */
+    height: 42px; padding: 0 18px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: transparent; color: var(--text-muted); /* Sets the element background treatment. */
+    border: 1.5px solid var(--border); border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; /* Sets the font family. */
+    cursor: pointer; text-decoration: none; /* Sets the cursor style for this rule. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 7px; /* Controls how the element participates in layout. */
+    transition: border-color .15s, color .15s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.pw-btn-back:hover { border-color: var(--text-muted); color: var(--text); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+/* ----- Base layout ----- */
+.pw-admin-body { /* Starts styles for the .pw-admin-body selector. */
+    /* ----- Tables ----- */
+    max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; /* Limits the element width on larger screens. */
+}
+
+/* ----- Card layout ----- */
+.pw-orders-summary { /* Starts styles for the .pw-orders-summary selector. */
+    /* ----- Grid layout ----- */
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; /* Controls how the element participates in layout. */
+    margin-bottom: 28px; /* Sets the margin-bottom style for this rule. */
+}
+/* ----- Card layout ----- */
+@media (max-width: 700px) { .pw-orders-summary { grid-template-columns: repeat(2, 1fr); } } /* Starts responsive rules for this viewport range. */
+
+.pw-summary-chip { /* Starts styles for the .pw-summary-chip selector. */
+    /* ----- Theme variables ----- */
+    background: #fff; border: 1.5px solid var(--border); /* Sets the element background treatment. */
+    border-radius: var(--r-md); padding: 14px 16px; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+}
+/* ----- Card layout ----- */
+.pw-summary-chip__dot { /* Starts styles for the .pw-summary-chip__dot selector. */
+    /* ----- Grid layout ----- */
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; /* Sets the element width. */
+}
+/* ----- Theme variables ----- */
+.pw-summary-chip__dot--pending  { background: var(--orange); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-summary-chip__dot--accepted { background: var(--green); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-summary-chip__dot--cancelled{ background: var(--text-light); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-summary-chip__dot--revenue  { background: var(--purple); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-summary-chip__val { font-size: 18px; font-weight: 800; color: var(--text); font-family: var(--font-display); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-summary-chip__lbl { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+.pw-filter-tabs { /* Starts styles for the .pw-filter-tabs selector. */
+    /* ----- Grid layout ----- */
+    display: flex; gap: 6px; flex-wrap: wrap; /* Controls how the element participates in layout. */
+    margin-bottom: 18px; /* Sets the margin-bottom style for this rule. */
+}
+.pw-tab { /* Starts styles for the .pw-tab selector. */
+    height: 36px; padding: 0 16px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    border-radius: var(--r-full); /* Rounds the element corners. */
+    border: 1.5px solid var(--border); /* Sets the border around the element. */
+    background: #fff; /* Sets the element background treatment. */
+    font-size: 13px; font-weight: 600; color: var(--text-muted); /* Sets the text size. */
+    /* ----- Tables ----- */
+    cursor: pointer; transition: all .12s; /* Sets the cursor style for this rule. */
+}
+/* ----- Theme variables ----- */
+.pw-tab:hover { border-color: var(--green); color: var(--green); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-tab.is-active { background: var(--green); border-color: var(--green); color: #fff; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+/* ----- Grid layout ----- */
+.pw-orders-grid { /* Starts styles for the .pw-orders-grid selector. */
+    display: grid; gap: 14px; /* Controls how the element participates in layout. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card { /* Starts styles for the .pw-order-card selector. */
+    /* ----- Theme variables ----- */
+    background: #fff; border: 1.5px solid var(--border); /* Sets the element background treatment. */
+    border-radius: var(--r-md); overflow: hidden; /* Rounds the element corners. */
+    /* ----- Tables ----- */
+    transition: box-shadow .15s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.pw-order-card:hover { box-shadow: var(--shadow-md); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+/* ----- Card layout ----- */
+.pw-order-card[data-status="Pending"]  { border-color: #fed7aa; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+/* ----- Theme variables ----- */
+.pw-order-card[data-status="Accepted"] { border-color: var(--green-200); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+/* ----- Card layout ----- */
+.pw-order-card[data-status="Cancelled"]{ opacity: .65; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+.pw-order-card__head { /* Starts styles for the .pw-order-card__head selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: space-between; /* Controls how the element participates in layout. */
+    /* ----- Theme variables ----- */
+    padding: 14px 18px; background: var(--cream); /* Sets spacing inside the element. */
+    border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 8px; /* Sets the border-bottom style for this rule. */
+}
+/* ----- Card layout ----- */
+.pw-order-card__id { /* Starts styles for the .pw-order-card__id selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text); /* Sets the font family. */
+}
+.pw-order-card__date { font-size: 12px; color: var(--text-muted); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+/* ----- Badges and status ----- */
+.pw-badge { /* Starts styles for the .pw-badge selector. */
+    /* ----- Theme variables ----- */
+    padding: 3px 10px; border-radius: var(--r-full); /* Sets spacing inside the element. */
+    font-size: 11px; font-weight: 700; letter-spacing: .03em; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 4px; /* Controls how the element participates in layout. */
+}
+/* ----- Theme variables ----- */
+.pw-badge--pending  { background: var(--orange-100); color: var(--orange); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-badge--accepted { background: var(--green-100);  color: var(--green); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+.pw-badge--cancelled{ background: #f3f4f6; color: var(--text-muted); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+/* ----- Base layout ----- */
+.pw-order-card__body { /* Starts styles for the .pw-order-card__body selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: flex-start; gap: 0; /* Controls how the element participates in layout. */
+    flex-wrap: wrap; /* Sets the flex-wrap style for this rule. */
+}
+/* ----- Card layout ----- */
+.pw-order-card__products { /* Starts styles for the .pw-order-card__products selector. */
+    /* ----- Grid layout ----- */
+    flex: 1; padding: 14px 18px; min-width: 200px; /* Sets the flex style for this rule. */
+    display: flex; flex-direction: column; gap: 8px; /* Controls how the element participates in layout. */
+}
+/* ----- Card layout ----- */
+.pw-order-card__product-row { /* Starts styles for the .pw-order-card__product-row selector. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; gap: 10px; /* Controls how the element participates in layout. */
+    font-size: 13px; /* Sets the text size. */
+}
+/* ----- Card layout ----- */
+.pw-order-card__product-img { /* Starts styles for the .pw-order-card__product-img selector. */
+    /* ----- Tables ----- */
+    width: 34px; height: 34px; border-radius: 7px; /* Sets the element width. */
+    /* ----- Grid layout ----- */
+    object-fit: cover; flex-shrink: 0; /* Sets the object-fit style for this rule. */
+}
+/* ----- Card layout ----- */
+.pw-order-card__product-placeholder { /* Starts styles for the .pw-order-card__product-placeholder selector. */
+    /* ----- Tables ----- */
+    width: 34px; height: 34px; border-radius: 7px; /* Sets the element width. */
+    /* ----- Theme variables ----- */
+    background: var(--green-100); color: var(--green); /* Sets the element background treatment. */
+    /* ----- Grid layout ----- */
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; /* Controls how the element participates in layout. */
+}
+
+/* ----- Card layout ----- */
+.pw-order-card__side { /* Starts styles for the .pw-order-card__side selector. */
+    padding: 14px 18px; /* Sets spacing inside the element. */
+    /* ----- Theme variables ----- */
+    border-left: 1px solid var(--border); /* Sets the border-left style for this rule. */
+    /* ----- Tables ----- */
+    min-width: 180px; /* Sets the min-width style for this rule. */
+    /* ----- Grid layout ----- */
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 12px; /* Controls how the element participates in layout. */
+}
+/* ----- Card layout ----- */
+.pw-order-card__subtotal { /* Starts styles for the .pw-order-card__subtotal selector. */
+    /* ----- Theme variables ----- */
+    font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--text); /* Sets the font family. */
+}
+/* ----- Card layout ----- */
+.pw-order-card__actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+/* ----- Buttons ----- */
+.pw-btn-accept { /* Starts styles for the .pw-btn-accept selector. */
+    height: 36px; padding: 0 14px; /* Sets the element height. */
+    /* ----- Theme variables ----- */
+    background: var(--green); color: #fff; border: none; /* Sets the element background treatment. */
+    border-radius: var(--r-sm); font-size: 13px; font-weight: 700; cursor: pointer; /* Rounds the element corners. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 5px; /* Controls how the element participates in layout. */
+    /* ----- Tables ----- */
+    transition: background .12s; /* Animates property changes smoothly. */
+}
+/* ----- Theme variables ----- */
+.pw-btn-accept:hover { background: var(--green-700); } /* Styles part of the ProducerDashboardAllOrders page or component. */
+/* ----- Buttons ----- */
+.pw-btn-cancel-sm { /* Starts styles for the .pw-btn-cancel-sm selector. */
+    height: 36px; padding: 0 14px; /* Sets the element height. */
+    /* ----- Grid layout ----- */
+    background: transparent; color: #DC2626; /* Sets the element background treatment. */
+    /* ----- Theme variables ----- */
+    border: 1.5px solid #fecaca; border-radius: var(--r-sm); /* Sets the border around the element. */
+    font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; /* Sets the text size. */
+    /* ----- Grid layout ----- */
+    display: inline-flex; align-items: center; gap: 5px; /* Controls how the element participates in layout. */
+    /* ----- Tables ----- */
+    transition: background .12s; /* Animates property changes smoothly. */
+}
+/* ----- Grid layout ----- */
+.pw-btn-cancel-sm:hover { background: #fef2f2; border-color: #DC2626; color: #DC2626; } /* Styles part of the ProducerDashboardAllOrders page or component. */
+
+.pw-empty { /* Starts styles for the .pw-empty selector. */
+    /* ----- Theme variables ----- */
+    padding: 64px 24px; text-align: center; color: var(--text-muted); /* Sets spacing inside the element. */
+    background: #fff; border: 1.5px solid var(--border); border-radius: var(--r-md); /* Sets the element background treatment. */
+}
+.pw-empty p { font-size: 14px; margin: 0; } /* Styles part of the ProducerDashboardAllOrders page or component. */
