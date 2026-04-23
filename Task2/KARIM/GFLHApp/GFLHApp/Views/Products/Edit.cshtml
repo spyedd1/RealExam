@@ -92,7 +92,7 @@
                     <div class="pw-field" style="margin-bottom:16px;"> @* Starts a layout container for this section. *@
  @* ----- Form Fields ----- *@
                         <label asp-for="ItemName">Product name <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
-                        <input asp-for="ItemName" class="pw-input" id="liveNameInput" placeholder="e.g. Fresh Organic Tomatoes" autocomplete="off" /> @* Binds this input to the matching model property. *@
+                        <input asp-for="ItemName" class="pw-input" id="liveNameInput" placeholder="e.g. Fresh Organic Tomatoes" autocomplete="off" minlength="3" maxlength="100" /> @* Binds this input to the matching model property. *@
  @* ----- Status Messages ----- *@
                         <span asp-validation-for="ItemName" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
                     </div> @* Closes the matching HTML element. *@
@@ -147,7 +147,7 @@
                     <div class="pw-field" style="margin-top:16px;"> @* Starts a layout container for this section. *@
  @* ----- Form Fields ----- *@
                         <label asp-for="Description">Description <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
-                        <textarea asp-for="Description" class="pw-textarea" placeholder="Tell customers about this product…" rows="4"></textarea> @* Renders a multi-line text input. *@
+                        <textarea asp-for="Description" class="pw-textarea" placeholder="Tell customers about this product..." rows="4" minlength="10" maxlength="500"></textarea> @* Renders a multi-line text input. *@
  @* ----- Status Messages ----- *@
                         <span asp-validation-for="Description" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
                     </div> @* Closes the matching HTML element. *@
@@ -166,7 +166,7 @@
                             <label asp-for="ItemPrice">Price (£) <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
                             <div class="pw-stepper" role="group" aria-label="Price"> @* Starts a layout container for this section. *@
                                 <button type="button" class="pw-stepper__btn" data-target="ItemPrice" data-action="dec" aria-label="Decrease price">−</button> @* Renders a button for the user action. *@
-                                <input asp-for="ItemPrice" class="pw-stepper__input" type="number" min="0" step="0.01" /> @* Binds this input to the matching model property. *@
+                                <input asp-for="ItemPrice" class="pw-stepper__input" type="number" min="0.01" max="200" step="0.01" /> @* Binds this input to the matching model property. *@
                                 <button type="button" class="pw-stepper__btn" data-target="ItemPrice" data-action="inc" aria-label="Increase price">+</button> @* Renders a button for the user action. *@
                             </div> @* Closes the matching HTML element. *@
  @* ----- Status Messages ----- *@
@@ -179,7 +179,7 @@
                             <label asp-for="QuantityInStock">Quantity in stock <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
                             <div class="pw-stepper" role="group" aria-label="Quantity in stock"> @* Starts a layout container for this section. *@
                                 <button type="button" class="pw-stepper__btn" data-target="QuantityInStock" data-action="dec" aria-label="Decrease quantity">−</button> @* Renders a button for the user action. *@
-                                <input asp-for="QuantityInStock" class="pw-stepper__input" type="number" min="0" step="1" /> @* Binds this input to the matching model property. *@
+                                <input asp-for="QuantityInStock" class="pw-stepper__input" type="number" min="0" max="1000000" step="1" /> @* Binds this input to the matching model property. *@
                                 <button type="button" class="pw-stepper__btn" data-target="QuantityInStock" data-action="inc" aria-label="Increase quantity">+</button> @* Renders a button for the user action. *@
                             </div> @* Closes the matching HTML element. *@
  @* ----- Status Messages ----- *@

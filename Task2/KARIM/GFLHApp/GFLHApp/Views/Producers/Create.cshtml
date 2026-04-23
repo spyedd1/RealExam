@@ -101,7 +101,7 @@
  @* ----- Form Fields ----- *@
                         <label asp-for="ProducerName">Producer / business name <span class="pw-field__req" aria-hidden="true">*</span></label> @* Renders a label tied to the model field. *@
                         <input asp-for="ProducerName" class="pw-input" id="producerName" @* Binds this input to the matching model property. *@
-                               placeholder="e.g. Green Valley Farm" autocomplete="organization" /> @* Renders part of the producers page markup. *@
+                               placeholder="e.g. Green Valley Farm" autocomplete="organization" minlength="3" maxlength="100" /> @* Renders part of the producers page markup. *@
  @* ----- Status Messages ----- *@
                         <span asp-validation-for="ProducerName" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
  @* ----- Styling Section ----- *@
@@ -139,7 +139,7 @@
                         <textarea asp-for="ProducerInformation" class="pw-textarea" id="producerInfo" @* Renders a multi-line text input. *@
  @* ----- Card Layout ----- *@
                                   placeholder="Tell customers about your farm, growing practices, certifications..." @* Renders part of the producers page markup. *@
-                                  rows="5"></textarea> @* Renders part of the producers page markup. *@
+                                  rows="5" minlength="10" maxlength="500"></textarea> @* Renders part of the producers page markup. *@
  @* ----- Status Messages ----- *@
                         <span asp-validation-for="ProducerInformation" class="pw-field__error"></span> @* Shows validation feedback for this model field. *@
  @* ----- Styling Section ----- *@

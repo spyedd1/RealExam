@@ -189,6 +189,10 @@ img { /* Starts styles for the img selector. */
     display: flex; /* Controls how the element participates in layout. */
     align-items: center; /* Aligns child items on the cross axis. */
     gap: 8px; /* Sets spacing between flex or grid children. */
+    /* ----- Theme variables ----- */
+    border-left: 1.5px solid var(--border); /* Visually separates nav links from action buttons. */
+    margin-left: 8px; /* Sets spacing outside the element. */
+    padding-left: 12px; /* Sets spacing inside the element. */
 }
 
 /* ----- Navigation ----- */
@@ -266,6 +270,8 @@ img { /* Starts styles for the img selector. */
 
 .pw-accessibility { /* Starts styles for the .pw-accessibility selector. */
     position: relative; /* Controls how the element is positioned on the page. */
+    display: flex; /* Controls how the element participates in layout. */
+    align-items: center; /* Aligns child items on the cross axis. */
 }
 
 .pw-accessibility__toggle { /* Starts styles for the .pw-accessibility__toggle selector. */
@@ -330,24 +336,24 @@ img { /* Starts styles for the img selector. */
         transform-origin: center; /* Sets the transform-origin style for this rule. */
     }
 
-    /* ----- Tables ----- */
-    .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(1) { /* Starts styles for the .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(1) selector. */
-        /* ----- Forms ----- */
-        transform: translateY(6px) rotate(45deg); /* Moves, scales, or rotates the element. */
-    }
+/* ----- Tables ----- */
+.pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(1) { /* Starts styles for the .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(1) selector. */
+    /* ----- Forms ----- */
+    transform: translateY(6px) rotate(45deg); /* Moves, scales, or rotates the element. */
+}
 
+/* ----- Tables ----- */
+.pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(2) { /* Starts styles for the .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(2) selector. */
+    /* ----- Animation ----- */
+    opacity: 0; /* Controls element transparency. */
     /* ----- Tables ----- */
-    .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(2) { /* Starts styles for the .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(2) selector. */
-        /* ----- Animation ----- */
-        opacity: 0; /* Controls element transparency. */
-        /* ----- Tables ----- */
-        width: 0; /* Sets the element width. */
-    }
+    width: 0; /* Sets the element width. */
+}
 
-    .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(3) { /* Starts styles for the .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(3) selector. */
-        /* ----- Forms ----- */
-        transform: translateY(-6px) rotate(-45deg); /* Moves, scales, or rotates the element. */
-    }
+.pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(3) { /* Starts styles for the .pw-accessibility.is-open .pw-accessibility__hamburger span:nth-child(3) selector. */
+    /* ----- Forms ----- */
+    transform: translateY(-6px) rotate(-45deg); /* Moves, scales, or rotates the element. */
+}
 
 .pw-accessibility__dropdown { /* Starts styles for the .pw-accessibility__dropdown selector. */
     position: absolute; /* Controls how the element is positioned on the page. */
@@ -372,8 +378,16 @@ img { /* Starts styles for the img selector. */
 /* ----- Animation ----- */
 @keyframes pw-a11y-in { /* Defines an animation sequence used by this page. */
     /* ----- Forms ----- */
-    from { opacity: 0; transform: scale(.95) translateY(-6px); } /* Defines one point in the animation timeline. */
-    to   { opacity: 1; transform: scale(1)  translateY(0);     } /* Defines one point in the animation timeline. */
+    from {
+        opacity: 0;
+        transform: scale(.95) translateY(-6px);
+    }
+    /* Defines one point in the animation timeline. */
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    /* Defines one point in the animation timeline. */
 }
 
 .pw-accessibility__dropdown::before { /* Starts styles for the .pw-accessibility__dropdown::before selector. */
@@ -2803,7 +2817,10 @@ img { /* Starts styles for the img selector. */
         width: 100%; /* Sets the element width. */
         /* ----- Theme variables ----- */
         border-top: 1px solid var(--border); /* Sets the border-top style for this rule. */
+        border-left: none; /* Resets the desktop separator for mobile. */
         padding-top: 24px; /* Sets the padding-top style for this rule. */
+        padding-left: 0; /* Sets the padding-left style for this rule. */
+        margin-left: 0; /* Sets the margin-left style for this rule. */
     }
 
         /* ----- Navigation ----- */
@@ -4197,26 +4214,25 @@ img { /* Starts styles for the img selector. */
 /* ----- Base layout ----- */
 body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     /* ----- Theme variables ----- */
-    --cream:      #0f172a; /* Sets the --cream style for this rule. */
-    --cream-2:    #1e293b; /* Sets the --cream-2 style for this rule. */
-    --cream-3:    #162032; /* Sets the --cream-3 style for this rule. */
-    --white:      #1e293b; /* Sets the --white style for this rule. */
-    --border:     #334155; /* Sets the --border style for this rule. */
-    --text:       #f1f5f9; /* Sets the --text style for this rule. */
+    --cream: #0f172a; /* Sets the --cream style for this rule. */
+    --cream-2: #1e293b; /* Sets the --cream-2 style for this rule. */
+    --cream-3: #162032; /* Sets the --cream-3 style for this rule. */
+    --white: #1e293b; /* Sets the --white style for this rule. */
+    --border: #334155; /* Sets the --border style for this rule. */
+    --text: #f1f5f9; /* Sets the --text style for this rule. */
     --text-muted: #94a3b8; /* Sets the --text-muted style for this rule. */
     --text-light: #64748b; /* Sets the --text-light style for this rule. */
 
-    --green-100:  rgba(22, 163, 74, 0.14); /* Sets the --green-100 style for this rule. */
-    --green-200:  rgba(22, 163, 74, 0.24); /* Sets the --green-200 style for this rule. */
+    --green-100: rgba(22, 163, 74, 0.14); /* Sets the --green-100 style for this rule. */
+    --green-200: rgba(22, 163, 74, 0.24); /* Sets the --green-200 style for this rule. */
     --purple-100: rgba(139, 92, 246, 0.14); /* Sets the --purple-100 style for this rule. */
-    --pink-100:   rgba(236, 72, 153, 0.14); /* Sets the --pink-100 style for this rule. */
+    --pink-100: rgba(236, 72, 153, 0.14); /* Sets the --pink-100 style for this rule. */
     --orange-100: rgba(249, 115, 22, 0.14); /* Sets the --orange-100 style for this rule. */
     --yellow-100: rgba(245, 158, 11, 0.14); /* Sets the --yellow-100 style for this rule. */
 
     --shadow-sm: 0 1px 4px rgba(0, 0, 0, .35); /* Sets the --shadow-sm style for this rule. */
     --shadow-md: 0 4px 16px rgba(0, 0, 0, .45); /* Sets the --shadow-md style for this rule. */
     --shadow-lg: 0 8px 40px rgba(0, 0, 0, .55); /* Sets the --shadow-lg style for this rule. */
-
     /* ----- Grid layout ----- */
     background-color: #0f172a; /* Sets the element background color. */
     /* ----- Theme variables ----- */
@@ -4259,12 +4275,12 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
         border-color: var(--border) !important; /* Sets the border-color style for this rule. */
     }
 
-    /* ----- Base layout ----- */
-    body.dark-mode .form-control::placeholder, /* Continues a selector or value list on the next line. */
-    body.dark-mode textarea::placeholder { /* Starts styles for the body.dark-mode textarea::placeholder selector. */
-        /* ----- Theme variables ----- */
-        color: var(--text-light) !important; /* Sets the text color. */
-    }
+        /* ----- Base layout ----- */
+        body.dark-mode .form-control::placeholder, /* Continues a selector or value list on the next line. */
+        body.dark-mode textarea::placeholder { /* Starts styles for the body.dark-mode textarea::placeholder selector. */
+            /* ----- Theme variables ----- */
+            color: var(--text-light) !important; /* Sets the text color. */
+        }
 
     /* ----- Base layout ----- */
     body.dark-mode .table { /* Starts styles for the body.dark-mode .table selector. */
@@ -4273,14 +4289,14 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
         border-color: var(--border); /* Sets the border-color style for this rule. */
     }
 
-    /* ----- Base layout ----- */
-    body.dark-mode .table > :not(caption) > * > * { /* Starts styles for the body.dark-mode .table > :not(caption) > * > * selector. */
-        /* ----- Grid layout ----- */
-        background-color: transparent; /* Sets the element background color. */
-        /* ----- Theme variables ----- */
-        color: var(--text); /* Sets the text color. */
-        border-color: var(--border); /* Sets the border-color style for this rule. */
-    }
+        /* ----- Base layout ----- */
+        body.dark-mode .table > :not(caption) > * > * { /* Starts styles for the body.dark-mode .table > :not(caption) > * > * selector. */
+            /* ----- Grid layout ----- */
+            background-color: transparent; /* Sets the element background color. */
+            /* ----- Theme variables ----- */
+            color: var(--text); /* Sets the text color. */
+            border-color: var(--border); /* Sets the border-color style for this rule. */
+        }
 
     /* ----- Base layout ----- */
     body.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > * { /* Starts styles for the body.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > * selector. */
@@ -4331,14 +4347,14 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
         color: var(--text); /* Sets the text color. */
     }
 
-    /* ----- Base layout ----- */
-    body.dark-mode .dropdown-item:hover, /* Continues a selector or value list on the next line. */
-    body.dark-mode .dropdown-item:focus { /* Starts styles for the body.dark-mode .dropdown-item:focus selector. */
-        /* ----- Grid layout ----- */
-        background-color: rgba(255, 255, 255, 0.08); /* Sets the element background color. */
-        /* ----- Theme variables ----- */
-        color: var(--text); /* Sets the text color. */
-    }
+        /* ----- Base layout ----- */
+        body.dark-mode .dropdown-item:hover, /* Continues a selector or value list on the next line. */
+        body.dark-mode .dropdown-item:focus { /* Starts styles for the body.dark-mode .dropdown-item:focus selector. */
+            /* ----- Grid layout ----- */
+            background-color: rgba(255, 255, 255, 0.08); /* Sets the element background color. */
+            /* ----- Theme variables ----- */
+            color: var(--text); /* Sets the text color. */
+        }
 
     body.dark-mode .pw-badge--green { /* Starts styles for the body.dark-mode .pw-badge--green selector. */
         background: rgba(22, 163, 74, 0.2); /* Sets the element background treatment. */
@@ -4350,6 +4366,7 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     body.dark-mode .pw-footer { /* Starts styles for the body.dark-mode .pw-footer selector. */
         background: #0b1220; /* Sets the element background treatment. */
     }
+
     body.dark-mode .pw-footer__links a:hover { /* Starts styles for the body.dark-mode .pw-footer__links a:hover selector. */
         /* ----- Grid layout ----- */
         color: #fff; /* Sets the text color. */
@@ -4411,19 +4428,19 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     /* ----- Base layout ----- */
     body.dark-mode .oc-hero { /* Starts styles for the body.dark-mode .oc-hero selector. */
         background: /* Styles part of the site page or component. */
-            linear-gradient(135deg, rgba(15, 23, 42, .97), rgba(26, 46, 26, .93)), /* Continues a selector or value list on the next line. */
-            /* ----- Product styling ----- */
-            url("/images/products/apple.jpg") center 42% / cover; /* Styles part of the site page or component. */
+        linear-gradient(135deg, rgba(15, 23, 42, .97), rgba(26, 46, 26, .93)), /* Continues a selector or value list on the next line. */
+        /* ----- Product styling ----- */
+        url("/images/products/apple.jpg") center 42% / cover; /* Styles part of the site page or component. */
     }
 
-    /* ----- Base layout ----- */
-    body.dark-mode .oc-hero::before { /* Starts styles for the body.dark-mode .oc-hero::before selector. */
-        background: /* Styles part of the site page or component. */
+        /* ----- Base layout ----- */
+        body.dark-mode .oc-hero::before { /* Starts styles for the body.dark-mode .oc-hero::before selector. */
+            background: /* Styles part of the site page or component. */
             /* ----- Tables ----- */
             radial-gradient(circle at 20% 22%, rgba(245,158,11,.07), transparent 28%), /* Continues a selector or value list on the next line. */
             radial-gradient(circle at 82% 18%, rgba(22,163,74,.09), transparent 30%), /* Continues a selector or value list on the next line. */
             linear-gradient(180deg, rgba(15,23,42,.35), rgba(15,23,42,.04)); /* Styles part of the site page or component. */
-    }
+        }
 
     /* ----- Base layout ----- */
     body.dark-mode .oc-hero__field { /* Starts styles for the body.dark-mode .oc-hero__field selector. */
@@ -4501,6 +4518,7 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     body.dark-mode .pw-trust-bar { /* Starts styles for the body.dark-mode .pw-trust-bar selector. */
         background: #0b1220; /* Sets the element background treatment. */
     }
+
     body.dark-mode .pw-stat__value, /* Continues a selector or value list on the next line. */
     body.dark-mode .pw-stat__label { /* Starts styles for the body.dark-mode .pw-stat__label selector. */
         /* ----- Grid layout ----- */
@@ -4524,20 +4542,21 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
         color: #fff; /* Sets the text color. */
         border-color: rgba(255,255,255,.35); /* Sets the border-color style for this rule. */
     }
-    /* ----- Theme variables ----- */
-    body.dark-mode .pw-btn--ghost-dark:hover { /* Starts styles for the body.dark-mode .pw-btn--ghost-dark:hover selector. */
-        background: rgba(255,255,255,.1); /* Sets the element background treatment. */
-        /* ----- Grid layout ----- */
-        color: #fff; /* Sets the text color. */
-    }
+        /* ----- Theme variables ----- */
+        body.dark-mode .pw-btn--ghost-dark:hover { /* Starts styles for the body.dark-mode .pw-btn--ghost-dark:hover selector. */
+            background: rgba(255,255,255,.1); /* Sets the element background treatment. */
+            /* ----- Grid layout ----- */
+            color: #fff; /* Sets the text color. */
+        }
 
     /* ----- Base layout ----- */
     body.dark-mode .pw-orders-hero { /* Starts styles for the body.dark-mode .pw-orders-hero selector. */
         background: linear-gradient(140deg, #0f172a 0%, #162032 55%, rgba(22,163,74,.14) 100%); /* Sets the element background treatment. */
     }
-    body.dark-mode .pw-orders-hero .pw-hero__wave path { /* Starts styles for the body.dark-mode .pw-orders-hero .pw-hero__wave path selector. */
-        fill: #1e293b; /* matches pw-section--white → var(--white) in dark */
-    }
+
+        body.dark-mode .pw-orders-hero .pw-hero__wave path { /* Starts styles for the body.dark-mode .pw-orders-hero .pw-hero__wave path selector. */
+            fill: #1e293b; /* matches pw-section--white → var(--white) in dark */
+        }
 
     body.dark-mode .pw-auth-card__footer { /* Starts styles for the body.dark-mode .pw-auth-card__footer selector. */
         background: #162032; /* Sets the element background treatment. */
@@ -4548,25 +4567,31 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     /* ----- Base layout ----- */
     body.dark-mode .oc-hero { /* Starts styles for the body.dark-mode .oc-hero selector. */
         background: /* Styles part of the site page or component. */
-            linear-gradient(160deg, rgba(10,20,40,.58) 0%, rgba(5,25,15,.52) 100%), /* Continues a selector or value list on the next line. */
-            /* ----- Product styling ----- */
-            url("/images/products/apple.jpg") center 42% / cover; /* Styles part of the site page or component. */
+        linear-gradient(160deg, rgba(10,20,40,.58) 0%, rgba(5,25,15,.52) 100%), /* Continues a selector or value list on the next line. */
+        /* ----- Product styling ----- */
+        url("/images/products/apple.jpg") center 42% / cover; /* Styles part of the site page or component. */
     }
-    /* ----- Base layout ----- */
-    body.dark-mode .oc-hero::before { /* Starts styles for the body.dark-mode .oc-hero::before selector. */
-        background: /* Styles part of the site page or component. */
+        /* ----- Base layout ----- */
+        body.dark-mode .oc-hero::before { /* Starts styles for the body.dark-mode .oc-hero::before selector. */
+            background: /* Styles part of the site page or component. */
             /* ----- Tables ----- */
             radial-gradient(circle at 20% 22%, rgba(245,158,11,.06), transparent 28%), /* Continues a selector or value list on the next line. */
             radial-gradient(circle at 82% 18%, rgba(22,163,74,.08), transparent 30%); /* Styles part of the site page or component. */
-    }
+        }
     /* ----- Base layout ----- */
     body.dark-mode .oc-hero__field { /* Starts styles for the body.dark-mode .oc-hero__field selector. */
         /* ----- Tables ----- */
         background: linear-gradient(180deg, transparent, rgba(10,20,40,.72)); /* Sets the element background treatment. */
     }
     /* ----- Base layout ----- */
-    body.dark-mode .oc-hero__title { color: #f1f5f9; } /* Styles part of the site page or component. */
-    body.dark-mode .oc-hero__sub   { color: rgba(241,245,249,.75); } /* Styles part of the site page or component. */
+    body.dark-mode .oc-hero__title {
+        color: #f1f5f9;
+    }
+    /* Styles part of the site page or component. */
+    body.dark-mode .oc-hero__sub {
+        color: rgba(241,245,249,.75);
+    }
+    /* Styles part of the site page or component. */
 
     body.dark-mode .adm-stat { /* Starts styles for the body.dark-mode .adm-stat selector. */
         background: #1e293b; /* Sets the element background treatment. */
@@ -4600,30 +4625,32 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     body.dark-mode .adm-content { /* Starts styles for the body.dark-mode .adm-content selector. */
         background: #0f172a; /* Sets the element background treatment. */
     }
+
     body.dark-mode .adm-topbar { /* Starts styles for the body.dark-mode .adm-topbar selector. */
         background: #1e293b; /* Sets the element background treatment. */
         /* ----- Theme variables ----- */
         border-bottom-color: var(--border); /* Sets the border-bottom-color style for this rule. */
     }
-    /* ----- Base layout ----- */
-    body.dark-mode .adm-topbar .pw-accessibility__toggle { /* Starts styles for the body.dark-mode .adm-topbar .pw-accessibility__toggle selector. */
-        background: #0f172a; /* Sets the element background treatment. */
-        /* ----- Theme variables ----- */
-        color: var(--text-muted); /* Sets the text color. */
-        border-color: var(--border); /* Sets the border-color style for this rule. */
-    }
-    /* ----- Base layout ----- */
-    body.dark-mode .adm-topbar .pw-accessibility__toggle:hover, /* Continues a selector or value list on the next line. */
-    body.dark-mode .adm-topbar .pw-accessibility.is-open .pw-accessibility__toggle { /* Starts styles for the body.dark-mode .adm-topbar .pw-accessibility.is-open .pw-accessibility__toggle selector. */
-        /* ----- Theme variables ----- */
-        background: var(--green-100); /* Sets the element background treatment. */
-        color: var(--text); /* Sets the text color. */
-        border-color: var(--green-200); /* Sets the border-color style for this rule. */
-    }
+        /* ----- Base layout ----- */
+        body.dark-mode .adm-topbar .pw-accessibility__toggle { /* Starts styles for the body.dark-mode .adm-topbar .pw-accessibility__toggle selector. */
+            background: #0f172a; /* Sets the element background treatment. */
+            /* ----- Theme variables ----- */
+            color: var(--text-muted); /* Sets the text color. */
+            border-color: var(--border); /* Sets the border-color style for this rule. */
+        }
+            /* ----- Base layout ----- */
+            body.dark-mode .adm-topbar .pw-accessibility__toggle:hover, /* Continues a selector or value list on the next line. */
+            body.dark-mode .adm-topbar .pw-accessibility.is-open .pw-accessibility__toggle { /* Starts styles for the body.dark-mode .adm-topbar .pw-accessibility.is-open .pw-accessibility__toggle selector. */
+                /* ----- Theme variables ----- */
+                background: var(--green-100); /* Sets the element background treatment. */
+                color: var(--text); /* Sets the text color. */
+                border-color: var(--green-200); /* Sets the border-color style for this rule. */
+            }
     /* ----- Base layout ----- */
     body.dark-mode .adm-card { /* Starts styles for the body.dark-mode .adm-card selector. */
         background: #1e293b; /* Sets the element background treatment. */
     }
+
     body.dark-mode .adm-card__head, /* Continues a selector or value list on the next line. */
     body.dark-mode .adm-results-info { /* Starts styles for the body.dark-mode .adm-results-info selector. */
         background: #0f172a; /* Sets the element background treatment. */
@@ -4634,9 +4661,11 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     body.dark-mode .adm-bar-row__track { /* Starts styles for the body.dark-mode .adm-bar-row__track selector. */
         background: #0f172a; /* Sets the element background treatment. */
     }
+
     body.dark-mode .adm-top-row:hover { /* Starts styles for the body.dark-mode .adm-top-row:hover selector. */
         background: rgba(255,255,255,.04); /* Sets the element background treatment. */
     }
+
     body.dark-mode .adm-table tr:hover td { /* Starts styles for the body.dark-mode .adm-table tr:hover td selector. */
         background: rgba(255,255,255,.04); /* Sets the element background treatment. */
     }
@@ -4645,6 +4674,7 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
         background: rgba(255,255,255,.08); /* Sets the element background treatment. */
         color: var(--text-muted); /* Sets the text color. */
     }
+
     body.dark-mode .adm-badge--partial { /* Starts styles for the body.dark-mode .adm-badge--partial selector. */
         /* ----- Grid layout ----- */
         color: #fcd34d; /* Sets the text color. */
@@ -4678,6 +4708,7 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     body.dark-mode .adm-role-remove:hover { /* Starts styles for the body.dark-mode .adm-role-remove:hover selector. */
         background: rgba(220,38,38,.12); /* Sets the element background treatment. */
     }
+
     body.dark-mode .adm-avail-toggle__track::after { /* Starts styles for the body.dark-mode .adm-avail-toggle__track::after selector. */
         background: #94a3b8; /* Sets the element background treatment. */
     }
@@ -4713,6 +4744,7 @@ body.dark-mode { /* Starts styles for the body.dark-mode selector. */
     body.dark-mode .pw-section-card { /* Starts styles for the body.dark-mode .pw-section-card selector. */
         background: #1e293b; /* Sets the element background treatment. */
     }
+
     body.dark-mode .pw-dash-header { /* Starts styles for the body.dark-mode .pw-dash-header selector. */
         background: linear-gradient(160deg, #0f172a 0%, #1a2a1a 100%); /* Sets the element background treatment. */
     }
@@ -4758,10 +4790,11 @@ body.high-contrast html { /* Starts styles for the body.high-contrast html selec
     }
 
     /* ----- Base layout ----- */
-body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus selector. */
+    body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus selector. */
         outline: 3px solid cyan !important; /* Sets the outline style for this rule. */
         outline-offset: 3px; /* Sets the outline-offset style for this rule. */
     }
+
 }
 
 /* ----- About page ----- */
@@ -4774,10 +4807,7 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     overflow: clip;
     margin-top: 0;
     padding: 2.75rem 0 5.5rem;
-    background:
-        radial-gradient(circle at 12% 18%, rgba(249, 115, 22, 0.14), transparent 24%),
-        radial-gradient(circle at 84% 14%, rgba(22, 163, 74, 0.18), transparent 28%),
-        linear-gradient(135deg, #fff7da 0%, #fffdf4 50%, #ecfdf3 100%);
+    background: radial-gradient(circle at 12% 18%, rgba(249, 115, 22, 0.14), transparent 24%), radial-gradient(circle at 84% 14%, rgba(22, 163, 74, 0.18), transparent 28%), linear-gradient(135deg, #fff7da 0%, #fffdf4 50%, #ecfdf3 100%);
 }
 
 .au-hero__inner {
@@ -4809,11 +4839,11 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     color: var(--text);
 }
 
-.au-hero__title em {
-    display: block;
-    font-style: normal;
-    color: var(--green);
-}
+    .au-hero__title em {
+        display: block;
+        font-style: normal;
+        color: var(--green);
+    }
 
 .au-hero__sub {
     max-width: 38rem;
@@ -4850,18 +4880,18 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
 }
 
-.au-jump-link:hover,
-.au-jump-link.is-active {
-    transform: translateY(-1px);
-    background: var(--green-100);
-    border-color: rgba(21, 128, 61, 0.24);
-    color: var(--green-900);
-}
+    .au-jump-link:hover,
+    .au-jump-link.is-active {
+        transform: translateY(-1px);
+        background: var(--green-100);
+        border-color: rgba(21, 128, 61, 0.24);
+        color: var(--green-900);
+    }
 
-.au-jump-link:focus-visible {
-    outline: 3px solid var(--green);
-    outline-offset: 3px;
-}
+    .au-jump-link:focus-visible {
+        outline: 3px solid var(--green);
+        outline-offset: 3px;
+    }
 
 .au-hero__visual {
     position: relative;
@@ -4890,15 +4920,15 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     transition: transform .7s cubic-bezier(.22,1,.36,1), box-shadow .45s ease, border-color .45s ease;
 }
 
-.au-hero__card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, transparent 18%, rgba(255,255,255,.38) 42%, transparent 66%);
-    transform: translateX(-130%);
-    transition: transform .9s cubic-bezier(.22,1,.36,1);
-    pointer-events: none;
-}
+    .au-hero__card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent 18%, rgba(255,255,255,.38) 42%, transparent 66%);
+        transform: translateX(-130%);
+        transition: transform .9s cubic-bezier(.22,1,.36,1);
+        pointer-events: none;
+    }
 
 .au-hero__image {
     width: 100%;
@@ -4913,10 +4943,10 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     padding: 1.25rem 1.25rem 1.4rem;
 }
 
-.au-hero__card-copy p {
-    margin: 0.45rem 0 0;
-    color: var(--text-muted);
-}
+    .au-hero__card-copy p {
+        margin: 0.45rem 0 0;
+        color: var(--text-muted);
+    }
 
 .au-hero__eyebrow {
     font-size: 0.78rem;
@@ -4947,23 +4977,23 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     transition: transform .75s cubic-bezier(.22,1,.36,1), box-shadow .45s ease, border-color .45s ease, background .45s ease;
 }
 
-.au-hero__mini-card:nth-child(1) {
-    --au-mini-translate-y: 0.8rem;
-    --au-mini-rotate: -4deg;
-    --au-mini-hover-rotate: -0.7deg;
-}
+    .au-hero__mini-card:nth-child(1) {
+        --au-mini-translate-y: 0.8rem;
+        --au-mini-rotate: -4deg;
+        --au-mini-hover-rotate: -0.7deg;
+    }
 
-.au-hero__mini-card:nth-child(2) {
-    --au-mini-translate-y: -0.45rem;
-    --au-mini-rotate: 4deg;
-    --au-mini-hover-rotate: 0.7deg;
-}
+    .au-hero__mini-card:nth-child(2) {
+        --au-mini-translate-y: -0.45rem;
+        --au-mini-rotate: 4deg;
+        --au-mini-hover-rotate: 0.7deg;
+    }
 
-.au-hero__mini-card span {
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: var(--text);
-}
+    .au-hero__mini-card span {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--text);
+    }
 
 .au-hero__mini-image {
     width: 100%;
@@ -5004,9 +5034,9 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     border-color: rgba(21, 128, 61, 0.18);
 }
 
-.au-hero__visual:hover .au-hero__card::after {
-    transform: translateX(130%);
-}
+    .au-hero__visual:hover .au-hero__card::after {
+        transform: translateX(130%);
+    }
 
 .au-hero__visual:hover .au-hero__image {
     transform: scale(1.06);
@@ -5020,10 +5050,10 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     background: rgba(255, 255, 255, 0.98);
 }
 
-.au-hero__mini-card:hover .au-hero__mini-image {
-    transform: scale(1.08);
-    filter: saturate(1.08);
-}
+    .au-hero__mini-card:hover .au-hero__mini-image {
+        transform: scale(1.08);
+        filter: saturate(1.08);
+    }
 
 .au-hero__wave {
     position: absolute;
@@ -5045,23 +5075,23 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.75));
 }
 
-.au-story__panel h3,
-.au-value-card h3,
-.au-promise__panel h3 {
-    margin: 0 0 0.65rem;
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    line-height: 1.1;
-}
+    .au-story__panel h3,
+    .au-value-card h3,
+    .au-promise__panel h3 {
+        margin: 0 0 0.65rem;
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        line-height: 1.1;
+    }
 
-.au-story__panel p,
-.au-value-card p,
-.au-promise__lead,
-.au-impact__intro p,
-.au-impact__label,
-.au-promise__list span {
-    color: var(--text-muted);
-}
+    .au-story__panel p,
+    .au-value-card p,
+    .au-promise__lead,
+    .au-impact__intro p,
+    .au-impact__label,
+    .au-promise__list span {
+        color: var(--text-muted);
+    }
 
 .au-story__step {
     display: inline-flex;
@@ -5103,10 +5133,10 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     color: var(--green-800);
 }
 
-.au-value-card__icon i {
-    width: 1.3rem;
-    height: 1.3rem;
-}
+    .au-value-card__icon i {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
 
 .au-impact {
     display: grid;
@@ -5131,20 +5161,20 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
     list-style: none;
 }
 
-.au-impact__list li,
-.au-promise__list li {
-    display: flex;
-    align-items: start;
-    gap: 0.75rem;
-}
+    .au-impact__list li,
+    .au-promise__list li {
+        display: flex;
+        align-items: start;
+        gap: 0.75rem;
+    }
 
-.au-impact__list i,
-.au-promise__list i {
-    flex-shrink: 0;
-    width: 1.15rem;
-    height: 1.15rem;
-    color: currentColor;
-}
+    .au-impact__list i,
+    .au-promise__list i {
+        flex-shrink: 0;
+        width: 1.15rem;
+        height: 1.15rem;
+        color: currentColor;
+    }
 
 .au-impact__stats {
     display: grid;
@@ -5265,11 +5295,11 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
         flex-direction: column;
     }
 
-    .au-hero__actions .pw-btn,
-    .au-promise__actions .pw-btn {
-        width: 100%;
-        justify-content: center;
-    }
+        .au-hero__actions .pw-btn,
+        .au-promise__actions .pw-btn {
+            width: 100%;
+            justify-content: center;
+        }
 
     .au-jump-nav,
     .au-values,
@@ -5304,18 +5334,15 @@ body.high-contrast :focus { /* Starts styles for the body.high-contrast :focus s
         transition: none;
     }
 
-    .au-hero__card,
-    .au-hero__mini-card:nth-child(1),
-    .au-hero__mini-card:nth-child(2) {
-        transform: none;
-    }
+        .au-hero__card,
+        .au-hero__mini-card:nth-child(1),
+        .au-hero__mini-card:nth-child(2) {
+            transform: none;
+        }
 }
 
 body.dark-mode .au-hero {
-    background:
-        radial-gradient(circle at 14% 22%, rgba(249, 115, 22, 0.10), transparent 24%),
-        radial-gradient(circle at 84% 18%, rgba(34, 197, 94, 0.12), transparent 28%),
-        linear-gradient(135deg, #0f172a 0%, #162032 50%, #112a1a 100%);
+    background: radial-gradient(circle at 14% 22%, rgba(249, 115, 22, 0.10), transparent 24%), radial-gradient(circle at 84% 18%, rgba(34, 197, 94, 0.12), transparent 28%), linear-gradient(135deg, #0f172a 0%, #162032 50%, #112a1a 100%);
 }
 
 body.dark-mode .au-hero__title,
@@ -5343,24 +5370,24 @@ body.dark-mode .au-promise__panel {
     color: #e2e8f0;
 }
 
-body.dark-mode .au-hero__visual:hover .au-hero__card,
-body.dark-mode .au-hero__mini-card:hover {
-    border-color: rgba(134, 239, 172, 0.22);
-    box-shadow: 0 18px 52px rgba(0, 0, 0, 0.32);
-}
+    body.dark-mode .au-hero__visual:hover .au-hero__card,
+    body.dark-mode .au-hero__mini-card:hover {
+        border-color: rgba(134, 239, 172, 0.22);
+        box-shadow: 0 18px 52px rgba(0, 0, 0, 0.32);
+    }
 
-body.dark-mode .au-jump-link:hover,
-body.dark-mode .au-jump-link.is-active {
-    background: rgba(34, 197, 94, 0.18);
-    color: #bbf7d0;
-}
+    body.dark-mode .au-jump-link:hover,
+    body.dark-mode .au-jump-link.is-active {
+        background: rgba(34, 197, 94, 0.18);
+        color: #bbf7d0;
+    }
 
-body.dark-mode .au-hero__card-copy p,
-body.dark-mode .au-hero__mini-card span,
-body.dark-mode .au-story__step,
-body.dark-mode .au-value-card__icon {
-    color: #dcfce7;
-}
+    body.dark-mode .au-hero__card-copy p,
+    body.dark-mode .au-hero__mini-card span,
+    body.dark-mode .au-story__step,
+    body.dark-mode .au-value-card__icon {
+        color: #dcfce7;
+    }
 
 body.dark-mode .au-impact__intro,
 body.dark-mode .au-impact__stat {

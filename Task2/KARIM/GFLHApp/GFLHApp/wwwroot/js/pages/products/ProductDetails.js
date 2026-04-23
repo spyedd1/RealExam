@@ -48,18 +48,23 @@
         var parent  = ctrl.closest('.pw-add-group') || ctrl.closest('.pw-detail__add-row'); // Stores the parent value for later script logic.
         // ----- DOM references -----
         var hidden  = parent ? parent.querySelector('.pw-qty-value') : null; // Stores the hidden DOM element reference.
+        var maxStock = parseInt(ctrl.getAttribute('data-max-stock') || '99', 10); // Reads the maximum selectable quantity for this product.
+        if (!Number.isFinite(maxStock) || maxStock < 1) maxStock = 1; // Falls back to a safe minimum when the stock value is missing.
 
         // ----- Helpers -----
         function getQty() { return parseInt(display.textContent) || 1; } // Defines the getQty helper function.
         function setQty(n) { // Defines the setQty helper function.
-            n = Math.max(1, Math.min(99, n)); // Updates n for the current script state.
+            n = Math.max(1, Math.min(maxStock, n)); // Updates n for the current script state.
             display.textContent = n; // Updates display.textContent for the current script state.
             // ----- State updates -----
             if (hidden) hidden.value = n; // Checks the condition before running the next script step.
+            if (dec) dec.disabled = n <= 1; // Updates the decrease button state at the boundaries.
+            if (inc) inc.disabled = n >= maxStock; // Updates the increase button state at the boundaries.
         }
         // ----- Event wiring -----
         if (dec) dec.addEventListener('click', function () { setQty(getQty() - 1); }); // Registers an event handler for user or browser interaction.
         if (inc) inc.addEventListener('click', function () { setQty(getQty() + 1); }); // Registers an event handler for user or browser interaction.
+        setQty(getQty()); // Syncs the initial display, hidden input, and button states.
     });
 
     // ----- Helpers -----

@@ -91,6 +91,12 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
                 return RedirectToAction("Index", "Products"); // Redirects the browser to the next MVC action.
             }
 
+            if (product.QuantityInStock <= 0) // Checks whether the product has any stock remaining.
+            {
+                TempData["Error"] = "This product is out of stock and cannot be added to your basket."; // Stores a one-request notification message for the redirected page.
+                return RedirectToAction("Index", "Products"); // Redirects the browser to the next MVC action.
+            }
+
             // Set user ID
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Gets the current signed-in user's Identity id from claims.
 
@@ -122,6 +128,12 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
 
             if (basketProduct != null) // Runs the next step only when the record exists.
             {
+                if (basketProduct.ProductQuantity >= product.QuantityInStock) // Checks whether the basket line is already at the stock limit.
+                {
+                    TempData["Error"] = $"You can only add up to {product.QuantityInStock} of {product.ItemName}."; // Stores a one-request notification message for the redirected page.
+                    return RedirectToAction("Index", "Products"); // Redirects the browser to the next MVC action.
+                }
+
                 // Add to basket
                 basketProduct.ProductQuantity++; // Increases the existing basket line quantity by one.
             }
@@ -183,6 +195,9 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             if (!product.Available) // Checks the condition that controls the next action.
                 return Json(new { success = false, message = "This product is currently unavailable." }); // Returns a JSON response for client-side code.
 
+            if (product.QuantityInStock <= 0) // Checks whether the product has any stock remaining.
+                return Json(new { success = false, message = "This product is out of stock." }); // Returns a JSON response for client-side code.
+
             // Set user ID
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Gets the current signed-in user's Identity id from claims.
             if (userId == null) // Checks that a signed-in user id is available.
@@ -201,6 +216,15 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             // Basket lookup
             var basketProduct = await _context.BasketProducts // Sets basketProduct to the value needed by the workflow.
                 .FirstOrDefaultAsync(bp => bp.BasketId == basket.BasketId && bp.ProductsId == ProductsId); // Fetches the first matching record or null if none exists.
+
+            var existingQuantity = basketProduct?.ProductQuantity ?? 0; // Reads the current basket quantity for stock validation.
+            var remainingStock = product.QuantityInStock - existingQuantity; // Calculates how many more units can still be added.
+
+            if (remainingStock <= 0) // Checks whether the user has already reached the stock limit for this basket line.
+                return Json(new { success = false, message = $"You already have the maximum available stock of {product.ItemName} in your basket." }); // Returns a JSON response for client-side code.
+
+            if (Quantity > remainingStock) // Checks whether the request would exceed the remaining stock.
+                return Json(new { success = false, message = $"You can only add {remainingStock} more of {product.ItemName}." }); // Returns a JSON response for client-side code.
 
             if (basketProduct != null) // Runs the next step only when the record exists.
                 // Add to basket
@@ -221,7 +245,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
                 .Where(bp => bp.BasketId == basket.BasketId) // Filters the query to only the relevant records.
                 .SumAsync(bp => bp.ProductQuantity); // Calculates the total from the matching records.
 
-            return Json(new { success = true, basketCount, itemName = product.ItemName, quantity = Quantity }); // Returns a JSON response for client-side code.
+            return Json(new { success = true, basketCount, itemName = product.ItemName, quantity = Quantity, maxStock = product.QuantityInStock, basketQuantity = existingQuantity + Quantity }); // Returns a JSON response for client-side code.
         }
 
         // ----- Edit Actions -----

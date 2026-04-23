@@ -1,4 +1,4 @@
-﻿namespace GFLHApp.Models
+namespace GFLHApp.Models
 {
     public class Producers
     {

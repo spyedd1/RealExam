@@ -311,7 +311,7 @@
  @* ----- Card Layout ----- *@
                         <div class="pw-detail__add-row"> @* Starts a layout container for this section. *@
  @* ----- Form Fields ----- *@
-                            <div class="pw-qty-control" role="group" aria-label="Quantity"> @* Starts a layout container for this section. *@
+                            <div class="pw-qty-control" role="group" aria-label="Quantity" data-max-stock="@Model.QuantityInStock"> @* Starts a layout container for this section. *@
                                 <button type="button" class="pw-qty-btn pw-qty-dec" aria-label="Decrease quantity">−</button> @* Renders a button for the user action. *@
  @* ----- Styling Section ----- *@
                                 <span class="pw-qty-display" aria-live="polite" aria-atomic="true">1</span> @* Renders inline text or badge content. *@
@@ -557,7 +557,7 @@
  @* ----- Styling Section ----- *@
                                     <div class="pw-add-group"> @* Starts a layout container for this section. *@
  @* ----- Form Fields ----- *@
-                                        <div class="pw-qty-control" role="group" aria-label="Quantity"> @* Starts a layout container for this section. *@
+                                        <div class="pw-qty-control" role="group" aria-label="Quantity" data-max-stock="@other.QuantityInStock"> @* Starts a layout container for this section. *@
                                             <button type="button" class="pw-qty-btn pw-qty-dec" aria-label="Decrease">−</button> @* Renders a button for the user action. *@
  @* ----- Styling Section ----- *@
                                             <span class="pw-qty-display">1</span> @* Renders inline text or badge content. *@

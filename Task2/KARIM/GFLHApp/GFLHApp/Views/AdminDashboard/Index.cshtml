@@ -245,16 +245,23 @@
             </div> @* Closes the matching HTML element. *@
             <div style="padding:10px;display:flex;flex-direction:column;gap:4px;"> @* Starts a layout container for this section. *@
  @* ----- Loop Rendering ----- *@
-                @foreach (var item in new[]{ @* Loops through the collection and renders each item. *@
+                @foreach (var item in (User.IsInRole("Developer")
+                    ? new[]{
  @* ----- Form Actions ----- *@
-                    ("/Products/Create",        "plus",        "Add new product"), @* Renders part of the admin dashboard page markup. *@
+                        ("/Products/Create",        "plus",        "Add new product"), @* Renders part of the admin dashboard page markup. *@
  @* ----- Card Layout ----- *@
-                    ("/AdminDashboard/Orders",  "shopping-bag","All orders"), @* Renders part of the admin dashboard page markup. *@
-                    ("/AdminDashboard/Users",   "users",       "Manage users"), @* Renders part of the admin dashboard page markup. *@
-                    ("/AdminDashboard/Settings","settings",    "Settings & roles"), @* Renders part of the admin dashboard page markup. *@
+                        ("/AdminDashboard/Orders",  "shopping-bag","All orders"), @* Renders part of the admin dashboard page markup. *@
+                        ("/AdminDashboard/Users",   "users",       "Manage users"), @* Renders part of the admin dashboard page markup. *@
+                        ("/AdminDashboard/Settings","settings",    "Settings & roles"), @* Renders part of the admin dashboard page markup. *@
  @* ----- Producer Display ----- *@
-                    ("/Producers/Index",        "sprout",      "View producers"), @* Renders part of the admin dashboard page markup. *@
-                })
+                        ("/Producers/Index",        "sprout",      "View producers"), @* Renders part of the admin dashboard page markup. *@
+                    }
+                    : new[]{
+                        ("/AdminDashboard/Orders",  "shopping-bag","All orders"),
+                        ("/AdminDashboard/Users",   "users",       "Manage users"),
+                        ("/AdminDashboard/Settings","settings",    "Settings & roles"),
+                        ("/Producers/Index",        "sprout",      "View producers"),
+                    }))
                 {
  @* ----- Order Display ----- *@
                     <a href="@item.Item1" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--text-muted);text-decoration:none;transition:background .12s,color .12s;" @* Renders a navigation link or action link. *@

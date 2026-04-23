@@ -71,7 +71,10 @@
             <a href="/AdminDashboard/Products" class="adm-btn-clear"><i data-lucide="x" style="width:13px;height:13px;" aria-hidden="true"></i>Clear</a> @* Renders a navigation link or action link. *@
         }
     </form> @* Closes the form after its fields and actions. *@
-    <a href="/Products/Create" class="adm-btn-add"><i data-lucide="plus" style="width:13px;height:13px;" aria-hidden="true"></i>Add product</a> @* Renders a navigation link or action link. *@
+    @if (User.IsInRole("Developer")) @* Conditionally renders this block when the check passes. *@
+    {
+        <a href="/Products/Create" class="adm-btn-add"><i data-lucide="plus" style="width:13px;height:13px;" aria-hidden="true"></i>Add product</a> @* Renders a navigation link or action link. *@
+    }
 </div> @* Closes the matching HTML element. *@
 
  @* ----- Card Layout ----- *@

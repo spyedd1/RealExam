@@ -86,20 +86,30 @@
                 <div class="adm-card__body">
                     @* Starts a layout container for this section. *@
                     @* ----- Form Fields ----- *@
-                    @foreach (var (icon, label, href) in new[]{ @* Loops through the collection and renders each item. *@
+                    @foreach (var (icon, label, href) in (User.IsInRole("Developer")
+                        ? new[]{
  @* ----- Card Layout ----- *@
-                ("layout-dashboard","Overview",                "/AdminDashboard"), @* Renders part of the admin dashboard page markup. *@
-                ("shopping-bag",    "Manage orders",           "/AdminDashboard/Orders"), @* Renders part of the admin dashboard page markup. *@
-                ("package",         "Manage products",         "/AdminDashboard/Products"), @* Renders part of the admin dashboard page markup. *@
-                ("sprout",          "Manage producers",        "/AdminDashboard/Producers"), @* Renders part of the admin dashboard page markup. *@
-                ("users",           "Manage users",            "/AdminDashboard/Users"), @* Renders part of the admin dashboard page markup. *@
+                            ("layout-dashboard","Overview",                "/AdminDashboard"), @* Renders part of the admin dashboard page markup. *@
+                            ("shopping-bag",    "Manage orders",           "/AdminDashboard/Orders"), @* Renders part of the admin dashboard page markup. *@
+                            ("package",         "Manage products",         "/AdminDashboard/Products"), @* Renders part of the admin dashboard page markup. *@
+                            ("sprout",          "Manage producers",        "/AdminDashboard/Producers"), @* Renders part of the admin dashboard page markup. *@
+                            ("users",           "Manage users",            "/AdminDashboard/Users"), @* Renders part of the admin dashboard page markup. *@
  @* ----- Form Actions ----- *@
-                ("plus",            "Add new product",         "/Products/Create"), @* Renders part of the admin dashboard page markup. *@
+                            ("plus",            "Add new product",         "/Products/Create"), @* Renders part of the admin dashboard page markup. *@
  @* ----- Product Display ----- *@
-                ("store",           "View public shop",        "/Products"), @* Renders part of the admin dashboard page markup. *@
+                            ("store",           "View public shop",        "/Products"), @* Renders part of the admin dashboard page markup. *@
  @* ----- Conditional Rendering ----- *@
-                ("user",            "Identity account pages",  "/Identity/Account/Manage"), @* Renders part of the admin dashboard page markup. *@
-                })
+                            ("user",            "Identity account pages",  "/Identity/Account/Manage"), @* Renders part of the admin dashboard page markup. *@
+                        }
+                        : new[]{
+                            ("layout-dashboard","Overview",                "/AdminDashboard"),
+                            ("shopping-bag",    "Manage orders",           "/AdminDashboard/Orders"),
+                            ("package",         "Manage products",         "/AdminDashboard/Products"),
+                            ("sprout",          "Manage producers",        "/AdminDashboard/Producers"),
+                            ("users",           "Manage users",            "/AdminDashboard/Users"),
+                            ("store",           "View public shop",        "/Products"),
+                            ("user",            "Identity account pages",  "/Identity/Account/Manage"),
+                        }))
                     {
                         @* ----- Card Layout ----- *@
                         <div class="adm-link-row">

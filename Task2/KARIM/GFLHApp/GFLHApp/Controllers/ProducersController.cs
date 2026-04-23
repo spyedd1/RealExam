@@ -402,11 +402,6 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             {
                 ModelState.AddModelError(nameof(producers.ProducerName), "Producer name is required."); // Adds a validation message that the view can show to the user.
             }
-            else if (producers.ProducerName.Length < 3 || producers.ProducerName.Length > 100) // Checks the next fallback condition in the workflow.
-            {
-                // Form validation
-                ModelState.AddModelError(nameof(producers.ProducerName), "Producer name must be between 3 and 100 characters."); // Adds a validation message that the view can show to the user.
-            }
 
             // Producer lookup
             if (string.IsNullOrWhiteSpace(producers.ProducerEmail)) // Validates that required text was supplied.
@@ -422,11 +417,6 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             if (string.IsNullOrWhiteSpace(producers.ProducerInformation)) // Validates that required text was supplied.
             {
                 ModelState.AddModelError(nameof(producers.ProducerInformation), "Producer information is required."); // Adds a validation message that the view can show to the user.
-            }
-            else if (producers.ProducerInformation.Length < 10 || producers.ProducerInformation.Length > 500) // Checks the next fallback condition in the workflow.
-            {
-                // Form validation
-                ModelState.AddModelError(nameof(producers.ProducerInformation), "Producer information must be between 10 and 500 characters."); // Adds a validation message that the view can show to the user.
             }
 
             // Invoice VAT system

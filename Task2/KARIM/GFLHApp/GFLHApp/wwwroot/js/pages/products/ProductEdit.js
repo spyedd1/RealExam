@@ -17,13 +17,26 @@
                 var step    = parseFloat(input.step) || 1; // Stores the step value for later script logic.
                 var current = parseFloat(input.value) || 0; // Stores the current value for later script logic.
                 var min     = input.min !== '' ? parseFloat(input.min) : -Infinity; // Stores the min value for later script logic.
+                var max     = input.max !== '' ? parseFloat(input.max) : Infinity; // Stores the max value for later script logic.
                 // ----- Helpers -----
                 var next    = btn.dataset.action === 'inc' ? current + step : current - step; // Stores the next value for later script logic.
                 if (next < min) next = min; // Checks the condition before running the next script step.
+                if (next > max) next = max; // Checks the condition before running the next script step.
                 var decimals = (step.toString().split('.')[1] || '').length; // Stores the decimals value for later script logic.
                 // ----- Event wiring -----
                 input.value = next.toFixed(decimals); // Updates input.value for the current script state.
                 input.dispatchEvent(new Event('change', { bubbles: true })); // Runs this JavaScript step for the page interaction.
+            });
+        });
+
+        document.querySelectorAll('.pw-stepper__input').forEach(function (input) { // Finds a page element needed by the script.
+            input.addEventListener('input', function () { // Registers an event handler for user or browser interaction.
+                var value = parseFloat(input.value); // Stores the value for later script logic.
+                if (Number.isNaN(value)) return; // Checks the condition before running the next script step.
+                var min = input.min !== '' ? parseFloat(input.min) : -Infinity; // Stores the min value for later script logic.
+                var max = input.max !== '' ? parseFloat(input.max) : Infinity; // Stores the max value for later script logic.
+                if (value < min) input.value = min.toString(); // Checks the condition before running the next script step.
+                if (value > max) input.value = max.toString(); // Checks the condition before running the next script step.
             });
         });
 

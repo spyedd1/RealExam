@@ -1,18 +1,21 @@
-<!DOCTYPE html> @* Renders part of the shared layout page markup. *@
-<html lang="en"> @* Renders part of the shared layout page markup. *@
-<head> @* Renders part of the shared layout page markup. *@
+<!DOCTYPE html>
+@* Renders part of the shared layout page markup. *@
+<html lang="en">
+@* Renders part of the shared layout page markup. *@
+<head>
+    @* Renders part of the shared layout page markup. *@
     <meta charset="utf-8" /> @* Renders part of the shared layout page markup. *@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> @* Renders part of the shared layout page markup. *@
- @* ----- Page Model Setup ----- *@
+    @* ----- Page Model Setup ----- *@
     <title>@ViewData["Title"] — Greenfield</title> @* Sets the browser and page title for this view. *@
- @* ----- Script Section ----- *@
+    @* ----- Script Section ----- *@
     <script type="importmap"></script> @* Starts client-side script for this page. *@
     <link rel="preconnect" href="https://fonts.googleapis.com"> @* Renders one list item. *@
- @* ----- Card Layout ----- *@
+    @* ----- Card Layout ----- *@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> @* Renders one list item. *@
- @* ----- Conditional Rendering ----- *@
+    @* ----- Conditional Rendering ----- *@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> @* Renders one list item. *@
- @* ----- Styling Section ----- *@
+    @* ----- Styling Section ----- *@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> @* Renders one list item. *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> @* Renders one list item. *@
     <link rel="stylesheet" href="~/css/pages/shared/Layout.css" asp-append-version="true" /> @* Renders one list item. *@
@@ -20,213 +23,248 @@
     @RenderSection("Styles", required: false) @* Renders an optional section supplied by the view. *@
 
 </head> @* Closes the matching HTML element. *@
-<body> @* Renders part of the shared layout page markup. *@
-    <header> @* Starts the page header area. *@
- @* ----- Navigation ----- *@
-        <nav class="pw-nav" id="mainNav" aria-label="Main navigation"> @* Starts the navigation area. *@
- @* ----- Styling Section ----- *@
-            <div class="pw-nav__inner"> @* Starts a layout container for this section. *@
- @* ----- Navigation ----- *@
-                <a class="pw-nav__logo" asp-area="" asp-controller="Home" asp-action="Index" aria-label="Greenfield home"> @* Builds a link or form target using MVC routing. *@
- @* ----- Styling Section ----- *@
-                    <span class="pw-nav__logo-mark" aria-hidden="true"> @* Renders inline text or badge content. *@
+<body>
+    @* Renders part of the shared layout page markup. *@
+    <header>
+        @* Starts the page header area. *@
+        @* ----- Navigation ----- *@
+        <nav class="pw-nav" id="mainNav" aria-label="Main navigation">
+            @* Starts the navigation area. *@
+            @* ----- Styling Section ----- *@
+            <div class="pw-nav__inner">
+                @* Starts a layout container for this section. *@
+                @* ----- Navigation ----- *@
+                <a class="pw-nav__logo" asp-area="" asp-controller="Home" asp-action="Index" aria-label="Greenfield home">
+                    @* Builds a link or form target using MVC routing. *@
+                    @* ----- Styling Section ----- *@
+                    <span class="pw-nav__logo-mark" aria-hidden="true">
+                        @* Renders inline text or badge content. *@
                         <i data-lucide="sprout" class="pw-icon-nav-logo"></i> @* Renders part of the shared layout page markup. *@
                     </span> @* Closes the matching HTML element. *@
                     <span class="pw-nav__logo-text">Greenfield</span> @* Renders inline text or badge content. *@
                 </a> @* Closes the matching HTML element. *@
 
-                <div class="pw-nav__drawer" id="navDrawer" aria-hidden="true"> @* Starts a layout container for this section. *@
-                    <ul class="pw-nav__links" role="list"> @* Starts a list of related items. *@
- @* ----- Navigation ----- *@
+                <div class="pw-nav__drawer" id="navDrawer" aria-hidden="true">
+                    @* Starts a layout container for this section. *@
+                    <ul class="pw-nav__links" role="list">
+                        @* Starts a list of related items. *@
+                        @* ----- Navigation ----- *@
                         <li><a asp-area="" asp-controller="Products" asp-action="Index">Shop</a></li> @* Builds a link or form target using MVC routing. *@
                         <li><a asp-area="" asp-controller="Producers" asp-action="Index">Growers</a></li> @* Builds a link or form target using MVC routing. *@
                         <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li> @* Builds a link or form target using MVC routing. *@
                         <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li> @* Builds a link or form target using MVC routing. *@
- @* ----- Authorization Display ----- *@
+                        @* ----- Authorization Display ----- *@
                         @if (User.IsInRole("Standard") || User.IsInRole("Admin") || User.IsInRole("Developer")) @* Conditionally renders this block when the check passes. *@
                         {
- @* ----- Navigation ----- *@
+                            @* ----- Navigation ----- *@
                             <li><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></li> @* Builds a link or form target using MVC routing. *@
                         }
- @* ----- Authorization Display ----- *@
+                        @* ----- Authorization Display ----- *@
                         @if (User.IsInRole("Admin") || User.IsInRole("Developer")) @* Conditionally renders this block when the check passes. *@
                         {
- @* ----- Navigation ----- *@
-                            <li><a asp-area="" asp-controller="AdminDashboard" asp-action="Index">Admin Dashboard</a></li> @* Builds a link or form target using MVC routing. *@
+                            @* ----- Navigation ----- *@
+                            <li><a asp-area="" asp-controller="AdminDashboard" asp-action="Index">Admin</a></li> @* Builds a link or form target using MVC routing. *@
                         }
- @* ----- Authorization Display ----- *@
+                        @* ----- Authorization Display ----- *@
                         @if (User.IsInRole("Producer") || User.IsInRole("Developer")) @* Conditionally renders this block when the check passes. *@
                         {
- @* ----- Navigation ----- *@
-                            <li><a asp-area="" asp-controller="ProducerDashboard" asp-action="Index">Producer Dashboard</a></li> @* Builds a link or form target using MVC routing. *@
+                            @* ----- Navigation ----- *@
+                            <li><a asp-area="" asp-controller="ProducerDashboard" asp-action="Index">Producer</a></li> @* Builds a link or form target using MVC routing. *@
                         }
                     </ul> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
-                    <div class="pw-nav__actions"> @* Starts a layout container for this section. *@
-                        <div class="pw-accessibility" id="accessibilityMenu"> @* Starts a layout container for this section. *@
- @* ----- Form Actions ----- *@
+                    @* ----- Styling Section ----- *@
+                    <div class="pw-nav__actions">
+                        @* Starts a layout container for this section. *@
+                        <div class="pw-accessibility" id="accessibilityMenu">
+                            @* Starts a layout container for this section. *@
+                            @* ----- Form Actions ----- *@
                             <button class="pw-accessibility__toggle" type="button" @* Renders a button for the user action. *@
                                     id="accessibilityToggle" @* Renders part of the shared layout page markup. *@
- @* ----- Form Fields ----- *@
+                                @* ----- Form Fields ----- *@
                                     aria-label="Accessibility options" @* Renders part of the shared layout page markup. *@
                                     aria-expanded="false" @* Renders part of the shared layout page markup. *@
- @* ----- Navigation ----- *@
-                                    aria-controls="accessibilityDropdown"> @* Renders part of the shared layout page markup. *@
- @* ----- Styling Section ----- *@
-                                <span class="pw-accessibility__hamburger" aria-hidden="true"> @* Renders inline text or badge content. *@
+                                @* ----- Navigation ----- *@
+                                    aria-controls="accessibilityDropdown">
+                                @* Renders part of the shared layout page markup. *@
+                                @* ----- Styling Section ----- *@
+                                <span class="pw-accessibility__hamburger" aria-hidden="true">
+                                    @* Renders inline text or badge content. *@
                                     <span></span> @* Renders inline text or badge content. *@
                                     <span></span> @* Renders inline text or badge content. *@
                                     <span></span> @* Renders inline text or badge content. *@
                                 </span> @* Closes the matching HTML element. *@
                                 <span>Accessibility</span> @* Renders inline text or badge content. *@
                             </button> @* Closes the matching HTML element. *@
- @* ----- Navigation ----- *@
-                            <div class="pw-accessibility__dropdown" id="accessibilityDropdown" role="menu" aria-labelledby="accessibilityToggle" hidden> @* Starts a layout container for this section. *@
- @* ----- Form Actions ----- *@
-                                <button type="button" class="pw-accessibility__item" data-accessibility-action="dark-mode" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
+                            @* ----- Navigation ----- *@
+                            <div class="pw-accessibility__dropdown" id="accessibilityDropdown" role="menu" aria-labelledby="accessibilityToggle" hidden>
+                                @* Starts a layout container for this section. *@
+                                @* ----- Form Actions ----- *@
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="dark-mode" role="menuitem">
+                                    @* Renders a button for the user action. *@
+                                    @* ----- Styling Section ----- *@
                                     <i data-lucide="moon" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Form Fields ----- *@
+                                    @* ----- Form Fields ----- *@
                                     <span data-accessibility-label="dark-mode">Dark mode</span> @* Renders inline text or badge content. *@
                                 </button> @* Closes the matching HTML element. *@
- @* ----- Form Actions ----- *@
-                                <button type="button" class="pw-accessibility__item" data-accessibility-action="increase-font" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
+                                @* ----- Form Actions ----- *@
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="increase-font" role="menuitem">
+                                    @* Renders a button for the user action. *@
+                                    @* ----- Styling Section ----- *@
                                     <i data-lucide="zoom-in" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
                                     <span>Increase text</span> @* Renders inline text or badge content. *@
                                 </button> @* Closes the matching HTML element. *@
- @* ----- Form Actions ----- *@
-                                <button type="button" class="pw-accessibility__item" data-accessibility-action="decrease-font" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
+                                @* ----- Form Actions ----- *@
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="decrease-font" role="menuitem">
+                                    @* Renders a button for the user action. *@
+                                    @* ----- Styling Section ----- *@
                                     <i data-lucide="zoom-out" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
                                     <span>Decrease text</span> @* Renders inline text or badge content. *@
                                 </button> @* Closes the matching HTML element. *@
- @* ----- Form Actions ----- *@
-                                <button type="button" class="pw-accessibility__item" data-accessibility-action="reset-font" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
+                                @* ----- Form Actions ----- *@
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="reset-font" role="menuitem">
+                                    @* Renders a button for the user action. *@
+                                    @* ----- Styling Section ----- *@
                                     <i data-lucide="rotate-ccw" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
                                     <span>Reset text size</span> @* Renders inline text or badge content. *@
                                 </button> @* Closes the matching HTML element. *@
- @* ----- Form Actions ----- *@
-                                <button type="button" class="pw-accessibility__item" data-accessibility-action="high-contrast" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
+                                @* ----- Form Actions ----- *@
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="high-contrast" role="menuitem">
+                                    @* Renders a button for the user action. *@
+                                    @* ----- Styling Section ----- *@
                                     <i data-lucide="contrast" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Form Fields ----- *@
+                                    @* ----- Form Fields ----- *@
                                     <span data-accessibility-label="high-contrast">High contrast</span> @* Renders inline text or badge content. *@
                                 </button> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
+                                @* ----- Styling Section ----- *@
                                 <div class="pw-accessibility__divider" role="separator"></div> @* Starts a layout container for this section. *@
- @* ----- Form Actions ----- *@
-                                <button type="button" class="pw-accessibility__item" data-accessibility-action="speak" role="menuitem"> @* Renders a button for the user action. *@
- @* ----- Styling Section ----- *@
+                                @* ----- Form Actions ----- *@
+                                <button type="button" class="pw-accessibility__item" data-accessibility-action="speak" role="menuitem">
+                                    @* Renders a button for the user action. *@
+                                    @* ----- Styling Section ----- *@
                                     <i data-lucide="volume-2" class="pw-accessibility__icon" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
- @* ----- Form Fields ----- *@
+                                    @* ----- Form Fields ----- *@
                                     <span data-accessibility-label="speak">Read page aloud</span> @* Renders inline text or badge content. *@
                                 </button> @* Closes the matching HTML element. *@
                             </div> @* Closes the matching HTML element. *@
                         </div> @* Closes the matching HTML element. *@
                         <partial name="_LoginPartial" /> @* Renders a shared partial view here. *@
- @* ----- Authorization Display ----- *@
+                        @* ----- Authorization Display ----- *@
                         @if (User.IsInRole("Standard") || User.IsInRole("Developer")) @* Conditionally renders this block when the check passes. *@
                         {
- @* ----- Navigation ----- *@
-                            <a class="pw-nav__basket" asp-area="" asp-controller="Baskets" asp-action="Index" aria-label="View basket"> @* Builds a link or form target using MVC routing. *@
- @* ----- Basket Display ----- *@
+                            @* ----- Navigation ----- *@
+                            <a class="pw-nav__basket" asp-area="" asp-controller="Baskets" asp-action="Index" aria-label="View basket">
+                                @* Builds a link or form target using MVC routing. *@
+                                @* ----- Basket Display ----- *@
                                 <i data-lucide="shopping-basket" class="pw-icon-nav-basket" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
                                 <span>Basket</span> @* Renders inline text or badge content. *@
- @* ----- Form Fields ----- *@
+                                @* ----- Form Fields ----- *@
                                 <span class="pw-basket-badge" id="navBasketCount" aria-label="items in basket" hidden>0</span> @* Renders inline text or badge content. *@
                             </a> @* Closes the matching HTML element. *@
                         }
                     </div> @* Closes the matching HTML element. *@
                 </div> @* Closes the matching HTML element. *@
 
- @* ----- Form Actions ----- *@
+                @* ----- Form Actions ----- *@
                 <button class="pw-nav__hamburger" id="navToggle" @* Renders a button for the user action. *@
- @* ----- Form Fields ----- *@
-                        aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer"> @* Renders part of the shared layout page markup. *@
+                    @* ----- Form Fields ----- *@
+                        aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+                    @* Renders part of the shared layout page markup. *@
                     <span></span><span></span><span></span> @* Renders inline text or badge content. *@
                 </button> @* Closes the matching HTML element. *@
             </div> @* Closes the matching HTML element. *@
         </nav> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
+        @* ----- Styling Section ----- *@
         <div class="pw-nav__backdrop" id="navBackdrop" aria-hidden="true"></div> @* Starts a layout container for this section. *@
     </header> @* Closes the matching HTML element. *@
 
- @* ----- Page Model Setup ----- *@
+    @* ----- Page Model Setup ----- *@
     @if (ViewData["FullWidth"] is bool fw && fw) @* Conditionally renders this block when the check passes. *@
     {
-        <main role="main" id="main-content"> @* Starts the main page content area. *@
+        <main role="main" id="main-content">
+            @* Starts the main page content area. *@
             @RenderBody() @* Renders the body content from the current view. *@
         </main> @* Closes the matching HTML element. *@
     }
- @* ----- Conditional Rendering ----- *@
+    @* ----- Conditional Rendering ----- *@
     else @* Renders the fallback branch for the previous condition. *@
     {
- @* ----- Styling Section ----- *@
-        <div class="container pw-page-container"> @* Starts a layout container for this section. *@
-            <main role="main" id="main-content" class="pb-3"> @* Starts the main page content area. *@
+        @* ----- Styling Section ----- *@
+        <div class="container pw-page-container">
+            @* Starts a layout container for this section. *@
+            <main role="main" id="main-content" class="pb-3">
+                @* Starts the main page content area. *@
                 @RenderBody() @* Renders the body content from the current view. *@
             </main> @* Closes the matching HTML element. *@
         </div> @* Closes the matching HTML element. *@
     }
 
-    <footer class="pw-footer" role="contentinfo"> @* Starts the page footer area. *@
-        <div class="pw-footer__inner"> @* Starts a layout container for this section. *@
-            <div class="pw-footer__brand"> @* Starts a layout container for this section. *@
-                <span class="pw-footer__logo"> @* Renders inline text or badge content. *@
+    <footer class="pw-footer" role="contentinfo">
+        @* Starts the page footer area. *@
+        <div class="pw-footer__inner">
+            @* Starts a layout container for this section. *@
+            <div class="pw-footer__brand">
+                @* Starts a layout container for this section. *@
+                <span class="pw-footer__logo">
+                    @* Renders inline text or badge content. *@
                     <i data-lucide="sprout" class="pw-icon-footer-logo" aria-hidden="true"></i> @* Renders part of the shared layout page markup. *@
                     Greenfield @* Renders part of the shared layout page markup. *@
                 </span> @* Closes the matching HTML element. *@
- @* ----- Card Layout ----- *@
+                @* ----- Card Layout ----- *@
                 <p>From small farms to your table.<br>Grown with care. Delivered with love.</p> @* Renders paragraph text for the user. *@
             </div> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
-            <div class="pw-footer__links"> @* Starts a layout container for this section. *@
+            @* ----- Styling Section ----- *@
+            <div class="pw-footer__links">
+                @* Starts a layout container for this section. *@
                 <h4>Shop</h4> @* Renders a heading for this page section. *@
-                <ul role="list"> @* Starts a list of related items. *@
- @* ----- Navigation ----- *@
+                <ul role="list">
+                    @* Starts a list of related items. *@
+                    @* ----- Navigation ----- *@
                     <li><a asp-area="" asp-controller="Products" asp-action="Index">All Products</a></li> @* Builds a link or form target using MVC routing. *@
                     <li><a asp-area="" asp-controller="Baskets" asp-action="Index">My Basket</a></li> @* Builds a link or form target using MVC routing. *@
                     <li><a asp-area="" asp-controller="Orders" asp-action="Index">My Orders</a></li> @* Builds a link or form target using MVC routing. *@
                 </ul> @* Closes the matching HTML element. *@
             </div> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
-            <div class="pw-footer__links"> @* Starts a layout container for this section. *@
- @* ----- Card Layout ----- *@
+            @* ----- Styling Section ----- *@
+            <div class="pw-footer__links">
+                @* Starts a layout container for this section. *@
+                @* ----- Card Layout ----- *@
                 <h4>Growers</h4> @* Renders a heading for this page section. *@
-                <ul role="list"> @* Starts a list of related items. *@
- @* ----- Navigation ----- *@
+                <ul role="list">
+                    @* Starts a list of related items. *@
+                    @* ----- Navigation ----- *@
                     <li><a asp-area="" asp-controller="Producers" asp-action="Index">Meet the Farmers</a></li> @* Builds a link or form target using MVC routing. *@
- @* ----- Authorization Display ----- *@
+                    @* ----- Authorization Display ----- *@
                     @if (User.IsInRole("Producer") || User.IsInRole("Developer")) @* Conditionally renders this block when the check passes. *@
                     {
- @* ----- Navigation ----- *@
-                        <li><a asp-area="" asp-controller="ProducerDashboard" asp-action="Index">Producer Dashboard</a></li> @* Builds a link or form target using MVC routing. *@
+                        @* ----- Navigation ----- *@
+                        <li><a asp-area="" asp-controller="ProducerDashboard" asp-action="Index">Producer</a></li> @* Builds a link or form target using MVC routing. *@
                     }
                 </ul> @* Closes the matching HTML element. *@
             </div> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
-            <div class="pw-footer__links"> @* Starts a layout container for this section. *@
+            @* ----- Styling Section ----- *@
+            <div class="pw-footer__links">
+                @* Starts a layout container for this section. *@
                 <h4>Company</h4> @* Renders a heading for this page section. *@
-                <ul role="list"> @* Starts a list of related items. *@
+                <ul role="list">
+                    @* Starts a list of related items. *@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li> @* Builds a link or form target using MVC routing. *@
- @* ----- Navigation ----- *@
+                    @* ----- Navigation ----- *@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li> @* Builds a link or form target using MVC routing. *@
                     <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li> @* Builds a link or form target using MVC routing. *@
- @* ----- Authorization Display ----- *@
+                    @* ----- Authorization Display ----- *@
                     <li><a asp-area="Identity" asp-page="/Account/Register">Sign Up</a></li> @* Builds a link or form target using MVC routing. *@
                 </ul> @* Closes the matching HTML element. *@
             </div> @* Closes the matching HTML element. *@
         </div> @* Closes the matching HTML element. *@
- @* ----- Styling Section ----- *@
-        <div class="pw-footer__bottom"> @* Starts a layout container for this section. *@
- @* ----- Card Layout ----- *@
+        @* ----- Styling Section ----- *@
+        <div class="pw-footer__bottom">
+            @* Starts a layout container for this section. *@
+            @* ----- Card Layout ----- *@
             &copy; 2026 Greenfield &mdash; Grown Different&trade; @* Renders part of the shared layout page markup. *@
         </div> @* Closes the matching HTML element. *@
     </footer> @* Closes the matching HTML element. *@
 
- @* ----- Script Section ----- *@
+    @* ----- Script Section ----- *@
     <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script> @* Starts client-side script for this page. *@
 
     <script src="https://unpkg.com/scrollreveal@4/dist/scrollreveal.min.js"></script> @* Starts client-side script for this page. *@

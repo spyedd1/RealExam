@@ -23,24 +23,41 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             _context = context; // Stores the injected dependency on the controller field.
         }
 
+        private bool IsDeveloper() // Checks whether the signed-in user is a developer.
+        {
+            return User.IsInRole("Developer"); // Returns whether the current user is in the Developer role.
+        }
+
         // ----- Listing and Dashboard Actions -----
         public async Task<IActionResult> Index() // Loads the main listing or dashboard view for this controller
         {
             // Set user ID
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Gets the current signed-in user's Identity id from claims.
-            // Producer lookup
-            var producer = await _context.Producers.FirstOrDefaultAsync(p => p.UserId == userId); // Fetches the first matching record or null if none exists.
+            string producerName; // Stores the producer name shown in the dashboard.
+            IQueryable<Models.Products> productsQuery = _context.Products; // Starts the product scope for the current user.
+            IQueryable<Models.ProducerOrders> producerOrdersQuery = _context.ProducerOrders; // Starts the producer-order scope for the current user.
 
-            if (producer == null) return NotFound(); // Checks whether the requested data was found.
+            if (IsDeveloper()) // Checks the condition that controls the next action.
+            {
+                producerName = "Developer"; // Shows a developer-wide dashboard title.
+            }
+            else // Handles the fallback branch when earlier conditions did not match.
+            {
+                // Producer lookup
+                var producer = await _context.Producers.FirstOrDefaultAsync(p => p.UserId == userId); // Fetches the first matching record or null if none exists.
+                if (producer == null) return NotFound(); // Checks whether the requested data was found.
+
+                productsQuery = productsQuery.Where(p => p.ProducersId == producer.ProducersId); // Filters the query to only the relevant records.
+                producerOrdersQuery = producerOrdersQuery.Where(x => x.ProducerId == userId); // Filters the query to only the relevant records.
+                producerName = producer.ProducerName; // Sets the producer name for the view.
+            }
 
             // Product lookup
-            var products = await _context.Products // Sets products to the value needed by the workflow.
-                .Where(p => p.ProducersId == producer.ProducersId) // Filters the query to only the relevant records.
+            var products = await productsQuery // Sets products to the value needed by the workflow.
                 .ToListAsync(); // Executes the query asynchronously and materializes the list.
 
             // Producer order splitting
-            var producerOrders = await _context.ProducerOrders // Sets producerOrders to the value needed by the workflow.
-                .Where(x => x.ProducerId == userId) // Filters the query to only the relevant records.
+            var producerOrders = await producerOrdersQuery // Sets producerOrders to the value needed by the workflow.
                 .Include(x => x.Orders) // Includes related records needed by the view or workflow.
                 .Include(x => x.OrderProducts) // Includes related records needed by the view or workflow.
                     .ThenInclude(x => x.Products) // Includes nested related records for the query result.
@@ -51,7 +68,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             var now = DateTime.UtcNow; // Sets now to the value needed by the workflow.
 
             // Producer lookup
-            ViewBag.ProducerName = producer.ProducerName; // Supplies ProducerName to the view for display or form state.
+            ViewBag.ProducerName = producerName; // Supplies ProducerName to the view for display or form state.
             // Basket totals
             ViewBag.TotalProducts = products.Count; // Supplies TotalProducts to the view for display or form state.
             // Availability check
@@ -80,7 +97,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
 
             // Producer order splitting
             var producerOrders = await _context.ProducerOrders // Sets producerOrders to the value needed by the workflow.
-                .Where(x => x.ProducerId == userId) // Filters the query to only the relevant records.
+                .Where(x => IsDeveloper() || x.ProducerId == userId) // Filters the query to only the relevant records.
                 .Include(x => x.Orders) // Includes related records needed by the view or workflow.
                 .Include(x => x.OrderProducts) // Includes related records needed by the view or workflow.
                     .ThenInclude(x => x.Products) // Includes nested related records for the query result.
@@ -102,13 +119,20 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
         {
             // Set user ID
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Gets the current signed-in user's Identity id from claims.
-            // Producer lookup
-            var producer = await _context.Producers.FirstOrDefaultAsync(p => p.UserId == userId); // Fetches the first matching record or null if none exists.
-            if (producer == null) return Json(new { success = false }); // Checks whether the requested data was found.
+            IQueryable<Models.Products> productsQuery = _context.Products; // Starts the product scope for the current user.
+
+            if (!IsDeveloper()) // Checks the condition that controls the next action.
+            {
+                // Producer lookup
+                var producer = await _context.Producers.FirstOrDefaultAsync(p => p.UserId == userId); // Fetches the first matching record or null if none exists.
+                if (producer == null) return Json(new { success = false }); // Checks whether the requested data was found.
+
+                productsQuery = productsQuery.Where(p => p.ProducersId == producer.ProducersId); // Filters the query to only the relevant records.
+            }
 
             // Product lookup
-            var product = await _context.Products // Sets product to the value needed by the workflow.
-                .FirstOrDefaultAsync(p => p.ProductsId == id && p.ProducersId == producer.ProducersId); // Fetches the first matching record or null if none exists.
+            var product = await productsQuery // Sets product to the value needed by the workflow.
+                .FirstOrDefaultAsync(p => p.ProductsId == id); // Fetches the first matching record or null if none exists.
             if (product == null) return Json(new { success = false }); // Checks whether the requested data was found.
 
             // Availability check
@@ -163,7 +187,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             // Producer order splitting
             var producerOrder = await _context.ProducerOrders // Sets producerOrder to the value needed by the workflow.
                 // Order logic
-                .Where(x => x.ProducerOrdersId == id && x.ProducerId == userId) // Filters the query to only the relevant records.
+                .Where(x => x.ProducerOrdersId == id && (IsDeveloper() || x.ProducerId == userId)) // Filters the query to only the relevant records.
                 .Include(x => x.Orders) // Includes related records needed by the view or workflow.
                 .Include(x => x.OrderProducts) // Includes related records needed by the view or workflow.
                     .ThenInclude(x => x.Products) // Includes nested related records for the query result.
@@ -208,7 +232,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             // Producer order splitting
             var producerOrder = await _context.ProducerOrders // Sets producerOrder to the value needed by the workflow.
                 // Order logic
-                .Where(x => x.ProducerOrdersId == id && x.ProducerId == userId) // Filters the query to only the relevant records.
+                .Where(x => x.ProducerOrdersId == id && (IsDeveloper() || x.ProducerId == userId)) // Filters the query to only the relevant records.
                 .Include(x => x.Orders) // Includes related records needed by the view or workflow.
                 .Include(x => x.OrderProducts) // Includes related records needed by the view or workflow.
                     .ThenInclude(x => x.Products) // Includes nested related records for the query result.
@@ -246,7 +270,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
                     .ThenInclude(x => x.Orders) // Includes nested related records for the query result.
                 .FirstOrDefaultAsync(); // Fetches the first matching record or null if none exists.
 
-            if (orderProduct == null || orderProduct.ProducerOrders.ProducerId != userId) // Checks that a signed-in user id is available.
+            if (orderProduct == null || (!IsDeveloper() && orderProduct.ProducerOrders.ProducerId != userId)) // Checks that a signed-in user id is available.
                 return NotFound(); // Returns 404 when the requested record is missing or inaccessible.
 
             // Stock checks
@@ -293,7 +317,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             var producerOrder = await _context.ProducerOrders // Sets producerOrder to the value needed by the workflow.
                 .Include(x => x.Orders) // Includes related records needed by the view or workflow.
                 // Order logic
-                .FirstOrDefaultAsync(x => x.ProducerOrdersId == id && x.ProducerId == userId); // Fetches the first matching record or null if none exists.
+                .FirstOrDefaultAsync(x => x.ProducerOrdersId == id && (IsDeveloper() || x.ProducerId == userId)); // Fetches the first matching record or null if none exists.
 
             if (producerOrder == null) // Checks whether the requested data was found.
                 return NotFound(); // Returns 404 when the requested record is missing or inaccessible.

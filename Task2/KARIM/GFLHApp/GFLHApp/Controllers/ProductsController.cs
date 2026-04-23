@@ -165,7 +165,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
         }
 
         // Role management
-        [Authorize(Roles = "Producer,Developer")] // Restricts access to users in the Producer,Developer role set.
+        [Authorize(Roles = "Producer,Developer,Admin")] // Restricts access to users in the Producer,Developer,Admin role set.
 
         // ----- Edit Actions -----
         // Edit record
@@ -176,16 +176,22 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
                 return NotFound(); // Returns 404 when the requested record is missing or inaccessible.
             }
 
-            // Producer lookup
-            var producer = await GetCurrentProducerAsync(); // Sets producer to the value needed by the workflow.
-            if (producer == null) // Checks whether the requested data was found.
+            var productsQuery = _context.Products.AsQueryable(); // Starts a product query for edit access checks.
+            if (!User.IsInRole("Admin") && !User.IsInRole("Developer")) // Keeps producers scoped to their own products.
             {
-                return Unauthorized(); // Returns 401 when the current user is not allowed to continue.
+                // Producer lookup
+                var producer = await GetCurrentProducerAsync(); // Sets producer to the value needed by the workflow.
+                if (producer == null) // Checks whether the requested data was found.
+                {
+                    return Unauthorized(); // Returns 401 when the current user is not allowed to continue.
+                }
+
+                productsQuery = productsQuery.Where(p => p.ProducersId == producer.ProducersId); // Filters the query to the signed-in producer's products.
             }
 
             // Product lookup
-            var products = await _context.Products // Sets products to the value needed by the workflow.
-                .FirstOrDefaultAsync(p => p.ProductsId == id && p.ProducersId == producer.ProducersId); // Fetches the first matching record or null if none exists.
+            var products = await productsQuery // Sets products to the value needed by the workflow.
+                .FirstOrDefaultAsync(p => p.ProductsId == id); // Fetches the first matching record or null if none exists.
 
             if (products == null) // Checks whether the requested data was found.
             {
@@ -210,16 +216,22 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
                 return NotFound(); // Returns 404 when the requested record is missing or inaccessible.
             }
 
-            // Producer lookup
-            var producer = await GetCurrentProducerAsync(); // Sets producer to the value needed by the workflow.
-            if (producer == null) // Checks whether the requested data was found.
+            var productsQuery = _context.Products.AsQueryable(); // Starts a product query for edit access checks.
+            if (!User.IsInRole("Admin") && !User.IsInRole("Developer")) // Keeps producers scoped to their own products.
             {
-                return Unauthorized(); // Returns 401 when the current user is not allowed to continue.
+                // Producer lookup
+                var producer = await GetCurrentProducerAsync(); // Sets producer to the value needed by the workflow.
+                if (producer == null) // Checks whether the requested data was found.
+                {
+                    return Unauthorized(); // Returns 401 when the current user is not allowed to continue.
+                }
+
+                productsQuery = productsQuery.Where(p => p.ProducersId == producer.ProducersId); // Filters the query to the signed-in producer's products.
             }
 
             // Product lookup
-            var existingProduct = await _context.Products // Sets existingProduct to the value needed by the workflow.
-                .FirstOrDefaultAsync(p => p.ProductsId == id && p.ProducersId == producer.ProducersId); // Fetches the first matching record or null if none exists.
+            var existingProduct = await productsQuery // Sets existingProduct to the value needed by the workflow.
+                .FirstOrDefaultAsync(p => p.ProductsId == id); // Fetches the first matching record or null if none exists.
 
             // Edit record
             if (existingProduct == null) // Checks whether the requested data was found.
@@ -229,8 +241,7 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
 
             // Form validation
             ModelState.Remove(nameof(Products.Producers)); // Removes a field from validation because the controller supplies it.
-            // Producer lookup
-            products.ProducersId = producer.ProducersId; // Sets products.ProducersId to the value needed by the workflow.
+            products.ProducersId = existingProduct.ProducersId; // Preserves the existing producer owner for privileged edits.
             // Image path selection
             products.ImagePath = NormalizeImagePath(products.ImagePath); // Normalizes form input before validation or saving.
             products.ItemName = products.ItemName?.Trim() ?? string.Empty; // Sets products.ItemName to the value needed by the workflow.
@@ -402,10 +413,20 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
                 ModelState.AddModelError(nameof(products.ItemPrice), "Price must be greater than 0."); // Adds a validation message that the view can show to the user.
             }
 
+            if (products.ItemPrice > 200) // Checks the condition that controls the next action.
+            {
+                ModelState.AddModelError(nameof(products.ItemPrice), "Price cannot be greater than 200."); // Adds a validation message that the view can show to the user.
+            }
+
             // Stock checks
             if (products.QuantityInStock < 0) // Checks the condition that controls the next action.
             {
                 ModelState.AddModelError(nameof(products.QuantityInStock), "Stock quantity cannot be negative."); // Adds a validation message that the view can show to the user.
+            }
+
+            if (products.QuantityInStock > 1000000) // Checks the condition that controls the next action.
+            {
+                ModelState.AddModelError(nameof(products.QuantityInStock), "Stock quantity cannot be greater than 1,000,000."); // Adds a validation message that the view can show to the user.
             }
 
             // Filter logic
@@ -418,6 +439,10 @@ namespace GFLHApp.Controllers // Places these MVC controller types in the applic
             if (string.IsNullOrWhiteSpace(products.Description)) // Validates that required text was supplied.
             {
                 ModelState.AddModelError(nameof(products.Description), "Enter a description."); // Adds a validation message that the view can show to the user.
+            }
+            else if (products.Description.Length > 500) // Checks the condition that controls the next action.
+            {
+                ModelState.AddModelError(nameof(products.Description), "Description cannot be longer than 500 characters."); // Adds a validation message that the view can show to the user.
             }
 
             // Image path selection
